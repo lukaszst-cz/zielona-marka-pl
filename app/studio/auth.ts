@@ -1,15 +1,21 @@
-import { getChatGPTUser, requireChatGPTUser } from "../chatgpt-auth";
+import { cookies } from "next/headers";
+import { OWNER_EMAIL, STUDIO_COOKIE, verifyStudioSession } from "./session";
 
-const OWNER_EMAIL = "lukasz.staniewicz@gmail.com";
+type StudioOwner = {
+  email: string;
+  displayName: string;
+};
+
+async function getAuthenticatedOwner(): Promise<StudioOwner | null> {
+  const cookieStore = await cookies();
+  if (!(await verifyStudioSession(cookieStore.get(STUDIO_COOKIE)?.value))) return null;
+  return { email: OWNER_EMAIL, displayName: OWNER_EMAIL };
+}
 
 export async function requireStudioOwner() {
-  const user = await requireChatGPTUser("/studio");
-  if (user.email.toLowerCase() !== OWNER_EMAIL) return null;
-  return user;
+  return getAuthenticatedOwner();
 }
 
 export async function getStudioOwner() {
-  const user = await getChatGPTUser();
-  if (!user || user.email.toLowerCase() !== OWNER_EMAIL) return null;
-  return user;
+  return getAuthenticatedOwner();
 }
