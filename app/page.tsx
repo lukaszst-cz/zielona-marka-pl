@@ -54,6 +54,10 @@ export default function Home() {
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [formError, setFormError] = useState("");
+  const [chatOpen, setChatOpen] = useState(false);
+  const [chatSent, setChatSent] = useState(false);
+  const [chatSending, setChatSending] = useState(false);
+  const [chatError, setChatError] = useState("");
   const [portfolioProjects, setPortfolioProjects] = useState(projects);
   const [expandedService, setExpandedService] = useState<number | null>(0);
   const [expandedTech, setExpandedTech] = useState<number | null>(null);
@@ -109,6 +113,17 @@ export default function Home() {
     setSending(false);
     if (response.ok) { setSent(true); formElement.reset(); }
     else setFormError("Nie udało się zapisać wiadomości. Napisz bezpośrednio na e-mail.");
+  }
+  async function submitQuickMessage(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setChatSending(true);
+    setChatError("");
+    const formElement = event.currentTarget;
+    const payload = Object.fromEntries(new FormData(formElement));
+    const response = await fetch("/api/inquiries", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...payload, company: "Szybki kontakt" }) });
+    setChatSending(false);
+    if (response.ok) { setChatSent(true); formElement.reset(); }
+    else setChatError("Nie udało się wysłać. Zadzwoń lub napisz e-mail.");
   }
 
   return (
@@ -468,6 +483,23 @@ export default function Home() {
               <li>Instrukcja samodzielnej obsługi</li>
             </ul>
           </div>
+          <div className="quality-board" aria-label="Zakres końcowych testów jakości">
+            <header>
+              <div><i /><span>RAPORT ODBIOROWY / QA</span></div>
+              <b>GOTOWA DO STARTU</b>
+            </header>
+            <div className="quality-board-grid">
+              <div className="quality-devices" aria-hidden="true">
+                <div className="quality-phone"><span /><span /><span /></div>
+                <div className="quality-desktop"><span /><span /><span /></div>
+              </div>
+              <div className="quality-checks">
+                {["Telefon i komputer", "Formularze i linki", "Szybkość i stabilność", "SEO techniczne", "Dostępność", "Pełna ścieżka klienta"].map((item, index) => (
+                  <div key={item}><b>{String(index + 1).padStart(2, "0")}</b><span>{item}</span><i>SPRAWDZONE ✓</i></div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
       <section id="technologie" className="section tech-section">
@@ -524,10 +556,34 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <section className="section faq-section">
+        <div className="shell faq-grid">
+          <div>
+            <span className="section-no">11 / FAQ</span>
+            <h2>Najczęstsze pytania przed startem.</h2>
+            <p>Krótko i konkretnie — żeby od początku było wiadomo, jak wygląda współpraca.</p>
+          </div>
+          <div className="faq-list">
+            {[
+              ["Czy będę mógł samodzielnie edytować treści?", "Tak, jeśli projekt tego wymaga, dobiorę WordPress lub inne proste zaplecze. Przy stronie kodowanej indywidualnie ustalamy wygodny sposób aktualizacji przed rozpoczęciem pracy."],
+              ["Od czego zależy cena strony?", "Od liczby widoków, przygotowania materiałów, funkcji, integracji i terminu. Przed startem otrzymujesz dokładny zakres i cenę — dodatkowe prace wymagają Twojej akceptacji."],
+              ["Czy musimy spotykać się osobiście?", "Nie. Konsultacje możemy prowadzić przez Google Meet, Microsoft Teams, telefon lub e-mail. Spotkanie osobiste w obsługiwanym regionie ustalamy wtedy, gdy rzeczywiście pomaga w projekcie."],
+              ["Czy strona będzie widoczna w Google?", "Przygotuję podstawy SEO technicznego, strukturę treści, indeksowanie i dane firmy. Pozycja zależy również od konkurencji, treści, opinii, linków i dalszej pracy — nie obiecuję nierealnych gwarancji."],
+              ["Jak wygląda rozliczenie?", "Zakres, harmonogram i sposób płatności ustalamy przed rozpoczęciem. Projekt może być rozliczony etapami lub przez uzgodnioną platformę pośredniczącą, np. Useme."],
+              ["Co dzieje się po oddaniu strony?", "Otrzymujesz działającą stronę, instrukcję, dostęp do ustalonych narzędzi oraz wynik końcowych testów QA. Możemy też umówić dalszą opiekę i rozwój."],
+            ].map(([question, answer], index) => (
+              <details key={question} open={index === 0}>
+                <summary><span>{String(index + 1).padStart(2, "0")}</span>{question}<i>+</i></summary>
+                <p>{answer}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
       <section id="kontakt" className="section contact-section">
         <div className="shell contact-grid">
           <div>
-            <span className="section-no">11 / ZACZNIJMY</span>
+            <span className="section-no">12 / ZACZNIJMY</span>
             <h2>Opowiedz mi o swojej marce.</h2>
             <p>
               Odpowiem z propozycją kolejnych kroków i wstępną wyceną. Bez
@@ -604,6 +660,50 @@ export default function Home() {
           </form>
         </div>
       </section>
+      <aside className={`quick-chat ${chatOpen ? "open" : ""}`} aria-label="Szybki kontakt">
+        {chatOpen && (
+          <div className="quick-chat-panel">
+            <header>
+              <div>
+                <span className="quick-chat-status"><i /> SZYBKI KONTAKT</span>
+                <h2>Napisz, czego potrzebujesz.</h2>
+                <p>To szybka wiadomość, nie automat. Odpowiem osobiście możliwie szybko.</p>
+              </div>
+              <button type="button" onClick={() => setChatOpen(false)} aria-label="Zamknij szybki kontakt">×</button>
+            </header>
+            {chatSent ? (
+              <div className="quick-chat-success">
+                <b>Wiadomość zapisana ✓</b>
+                <p>Wrócę do Ciebie na podany adres e-mail.</p>
+                <button type="button" onClick={() => { setChatSent(false); setChatOpen(false); }}>Gotowe</button>
+              </div>
+            ) : (
+              <>
+              <a className="quick-chat-whatsapp" href="https://wa.me/48603806833?text=Dzie%C5%84%20dobry%2C%20znalaz%C5%82em%20Zielon%C4%85%20Mark%C4%99%20i%20chc%C4%99%20zapyta%C4%87%20o%20projekt." target="_blank" rel="noreferrer">
+                <span className="quick-chat-whatsapp-mark" aria-hidden="true">●</span>
+                <span><b>Napisz na WhatsApp</b><small>Rozmowa na numer +48 603 806 833</small></span>
+                <i>↗</i>
+              </a>
+              <div className="quick-chat-divider"><span>lub zostaw wiadomość</span></div>
+              <form onSubmit={submitQuickMessage}>
+                <label>Imię<input required name="name" autoComplete="name" placeholder="Jak masz na imię?" /></label>
+                <label>E-mail<input required name="email" type="email" autoComplete="email" placeholder="twoj@email.pl" /></label>
+                <label>Wiadomość<textarea required name="message" rows={3} placeholder="Strona, automatyzacja, Google…" /></label>
+                <label className="quick-chat-consent"><input required type="checkbox" /><span>Akceptuję <Link href="/polityka-prywatnosci">politykę prywatności</Link> i proszę o kontakt.</span></label>
+                <button className="quick-chat-send" type="submit" disabled={chatSending}>{chatSending ? "Wysyłam…" : "Wyślij wiadomość"}<span>↗</span></button>
+                {chatError && <p className="quick-chat-error">{chatError}</p>}
+              </form>
+              </>
+            )}
+            <a className="quick-chat-phone" href="tel:+48450458466">Wolisz porozmawiać? <b>+48 450 458 466</b></a>
+          </div>
+        )}
+        <button className="quick-chat-toggle" type="button" onClick={() => setChatOpen(!chatOpen)} aria-expanded={chatOpen}>
+          <span className="quick-chat-symbol" aria-hidden="true"><i /><i /><i /></span>
+          <span><b>{chatOpen ? "Zamknij kontakt" : "Napisz do mnie"}</b><small>Szybka wiadomość</small></span>
+          <i aria-hidden="true">{chatOpen ? "×" : "↗"}</i>
+        </button>
+      </aside>
       <footer>
         <div className="shell footer-grid">
           <a className="brand" href="/">
