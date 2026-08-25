@@ -21,7 +21,7 @@ export default async function ConceptPage({ params }: { params: Promise<{ slug: 
   const project = concepts[slug as Slug];
   if (!project) notFound();
   return <main className="concept-page" style={{ "--concept": project.accent } as React.CSSProperties}>
-    <nav className="nav shell"><Link className="brand" href="/"><img className="brand-logo" src="/logo.png" alt=""/><span>ZIELONA MARKA</span></Link><Link className="text-link" href="/#realizacje">← Wszystkie realizacje</Link></nav>
+    <nav className="nav shell"><Link className="brand" href="/"><img className="brand-logo" src="/logo.png" alt=""/><span>ZIELONA MARKA</span></Link><a className="text-link" href="/?widok=realizacje#realizacje">← Wszystkie realizacje</a></nav>
     <header className="concept-hero shell">
       <div><span className="section-no">PROJEKT KONCEPCYJNY / {project.category}</span><h1>{project.name}</h1><p>{project.headline}</p></div>
       <figure><img src={project.image} alt={`Koncepcyjny wizerunek marki ${project.name}`}/></figure>

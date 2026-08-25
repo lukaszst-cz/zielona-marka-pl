@@ -4,7 +4,7 @@ import Link from "next/link";
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import { concepts, services, technologies } from "./content";
 
-type PortfolioCard = { n:string; name:string; type:string; note:string; color:string; description?:string; imageUrl?:string; websiteUrl?:string; backendUrl?:string };
+type PortfolioCard = { n:string; name:string; type:string; note:string; color:string; description?:string; imageUrl?:string; websiteUrl?:string; backendUrl?:string; primaryLabel?:string; secondaryLabel?:string };
 const projects: PortfolioCard[] = [
   {
     n: "01",
@@ -15,6 +15,9 @@ const projects: PortfolioCard[] = [
     description: "Strona i zaplecze rezerwacji dla studia wellness.",
     imageUrl: "/concept-natura.jpg",
     websiteUrl: "/realizacje/natura-studio",
+    backendUrl: "/demo/natura",
+    primaryLabel: "Zobacz projekt",
+    secondaryLabel: "Uruchom zaplecze",
   },
   {
     n: "02",
@@ -25,6 +28,9 @@ const projects: PortfolioCard[] = [
     description: "Strona restauracji, rezerwacje i panel operacyjny.",
     imageUrl: "/concept-bistro.jpg",
     websiteUrl: "/realizacje/bistro-forma",
+    backendUrl: "/demo/bistro",
+    primaryLabel: "Zobacz projekt",
+    secondaryLabel: "Uruchom zaplecze",
   },
   {
     n: "03",
@@ -35,6 +41,9 @@ const projects: PortfolioCard[] = [
     description: "Katalog inwestycji, leady i statusy sprzedaży.",
     imageUrl: "/concept-dom.jpg",
     websiteUrl: "/realizacje/dom-dobry",
+    backendUrl: "/demo/dom",
+    primaryLabel: "Zobacz projekt",
+    secondaryLabel: "Uruchom zaplecze",
   },
   {
     n: "04",
@@ -111,6 +120,22 @@ export default function Home() {
   const [activeProcess, setActiveProcess] = useState(0);
   const [activePackage, setActivePackage] = useState(0);
   const [offerCategory, setOfferCategory] = useState("Wszystko");
+  useEffect(() => {
+    const alignHashSection = () => {
+      const id = window.location.hash.slice(1);
+      if (!id) return;
+      document.getElementById(id)?.scrollIntoView({ block: "start" });
+    };
+    alignHashSection();
+    const shortRetry = window.setTimeout(alignHashSection, 250);
+    const contentRetry = window.setTimeout(alignHashSection, 900);
+    window.addEventListener("hashchange", alignHashSection);
+    return () => {
+      window.clearTimeout(shortRetry);
+      window.clearTimeout(contentRetry);
+      window.removeEventListener("hashchange", alignHashSection);
+    };
+  }, []);
   useEffect(() => {
     fetch("/api/projects")
       .then((response) => response.json() as Promise<{ projects?: Array<{ id: number; title: string; type: string; description: string; imageUrl: string; websiteUrl: string }> }>)
@@ -606,6 +631,10 @@ export default function Home() {
           <div><span className="section-no">10 / WYBRANE REALIZACJE</span><h2>Obietnice pokazane w praktyce.</h2></div>
           <p>Zobacz działające wdrożenia wraz z zapleczem oraz dopracowane kierunki koncepcyjne dla różnych branż. Każdy projekt odpowiada na inny cel biznesowy.</p>
         </div>
+        <div className="operations-portfolio-banner">
+          <div><span>PORTFOLIO OPERACYJNE · PROCESY · KPI · QA</span><h3>Nie tylko strony. Zobacz, jak porządkuję działanie firmy.</h3><p>Przeorganizowane portfolio łączy modele procesów, dashboardy, automatyzacje, role, dokumentację i kontrolę jakości. Strona „Start tutaj” prowadzi przez projekty w logicznej kolejności.</p></div>
+          <div><a href="https://lukaszst-cz.github.io/operations-office-portfolio/zielona-marka/udostepnij.html" target="_blank" rel="noreferrer">Otwórz portfolio operacyjne <b>↗</b></a><a href="https://github.com/lukaszst-cz/operations-office-portfolio" target="_blank" rel="noreferrer">Zobacz kod na GitHubie ↗</a></div>
+        </div>
         <div className="projects">
           {portfolioProjects.map((project) => {
             const conceptSlug = Object.entries(concepts).find(([, concept]) => concept.name === project.name)?.[0];
@@ -619,7 +648,7 @@ export default function Home() {
                   <Link href={target} target={project.websiteUrl?.startsWith("http") ? "_blank" : undefined} aria-label={`Otwórz ${project.name}`}>↗</Link>
                 </div>
               </div>
-              <div className="project-caption"><div><h3>{project.name}</h3><span>{project.type}</span></div><div className="project-actions"><Link href={target} target={target.startsWith("http") ? "_blank" : undefined}>Zobacz stronę ↗</Link>{project.backendUrl && <Link href={project.backendUrl} target="_blank">Zobacz zaplecze ↗</Link>}</div></div>
+              <div className="project-caption"><div><h3>{project.name}</h3><span>{project.type}</span></div><div className="project-actions"><Link href={target} target={target.startsWith("http") ? "_blank" : undefined}>{project.primaryLabel || "Zobacz stronę"} ↗</Link>{project.backendUrl && <Link href={project.backendUrl} target={project.backendUrl.startsWith("http") ? "_blank" : undefined}>{project.secondaryLabel || "Zobacz zaplecze"} ↗</Link>}</div></div>
             </article>;
           })}
         </div>
