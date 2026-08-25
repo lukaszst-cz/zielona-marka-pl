@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 export default function Privacy() {
   return (
     <main className="legal shell">
@@ -6,47 +7,78 @@ export default function Privacy() {
         <img className="brand-logo" src="/logo.png" alt="" />
         <span>ZIELONA MARKA</span>
       </Link>
-      <span className="section-no">INFORMACJE PRAWNE</span>
+      <span className="section-no">INFORMACJE PRAWNE · AKTUALIZACJA 25.08.2026</span>
       <h1>Polityka prywatności</h1>
       <p className="legal-lead">
-        Prosty opis tego, jakie dane są wykorzystywane podczas kontaktu przez
-        stronę.
+        Krótko i konkretnie: zbieramy tylko dane potrzebne do odpowiedzi na
+        zapytanie lub realizacji projektu. Nie sprzedajemy danych i nie używamy
+        reklamowych plików cookie.
       </p>
       <section>
-        <h2>1. Administrator danych</h2>
+        <h2>1. Kto administruje danymi</h2>
         <p>
-          Administratorem danych jest właściciel marki Zielona Marka. Przed
-          rozpoczęciem działań komercyjnych uzupełnij tutaj pełne dane firmy,
-          adres oraz właściwy adres kontaktowy.
+          Administratorem danych osobowych jest Łukasz Staniewicz, działający pod
+          marką Zielona Marka. W sprawach związanych z danymi osobowymi napisz na
+          <a href="mailto:kontakt@zielona-marka.pl"> kontakt@zielona-marka.pl</a>.
         </p>
-        <h2>2. Formularz kontaktowy</h2>
+        <h2>2. Jakie dane zbieramy</h2>
         <p>
-          Dane podane w formularzu są używane wyłącznie do odpowiedzi na
-          zapytanie i przygotowania wyceny. Podstawą przetwarzania jest podjęcie
-          działań na żądanie osoby zainteresowanej zawarciem umowy.
+          Formularz kontaktowy może zawierać imię, adres e-mail, nazwę firmy,
+          wybrany przedział budżetu oraz wiadomość o projekcie. W Strefie Klienta
+          kod projektu służy wyłącznie do wyświetlenia informacji przypisanych do
+          konkretnego zlecenia.
         </p>
-        <h2>3. Okres przechowywania</h2>
+        <h2>3. Po co i na jakiej podstawie</h2>
         <p>
-          Dane z zapytań są przechowywane przez czas potrzebny do obsługi
-          rozmowy, a następnie przez okres wymagany przepisami lub do czasu
-          skutecznego sprzeciwu.
+          Dane z formularza przetwarzamy, aby odpowiedzieć na zapytanie i
+          przygotować ofertę — na podstawie działań przed zawarciem umowy
+          podejmowanych na Twoje żądanie. Jeżeli dojdzie do współpracy, dane są
+          wykorzystywane także do realizacji umowy i rozliczeń. Ograniczony zakres
+          danych może być zachowany również dla obrony przed roszczeniami.
         </p>
-        <h2>4. Prawa użytkownika</h2>
+        <h2>4. Gdzie dane trafiają</h2>
         <p>
-          Użytkownik ma prawo dostępu do danych, ich poprawienia, usunięcia,
-          ograniczenia przetwarzania oraz wniesienia skargi do Prezesa Urzędu
-          Ochrony Danych Osobowych.
+          Dane z formularza są zapisywane w bazie danych używanej przez stronę,
+          działającą w infrastrukturze Cloudflare. Dostęp do Studio pracy ma
+          wyłącznie właściciel marki po zalogowaniu. Dane nie są przekazywane do
+          systemów reklamowych ani sprzedawane innym podmiotom.
         </p>
-        <h2>5. Pliki cookie i analityka</h2>
+        <h2>5. Czas przechowywania</h2>
         <p>
-          W podstawowej wersji strona nie używa reklamowych plików cookie. Jeśli
-          dodasz narzędzia analityczne lub marketingowe, uzupełnij tę sekcję i
-          wdroż baner zgód przed ich uruchomieniem.
+          Zapytanie bez zawartej umowy przechowujemy maksymalnie przez 12 miesięcy
+          od zakończenia korespondencji, chyba że wcześniej poprosisz o usunięcie
+          danych. Dane związane z umową lub rozliczeniami mogą być przechowywane
+          dłużej, jeśli wymagają tego przepisy lub jest to potrzebne do ochrony
+          roszczeń.
+        </p>
+        <h2>6. Twoje prawa</h2>
+        <p>
+          Możesz zażądać dostępu do danych, ich sprostowania, usunięcia,
+          ograniczenia przetwarzania, przeniesienia danych lub wnieść sprzeciw —
+          zależnie od podstawy przetwarzania. Masz też prawo złożyć skargę do
+          Prezesa Urzędu Ochrony Danych Osobowych.
+        </p>
+        <h2>7. Cookie, analityka i bezpieczeństwo</h2>
+        <p>
+          Publiczna część strony nie korzysta obecnie z Google Analytics, piksela
+          reklamowego ani narzędzi remarketingowych. Studio pracy używa wyłącznie
+          technicznego pliku sesji potrzebnego do bezpiecznego logowania. Hosting
+          może przetwarzać podstawowe dane techniczne niezbędne do działania i
+          ochrony strony, takie jak logi żądań.
+        </p>
+        <h2>8. Zmiany dokumentu</h2>
+        <p>
+          Polityka będzie aktualizowana przed uruchomieniem nowych funkcji, które
+          wpływają na przetwarzanie danych — na przykład newslettera, płatności,
+          analityki lub reklam.
         </p>
       </section>
-      <Link className="button" href="/">
-        Wróć na stronę <span>←</span>
-      </Link>
+      <p className="legal-note">
+        Dokument opisuje obecne działanie strony. W przypadku rozpoczęcia
+        działalności gospodarczej, obsługi większej liczby klientów lub wdrożenia
+        dodatkowych usług warto poddać go indywidualnej weryfikacji prawnej.
+      </p>
+      <Link className="button" href="/">Wróć na stronę <span>←</span></Link>
     </main>
   );
 }

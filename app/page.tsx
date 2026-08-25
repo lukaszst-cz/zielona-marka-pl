@@ -558,9 +558,9 @@ export default function Home() {
             <label className="consent">
               <input required type="checkbox" />{" "}
               <span>
-                Akceptuję{" "}
+                Zapoznałem/-am się z{" "}
                 <Link href="/polityka-prywatnosci">politykę prywatności</Link> i
-                zgodę na kontakt w sprawie wyceny.
+                proszę o kontakt w sprawie wyceny.
               </span>
             </label>
             <button className="button" type="submit">

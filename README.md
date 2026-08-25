@@ -1,79 +1,66 @@
-# vinext-starter
+# Zielona Marka
 
-A clean full-stack starter running on
-[vinext](https://github.com/cloudflare/vinext), with optional Cloudflare D1 and
-Drizzle support.
+Strona i zaplecze operacyjne dla marki tworzącej strony internetowe, automatyzacje procesów oraz proste narzędzia dla małych firm.
 
-## Prerequisites
+**Wersja online:** [zielona-marka.pl](https://zielona-marka.pl)
+**Kontakt:** [kontakt@zielona-marka.pl](mailto:kontakt@zielona-marka.pl)
 
-- Node.js `>=22.13.0`
+## Co pokazuje ten projekt
 
-## Quick Start
+- responsywną stronę ofertową z kalkulatorem orientacyjnej wyceny,
+- interaktywne prezentacje technologii i demonstracje procesów branżowych,
+- formularz zapytania zapisujący leady w bazie danych,
+- prywatne Studio pracy do prowadzenia sprzedaży, projektów i zadań,
+- indywidualny kod statusu dla klienta,
+- roboczy widok umowy do wydruku lub zapisania jako PDF,
+- checklistę QA przed publikacją projektu,
+- podstawy SEO: meta dane, mapa strony, robots.txt i dane strukturalne.
+
+## Jak działa workflow
+
+1. Klient wysyła brief przez formularz.
+2. Zapytanie pojawia się w Studio pracy.
+3. Po akceptacji tworzony jest projekt z zakresem, terminem i kodem klienta.
+4. Klient obserwuje tylko własny projekt pod adresem `/status/[kod]`.
+5. Przed publikacją w Studio można utworzyć standardową checklistę QA.
+6. Po przekazaniu projektu realizację można pokazać w portfolio — wyłącznie za zgodą klienta.
+
+## Technologia
+
+| Obszar | Rozwiązanie |
+| --- | --- |
+| Frontend | React, Vinext, TypeScript |
+| Hosting i API | Cloudflare Workers |
+| Dane | Cloudflare D1 + Drizzle ORM |
+| Publikacja | Git, GitHub, Cloudflare |
+| Bezpieczeństwo | HTTPS, sesja właściciela Studio, indywidualne kody projektów |
+
+## Lokalne uruchomienie
+
+Wymagany jest Node.js 22.13 lub nowszy.
 
 ```bash
 npm install
 npm run dev
+```
+
+Weryfikacja produkcyjnej wersji:
+
+```bash
 npm run build
 ```
 
-This starter does not use `wrangler.jsonc`.
+## Dane i bezpieczeństwo
 
-## Included Shape
+- Nie dodawaj do repozytorium haseł, tokenów, kluczy API ani plików `.env`.
+- Nie publikuj danych klientów, umów, kodów statusu ani materiałów roboczych.
+- Realizacja może trafić do portfolio dopiero po uzyskaniu zgody klienta.
+- Dla każdego projektu sprawdź mobilność, formularze, linki, podstawowe SEO i przekazanie materiałów — do tego służy checklist QA w Studio.
 
-- edit site code under `app/`
-- `.openai/hosting.json` declares optional Sites D1 and R2 bindings
-- `vite.config.ts` simulates declared bindings for local development
-- `db/schema.ts` starts intentionally empty
-- `examples/d1/` contains an optional D1 example surface
-- `drizzle.config.ts` supports local migration generation when needed
+## Jak rozwijać portfolio
 
-## Workspace Auth Headers
+Po zakończeniu rzeczywistego zlecenia dodaj w Studio projekt, zaznacz opcję „Pokaż w portfolio” i uzupełnij opis, adres wdrożenia oraz zgodę klienta. W publicznym repozytorium pokazuj przede wszystkim opis rozwiązania, wykorzystane technologie i wynik biznesowy — bez prywatnych danych.
 
-Signed-in visitors receive both `oai-authenticated-user-id` and `oai-authenticated-user-email`. Private Sites require every visitor to sign in; public Sites may also have anonymous visitors, for whom neither header is present.
+---
 
-The user ID is stable for the same user on the same Site and different across Sites. Email and name are intended for display or contact purposes.
-
-SIWC-authenticated workspace sites may also receive
-`oai-authenticated-user-full-name` when the user's SIWC profile has a non-empty
-`name` claim. The full-name value is percent-encoded UTF-8 and is accompanied by
-`oai-authenticated-user-full-name-encoding: percent-encoded-utf-8`.
-
-Treat the full name as optional and fall back to email when it is absent:
-
-```tsx
-import { headers } from "next/headers";
-
-export default async function Home() {
-  const requestHeaders = await headers();
-  const userId = requestHeaders.get("oai-authenticated-user-id");
-  const email = requestHeaders.get("oai-authenticated-user-email");
-  const encodedFullName = requestHeaders.get("oai-authenticated-user-full-name");
-  const fullName =
-    encodedFullName &&
-    requestHeaders.get("oai-authenticated-user-full-name-encoding") ===
-      "percent-encoded-utf-8"
-      ? decodeURIComponent(encodedFullName)
-      : null;
-
-  const displayName = fullName ?? email;
-  // ...
-}
-```
-
-## Studio i strefa klienta
-
-Studio korzysta z własnego, bezpiecznego logowania właściciela. Każdy nowy
-projekt otrzymuje indywidualny kod do publicznego, tylko-do-odczytu widoku
-statusu klienta. Nie zapisuj haseł ani sekretów w repozytorium.
-
-## Useful Commands
-
-- `npm run dev`: start local development
-- `npm run build`: verify the vinext build output
-- `npm test`: build the starter and verify its rendered loading skeleton
-- `npm run db:generate`: generate Drizzle migrations after schema changes
-
-## Learn More
-
-- [vinext Documentation](https://github.com/cloudflare/vinext)
-- [Drizzle D1 Guide](https://orm.drizzle.team/docs/get-started/d1-new)
+Projekt jest rozwijany przez Zieloną Markę. Zobacz [profil GitHub](https://github.com/lukaszst-cz).
