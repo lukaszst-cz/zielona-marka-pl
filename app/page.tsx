@@ -448,8 +448,8 @@ export default function Home() {
               Odpowiem z propozycją kolejnych kroków i wstępną wyceną. Bez
               zobowiązań.
             </p>
-            <a className="mail" href="mailto:lukasz.staniewicz@gmail.com">
-              lukasz.staniewicz@gmail.com ↗
+            <a className="mail" href="mailto:kontakt@przyklad.pl">
+              kontakt@przyklad.pl ↗
             </a>
           </div>
           <form onSubmit={submitBrief}>
