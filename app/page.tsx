@@ -227,6 +227,17 @@ export default function Home() {
           Wyceń projekt
         </a>
       </nav>
+      <nav className="topic-nav" aria-label="Skróty tematyczne">
+        <div className="shell">
+          <a href="#oferta">Strony i ceny</a>
+          <a href="#kalkulator">Szybka wycena</a>
+          <a href="#proces">Proces i QA</a>
+          <a href="#technologie">Technologie</a>
+          <a href="#automatyzacje">Automatyzacje</a>
+          <a href="#strefa-klienta">Strefa klienta</a>
+          <a href="#realizacje">Portfolio</a>
+        </div>
+      </nav>
       <section className="hero shell">
         <div className="eyebrow">
           <span />
@@ -591,7 +602,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="section automation-showcase">
+      <section id="automatyzacje" className="section automation-showcase">
         <div className="shell showcase-grid">
           <div>
             <span className="section-no">08 / AUTOMATYZACJA W PRAKTYCE</span>
@@ -604,7 +615,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="section client-portal-showcase">
+      <section id="strefa-klienta" className="section client-portal-showcase">
         <div className="shell portal-showcase-grid">
           <div>
             <span className="section-no">09 / STREFA KLIENTA</span>
