@@ -14,7 +14,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    process.env.SITE_URL ?? "https://zielona-marka.sites.openai.com",
+    process.env.SITE_URL ??
+      "https://zielona-marka-portfolio.l-st-cz.chatgpt.site",
   ),
   title: {
     default: "Zielona Marka — strony internetowe dla firm",
