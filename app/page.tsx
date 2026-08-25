@@ -76,6 +76,22 @@ const processSteps = [
   { number: "05", title: "Testy jakości", description: "Sprawdzam urządzenia, formularze, szybkość, SEO, dostępność i cały proces.", output: ["checklista kontroli jakości (QA)", "lista wykonanych poprawek", "raport odbiorowy dla klienta"] },
   { number: "06", title: "Start i opieka", description: "Publikuję stronę, przekazuję instrukcję i wspieram dalszy rozwój.", output: ["opublikowana strona", "instrukcja obsługi", "kod statusu i zalecenia na przyszłość"] },
 ];
+const offerCategories = ["Wszystko", "Strony WWW", "Sklepy", "Automatyzacje", "Dane i systemy", "Treści i opieka", "Strategia"];
+const serviceCategories = ["Strony WWW", "Strony WWW", "Strony WWW", "Sklepy", "Automatyzacje", "Dane i systemy", "Automatyzacje", "Dane i systemy", "Treści i opieka", "Strategia", "Treści i opieka"];
+const serviceMarks = ["ONE", "WWW", "PLUS", "SHOP", "FLOW", "KPI", "OPS", "PORTAL", "TXT", "MAP", "CARE"];
+const serviceOutcomes = [
+  "Więcej telefonów i zapytań",
+  "Wiarygodna obecność firmy online",
+  "Serwis gotowy do dalszego rozwoju",
+  "Prosta i bezpieczna sprzedaż online",
+  "Mniej ręcznego przepisywania danych",
+  "Najważniejsze liczby na jednym ekranie",
+  "Porządek od zapytania do rozliczenia",
+  "Mniej telefonów z pytaniem o status",
+  "Oferta zrozumiała dla klienta",
+  "Jasny priorytet usprawnień",
+  "Spokojne utrzymanie po publikacji",
+];
 
 export default function Home() {
   const [siteType, setSiteType] = useState("Firma online");
@@ -94,6 +110,7 @@ export default function Home() {
   const [expandedTech, setExpandedTech] = useState<number | null>(null);
   const [activeProcess, setActiveProcess] = useState(0);
   const [activePackage, setActivePackage] = useState(0);
+  const [offerCategory, setOfferCategory] = useState("Wszystko");
   useEffect(() => {
     fetch("/api/projects")
       .then((response) => response.json() as Promise<{ projects?: Array<{ id: number; title: string; type: string; description: string; imageUrl: string; websiteUrl: string }> }>)
@@ -141,7 +158,11 @@ export default function Home() {
     setSending(true);
     setFormError("");
     const formElement = event.currentTarget;
-    const payload = Object.fromEntries(new FormData(formElement));
+    const formPayload = Object.fromEntries(new FormData(formElement));
+    const payload = {
+      ...formPayload,
+      message: `Rodzaj projektu: ${formPayload.projectType || "do ustalenia"}\nMateriały: ${formPayload.materials || "do ustalenia"}\n\n${formPayload.message || ""}`,
+    };
     const response = await fetch("/api/inquiries", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
     setSending(false);
     if (response.ok) { setSent(true); formElement.reset(); }
@@ -284,57 +305,11 @@ export default function Home() {
           <p className="lighthouse-note"><b>Lighthouse</b> to automatyczny test Google sprawdzający m.in. szybkość, dostępność i techniczną jakość strony. Wynik mierzę przed publikacją; nie jest obietnicą konkretnej pozycji w Google.</p>
         </div>
       </section>
-      <section id="realizacje" className="section shell">
-        <div className="section-head">
-          <div>
-            <span className="section-no">03 / WYBRANE REALIZACJE</span>
-            <h2>Strony z charakterem.</h2>
-          </div>
-          <p>
-            Zobacz działające wdrożenie wraz z zapleczem oraz dopracowane
-            kierunki koncepcyjne dla różnych branż. Portfolio może rosnąć bez
-            przebudowy całej strony.
-          </p>
-        </div>
-        <div className="projects">
-          {portfolioProjects.map((project) => {
-            const conceptSlug = Object.entries(concepts).find(([, concept]) => concept.name === project.name)?.[0];
-            const target = project.websiteUrl || (conceptSlug ? `/realizacje/${conceptSlug}` : "#kontakt");
-            return (
-            <article className={`project ${project.color}`} key={project.n}>
-              <div className="project-top">
-                <span>{project.note}</span>
-                <b>{project.n}</b>
-              </div>
-              <div className="browser-mock">
-                <div className="browser-bar">
-                  <i />
-                  <i />
-                  <i />
-                </div>
-                <div className="mock-body" style={project.imageUrl ? { backgroundImage: `linear-gradient(112deg,rgba(10,31,22,.9) 0%,rgba(10,31,22,.78) 48%,rgba(10,31,22,.16) 100%),url(${project.imageUrl})`, backgroundSize: "cover", backgroundPosition: "center" } : undefined}>
-                  <small>{project.type}</small>
-                  <strong>{project.name}</strong>
-                  <span>{project.description || <>Przemyślany projekt.<br />Wyraźny efekt.</>}</span>
-                  <Link href={target} target={project.websiteUrl?.startsWith("http") ? "_blank" : undefined} aria-label={`Otwórz ${project.name}`}>↗</Link>
-                </div>
-              </div>
-              <div className="project-caption">
-                <div><h3>{project.name}</h3><span>{project.type}</span></div>
-                <div className="project-actions">
-                  <Link href={target} target={target.startsWith("http") ? "_blank" : undefined}>Zobacz stronę ↗</Link>
-                  {project.backendUrl && <Link href={project.backendUrl} target="_blank">Zobacz zaplecze ↗</Link>}
-                </div>
-              </div>
-            </article>
-          )})}
-        </div>
-      </section>
       <section id="oferta" className="section offer-section">
         <div className="shell">
           <div className="section-head">
             <div>
-              <span className="section-no">04 / OFERTA I CENNIK</span>
+              <span className="section-no">03 / OFERTA I CENNIK</span>
               <h2>Jasny zakres. Realne ceny.</h2>
             </div>
             <p>
@@ -363,24 +338,40 @@ export default function Home() {
               </article>
             ))}
           </div>
-          <div className="offer-more-head"><span>PEŁNA OFERTA</span><p>Strony, automatyzacje, dane, teksty i zaplecze firmy.</p></div>
-          <div className="service-list service-accordion">
-            {services.map((service, index) => (
+          <div className="offer-catalog-head">
+            <div><span>PEŁNA OFERTA</span><h3>Wybierz cel, nie technologię.</h3><p>Najpierw zobacz, jaki problem rozwiązujemy. Narzędzia dobieram dopiero do realnej potrzeby firmy.</p></div>
+            <a href="#kontakt">Otrzymaj zakres i wycenę <b>↗</b></a>
+          </div>
+          <div className="offer-filters" aria-label="Filtruj pełną ofertę">
+            {offerCategories.map((category) => <button key={category} type="button" className={offerCategory === category ? "active" : ""} onClick={() => { setOfferCategory(category); setExpandedService(null); }}>{category}</button>)}
+          </div>
+          <div className="solution-catalog">
+            {services.map((service, index) => ({ service, index })).filter(({ index }) => offerCategory === "Wszystko" || serviceCategories[index] === offerCategory).map(({ service, index }) => (
               <article key={service.title} className={expandedService === index ? "expanded" : ""}>
-                <button className="service-summary" onClick={() => setExpandedService(expandedService === index ? null : index)} aria-expanded={expandedService === index}>
-                  <span>{String(index + 1).padStart(2, "0")}</span>
+                <button className="solution-summary" onClick={() => setExpandedService(expandedService === index ? null : index)} aria-expanded={expandedService === index}>
+                  <header><span>{serviceCategories[index]}</span><b>{String(index + 1).padStart(2, "0")}</b></header>
+                  <div className={`solution-visual solution-visual-${index % 4}`} aria-hidden="true"><strong>{serviceMarks[index]}</strong><i /><i /><i /></div>
                   <h3>{service.title}</h3>
                   <p>{service.lead}</p>
-                  <b>{service.price}</b>
-                  <i>{expandedService === index ? "−" : "+"}</i>
+                  <div className="solution-result"><small>EFEKT DLA FIRMY</small><strong>{serviceOutcomes[index]}</strong></div>
+                  <footer><b>{service.price}</b><i>{expandedService === index ? "−" : "+"}</i></footer>
                 </button>
-                {expandedService === index && <div className="service-detail">
+                {expandedService === index && <div className="solution-detail">
                   <div><small>DLA KOGO</small><p>{service.forWhom}</p></div>
                   <div><small>CO OTRZYMUJESZ</small><ul>{service.includes.map(item => <li key={item}>{item}</li>)}</ul></div>
-                  <div><small>CZAS REALIZACJI</small><p>{service.time}</p><a href="#kontakt">Zapytaj o ten pakiet →</a></div>
+                  <div><small>CZAS I KOLEJNY KROK</small><p>{service.time}</p><a href="#kontakt">Zapytaj o to rozwiązanie →</a></div>
                 </div>}
               </article>
             ))}
+          </div>
+          <div className="offer-confidence">
+            <header><span>MOŻESZ ZACZĄĆ BEZ GOTOWEGO KOMPLETU</span><h3>Przeprowadzę Cię od materiałów do publikacji.</h3></header>
+            <div>
+              <article><b>01</b><h4>Nie masz tekstów?</h4><p>Pomogę uporządkować ofertę, przygotować strukturę i wycenić napisanie treści prostym językiem.</p></article>
+              <article><b>02</b><h4>Nie masz zdjęć?</h4><p>Ustalimy listę potrzebnych ujęć albo dobierzemy legalne, naturalne materiały licencjonowane.</p></article>
+              <article><b>03</b><h4>Chcesz widzieć postęp?</h4><p>Otrzymasz indywidualny kod projektu, aktualny etap, następny krok, umowę i raport jakości.</p></article>
+              <article><b>04</b><h4>Co dzieje się po starcie?</h4><p>Przekazuję instrukcję, dostępy i 14 dni podstawowego wsparcia startowego. Dalsza opieka jest opcjonalna.</p></article>
+            </div>
           </div>
           <div className="pricing-notes" aria-label="Jak czytać cennik">
             <article>
@@ -405,7 +396,7 @@ export default function Home() {
       <section id="kalkulator" className="section calculator-section">
         <div className="shell calculator-grid">
           <div>
-            <span className="section-no">05 / SZYBKA WYCENA</span>
+            <span className="section-no">04 / SZYBKA WYCENA</span>
             <h2>Sprawdź budżet swojego projektu.</h2>
             <p>
               Wynik jest orientacyjny. Finalna oferta zależy od zakresu,
@@ -478,7 +469,7 @@ export default function Home() {
       <section id="proces" className="section shell">
         <div className="section-head">
           <div>
-            <span className="section-no">06 / PROCES</span>
+            <span className="section-no">05 / PROCES</span>
             <h2>Od pomysłu do działającej strony.</h2>
           </div>
           <p>
@@ -512,17 +503,24 @@ export default function Home() {
       </section>
       <section className="section included">
         <div className="shell">
-          <span className="section-no">07 / W STANDARDZIE</span>
+            <span className="section-no">06 / W STANDARDZIE</span>
           <div className="included-grid">
             <h2>Gotowa nie tylko do oglądania, ale do pracy.</h2>
             <ul>
               <li>Responsywność na telefonie i komputerze</li>
-              <li>Podstawowe SEO i dane dla Google</li>
+              <li>Techniczne przygotowanie do dalszego pozycjonowania</li>
               <li>Analityka i mierzenie zapytań</li>
               <li>Optymalizacja szybkości</li>
               <li>Formularz i zabezpieczenia prywatności</li>
               <li>Instrukcja samodzielnej obsługi</li>
+              <li>Publikacja na domenie, SSL i test kontaktu</li>
+              <li>14 dni podstawowego wsparcia startowego</li>
             </ul>
+          </div>
+          <div className="seo-ready-note">
+            <div><span>SEO READY</span><h3>Po starcie strona jest gotowa technicznie do dalszego pozycjonowania.</h3><p>Przygotowuję fundament, na którym można później rozwijać treści, widoczność lokalną i działania SEO — bez konieczności naprawiania podstaw całej witryny.</p></div>
+            <ul><li>logiczna struktura nagłówków i adresów,</li><li>tytuły oraz opisy dla Google,</li><li>mapa strony, robots i możliwość indeksowania,</li><li>wersja mobilna i optymalizacja szybkości,</li><li>dane firmy i podstawowe informacje strukturalne,</li><li>możliwość podłączenia Search Console i analityki.</li></ul>
+            <small>Nie gwarantuję konkretnej pozycji w Google — zależy ona również od konkurencji, jakości treści, opinii, linków i dalszych działań. Lekka, szybka i poprawnie przygotowana technicznie strona usuwa jednak część barier już na starcie i daje lepszy fundament do budowania widoczności. Regularne pozycjonowanie pozostaje osobnym etapem.</small>
           </div>
           <div className="quality-board" aria-label="Zakres końcowych testów jakości">
             <header>
@@ -545,7 +543,7 @@ export default function Home() {
       </section>
       <section id="technologie" className="section tech-section">
         <div className="shell">
-          <div className="section-head"><div><span className="section-no">08 / TECHNOLOGIE</span><h2>Dobieram narzędzie do celu.</h2></div><p>Nie sprzedaję jednej technologii każdemu. Prosta strona powinna pozostać prosta, a zaplecze firmy ma naprawdę oszczędzać czas.</p></div>
+          <div className="section-head"><div><span className="section-no">07 / TECHNOLOGIE</span><h2>Dobieram narzędzie do celu.</h2></div><p>Nie sprzedaję jednej technologii każdemu. Prosta strona powinna pozostać prosta, a zaplecze firmy ma naprawdę oszczędzać czas.</p></div>
           <div className="tech-grid">
             {technologies.map((tech, index) => <article key={tech.title} className={expandedTech === index ? "expanded" : ""}>
               <button onClick={() => setExpandedTech(expandedTech === index ? null : index)} aria-expanded={expandedTech === index}>
@@ -571,7 +569,7 @@ export default function Home() {
       <section className="section automation-showcase">
         <div className="shell showcase-grid">
           <div>
-            <span className="section-no">09 / AUTOMATYZACJA W PRAKTYCE</span>
+            <span className="section-no">08 / AUTOMATYZACJA W PRAKTYCE</span>
             <h2>Zobacz, jak może pracować firma transportowa.</h2>
             <p>Interaktywne demo pokazuje cały obieg zlecenia: od formularza, przez kierowcę i dostawę, aż do dokumentów, faktury oraz KPI.</p>
             <a className="button" href="/demo/transport">Uruchom demonstrację <span>↗</span></a>
@@ -584,7 +582,7 @@ export default function Home() {
       <section className="section client-portal-showcase">
         <div className="shell portal-showcase-grid">
           <div>
-            <span className="section-no">10 / STREFA KLIENTA</span>
+            <span className="section-no">09 / STREFA KLIENTA</span>
             <h2>Twój klient zawsze wie, na jakim etapie jest projekt.</h2>
             <p>Po rejestracji zlecenia otrzymuje indywidualny kod. Bez logowania do Twojego Studio sprawdza postęp, kolejny krok, termin i roboczą umowę do pobrania.</p>
             <ul>
@@ -603,6 +601,29 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <section id="realizacje" className="section shell">
+        <div className="section-head">
+          <div><span className="section-no">10 / WYBRANE REALIZACJE</span><h2>Obietnice pokazane w praktyce.</h2></div>
+          <p>Zobacz działające wdrożenia wraz z zapleczem oraz dopracowane kierunki koncepcyjne dla różnych branż. Każdy projekt odpowiada na inny cel biznesowy.</p>
+        </div>
+        <div className="projects">
+          {portfolioProjects.map((project) => {
+            const conceptSlug = Object.entries(concepts).find(([, concept]) => concept.name === project.name)?.[0];
+            const target = project.websiteUrl || (conceptSlug ? `/realizacje/${conceptSlug}` : "#kontakt");
+            return <article className={`project ${project.color}`} key={project.n}>
+              <div className="project-top"><span>{project.note}</span><b>{project.n}</b></div>
+              <div className="browser-mock">
+                <div className="browser-bar"><i /><i /><i /></div>
+                <div className="mock-body" style={project.imageUrl ? { backgroundImage: `linear-gradient(112deg,rgba(10,31,22,.9) 0%,rgba(10,31,22,.78) 48%,rgba(10,31,22,.16) 100%),url(${project.imageUrl})`, backgroundSize: "cover", backgroundPosition: "center" } : undefined}>
+                  <small>{project.type}</small><strong>{project.name}</strong><span>{project.description || <>Przemyślany projekt.<br />Wyraźny efekt.</>}</span>
+                  <Link href={target} target={project.websiteUrl?.startsWith("http") ? "_blank" : undefined} aria-label={`Otwórz ${project.name}`}>↗</Link>
+                </div>
+              </div>
+              <div className="project-caption"><div><h3>{project.name}</h3><span>{project.type}</span></div><div className="project-actions"><Link href={target} target={target.startsWith("http") ? "_blank" : undefined}>Zobacz stronę ↗</Link>{project.backendUrl && <Link href={project.backendUrl} target="_blank">Zobacz zaplecze ↗</Link>}</div></div>
+            </article>;
+          })}
+        </div>
+      </section>
       <section className="section faq-section">
         <div className="shell faq-grid">
           <div>
@@ -614,8 +635,10 @@ export default function Home() {
             {[
               ["Czy będę mógł samodzielnie edytować treści?", "Tak, jeśli projekt tego wymaga, dobiorę WordPress lub inne proste zaplecze. Przy stronie kodowanej indywidualnie ustalamy wygodny sposób aktualizacji przed rozpoczęciem pracy."],
               ["Od czego zależy cena strony?", "Od liczby widoków, przygotowania materiałów, funkcji, integracji i terminu. Przed startem otrzymujesz dokładny zakres i cenę — dodatkowe prace wymagają Twojej akceptacji."],
+              ["Czy muszę mieć gotowe teksty i zdjęcia?", "Nie. Możemy zacząć od Twojej wiedzy o firmie. Pomogę zaplanować strukturę, wycenić przygotowanie treści oraz dobrać legalne zdjęcia licencjonowane albo listę ujęć do wykonania."],
               ["Czy musimy spotykać się osobiście?", "Nie. Konsultacje możemy prowadzić przez Google Meet, Microsoft Teams, telefon lub e-mail. Spotkanie osobiste w obsługiwanym regionie ustalamy wtedy, gdy rzeczywiście pomaga w projekcie."],
               ["Czy strona będzie widoczna w Google?", "Przygotuję podstawy SEO technicznego, strukturę treści, indeksowanie i dane firmy. Pozycja zależy również od konkurencji, treści, opinii, linków i dalszej pracy — nie obiecuję nierealnych gwarancji."],
+              ["Czy strona będzie gotowa do dalszego pozycjonowania?", "Tak. Po publikacji ma przygotowany fundament techniczny: logiczną strukturę, metadane, mapę strony, możliwość indeksowania, wersję mobilną i podstawy wydajności. Nie gwarantuje to konkretnej pozycji, ale lekka i poprawnie przygotowana strona usuwa część barier już na starcie i daje lepsze warunki do dalszego SEO."],
               ["Jak wygląda rozliczenie?", "Zakres, harmonogram i sposób płatności ustalamy przed rozpoczęciem. Projekt może być rozliczony etapami lub przez uzgodnioną platformę pośredniczącą, np. Useme."],
               ["Co dzieje się po oddaniu strony?", "Otrzymujesz działającą stronę, instrukcję, dostęp do ustalonych narzędzi oraz raport końcowej kontroli jakości (QA). Możemy też umówić dalszą opiekę i rozwój."],
               ["Co zawiera opieka nad stroną?", "Monitoring działania i SSL, kontrolowane aktualizacje, kopie bezpieczeństwa, sprawdzenie formularzy, drobne zmiany treści w ustalonym limicie oraz miesięczne podsumowanie. Większe nowe funkcje, płatne licencje i rozbudowa serwisu są wyceniane osobno przed rozpoczęciem."],
@@ -649,6 +672,7 @@ export default function Home() {
             </a>
           </div>
           <form onSubmit={submitBrief}>
+            <header className="contact-form-intro"><span>KRÓTKI BRIEF · OKOŁO 2 MINUT</span><b>Nie musisz znać technologii ani mieć gotowych materiałów.</b></header>
             <div className="form-row">
               <label>
                 Imię
@@ -662,6 +686,30 @@ export default function Home() {
                   name="email"
                   placeholder="twoj@email.pl"
                 />
+              </label>
+            </div>
+            <div className="form-row">
+              <label>
+                Czego potrzebujesz?
+                <select name="projectType" defaultValue="">
+                  <option value="" disabled>Wybierz najbliższą odpowiedź</option>
+                  <option>One Page / wizytówka</option>
+                  <option>Strona firmowa</option>
+                  <option>Sklep internetowy</option>
+                  <option>Automatyzacja procesu</option>
+                  <option>Panel klienta lub KPI</option>
+                  <option>Jeszcze nie wiem — potrzebuję konsultacji</option>
+                </select>
+              </label>
+              <label>
+                Materiały
+                <select name="materials" defaultValue="">
+                  <option value="" disabled>Na jakim jesteś etapie?</option>
+                  <option>Mam teksty, zdjęcia i logo</option>
+                  <option>Mam część materiałów</option>
+                  <option>Potrzebuję pomocy z treścią i zdjęciami</option>
+                  <option>Chcę zacząć od rozmowy</option>
+                </select>
               </label>
             </div>
             <div className="form-row">
