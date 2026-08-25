@@ -1,7 +1,14 @@
-import { desc } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 import { getDb } from "../../../db";
 import { inquiries, leads, projects, tasks } from "../../../db/schema";
 import { getStudioOwner } from "../../studio/auth";
+
+function createPublicCode() {
+  const alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  const bytes = crypto.getRandomValues(new Uint8Array(12));
+  const part = (offset: number) => Array.from(bytes.slice(offset, offset + 4), (byte) => alphabet[byte % alphabet.length]).join("");
+  return `ZM-${part(0)}-${part(4)}-${part(8)}`;
+}
 
 export async function GET() {
   if (!(await getStudioOwner())) return Response.json({ error: "Brak dostępu" }, { status: 403 });
@@ -26,8 +33,11 @@ export async function POST(request: Request) {
     return Response.json({ row }, { status: 201 });
   }
   if (entity === "project") {
-    const [row] = await db.insert(projects).values({ title: String(payload.title ?? "").trim(), clientName: String(payload.clientName ?? "").trim(), type: String(payload.type ?? "Strona firmowa"), description: String(payload.description ?? "").trim(), imageUrl: String(payload.imageUrl ?? "").trim(), status: "Planowanie", price: Number(payload.price ?? 0), deadline: String(payload.deadline ?? "") || null, progress: 0, published: Boolean(payload.published), websiteUrl: String(payload.websiteUrl ?? "").trim(), createdAt: now, updatedAt: now }).returning();
-    return Response.json({ row }, { status: 201 });
+    const publicCode = createPublicCode();
+    const [row] = await db.insert(projects).values({ title: String(payload.title ?? "").trim(), clientName: String(payload.clientName ?? "").trim(), clientEmail: String(payload.clientEmail ?? "").trim(), clientCompany: String(payload.clientCompany ?? "").trim(), type: String(payload.type ?? "Strona firmowa"), description: String(payload.description ?? "").trim(), scope: String(payload.scope ?? "").trim(), nextStep: String(payload.nextStep ?? "Ustalenie kolejnego etapu").trim(), imageUrl: String(payload.imageUrl ?? "").trim(), status: "Planowanie", price: Number(payload.price ?? 0), deadline: String(payload.deadline ?? "") || null, startDate: String(payload.startDate ?? "") || null, progress: 0, published: Boolean(payload.published), websiteUrl: String(payload.websiteUrl ?? "").trim(), publicCode, contractStatus: "Szkic", providerName: "Zielona Marka — Łukasz Staniewicz", createdAt: now, updatedAt: now }).returning();
+    const contractNumber = `ZM/${new Date().getFullYear()}/${String(row.id).padStart(3, "0")}`;
+    await db.update(projects).set({ contractNumber }).where(eq(projects.id, row.id));
+    return Response.json({ row: { ...row, contractNumber } }, { status: 201 });
   }
   if (entity === "task") {
     const [row] = await db.insert(tasks).values({ title: String(payload.title ?? "").trim(), projectId: payload.projectId ? Number(payload.projectId) : null, status: "Do zrobienia", priority: String(payload.priority ?? "Normalny"), dueDate: String(payload.dueDate ?? "") || null, createdAt: now, updatedAt: now }).returning();

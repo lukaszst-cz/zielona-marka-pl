@@ -28,9 +28,26 @@ export const projects = sqliteTable("projects", {
   progress: integer("progress").notNull().default(0),
   published: integer("published", { mode: "boolean" }).notNull().default(false),
   websiteUrl: text("website_url").notNull().default(""),
+  publicCode: text("public_code").notNull().default(""),
+  clientEmail: text("client_email").notNull().default(""),
+  clientCompany: text("client_company").notNull().default(""),
+  clientAddress: text("client_address").notNull().default(""),
+  clientNip: text("client_nip").notNull().default(""),
+  scope: text("scope").notNull().default(""),
+  nextStep: text("next_step").notNull().default("Ustalenie kolejnego etapu"),
+  clientNote: text("client_note").notNull().default(""),
+  contractStatus: text("contract_status").notNull().default("Szkic"),
+  contractNumber: text("contract_number").notNull().default(""),
+  startDate: text("start_date"),
+  providerName: text("provider_name").notNull().default("Zielona Marka — Łukasz Staniewicz"),
+  providerAddress: text("provider_address").notNull().default(""),
+  providerNip: text("provider_nip").notNull().default(""),
   createdAt: text("created_at").notNull(),
   updatedAt: text("updated_at").notNull(),
-}, (table) => [index("idx_projects_published_updated").on(table.published, table.updatedAt)]);
+}, (table) => [
+  index("idx_projects_published_updated").on(table.published, table.updatedAt),
+  index("idx_projects_public_code").on(table.publicCode),
+]);
 
 export const tasks = sqliteTable("tasks", {
   id: integer("id").primaryKey({ autoIncrement: true }),

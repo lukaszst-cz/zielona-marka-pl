@@ -14,7 +14,7 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ en
   const table = tables[entity as Entity];
   const allowed: Record<Entity, string[]> = {
     lead: ["stage", "nextAction", "dueDate", "value"],
-    project: ["status", "progress", "published", "deadline", "websiteUrl", "imageUrl", "description"],
+    project: ["status", "progress", "published", "deadline", "websiteUrl", "imageUrl", "description", "clientEmail", "clientCompany", "clientAddress", "clientNip", "scope", "nextStep", "clientNote", "contractStatus", "contractNumber", "startDate", "providerName", "providerAddress", "providerNip"],
     task: ["status", "priority", "dueDate"],
     inquiry: ["status"],
   };
