@@ -123,7 +123,7 @@ export default function Home() {
           <a href="#realizacje">Realizacje</a>
           <a href="#oferta">Oferta</a>
           <a href="#proces">Proces</a>
-          <Link href="/status">Status projektu</Link>
+          <a href="/status">Status projektu</a>
           <a href="#kontakt">Kontakt</a>
         </div>
         <a className="button button-small" href="#kalkulator">
@@ -466,7 +466,7 @@ export default function Home() {
             <span className="section-no">09 / AUTOMATYZACJA W PRAKTYCE</span>
             <h2>Zobacz, jak może pracować firma transportowa.</h2>
             <p>Interaktywne demo pokazuje cały obieg zlecenia: od formularza, przez kierowcę i dostawę, aż do dokumentów, faktury oraz KPI.</p>
-            <Link className="button" href="/demo/transport">Uruchom demonstrację <span>↗</span></Link>
+            <a className="button" href="/demo/transport">Uruchom demonstrację <span>↗</span></a>
           </div>
           <div className="flow-preview" aria-label="Przykładowy obieg zlecenia">
             {["Zapytanie", "Wycena", "Kierowca", "Dostawa", "Faktura", "KPI"].map((item, index) => <div key={item}><b>{String(index + 1).padStart(2,"0")}</b><span>{item}</span>{index < 5 && <i>→</i>}</div>)}
@@ -490,7 +490,7 @@ export default function Home() {
             <span className="section-no">MASZ JUŻ KOD?</span>
             <h3>Otwórz status projektu.</h3>
             <p>Przykład: ZM-AB12-CD34-EF56</p>
-            <Link className="button" href="/status">Wpisz kod klienta <span>↗</span></Link>
+            <a className="button" href="/status">Wpisz kod klienta <span>↗</span></a>
             <small>Nowy kod tworzysz w Studio automatycznie podczas zakładania projektu.</small>
           </div>
         </div>
@@ -505,8 +505,12 @@ export default function Home() {
               zobowiązań.
             </p>
             <p className="contact-area">
-              Lokalnie: Targówek, Wołomin i okolice Warszawy. Zdalnie: cała Polska.
+              Lokalnie: Ząbki, Marki, Warszawa, Kobyłka, Zielonka, Radzymin,
+              Wołomin, Nieporęt i Legionowo. Zdalnie: cała Polska.
             </p>
+            <a className="mail" href="tel:+48450458466">
+              +48 450 458 466 ↗
+            </a>
             <a className="mail" href="mailto:kontakt@zielona-marka.pl">
               kontakt@zielona-marka.pl ↗
             </a>
@@ -573,18 +577,18 @@ export default function Home() {
       </section>
       <footer>
         <div className="shell footer-grid">
-          <Link className="brand" href="/">
+          <a className="brand" href="/">
             <span className="footer-logo-plate"><img className="brand-logo" src="/logo.png" alt="" /></span>
             <span>ZIELONA MARKA</span>
-          </Link>
+          </a>
           <p>
             Projektowanie i wdrażanie stron internetowych dla świadomych marek.
           </p>
           <div>
-            <Link href="/studio">Studio pracy</Link>
-            <Link href="/status">Status projektu</Link>
+            <a href="/studio">Studio pracy</a>
+            <a href="/status">Status projektu</a>
             <a href="https://github.com/lukaszst-cz" target="_blank" rel="noreferrer">GitHub ↗</a>
-            <Link href="/polityka-prywatnosci">Prywatność</Link>
+            <a href="/polityka-prywatnosci">Prywatność</a>
           </div>
           <small>© {new Date().getFullYear()} Zielona Marka</small>
         </div>

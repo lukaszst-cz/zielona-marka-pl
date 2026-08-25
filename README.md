@@ -63,4 +63,6 @@ Po zakończeniu rzeczywistego zlecenia dodaj w Studio projekt, zaznacz opcję �
 
 ---
 
-Projekt jest rozwijany przez Zieloną Markę. Zobacz [profil GitHub](https://github.com/lukaszst-cz).
+Projekt jest rozwijany przez Zieloną Markę dla firm z Ząbek, Marek, Warszawy,
+Kobyłki, Zielonki, Radzymina, Wołomina i okolic. Zobacz
+[profil GitHub](https://github.com/lukaszst-cz).
