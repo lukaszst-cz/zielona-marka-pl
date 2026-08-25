@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
 
-const projects = [
+type PortfolioCard = { n:string; name:string; type:string; note:string; color:string; description?:string; imageUrl?:string; websiteUrl?:string };
+const projects: PortfolioCard[] = [
   {
     n: "01",
     name: "Natura Studio",
@@ -29,63 +30,73 @@ const projects = [
 const services = [
   [
     "Landing page",
-    "od 2 900 zł",
+    "od 1 900 zł",
     "Jedna dopracowana strona sprzedażowa, formularz, analityka i podstawowe SEO.",
   ],
   [
     "Strona firmowa",
-    "od 5 900 zł",
+    "od 3 900 zł",
     "Do 7 podstron, indywidualny projekt, edytowalne treści, szkolenie i optymalizacja.",
   ],
   [
     "Portfolio",
-    "od 3 500 zł",
+    "od 2 400 zł",
     "Responsywne portfolio usług lub realizacji z wygodną ścieżką kontaktu.",
   ],
   [
     "Prototyp portalu lub PWA",
-    "od 7 900 zł",
+    "od 4 900 zł",
     "Interaktywny prototyp aplikacji, panelu klienta lub narzędzia instalowanego na telefonie.",
   ],
   [
     "Opieka nad stroną",
-    "od 390 zł / mies.",
+    "od 250 zł / mies.",
     "Aktualizacje, kopie zapasowe, monitoring i drobne zmiany treści.",
   ],
   [
     "Formularz zapytań",
-    "od 450 zł",
+    "od 300 zł",
     "Formularz przekierowujący kompletne zapytanie na e-mail lub do wybranego narzędzia.",
   ],
   [
     "Prezentacja usług i cennika",
-    "od 900 zł",
+    "od 650 zł",
     "Czytelna sekcja sprzedażowa, oferta PDF albo prezentacja do wysyłki klientom.",
   ],
   [
     "Publikacja i hosting",
-    "od 490 zł",
+    "od 350 zł",
     "Konfiguracja prostego hostingu, domeny, HTTPS i bezpieczne uruchomienie strony.",
   ],
   [
     "SEO techniczne",
-    "od 900 zł",
+    "od 650 zł",
     "Meta dane, nagłówki, mapa witryny, robots.txt, indeksowanie i kontrola wydajności.",
   ],
   [
     "Prywatność i cookies",
-    "od 650 zł",
+    "od 450 zł",
     "Dopasowany materiał informacyjny o prywatności i cookies — z rekomendacją weryfikacji prawnej.",
   ],
   [
     "Excel i Google Sheets",
-    "od 1 200 zł",
+    "od 750 zł",
     "Kalkulatory, wyceny, rejestry klientów, raporty oraz proste automatyzacje pracy.",
   ],
   [
     "Instrukcja aktualizacji",
-    "od 350 zł",
+    "od 250 zł",
     "Praktyczna instrukcja obsługi strony wraz z krótkim szkoleniem online.",
+  ],
+  [
+    "Audyt procesu firmy",
+    "od 1 500 zł",
+    "Analiza obecnego obiegu pracy, wskazanie wąskich gardeł i konkretny plan usprawnień.",
+  ],
+  [
+    "Wdrożenie usprawnienia",
+    "od 2 500 zł",
+    "Prosty system obsługi zleceń, rejestr klientów, kalkulator, raporty, formularze lub automatyzacja powtarzalnej pracy.",
   ],
 ];
 
@@ -95,31 +106,54 @@ export default function Home() {
   const [shop, setShop] = useState(false);
   const [copy, setCopy] = useState(false);
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [formError, setFormError] = useState("");
+  const [portfolioProjects, setPortfolioProjects] = useState(projects);
+  useEffect(() => {
+    fetch("/api/projects")
+      .then((response) => response.json() as Promise<{ projects?: Array<{ id: number; title: string; type: string; description: string; imageUrl: string; websiteUrl: string }> }>)
+      .then((payload) => {
+        if (payload.projects?.length) {
+          setPortfolioProjects(
+            payload.projects.map((project: { id: number; title: string; type: string; description: string; imageUrl: string; websiteUrl: string }, index: number) => ({
+              n: String(index + 1).padStart(2, "0"),
+              name: project.title,
+              type: project.type,
+              note: "Realizacja",
+              color: ["project-a", "project-b", "project-c"][index % 3],
+              description: project.description,
+              imageUrl: project.imageUrl,
+              websiteUrl: project.websiteUrl,
+            })),
+          );
+        }
+      })
+      .catch(() => undefined);
+  }, []);
   const estimate = useMemo(() => {
     const base =
       siteType === "Landing page"
-        ? 2900
+        ? 1900
         : siteType === "Sklep internetowy"
-          ? 9900
-          : 4900;
+          ? 7900
+          : 3400;
     return (
       base +
-      Math.max(0, pages - (siteType === "Landing page" ? 1 : 5)) * 450 +
-      (shop && siteType !== "Sklep internetowy" ? 3500 : 0) +
-      (copy ? 1200 : 0)
+      Math.max(0, pages - (siteType === "Landing page" ? 1 : 5)) * 300 +
+      (shop && siteType !== "Sklep internetowy" ? 2500 : 0) +
+      (copy ? 800 : 0)
     );
   }, [siteType, pages, shop, copy]);
-  function submitBrief(event: FormEvent<HTMLFormElement>) {
+  async function submitBrief(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const form = new FormData(event.currentTarget);
-    const subject = encodeURIComponent(
-      `Zapytanie ze strony — ${form.get("company") || "nowy projekt"}`,
-    );
-    const body = encodeURIComponent(
-      `Imię: ${form.get("name")}\nE-mail: ${form.get("email")}\nFirma: ${form.get("company")}\nBudżet: ${form.get("budget")}\n\nProjekt:\n${form.get("message")}`,
-    );
-    setSent(true);
-    window.location.href = `mailto:lukasz.staniewicz@gmail.com?subject=${subject}&body=${body}`;
+    setSending(true);
+    setFormError("");
+    const formElement = event.currentTarget;
+    const payload = Object.fromEntries(new FormData(formElement));
+    const response = await fetch("/api/inquiries", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+    setSending(false);
+    if (response.ok) { setSent(true); formElement.reset(); }
+    else setFormError("Nie udało się zapisać wiadomości. Napisz bezpośrednio na e-mail.");
   }
 
   return (
@@ -211,7 +245,7 @@ export default function Home() {
           </p>
         </div>
         <div className="projects">
-          {projects.map((project) => (
+          {portfolioProjects.map((project) => (
             <article className={`project ${project.color}`} key={project.n}>
               <div className="project-top">
                 <span>{project.note}</span>
@@ -223,7 +257,7 @@ export default function Home() {
                   <i />
                   <i />
                 </div>
-                <div className="mock-body">
+                <div className="mock-body" style={project.imageUrl ? { backgroundImage: `linear-gradient(rgba(244,241,232,.82),rgba(255,255,255,.86)),url(${project.imageUrl})`, backgroundSize: "cover", backgroundPosition: "center" } : undefined}>
                   <small>{project.type}</small>
                   <strong>{project.name}</strong>
                   <span>
@@ -231,7 +265,7 @@ export default function Home() {
                     <br />
                     Wyraźny efekt.
                   </span>
-                  <button aria-label={`Otwórz ${project.name}`}>↗</button>
+                  <button onClick={() => project.websiteUrl ? window.open(project.websiteUrl, "_blank", "noopener,noreferrer") : undefined} aria-label={`Otwórz ${project.name}`}>↗</button>
                 </div>
               </div>
               <div className="project-caption">
@@ -392,10 +426,23 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <section id="technologie" className="section tech-section">
+        <div className="shell">
+          <div className="section-head"><div><span className="section-no">08 / TECHNOLOGIE</span><h2>Dobieram narzędzie do celu.</h2></div><p>Nie sprzedaję jednej technologii każdemu. Prosta strona powinna pozostać prosta, a zaplecze firmy ma naprawdę oszczędzać czas.</p></div>
+          <div className="tech-grid">
+            <article><span>01</span><h3>WordPress</h3><p>Strony firmowe i portfolio, które klient może samodzielnie aktualizować.</p></article>
+            <article><span>02</span><h3>React i Next.js</h3><p>Szybkie, indywidualne strony oraz rozbudowane interaktywne doświadczenia.</p></article>
+            <article><span>03</span><h3>HTML, CSS i JavaScript</h3><p>Lekkie landing page, wizytówki i strony bez zbędnego zaplecza.</p></article>
+            <article><span>04</span><h3>Portale i PWA</h3><p>Prototypy paneli klientów, narzędzi instalowanych na telefonie i workflow.</p></article>
+            <article><span>05</span><h3>Excel i Google Sheets</h3><p>Kalkulatory, wyceny, rejestry, raporty i uporządkowanie danych firmy.</p></article>
+            <article><span>06</span><h3>Usprawnianie procesów</h3><p>Formularze, statusy, checklisty i proste automatyzacje ograniczające ręczną pracę.</p></article>
+          </div>
+        </div>
+      </section>
       <section id="kontakt" className="section contact-section">
         <div className="shell contact-grid">
           <div>
-            <span className="section-no">08 / ZACZNIJMY</span>
+            <span className="section-no">09 / ZACZNIJMY</span>
             <h2>Opowiedz mi o swojej marce.</h2>
             <p>
               Odpowiem z propozycją kolejnych kroków i wstępną wyceną. Bez
@@ -432,10 +479,10 @@ export default function Home() {
                   <option value="" disabled>
                     Wybierz przedział
                   </option>
-                  <option>3–6 tys. zł</option>
-                  <option>6–10 tys. zł</option>
-                  <option>10–20 tys. zł</option>
-                  <option>powyżej 20 tys. zł</option>
+                  <option>2–4 tys. zł</option>
+                  <option>4–7 tys. zł</option>
+                  <option>7–12 tys. zł</option>
+                  <option>powyżej 12 tys. zł</option>
                 </select>
               </label>
             </div>
@@ -457,16 +504,17 @@ export default function Home() {
               </span>
             </label>
             <button className="button" type="submit">
-              {sent ? "Otwieram pocztę…" : "Wyślij brief"}
+              {sent ? "Wiadomość zapisana ✓" : sending ? "Zapisuję…" : "Wyślij brief"}
               <span>↗</span>
             </button>
+            {formError && <p className="form-error">{formError}</p>}
           </form>
         </div>
       </section>
       <footer>
         <div className="shell footer-grid">
           <Link className="brand" href="/">
-            <img className="brand-logo" src="/logo.png" alt="" />
+            <span className="footer-logo-plate"><img className="brand-logo" src="/logo.png" alt="" /></span>
             <span>ZIELONA MARKA</span>
           </Link>
           <p>

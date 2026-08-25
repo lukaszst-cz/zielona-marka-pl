@@ -1,4 +1,55 @@
-// Intentionally empty by default.
-// Add Drizzle tables here when the site actually needs a database.
-// See examples/d1/db/schema.ts for an opt-in example.
-export {};
+import { index, integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+
+export const leads = sqliteTable("leads", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  name: text("name").notNull(),
+  company: text("company").notNull(),
+  email: text("email").notNull().default(""),
+  phone: text("phone").notNull().default(""),
+  value: integer("value").notNull().default(0),
+  stage: text("stage").notNull().default("Nowy kontakt"),
+  nextAction: text("next_action").notNull().default("Skontaktować się"),
+  dueDate: text("due_date"),
+  source: text("source").notNull().default("Ręcznie"),
+  createdAt: text("created_at").notNull(),
+  updatedAt: text("updated_at").notNull(),
+}, (table) => [index("idx_leads_stage_updated").on(table.stage, table.updatedAt)]);
+
+export const projects = sqliteTable("projects", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  title: text("title").notNull(),
+  clientName: text("client_name").notNull(),
+  type: text("type").notNull().default("Strona firmowa"),
+  description: text("description").notNull().default(""),
+  imageUrl: text("image_url").notNull().default(""),
+  status: text("status").notNull().default("Planowanie"),
+  price: integer("price").notNull().default(0),
+  deadline: text("deadline"),
+  progress: integer("progress").notNull().default(0),
+  published: integer("published", { mode: "boolean" }).notNull().default(false),
+  websiteUrl: text("website_url").notNull().default(""),
+  createdAt: text("created_at").notNull(),
+  updatedAt: text("updated_at").notNull(),
+}, (table) => [index("idx_projects_published_updated").on(table.published, table.updatedAt)]);
+
+export const tasks = sqliteTable("tasks", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  title: text("title").notNull(),
+  projectId: integer("project_id").references(() => projects.id, { onDelete: "cascade" }),
+  status: text("status").notNull().default("Do zrobienia"),
+  priority: text("priority").notNull().default("Normalny"),
+  dueDate: text("due_date"),
+  createdAt: text("created_at").notNull(),
+  updatedAt: text("updated_at").notNull(),
+}, (table) => [index("idx_tasks_status_updated").on(table.status, table.updatedAt)]);
+
+export const inquiries = sqliteTable("inquiries", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  company: text("company").notNull().default(""),
+  budget: text("budget").notNull().default(""),
+  message: text("message").notNull(),
+  status: text("status").notNull().default("Nowe"),
+  createdAt: text("created_at").notNull(),
+}, (table) => [index("idx_inquiries_status_created").on(table.status, table.createdAt)]);

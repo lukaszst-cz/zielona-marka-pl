@@ -73,7 +73,7 @@ export default function RootLayout({
     name: "Zielona Marka",
     description: "Projektowanie i wdrażanie stron internetowych dla firm.",
     areaServed: "PL",
-    priceRange: "2900–20000 PLN",
+    priceRange: "1900–15000 PLN",
     serviceType: [
       "Projektowanie stron internetowych",
       "Landing page",
