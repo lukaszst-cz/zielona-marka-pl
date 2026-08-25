@@ -34,6 +34,6 @@ export default async function ConceptPage({ params }: { params: Promise<{ slug: 
       <div className="concept-browser"><span>● ● ●</span><div><small>{project.category}</small><h2>{project.headline}</h2><button>Umów rozmowę →</button></div></div>
       <aside><span className="section-no">ZAKRES I TECHNOLOGIE</span>{project.stack.map((item, index)=><div key={item}><b>{String(index+1).padStart(2,"0")}</b><span>{item}</span></div>)}</aside>
     </section>
-    <section className="concept-cta"><div className="shell"><span className="section-no">STRONA + ZAPLECZE PROCESOWE</span><h2>Zobacz, jak ta firma mogłaby pracować od środka.</h2><div className="concept-actions"><Link className="button" href={project.demo}>Uruchom demo zaplecza <span>↗</span></Link><Link className="text-link" href="/#kontakt">Porozmawiajmy o wdrożeniu</Link></div></div></section>
+    <section className="concept-cta"><div className="shell"><span className="section-no">STRONA + ZAPLECZE PROCESOWE</span><h2>Zobacz pełny efekt oraz sposób pracy firmy od środka.</h2><div className="concept-actions">{"website" in project && <Link className="button" href={project.website}>Otwórz pełną stronę <span>↗</span></Link>}<Link className="button" href={project.demo}>Uruchom demo zaplecza <span>↗</span></Link><Link className="text-link" href="/#kontakt">Porozmawiajmy o wdrożeniu</Link></div></div></section>
   </main>;
 }

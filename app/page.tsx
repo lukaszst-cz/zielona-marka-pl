@@ -10,7 +10,7 @@ const projects: PortfolioCard[] = [
     n: "01",
     name: "Natura Studio",
     type: "Strona usługowa",
-    note: "Projekt koncepcyjny",
+    note: "Pełna strona demonstracyjna",
     color: "project-a",
     description: "Strona i zaplecze rezerwacji dla studia wellness.",
     imageUrl: "/concept-natura.jpg",
@@ -27,9 +27,9 @@ const projects: PortfolioCard[] = [
     color: "project-b",
     description: "Strona restauracji, rezerwacje i panel operacyjny.",
     imageUrl: "/concept-bistro.jpg",
-    websiteUrl: "/realizacje/bistro-forma",
+    websiteUrl: "/demo/bistro-strona",
     backendUrl: "/demo/bistro",
-    primaryLabel: "Zobacz projekt",
+    primaryLabel: "Otwórz pełną stronę",
     secondaryLabel: "Uruchom zaplecze",
   },
   {
@@ -120,6 +120,8 @@ export default function Home() {
   const [activeProcess, setActiveProcess] = useState(0);
   const [activePackage, setActivePackage] = useState(0);
   const [offerCategory, setOfferCategory] = useState("Wszystko");
+  const [showAllServices, setShowAllServices] = useState(false);
+  const [showAllTechnologies, setShowAllTechnologies] = useState(false);
   useEffect(() => {
     const alignHashSection = () => {
       const id = window.location.hash.slice(1);
@@ -341,6 +343,11 @@ export default function Home() {
           <p className="lighthouse-note"><b>Lighthouse</b> to automatyczny test Google sprawdzający m.in. szybkość, dostępność i techniczną jakość strony. Wynik mierzę przed publikacją; nie jest obietnicą konkretnej pozycji w Google.</p>
         </div>
       </section>
+      <section className="visual-proof-strip" aria-label="Przykładowe kierunki wizualne">
+        <a href="/demo/bistro-strona" style={{ backgroundImage: "linear-gradient(180deg,transparent,rgba(15,25,20,.78)),url(/concept-bistro.jpg)" }}><small>GASTRONOMIA</small><strong>Bistro Forma</strong><span>Pełna strona demonstracyjna ↗</span></a>
+        <a href="/realizacje/natura-studio" style={{ backgroundImage: "linear-gradient(180deg,transparent,rgba(15,25,20,.78)),url(/concept-natura.jpg)" }}><small>WELLNESS</small><strong>Natura Studio</strong><span>Kierunek marki i zaplecze ↗</span></a>
+        <a href="/realizacje/dom-dobry" style={{ backgroundImage: "linear-gradient(180deg,transparent,rgba(15,25,20,.78)),url(/concept-dom.jpg)" }}><small>NIERUCHOMOŚCI</small><strong>Dom Dobry</strong><span>Katalog i proces sprzedaży ↗</span></a>
+      </section>
       <section id="oferta" className="section offer-section">
         <div className="shell">
           <div className="section-head">
@@ -382,7 +389,7 @@ export default function Home() {
             {offerCategories.map((category) => <button key={category} type="button" className={offerCategory === category ? "active" : ""} onClick={() => { setOfferCategory(category); setExpandedService(null); }}>{category}</button>)}
           </div>
           <div className="solution-catalog">
-            {services.map((service, index) => ({ service, index })).filter(({ index }) => offerCategory === "Wszystko" || serviceCategories[index] === offerCategory).map(({ service, index }) => (
+            {services.map((service, index) => ({ service, index })).filter(({ index }) => offerCategory === "Wszystko" || serviceCategories[index] === offerCategory).slice(0, offerCategory === "Wszystko" && !showAllServices ? 6 : undefined).map(({ service, index }) => (
               <article key={service.title} className={expandedService === index ? "expanded" : ""}>
                 <button className="solution-summary" onClick={() => setExpandedService(expandedService === index ? null : index)} aria-expanded={expandedService === index}>
                   <header><span>{serviceCategories[index]}</span><b>{String(index + 1).padStart(2, "0")}</b></header>
@@ -400,6 +407,7 @@ export default function Home() {
               </article>
             ))}
           </div>
+          {offerCategory === "Wszystko" && <button className="section-reveal-button" type="button" onClick={() => { setShowAllServices(!showAllServices); setExpandedService(null); }}>{showAllServices ? "Pokaż krótszą ofertę ↑" : `Pokaż wszystkie ${services.length} rozwiązań ↓`}</button>}
           <div className="offer-confidence">
             <header><span>MOŻESZ ZACZĄĆ BEZ GOTOWEGO KOMPLETU</span><h3>Przeprowadzę Cię od materiałów do publikacji.</h3></header>
             <div>
@@ -581,7 +589,7 @@ export default function Home() {
         <div className="shell">
           <div className="section-head"><div><span className="section-no">07 / TECHNOLOGIE</span><h2>Dobieram narzędzie do celu.</h2></div><p>Nie sprzedaję jednej technologii każdemu. Prosta strona powinna pozostać prosta, a zaplecze firmy ma naprawdę oszczędzać czas.</p></div>
           <div className="tech-grid">
-            {technologies.map((tech, index) => <article key={tech.title} className={expandedTech === index ? "expanded" : ""}>
+            {technologies.slice(0, showAllTechnologies ? undefined : 6).map((tech, index) => <article key={tech.title} className={expandedTech === index ? "expanded" : ""}>
               <button onClick={() => setExpandedTech(expandedTech === index ? null : index)} aria-expanded={expandedTech === index}>
                 <span>{String(index + 1).padStart(2, "0")}</span><i>{expandedTech === index ? "−" : "+"}</i>
                 <div className={`tech-graphic tech-graphic-${index % 5}`} aria-hidden="true">
@@ -600,6 +608,7 @@ export default function Home() {
               </div>}
             </article>)}
           </div>
+          <button className="section-reveal-button" type="button" onClick={() => { setShowAllTechnologies(!showAllTechnologies); setExpandedTech(null); }}>{showAllTechnologies ? "Pokaż najważniejsze technologie ↑" : `Pokaż wszystkie ${technologies.length} technologii i narzędzi ↓`}</button>
         </div>
       </section>
       <section id="automatyzacje" className="section automation-showcase">
@@ -676,7 +685,7 @@ export default function Home() {
               ["Czy będę mógł samodzielnie edytować treści?", "Tak, jeśli projekt tego wymaga, dobiorę WordPress lub inne proste zaplecze. Przy stronie kodowanej indywidualnie ustalamy wygodny sposób aktualizacji przed rozpoczęciem pracy."],
               ["Od czego zależy cena strony?", "Od liczby widoków, przygotowania materiałów, funkcji, integracji i terminu. Przed startem otrzymujesz dokładny zakres i cenę — dodatkowe prace wymagają Twojej akceptacji."],
               ["Czy muszę mieć gotowe teksty i zdjęcia?", "Nie. Możemy zacząć od Twojej wiedzy o firmie. Pomogę zaplanować strukturę, wycenić przygotowanie treści oraz dobrać legalne zdjęcia licencjonowane albo listę ujęć do wykonania."],
-              ["Czy musimy spotykać się osobiście?", "Nie. Konsultacje możemy prowadzić przez Google Meet, Microsoft Teams, telefon lub e-mail. Spotkanie osobiste w obsługiwanym regionie ustalamy wtedy, gdy rzeczywiście pomaga w projekcie."],
+              ["Czy musimy spotykać się osobiście?", "Nie. Współpracuję z firmami z całej Polski, a cały projekt możemy sprawnie przeprowadzić online — przez Google Meet, Microsoft Teams, telefon i e-mail. Materiały, uwagi, akceptacje oraz status prac przekazujemy cyfrowo. Spotkanie osobiste pozostaje opcją, gdy rzeczywiście wnosi wartość do projektu i możemy je wspólnie ustalić."],
               ["Czy strona będzie widoczna w Google?", "Przygotuję podstawy SEO technicznego, strukturę treści, indeksowanie i dane firmy. Pozycja zależy również od konkurencji, treści, opinii, linków i dalszej pracy — nie obiecuję nierealnych gwarancji."],
               ["Czy strona będzie gotowa do dalszego pozycjonowania?", "Tak. Po publikacji ma przygotowany fundament techniczny: logiczną strukturę, metadane, mapę strony, możliwość indeksowania, wersję mobilną i podstawy wydajności. Nie gwarantuje to konkretnej pozycji, ale lekka i poprawnie przygotowana strona usuwa część barier już na starcie i daje lepsze warunki do dalszego SEO."],
               ["Jak wygląda rozliczenie?", "Zakres, harmonogram i sposób płatności ustalamy przed rozpoczęciem. Projekt może być rozliczony etapami lub przez uzgodnioną platformę pośredniczącą, np. Useme."],
