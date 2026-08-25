@@ -15,20 +15,24 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.SITE_URL ??
-      "https://zielona-marka-portfolio.l-st-cz.chatgpt.site",
+      "https://zielona-marka.lukasz-staniewicz.workers.dev",
   ),
   title: {
     default: "Zielona Marka — strony internetowe dla firm",
     template: "%s | Zielona Marka",
   },
   description:
-    "Projektuję responsywne strony firmowe, landing page, portfolio i proste narzędzia internetowe. Realne ceny i jasny proces.",
+    "Strony internetowe, SEO lokalne, automatyzacje procesów, dashboardy KPI i panele klienta dla małych firm. Realne ceny i jasny proces.",
   keywords: [
     "strony internetowe",
     "projektowanie stron",
     "landing page",
     "portfolio",
     "strony firmowe",
+    "automatyzacja procesów",
+    "dashboard KPI",
+    "panel klienta",
+    "wizytówka Google",
     "Zielona Marka",
   ],
   authors: [{ name: "Zielona Marka" }],
@@ -38,7 +42,7 @@ export const metadata: Metadata = {
     locale: "pl_PL",
     title: "Zielona Marka — strony, w których marki rosną",
     description:
-      "Nowoczesne strony internetowe, portfolio i narzędzia dla małych firm.",
+      "Strony internetowe, automatyzacje, KPI i panele klienta dla małych firm.",
     siteName: "Zielona Marka",
     images: [
       {
@@ -53,7 +57,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Zielona Marka — strony, w których marki rosną",
     description:
-      "Nowoczesne strony internetowe, portfolio i narzędzia dla małych firm.",
+      "Strony internetowe, automatyzacje, KPI i panele klienta dla małych firm.",
     images: ["/og.png"],
   },
   icons: {
@@ -72,6 +76,9 @@ export default function RootLayout({
     "@type": "ProfessionalService",
     name: "Zielona Marka",
     description: "Projektowanie i wdrażanie stron internetowych dla firm.",
+    url: "https://zielona-marka.lukasz-staniewicz.workers.dev",
+    email: "lukasz.staniewicz@gmail.com",
+    sameAs: ["https://github.com/lukaszst-cz"],
     areaServed: "PL",
     priceRange: "1900–15000 PLN",
     serviceType: [
@@ -80,6 +87,10 @@ export default function RootLayout({
       "Portfolio",
       "SEO techniczne",
       "Prototypy PWA",
+      "Automatyzacja procesów biznesowych",
+      "Dashboardy KPI",
+      "Panele klienta",
+      "Optymalizacja Profilu Firmy Google",
     ],
   };
   return (

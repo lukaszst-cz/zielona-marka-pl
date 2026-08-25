@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { FormEvent, useEffect, useMemo, useState } from "react";
+import { concepts, services, technologies } from "./content";
 
 type PortfolioCard = { n:string; name:string; type:string; note:string; color:string; description?:string; imageUrl?:string; websiteUrl?:string };
 const projects: PortfolioCard[] = [
@@ -11,6 +12,9 @@ const projects: PortfolioCard[] = [
     type: "Strona usługowa",
     note: "Projekt koncepcyjny",
     color: "project-a",
+    description: "Strona i zaplecze rezerwacji dla studia wellness.",
+    imageUrl: "/concept-natura.jpg",
+    websiteUrl: "/realizacje/natura-studio",
   },
   {
     n: "02",
@@ -18,6 +22,9 @@ const projects: PortfolioCard[] = [
     type: "Restauracja",
     note: "Projekt koncepcyjny",
     color: "project-b",
+    description: "Strona restauracji, rezerwacje i panel operacyjny.",
+    imageUrl: "/concept-bistro.jpg",
+    websiteUrl: "/realizacje/bistro-forma",
   },
   {
     n: "03",
@@ -25,81 +32,11 @@ const projects: PortfolioCard[] = [
     type: "Nieruchomości",
     note: "Projekt koncepcyjny",
     color: "project-c",
+    description: "Katalog inwestycji, leady i statusy sprzedaży.",
+    imageUrl: "/concept-dom.jpg",
+    websiteUrl: "/realizacje/dom-dobry",
   },
 ];
-const services = [
-  [
-    "Landing page",
-    "od 1 900 zł",
-    "Jedna dopracowana strona sprzedażowa, formularz, analityka i podstawowe SEO.",
-  ],
-  [
-    "Strona firmowa",
-    "od 3 900 zł",
-    "Do 7 podstron, indywidualny projekt, edytowalne treści, szkolenie i optymalizacja.",
-  ],
-  [
-    "Portfolio",
-    "od 2 400 zł",
-    "Responsywne portfolio usług lub realizacji z wygodną ścieżką kontaktu.",
-  ],
-  [
-    "Prototyp portalu lub PWA",
-    "od 4 900 zł",
-    "Interaktywny prototyp aplikacji, panelu klienta lub narzędzia instalowanego na telefonie.",
-  ],
-  [
-    "Opieka nad stroną",
-    "od 250 zł / mies.",
-    "Aktualizacje, kopie zapasowe, monitoring i drobne zmiany treści.",
-  ],
-  [
-    "Formularz zapytań",
-    "od 300 zł",
-    "Formularz przekierowujący kompletne zapytanie na e-mail lub do wybranego narzędzia.",
-  ],
-  [
-    "Prezentacja usług i cennika",
-    "od 650 zł",
-    "Czytelna sekcja sprzedażowa, oferta PDF albo prezentacja do wysyłki klientom.",
-  ],
-  [
-    "Publikacja i hosting",
-    "od 350 zł",
-    "Konfiguracja prostego hostingu, domeny, HTTPS i bezpieczne uruchomienie strony.",
-  ],
-  [
-    "SEO techniczne",
-    "od 650 zł",
-    "Meta dane, nagłówki, mapa witryny, robots.txt, indeksowanie i kontrola wydajności.",
-  ],
-  [
-    "Prywatność i cookies",
-    "od 450 zł",
-    "Dopasowany materiał informacyjny o prywatności i cookies — z rekomendacją weryfikacji prawnej.",
-  ],
-  [
-    "Excel i Google Sheets",
-    "od 750 zł",
-    "Kalkulatory, wyceny, rejestry klientów, raporty oraz proste automatyzacje pracy.",
-  ],
-  [
-    "Instrukcja aktualizacji",
-    "od 250 zł",
-    "Praktyczna instrukcja obsługi strony wraz z krótkim szkoleniem online.",
-  ],
-  [
-    "Audyt procesu firmy",
-    "od 1 500 zł",
-    "Analiza obecnego obiegu pracy, wskazanie wąskich gardeł i konkretny plan usprawnień.",
-  ],
-  [
-    "Wdrożenie usprawnienia",
-    "od 2 500 zł",
-    "Prosty system obsługi zleceń, rejestr klientów, kalkulator, raporty, formularze lub automatyzacja powtarzalnej pracy.",
-  ],
-];
-
 export default function Home() {
   const [siteType, setSiteType] = useState("Strona firmowa");
   const [pages, setPages] = useState(5);
@@ -109,6 +46,8 @@ export default function Home() {
   const [sending, setSending] = useState(false);
   const [formError, setFormError] = useState("");
   const [portfolioProjects, setPortfolioProjects] = useState(projects);
+  const [expandedService, setExpandedService] = useState<number | null>(0);
+  const [expandedTech, setExpandedTech] = useState<number | null>(null);
   useEffect(() => {
     fetch("/api/projects")
       .then((response) => response.json() as Promise<{ projects?: Array<{ id: number; title: string; type: string; description: string; imageUrl: string; websiteUrl: string }> }>)
@@ -134,14 +73,27 @@ export default function Home() {
     const base =
       siteType === "Landing page"
         ? 1900
+        : siteType === "Automatyzacja Start"
+          ? 1200
+          : siteType === "Dashboard KPI"
+            ? 1800
+            : siteType === "Panel klienta"
+              ? 4900
         : siteType === "Sklep internetowy"
           ? 7900
           : 3400;
+    const copyPrice =
+      siteType === "Landing page" ? 650 :
+      siteType === "Strona firmowa" ? 1500 :
+      siteType === "Sklep internetowy" ? 2200 :
+      siteType === "Panel klienta" ? 1200 :
+      siteType === "Dashboard KPI" ? 500 :
+      350;
     return (
       base +
       Math.max(0, pages - (siteType === "Landing page" ? 1 : 5)) * 300 +
       (shop && siteType !== "Sklep internetowy" ? 2500 : 0) +
-      (copy ? 800 : 0)
+      (copy ? copyPrice : 0)
     );
   }, [siteType, pages, shop, copy]);
   async function submitBrief(event: FormEvent<HTMLFormElement>) {
@@ -171,6 +123,7 @@ export default function Home() {
           <a href="#realizacje">Realizacje</a>
           <a href="#oferta">Oferta</a>
           <a href="#proces">Proces</a>
+          <Link href="/status">Status projektu</Link>
           <a href="#kontakt">Kontakt</a>
         </div>
         <a className="button button-small" href="#kalkulator">
@@ -245,7 +198,10 @@ export default function Home() {
           </p>
         </div>
         <div className="projects">
-          {portfolioProjects.map((project) => (
+          {portfolioProjects.map((project) => {
+            const conceptSlug = Object.entries(concepts).find(([, concept]) => concept.name === project.name)?.[0];
+            const target = project.websiteUrl || (conceptSlug ? `/realizacje/${conceptSlug}` : "#kontakt");
+            return (
             <article className={`project ${project.color}`} key={project.n}>
               <div className="project-top">
                 <span>{project.note}</span>
@@ -257,15 +213,11 @@ export default function Home() {
                   <i />
                   <i />
                 </div>
-                <div className="mock-body" style={project.imageUrl ? { backgroundImage: `linear-gradient(rgba(244,241,232,.82),rgba(255,255,255,.86)),url(${project.imageUrl})`, backgroundSize: "cover", backgroundPosition: "center" } : undefined}>
+                <div className="mock-body" style={project.imageUrl ? { backgroundImage: `linear-gradient(120deg,rgba(244,241,232,.3),rgba(255,255,255,.64)),url(${project.imageUrl})`, backgroundSize: "cover", backgroundPosition: "center" } : undefined}>
                   <small>{project.type}</small>
                   <strong>{project.name}</strong>
-                  <span>
-                    Przemyślany projekt.
-                    <br />
-                    Wyraźny efekt.
-                  </span>
-                  <button onClick={() => project.websiteUrl ? window.open(project.websiteUrl, "_blank", "noopener,noreferrer") : undefined} aria-label={`Otwórz ${project.name}`}>↗</button>
+                  <span>{project.description || <>Przemyślany projekt.<br />Wyraźny efekt.</>}</span>
+                  <Link href={target} target={project.websiteUrl?.startsWith("http") ? "_blank" : undefined} aria-label={`Otwórz ${project.name}`}>↗</Link>
                 </div>
               </div>
               <div className="project-caption">
@@ -273,7 +225,7 @@ export default function Home() {
                 <span>{project.type}</span>
               </div>
             </article>
-          ))}
+          )})}
         </div>
       </section>
       <section id="oferta" className="section offer-section">
@@ -289,13 +241,21 @@ export default function Home() {
               bezpiecznie realizować już teraz.
             </p>
           </div>
-          <div className="service-list">
+          <div className="service-list service-accordion">
             {services.map((service, index) => (
-              <article key={service[0]}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <h3>{service[0]}</h3>
-                <p>{service[2]}</p>
-                <b>{service[1]}</b>
+              <article key={service.title} className={expandedService === index ? "expanded" : ""}>
+                <button className="service-summary" onClick={() => setExpandedService(expandedService === index ? null : index)} aria-expanded={expandedService === index}>
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <h3>{service.title}</h3>
+                  <p>{service.lead}</p>
+                  <b>{service.price}</b>
+                  <i>{expandedService === index ? "−" : "+"}</i>
+                </button>
+                {expandedService === index && <div className="service-detail">
+                  <div><small>DLA KOGO</small><p>{service.forWhom}</p></div>
+                  <div><small>CO OTRZYMUJESZ</small><ul>{service.includes.map(item => <li key={item}>{item}</li>)}</ul></div>
+                  <div><small>CZAS REALIZACJI</small><p>{service.time}</p><a href="#kontakt">Zapytaj o ten pakiet →</a></div>
+                </div>}
               </article>
             ))}
           </div>
@@ -321,6 +281,9 @@ export default function Home() {
                 <option>Landing page</option>
                 <option>Strona firmowa</option>
                 <option>Sklep internetowy</option>
+                <option>Automatyzacja Start</option>
+                <option>Dashboard KPI</option>
+                <option>Panel klienta</option>
               </select>
             </label>
             <label>
@@ -347,7 +310,7 @@ export default function Home() {
                 checked={copy}
                 onChange={(e) => setCopy(e.target.checked)}
               />
-              <span>Przygotowanie tekstów</span>
+              <span>Przygotowanie tekstów na stronę</span>
             </label>
             <div className="estimate">
               <span>Orientacyjny budżet</span>
@@ -398,8 +361,13 @@ export default function Home() {
             ],
             [
               "05",
+              "Testy i QA",
+              "Sprawdzam telefon, komputer, formularze, linki, szybkość, SEO, dostępność i cały proces.",
+            ],
+            [
+              "06",
               "Start i opieka",
-              "Publikuję stronę, przekazuję instrukcję i wspieram dalej.",
+              "Publikuję stronę, przekazuję instrukcję, kod statusu klienta i wspieram dalej.",
             ],
           ].map((step) => (
             <article key={step[0]}>
@@ -430,26 +398,67 @@ export default function Home() {
         <div className="shell">
           <div className="section-head"><div><span className="section-no">08 / TECHNOLOGIE</span><h2>Dobieram narzędzie do celu.</h2></div><p>Nie sprzedaję jednej technologii każdemu. Prosta strona powinna pozostać prosta, a zaplecze firmy ma naprawdę oszczędzać czas.</p></div>
           <div className="tech-grid">
-            <article><span>01</span><h3>WordPress</h3><p>Strony firmowe i portfolio, które klient może samodzielnie aktualizować.</p></article>
-            <article><span>02</span><h3>React i Next.js</h3><p>Szybkie, indywidualne strony oraz rozbudowane interaktywne doświadczenia.</p></article>
-            <article><span>03</span><h3>HTML, CSS i JavaScript</h3><p>Lekkie landing page, wizytówki i strony bez zbędnego zaplecza.</p></article>
-            <article><span>04</span><h3>Portale i PWA</h3><p>Prototypy paneli klientów, narzędzi instalowanych na telefonie i workflow.</p></article>
-            <article><span>05</span><h3>Excel i Google Sheets</h3><p>Kalkulatory, wyceny, rejestry, raporty i uporządkowanie danych firmy.</p></article>
-            <article><span>06</span><h3>Usprawnianie procesów</h3><p>Formularze, statusy, checklisty i proste automatyzacje ograniczające ręczną pracę.</p></article>
+            {technologies.map((tech, index) => <article key={tech.title} className={expandedTech === index ? "expanded" : ""}>
+              <button onClick={() => setExpandedTech(expandedTech === index ? null : index)} aria-expanded={expandedTech === index}>
+                <span>{String(index + 1).padStart(2, "0")}</span><i>{expandedTech === index ? "−" : "+"}</i>
+                <h3>{tech.title}</h3><p>{tech.summary}</p>
+              </button>
+              {expandedTech === index && <div className="tech-detail">
+                <div><small>CO TO JEST</small><p>{tech.what}</p></div>
+                <div><small>KIEDY WARTO</small><p>{tech.use}</p></div>
+                <div><small>EFEKT DLA FIRMY</small><p>{tech.effect}</p></div>
+                <div><small>NARZĘDZIA</small><p>{tech.tools}</p></div>
+              </div>}
+            </article>)}
+          </div>
+        </div>
+      </section>
+      <section className="section automation-showcase">
+        <div className="shell showcase-grid">
+          <div>
+            <span className="section-no">09 / AUTOMATYZACJA W PRAKTYCE</span>
+            <h2>Zobacz, jak może pracować firma transportowa.</h2>
+            <p>Interaktywne demo pokazuje cały obieg zlecenia: od formularza, przez kierowcę i dostawę, aż do dokumentów, faktury oraz KPI.</p>
+            <Link className="button" href="/demo/transport">Uruchom demonstrację <span>↗</span></Link>
+          </div>
+          <div className="flow-preview" aria-label="Przykładowy obieg zlecenia">
+            {["Zapytanie", "Wycena", "Kierowca", "Dostawa", "Faktura", "KPI"].map((item, index) => <div key={item}><b>{String(index + 1).padStart(2,"0")}</b><span>{item}</span>{index < 5 && <i>→</i>}</div>)}
+          </div>
+        </div>
+      </section>
+      <section className="section client-portal-showcase">
+        <div className="shell portal-showcase-grid">
+          <div>
+            <span className="section-no">10 / STREFA KLIENTA</span>
+            <h2>Twój klient zawsze wie, na jakim etapie jest projekt.</h2>
+            <p>Po rejestracji zlecenia otrzymuje indywidualny kod. Bez logowania do Twojego Studio sprawdza postęp, kolejny krok, termin i roboczą umowę do pobrania.</p>
+            <ul>
+              <li>prywatny widok jednego projektu,</li>
+              <li>procent postępu i aktualny etap,</li>
+              <li>informacja, czego potrzebujesz od klienta,</li>
+              <li>umowa do wydruku lub zapisania jako PDF.</li>
+            </ul>
+          </div>
+          <div className="portal-code-card">
+            <span className="section-no">MASZ JUŻ KOD?</span>
+            <h3>Otwórz status projektu.</h3>
+            <p>Przykład: ZM-AB12-CD34-EF56</p>
+            <Link className="button" href="/status">Wpisz kod klienta <span>↗</span></Link>
+            <small>Nowy kod tworzysz w Studio automatycznie podczas zakładania projektu.</small>
           </div>
         </div>
       </section>
       <section id="kontakt" className="section contact-section">
         <div className="shell contact-grid">
           <div>
-            <span className="section-no">09 / ZACZNIJMY</span>
+            <span className="section-no">11 / ZACZNIJMY</span>
             <h2>Opowiedz mi o swojej marce.</h2>
             <p>
               Odpowiem z propozycją kolejnych kroków i wstępną wyceną. Bez
               zobowiązań.
             </p>
-            <a className="mail" href="mailto:kontakt@przyklad.pl">
-              kontakt@przyklad.pl ↗
+            <a className="mail" href="mailto:lukasz.staniewicz@gmail.com">
+              lukasz.staniewicz@gmail.com ↗
             </a>
           </div>
           <form onSubmit={submitBrief}>
@@ -479,6 +488,7 @@ export default function Home() {
                   <option value="" disabled>
                     Wybierz przedział
                   </option>
+                  <option>Nie chcę teraz mówić o budżecie</option>
                   <option>2–4 tys. zł</option>
                   <option>4–7 tys. zł</option>
                   <option>7–12 tys. zł</option>
@@ -522,8 +532,9 @@ export default function Home() {
           </p>
           <div>
             <Link href="/studio">Studio pracy</Link>
+            <Link href="/status">Status projektu</Link>
+            <a href="https://github.com/lukaszst-cz" target="_blank" rel="noreferrer">GitHub ↗</a>
             <Link href="/polityka-prywatnosci">Prywatność</Link>
-            <a href="#">Instagram</a>
           </div>
           <small>© {new Date().getFullYear()} Zielona Marka</small>
         </div>
