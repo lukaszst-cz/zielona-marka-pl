@@ -68,7 +68,7 @@ export default function StatusEntry() {
         <p>
           Gdy potrzebne będą materiały, akceptacja lub podpisana umowa, zobaczysz
           konkretną informację w statusie. Przed publikacją projekt przechodzi
-          kontrolę QA: telefon, komputer, formularze, linki i podstawowe SEO.
+          kontrolę jakości (QA): telefon, komputer, formularze, linki i podstawowe SEO.
         </p>
       </section>
       <p className="status-security shell">

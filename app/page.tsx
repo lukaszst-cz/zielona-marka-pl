@@ -4,7 +4,7 @@ import Link from "next/link";
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import { concepts, services, technologies } from "./content";
 
-type PortfolioCard = { n:string; name:string; type:string; note:string; color:string; description?:string; imageUrl?:string; websiteUrl?:string };
+type PortfolioCard = { n:string; name:string; type:string; note:string; color:string; description?:string; imageUrl?:string; websiteUrl?:string; backendUrl?:string };
 const projects: PortfolioCard[] = [
   {
     n: "01",
@@ -36,6 +36,17 @@ const projects: PortfolioCard[] = [
     imageUrl: "/concept-dom.jpg",
     websiteUrl: "/realizacje/dom-dobry",
   },
+  {
+    n: "04",
+    name: "Auto Naprawa",
+    type: "Strona + system obsługi",
+    note: "Pełna demonstracja procesowa",
+    color: "project-auto project-featured",
+    description: "Strona warsztatu, portal klienta, panel kierownika, kosztorysy, KPI oraz demonstracja faktur i KSeF.",
+    imageUrl: "https://lukaszst-cz.github.io/operations-office-portfolio/auto-naprawa-preview/assets/workshop-hero.png",
+    websiteUrl: "https://lukaszst-cz.github.io/operations-office-portfolio/auto-naprawa-preview/",
+    backendUrl: "https://lukaszst-cz.github.io/operations-office-portfolio/auto-naprawa-preview/portal/?role=manager",
+  },
 ];
 const websiteEstimateTypes = ["One Page / landing page", "Mała wizytówka", "Firma online", "Firma Plus", "Sklep internetowy"];
 const estimatePageDefaults: Record<string, number> = {
@@ -45,6 +56,15 @@ const estimatePageDefaults: Record<string, number> = {
   "Firma Plus": 10,
   "Sklep internetowy": 5,
 };
+const technologyMarks = ["CMS", "</>", "FLOW", "KPI", "XLS", "CRM", "PWA", "API", "AI", "SEO", "WWW", "SQL", "CLOUD"];
+const processSteps = [
+  { number: "01", title: "Brief i cel", description: "Poznaję firmę, klientów i najważniejszy cel strony.", output: ["podsumowanie celów", "lista potrzebnych materiałów", "plan dalszych decyzji"] },
+  { number: "02", title: "Strategia i treść", description: "Układam strukturę, komunikację oraz ścieżkę użytkownika.", output: ["mapa strony", "plan treści i CTA", "ustalony zakres projektu"] },
+  { number: "03", title: "Projekt", description: "Tworzę indywidualny kierunek wizualny i widoki strony.", output: ["kierunek wizualny", "widoki telefonu i komputera", "runda akceptacji"] },
+  { number: "04", title: "Wdrożenie", description: "Koduję, optymalizuję i konfiguruję potrzebne integracje.", output: ["działająca wersja strony", "formularze i analityka", "zaplecze uzgodnionych funkcji"] },
+  { number: "05", title: "Testy jakości", description: "Sprawdzam urządzenia, formularze, szybkość, SEO, dostępność i cały proces.", output: ["checklista kontroli jakości (QA)", "lista wykonanych poprawek", "raport odbiorowy dla klienta"] },
+  { number: "06", title: "Start i opieka", description: "Publikuję stronę, przekazuję instrukcję i wspieram dalszy rozwój.", output: ["opublikowana strona", "instrukcja obsługi", "kod statusu i zalecenia na przyszłość"] },
+];
 
 export default function Home() {
   const [siteType, setSiteType] = useState("Firma online");
@@ -61,13 +81,14 @@ export default function Home() {
   const [portfolioProjects, setPortfolioProjects] = useState(projects);
   const [expandedService, setExpandedService] = useState<number | null>(0);
   const [expandedTech, setExpandedTech] = useState<number | null>(null);
+  const [activeProcess, setActiveProcess] = useState(0);
+  const [activePackage, setActivePackage] = useState(0);
   useEffect(() => {
     fetch("/api/projects")
       .then((response) => response.json() as Promise<{ projects?: Array<{ id: number; title: string; type: string; description: string; imageUrl: string; websiteUrl: string }> }>)
       .then((payload) => {
         if (payload.projects?.length) {
-          setPortfolioProjects(
-            payload.projects.map((project: { id: number; title: string; type: string; description: string; imageUrl: string; websiteUrl: string }, index: number) => ({
+          const remoteProjects = payload.projects.map((project: { id: number; title: string; type: string; description: string; imageUrl: string; websiteUrl: string }, index: number) => ({
               n: String(index + 1).padStart(2, "0"),
               name: project.title,
               type: project.type,
@@ -76,8 +97,9 @@ export default function Home() {
               description: project.description,
               imageUrl: project.imageUrl,
               websiteUrl: project.websiteUrl,
-            })),
-          );
+            }));
+          const remoteNames = new Set(remoteProjects.map((project) => project.name));
+          setPortfolioProjects([...projects.filter((project) => !remoteNames.has(project.name)), ...remoteProjects]);
         }
       })
       .catch(() => undefined);
@@ -240,14 +262,15 @@ export default function Home() {
               <span>cel wydajności Lighthouse</span>
             </div>
             <div>
-              <b>3–6</b>
-              <span>typowy czas realizacji</span>
+              <b>2–4 tyg.</b>
+              <span>typowy czas realizacji małej strony firmowej</span>
             </div>
             <div>
               <b>100%</b>
               <span>indywidualny projekt</span>
             </div>
           </div>
+          <p className="lighthouse-note"><b>Lighthouse</b> to automatyczny test Google sprawdzający m.in. szybkość, dostępność i techniczną jakość strony. Wynik mierzę przed publikacją; nie jest obietnicą konkretnej pozycji w Google.</p>
         </div>
       </section>
       <section id="realizacje" className="section shell">
@@ -257,9 +280,9 @@ export default function Home() {
             <h2>Strony z charakterem.</h2>
           </div>
           <p>
-            To miejsca na pierwsze projekty. Gdy zrealizujesz stronę dla
-            klienta, podmienisz nazwę, opis i podgląd bez przebudowy całego
-            portfolio.
+            Zobacz działające wdrożenie wraz z zapleczem oraz dopracowane
+            kierunki koncepcyjne dla różnych branż. Portfolio może rosnąć bez
+            przebudowy całej strony.
           </p>
         </div>
         <div className="projects">
@@ -286,8 +309,11 @@ export default function Home() {
                 </div>
               </div>
               <div className="project-caption">
-                <h3>{project.name}</h3>
-                <span>{project.type}</span>
+                <div><h3>{project.name}</h3><span>{project.type}</span></div>
+                <div className="project-actions">
+                  <Link href={target} target={target.startsWith("http") ? "_blank" : undefined}>Zobacz stronę ↗</Link>
+                  {project.backendUrl && <Link href={project.backendUrl} target="_blank">Zobacz zaplecze ↗</Link>}
+                </div>
               </div>
             </article>
           )})}
@@ -306,6 +332,27 @@ export default function Home() {
               realizuję w jasno określonym zakresie.
             </p>
           </div>
+          <div className="featured-packages" aria-label="Główne pakiety stron internetowych">
+            {services.slice(0, 3).map((service, index) => (
+              <article key={service.title} className={activePackage === index ? "active" : ""}>
+                <button type="button" onClick={() => setActivePackage(index)} aria-expanded={activePackage === index}>
+                  <header><span>PAKIET {String(index + 1).padStart(2, "0")}</span>{index === 0 && <b>NAJLEPSZY DLA MAŁEJ FIRMY</b>}</header>
+                  <div className={`package-visual package-visual-${index}`} aria-hidden="true"><i /><i /><i /><strong>{index === 0 ? "ONE PAGE" : index === 1 ? "WWW" : "PLUS"}</strong></div>
+                  <h3>{index === 0 ? "One Page / wizytówka" : service.title}</h3>
+                  <p>{service.lead}</p>
+                  <div className="package-price"><small>OD</small><strong>{service.price}</strong><i>{activePackage === index ? "−" : "+"}</i></div>
+                </button>
+                {activePackage === index && (
+                  <div className="package-expanded">
+                    <small>W PAKIECIE</small>
+                    <ul>{service.includes.map((item) => <li key={item}>{item}</li>)}</ul>
+                    <footer><span>{service.time}</span><a href="#kontakt">Zapytaj o pakiet →</a></footer>
+                  </div>
+                )}
+              </article>
+            ))}
+          </div>
+          <div className="offer-more-head"><span>PEŁNA OFERTA</span><p>Strony, automatyzacje, dane, teksty i zaplecze firmy.</p></div>
           <div className="service-list service-accordion">
             {services.map((service, index) => (
               <article key={service.title} className={expandedService === index ? "expanded" : ""}>
@@ -328,7 +375,7 @@ export default function Home() {
             <article>
               <span>01</span>
               <h3>Co zawiera cena</h3>
-              <p>Uzgodniony zakres, projekt, wdrożenie, publikację, podstawowe SEO, instrukcję i końcowe testy QA.</p>
+              <p>Uzgodniony zakres, projekt, wdrożenie, publikację, podstawowe SEO, instrukcję i końcową kontrolę jakości (QA).</p>
             </article>
             <article>
               <span>02</span>
@@ -428,45 +475,28 @@ export default function Home() {
             projektem na każdym etapie.
           </p>
         </div>
-        <div className="process">
-          {[
-            [
-              "01",
-              "Brief i cel",
-              "Poznaję firmę, klientów i najważniejszy cel strony.",
-            ],
-            [
-              "02",
-              "Strategia i treść",
-              "Układam strukturę, komunikację oraz ścieżkę użytkownika.",
-            ],
-            [
-              "03",
-              "Projekt",
-              "Tworzę indywidualny kierunek wizualny i widoki strony.",
-            ],
-            [
-              "04",
-              "Wdrożenie",
-              "Koduję, testuję, optymalizuję i konfiguruję analitykę.",
-            ],
-            [
-              "05",
-              "Testy i QA",
-              "Sprawdzam telefon, komputer, formularze, linki, szybkość, SEO, dostępność i cały proces.",
-            ],
-            [
-              "06",
-              "Start i opieka",
-              "Publikuję stronę, przekazuję instrukcję, kod statusu klienta i wspieram dalej.",
-            ],
-          ].map((step) => (
-            <article key={step[0]}>
-              <b>{step[0]}</b>
-              <h3>{step[1]}</h3>
-              <p>{step[2]}</p>
-            </article>
+        <div className="process-flow" role="tablist" aria-label="Etapy realizacji projektu">
+          {processSteps.map((step, index) => (
+            <button key={step.number} role="tab" aria-selected={activeProcess === index} className={activeProcess === index ? "active" : ""} onClick={() => setActiveProcess(index)}>
+              <b>{step.number}</b><span>{step.title}</span><i aria-hidden="true">{activeProcess === index ? "●" : "○"}</i>
+            </button>
           ))}
+        </div>
+        <div className="process-detail" role="tabpanel">
+          <div>
+            <span className="section-no">ETAP {processSteps[activeProcess].number}</span>
+            <h3>{processSteps[activeProcess].title}</h3>
+            <p>{processSteps[activeProcess].description}</p>
+          </div>
+          <div>
+            <small>CO OTRZYMUJE KLIENT</small>
+            <ul>{processSteps[activeProcess].output.map((item) => <li key={item}>{item}</li>)}</ul>
+          </div>
+          <div className="process-meter" aria-label={`Etap ${activeProcess + 1} z ${processSteps.length}`}>
+            <span><i style={{ width: `${((activeProcess + 1) / processSteps.length) * 100}%` }} /></span>
+            <b>{activeProcess + 1} / {processSteps.length}</b>
+            <button type="button" onClick={() => setActiveProcess((activeProcess + 1) % processSteps.length)}>Następny etap →</button>
+          </div>
         </div>
       </section>
       <section className="section included">
@@ -485,7 +515,7 @@ export default function Home() {
           </div>
           <div className="quality-board" aria-label="Zakres końcowych testów jakości">
             <header>
-              <div><i /><span>RAPORT ODBIOROWY / QA</span></div>
+              <div><i /><span>RAPORT ODBIOROWY / KONTROLA JAKOŚCI (QA)</span></div>
               <b>GOTOWA DO STARTU</b>
             </header>
             <div className="quality-board-grid">
@@ -509,7 +539,13 @@ export default function Home() {
             {technologies.map((tech, index) => <article key={tech.title} className={expandedTech === index ? "expanded" : ""}>
               <button onClick={() => setExpandedTech(expandedTech === index ? null : index)} aria-expanded={expandedTech === index}>
                 <span>{String(index + 1).padStart(2, "0")}</span><i>{expandedTech === index ? "−" : "+"}</i>
+                <div className={`tech-graphic tech-graphic-${index % 5}`} aria-hidden="true">
+                  <b>{technologyMarks[index]}</b><span /><span /><span />
+                </div>
                 <h3>{tech.title}</h3><p>{tech.summary}</p>
+                <div className="tech-chips" aria-label={`Przykładowe narzędzia: ${tech.tools}`}>
+                  {tech.tools.split(",").slice(0, 3).map((tool) => <small key={tool}>{tool.trim()}</small>)}
+                </div>
               </button>
               {expandedTech === index && <div className="tech-detail">
                 <div><small>CO TO JEST</small><p>{tech.what}</p></div>
@@ -570,7 +606,8 @@ export default function Home() {
               ["Czy musimy spotykać się osobiście?", "Nie. Konsultacje możemy prowadzić przez Google Meet, Microsoft Teams, telefon lub e-mail. Spotkanie osobiste w obsługiwanym regionie ustalamy wtedy, gdy rzeczywiście pomaga w projekcie."],
               ["Czy strona będzie widoczna w Google?", "Przygotuję podstawy SEO technicznego, strukturę treści, indeksowanie i dane firmy. Pozycja zależy również od konkurencji, treści, opinii, linków i dalszej pracy — nie obiecuję nierealnych gwarancji."],
               ["Jak wygląda rozliczenie?", "Zakres, harmonogram i sposób płatności ustalamy przed rozpoczęciem. Projekt może być rozliczony etapami lub przez uzgodnioną platformę pośredniczącą, np. Useme."],
-              ["Co dzieje się po oddaniu strony?", "Otrzymujesz działającą stronę, instrukcję, dostęp do ustalonych narzędzi oraz wynik końcowych testów QA. Możemy też umówić dalszą opiekę i rozwój."],
+              ["Co dzieje się po oddaniu strony?", "Otrzymujesz działającą stronę, instrukcję, dostęp do ustalonych narzędzi oraz raport końcowej kontroli jakości (QA). Możemy też umówić dalszą opiekę i rozwój."],
+              ["Co zawiera opieka nad stroną?", "Monitoring działania i SSL, kontrolowane aktualizacje, kopie bezpieczeństwa, sprawdzenie formularzy, drobne zmiany treści w ustalonym limicie oraz miesięczne podsumowanie. Większe nowe funkcje, płatne licencje i rozbudowa serwisu są wyceniane osobno przed rozpoczęciem."],
             ].map(([question, answer], index) => (
               <details key={question} open={index === 0}>
                 <summary><span>{String(index + 1).padStart(2, "0")}</span>{question}<i>+</i></summary>
