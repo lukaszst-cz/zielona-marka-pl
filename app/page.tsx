@@ -343,10 +343,10 @@ export default function Home() {
           <p className="lighthouse-note"><b>Lighthouse</b> to automatyczny test Google sprawdzający m.in. szybkość, dostępność i techniczną jakość strony. Wynik mierzę przed publikacją; nie jest obietnicą konkretnej pozycji w Google.</p>
         </div>
       </section>
-      <section className="visual-proof-strip" aria-label="Przykładowe kierunki wizualne">
-        <a href="/demo/bistro-strona" style={{ backgroundImage: "linear-gradient(180deg,transparent,rgba(15,25,20,.78)),url(/concept-bistro.jpg)" }}><small>GASTRONOMIA</small><strong>Bistro Forma</strong><span>Pełna strona demonstracyjna ↗</span></a>
-        <a href="/realizacje/natura-studio" style={{ backgroundImage: "linear-gradient(180deg,transparent,rgba(15,25,20,.78)),url(/concept-natura.jpg)" }}><small>WELLNESS</small><strong>Natura Studio</strong><span>Kierunek marki i zaplecze ↗</span></a>
-        <a href="/realizacje/dom-dobry" style={{ backgroundImage: "linear-gradient(180deg,transparent,rgba(15,25,20,.78)),url(/concept-dom.jpg)" }}><small>NIERUCHOMOŚCI</small><strong>Dom Dobry</strong><span>Katalog i proces sprzedaży ↗</span></a>
+      <section className="visual-proof-strip" aria-label="Przykładowe kierunki wizualne dla branż">
+        <a href="#realizacje" style={{ backgroundImage: "linear-gradient(180deg,transparent,rgba(15,25,20,.78)),url(/concept-bistro.jpg)" }}><small>KIERUNEK 01 / GASTRONOMIA</small><strong>Smak i atmosfera</strong><span>Menu, rezerwacje i lokalna widoczność ↓</span></a>
+        <a href="#realizacje" style={{ backgroundImage: "linear-gradient(180deg,transparent,rgba(15,25,20,.78)),url(/concept-natura.jpg)" }}><small>KIERUNEK 02 / WELLNESS</small><strong>Spokój i zaufanie</strong><span>Usługi, terminy i prosta rezerwacja ↓</span></a>
+        <a href="#realizacje" style={{ backgroundImage: "linear-gradient(180deg,transparent,rgba(15,25,20,.78)),url(/concept-dom.jpg)" }}><small>KIERUNEK 03 / NIERUCHOMOŚCI</small><strong>Oferta i decyzja</strong><span>Prezentacja, dostępność i kontakt ↓</span></a>
       </section>
       <section id="oferta" className="section offer-section">
         <div className="shell">
