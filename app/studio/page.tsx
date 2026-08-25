@@ -1,8 +1,224 @@
 "use client";
 import Link from "next/link";
 import { FormEvent, useEffect, useMemo, useState } from "react";
-type Lead = { id: number; name: string; company: string; value: number; stage: string; task: string };
-const starterLeads: Lead[] = [{ id: 1, name: "Anna", company: "Pracownia Wnętrz", value: 5900, stage: "Brief", task: "Ustalić termin rozmowy" },{ id: 2, name: "Marek", company: "Studio Fizjo", value: 8200, stage: "Oferta", task: "Wysłać ofertę PDF" }];
+type Lead = {
+  id: number;
+  name: string;
+  company: string;
+  value: number;
+  stage: string;
+  task: string;
+};
+const starterLeads: Lead[] = [
+  {
+    id: 1,
+    name: "Anna",
+    company: "Pracownia Wnętrz",
+    value: 5900,
+    stage: "Brief",
+    task: "Ustalić termin rozmowy",
+  },
+  {
+    id: 2,
+    name: "Marek",
+    company: "Studio Fizjo",
+    value: 8200,
+    stage: "Oferta",
+    task: "Wysłać ofertę PDF",
+  },
+];
 const stages = ["Nowy kontakt", "Brief", "Oferta", "Realizacja", "Zakończony"];
-export default function Studio() { const [leads, setLeads] = useState<Lead[]>(starterLeads); const [loaded, setLoaded] = useState(false); const [copied, setCopied] = useState(false); useEffect(() => { const saved = localStorage.getItem("zielona-marka-leads"); if (saved) setLeads(JSON.parse(saved)); setLoaded(true); }, []); useEffect(() => { if (loaded) localStorage.setItem("zielona-marka-leads", JSON.stringify(leads)); }, [leads, loaded]); const pipeline = useMemo(() => leads.filter(l => l.stage !== "Zakończony").reduce((sum, l) => sum + l.value, 0), [leads]); function addLead(e: FormEvent<HTMLFormElement>) { e.preventDefault(); const data = new FormData(e.currentTarget); setLeads((old) => [...old, { id: Date.now(), name: String(data.get("name")), company: String(data.get("company")), value: Number(data.get("value")), stage: "Nowy kontakt", task: "Skontaktować się z klientem" }]); e.currentTarget.reset(); } function move(id: number, stage: string) { setLeads(old => old.map(l => l.id === id ? {...l, stage} : l)); } function copyOffer() { navigator.clipboard.writeText("Dzień dobry,\n\ndziękuję za rozmowę. Na podstawie briefu proponuję przygotowanie indywidualnej strony internetowej obejmującej strategię, projekt, wdrożenie, optymalizację SEO i szkolenie z obsługi. Termin realizacji: 4–6 tygodni.\n\nPozdrawiam,\nZielona Marka"); setCopied(true); setTimeout(() => setCopied(false), 1800); }
-  return <main className="studio-page"><header className="studio-nav shell"><Link className="brand" href="/"><span className="brand-mark">Z</span><span>ZIELONA MARKA</span></Link><Link className="text-link" href="/">← Wróć do portfolio</Link></header><section className="studio-hero shell"><div><span className="section-no">PRYWATNE CENTRUM PRACY</span><h1>Dzień dobry.<br/><em>Co dziś domykamy?</em></h1></div><div className="studio-stats"><article><span>Wartość otwartych tematów</span><b>{pipeline.toLocaleString("pl-PL")} zł</b></article><article><span>Aktywni klienci</span><b>{leads.filter(l => l.stage === "Realizacja").length}</b></article><article><span>Oferty do decyzji</span><b>{leads.filter(l => l.stage === "Oferta").length}</b></article></div></section><section className="studio-grid shell"><div className="workspace-card pipeline"><div className="card-head"><div><span className="section-no">PIPELINE</span><h2>Klienci i projekty</h2></div></div><div className="lead-list">{leads.map(lead => <article key={lead.id}><div className="lead-main"><span className="avatar">{lead.name.slice(0,1)}</span><div><b>{lead.company}</b><small>{lead.name} · {lead.task}</small></div></div><strong>{lead.value.toLocaleString("pl-PL")} zł</strong><select aria-label={`Etap ${lead.company}`} value={lead.stage} onChange={(e) => move(lead.id, e.target.value)}>{stages.map(s => <option key={s}>{s}</option>)}</select><button className="icon-button" onClick={() => setLeads(old => old.filter(l => l.id !== lead.id))} aria-label={`Usuń ${lead.company}`}>×</button></article>)}</div></div><aside className="workspace-card add-lead"><span className="section-no">NOWY KONTAKT</span><h2>Dodaj szansę</h2><form onSubmit={addLead}><label>Imię<input name="name" required/></label><label>Firma<input name="company" required/></label><label>Wartość projektu<input name="value" required min="0" type="number"/></label><button className="button" type="submit">Dodaj do pipeline <span>+</span></button></form></aside><div className="workspace-card tools"><span className="section-no">SZYBKIE NARZĘDZIA</span><h2>Materiały do pracy</h2><div className="tool-grid"><button onClick={copyOffer}><b>{copied ? "Skopiowano ✓" : "Gotowy e-mail z ofertą"}</b><span>Skopiuj szablon wiadomości</span></button><Link href="/#kalkulator"><b>Kalkulator wyceny</b><span>Policz budżet z klientem</span></Link><button onClick={() => window.print()}><b>Raport projektów</b><span>Drukuj lub zapisz jako PDF</span></button><Link href="/#kontakt"><b>Formularz briefu</b><span>Otwórz formularz klienta</span></Link></div></div><div className="workspace-card checklist"><span className="section-no">CHECKLISTA REALIZACJI</span><h2>Standard każdego wdrożenia</h2>{["Brief i cele biznesowe","Mapa strony i treści","Projekt desktop + mobile","Test formularzy i linków","SEO, sitemap i robots.txt","Analityka i zgody","Kopie zapasowe","Szkolenie i odbiór"].map((item, i) => <label key={item}><input type="checkbox" defaultChecked={i < 2}/><span>{item}</span></label>)}</div></section><p className="storage-note shell">Dane tego panelu są prywatne i zapisują się tylko w tej przeglądarce. Możesz korzystać z niego bez logowania.</p></main>; }
+export default function Studio() {
+  const [leads, setLeads] = useState<Lead[]>(starterLeads);
+  const [loaded, setLoaded] = useState(false);
+  const [copied, setCopied] = useState(false);
+  useEffect(() => {
+    const saved = localStorage.getItem("zielona-marka-leads");
+    if (saved) setLeads(JSON.parse(saved));
+    setLoaded(true);
+  }, []);
+  useEffect(() => {
+    if (loaded)
+      localStorage.setItem("zielona-marka-leads", JSON.stringify(leads));
+  }, [leads, loaded]);
+  const pipeline = useMemo(
+    () =>
+      leads
+        .filter((l) => l.stage !== "Zakończony")
+        .reduce((sum, l) => sum + l.value, 0),
+    [leads],
+  );
+  function addLead(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    setLeads((old) => [
+      ...old,
+      {
+        id: Date.now(),
+        name: String(data.get("name")),
+        company: String(data.get("company")),
+        value: Number(data.get("value")),
+        stage: "Nowy kontakt",
+        task: "Skontaktować się z klientem",
+      },
+    ]);
+    e.currentTarget.reset();
+  }
+  function move(id: number, stage: string) {
+    setLeads((old) => old.map((l) => (l.id === id ? { ...l, stage } : l)));
+  }
+  function copyOffer() {
+    navigator.clipboard.writeText(
+      "Dzień dobry,\n\ndziękuję za rozmowę. Na podstawie briefu proponuję przygotowanie indywidualnej strony internetowej obejmującej strategię, projekt, wdrożenie, optymalizację SEO i szkolenie z obsługi. Termin realizacji: 4–6 tygodni.\n\nPozdrawiam,\nZielona Marka",
+    );
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1800);
+  }
+  return (
+    <main className="studio-page">
+      <header className="studio-nav shell">
+        <Link className="brand" href="/">
+          <span className="brand-mark">Z</span>
+          <span>ZIELONA MARKA</span>
+        </Link>
+        <Link className="text-link" href="/">
+          ← Wróć do portfolio
+        </Link>
+      </header>
+      <section className="studio-hero shell">
+        <div>
+          <span className="section-no">LOKALNE CENTRUM PRACY</span>
+          <h1>
+            Dzień dobry.
+            <br />
+            <em>Co dziś domykamy?</em>
+          </h1>
+        </div>
+        <div className="studio-stats">
+          <article>
+            <span>Wartość otwartych tematów</span>
+            <b>{pipeline.toLocaleString("pl-PL")} zł</b>
+          </article>
+          <article>
+            <span>Aktywni klienci</span>
+            <b>{leads.filter((l) => l.stage === "Realizacja").length}</b>
+          </article>
+          <article>
+            <span>Oferty do decyzji</span>
+            <b>{leads.filter((l) => l.stage === "Oferta").length}</b>
+          </article>
+        </div>
+      </section>
+      <section className="studio-grid shell">
+        <div className="workspace-card pipeline">
+          <div className="card-head">
+            <div>
+              <span className="section-no">PIPELINE</span>
+              <h2>Klienci i projekty</h2>
+            </div>
+          </div>
+          <div className="lead-list">
+            {leads.map((lead) => (
+              <article key={lead.id}>
+                <div className="lead-main">
+                  <span className="avatar">{lead.name.slice(0, 1)}</span>
+                  <div>
+                    <b>{lead.company}</b>
+                    <small>
+                      {lead.name} · {lead.task}
+                    </small>
+                  </div>
+                </div>
+                <strong>{lead.value.toLocaleString("pl-PL")} zł</strong>
+                <select
+                  aria-label={`Etap ${lead.company}`}
+                  value={lead.stage}
+                  onChange={(e) => move(lead.id, e.target.value)}
+                >
+                  {stages.map((s) => (
+                    <option key={s}>{s}</option>
+                  ))}
+                </select>
+                <button
+                  className="icon-button"
+                  onClick={() =>
+                    setLeads((old) => old.filter((l) => l.id !== lead.id))
+                  }
+                  aria-label={`Usuń ${lead.company}`}
+                >
+                  ×
+                </button>
+              </article>
+            ))}
+          </div>
+        </div>
+        <aside className="workspace-card add-lead">
+          <span className="section-no">NOWY KONTAKT</span>
+          <h2>Dodaj szansę</h2>
+          <form onSubmit={addLead}>
+            <label>
+              Imię
+              <input name="name" required />
+            </label>
+            <label>
+              Firma
+              <input name="company" required />
+            </label>
+            <label>
+              Wartość projektu
+              <input name="value" required min="0" type="number" />
+            </label>
+            <button className="button" type="submit">
+              Dodaj do pipeline <span>+</span>
+            </button>
+          </form>
+        </aside>
+        <div className="workspace-card tools">
+          <span className="section-no">SZYBKIE NARZĘDZIA</span>
+          <h2>Materiały do pracy</h2>
+          <div className="tool-grid">
+            <button onClick={copyOffer}>
+              <b>{copied ? "Skopiowano ✓" : "Gotowy e-mail z ofertą"}</b>
+              <span>Skopiuj szablon wiadomości</span>
+            </button>
+            <Link href="/#kalkulator">
+              <b>Kalkulator wyceny</b>
+              <span>Policz budżet z klientem</span>
+            </Link>
+            <button onClick={() => window.print()}>
+              <b>Raport projektów</b>
+              <span>Drukuj lub zapisz jako PDF</span>
+            </button>
+            <Link href="/#kontakt">
+              <b>Formularz briefu</b>
+              <span>Otwórz formularz klienta</span>
+            </Link>
+          </div>
+        </div>
+        <div className="workspace-card checklist">
+          <span className="section-no">CHECKLISTA REALIZACJI</span>
+          <h2>Standard każdego wdrożenia</h2>
+          {[
+            "Brief i cele biznesowe",
+            "Mapa strony i treści",
+            "Projekt desktop + mobile",
+            "Test formularzy i linków",
+            "SEO, sitemap i robots.txt",
+            "Analityka i zgody",
+            "Kopie zapasowe",
+            "Szkolenie i odbiór",
+          ].map((item, i) => (
+            <label key={item}>
+              <input type="checkbox" defaultChecked={i < 2} />
+              <span>{item}</span>
+            </label>
+          ))}
+        </div>
+      </section>
+      <p className="storage-note shell">
+        Dane tego panelu są prywatne i zapisują się tylko w tej przeglądarce.
+        Możesz korzystać z niego bez logowania.
+      </p>
+    </main>
+  );
+}
