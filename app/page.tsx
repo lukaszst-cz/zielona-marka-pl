@@ -130,7 +130,7 @@ export default function Home() {
           href="/"
           aria-label="Zielona Marka — strona główna"
         >
-          <span className="brand-mark">Z</span>
+          <img className="brand-logo" src="/logo.png" alt="" />
           <span>ZIELONA MARKA</span>
         </Link>
         <div className="nav-links">
@@ -466,7 +466,7 @@ export default function Home() {
       <footer>
         <div className="shell footer-grid">
           <Link className="brand" href="/">
-            <span className="brand-mark">Z</span>
+            <img className="brand-logo" src="/logo.png" alt="" />
             <span>ZIELONA MARKA</span>
           </Link>
           <p>

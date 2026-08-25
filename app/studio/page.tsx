@@ -78,7 +78,7 @@ export default function Studio() {
     <main className="studio-page">
       <header className="studio-nav shell">
         <Link className="brand" href="/">
-          <span className="brand-mark">Z</span>
+          <img className="brand-logo" src="/logo.png" alt="" />
           <span>ZIELONA MARKA</span>
         </Link>
         <Link className="text-link" href="/">
