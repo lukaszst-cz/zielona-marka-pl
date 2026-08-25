@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.SITE_URL ??
-      "https://zielona-marka.lukasz-staniewicz.workers.dev",
+      "https://zielona-marka.pl",
   ),
   title: {
     default: "Zielona Marka — strony internetowe dla firm",
@@ -76,7 +76,7 @@ export default function RootLayout({
     "@type": "ProfessionalService",
     name: "Zielona Marka",
     description: "Projektowanie i wdrażanie stron internetowych dla firm.",
-    url: "https://zielona-marka.lukasz-staniewicz.workers.dev",
+    url: "https://zielona-marka.pl",
     email: "lukasz.staniewicz@gmail.com",
     sameAs: ["https://github.com/lukaszst-cz"],
     areaServed: "PL",

@@ -7,6 +7,16 @@
   "compatibility_flags": ["nodejs_compat"],
   "workers_dev": true,
   "preview_urls": true,
+  "routes": [
+    {
+      "pattern": "zielona-marka.pl/*",
+      "zone_name": "zielona-marka.pl"
+    },
+    {
+      "pattern": "www.zielona-marka.pl/*",
+      "zone_name": "zielona-marka.pl"
+    }
+  ],
   "no_bundle": true,
   "rules": [
     {
