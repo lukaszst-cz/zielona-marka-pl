@@ -37,9 +37,18 @@ const projects: PortfolioCard[] = [
     websiteUrl: "/realizacje/dom-dobry",
   },
 ];
+const websiteEstimateTypes = ["One Page / landing page", "Mała wizytówka", "Firma online", "Firma Plus", "Sklep internetowy"];
+const estimatePageDefaults: Record<string, number> = {
+  "One Page / landing page": 1,
+  "Mała wizytówka": 3,
+  "Firma online": 7,
+  "Firma Plus": 10,
+  "Sklep internetowy": 5,
+};
+
 export default function Home() {
-  const [siteType, setSiteType] = useState("Strona firmowa");
-  const [pages, setPages] = useState(5);
+  const [siteType, setSiteType] = useState("Firma online");
+  const [pages, setPages] = useState(7);
   const [shop, setShop] = useState(false);
   const [copy, setCopy] = useState(false);
   const [sent, setSent] = useState(false);
@@ -70,32 +79,26 @@ export default function Home() {
       .catch(() => undefined);
   }, []);
   const estimate = useMemo(() => {
-    const base =
-      siteType === "Landing page"
-        ? 1900
-        : siteType === "Automatyzacja Start"
-          ? 1200
-          : siteType === "Dashboard KPI"
-            ? 1800
-            : siteType === "Panel klienta"
-              ? 4900
-        : siteType === "Sklep internetowy"
-          ? 7900
-          : 3400;
-    const copyPrice =
-      siteType === "Landing page" ? 650 :
-      siteType === "Strona firmowa" ? 1500 :
-      siteType === "Sklep internetowy" ? 2200 :
-      siteType === "Panel klienta" ? 1200 :
-      siteType === "Dashboard KPI" ? 500 :
-      350;
+    const config: Record<string, { base: number; included: number; copy: number }> = {
+      "One Page / landing page": { base: 1900, included: 1, copy: 650 },
+      "Mała wizytówka": { base: 2400, included: 3, copy: 900 },
+      "Firma online": { base: 3900, included: 7, copy: 1500 },
+      "Firma Plus": { base: 5900, included: 10, copy: 2200 },
+      "Sklep internetowy": { base: 5900, included: 5, copy: 2200 },
+      "Automatyzacja Start": { base: 1200, included: 0, copy: 350 },
+      "Dashboard KPI": { base: 1800, included: 0, copy: 500 },
+      "Panel klienta": { base: 4900, included: 0, copy: 1200 },
+    };
+    const current = config[siteType] ?? config["Firma online"];
+    const isWebsite = websiteEstimateTypes.includes(siteType);
     return (
-      base +
-      Math.max(0, pages - (siteType === "Landing page" ? 1 : 5)) * 300 +
-      (shop && siteType !== "Sklep internetowy" ? 2500 : 0) +
-      (copy ? copyPrice : 0)
+      current.base +
+      (isWebsite ? Math.max(0, pages - current.included) * 350 : 0) +
+      (shop && isWebsite && siteType !== "Sklep internetowy" ? 2500 : 0) +
+      (copy && isWebsite ? current.copy : 0)
     );
   }, [siteType, pages, shop, copy]);
+  const isWebsiteEstimate = websiteEstimateTypes.includes(siteType);
   async function submitBrief(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setSending(true);
@@ -284,8 +287,8 @@ export default function Home() {
             </div>
             <p>
               Każdy projekt otrzymuje indywidualną wycenę po krótkim briefie.
-              Poniższe kwoty to praktyczny punkt startu dla usług, które możesz
-              bezpiecznie realizować już teraz.
+              Poniższe kwoty to praktyczny punkt startu dla usług, które
+              realizuję w jasno określonym zakresie.
             </p>
           </div>
           <div className="service-list service-accordion">
@@ -306,6 +309,24 @@ export default function Home() {
               </article>
             ))}
           </div>
+          <div className="pricing-notes" aria-label="Jak czytać cennik">
+            <article>
+              <span>01</span>
+              <h3>Co zawiera cena</h3>
+              <p>Uzgodniony zakres, projekt, wdrożenie, publikację, podstawowe SEO, instrukcję i końcowe testy QA.</p>
+            </article>
+            <article>
+              <span>02</span>
+              <h3>Koszty zewnętrzne</h3>
+              <p>Domena, płatny hosting, licencje, prowizje płatności i abonamenty narzędzi są zatwierdzane przed zakupem i rozliczane osobno.</p>
+            </article>
+            <article>
+              <span>03</span>
+              <h3>Bez niespodzianek</h3>
+              <p>Przed startem otrzymujesz zakres, harmonogram i cenę. Dodatkowa praca wymaga Twojej akceptacji, zanim wpłynie na budżet.</p>
+            </article>
+          </div>
+          <p className="pricing-disclaimer">Podane ceny są orientacyjne. Ostateczna wycena powstaje po krótkim briefie i zależy od funkcji, materiałów, integracji oraz terminu.</p>
         </div>
       </section>
       <section id="kalkulator" className="section calculator-section">
@@ -323,17 +344,25 @@ export default function Home() {
               Rodzaj strony
               <select
                 value={siteType}
-                onChange={(e) => setSiteType(e.target.value)}
+                onChange={(e) => {
+                  const nextType = e.target.value;
+                  setSiteType(nextType);
+                  setPages(estimatePageDefaults[nextType] ?? 1);
+                  setShop(false);
+                  setCopy(false);
+                }}
               >
-                <option>Landing page</option>
-                <option>Strona firmowa</option>
+                <option>One Page / landing page</option>
+                <option>Mała wizytówka</option>
+                <option>Firma online</option>
+                <option>Firma Plus</option>
                 <option>Sklep internetowy</option>
                 <option>Automatyzacja Start</option>
                 <option>Dashboard KPI</option>
                 <option>Panel klienta</option>
               </select>
             </label>
-            <label>
+            {isWebsiteEstimate && <label>
               Liczba podstron <b>{pages}</b>
               <input
                 type="range"
@@ -342,30 +371,30 @@ export default function Home() {
                 value={pages}
                 onChange={(e) => setPages(Number(e.target.value))}
               />
-            </label>
-            <label className="check">
+            </label>}
+            {isWebsiteEstimate && siteType !== "Sklep internetowy" && <label className="check">
               <input
                 type="checkbox"
                 checked={shop}
                 onChange={(e) => setShop(e.target.checked)}
               />
               <span>Funkcje sprzedażowe / płatności</span>
-            </label>
-            <label className="check">
+            </label>}
+            {isWebsiteEstimate && <label className="check">
               <input
                 type="checkbox"
                 checked={copy}
                 onChange={(e) => setCopy(e.target.checked)}
               />
               <span>Przygotowanie tekstów na stronę</span>
-            </label>
+            </label>}
             <div className="estimate">
               <span>Orientacyjny budżet</span>
               <strong>
                 {estimate.toLocaleString("pl-PL")}–
                 {Math.ceil((estimate * 1.2) / 100) * 100} zł
               </strong>
-              <small>netto</small>
+              <small>wycena orientacyjna</small>
             </div>
             <a className="button" href="#kontakt">
               Poproś o dokładną wycenę <span>↓</span>
