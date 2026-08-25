@@ -213,7 +213,7 @@ export default function Home() {
                   <i />
                   <i />
                 </div>
-                <div className="mock-body" style={project.imageUrl ? { backgroundImage: `linear-gradient(120deg,rgba(244,241,232,.3),rgba(255,255,255,.64)),url(${project.imageUrl})`, backgroundSize: "cover", backgroundPosition: "center" } : undefined}>
+                <div className="mock-body" style={project.imageUrl ? { backgroundImage: `linear-gradient(112deg,rgba(10,31,22,.9) 0%,rgba(10,31,22,.78) 48%,rgba(10,31,22,.16) 100%),url(${project.imageUrl})`, backgroundSize: "cover", backgroundPosition: "center" } : undefined}>
                   <small>{project.type}</small>
                   <strong>{project.name}</strong>
                   <span>{project.description || <>Przemyślany projekt.<br />Wyraźny efekt.</>}</span>
