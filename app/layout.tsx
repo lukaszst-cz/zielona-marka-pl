@@ -77,9 +77,9 @@ export default function RootLayout({
     name: "Zielona Marka",
     description: "Projektowanie i wdrażanie stron internetowych dla firm.",
     url: "https://zielona-marka.pl",
-    email: "lukasz.staniewicz@gmail.com",
+    email: "kontakt@zielona-marka.pl",
     sameAs: ["https://github.com/lukaszst-cz"],
-    areaServed: "PL",
+    areaServed: ["Targówek, Warszawa", "Wołomin", "okolice Warszawy", "Polska"],
     priceRange: "1900–15000 PLN",
     serviceType: [
       "Projektowanie stron internetowych",

@@ -162,6 +162,53 @@ export default function Home() {
           </span>
         </div>
       </section>
+
+      <section className="quick-start">
+        <div className="shell quick-start-inner">
+          <div className="quick-start-intro">
+            <span className="section-no">OD CZEGO ZACZYNAMY</span>
+            <h2>
+              Wybierz sytuację, <em>w której jest dziś Twoja firma.</em>
+            </h2>
+            <p>
+              Nie musisz znać technologii ani mieć gotowego briefu. Wystarczy,
+              że powiesz, co dziś nie działa lub co chcesz usprawnić.
+            </p>
+          </div>
+          <div className="quick-start-cards">
+            <a className="quick-start-card" href="#oferta">
+              <span>01</span>
+              <div className="quick-card-mark" aria-hidden="true">⌖</div>
+              <h3>Mam wizytówkę Google, ale mało zapytań.</h3>
+              <p>
+                Porządkujemy ofertę i budujemy miejsce, do którego klient przechodzi
+                po znalezieniu Cię w mapach.
+              </p>
+              <b>Zobacz stronę dla firmy <i>↗</i></b>
+            </a>
+            <a className="quick-start-card" href="#realizacje">
+              <span>02</span>
+              <div className="quick-card-mark" aria-hidden="true">◫</div>
+              <h3>Potrzebuję strony, która wygląda profesjonalnie.</h3>
+              <p>
+                Projektujemy układ, treści i formularz tak, aby marka była zrozumiała
+                od pierwszego kliknięcia.
+              </p>
+              <b>Zobacz kierunki projektowe <i>↗</i></b>
+            </a>
+            <a className="quick-start-card quick-start-card-dark" href="#technologie">
+              <span>03</span>
+              <div className="quick-card-mark" aria-hidden="true">↗</div>
+              <h3>Firma rośnie, a procesy zabierają zbyt dużo czasu.</h3>
+              <p>
+                Dobieramy formularze, statusy, KPI i automatyzacje, które porządkują
+                pracę zespołu.
+              </p>
+              <b>Zobacz automatyzacje <i>↗</i></b>
+            </a>
+          </div>
+        </div>
+      </section>
       <section className="statement dark-section">
         <div className="shell statement-grid">
           <span className="section-no">02 / PODEJŚCIE</span>
@@ -457,8 +504,11 @@ export default function Home() {
               Odpowiem z propozycją kolejnych kroków i wstępną wyceną. Bez
               zobowiązań.
             </p>
-            <a className="mail" href="mailto:lukasz.staniewicz@gmail.com">
-              lukasz.staniewicz@gmail.com ↗
+            <p className="contact-area">
+              Lokalnie: Targówek, Wołomin i okolice Warszawy. Zdalnie: cała Polska.
+            </p>
+            <a className="mail" href="mailto:kontakt@zielona-marka.pl">
+              kontakt@zielona-marka.pl ↗
             </a>
           </div>
           <form onSubmit={submitBrief}>
