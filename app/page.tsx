@@ -11,7 +11,7 @@ const projects: PortfolioCard[] = [
     n: "01",
     name: "Natura Studio",
     type: "Strona usługowa",
-    note: "Pełna strona demonstracyjna",
+    note: "Projekt koncepcyjny / demonstracja",
     color: "project-a",
     description: "Strona i zaplecze rezerwacji dla studia wellness.",
     imageUrl: "/concept-natura.jpg",
@@ -24,7 +24,7 @@ const projects: PortfolioCard[] = [
     n: "02",
     name: "Bistro Forma",
     type: "Restauracja",
-    note: "Pełna strona demonstracyjna",
+    note: "Projekt koncepcyjny / demonstracja",
     color: "project-b",
     description: "Strona restauracji, rezerwacje i panel operacyjny.",
     imageUrl: "/concept-bistro.jpg",
@@ -50,9 +50,9 @@ const projects: PortfolioCard[] = [
     n: "04",
     name: "Auto Naprawa",
     type: "Strona + system obsługi",
-    note: "Pełna demonstracja procesowa",
+    note: "Projekt koncepcyjny / demonstracja",
     color: "project-auto project-featured",
-    description: "Strona warsztatu, portal klienta, panel kierownika, kosztorysy, KPI oraz demonstracja faktur i KSeF.",
+    description: "Strona warsztatu, portal klienta, panel kierownika, kosztorysy, najważniejsze wyniki firmy i demonstracja faktur.",
     imageUrl: "https://lukaszst-cz.github.io/operations-office-portfolio/auto-naprawa-preview/assets/workshop-hero.png",
     websiteUrl: "https://lukaszst-cz.github.io/operations-office-portfolio/auto-naprawa-preview/",
     backendUrl: "https://lukaszst-cz.github.io/operations-office-portfolio/auto-naprawa-preview/portal/?role=manager",
@@ -61,7 +61,7 @@ const projects: PortfolioCard[] = [
     n: "05",
     name: "RouteFlow Transport",
     type: "Strona + system transportowy",
-    note: "Pełna demonstracja procesowa",
+    note: "Projekt koncepcyjny / demonstracja",
     color: "project-transport project-featured",
     description: "Odrębny serwis transportowy, portal klienta oraz Control Tower dla dyspozytora, kierowcy, księgowości i zarządu.",
     imageUrl: "https://lukaszst-cz.github.io/operations-office-portfolio/transport-preview/assets/transport-hero.png",
@@ -82,8 +82,8 @@ const processSteps = [
   { number: "01", title: "Brief i cel", description: "Poznaję firmę, klientów i najważniejszy cel strony.", output: ["podsumowanie celów", "lista potrzebnych materiałów", "plan dalszych decyzji"] },
   { number: "02", title: "Strategia i treść", description: "Układam strukturę, komunikację oraz ścieżkę użytkownika.", output: ["mapa strony", "plan treści i CTA", "ustalony zakres projektu"] },
   { number: "03", title: "Projekt", description: "Tworzę indywidualny kierunek wizualny i widoki strony.", output: ["kierunek wizualny", "widoki telefonu i komputera", "runda akceptacji"] },
-  { number: "04", title: "Wdrożenie", description: "Koduję, optymalizuję i konfiguruję potrzebne integracje.", output: ["działająca wersja strony", "formularze i analityka", "zaplecze uzgodnionych funkcji"] },
-  { number: "05", title: "Testy jakości", description: "Sprawdzam urządzenia, formularze, szybkość, SEO, dostępność i cały proces.", output: ["checklista kontroli jakości (QA)", "lista wykonanych poprawek", "raport odbiorowy dla klienta"] },
+  { number: "04", title: "Wdrożenie", description: "Buduję stronę, przyspieszam ją i łączę z potrzebnymi narzędziami.", output: ["działająca wersja strony", "formularze i mierzenie zapytań", "uzgodnione dodatkowe funkcje"] },
+  { number: "05", title: "Testy jakości", description: "Sprawdzam telefon, komputer, formularze, szybkość, widoczność w Google i cały proces.", output: ["checklista kontroli jakości (QA)", "lista wykonanych poprawek", "raport odbiorowy dla klienta"] },
   { number: "06", title: "Start i opieka", description: "Publikuję stronę, przekazuję instrukcję i wspieram dalszy rozwój.", output: ["opublikowana strona", "instrukcja obsługi", "kod statusu i zalecenia na przyszłość"] },
 ];
 const offerCategories = ["Wszystko", "Strony WWW", "Sklepy", "Automatyzacje", "Dane i systemy", "Treści i opieka", "Strategia"];
@@ -140,6 +140,21 @@ export default function Home() {
     };
   }, []);
   useEffect(() => {
+    const root = document.querySelector("main");
+    if (!root) return;
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    const textNodes: Text[] = [];
+    let node = walker.nextNode();
+    while (node) {
+      const parent = node.parentElement;
+      if (!parent?.closest("script, style, textarea, option")) textNodes.push(node as Text);
+      node = walker.nextNode();
+    }
+    textNodes.forEach((textNode) => {
+      textNode.nodeValue = textNode.nodeValue?.replace(/(^|[\s(])([AaIiOoUuWwZz]) (?=[\p{L}\d])/gu, "$1$2\u00a0") ?? "";
+    });
+  }, []);
+  useEffect(() => {
     fetch("/api/projects")
       .then((response) => response.json() as Promise<{ projects?: Array<{ id: number; title: string; type: string; description: string; imageUrl: string; websiteUrl: string }> }>)
       .then((payload) => {
@@ -168,7 +183,7 @@ export default function Home() {
       "Firma Plus": { base: 4999, included: 10, copy: 2200 },
       "Sklep internetowy": { base: 5499, included: 5, copy: 2200 },
       "Automatyzacja Start": { base: 1200, included: 0, copy: 350 },
-      "Dashboard KPI": { base: 1800, included: 0, copy: 500 },
+      "Najważniejsze liczby firmy": { base: 1800, included: 0, copy: 500 },
       "Panel klienta": { base: 4900, included: 0, copy: 1200 },
     };
     const current = config[siteType] ?? config["Firma online"];
@@ -189,7 +204,7 @@ export default function Home() {
     const formPayload = Object.fromEntries(new FormData(formElement));
     const payload = {
       ...formPayload,
-      message: `Rodzaj projektu: ${formPayload.projectType || "do ustalenia"}\nMateriały: ${formPayload.materials || "do ustalenia"}\n\n${formPayload.message || ""}`,
+      message: `Rodzaj projektu: ${formPayload.projectType || "do ustalenia"}\nFirma: ${formPayload.company || "do ustalenia"}\n\n${formPayload.message || ""}`,
     };
     const response = await fetch("/api/inquiries", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
     setSending(false);
@@ -239,26 +254,12 @@ export default function Home() {
             <a href="#realizacje">Realizacje</a>
             <a href="#oferta">Oferta i ceny</a>
             <a href="#kalkulator">Szybka wycena</a>
-            <a href="#proces">Proces i QA</a>
-            <a href="#technologie">Technologie</a>
-            <a href="#automatyzacje">Automatyzacje</a>
-            <a href="#strefa-klienta">Strefa klienta</a>
+            <a href="#proces">Proces i testy jakości</a>
+            <a href="#rozwoj-firmy">Usprawnienia</a>
             <a href="/status">Status projektu</a>
             <a href="#kontakt">Kontakt</a>
           </div>
         </details>
-      </nav>
-      <nav className="topic-nav" aria-label="Skróty tematyczne">
-        <div className="shell">
-          <a href="#oferta">Strony i ceny</a>
-          <a href="#kalkulator">Szybka wycena</a>
-          <a href="#proces">Proces i QA</a>
-          <a href="#technologie">Technologie</a>
-          <a href="#automatyzacje">Automatyzacje</a>
-          <a href="#strefa-klienta">Strefa klienta</a>
-          <a href="#realizacje">Portfolio</a>
-          <a className="topic-to-top" href="#top" aria-label="Wróć na górę strony">↑ Góra</a>
-        </div>
       </nav>
       </header>
       <section className="hero shell">
@@ -274,11 +275,11 @@ export default function Home() {
           które chcą wyglądać profesjonalnie i zdobywać więcej klientów.
         </p>
         <div className="hero-actions">
-          <a className="button" href="#realizacje">
-            Zobacz realizacje <span>↗</span>
+          <a className="button" href="#kalkulator">
+            Otrzymaj wstępną wycenę <span>↘</span>
           </a>
-          <a className="text-link" href="#proces">
-            Jak wygląda współpraca <span>↓</span>
+          <a className="text-link" href="#realizacje">
+            Zobacz realizacje <span>↓</span>
           </a>
         </div>
         <div className="hero-orbit" aria-hidden="true">
@@ -293,6 +294,16 @@ export default function Home() {
           </span>
         </div>
       </section>
+      <nav className="topic-nav topic-nav-after-hero" aria-label="Skróty do najważniejszych treści">
+        <div className="shell">
+          <a href="#realizacje">Realizacje</a>
+          <a href="#oferta">Oferta i ceny</a>
+          <a href="#proces">Proces i testy jakości</a>
+          <a href="#rozwoj-firmy">Usprawnienia</a>
+          <a href="#kontakt">Kontakt</a>
+          <a className="topic-to-top" href="#top" aria-label="Wróć na górę strony">↑ Góra</a>
+        </div>
+      </nav>
 
       <section className="quick-start">
         <div className="shell quick-start-inner">
@@ -327,15 +338,15 @@ export default function Home() {
               </p>
               <b>Zobacz kierunki projektowe <i>↗</i></b>
             </a>
-            <a className="quick-start-card quick-start-card-dark" href="#technologie">
+            <a className="quick-start-card quick-start-card-dark" href="#rozwoj-firmy">
               <span>03</span>
               <div className="quick-card-mark" aria-hidden="true">↗</div>
               <h3>Firma rośnie, a procesy zabierają zbyt dużo czasu.</h3>
               <p>
-                Dobieramy formularze, statusy, KPI i automatyzacje, które porządkują
+                Dobieramy formularze, statusy, najważniejsze liczby firmy i usprawnienia, które porządkują
                 pracę zespołu.
               </p>
-              <b>Zobacz automatyzacje <i>↗</i></b>
+              <b>Zobacz możliwe usprawnienia <i>↗</i></b>
             </a>
           </div>
         </div>
@@ -350,7 +361,7 @@ export default function Home() {
           <div className="stats">
             <div>
               <b>90+</b>
-              <span>cel wydajności Lighthouse</span>
+              <span>cel: szybkie działanie strony</span>
             </div>
             <div>
               <b>1–3 tyg.</b>
@@ -361,16 +372,16 @@ export default function Home() {
               <span>indywidualny projekt</span>
             </div>
           </div>
-          <p className="lighthouse-note"><b>Lighthouse</b> to automatyczny test Google sprawdzający m.in. szybkość, dostępność i techniczną jakość strony. Wynik mierzę przed publikacją; nie jest obietnicą konkretnej pozycji w Google.</p>
+          <p className="lighthouse-note"><b>Lighthouse (test Google)</b> sprawdza m.in. szybkość, dostępność i techniczną jakość strony. Wynik mierzę przed publikacją; nie jest obietnicą konkretnej pozycji w Google.</p>
         </div>
       </section>
       <section id="realizacje" className="section shell">
         <div className="section-head">
           <div><span className="section-no">03 / WYBRANE REALIZACJE</span><h2>Obietnice pokazane w praktyce.</h2></div>
-          <p>Zobacz działające wdrożenia wraz z zapleczem oraz dopracowane kierunki koncepcyjne dla różnych branż. Każdy projekt odpowiada na inny cel biznesowy.</p>
+          <p>Na dziś prezentuję działające demonstracje i kierunki koncepcyjne dla różnych branż. Każdy projekt pokazuje konkretny cel biznesowy oraz sposób działania strony lub zaplecza.</p>
         </div>
         <div className="operations-portfolio-banner">
-          <div><span>PORTFOLIO OPERACYJNE · PROCESY · KPI · QA</span><h3>Nie tylko strony. Zobacz, jak porządkuję działanie firmy.</h3><p>Przeorganizowane portfolio łączy modele procesów, dashboardy, automatyzacje, role, dokumentację i kontrolę jakości. Strona „Start tutaj” prowadzi przez projekty w logicznej kolejności.</p></div>
+          <div><span>PORTFOLIO PROCESÓW · WYNIKI · KONTROLA JAKOŚCI</span><h3>Nie tylko strony. Zobacz, jak porządkuję działanie firmy.</h3><p>Portfolio pokazuje modele procesów, pulpity z wynikami, usprawnienia, role, dokumentację i kontrolę jakości. Strona „Start tutaj” prowadzi przez projekty w logicznej kolejności.</p></div>
           <div><a href="https://lukaszst-cz.github.io/operations-office-portfolio/zielona-marka/udostepnij.html" target="_blank" rel="noreferrer">Otwórz portfolio operacyjne <b>↗</b></a><a href="https://github.com/lukaszst-cz/operations-office-portfolio" target="_blank" rel="noreferrer">Zobacz kod na GitHubie ↗</a></div>
         </div>
         <div className="projects">
@@ -487,7 +498,7 @@ export default function Home() {
             <article>
               <span>01</span>
               <h3>Co zawiera cena</h3>
-              <p>Uzgodniony zakres, projekt, wdrożenie, publikację, podstawowe SEO, instrukcję i końcową kontrolę jakości (QA).</p>
+              <p>Uzgodniony zakres, projekt, wdrożenie, publikację, przygotowanie do Google (SEO), instrukcję i końcową kontrolę jakości (QA).</p>
             </article>
             <article>
               <span>02</span>
@@ -532,7 +543,7 @@ export default function Home() {
                 <option>Firma Plus</option>
                 <option>Sklep internetowy</option>
                 <option>Automatyzacja Start</option>
-                <option>Dashboard KPI</option>
+                <option>Najważniejsze liczby firmy</option>
                 <option>Panel klienta</option>
               </select>
             </label>
@@ -619,22 +630,22 @@ export default function Home() {
             <ul>
               <li>Responsywność na telefonie i komputerze</li>
               <li>Techniczne przygotowanie do dalszego pozycjonowania</li>
-              <li>Analityka i mierzenie zapytań</li>
+              <li>Mierzenie zapytań i skuteczności kontaktu</li>
               <li>Optymalizacja szybkości</li>
               <li>Formularz i zabezpieczenia prywatności</li>
               <li>Instrukcja samodzielnej obsługi</li>
-              <li>Publikacja na domenie, SSL i test kontaktu</li>
+              <li>Publikacja na domenie, bezpieczne połączenie (SSL) i test kontaktu</li>
               <li>14 dni podstawowego wsparcia startowego</li>
             </ul>
           </div>
           <div className="seo-ready-note">
-            <div><span>SEO READY</span><h3>Po starcie strona jest gotowa technicznie do dalszego pozycjonowania.</h3><p>Przygotowuję fundament, na którym można później rozwijać treści, widoczność lokalną i działania SEO bez konieczności naprawiania podstaw całej witryny.</p></div>
-            <ul><li>logiczna struktura nagłówków i adresów,</li><li>tytuły oraz opisy dla Google,</li><li>mapa strony, robots i możliwość indeksowania,</li><li>wersja mobilna i optymalizacja szybkości,</li><li>dane firmy i podstawowe informacje strukturalne,</li><li>możliwość podłączenia Search Console i analityki.</li></ul>
+            <div><span>GOTOWA DO GOOGLE</span><h3>Po starcie strona jest przygotowana do dalszego pozycjonowania.</h3><p>Tworzę fundament, na którym można później rozwijać treści i widoczność lokalną w Google (SEO), bez konieczności naprawiania podstaw całej witryny.</p></div>
+            <ul><li>logiczna struktura nagłówków i adresów,</li><li>tytuły oraz opisy dla Google,</li><li>mapa strony i możliwość znalezienia strony przez Google,</li><li>wersja mobilna i szybkie działanie,</li><li>dane firmy w uporządkowanej formie,</li><li>możliwość podłączenia narzędzi Google do mierzenia efektów.</li></ul>
             <small>Nie gwarantuję konkretnej pozycji w Google. Zależy ona również od konkurencji, jakości treści, opinii, linków i dalszych działań. Lekka, szybka i poprawnie przygotowana technicznie strona usuwa jednak część barier już na starcie i daje lepszy fundament do budowania widoczności. Regularne pozycjonowanie pozostaje osobnym etapem.</small>
           </div>
           <div className="quality-board" aria-label="Zakres końcowych testów jakości">
             <header>
-              <div><i /><span>RAPORT ODBIOROWY / KONTROLA JAKOŚCI (QA)</span></div>
+              <div><i /><span>RAPORT ODBIOROWY / TESTY JAKOŚCI (QA)</span></div>
               <b>GOTOWA DO STARTU</b>
             </header>
             <div className="quality-board-grid">
@@ -643,7 +654,7 @@ export default function Home() {
                 <div className="quality-desktop"><span /><span /><span /></div>
               </div>
               <div className="quality-checks">
-                {["Telefon i komputer", "Formularze i linki", "Szybkość i stabilność", "SEO techniczne", "Dostępność", "Pełna ścieżka klienta"].map((item, index) => (
+                {["Telefon i komputer", "Formularze i linki", "Szybkość i stabilność", "Przygotowanie do Google (SEO)", "Dostępność", "Pełna ścieżka klienta"].map((item, index) => (
                   <div key={item}><b>{String(index + 1).padStart(2, "0")}</b><span>{item}</span><i>SPRAWDZONE ✓</i></div>
                 ))}
               </div>
@@ -651,9 +662,9 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section id="technologie" className="section tech-section">
+      <section id="rozwoj-firmy" className="section tech-section">
         <div className="shell">
-          <div className="section-head"><div><span className="section-no">08 / TECHNOLOGIE</span><h2>Dobieram narzędzie do celu.</h2></div><p>Nie sprzedaję jednej technologii każdemu. Prosta strona powinna pozostać prosta, a zaplecze firmy ma naprawdę oszczędzać czas.</p></div>
+          <div className="section-head"><div><span className="section-no">08 / KOLEJNY ETAP: WIĘKSZA UŻYTECZNOŚĆ</span><h2>Najpierw strona. Potem usprawnienia.</h2></div><p>Mała firma nie potrzebuje od razu bazy klientów (CRM), wskaźników wyników (KPI) ani rozbudowanego panelu. Podstawą jest jasna strona i kontakt. Dopiero gdy firma rośnie, dobieram narzędzia, które realnie oszczędzają czas.</p></div>
           <div className="tech-grid">
             {technologies.map((tech, index) => <article key={tech.title} className={expandedTech === index ? "expanded" : ""} hidden={!showAllTechnologies && index >= 6}>
               <button onClick={() => setExpandedTech(expandedTech === index ? null : index)} aria-expanded={expandedTech === index}>
@@ -677,20 +688,20 @@ export default function Home() {
           <button className="section-reveal-button" type="button" onClick={() => { setShowAllTechnologies(!showAllTechnologies); setExpandedTech(null); }}>{showAllTechnologies ? "Pokaż najważniejsze technologie ↑" : `Pokaż wszystkie ${technologies.length} technologii i narzędzi ↓`}</button>
         </div>
       </section>
-      <section className="section systems-story" aria-label="Zaplecze firmy typu CRM i ERP">
+      <section className="section systems-story" aria-label="Zaplecze firmy do obsługi klientów i zleceń">
         <div className="shell systems-story-grid">
           <div className="systems-story-copy">
-            <span className="section-no">ZAPLECZE / MAŁE CENTRUM OPERACYJNE</span>
-            <h2>Strona może być wejściem do pracy całej firmy.</h2>
-            <p>Zaplecze to prywatna część systemu dla właściciela, zespołu lub klienta. Łączy funkcje lekkiego CRM i ERP: porządkuje kontakty, zlecenia, terminy, dokumenty, odpowiedzialność oraz najważniejsze wyniki.</p>
-            <p>Nie wdrażam wielkiego systemu „na zapas”. Budujemy tylko te moduły, które skracają realny proces i można później bezpiecznie rozbudować.</p>
+            <span className="section-no">OPCJONALNY ETAP 1 / ZAPLECZE FIRMY</span>
+            <h2>Proste centrum codziennej pracy.</h2>
+            <p>Zaplecze to prywatna część systemu dla właściciela, zespołu lub klienta. Może porządkować kontakty, zlecenia, terminy, dokumenty i najważniejsze wyniki.</p>
+            <p>Nie wdrażam dużego systemu „na zapas”. CRM to baza klientów, a ERP to system porządkujący pracę firmy. Budujemy tylko moduły, które skracają konkretny proces i można później spokojnie rozbudować.</p>
             <a className="text-link" href="#realizacje">Zobacz zaplecza w realizacjach <span>↓</span></a>
           </div>
           <div className="systems-map" aria-label="Schemat działania zaplecza">
-            <article><small>01 / CRM</small><b>Klient i kontakt</b><span>historia rozmów, zgody, następny krok</span></article>
-            <article><small>02 / WORKFLOW</small><b>Zlecenie i etapy</b><span>terminy, statusy, osoba odpowiedzialna</span></article>
-            <article><small>03 / ERP LIGHT</small><b>Dokumenty i koszty</b><span>umowy, wyceny, pliki i rozliczenia</span></article>
-            <article><small>04 / KPI</small><b>Wynik na żywo</b><span>sprzedaż, obciążenie, terminy i alerty</span></article>
+            <article><small>01 / KLIENCI</small><b>Klient i kontakt</b><span>historia rozmów, zgody, następny krok</span></article>
+            <article><small>02 / ETAPY PRACY</small><b>Zlecenie i etapy</b><span>terminy, statusy, osoba odpowiedzialna</span></article>
+            <article><small>03 / DOKUMENTY</small><b>Dokumenty i koszty</b><span>umowy, wyceny, pliki i rozliczenia</span></article>
+            <article><small>04 / WYNIKI</small><b>Najważniejsze liczby</b><span>sprzedaż, obciążenie, terminy i alerty</span></article>
             <article className="systems-client"><small>05 / KLIENT</small><b>Prywatny status</b><span>kod projektu, postęp i dokumenty bez telefonowania</span></article>
           </div>
         </div>
@@ -698,21 +709,21 @@ export default function Home() {
       <section id="automatyzacje" className="section automation-showcase">
         <div className="shell showcase-grid">
           <div>
-            <span className="section-no">09 / AUTOMATYZACJA W PRAKTYCE</span>
-            <h2>Zobacz, jak może pracować firma transportowa.</h2>
-            <p>Interaktywne demo pokazuje cały obieg zlecenia: od formularza, przez kierowcę i dostawę, aż do dokumentów, faktury oraz KPI.</p>
+            <span className="section-no">OPCJONALNY ETAP 2 / AUTOMATYZACJA W PRAKTYCE</span>
+            <h2>Gdy zleceń jest więcej, proces może pracować za Ciebie.</h2>
+            <p>Interaktywne demo firmy transportowej pokazuje, jak można uporządkować obieg zlecenia: od zapytania, przez kierowcę i dostawę, aż do dokumentów, faktury oraz najważniejszych liczb firmy (KPI).</p>
             <a className="button" href="/demo/transport">Uruchom demonstrację <span>↗</span></a>
           </div>
           <div className="flow-preview" aria-label="Przykładowy obieg zlecenia">
-            {["Zapytanie", "Wycena", "Kierowca", "Dostawa", "Faktura", "KPI"].map((item, index) => <div key={item}><b>{String(index + 1).padStart(2,"0")}</b><span>{item}</span>{index < 5 && <i>→</i>}</div>)}
+            {["Zapytanie", "Wycena", "Kierowca", "Dostawa", "Faktura", "Wyniki"].map((item, index) => <div key={item}><b>{String(index + 1).padStart(2,"0")}</b><span>{item}</span>{index < 5 && <i>→</i>}</div>)}
           </div>
         </div>
       </section>
       <section id="strefa-klienta" className="section client-portal-showcase">
         <div className="shell portal-showcase-grid">
           <div>
-            <span className="section-no">10 / STREFA KLIENTA</span>
-            <h2>Twój klient zawsze wie, na jakim etapie jest projekt.</h2>
+            <span className="section-no">OPCJONALNY ETAP 3 / STREFA KLIENTA</span>
+            <h2>Klient może sam sprawdzić, co dzieje się z jego sprawą.</h2>
             <p>Po rejestracji zlecenia otrzymuje indywidualny kod. Bez logowania do Twojego Studio sprawdza postęp, kolejny krok, termin i roboczą umowę do pobrania.</p>
             <ul>
               <li>prywatny widok jednego projektu,</li>
@@ -739,20 +750,20 @@ export default function Home() {
           </div>
           <div className="faq-list">
             {[
-              ["Czy będę mógł samodzielnie edytować treści?", "Tak, jeśli projekt tego wymaga, dobiorę WordPress lub inne proste zaplecze. Przy stronie kodowanej indywidualnie ustalamy wygodny sposób aktualizacji przed rozpoczęciem pracy."],
+              ["Czy będę mógł samodzielnie edytować treści?", "Tak. Jeśli projekt tego wymaga, dobiorę prosty panel do edycji treści, np. WordPress. Przy stronie tworzonej indywidualnie ustalamy wygodny sposób aktualizacji przed rozpoczęciem pracy."],
               ["Od czego zależy cena strony?", "Od liczby widoków, przygotowania materiałów, funkcji, integracji i terminu. Przed startem otrzymujesz dokładny zakres i cenę. Dodatkowe prace wymagają Twojej akceptacji."],
               ["Czy muszę mieć gotowe teksty i zdjęcia?", "Nie. Możemy zacząć od Twojej wiedzy o firmie. Pomogę zaplanować strukturę, wycenić przygotowanie treści oraz dobrać legalne zdjęcia licencjonowane albo listę ujęć do wykonania."],
               ["Czy musimy spotykać się osobiście?", "Nie. Współpracuję z firmami z całej Polski, a cały projekt możemy sprawnie przeprowadzić online przez Google Meet, Microsoft Teams, telefon i e-mail. Materiały, uwagi, akceptacje oraz status prac przekazujemy cyfrowo. Spotkanie osobiste pozostaje opcją, gdy rzeczywiście wnosi wartość do projektu."],
-              ["Czy strona będzie widoczna w Google?", "Przygotuję podstawy SEO technicznego, strukturę treści, indeksowanie i dane firmy. Pozycja zależy również od konkurencji, treści, opinii, linków i dalszej pracy. Nie obiecuję nierealnych gwarancji."],
-              ["Czy strona będzie gotowa do dalszego pozycjonowania?", "Tak. Po publikacji ma przygotowany fundament techniczny: logiczną strukturę, metadane, mapę strony, możliwość indeksowania, wersję mobilną i podstawy wydajności. Nie gwarantuje to konkretnej pozycji, ale lekka i poprawnie przygotowana strona usuwa część barier już na starcie i daje lepsze warunki do dalszego SEO."],
+              ["Czy strona będzie widoczna w Google?", "Przygotuję techniczne podstawy widoczności w Google (SEO), strukturę treści i dane firmy. Pozycja zależy również od konkurencji, treści, opinii, linków i dalszej pracy. Nie obiecuję nierealnych gwarancji."],
+              ["Czy strona będzie gotowa do dalszego pozycjonowania?", "Tak. Po publikacji ma logiczną strukturę, tytuły i opisy dla Google, mapę strony, wersję mobilną oraz podstawy szybkiego działania. Nie gwarantuje to konkretnej pozycji, ale poprawnie przygotowana strona daje lepsze warunki do dalszej widoczności w Google (SEO)."],
               ["Jak wygląda rozliczenie?", "Zakres, harmonogram i sposób płatności ustalamy przed rozpoczęciem. Projekt może być rozliczony etapami lub przez uzgodnioną platformę pośredniczącą, np. Useme."],
-              ["Co dzieje się po oddaniu strony?", "Otrzymujesz działającą stronę, instrukcję, dostęp do ustalonych narzędzi oraz raport końcowej kontroli jakości (QA). Możemy też umówić dalszą opiekę i rozwój."],
-              ["Co zawiera opieka nad stroną?", "Monitoring działania i SSL, kontrolowane aktualizacje, kopie bezpieczeństwa, sprawdzenie formularzy, drobne zmiany treści w ustalonym limicie oraz miesięczne podsumowanie. Większe nowe funkcje, płatne licencje i rozbudowa serwisu są wyceniane osobno przed rozpoczęciem."],
-              ["Czym jest zaplecze typu mały CRM lub ERP?", "To prywatna część systemu, w której firma obsługuje kontakty, zapytania, zlecenia, terminy, dokumenty i wyniki. Zakres dopasowuję do rzeczywistego procesu. To nie musi być duży system korporacyjny, lecz proste centrum codziennej pracy."],
+              ["Co dzieje się po oddaniu strony?", "Otrzymujesz działającą stronę, instrukcję, dostęp do ustalonych narzędzi oraz raport końcowych testów jakości (QA). Możemy też umówić dalszą opiekę i rozwój."],
+              ["Co zawiera opieka nad stroną?", "Sprawdzanie działania strony i bezpiecznego połączenia (SSL), kontrolowane aktualizacje, kopie bezpieczeństwa, sprawdzenie formularzy, drobne zmiany treści w ustalonym limicie oraz miesięczne podsumowanie. Większe nowe funkcje, płatne licencje i rozbudowa serwisu są wyceniane osobno przed rozpoczęciem."],
+              ["Czym jest zaplecze typu mały CRM lub ERP?", "To prywatna część systemu, w której firma obsługuje kontakty, zapytania, zlecenia, terminy, dokumenty i wyniki. CRM oznacza bazę klientów, a ERP pomaga porządkować pracę firmy. To nie musi być duży system korporacyjny, lecz proste centrum codziennej pracy."],
               ["Czy mogę zacząć od małej strony i później ją rozbudować?", "Tak. Już na starcie ustalamy, które elementy mogą dojść później, np. kolejne usługi, portfolio, blog, płatności, panel klienta lub automatyzacje. Dzięki temu pierwszy etap pozostaje rozsądny cenowo."],
               ["Kto jest właścicielem domeny, kont i gotowej strony?", "Domena i kluczowe konta powinny należeć do klienta. Po rozliczeniu projektu przekazuję uzgodnione dostępy, kod lub panel oraz instrukcję obsługi. Zasady przekazania zapisujemy w zakresie współpracy."],
               ["Ile poprawek obejmuje projekt?", "Liczbę rund wpisuję do oferty przed startem. Typowy mały projekt obejmuje dwie uporządkowane rundy uwag. Dzięki temu poprawki są czytelne, a termin nie rozmywa się przez pojedyncze wiadomości."],
-              ["Czy można przenieść obecną stronę lub domenę?", "Najczęściej tak. Najpierw sprawdzam domenę, hosting, pocztę, treści i ryzyko utraty widoczności. Dopiero potem planuję migrację oraz test działania formularzy, przekierowań i certyfikatu SSL."],
+              ["Czy można przenieść obecną stronę lub domenę?", "Najczęściej tak. Najpierw sprawdzam domenę, hosting, pocztę, treści i ryzyko utraty widoczności. Dopiero potem planuję przeniesienie oraz test działania formularzy, przekierowań i bezpiecznego połączenia (SSL)."],
             ].map(([question, answer], index) => (
               <details key={question} open={index === 0}>
                 <summary><span>{String(index + 1).padStart(2, "0")}</span>{question}<i>+</i></summary>
@@ -781,7 +792,7 @@ export default function Home() {
             </div>
           </div>
           <form onSubmit={submitBrief}>
-            <header className="contact-form-intro"><span>KRÓTKI BRIEF · OKOŁO 2 MINUT</span><b>Nie musisz znać technologii ani mieć gotowych materiałów.</b></header>
+            <header className="contact-form-intro"><span>KRÓTKI BRIEF · OKOŁO 1 MINUTY</span><b>Wystarczy kilka informacji. Szczegóły ustalimy później.</b></header>
             <div className="form-row">
               <label>
                 Imię
@@ -800,44 +811,19 @@ export default function Home() {
             <div className="form-row">
               <label>
                 Czego potrzebujesz?
-                <select name="projectType" defaultValue="">
+                <select required name="projectType" defaultValue="">
                   <option value="" disabled>Wybierz najbliższą odpowiedź</option>
                   <option>One Page / wizytówka</option>
                   <option>Strona firmowa</option>
                   <option>Sklep internetowy</option>
                   <option>Automatyzacja procesu</option>
-                  <option>Panel klienta lub KPI</option>
+                  <option>Panel klienta lub ekran z wynikami firmy</option>
                   <option>Jeszcze nie wiem, potrzebuję konsultacji</option>
                 </select>
               </label>
               <label>
-                Materiały
-                <select name="materials" defaultValue="">
-                  <option value="" disabled>Na jakim jesteś etapie?</option>
-                  <option>Mam teksty, zdjęcia i logo</option>
-                  <option>Mam część materiałów</option>
-                  <option>Potrzebuję pomocy z treścią i zdjęciami</option>
-                  <option>Chcę zacząć od rozmowy</option>
-                </select>
-              </label>
-            </div>
-            <div className="form-row">
-              <label>
-                Firma
+                Firma <small>(opcjonalnie)</small>
                 <input name="company" placeholder="Nazwa firmy" />
-              </label>
-              <label>
-                Budżet
-                <select name="budget" defaultValue="">
-                  <option value="" disabled>
-                    Wybierz przedział
-                  </option>
-                  <option>Nie chcę teraz mówić o budżecie</option>
-                  <option>2–4 tys. zł</option>
-                  <option>4–7 tys. zł</option>
-                  <option>7–12 tys. zł</option>
-                  <option>powyżej 12 tys. zł</option>
-                </select>
               </label>
             </div>
             <label>
