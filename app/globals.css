@@ -52,6 +52,10 @@ button,input,select,textarea{font:inherit}.section{padding:120px 0}.section-no{f
 /* Rozróżnienie drugiego członu marki: jasny błękit, mocniejsza waga. */
 .brand-wordmark b:last-of-type,footer .brand-wordmark b:last-of-type,.studio-sidebar .brand-wordmark b:last-of-type{color:var(--green);font-weight:700}
 .site-header .brand-wordmark b:last-of-type{color:var(--lime);font-weight:800}
+
+/* Pełne menu jest zawsze dostępne na telefonie. */
+.mobile-menu{display:none}
+@media(max-width:760px){.site-header .nav{position:relative}.mobile-menu{display:block;position:absolute;top:13px;right:0;z-index:80}.mobile-menu summary{display:flex;align-items:center;gap:9px;list-style:none;cursor:pointer;background:var(--ink);color:white;padding:11px 13px;border-radius:4px;font-size:10px;font-weight:800;letter-spacing:.05em}.mobile-menu summary::-webkit-details-marker{display:none}.mobile-menu summary span{color:var(--lime);font-size:17px;line-height:.6}.mobile-menu[open] summary span{transform:rotate(45deg)}.mobile-menu>div{position:absolute;right:0;top:46px;width:min(292px,calc(100vw - 28px));padding:8px;background:var(--ink);border:1px solid rgba(216,240,74,.36);box-shadow:0 20px 45px rgba(19,40,31,.25)}.mobile-menu a{display:block;padding:12px 13px;color:white;border-bottom:1px solid rgba(255,255,255,.12);font-size:12px;font-weight:700}.mobile-menu a:last-child{border-bottom:0}.mobile-menu a:active,.mobile-menu a:focus{background:var(--green);outline:none}}
 .demo-return-links{display:flex;align-items:center;gap:14px}.demo-return-links a{font-size:10px;color:var(--lime)}.concept-return-links{display:flex;gap:18px;align-items:center}@media(max-width:700px){.demo-return-links a:not(:last-child){display:none}.concept-return-links{gap:10px}.concept-return-links .text-link{font-size:9px}}
 
 /* Branżowe zaplecza procesowe */

@@ -229,6 +229,20 @@ export default function Home() {
         <a className="button button-small" href="#kalkulator">
           Wyceń projekt
         </a>
+        <details className="mobile-menu">
+          <summary>Menu <span aria-hidden="true">+</span></summary>
+          <div>
+            <a href="#realizacje">Realizacje</a>
+            <a href="#oferta">Oferta i ceny</a>
+            <a href="#kalkulator">Szybka wycena</a>
+            <a href="#proces">Proces i QA</a>
+            <a href="#technologie">Technologie</a>
+            <a href="#automatyzacje">Automatyzacje</a>
+            <a href="#strefa-klienta">Strefa klienta</a>
+            <a href="/status">Status projektu</a>
+            <a href="#kontakt">Kontakt</a>
+          </div>
+        </details>
       </nav>
       <nav className="topic-nav" aria-label="Skróty tematyczne">
         <div className="shell">
