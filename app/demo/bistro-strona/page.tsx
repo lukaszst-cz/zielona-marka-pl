@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Bistro Forma — sezonowa kuchnia i rezerwacje",
+  title: "Bistro Forma | sezonowa kuchnia i rezerwacje",
   description: "Pełna demonstracyjna strona restauracji: menu, klimat, rezerwacja, godziny i kontakt.",
-  openGraph: { title: "Bistro Forma — demonstracyjna strona restauracji", description: "Menu, klimat i rezerwacja bez szukania informacji.", images: [] },
+  openGraph: { title: "Bistro Forma | demonstracyjna strona restauracji", description: "Menu, klimat i rezerwacja bez szukania informacji.", images: [] },
   twitter: { card: "summary", title: "Bistro Forma", description: "Menu, klimat i rezerwacja bez szukania informacji.", images: [] },
 };
 
@@ -28,7 +28,7 @@ export default function BistroWebsiteDemo() {
       <div className="bistro-stamp" aria-hidden="true">LOCAL<br/>SEASONAL<br/>HONEST</div>
     </header>
 
-    <section className="bistro-info" aria-label="Najważniejsze informacje"><div><small>DZISIAJ</small><b>12:00—22:00</b></div><div><small>ADRES</small><b>Warszawa · lokal pokazowy</b></div><div><small>REZERWACJE</small><b>+48 450 458 466</b></div><a href="#kontakt">Jak dojechać ↗</a></section>
+    <section className="bistro-info" aria-label="Najważniejsze informacje"><div><small>DZISIAJ</small><b>12:00–22:00</b></div><div><small>ADRES</small><b>Warszawa · lokal pokazowy</b></div><div><small>REZERWACJE</small><b>+48 450 458 466</b></div><a href="#kontakt">Jak dojechać ↗</a></section>
 
     <section id="menu" className="bistro-menu">
       <header><span>01 / KARTA</span><h2>Krótka karta.<br/>Dużo <em>sezonu.</em></h2><p>Menu demonstracyjne zmienia się razem z dostępnością produktów. Zapytaj obsługę o alergeny i wersje roślinne.</p></header>
@@ -40,7 +40,7 @@ export default function BistroWebsiteDemo() {
 
     <section className="bistro-evening"><div><span>PIĄTKI / 19:00</span><h2>Stół degustacyjny</h2><p>Pięć dań, jeden wspólny stół i produkty wybrane tego samego tygodnia.</p></div><a href="#rezerwacja">Sprawdź termin <b>↗</b></a></section>
 
-    <section id="rezerwacja" className="bistro-reservation"><div><span>03 / REZERWACJA</span><h2>Zostaw miejsce<br/>na dobry wieczór.</h2></div><div><p>W gotowym wdrożeniu formularz może łączyć się z kalendarzem, potwierdzeniami e-mail lub systemem rezerwacji.</p><a href="tel:+48450458466">Zadzwoń: +48 450 458 466 ↗</a><small>To demonstracja portfolio — nie składa prawdziwej rezerwacji.</small></div></section>
+    <section id="rezerwacja" className="bistro-reservation"><div><span>03 / REZERWACJA</span><h2>Zostaw miejsce<br/>na dobry wieczór.</h2></div><div><p>W gotowym wdrożeniu formularz może łączyć się z kalendarzem, potwierdzeniami e-mail lub systemem rezerwacji.</p><a href="tel:+48450458466">Zadzwoń: +48 450 458 466 ↗</a><small>To demonstracja portfolio. Nie składa prawdziwej rezerwacji.</small></div></section>
 
     <footer id="kontakt" className="bistro-footer"><div className="bistro-wordmark"><span>B</span>BISTRO FORMA</div><div><small>GODZINY</small><p>wt–czw 12:00–22:00<br/>pt–sob 12:00–23:00<br/>nd 12:00–20:00</p></div><div><small>KONTAKT</small><p>+48 450 458 466<br/>lukasz.staniewicz@gmail.com</p></div><div><small>PROJEKT DEMONSTRACYJNY</small><p>Projekt i realizacja:<br/><a href="/?widok=realizacje#realizacje">Zielona Marka ↗</a></p></div></footer>
   </main>;

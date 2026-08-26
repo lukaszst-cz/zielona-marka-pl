@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { eq } from "drizzle-orm";
 import { getDb } from "../../../db";
 import { projects } from "../../../db/schema";
+import BrandSignature from "../../BrandSignature";
 
 export const metadata: Metadata = {
   title: "Status projektu",
@@ -30,8 +31,7 @@ export default async function ClientStatus({ params }: { params: Promise<{ code:
     <main className="client-status">
       <nav className="nav shell">
         <Link className="brand" href="/">
-          <img className="brand-logo" src="/logo.png" alt="" />
-          <span>ZIELONA MARKA</span>
+          <BrandSignature />
         </Link>
         <span>Strefa klienta</span>
       </nav>
@@ -78,7 +78,7 @@ export default async function ClientStatus({ params }: { params: Promise<{ code:
           </div>
           <div>
             <Link className="button" href={`/status/${project.publicCode}/umowa`}>Otwórz umowę <span>↗</span></Link>
-            <a className="text-link" href="mailto:kontakt@zielona-marka.pl?subject=Podpisana%20umowa%20Zielona%20Marka">Odeślij podpisaną umowę e-mailem</a>
+            <a className="text-link" href="mailto:lukasz.staniewicz@gmail.com?subject=Podpisana%20umowa%20Zielona%20Marka">Odeślij podpisaną umowę e-mailem</a>
           </div>
         </section>
 
@@ -93,7 +93,7 @@ export default async function ClientStatus({ params }: { params: Promise<{ code:
         </section>
 
         <footer>
-          <p>Masz pytanie? Napisz: <a href="mailto:kontakt@zielona-marka.pl">kontakt@zielona-marka.pl</a></p>
+          <p>Masz pytanie? Napisz: <a href="mailto:lukasz.staniewicz@gmail.com">lukasz.staniewicz@gmail.com</a></p>
         </footer>
       </div>
     </main>

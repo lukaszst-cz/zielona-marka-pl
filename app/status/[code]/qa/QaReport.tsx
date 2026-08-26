@@ -29,7 +29,7 @@ export default function QaReport({ project, checks }: { project: { title: string
           })}
         </section>
         <p className="qa-report-note">Raport pokazuje aktualny stan checklisty projektu. Pozycja oznaczona jako „sprawdzone” została zakończona w Studio Zielonej Marki. Pozostałe punkty wymagają jeszcze wykonania lub potwierdzenia.</p>
-        <footer><span>ZIELONA MARKA</span><span>zielona-marka.pl</span><span>kontakt@zielona-marka.pl</span></footer>
+        <footer><span>ZIELONA MARKA</span><span>zielona-marka.pl</span><span>lukasz.staniewicz@gmail.com</span></footer>
       </article>
     </main>
   );

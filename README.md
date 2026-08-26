@@ -23,7 +23,7 @@ Strona i zaplecze operacyjne dla marki tworzącej strony internetowe, automatyza
 3. Po akceptacji tworzony jest projekt z zakresem, terminem i kodem klienta.
 4. Klient obserwuje tylko własny projekt pod adresem `/status/[kod]`.
 5. Przed publikacją w Studio można utworzyć standardową checklistę QA.
-6. Po przekazaniu projektu realizację można pokazać w portfolio — wyłącznie za zgodą klienta.
+6. Po przekazaniu projektu realizację można pokazać w portfolio wyłącznie za zgodą klienta.
 
 ## Technologia
 
@@ -55,11 +55,11 @@ npm run build
 - Nie dodawaj do repozytorium haseł, tokenów, kluczy API ani plików `.env`.
 - Nie publikuj danych klientów, umów, kodów statusu ani materiałów roboczych.
 - Realizacja może trafić do portfolio dopiero po uzyskaniu zgody klienta.
-- Dla każdego projektu sprawdź mobilność, formularze, linki, podstawowe SEO i przekazanie materiałów — do tego służy checklist QA w Studio.
+- Dla każdego projektu sprawdź mobilność, formularze, linki, podstawowe SEO i przekazanie materiałów. Do tego służy checklista QA w Studio.
 
 ## Jak rozwijać portfolio
 
-Po zakończeniu rzeczywistego zlecenia dodaj w Studio projekt, zaznacz opcję „Pokaż w portfolio” i uzupełnij opis, adres wdrożenia oraz zgodę klienta. W publicznym repozytorium pokazuj przede wszystkim opis rozwiązania, wykorzystane technologie i wynik biznesowy — bez prywatnych danych.
+Po zakończeniu rzeczywistego zlecenia dodaj w Studio projekt, zaznacz opcję „Pokaż w portfolio” i uzupełnij opis, adres wdrożenia oraz zgodę klienta. W publicznym repozytorium pokazuj przede wszystkim opis rozwiązania, wykorzystane technologie i wynik biznesowy, bez prywatnych danych.
 
 ---
 

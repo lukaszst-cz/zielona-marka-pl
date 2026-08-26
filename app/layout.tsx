@@ -18,7 +18,7 @@ export const metadata: Metadata = {
       "https://zielona-marka.pl",
   ),
   title: {
-    default: "Zielona Marka — strony internetowe dla firm",
+    default: "Zielona Marka | strony internetowe dla firm",
     template: "%s | Zielona Marka",
   },
   description:
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "pl_PL",
-    title: "Zielona Marka — strony, w których marki rosną",
+    title: "Zielona Marka | strony, w których marki rosną",
     description:
       "Strony internetowe, automatyzacje, KPI i panele klienta dla małych firm.",
     siteName: "Zielona Marka",
@@ -49,20 +49,20 @@ export const metadata: Metadata = {
         url: "/og.png",
         width: 1729,
         height: 910,
-        alt: "Zielona Marka — strony, w których marki rosną",
+        alt: "Zielona Marka, strony, w których marki rosną",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Zielona Marka — strony, w których marki rosną",
+    title: "Zielona Marka | strony, w których marki rosną",
     description:
       "Strony internetowe, automatyzacje, KPI i panele klienta dla małych firm.",
     images: ["/og.png"],
   },
   icons: {
-    icon: "/logo.png",
-    shortcut: "/logo.png",
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
   },
 };
 
@@ -77,7 +77,7 @@ export default function RootLayout({
     name: "Zielona Marka",
     description: "Projektowanie i wdrażanie stron internetowych dla firm.",
     url: "https://zielona-marka.pl",
-    email: "kontakt@zielona-marka.pl",
+    email: "lukasz.staniewicz@gmail.com",
     telephone: "+48 450 458 466",
     sameAs: ["https://github.com/lukaszst-cz"],
     areaServed: [
@@ -98,7 +98,7 @@ export default function RootLayout({
       "Dąbrówka",
       "Polska",
     ],
-    priceRange: "1900–15000 PLN",
+    priceRange: "1449–15000 PLN",
     serviceType: [
       "Projektowanie stron internetowych",
       "Landing page",

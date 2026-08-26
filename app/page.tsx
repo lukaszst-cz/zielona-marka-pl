@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import { concepts, services, technologies } from "./content";
+import BrandSignature from "./BrandSignature";
 
 type PortfolioCard = { n:string; name:string; type:string; note:string; color:string; description?:string; imageUrl?:string; websiteUrl?:string; backendUrl?:string; primaryLabel?:string; secondaryLabel?:string };
 const projects: PortfolioCard[] = [
@@ -14,16 +15,16 @@ const projects: PortfolioCard[] = [
     color: "project-a",
     description: "Strona i zaplecze rezerwacji dla studia wellness.",
     imageUrl: "/concept-natura.jpg",
-    websiteUrl: "/realizacje/natura-studio",
+    websiteUrl: "/demo/natura-strona",
     backendUrl: "/demo/natura",
-    primaryLabel: "Zobacz projekt",
+    primaryLabel: "Otwórz pełną stronę",
     secondaryLabel: "Uruchom zaplecze",
   },
   {
     n: "02",
     name: "Bistro Forma",
     type: "Restauracja",
-    note: "Projekt koncepcyjny",
+    note: "Pełna strona demonstracyjna",
     color: "project-b",
     description: "Strona restauracji, rezerwacje i panel operacyjny.",
     imageUrl: "/concept-bistro.jpg",
@@ -40,9 +41,9 @@ const projects: PortfolioCard[] = [
     color: "project-c",
     description: "Katalog inwestycji, leady i statusy sprzedaży.",
     imageUrl: "/concept-dom.jpg",
-    websiteUrl: "/realizacje/dom-dobry",
+    websiteUrl: "/demo/dom-strona",
     backendUrl: "/demo/dom",
-    primaryLabel: "Zobacz projekt",
+    primaryLabel: "Otwórz pełną stronę",
     secondaryLabel: "Uruchom zaplecze",
   },
   {
@@ -161,11 +162,11 @@ export default function Home() {
   }, []);
   const estimate = useMemo(() => {
     const config: Record<string, { base: number; included: number; copy: number }> = {
-      "One Page / landing page": { base: 1900, included: 1, copy: 650 },
-      "Mała wizytówka": { base: 2400, included: 3, copy: 900 },
-      "Firma online": { base: 3900, included: 7, copy: 1500 },
-      "Firma Plus": { base: 5900, included: 10, copy: 2200 },
-      "Sklep internetowy": { base: 5900, included: 5, copy: 2200 },
+      "One Page / landing page": { base: 1449, included: 1, copy: 650 },
+      "Mała wizytówka": { base: 1999, included: 3, copy: 900 },
+      "Firma online": { base: 2999, included: 7, copy: 1500 },
+      "Firma Plus": { base: 4999, included: 10, copy: 2200 },
+      "Sklep internetowy": { base: 5499, included: 5, copy: 2200 },
       "Automatyzacja Start": { base: 1200, included: 0, copy: 350 },
       "Dashboard KPI": { base: 1800, included: 0, copy: 500 },
       "Panel klienta": { base: 4900, included: 0, copy: 1200 },
@@ -208,15 +209,15 @@ export default function Home() {
   }
 
   return (
-    <main>
+    <main id="top">
+      <header className="site-header">
       <nav className="nav shell" aria-label="Główna nawigacja">
         <Link
           className="brand"
           href="/"
-          aria-label="Zielona Marka — strona główna"
+          aria-label="Zielona Marka, strona główna"
         >
-          <img className="brand-logo" src="/logo.png" alt="" />
-          <span>ZIELONA MARKA</span>
+          <BrandSignature />
         </Link>
         <div className="nav-links">
           <a href="#realizacje">Realizacje</a>
@@ -238,8 +239,10 @@ export default function Home() {
           <a href="#automatyzacje">Automatyzacje</a>
           <a href="#strefa-klienta">Strefa klienta</a>
           <a href="#realizacje">Portfolio</a>
+          <a className="topic-to-top" href="#top" aria-label="Wróć na górę strony">↑ Góra</a>
         </div>
       </nav>
+      </header>
       <section className="hero shell">
         <div className="eyebrow">
           <span />
@@ -332,7 +335,7 @@ export default function Home() {
               <span>cel wydajności Lighthouse</span>
             </div>
             <div>
-              <b>2–4 tyg.</b>
+              <b>1–3 tyg.</b>
               <span>typowy czas realizacji małej strony firmowej</span>
             </div>
             <div>
@@ -347,6 +350,18 @@ export default function Home() {
         <a href="#realizacje" style={{ backgroundImage: "linear-gradient(180deg,transparent,rgba(15,25,20,.78)),url(/concept-bistro.jpg)" }}><small>KIERUNEK 01 / GASTRONOMIA</small><strong>Smak i atmosfera</strong><span>Menu, rezerwacje i lokalna widoczność ↓</span></a>
         <a href="#realizacje" style={{ backgroundImage: "linear-gradient(180deg,transparent,rgba(15,25,20,.78)),url(/concept-natura.jpg)" }}><small>KIERUNEK 02 / WELLNESS</small><strong>Spokój i zaufanie</strong><span>Usługi, terminy i prosta rezerwacja ↓</span></a>
         <a href="#realizacje" style={{ backgroundImage: "linear-gradient(180deg,transparent,rgba(15,25,20,.78)),url(/concept-dom.jpg)" }}><small>KIERUNEK 03 / NIERUCHOMOŚCI</small><strong>Oferta i decyzja</strong><span>Prezentacja, dostępność i kontakt ↓</span></a>
+      </section>
+      <section className="responsive-story shell" aria-label="Responsywne strony na telefon, tablet i komputer">
+        <div className="responsive-copy">
+          <span className="section-no">JEDNA STRONA / KAŻDY EKRAN</span>
+          <h2>Na telefonie klient ma równie łatwo jak na komputerze.</h2>
+          <p>Najważniejsze informacje, numer telefonu i formularz pozostają pod ręką. Układ nie jest tylko pomniejszany, lecz świadomie porządkowany dla ekranu, którego klient naprawdę używa.</p>
+          <a href="tel:+48450458466">Sprawdź działający link telefonu <b>+48 450 458 466 ↗</b></a>
+        </div>
+        <div className="responsive-devices" aria-hidden="true">
+          <div className="device-desktop"><i /><div><b>ZIELONA MARKA</b><strong>Strona, która prowadzi do kontaktu.</strong><span /></div></div>
+          <div className="device-phone"><i /><div><b>OFERTA</b><strong>Jasna także na telefonie.</strong><span>NAPISZ LUB ZADZWOŃ</span></div></div>
+        </div>
       </section>
       <section id="oferta" className="section offer-section">
         <div className="shell">
@@ -369,15 +384,13 @@ export default function Home() {
                   <div className={`package-visual package-visual-${index}`} aria-hidden="true"><i /><i /><i /><strong>{index === 0 ? "ONE PAGE" : index === 1 ? "WWW" : "PLUS"}</strong></div>
                   <h3>{index === 0 ? "One Page / wizytówka" : service.title}</h3>
                   <p>{service.lead}</p>
-                  <div className="package-price"><small>OD</small><strong>{service.price}</strong><i>{activePackage === index ? "−" : "+"}</i></div>
+                  <div className="package-price"><small>BUDŻET</small><strong>{service.price}</strong><i>{activePackage === index ? "−" : "+"}</i></div>
                 </button>
-                {activePackage === index && (
-                  <div className="package-expanded">
-                    <small>W PAKIECIE</small>
-                    <ul>{service.includes.map((item) => <li key={item}>{item}</li>)}</ul>
-                    <footer><span>{service.time}</span><a href="#kontakt">Zapytaj o pakiet →</a></footer>
-                  </div>
-                )}
+                <div className="package-expanded" hidden={activePackage !== index}>
+                  <small>W PAKIECIE</small>
+                  <ul>{service.includes.map((item) => <li key={item}>{item}</li>)}</ul>
+                  <footer><span>{service.time}</span><a href="#kontakt">Zapytaj o pakiet →</a></footer>
+                </div>
               </article>
             ))}
           </div>
@@ -389,8 +402,10 @@ export default function Home() {
             {offerCategories.map((category) => <button key={category} type="button" className={offerCategory === category ? "active" : ""} onClick={() => { setOfferCategory(category); setExpandedService(null); }}>{category}</button>)}
           </div>
           <div className="solution-catalog">
-            {services.map((service, index) => ({ service, index })).filter(({ index }) => offerCategory === "Wszystko" || serviceCategories[index] === offerCategory).slice(0, offerCategory === "Wszystko" && !showAllServices ? 6 : undefined).map(({ service, index }) => (
-              <article key={service.title} className={expandedService === index ? "expanded" : ""}>
+            {services.map((service, index) => {
+              const hiddenByCategory = offerCategory !== "Wszystko" && serviceCategories[index] !== offerCategory;
+              const hiddenByShortView = offerCategory === "Wszystko" && !showAllServices && index >= 6;
+              return <article key={service.title} className={expandedService === index ? "expanded" : ""} hidden={hiddenByCategory || hiddenByShortView}>
                 <button className="solution-summary" onClick={() => setExpandedService(expandedService === index ? null : index)} aria-expanded={expandedService === index}>
                   <header><span>{serviceCategories[index]}</span><b>{String(index + 1).padStart(2, "0")}</b></header>
                   <div className={`solution-visual solution-visual-${index % 4}`} aria-hidden="true"><strong>{serviceMarks[index]}</strong><i /><i /><i /></div>
@@ -399,13 +414,13 @@ export default function Home() {
                   <div className="solution-result"><small>EFEKT DLA FIRMY</small><strong>{serviceOutcomes[index]}</strong></div>
                   <footer><b>{service.price}</b><i>{expandedService === index ? "−" : "+"}</i></footer>
                 </button>
-                {expandedService === index && <div className="solution-detail">
+                <div className="solution-detail" hidden={expandedService !== index}>
                   <div><small>DLA KOGO</small><p>{service.forWhom}</p></div>
                   <div><small>CO OTRZYMUJESZ</small><ul>{service.includes.map(item => <li key={item}>{item}</li>)}</ul></div>
                   <div><small>CZAS I KOLEJNY KROK</small><p>{service.time}</p><a href="#kontakt">Zapytaj o to rozwiązanie →</a></div>
-                </div>}
-              </article>
-            ))}
+                </div>
+              </article>;
+            })}
           </div>
           {offerCategory === "Wszystko" && <button className="section-reveal-button" type="button" onClick={() => { setShowAllServices(!showAllServices); setExpandedService(null); }}>{showAllServices ? "Pokaż krótszą ofertę ↑" : `Pokaż wszystkie ${services.length} rozwiązań ↓`}</button>}
           <div className="offer-confidence">
@@ -562,9 +577,9 @@ export default function Home() {
             </ul>
           </div>
           <div className="seo-ready-note">
-            <div><span>SEO READY</span><h3>Po starcie strona jest gotowa technicznie do dalszego pozycjonowania.</h3><p>Przygotowuję fundament, na którym można później rozwijać treści, widoczność lokalną i działania SEO — bez konieczności naprawiania podstaw całej witryny.</p></div>
+            <div><span>SEO READY</span><h3>Po starcie strona jest gotowa technicznie do dalszego pozycjonowania.</h3><p>Przygotowuję fundament, na którym można później rozwijać treści, widoczność lokalną i działania SEO bez konieczności naprawiania podstaw całej witryny.</p></div>
             <ul><li>logiczna struktura nagłówków i adresów,</li><li>tytuły oraz opisy dla Google,</li><li>mapa strony, robots i możliwość indeksowania,</li><li>wersja mobilna i optymalizacja szybkości,</li><li>dane firmy i podstawowe informacje strukturalne,</li><li>możliwość podłączenia Search Console i analityki.</li></ul>
-            <small>Nie gwarantuję konkretnej pozycji w Google — zależy ona również od konkurencji, jakości treści, opinii, linków i dalszych działań. Lekka, szybka i poprawnie przygotowana technicznie strona usuwa jednak część barier już na starcie i daje lepszy fundament do budowania widoczności. Regularne pozycjonowanie pozostaje osobnym etapem.</small>
+            <small>Nie gwarantuję konkretnej pozycji w Google. Zależy ona również od konkurencji, jakości treści, opinii, linków i dalszych działań. Lekka, szybka i poprawnie przygotowana technicznie strona usuwa jednak część barier już na starcie i daje lepszy fundament do budowania widoczności. Regularne pozycjonowanie pozostaje osobnym etapem.</small>
           </div>
           <div className="quality-board" aria-label="Zakres końcowych testów jakości">
             <header>
@@ -589,7 +604,7 @@ export default function Home() {
         <div className="shell">
           <div className="section-head"><div><span className="section-no">07 / TECHNOLOGIE</span><h2>Dobieram narzędzie do celu.</h2></div><p>Nie sprzedaję jednej technologii każdemu. Prosta strona powinna pozostać prosta, a zaplecze firmy ma naprawdę oszczędzać czas.</p></div>
           <div className="tech-grid">
-            {technologies.slice(0, showAllTechnologies ? undefined : 6).map((tech, index) => <article key={tech.title} className={expandedTech === index ? "expanded" : ""}>
+            {technologies.map((tech, index) => <article key={tech.title} className={expandedTech === index ? "expanded" : ""} hidden={!showAllTechnologies && index >= 6}>
               <button onClick={() => setExpandedTech(expandedTech === index ? null : index)} aria-expanded={expandedTech === index}>
                 <span>{String(index + 1).padStart(2, "0")}</span><i>{expandedTech === index ? "−" : "+"}</i>
                 <div className={`tech-graphic tech-graphic-${index % 5}`} aria-hidden="true">
@@ -600,15 +615,33 @@ export default function Home() {
                   {tech.tools.split(",").slice(0, 3).map((tool) => <small key={tool}>{tool.trim()}</small>)}
                 </div>
               </button>
-              {expandedTech === index && <div className="tech-detail">
+              <div className="tech-detail" hidden={expandedTech !== index}>
                 <div><small>CO TO JEST</small><p>{tech.what}</p></div>
                 <div><small>KIEDY WARTO</small><p>{tech.use}</p></div>
                 <div><small>EFEKT DLA FIRMY</small><p>{tech.effect}</p></div>
                 <div><small>NARZĘDZIA</small><p>{tech.tools}</p></div>
-              </div>}
+              </div>
             </article>)}
           </div>
           <button className="section-reveal-button" type="button" onClick={() => { setShowAllTechnologies(!showAllTechnologies); setExpandedTech(null); }}>{showAllTechnologies ? "Pokaż najważniejsze technologie ↑" : `Pokaż wszystkie ${technologies.length} technologii i narzędzi ↓`}</button>
+        </div>
+      </section>
+      <section className="section systems-story" aria-label="Zaplecze firmy typu CRM i ERP">
+        <div className="shell systems-story-grid">
+          <div className="systems-story-copy">
+            <span className="section-no">ZAPLECZE / MAŁE CENTRUM OPERACYJNE</span>
+            <h2>Strona może być wejściem do pracy całej firmy.</h2>
+            <p>Zaplecze to prywatna część systemu dla właściciela, zespołu lub klienta. Łączy funkcje lekkiego CRM i ERP: porządkuje kontakty, zlecenia, terminy, dokumenty, odpowiedzialność oraz najważniejsze wyniki.</p>
+            <p>Nie wdrażam wielkiego systemu „na zapas”. Budujemy tylko te moduły, które skracają realny proces i można później bezpiecznie rozbudować.</p>
+            <a className="text-link" href="#realizacje">Zobacz zaplecza w realizacjach <span>↓</span></a>
+          </div>
+          <div className="systems-map" aria-label="Schemat działania zaplecza">
+            <article><small>01 / CRM</small><b>Klient i kontakt</b><span>historia rozmów, zgody, następny krok</span></article>
+            <article><small>02 / WORKFLOW</small><b>Zlecenie i etapy</b><span>terminy, statusy, osoba odpowiedzialna</span></article>
+            <article><small>03 / ERP LIGHT</small><b>Dokumenty i koszty</b><span>umowy, wyceny, pliki i rozliczenia</span></article>
+            <article><small>04 / KPI</small><b>Wynik na żywo</b><span>sprzedaż, obciążenie, terminy i alerty</span></article>
+            <article className="systems-client"><small>05 / KLIENT</small><b>Prywatny status</b><span>kod projektu, postęp i dokumenty bez telefonowania</span></article>
+          </div>
         </div>
       </section>
       <section id="automatyzacje" className="section automation-showcase">
@@ -678,19 +711,24 @@ export default function Home() {
           <div>
             <span className="section-no">11 / FAQ</span>
             <h2>Najczęstsze pytania przed startem.</h2>
-            <p>Krótko i konkretnie — żeby od początku było wiadomo, jak wygląda współpraca.</p>
+            <p>Krótko i konkretnie, żeby od początku było wiadomo, jak wygląda współpraca.</p>
           </div>
           <div className="faq-list">
             {[
               ["Czy będę mógł samodzielnie edytować treści?", "Tak, jeśli projekt tego wymaga, dobiorę WordPress lub inne proste zaplecze. Przy stronie kodowanej indywidualnie ustalamy wygodny sposób aktualizacji przed rozpoczęciem pracy."],
-              ["Od czego zależy cena strony?", "Od liczby widoków, przygotowania materiałów, funkcji, integracji i terminu. Przed startem otrzymujesz dokładny zakres i cenę — dodatkowe prace wymagają Twojej akceptacji."],
+              ["Od czego zależy cena strony?", "Od liczby widoków, przygotowania materiałów, funkcji, integracji i terminu. Przed startem otrzymujesz dokładny zakres i cenę. Dodatkowe prace wymagają Twojej akceptacji."],
               ["Czy muszę mieć gotowe teksty i zdjęcia?", "Nie. Możemy zacząć od Twojej wiedzy o firmie. Pomogę zaplanować strukturę, wycenić przygotowanie treści oraz dobrać legalne zdjęcia licencjonowane albo listę ujęć do wykonania."],
-              ["Czy musimy spotykać się osobiście?", "Nie. Współpracuję z firmami z całej Polski, a cały projekt możemy sprawnie przeprowadzić online — przez Google Meet, Microsoft Teams, telefon i e-mail. Materiały, uwagi, akceptacje oraz status prac przekazujemy cyfrowo. Spotkanie osobiste pozostaje opcją, gdy rzeczywiście wnosi wartość do projektu i możemy je wspólnie ustalić."],
-              ["Czy strona będzie widoczna w Google?", "Przygotuję podstawy SEO technicznego, strukturę treści, indeksowanie i dane firmy. Pozycja zależy również od konkurencji, treści, opinii, linków i dalszej pracy — nie obiecuję nierealnych gwarancji."],
+              ["Czy musimy spotykać się osobiście?", "Nie. Współpracuję z firmami z całej Polski, a cały projekt możemy sprawnie przeprowadzić online przez Google Meet, Microsoft Teams, telefon i e-mail. Materiały, uwagi, akceptacje oraz status prac przekazujemy cyfrowo. Spotkanie osobiste pozostaje opcją, gdy rzeczywiście wnosi wartość do projektu."],
+              ["Czy strona będzie widoczna w Google?", "Przygotuję podstawy SEO technicznego, strukturę treści, indeksowanie i dane firmy. Pozycja zależy również od konkurencji, treści, opinii, linków i dalszej pracy. Nie obiecuję nierealnych gwarancji."],
               ["Czy strona będzie gotowa do dalszego pozycjonowania?", "Tak. Po publikacji ma przygotowany fundament techniczny: logiczną strukturę, metadane, mapę strony, możliwość indeksowania, wersję mobilną i podstawy wydajności. Nie gwarantuje to konkretnej pozycji, ale lekka i poprawnie przygotowana strona usuwa część barier już na starcie i daje lepsze warunki do dalszego SEO."],
               ["Jak wygląda rozliczenie?", "Zakres, harmonogram i sposób płatności ustalamy przed rozpoczęciem. Projekt może być rozliczony etapami lub przez uzgodnioną platformę pośredniczącą, np. Useme."],
               ["Co dzieje się po oddaniu strony?", "Otrzymujesz działającą stronę, instrukcję, dostęp do ustalonych narzędzi oraz raport końcowej kontroli jakości (QA). Możemy też umówić dalszą opiekę i rozwój."],
               ["Co zawiera opieka nad stroną?", "Monitoring działania i SSL, kontrolowane aktualizacje, kopie bezpieczeństwa, sprawdzenie formularzy, drobne zmiany treści w ustalonym limicie oraz miesięczne podsumowanie. Większe nowe funkcje, płatne licencje i rozbudowa serwisu są wyceniane osobno przed rozpoczęciem."],
+              ["Czym jest zaplecze typu mały CRM lub ERP?", "To prywatna część systemu, w której firma obsługuje kontakty, zapytania, zlecenia, terminy, dokumenty i wyniki. Zakres dopasowuję do rzeczywistego procesu. To nie musi być duży system korporacyjny, lecz proste centrum codziennej pracy."],
+              ["Czy mogę zacząć od małej strony i później ją rozbudować?", "Tak. Już na starcie ustalamy, które elementy mogą dojść później, np. kolejne usługi, portfolio, blog, płatności, panel klienta lub automatyzacje. Dzięki temu pierwszy etap pozostaje rozsądny cenowo."],
+              ["Kto jest właścicielem domeny, kont i gotowej strony?", "Domena i kluczowe konta powinny należeć do klienta. Po rozliczeniu projektu przekazuję uzgodnione dostępy, kod lub panel oraz instrukcję obsługi. Zasady przekazania zapisujemy w zakresie współpracy."],
+              ["Ile poprawek obejmuje projekt?", "Liczbę rund wpisuję do oferty przed startem. Typowy mały projekt obejmuje dwie uporządkowane rundy uwag. Dzięki temu poprawki są czytelne, a termin nie rozmywa się przez pojedyncze wiadomości."],
+              ["Czy można przenieść obecną stronę lub domenę?", "Najczęściej tak. Najpierw sprawdzam domenę, hosting, pocztę, treści i ryzyko utraty widoczności. Dopiero potem planuję migrację oraz test działania formularzy, przekierowań i certyfikatu SSL."],
             ].map(([question, answer], index) => (
               <details key={question} open={index === 0}>
                 <summary><span>{String(index + 1).padStart(2, "0")}</span>{question}<i>+</i></summary>
@@ -706,19 +744,17 @@ export default function Home() {
             <span className="section-no">12 / ZACZNIJMY</span>
             <h2>Opowiedz mi o swojej marce.</h2>
             <p>
-              Odpowiem z propozycją kolejnych kroków i wstępną wyceną. Bez
-              zobowiązań.
+              Zadzwoń, napisz wiadomość albo wyślij krótki brief. Odpowiem
+              osobiście z propozycją kolejnych kroków i wstępną wyceną.
             </p>
             <p className="contact-area">
               Lokalnie: Ząbki, Marki, Warszawa, Kobyłka, Zielonka, Radzymin,
               Wołomin, Nieporęt i Legionowo. Zdalnie: cała Polska.
             </p>
-            <a className="mail" href="tel:+48450458466">
-              +48 450 458 466 ↗
-            </a>
-            <a className="mail" href="mailto:kontakt@zielona-marka.pl">
-              kontakt@zielona-marka.pl ↗
-            </a>
+            <div className="contact-direct">
+              <a href="tel:+48450458466"><small>M:</small><strong>+48 450 458 466 ↗</strong></a>
+              <a href="mailto:lukasz.staniewicz@gmail.com"><small>E-mail:</small><strong>lukasz.staniewicz@gmail.com ↗</strong></a>
+            </div>
           </div>
           <form onSubmit={submitBrief}>
             <header className="contact-form-intro"><span>KRÓTKI BRIEF · OKOŁO 2 MINUT</span><b>Nie musisz znać technologii ani mieć gotowych materiałów.</b></header>
@@ -747,7 +783,7 @@ export default function Home() {
                   <option>Sklep internetowy</option>
                   <option>Automatyzacja procesu</option>
                   <option>Panel klienta lub KPI</option>
-                  <option>Jeszcze nie wiem — potrzebuję konsultacji</option>
+                  <option>Jeszcze nie wiem, potrzebuję konsultacji</option>
                 </select>
               </label>
               <label>
@@ -840,7 +876,7 @@ export default function Home() {
               </form>
               </>
             )}
-            <a className="quick-chat-phone" href="tel:+48450458466">Wolisz porozmawiać? <b>+48 450 458 466</b></a>
+            <a className="quick-chat-phone" href="tel:+48450458466"><span>Wolisz porozmawiać?</span><b>+48 450 458 466</b></a>
           </div>
         )}
         <button className="quick-chat-toggle" type="button" onClick={() => setChatOpen(!chatOpen)} aria-expanded={chatOpen}>
@@ -852,8 +888,7 @@ export default function Home() {
       <footer>
         <div className="shell footer-grid">
           <a className="brand" href="/">
-            <span className="footer-logo-plate"><img className="brand-logo" src="/logo.png" alt="" /></span>
-            <span>ZIELONA MARKA</span>
+            <BrandSignature />
           </a>
           <p>
             Projektowanie i wdrażanie stron internetowych dla świadomych marek.

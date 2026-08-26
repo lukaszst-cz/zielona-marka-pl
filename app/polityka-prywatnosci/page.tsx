@@ -1,11 +1,11 @@
 import Link from "next/link";
+import BrandSignature from "../BrandSignature";
 
 export default function Privacy() {
   return (
     <main className="legal shell">
       <Link className="brand" href="/">
-        <img className="brand-logo" src="/logo.png" alt="" />
-        <span>ZIELONA MARKA</span>
+        <BrandSignature />
       </Link>
       <span className="section-no">INFORMACJE PRAWNE · AKTUALIZACJA 25.08.2026</span>
       <h1>Polityka prywatności</h1>
@@ -19,7 +19,7 @@ export default function Privacy() {
         <p>
           Administratorem danych osobowych jest Łukasz Staniewicz, działający pod
           marką Zielona Marka. W sprawach związanych z danymi osobowymi napisz na
-          <a href="mailto:kontakt@zielona-marka.pl"> kontakt@zielona-marka.pl</a>
+          <a href="mailto:lukasz.staniewicz@gmail.com"> lukasz.staniewicz@gmail.com</a>
           {" lub zadzwoń pod "}
           <a href="tel:+48450458466">+48 450 458 466</a>.
         </p>
@@ -33,7 +33,7 @@ export default function Privacy() {
         <h2>3. Po co i na jakiej podstawie</h2>
         <p>
           Dane z formularza przetwarzamy, aby odpowiedzieć na zapytanie i
-          przygotować ofertę — na podstawie działań przed zawarciem umowy
+          przygotować ofertę na podstawie działań przed zawarciem umowy
           podejmowanych na Twoje żądanie. Jeżeli dojdzie do współpracy, dane są
           wykorzystywane także do realizacji umowy i rozliczeń. Ograniczony zakres
           danych może być zachowany również dla obrony przed roszczeniami.
@@ -56,7 +56,7 @@ export default function Privacy() {
         <h2>6. Twoje prawa</h2>
         <p>
           Możesz zażądać dostępu do danych, ich sprostowania, usunięcia,
-          ograniczenia przetwarzania, przeniesienia danych lub wnieść sprzeciw —
+          ograniczenia przetwarzania, przeniesienia danych lub wnieść sprzeciw.
           zależnie od podstawy przetwarzania. Masz też prawo złożyć skargę do
           Prezesa Urzędu Ochrony Danych Osobowych.
         </p>
@@ -71,7 +71,7 @@ export default function Privacy() {
         <h2>8. Zmiany dokumentu</h2>
         <p>
           Polityka będzie aktualizowana przed uruchomieniem nowych funkcji, które
-          wpływają na przetwarzanie danych — na przykład newslettera, płatności,
+          wpływają na przetwarzanie danych, na przykład newslettera, płatności,
           analityki lub reklam.
         </p>
       </section>

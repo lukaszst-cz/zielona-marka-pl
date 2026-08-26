@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { FormEvent, useState } from "react";
+import BrandSignature from "../BrandSignature";
 
 const benefits = [
   ["01", "Aktualny etap", "Widzisz, na jakim etapie jest praca i ile zostało do kolejnego kroku."],
@@ -22,8 +23,7 @@ export default function StatusEntry() {
     <main className="status-entry">
       <nav className="nav shell">
         <Link className="brand" href="/">
-          <img className="brand-logo" src="/logo.png" alt="" />
-          <span>ZIELONA MARKA</span>
+          <BrandSignature />
         </Link>
         <Link href="/">Strona główna</Link>
       </nav>
@@ -73,7 +73,7 @@ export default function StatusEntry() {
       </section>
       <p className="status-security shell">
         Kod daje dostęp tylko do jednego projektu. Nie udostępniaj go osobom postronnym.
-        W razie problemu napisz na <a href="mailto:kontakt@zielona-marka.pl">kontakt@zielona-marka.pl</a>.
+        W razie problemu napisz na <a href="mailto:lukasz.staniewicz@gmail.com">lukasz.staniewicz@gmail.com</a>.
       </p>
     </main>
   );

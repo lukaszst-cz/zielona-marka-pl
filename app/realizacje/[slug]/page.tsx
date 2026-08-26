@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { concepts } from "../../content";
+import BrandSignature from "../../BrandSignature";
 
 type Slug = keyof typeof concepts;
 
@@ -13,7 +14,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const project = concepts[slug as Slug];
   if (!project) return {};
-  return { title: `${project.name} — projekt koncepcyjny`, description: project.headline, openGraph: { title: `${project.name} — projekt koncepcyjny Zielonej Marki`, description: project.headline, images: [] }, twitter: { card: "summary", title: project.name, description: project.headline, images: [] } };
+  return { title: `${project.name} | projekt koncepcyjny`, description: project.headline, openGraph: { title: `${project.name} | projekt koncepcyjny Zielonej Marki`, description: project.headline, images: [] }, twitter: { card: "summary", title: project.name, description: project.headline, images: [] } };
 }
 
 export default async function ConceptPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -21,7 +22,7 @@ export default async function ConceptPage({ params }: { params: Promise<{ slug: 
   const project = concepts[slug as Slug];
   if (!project) notFound();
   return <main className="concept-page" style={{ "--concept": project.accent } as React.CSSProperties}>
-    <nav className="nav shell"><Link className="brand" href="/"><img className="brand-logo" src="/logo.png" alt=""/><span>ZIELONA MARKA</span></Link><a className="text-link" href="/?widok=realizacje#realizacje">← Wszystkie realizacje</a></nav>
+    <nav className="nav shell"><Link className="brand" href="/"><BrandSignature /></Link><a className="text-link" href="/?widok=realizacje#realizacje">← Wszystkie realizacje</a></nav>
     <header className="concept-hero shell">
       <div><span className="section-no">PROJEKT KONCEPCYJNY / {project.category}</span><h1>{project.name}</h1><p>{project.headline}</p></div>
       <figure><img src={project.image} alt={`Koncepcyjny wizerunek marki ${project.name}`}/></figure>
