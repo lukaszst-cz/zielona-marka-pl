@@ -10,7 +10,7 @@ export const metadata = {
 };
 
 const clauses = [
-  ["1. Strony i dokumenty", "Wykonawca: Łukasz Staniewicz, działający pod marką Zielona Marka, kontakt: lukasz.staniewicz@gmail.com, +48 450 458 466. Klient i jego dane wpisywane są w wersji finalnej. Umowę uzupełniają zaakceptowana oferta, zakres prac i ewentualny brief."],
+  ["1. Strony i dokumenty", "Wykonawca: Łukasz Staniewicz, działający pod marką Zielona Marka, kontakt: kontakt@zielona-marka.pl, +48 450 458 466. Klient i jego dane wpisywane są w wersji finalnej. Umowę uzupełniają zaakceptowana oferta, zakres prac i ewentualny brief."],
   ["2. Cel i zakres", "Celem jest wykonanie strony internetowej, systemu lub automatyzacji opisanych w załączniku do umowy. Załącznik wskazuje liczbę widoków lub podstron, funkcje, integracje, materiały, technologię, wersje językowe, harmonogram, cenę i liczbę rund poprawek. Elementy niewymienione w zakresie nie są objęte ceną podstawową."],
   ["3. Materiały i współpraca", "Klient przekazuje materiały, do których ma prawa, oraz terminowo akceptuje kolejne etapy. Wykonawca może pomóc zaplanować treści i dobrać legalne zdjęcia licencjonowane. Odpowiedzialność za zgodność przekazanych tekstów, znaków, zdjęć, cenników i informacji branżowych z prawem oraz stanem faktycznym pozostaje po stronie Klienta."],
   ["4. Etapy i termin", "Praca przebiega przez brief i zakres, projekt, realizację, uporządkowane poprawki, testy jakości (QA), publikację i przekazanie. Typowe terminy podane na stronie są orientacyjne; wiążący termin wpisuje się do oferty. Termin ulega odpowiedniemu przesunięciu, gdy oczekiwanie dotyczy materiałów, odpowiedzi, akceptacji lub decyzji Klienta."],

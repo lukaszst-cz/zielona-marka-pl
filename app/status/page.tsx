@@ -73,7 +73,7 @@ export default function StatusEntry() {
       </section>
       <p className="status-security shell">
         Kod daje dostęp tylko do jednego projektu. Nie udostępniaj go osobom postronnym.
-        W razie problemu napisz na <a href="mailto:lukasz.staniewicz@gmail.com">lukasz.staniewicz@gmail.com</a>.
+        W razie problemu napisz na <a href="mailto:kontakt@zielona-marka.pl">kontakt@zielona-marka.pl</a>.
       </p>
     </main>
   );

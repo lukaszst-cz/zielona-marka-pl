@@ -788,7 +788,7 @@ export default function Home() {
             </p>
             <div className="contact-direct">
               <a href="tel:+48450458466"><small>M:</small><strong>+48 450 458 466 ↗</strong></a>
-              <a href="mailto:lukasz.staniewicz@gmail.com"><small>E-mail:</small><strong>lukasz.staniewicz@gmail.com ↗</strong></a>
+              <a href="mailto:kontakt@zielona-marka.pl"><small>E-mail:</small><strong>kontakt@zielona-marka.pl ↗</strong></a>
             </div>
           </div>
           <form onSubmit={submitBrief}>

@@ -19,7 +19,7 @@ export default function Privacy() {
         <p>
           Administratorem danych osobowych jest Łukasz Staniewicz, działający pod
           marką Zielona Marka. W sprawach związanych z danymi osobowymi napisz na
-          <a href="mailto:lukasz.staniewicz@gmail.com"> lukasz.staniewicz@gmail.com</a>
+          <a href="mailto:kontakt@zielona-marka.pl"> kontakt@zielona-marka.pl</a>
           {" lub zadzwoń pod "}
           <a href="tel:+48450458466">+48 450 458 466</a>.
         </p>

@@ -77,7 +77,7 @@ export default function RootLayout({
     name: "Zielona Marka",
     description: "Projektowanie i wdrażanie stron internetowych dla firm.",
     url: "https://zielona-marka.pl",
-    email: "lukasz.staniewicz@gmail.com",
+    email: "kontakt@zielona-marka.pl",
     telephone: "+48 450 458 466",
     sameAs: ["https://github.com/lukaszst-cz"],
     areaServed: [
