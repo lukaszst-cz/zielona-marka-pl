@@ -44,7 +44,7 @@ export default function StudioClient({ ownerEmail }:{ ownerEmail:string }) {
   if(loading) return <main className="studio-loading">Ładuję zaplecze Zielonej Marki…</main>;
   return <main className="studio-app">
     <aside className="studio-sidebar"><Link className="brand" href="/"><BrandSignature compact /></Link><nav>{tabs.map(([id,label])=><button key={id} className={tab===id?"active":""} onClick={()=>setTab(id)}><span>{id==="pulpit"?"⌂":id==="zapytania"?"↗":id==="sprzedaz"?"◎":id==="projekty"?"▦":"✓"}</span>{label}{id==="zapytania"&&kpi.newInquiries>0?<b>{kpi.newInquiries}</b>:null}</button>)}</nav><div className="studio-account"><small>Zalogowany właściciel</small><span>{ownerEmail}</span><form method="post" action="/api/studio/session"><input type="hidden" name="_action" value="logout"/><button type="submit">Wyloguj</button></form></div></aside>
-    <div className="studio-content"><header><div><span className="section-no">ZAPLECZE OPERACYJNE</span><h1>{tabs.find(x=>x[0]===tab)?.[1]}</h1></div><Link href="/">Podgląd strony ↗</Link></header>{notice&&<div className="toast">{notice}</div>}
+    <div className="studio-content"><header><div><span className="section-no">ZAPLECZE OPERACYJNE</span><h1>{tabs.find(x=>x[0]===tab)?.[1]}</h1></div><div className="studio-header-links"><Link href="/umowa-przykladowa">Wzór umowy ↗</Link><Link href="/">Podgląd strony ↗</Link></div></header>{notice&&<div className="toast">{notice}</div>}
       {tab==="pulpit"&&<Dashboard data={data} kpi={kpi} setTab={setTab}/>} 
       {tab==="zapytania"&&<Inquiries rows={data.inquiries} patch={patch} remove={remove}/>} 
       {tab==="sprzedaz"&&<Leads rows={data.leads} create={create} patch={patch} remove={remove}/>} 
