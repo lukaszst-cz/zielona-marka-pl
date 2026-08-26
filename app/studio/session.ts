@@ -1,6 +1,6 @@
 import { env } from "cloudflare:workers";
 
-export const OWNER_EMAIL = "wlasciciel@przyklad.pl";
+export const OWNER_EMAIL = "lukasz.staniewicz@gmail.com";
 export const STUDIO_COOKIE = "zielona_marka_studio";
 export const SESSION_MAX_AGE = 60 * 60 * 12;
 
