@@ -1,10 +1,22 @@
 export default function BrandSignature({ compact = false }: { compact?: boolean }) {
   return (
     <span className={`brand-signature${compact ? " compact" : ""}`} role="img" aria-label="Zielona Marka">
-      <svg className="brand-apple" viewBox="0 0 32 32" focusable="false">
-        <path className="brand-apple-line" d="M24.8 8.2C19.6 5.5 11.6 6.1 7.4 10.7C2.5 16.1 5.2 25.5 11.2 28.1C14.1 29.4 17 28.4 19 27.1" />
-        <path className="brand-leaf" d="M18.2 5.7C20.1 2.7 23.1 1.9 26.7 2.4C25.4 5.8 23 7.4 19.5 7.7Z" />
-        <path className="brand-leaf-line" d="M20.1 7.8C20.7 6.2 21.8 4.9 23.5 3.8" />
+      <svg className="brand-apple" viewBox="0 0 170 170" focusable="false">
+        <defs>
+          <linearGradient id="brandAppleRibbon" x1="38" y1="35" x2="115" y2="158" gradientUnits="userSpaceOnUse">
+            <stop stopColor="#A8D83E" />
+            <stop offset="0.48" stopColor="#72BE36" />
+            <stop offset="1" stopColor="#078B4A" />
+          </linearGradient>
+          <linearGradient id="brandAppleLeaf" x1="91" y1="5" x2="116" y2="41" gradientUnits="userSpaceOnUse">
+            <stop stopColor="#A8D83E" />
+            <stop offset="1" stopColor="#4BAE37" />
+          </linearGradient>
+        </defs>
+        <path className="brand-apple-outline" d="M154 57C132 40 103 38 78 49C54 37 28 44 15 67C-2 97 10 136 36 153C53 164 68 153 81 145C98 158 123 162 149 146" />
+        <path className="brand-apple-ribbon" d="M154 57C132 40 103 38 78 49C54 37 28 44 15 67C-2 97 10 136 36 153C53 164 68 153 81 145C98 158 123 162 149 146" />
+        <path className="brand-leaf" d="M84 39C86 18 104 1 133 2C126 24 110 38 86 42Z" />
+        <path className="brand-leaf-line" d="M91 36C101 25 112 15 125 7" />
       </svg>
       <span className="brand-wordmark">
         <b>ZIELONA</b>
