@@ -155,5 +155,5 @@ button,input,select,textarea{font:inherit}.section{padding:120px 0}.section-no{f
 [hidden]{display:none!important}
 
 /* Finalna hierarchia znaku w nagłówku: MARKA ma być zielona i mocniejsza. */
-.brand-wordmark b:last-of-type{color:var(--lime);font-weight:800;-webkit-text-stroke:1px #13281f;paint-order:stroke fill}
+.brand-wordmark b:last-of-type{color:var(--lime);font-weight:800;-webkit-text-stroke:1px #087E45;paint-order:stroke fill}
 .site-header .brand-wordmark b:last-of-type{color:var(--lime);font-weight:800}
