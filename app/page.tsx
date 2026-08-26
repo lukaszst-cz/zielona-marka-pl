@@ -370,6 +370,12 @@ export default function Home() {
           <span className="section-no">JEDNA STRONA / KAŻDY EKRAN</span>
           <h2>Na telefonie klient ma równie łatwo jak na komputerze.</h2>
           <p>Najważniejsze informacje, numer telefonu i formularz pozostają pod ręką. Układ nie jest tylko pomniejszany, lecz świadomie porządkowany dla ekranu, którego klient naprawdę używa.</p>
+          <aside className="mobile-evidence" aria-label="Dlaczego strona musi działać dobrze na telefonie">
+            <div><b>92,8%</b><span>polskich internautów korzysta z urządzeń mobilnych</span></div>
+            <div><b>~70%</b><span>czasu online przypada na aplikacje mobilne</span></div>
+            <small>Źródło: <a href="https://www.iab.org.pl/aktualnosci/6-megatrendow-zmieniajacych-rynek-reklamy/" target="_blank" rel="noreferrer">IAB Polska, raport 2025/2026 ↗</a></small>
+          </aside>
+          <div className="web-traffic-note"><b>Ruch WWW w Polsce (lipiec 2026):</b> ok. 38% telefon, 61% komputer. <a href="https://gs.statcounter.com/platform-market-share/desktop-mobile-tablet/poland" target="_blank" rel="noreferrer">Statcounter ↗</a><small>To odwiedziny stron WWW; nie czas spędzany w aplikacjach.</small></div>
           <a href="tel:+48450458466">Sprawdź działający link telefonu <b>+48 450 458 466 ↗</b></a>
         </div>
         <div className="responsive-devices" aria-hidden="true">
