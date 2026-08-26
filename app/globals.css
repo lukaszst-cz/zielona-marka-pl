@@ -51,7 +51,7 @@ button,input,select,textarea{font:inherit}.section{padding:120px 0}.section-no{f
 
 /* Rozróżnienie drugiego członu marki: jasny błękit, mocniejsza waga. */
 .brand-wordmark b:last-of-type,footer .brand-wordmark b:last-of-type,.studio-sidebar .brand-wordmark b:last-of-type{color:var(--green);font-weight:700}
-.site-header .brand-wordmark b:last-of-type{color:var(--green);font-weight:800}
+.site-header .brand-wordmark b:last-of-type{color:var(--lime);font-weight:800}
 .demo-return-links{display:flex;align-items:center;gap:14px}.demo-return-links a{font-size:10px;color:var(--lime)}.concept-return-links{display:flex;gap:18px;align-items:center}@media(max-width:700px){.demo-return-links a:not(:last-child){display:none}.concept-return-links{gap:10px}.concept-return-links .text-link{font-size:9px}}
 
 /* Branżowe zaplecza procesowe */
@@ -155,4 +155,4 @@ button,input,select,textarea{font:inherit}.section{padding:120px 0}.section-no{f
 [hidden]{display:none!important}
 
 /* Finalna hierarchia znaku w nagłówku: MARKA ma być zielona i mocniejsza. */
-.site-header .brand-wordmark b:last-of-type{color:var(--green);font-weight:800}
+.site-header .brand-wordmark b:last-of-type{color:var(--lime);font-weight:800}
