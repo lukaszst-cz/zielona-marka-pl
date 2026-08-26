@@ -19,11 +19,11 @@ export default function BistroWebsiteDemo() {
     <nav className="bistro-nav">
       <a className="bistro-wordmark" href="#start"><span>B</span>BISTRO FORMA</a>
       <div><a href="#menu">Menu</a><a href="#historia">O nas</a><a href="#kontakt">Kontakt</a><a href="/#realizacje">Portfolio</a><a href="/">Zielona Marka</a></div>
-      <a className="bistro-book" href="#rezerwacja">Rezerwuj stolik</a>
+      <a className="bistro-book" href="#rezerwacja">Rezerwuj online</a>
     </nav>
 
     <header id="start" className="bistro-hero">
-      <div className="bistro-hero-copy"><span>WARSZAWA · KUCHNIA SEZONOWA</span><h1>Prosto.<br/><em>Świeżo.</em><br/>Razem.</h1><p>Codzienna kuchnia oparta na sezonie, dobrym produkcie i swobodnej atmosferze.</p><div><a href="#menu">Zobacz menu ↓</a><a href="#rezerwacja">Zarezerwuj stolik ↗</a></div></div>
+      <div className="bistro-hero-copy"><span>WARSZAWA · KUCHNIA SEZONOWA</span><h1>Prosto.<br/><em>Świeżo.</em><br/>Razem.</h1><p>Codzienna kuchnia oparta na sezonie, dobrym produkcie i swobodnej atmosferze.</p><div><a href="#menu">Zobacz menu ↓</a><a href="#rezerwacja">Zarezerwuj online ↗</a></div></div>
       <figure><img src="/concept-bistro.jpg" alt="Stół i potrawy w Bistro Forma"/><figcaption><b>FORMA / 01</b><span>Lunch · kolacja · spotkania</span></figcaption></figure>
       <div className="bistro-stamp" aria-hidden="true">LOCAL<br/>SEASONAL<br/>HONEST</div>
     </header>
@@ -40,8 +40,8 @@ export default function BistroWebsiteDemo() {
 
     <section className="bistro-evening"><div><span>PIĄTKI / 19:00</span><h2>Stół degustacyjny</h2><p>Pięć dań, jeden wspólny stół i produkty wybrane tego samego tygodnia.</p></div><a href="#rezerwacja">Sprawdź termin <b>↗</b></a></section>
 
-    <section id="rezerwacja" className="bistro-reservation"><div><span>03 / REZERWACJA</span><h2>Zostaw miejsce<br/>na dobry wieczór.</h2></div><div><p>W gotowym wdrożeniu formularz może łączyć się z kalendarzem, potwierdzeniami e-mail lub systemem rezerwacji.</p><a href="tel:+48450458466">Zadzwoń: +48 450 458 466 ↗</a><small>To demonstracja portfolio. Nie składa prawdziwej rezerwacji.</small></div></section>
+    <section id="rezerwacja" className="bistro-reservation"><div><span>03 / REZERWACJA</span><h2>Zostaw miejsce<br/>na dobry wieczór.</h2></div><div><p>W gotowym wdrożeniu ten przycisk prowadzi do formularza rezerwacji, kalendarza dostępności albo systemu typu Booksy czy Reservio. Klient wybiera termin i liczbę osób online, bez telefonowania.</p><a href="/#kontakt">Zapytaj o wdrożenie rezerwacji online ↗</a><small>To demonstracja portfolio. Dla prawdziwego lokalu podpinamy jego formularz, kalendarz lub system rezerwacji.</small></div></section>
 
-    <footer id="kontakt" className="bistro-footer"><div className="bistro-wordmark"><span>B</span>BISTRO FORMA</div><div><small>GODZINY</small><p>wt–czw 12:00–22:00<br/>pt–sob 12:00–23:00<br/>nd 12:00–20:00</p></div><div><small>KONTAKT</small><p>+48 450 458 466<br/>lukasz.staniewicz@gmail.com</p></div><div><small>PROJEKT DEMONSTRACYJNY</small><p>Projekt i realizacja:<br/><a href="/?widok=realizacje#realizacje">Zielona Marka ↗</a></p></div></footer>
+    <footer id="kontakt" className="bistro-footer"><div className="bistro-wordmark"><span>B</span>BISTRO FORMA</div><div><small>GODZINY</small><p>wt–czw 12:00–22:00<br/>pt–sob 12:00–23:00<br/>nd 12:00–20:00</p></div><div><small>KONTAKT Z REALIZATOREM</small><p><a href="/#kontakt">Zielona Marka<br/>strony i systemy dla firm ↗</a></p></div><div><small>PROJEKT DEMONSTRACYJNY</small><p>Projekt i realizacja:<br/><a href="/#realizacje">Zielona Marka ↗</a></p></div></footer>
   </main>;
 }
