@@ -226,6 +226,10 @@ export default function Home() {
           <a href="/status">Status projektu</a>
           <a href="#kontakt">Kontakt</a>
         </div>
+        <div className="language-switch" aria-label="Wybór języka">
+          <a className="active" href="/" lang="pl" aria-label="Polska wersja językowa">🇵🇱 <span>PL</span></a>
+          <a href="/en" lang="en" aria-label="English version">🇬🇧 <span>EN</span></a>
+        </div>
         <a className="button button-small" href="#kalkulator">
           Wyceń projekt
         </a>
@@ -769,7 +773,7 @@ export default function Home() {
             </p>
             <p className="contact-area">
               Lokalnie: Ząbki, Marki, Warszawa, Kobyłka, Zielonka, Radzymin,
-              Wołomin, Nieporęt i Legionowo. Zdalnie: cała Polska.
+              Wołomin, Nieporęt i Legionowo.<br/>Zdalnie: cała Polska.
             </p>
             <div className="contact-direct">
               <a href="tel:+48450458466"><small>M:</small><strong>+48 450 458 466 ↗</strong></a>
