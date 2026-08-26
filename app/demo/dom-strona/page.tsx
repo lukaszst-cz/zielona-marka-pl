@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import type { AnchorHTMLAttributes } from "react";
 
 export const metadata: Metadata = {
   title: "Dom Dobry | demonstracyjny serwis nieruchomości",
@@ -7,6 +7,8 @@ export const metadata: Metadata = {
   openGraph: { images: [] },
   twitter: { images: [] },
 };
+
+const Link = ({ href, ...props }: AnchorHTMLAttributes<HTMLAnchorElement>) => <a href={href} {...props} />;
 
 const homes = [
   ["A.01", "3 pokoje", "61,8 m²", "ogród 84 m²", "Dostępny"],

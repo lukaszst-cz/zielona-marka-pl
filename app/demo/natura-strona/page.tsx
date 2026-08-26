@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import type { AnchorHTMLAttributes } from "react";
 
 export const metadata: Metadata = {
   title: "Natura Studio | demonstracyjna strona wellness",
@@ -7,6 +7,8 @@ export const metadata: Metadata = {
   openGraph: { images: [] },
   twitter: { images: [] },
 };
+
+const Link = ({ href, ...props }: AnchorHTMLAttributes<HTMLAnchorElement>) => <a href={href} {...props} />;
 
 const treatments = [
   ["01", "Rytuał twarzy", "75 min", "od 240 zł"],

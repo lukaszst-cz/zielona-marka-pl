@@ -1,7 +1,9 @@
 "use client";
-import Link from "next/link";
+import type { AnchorHTMLAttributes } from "react";
 import { useMemo, useState } from "react";
 import BrandSignature from "../../BrandSignature";
+
+const Link = ({ href, ...props }: AnchorHTMLAttributes<HTMLAnchorElement>) => <a href={href} {...props} />;
 
 const stages = ["Nowe", "Wycena", "Przypisane", "W trasie", "Dostarczone", "Faktura"];
 const initial = [
