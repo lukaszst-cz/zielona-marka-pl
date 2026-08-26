@@ -18,7 +18,7 @@ export default function BistroWebsiteDemo() {
   return <main className="bistro-site">
     <nav className="bistro-nav">
       <a className="bistro-wordmark" href="#start"><span>B</span>BISTRO FORMA</a>
-      <div><a href="#menu">Menu</a><a href="#historia">O nas</a><a href="#kontakt">Kontakt</a></div>
+      <div><a href="#menu">Menu</a><a href="#historia">O nas</a><a href="#kontakt">Kontakt</a><a href="/#realizacje">Portfolio</a><a href="/">Zielona Marka</a></div>
       <a className="bistro-book" href="#rezerwacja">Rezerwuj stolik</a>
     </nav>
 

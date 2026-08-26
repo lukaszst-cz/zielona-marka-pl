@@ -698,10 +698,10 @@ export default function Home() {
                 <div className="browser-bar"><i /><i /><i /></div>
                 <div className="mock-body" style={project.imageUrl ? { backgroundImage: `linear-gradient(112deg,rgba(10,31,22,.9) 0%,rgba(10,31,22,.78) 48%,rgba(10,31,22,.16) 100%),url(${project.imageUrl})`, backgroundSize: "cover", backgroundPosition: "center" } : undefined}>
                   <small>{project.type}</small><strong>{project.name}</strong><span>{project.description || <>Przemyślany projekt.<br />Wyraźny efekt.</>}</span>
-                  <Link href={target} target={project.websiteUrl?.startsWith("http") ? "_blank" : undefined} aria-label={`Otwórz ${project.name}`}>↗</Link>
+                  <a href={target} aria-label={`Otwórz ${project.name}`}>↗</a>
                 </div>
               </div>
-              <div className="project-caption"><div><h3>{project.name}</h3><span>{project.type}</span></div><div className="project-actions"><Link href={target} target={target.startsWith("http") ? "_blank" : undefined}>{project.primaryLabel || "Zobacz stronę"} ↗</Link>{project.backendUrl && <Link href={project.backendUrl} target={project.backendUrl.startsWith("http") ? "_blank" : undefined}>{project.secondaryLabel || "Zobacz zaplecze"} ↗</Link>}</div></div>
+              <div className="project-caption"><div><h3>{project.name}</h3><span>{project.type}</span></div><div className="project-actions"><a href={target}>{project.primaryLabel || "Zobacz stronę"} ↗</a>{project.backendUrl && <a href={project.backendUrl}>{project.secondaryLabel || "Zobacz zaplecze"} ↗</a>}</div></div>
             </article>;
           })}
         </div>

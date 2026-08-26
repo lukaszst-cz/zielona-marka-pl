@@ -19,7 +19,7 @@ export default function NaturaSite() {
     <main className="natura-site">
       <nav className="natura-nav">
         <Link className="natura-brand" href="/"><i />NATURA <b>STUDIO</b></Link>
-        <div><a href="#zabiegi">Zabiegi</a><a href="#filozofia">Filozofia</a><a href="#rezerwacja">Kontakt</a></div>
+        <div><a href="#zabiegi">Zabiegi</a><a href="#filozofia">Filozofia</a><a href="#rezerwacja">Kontakt</a><a href="/#realizacje">Portfolio</a><a href="/">Zielona Marka</a></div>
         <a className="natura-book" href="#rezerwacja">Zarezerwuj termin</a>
       </nav>
       <header className="natura-hero">

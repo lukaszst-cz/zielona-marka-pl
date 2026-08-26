@@ -15,6 +15,8 @@ export default function BrandSignature({ compact = false }: { compact?: boolean 
         </defs>
         <path className="brand-apple-outline" d="M154 57C132 40 103 38 78 49C54 37 28 44 15 67C-2 97 10 136 36 153C53 164 68 153 81 145C98 158 123 162 149 146" />
         <path className="brand-apple-ribbon" d="M154 57C132 40 103 38 78 49C54 37 28 44 15 67C-2 97 10 136 36 153C53 164 68 153 81 145C98 158 123 162 149 146" />
+        <path className="brand-apple-tip" d="M164 57L144 46L149 68Z" />
+        <path className="brand-apple-tip" d="M160 145L140 133L147 156Z" />
         <path className="brand-leaf" d="M84 39C86 18 104 1 133 2C126 24 110 38 86 42Z" />
         <path className="brand-leaf-line" d="M91 36C101 25 112 15 125 7" />
       </svg>
