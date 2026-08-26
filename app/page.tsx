@@ -762,6 +762,7 @@ export default function Home() {
               ["Czym jest zaplecze typu mały CRM lub ERP?", "To prywatna część systemu, w której firma obsługuje kontakty, zapytania, zlecenia, terminy, dokumenty i wyniki. CRM oznacza bazę klientów, a ERP pomaga porządkować pracę firmy. To nie musi być duży system korporacyjny, lecz proste centrum codziennej pracy."],
               ["Czy mogę zacząć od małej strony i później ją rozbudować?", "Tak. Już na starcie ustalamy, które elementy mogą dojść później, np. kolejne usługi, portfolio, blog, płatności, panel klienta lub automatyzacje. Dzięki temu pierwszy etap pozostaje rozsądny cenowo."],
               ["Kto jest właścicielem domeny, kont i gotowej strony?", "Domena i kluczowe konta powinny należeć do klienta. Po rozliczeniu projektu przekazuję uzgodnione dostępy, kod lub panel oraz instrukcję obsługi. Zasady przekazania zapisujemy w zakresie współpracy."],
+              ["Ile propozycji projektu otrzymam na początku?", "Przy standardowej stronie przygotowuję jeden dopracowany kierunek, oparty na briefie i celach firmy. Zanim zacznie się kodowanie, omawiamy go i wprowadzamy uzgodnione poprawki. Dwa lub trzy odrębne kierunki to osobny etap koncepcyjny, wyceniany przed startem; ma sens wtedy, gdy marka naprawdę rozważa różne pozycjonowanie lub stylistyki."],
               ["Ile poprawek obejmuje projekt?", "Liczbę rund wpisuję do oferty przed startem. Typowy mały projekt obejmuje dwie uporządkowane rundy uwag. Dzięki temu poprawki są czytelne, a termin nie rozmywa się przez pojedyncze wiadomości."],
               ["Czy można przenieść obecną stronę lub domenę?", "Najczęściej tak. Najpierw sprawdzam domenę, hosting, pocztę, treści i ryzyko utraty widoczności. Dopiero potem planuję przeniesienie oraz test działania formularzy, przekierowań i bezpiecznego połączenia (SSL)."],
             ].map(([question, answer], index) => (
@@ -871,7 +872,7 @@ export default function Home() {
             ) : (
               <>
               <a className="quick-chat-whatsapp" href="https://wa.me/48603806833?text=Dzie%C5%84%20dobry%2C%20znalaz%C5%82em%20Zielon%C4%85%20Mark%C4%99%20i%20chc%C4%99%20zapyta%C4%87%20o%20projekt." target="_blank" rel="noreferrer">
-                <span className="quick-chat-whatsapp-mark" aria-hidden="true">●</span>
+                <span className="quick-chat-whatsapp-mark" aria-hidden="true"><svg viewBox="0 0 32 32" focusable="false"><path fill="currentColor" d="M16 3.2a12.55 12.55 0 0 0-10.7 19.1L4 28.8l6.65-1.72A12.75 12.75 0 1 0 16 3.2Zm0 22.9c-1.9 0-3.77-.51-5.4-1.47l-.39-.23-3.95 1.02 1.06-3.84-.26-.4A10.54 10.54 0 1 1 16 26.1Zm5.78-7.93c-.32-.16-1.88-.93-2.17-1.04-.29-.11-.5-.16-.71.16-.21.31-.81 1.03-.99 1.24-.18.21-.36.24-.67.08a8.66 8.66 0 0 1-2.55-1.57 9.55 9.55 0 0 1-1.77-2.2c-.18-.31-.02-.48.14-.63.14-.14.31-.36.47-.54.16-.18.21-.31.31-.52.1-.21.05-.39-.03-.55-.08-.16-.71-1.71-.97-2.34-.26-.62-.52-.53-.71-.54h-.61c-.21 0-.55.08-.84.39-.29.31-1.1 1.08-1.1 2.63s1.13 3.05 1.29 3.26c.16.21 2.23 3.41 5.4 4.78.75.32 1.34.51 1.8.65.76.24 1.45.2 1.99.12.61-.09 1.88-.77 2.15-1.51.26-.74.26-1.38.18-1.51-.08-.13-.29-.21-.61-.36Z"/></svg></span>
                 <span><b>Napisz na WhatsApp</b><small>Rozmowa na numer +48 603 806 833</small></span>
                 <i>↗</i>
               </a>
