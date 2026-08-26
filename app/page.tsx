@@ -364,6 +364,33 @@ export default function Home() {
           <p className="lighthouse-note"><b>Lighthouse</b> to automatyczny test Google sprawdzający m.in. szybkość, dostępność i techniczną jakość strony. Wynik mierzę przed publikacją; nie jest obietnicą konkretnej pozycji w Google.</p>
         </div>
       </section>
+      <section id="realizacje" className="section shell">
+        <div className="section-head">
+          <div><span className="section-no">03 / WYBRANE REALIZACJE</span><h2>Obietnice pokazane w praktyce.</h2></div>
+          <p>Zobacz działające wdrożenia wraz z zapleczem oraz dopracowane kierunki koncepcyjne dla różnych branż. Każdy projekt odpowiada na inny cel biznesowy.</p>
+        </div>
+        <div className="operations-portfolio-banner">
+          <div><span>PORTFOLIO OPERACYJNE · PROCESY · KPI · QA</span><h3>Nie tylko strony. Zobacz, jak porządkuję działanie firmy.</h3><p>Przeorganizowane portfolio łączy modele procesów, dashboardy, automatyzacje, role, dokumentację i kontrolę jakości. Strona „Start tutaj” prowadzi przez projekty w logicznej kolejności.</p></div>
+          <div><a href="https://lukaszst-cz.github.io/operations-office-portfolio/zielona-marka/udostepnij.html" target="_blank" rel="noreferrer">Otwórz portfolio operacyjne <b>↗</b></a><a href="https://github.com/lukaszst-cz/operations-office-portfolio" target="_blank" rel="noreferrer">Zobacz kod na GitHubie ↗</a></div>
+        </div>
+        <div className="projects">
+          {portfolioProjects.map((project) => {
+            const conceptSlug = Object.entries(concepts).find(([, concept]) => concept.name === project.name)?.[0];
+            const target = project.websiteUrl || (conceptSlug ? `/realizacje/${conceptSlug}` : "#kontakt");
+            return <article className={`project ${project.color}`} key={project.n}>
+              <div className="project-top"><span>{project.note}</span><b>{project.n}</b></div>
+              <div className="browser-mock">
+                <div className="browser-bar"><i /><i /><i /></div>
+                <div className="mock-body" style={project.imageUrl ? { backgroundImage: `linear-gradient(112deg,rgba(10,31,22,.9) 0%,rgba(10,31,22,.78) 48%,rgba(10,31,22,.16) 100%),url(${project.imageUrl})`, backgroundSize: "cover", backgroundPosition: "center" } : undefined}>
+                  <small>{project.type}</small><strong>{project.name}</strong><span>{project.description || <>Przemyślany projekt.<br />Wyraźny efekt.</>}</span>
+                  <a href={target} aria-label={`Otwórz ${project.name}`}>↗</a>
+                </div>
+              </div>
+              <div className="project-caption"><div><h3>{project.name}</h3><span>{project.type}</span></div><div className="project-actions"><a href={target}>{project.primaryLabel || "Zobacz stronę"} ↗</a>{project.backendUrl && <a href={project.backendUrl}>{project.secondaryLabel || "Zobacz zaplecze"} ↗</a>}</div></div>
+            </article>;
+          })}
+        </div>
+      </section>
       <section className="visual-proof-strip" aria-label="Przykładowe kierunki wizualne dla branż">
         <a href="#realizacje" style={{ backgroundImage: "linear-gradient(180deg,transparent,rgba(15,25,20,.78)),url(/concept-bistro.jpg)" }}><small>KIERUNEK 01 / GASTRONOMIA</small><strong>Smak i atmosfera</strong><span>Menu, rezerwacje i lokalna widoczność ↓</span></a>
         <a href="#realizacje" style={{ backgroundImage: "linear-gradient(180deg,transparent,rgba(15,25,20,.78)),url(/concept-natura.jpg)" }}><small>KIERUNEK 02 / WELLNESS</small><strong>Spokój i zaufanie</strong><span>Usługi, terminy i prosta rezerwacja ↓</span></a>
@@ -391,7 +418,7 @@ export default function Home() {
         <div className="shell">
           <div className="section-head">
             <div>
-              <span className="section-no">03 / OFERTA I CENNIK</span>
+              <span className="section-no">04 / OFERTA I CENNIK</span>
               <h2>Jasny zakres. Realne ceny.</h2>
             </div>
             <p>
@@ -479,7 +506,7 @@ export default function Home() {
       <section id="kalkulator" className="section calculator-section">
         <div className="shell calculator-grid">
           <div>
-            <span className="section-no">04 / SZYBKA WYCENA</span>
+            <span className="section-no">05 / SZYBKA WYCENA</span>
             <h2>Sprawdź budżet swojego projektu.</h2>
             <p>
               Wynik jest orientacyjny. Finalna oferta zależy od zakresu,
@@ -552,7 +579,7 @@ export default function Home() {
       <section id="proces" className="section shell">
         <div className="section-head">
           <div>
-            <span className="section-no">05 / PROCES</span>
+            <span className="section-no">06 / PROCES</span>
             <h2>Od pomysłu do działającej strony.</h2>
           </div>
           <p>
@@ -586,7 +613,7 @@ export default function Home() {
       </section>
       <section className="section included">
         <div className="shell">
-            <span className="section-no">06 / W STANDARDZIE</span>
+            <span className="section-no">07 / W STANDARDZIE</span>
           <div className="included-grid">
             <h2>Gotowa nie tylko do oglądania, ale do pracy.</h2>
             <ul>
@@ -626,7 +653,7 @@ export default function Home() {
       </section>
       <section id="technologie" className="section tech-section">
         <div className="shell">
-          <div className="section-head"><div><span className="section-no">07 / TECHNOLOGIE</span><h2>Dobieram narzędzie do celu.</h2></div><p>Nie sprzedaję jednej technologii każdemu. Prosta strona powinna pozostać prosta, a zaplecze firmy ma naprawdę oszczędzać czas.</p></div>
+          <div className="section-head"><div><span className="section-no">08 / TECHNOLOGIE</span><h2>Dobieram narzędzie do celu.</h2></div><p>Nie sprzedaję jednej technologii każdemu. Prosta strona powinna pozostać prosta, a zaplecze firmy ma naprawdę oszczędzać czas.</p></div>
           <div className="tech-grid">
             {technologies.map((tech, index) => <article key={tech.title} className={expandedTech === index ? "expanded" : ""} hidden={!showAllTechnologies && index >= 6}>
               <button onClick={() => setExpandedTech(expandedTech === index ? null : index)} aria-expanded={expandedTech === index}>
@@ -671,7 +698,7 @@ export default function Home() {
       <section id="automatyzacje" className="section automation-showcase">
         <div className="shell showcase-grid">
           <div>
-            <span className="section-no">08 / AUTOMATYZACJA W PRAKTYCE</span>
+            <span className="section-no">09 / AUTOMATYZACJA W PRAKTYCE</span>
             <h2>Zobacz, jak może pracować firma transportowa.</h2>
             <p>Interaktywne demo pokazuje cały obieg zlecenia: od formularza, przez kierowcę i dostawę, aż do dokumentów, faktury oraz KPI.</p>
             <a className="button" href="/demo/transport">Uruchom demonstrację <span>↗</span></a>
@@ -684,7 +711,7 @@ export default function Home() {
       <section id="strefa-klienta" className="section client-portal-showcase">
         <div className="shell portal-showcase-grid">
           <div>
-            <span className="section-no">09 / STREFA KLIENTA</span>
+            <span className="section-no">10 / STREFA KLIENTA</span>
             <h2>Twój klient zawsze wie, na jakim etapie jest projekt.</h2>
             <p>Po rejestracji zlecenia otrzymuje indywidualny kod. Bez logowania do Twojego Studio sprawdza postęp, kolejny krok, termin i roboczą umowę do pobrania.</p>
             <ul>
@@ -701,33 +728,6 @@ export default function Home() {
             <a className="button" href="/status">Wpisz kod klienta <span>↗</span></a>
             <small>Nowy kod tworzysz w Studio automatycznie podczas zakładania projektu.</small>
           </div>
-        </div>
-      </section>
-      <section id="realizacje" className="section shell">
-        <div className="section-head">
-          <div><span className="section-no">10 / WYBRANE REALIZACJE</span><h2>Obietnice pokazane w praktyce.</h2></div>
-          <p>Zobacz działające wdrożenia wraz z zapleczem oraz dopracowane kierunki koncepcyjne dla różnych branż. Każdy projekt odpowiada na inny cel biznesowy.</p>
-        </div>
-        <div className="operations-portfolio-banner">
-          <div><span>PORTFOLIO OPERACYJNE · PROCESY · KPI · QA</span><h3>Nie tylko strony. Zobacz, jak porządkuję działanie firmy.</h3><p>Przeorganizowane portfolio łączy modele procesów, dashboardy, automatyzacje, role, dokumentację i kontrolę jakości. Strona „Start tutaj” prowadzi przez projekty w logicznej kolejności.</p></div>
-          <div><a href="https://lukaszst-cz.github.io/operations-office-portfolio/zielona-marka/udostepnij.html" target="_blank" rel="noreferrer">Otwórz portfolio operacyjne <b>↗</b></a><a href="https://github.com/lukaszst-cz/operations-office-portfolio" target="_blank" rel="noreferrer">Zobacz kod na GitHubie ↗</a></div>
-        </div>
-        <div className="projects">
-          {portfolioProjects.map((project) => {
-            const conceptSlug = Object.entries(concepts).find(([, concept]) => concept.name === project.name)?.[0];
-            const target = project.websiteUrl || (conceptSlug ? `/realizacje/${conceptSlug}` : "#kontakt");
-            return <article className={`project ${project.color}`} key={project.n}>
-              <div className="project-top"><span>{project.note}</span><b>{project.n}</b></div>
-              <div className="browser-mock">
-                <div className="browser-bar"><i /><i /><i /></div>
-                <div className="mock-body" style={project.imageUrl ? { backgroundImage: `linear-gradient(112deg,rgba(10,31,22,.9) 0%,rgba(10,31,22,.78) 48%,rgba(10,31,22,.16) 100%),url(${project.imageUrl})`, backgroundSize: "cover", backgroundPosition: "center" } : undefined}>
-                  <small>{project.type}</small><strong>{project.name}</strong><span>{project.description || <>Przemyślany projekt.<br />Wyraźny efekt.</>}</span>
-                  <a href={target} aria-label={`Otwórz ${project.name}`}>↗</a>
-                </div>
-              </div>
-              <div className="project-caption"><div><h3>{project.name}</h3><span>{project.type}</span></div><div className="project-actions"><a href={target}>{project.primaryLabel || "Zobacz stronę"} ↗</a>{project.backendUrl && <a href={project.backendUrl}>{project.secondaryLabel || "Zobacz zaplecze"} ↗</a>}</div></div>
-            </article>;
-          })}
         </div>
       </section>
       <section className="section faq-section">
