@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/strony-dla-firm-uslugowych`, changeFrequency: "weekly", priority: .85 },
     { url: `${base}/strony-dla-beauty`, changeFrequency: "weekly", priority: .85 },
     { url: `${base}/chatbot-dla-firm`, changeFrequency: "weekly", priority: .85 },
+    { url: `${base}/maly-crm-dla-firm`, changeFrequency: "weekly", priority: .9 },
     { url: `${base}/en`, changeFrequency: "weekly", priority: .7 },
     { url: `${base}/realizacje/natura-studio`, changeFrequency: "monthly", priority: .6 },
     { url: `${base}/realizacje/bistro-forma`, changeFrequency: "monthly", priority: .6 },

@@ -8,6 +8,7 @@ const navigation = [
   ["Dla branż", "/#dla-kogo"],
   ["Modernizacja", "/modernizacja-strony"],
   ["Realizacje", "/realizacje"],
+  ["Mały CRM", "/maly-crm-dla-firm"],
   ["Usprawnienia", "/usprawnienia-firmy"],
   ["Jak pracuję", "/jak-pracuje"],
 ] as const;

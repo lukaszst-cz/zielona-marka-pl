@@ -20,13 +20,14 @@ test("strona główna renderuje ofertę i drogę do kontaktu", async () => {
   assert.match(html, /Modernizacja/i);
   assert.match(html, /warsztaty/i);
   assert.match(html, /beauty/i);
+  assert.match(html, /Mały CRM/i);
   assert.match(html, /30% na start/i);
   assert.match(html, /kontakt@zielona-marka\.pl/i);
   assert.doesNotMatch(html, forbiddenBrand);
 });
 
 test("nowe zakładki są renderowane", async () => {
-  for (const path of ["/oferta", "/modernizacja-strony", "/realizacje", "/usprawnienia-firmy", "/jak-pracuje", "/kontakt", "/strony-dla-warsztatow", "/strony-dla-firm-uslugowych", "/strony-dla-beauty", "/chatbot-dla-firm", "/strony-internetowe-marki"]) {
+  for (const path of ["/oferta", "/modernizacja-strony", "/realizacje", "/usprawnienia-firmy", "/jak-pracuje", "/kontakt", "/strony-dla-warsztatow", "/strony-dla-firm-uslugowych", "/strony-dla-beauty", "/chatbot-dla-firm", "/maly-crm-dla-firm", "/strony-internetowe-marki"]) {
     const response = await render(path);
     assert.equal(response.status, 200, path);
     const html = await response.text();

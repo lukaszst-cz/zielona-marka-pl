@@ -3,7 +3,7 @@
 import { FormEvent, useEffect, useState } from "react";
 import Link from "./SafeLink";
 
-const goals = ["Nowa strona", "Modernizacja strony", "Formularz wyceny", "Chatbot", "Ceny i terminy"];
+const goals = ["Nowa strona", "Modernizacja strony", "Formularz wyceny", "Mały CRM", "Chatbot", "Ceny i terminy"];
 const industries = ["Warsztat / detailing", "Remonty / instalacje", "Beauty / wizyty", "Inna firma usługowa"];
 
 export default function DemoChatbot() {

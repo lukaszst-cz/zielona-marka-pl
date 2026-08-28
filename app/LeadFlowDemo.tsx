@@ -27,7 +27,7 @@ const config = {
     services: ["Konsultacja", "Pielęgnacja twarzy", "Stylizacja", "Masaż"],
     detailLabel: "Ważne informacje przed wizytą",
     detailPlaceholder: "Np. pierwsza wizyta, preferowane godziny popołudniowe",
-    dateLabel: "Preferowany termin (demo — we wdrożeniu wybierany w Booksy)",
+    dateLabel: "Preferowany termin (demo — docelowo Booksy, inny system lub formularz)",
   },
 } as const;
 
@@ -43,7 +43,7 @@ export default function LeadFlowDemo({ variant }: { variant: Variant }) {
 
   return <div className="leadflow-demo">
     <header><span>INTERAKTYWNE DEMO · NIC NIE WYSYŁAMY</span><h2>{c.title}</h2><p>Tak klient może przekazać dane potrzebne do odpowiedzi, wyceny lub rezerwacji.</p></header>
-    {variant === "beauty" && <div className="booksy-note"><b>STRONA + BOOKSY</b><span>W gotowej stronie ten etap może otworzyć oficjalny widget lub profil rezerwacji Booksy. Nie kopiujemy kalendarza.</span></div>}
+    {variant === "beauty" && <div className="booksy-note"><b>REZERWACJA DOBRANA DO SALONU</b><span>Ten etap może otworzyć Booksy, inny system, formularz, telefon lub WhatsApp. Booksy nie jest obowiązkowe.</span></div>}
     {!summary ? <form onSubmit={submit}>
       <label>{c.serviceLabel}<select name="service" required defaultValue=""><option value="" disabled>Wybierz usługę</option>{c.services.map(service => <option key={service}>{service}</option>)}</select></label>
       <label>{c.detailLabel}<textarea name="details" required rows={4} placeholder={c.detailPlaceholder} /></label>
