@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 
-const base: Record<string, number> = { "ZM Start — strona One Page": 2900, "ZM LeadFlow — strona i formularz": 4900, "ZM Flow AI — strona, formularz i chatbot": 7900, "ZM Bot FAQ — chatbot do istniejącej strony": 2500, "Prosty panel zleceń (mały CRM)": 2900 };
+const base: Record<string, number> = { "ZM Start — strona One Page": 2490, "ZM LeadFlow — strona i formularz": 4490, "ZM Flow AI — strona, formularz i chatbot": 6900, "ZM Bot FAQ — chatbot do istniejącej strony": 2500, "Prosty panel zleceń (mały CRM)": 4900 };
 
 export default function EstimateCalculator() {
   const [type, setType] = useState("ZM LeadFlow — strona i formularz");

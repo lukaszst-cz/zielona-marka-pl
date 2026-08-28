@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import PolishTypography from "./PolishTypography";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -100,7 +101,7 @@ export default function RootLayout({
       "Halinów",
       "Dąbrówka",
     ],
-    priceRange: "2900–15000 PLN",
+    priceRange: "2490–15000 PLN",
     serviceType: [
       "Projektowanie stron internetowych",
       "Strony dla warsztatów i detailingu",
@@ -119,6 +120,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        <PolishTypography />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}

@@ -22,6 +22,7 @@ test("strona główna renderuje ofertę i drogę do kontaktu", async () => {
   assert.match(html, /beauty/i);
   assert.match(html, /Mały CRM/i);
   assert.match(html, /30% na start/i);
+  assert.match(html, /2 490 zł/i);
   assert.match(html, /kontakt@zielona-marka\.pl/i);
   assert.doesNotMatch(html, forbiddenBrand);
 });
@@ -32,5 +33,7 @@ test("nowe zakładki są renderowane", async () => {
     assert.equal(response.status, 200, path);
     const html = await response.text();
     assert.doesNotMatch(html, forbiddenBrand, path);
+    if (path === "/oferta") assert.match(html, /Przelewy24/i);
+    if (path === "/maly-crm-dla-firm") assert.match(html, /PWA/i);
   }
 });

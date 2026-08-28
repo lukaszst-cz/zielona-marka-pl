@@ -61,7 +61,7 @@ export default function DemoChatbot() {
         {!goal && <div className="chat-step"><p>Co chcesz poprawić?</p><div className="chat-options">{goals.map(item => <button key={item} type="button" onClick={() => setGoal(item)}>{item}</button>)}</div></div>}
         {goal && !industry && <div className="chat-step"><div className="user-message">{goal}</div><p>W jakiej branży działasz?</p><div className="chat-options">{industries.map(item => <button key={item} type="button" onClick={() => setIndustry(item)}>{item}</button>)}</div><button className="chat-back" type="button" onClick={() => setGoal("")}>← Wróć</button></div>}
         {goal && industry && !sent && <div className="chat-step"><div className="user-message">{industry}</div>
-          {goal === "Ceny i terminy" && <div className="bot-message"><p><b>Orientacyjnie:</b> ZM Start od 2 900 zł / 7 dni, LeadFlow od 4 900 zł / 10–14 dni, Flow AI od 7 900 zł / 14–21 dni.</p><small>30% na start, 70% po odbiorze i QA, przed publikacją na serwerze klienta.</small></div>}
+          {goal === "Ceny i terminy" && <div className="bot-message"><p><b>Orientacyjnie:</b> ZM Start od 2 490 zł / 7 dni, LeadFlow od 4 490 zł / 10–14 dni, Flow AI od 6 900 zł / 14–21 dni.</p><small>30% na start, 70% po odbiorze i QA, przed publikacją na serwerze klienta.</small></div>}
           <p>Zostaw kontakt. Zgłoszenie trafi do panelu Zielonej Marki.</p>
           <form className="chat-lead-form" onSubmit={submit}>
             <label>Imię<input name="name" required autoComplete="name" /></label>

@@ -78,26 +78,26 @@ export const corePackages = [
   {
     label: "PAKIET 01",
     title: "ZM Start",
-    price: "od 2 900 zł netto",
+    price: "od 2 490 zł netto",
     time: "zwykle 7 dni roboczych",
     lead: "Jedna konkretna strona dla lokalnej firmy, która ma prowadzić z Google do telefonu lub zapytania.",
-    includes: ["strona One Page z ofertą i kontaktem", "telefon, WhatsApp, mapa i formularz", "podstawy lokalnego SEO i mierzenie zapytań", "testy jakości przed publikacją"],
+    includes: ["One Page do ok. 7 sekcji, oferta i kontakt", "telefon, WhatsApp, mapa oraz formularz", "wersja mobilna i podstawy lokalnego SEO", "podłączenie domeny lub hostingu klienta", "testy jakości, publikacja i 14 dni wsparcia"],
   },
   {
     label: "PAKIET 02",
     title: "ZM LeadFlow",
-    price: "od 4 900 zł netto",
+    price: "od 4 490 zł netto",
     time: "zwykle 10–14 dni roboczych",
     lead: "Strona i formularz kwalifikujący, dzięki którym firma otrzymuje kompletne zgłoszenia zamiast ogólnych pytań.",
-    includes: ["do 6 podstron i indywidualny układ", "formularz z opisem, terminem i możliwością dodania zdjęć", "lokalne SEO, analityka i przygotowanie Profilu Firmy Google", "raport QA i 14 dni wsparcia startowego"],
+    includes: ["do 6 podstron i indywidualny układ", "formularz z opisem, terminem i możliwością dodania zdjęć", "lokalne SEO, analityka i przygotowanie Profilu Firmy Google", "dwie rundy poprawek, raport QA i 14 dni wsparcia"],
   },
   {
     label: "PAKIET 03",
     title: "ZM Flow AI",
-    price: "od 7 900 zł netto",
+    price: "od 6 900 zł netto",
     time: "zwykle 14–21 dni roboczych",
     lead: "Strona, formularz i chatbot połączone z prostym obiegiem zapytań w firmie.",
-    includes: ["strona oraz formularz kwalifikujący", "chatbot oparty na zatwierdzonej bazie odpowiedzi", "przekazanie zgłoszeń do właściciela lub zespołu", "analityka, testy i wdrożenie z możliwością dalszej rozbudowy"],
+    includes: ["strona oraz formularz kwalifikujący", "chatbot FAQ lub AI oparty na zatwierdzonej bazie odpowiedzi", "przekazanie zgłoszeń do właściciela lub zespołu", "testy scenariuszy, analityka i ścieżka dalszej rozbudowy"],
   },
 ];
 
