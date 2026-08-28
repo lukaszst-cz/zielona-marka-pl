@@ -16,7 +16,7 @@ test("strona główna renderuje ofertę i drogę do kontaktu", async () => {
   const response = await render();
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.match(html, /konkretne zapytania/i);
+  assert.match(html, /cyfrowe miejsca/i);
   assert.match(html, /Modernizacja/i);
   assert.match(html, /warsztaty/i);
   assert.match(html, /beauty/i);

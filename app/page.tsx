@@ -24,8 +24,8 @@ export default function Home() {
       <section className="sales-hero shell">
         <div className="eyebrow"><span />STRONY WWW · FORMULARZE WYCENY · CHATBOTY</div>
         <p className="sales-hero-kicker">Dla warsztatów, ekip remontowych, branży beauty i lokalnych firm usługowych.</p>
-        <h1>Strona, która zamienia wejścia z Google <em>w konkretne zapytania.</em></h1>
-        <p className="sales-hero-copy">Klient opisuje zlecenie albo wybiera usługę, podaje termin i zostawia kontakt. Ty otrzymujesz uporządkowane zgłoszenie zamiast kolejnej niepełnej wiadomości.</p>
+        <h1>Tworzę cyfrowe miejsca, <em>w których marki rosną.</em></h1>
+        <p className="sales-hero-copy">Projektuję szybkie, charakterystyczne strony, formularze i małe CRM-y, które pomagają firmom zdobywać klientów i nie gubić żadnego zapytania.</p>
         <div className="hero-actions">
           <Link className="button" href="/kontakt">Sprawdź rozwiązanie dla firmy <span>↗</span></Link>
           <Link className="text-link" href="/strony-internetowe-marki">Działamy w Markach i okolicy <span>↓</span></Link>
