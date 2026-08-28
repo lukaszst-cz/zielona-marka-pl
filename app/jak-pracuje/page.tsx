@@ -14,6 +14,7 @@ const faq = [
   ["Co oznacza QA?", "QA to końcowa kontrola jakości. Sprawdzam telefon, komputer, formularze, linki, szybkość, podstawową dostępność oraz pełną ścieżkę klienta."],
   ["Co dzieje się po publikacji?", "Przekazuję uzgodnione dostępy, instrukcję i 14 dni podstawowego wsparcia startowego. Dalsza opieka jest opcjonalna."],
   ["Jak wygląda płatność 30/70?", "30% zaliczki po akceptacji zakresu i umowy rezerwuje termin i rozpoczyna pracę. Pozostałe 70% jest płatne po akceptacji gotowej wersji i testach QA, przed publikacją na domenie lub serwerze klienta."],
+  ["Czy możemy rozliczyć projekt przez Useme?", "Tak. Płatność może odbyć się bezpośrednio albo przez uzgodnionego partnera rozliczeniowego, np. Useme. Ewentualne prowizje i zasady partnera ustalamy przed zawarciem zlecenia; harmonogram nadal wynosi 30% na start i 70% przed publikacją."],
   ["Kto jest właścicielem domeny i strony?", "Domena, konto hostingu, konto płatności i inne konta powinny należeć do klienta. Po rozliczeniu klient otrzymuje uzgodniony efekt pracy oraz dostępy."],
 ];
 
