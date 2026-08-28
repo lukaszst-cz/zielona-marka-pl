@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "../../SafeLink";
 import { notFound } from "next/navigation";
 import { concepts } from "../../content";
 import BrandSignature from "../../BrandSignature";

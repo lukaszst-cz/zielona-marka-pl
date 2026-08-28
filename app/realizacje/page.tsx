@@ -1,0 +1,15 @@
+import type { Metadata } from "next";
+import Link from "../SafeLink";
+import { QuickWhatsApp, SiteFooter, SiteHeader } from "../SiteChrome";
+import { projects } from "../site-data";
+
+export const metadata: Metadata = { title: "Realizacje", description: "Demonstracje stron internetowych i zapleczy dla branży beauty, gastronomii, nieruchomości, motoryzacji oraz transportu." };
+
+export default function RealizationsPage() {
+  return <><SiteHeader /><main>
+    <section className="page-hero shell"><span className="eyebrow"><i />REALIZACJE I DEMONSTRACJE</span><h1>Nie jeden szablon dla wszystkich. <em>Różne cele, różne układy.</em></h1><p>Prezentowane projekty pokazują możliwe kierunki dla konkretnych branż. Są wyraźnie oznaczone jako demonstracje, dopóki nie zastąpią ich realizacje klientów.</p><a className="button" href="#projekty">Zobacz projekty <span>↓</span></a></section>
+    <section id="projekty" className="section shell"><div className="project-list">{projects.map((project) => <article className="project-case" key={project.name}><div className="project-case-image" style={{ backgroundImage: `linear-gradient(115deg,rgba(10,31,22,.84),rgba(10,31,22,.12)),url(${project.imageUrl})` }}><span>{project.note}</span><b>{project.n}</b></div><div><small>{project.type}</small><h2>{project.name}</h2><p>{project.description}</p><div className="project-case-links"><a className="button" href={project.websiteUrl} target={project.websiteUrl.startsWith("http") ? "_blank" : undefined} rel="noreferrer">{project.primaryLabel} <span>↗</span></a>{project.backendUrl && <a className="text-link" href={project.backendUrl} target={project.backendUrl.startsWith("http") ? "_blank" : undefined} rel="noreferrer">{project.secondaryLabel} <span>↗</span></a>}</div></div></article>)}</div></section>
+    <section className="section operations-section"><div className="shell operations-grid"><div><span className="section-no">PRZYKŁADY ZAPLECZA FIRMY</span><h2>Strona może być początkiem lepiej uporządkowanej pracy.</h2><p>Te przykłady pokazują obsługę zleceń, role, dokumenty, najważniejsze liczby firmy oraz kontrolę jakości w&nbsp;różnych sytuacjach biznesowych.</p></div><div><a className="button" href="https://lukaszst-cz.github.io/operations-office-portfolio/zielona-marka/udostepnij.html" target="_blank" rel="noreferrer">Otwórz przykłady zaplecza <span>↗</span></a><a href="https://github.com/lukaszst-cz/operations-office-portfolio" target="_blank" rel="noreferrer">Zobacz kod na GitHubie ↗</a></div></div></section>
+    <section className="section shell next-project"><span className="section-no">TWOJA FIRMA</span><h2>Masz branżę, której jeszcze nie ma w&nbsp;portfolio?</h2><p>Nie kopiuję układu z&nbsp;innego projektu. Zaczynamy od tego, co klient Twojej firmy musi znaleźć i&nbsp;zrobić.</p><Link className="button" href="/kontakt">Porozmawiajmy o projekcie <span>↗</span></Link></section>
+  </main><QuickWhatsApp /><SiteFooter /></>;
+}

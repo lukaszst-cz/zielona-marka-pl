@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" role="img" aria-labelledby="title">
+  <title id="title">Zielona Marka — strony i systemy dla firm</title>
+  <defs>
+    <linearGradient id="ribbon" x1="42" y1="38" x2="174" y2="224" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#A8D83E"/><stop offset=".48" stop-color="#72BE36"/><stop offset="1" stop-color="#078B4A"/>
+    </linearGradient>
+    <linearGradient id="leaf" x1="112" y1="6" x2="156" y2="66" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#A8D83E"/><stop offset="1" stop-color="#4BAE37"/>
+    </linearGradient>
+  </defs>
+  <rect width="1080" height="1080" rx="96" fill="#ffffff"/>
+  <g transform="translate(74 280) scale(2.65)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M154 57C132 40 103 38 78 49C54 37 28 44 15 67C-2 97 10 136 36 153C53 164 68 153 81 145C98 158 123 162 149 146" stroke="#08753f" stroke-width="11"/>
+    <path d="M154 57C132 40 103 38 78 49C54 37 28 44 15 67C-2 97 10 136 36 153C53 164 68 153 81 145C98 158 123 162 149 146" stroke="url(#ribbon)" stroke-width="7"/>
+    <path d="M164 57L144 46L149 68Z" fill="#08753f" stroke="none"/>
+    <path d="M160 145L140 133L147 156Z" fill="#08753f" stroke="none"/>
+    <path d="M84 39C86 18 104 1 133 2C126 24 110 38 86 42Z" fill="url(#leaf)" stroke="#08753f" stroke-width="3"/>
+    <path d="M91 36C101 25 112 15 125 7" stroke="#08753f" stroke-width="3"/>
+  </g>
+  <!-- Mały znak: strona WWW + połączony proces automatyzacji. -->
+  <g transform="translate(540 505)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="-96" y="-54" width="132" height="92" rx="15" fill="#f7fbf7" stroke="#08753f" stroke-width="9"/>
+    <path d="M-96-23H36M-70-39H-69M-48-39H-47M-26-39H-25" stroke="#08753f" stroke-width="7"/>
+    <path d="M-65 3L-45 18L-65 31M-27 31H-5" stroke="#244a5b" stroke-width="8"/>
+    <path d="M37-8H79M80-8V39M37 39H80" stroke="#08753f" stroke-width="8"/>
+    <circle cx="98" cy="-8" r="13" fill="#a8d83e" stroke="#08753f" stroke-width="6"/>
+    <circle cx="98" cy="39" r="13" fill="#8ccbd6" stroke="#08753f" stroke-width="6"/>
+    <circle cx="37" cy="39" r="13" fill="#72be36" stroke="#08753f" stroke-width="6"/>
+  </g>
+  <text x="540" y="765" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="104" font-weight="800" letter-spacing="-4" fill="#112a20">ZIELONA</text>
+  <text x="540" y="870" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="108" font-weight="900" letter-spacing="-4" fill="#8ccbd6" stroke="#08753f" stroke-width="4" paint-order="stroke">MARKA</text>
+  <text x="540" y="942" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="31" font-weight="700" letter-spacing="3" fill="#244a5b">STRONY I SYSTEMY DLA FIRM</text>
+</svg>

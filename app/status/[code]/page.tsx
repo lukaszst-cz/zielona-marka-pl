@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "../../SafeLink";
 import { notFound } from "next/navigation";
 import { eq } from "drizzle-orm";
 import { getDb } from "../../../db";

@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "../SafeLink";
 import { FormEvent, useCallback, useEffect, useMemo, useState } from "react";
 import BrandSignature from "../BrandSignature";
 

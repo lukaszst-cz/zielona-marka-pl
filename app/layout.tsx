@@ -18,21 +18,20 @@ export const metadata: Metadata = {
       "https://zielona-marka.pl",
   ),
   title: {
-    default: "Zielona Marka | strony internetowe dla firm",
+    default: "Strony internetowe dla firm usługowych | Zielona Marka",
     template: "%s | Zielona Marka",
   },
-  description:
-    "Strony internetowe, SEO lokalne, automatyzacje procesów, dashboardy KPI i panele klienta dla małych firm. Realne ceny i jasny proces.",
+    description:
+      "Strony, formularze wyceny i chatboty dla warsztatów, ekip remontowych, instalatorów i lokalnych firm usługowych z Marek i okolic.",
   keywords: [
     "strony internetowe",
     "projektowanie stron",
-    "landing page",
-    "portfolio",
-    "strony firmowe",
-    "automatyzacja procesów",
-    "dashboard KPI",
-    "panel klienta",
-    "wizytówka Google",
+    "strony internetowe Marki",
+    "strony dla warsztatów",
+    "strony dla firm remontowych",
+    "formularz wyceny online",
+    "chatbot dla firmy",
+    "SEO lokalne Marki",
     "Zielona Marka",
   ],
   authors: [{ name: "Zielona Marka" }],
@@ -40,9 +39,9 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "pl_PL",
-    title: "Zielona Marka | strony, w których marki rosną",
+    title: "Zielona Marka | strony i systemy zapytań dla firm usługowych",
     description:
-      "Strony internetowe, automatyzacje, KPI i panele klienta dla małych firm.",
+      "Strony, formularze wyceny i chatboty dla lokalnych firm usługowych.",
     siteName: "Zielona Marka",
     images: [
       {
@@ -55,9 +54,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Zielona Marka | strony, w których marki rosną",
+    title: "Zielona Marka | strony i systemy zapytań dla firm usługowych",
     description:
-      "Strony internetowe, automatyzacje, KPI i panele klienta dla małych firm.",
+      "Strony, formularze wyceny i chatboty dla lokalnych firm usługowych.",
     images: ["/og.png"],
   },
   icons: {
@@ -75,11 +74,15 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     name: "Zielona Marka",
-    description: "Projektowanie i wdrażanie stron internetowych dla firm.",
+    description: "Strony internetowe, formularze wyceny i chatboty dla lokalnych firm usługowych.",
     url: "https://zielona-marka.pl",
     email: "kontakt@zielona-marka.pl",
     telephone: "+48 450 458 466",
-    sameAs: ["https://github.com/lukaszst-cz"],
+    sameAs: [
+      "https://www.facebook.com/StudioGraficzneZielonaMarka",
+      "https://www.instagram.com/zielona.marka.pl/",
+      "https://github.com/lukaszst-cz",
+    ],
     areaServed: [
       "Ząbki",
       "Marki",
@@ -96,19 +99,18 @@ export default function RootLayout({
       "Sulejówek",
       "Halinów",
       "Dąbrówka",
-      "Polska",
     ],
-    priceRange: "1449–15000 PLN",
+    priceRange: "2900–15000 PLN",
     serviceType: [
       "Projektowanie stron internetowych",
-      "Landing page",
-      "Portfolio",
+      "Strony dla warsztatów i detailingu",
+      "Strony dla firm remontowych i instalatorów",
+      "Formularze wyceny online",
+      "Chatboty dla firm usługowych",
       "SEO techniczne",
-      "Prototypy PWA",
-      "Automatyzacja procesów biznesowych",
-      "Dashboardy KPI",
-      "Panele klienta",
       "Optymalizacja Profilu Firmy Google",
+      "Modernizacja stron internetowych",
+      "Opieka nad stronami internetowymi",
     ],
   };
   return (
