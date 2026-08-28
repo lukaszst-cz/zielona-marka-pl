@@ -1,2 +1,6 @@
-minimumReleaseAgeExclude:
-  - '@cloudflare/workers-types@5.20260825.1'
+onlyBuiltDependencies:
+  - "@parcel/watcher"
+  - "@tailwindcss/oxide"
+  - esbuild
+  - sharp
+  - workerd
