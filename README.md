@@ -1,9 +1,31 @@
-# Zielona Marka
+# Zielona Marka — strony i systemy dla firm
 
-Strona i zaplecze operacyjne dla marki tworzącej strony internetowe, automatyzacje procesów oraz proste narzędzia dla małych firm.
+Projekt demonstracyjny strony oraz lekkiego zaplecza operacyjnego dla małych
+firm. Pokazuje, jak połączyć ofertę, zbieranie zapytań, mały CRM, statusy
+realizacji i kontrolę jakości w jednym spójnym procesie.
 
-**Wersja online:** [zielona-marka.pl](https://zielona-marka.pl)
+**Wersja online:** [zielona-marka.pl](https://zielona-marka.pl)<br>
 **Kontakt:** [kontakt@zielona-marka.pl](mailto:kontakt@zielona-marka.pl)
+
+![Podgląd Zielonej Marki](public/og.png)
+
+## Dla jakich firm
+
+Projekt jest przygotowany jako baza pod strony i usprawnienia dla lokalnych
+firm usługowych — między innymi branży beauty, warsztatów, gastronomii,
+transportu oraz usług dla domu. Każda branża może otrzymać własny język oferty,
+formularz i prosty proces obsługi zapytań.
+
+## Zobacz demonstracje
+
+- [Strona główna](https://zielona-marka.pl)
+- [Mały CRM dla firm](https://zielona-marka.pl/maly-crm-dla-firm)
+- [Usprawnienia firmy](https://zielona-marka.pl/usprawnienia-firmy)
+- [Strony dla branży beauty](https://zielona-marka.pl/strony-dla-beauty)
+- [Strony dla warsztatów](https://zielona-marka.pl/strony-dla-warsztatow)
+- [Demo dla firmy usługowej](https://zielona-marka.pl/demo/dom-strona)
+- [Demo dla gastronomii](https://zielona-marka.pl/demo/bistro-strona)
+- [Demo dla transportu](https://zielona-marka.pl/demo/transport)
 
 ## Co pokazuje ten projekt
 
@@ -15,6 +37,23 @@ Strona i zaplecze operacyjne dla marki tworzącej strony internetowe, automatyza
 - roboczy widok umowy do wydruku lub zapisania jako PDF,
 - checklistę QA przed publikacją projektu,
 - podstawy SEO: meta dane, mapa strony, robots.txt i dane strukturalne.
+
+## Proces, który pokazuje projekt
+
+```text
+strona / demo branżowe
+          ↓
+formularz zapytania
+          ↓
+Studio: lead → projekt → zadania
+          ↓
+status klienta pod indywidualnym kodem
+          ↓
+checklista QA → publikacja → portfolio za zgodą klienta
+```
+
+To nie jest gotowy produkt SaaS do samodzielnego zakupu. To demonstracja
+podejścia, które można dopasować do sposobu pracy konkretnej firmy.
 
 ## Jak działa workflow
 
@@ -60,6 +99,12 @@ npm run build
 ## Jak rozwijać portfolio
 
 Po zakończeniu rzeczywistego zlecenia dodaj w Studio projekt, zaznacz opcję „Pokaż w portfolio” i uzupełnij opis, adres wdrożenia oraz zgodę klienta. W publicznym repozytorium pokazuj przede wszystkim opis rozwiązania, wykorzystane technologie i wynik biznesowy, bez prywatnych danych.
+
+## Automatyczna kontrola jakości
+
+Przy każdym pushu do gałęzi `main` GitHub Actions instaluje zależności,
+uruchamia build oraz test renderowanego HTML. Dzięki temu zmiany są sprawdzane
+przed kolejnym wdrożeniem.
 
 ---
 

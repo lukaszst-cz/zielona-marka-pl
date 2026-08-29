@@ -39,3 +39,9 @@ yarn-error.log*
 /outputs/
 /work/
 *.tsbuildinfo
+
+# Local archives and source media are stored outside the public code repository.
+*.zip
+*.tar.gz
+/media/
+/.video-deps/
