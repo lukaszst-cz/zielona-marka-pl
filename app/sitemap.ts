@@ -7,6 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/oferta`, changeFrequency: "weekly", priority: .9 },
     { url: `${base}/modernizacja-strony`, changeFrequency: "weekly", priority: .9 },
     { url: `${base}/realizacje`, changeFrequency: "monthly", priority: .85 },
+    { url: `${base}/realizacje/transportflow`, changeFrequency: "monthly", priority: .8 },
     { url: `${base}/usprawnienia-firmy`, changeFrequency: "monthly", priority: .8 },
     { url: `${base}/jak-pracuje`, changeFrequency: "monthly", priority: .75 },
     { url: `${base}/kontakt`, changeFrequency: "monthly", priority: .75 },

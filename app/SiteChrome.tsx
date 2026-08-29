@@ -1,6 +1,5 @@
 import Link from "./SafeLink";
 import BrandSignature from "./BrandSignature";
-import DemoChatbot from "./DemoChatbot";
 import { socialLinks } from "./site-data";
 
 const navigation = [
@@ -38,7 +37,7 @@ export function SiteFooter() {
   return <footer className="site-footer">
     <div className="shell footer-grid">
       <Link className="brand" href="/"><BrandSignature /></Link>
-      <p>Strony WWW, formularze wyceny i chatboty dla lokalnych firm usługowych.</p>
+      <p>Strony WWW, formularze wyceny i systemy, które porządkują codzienną pracę firm.</p>
       <div>
         <Link href="/oferta">Oferta</Link>
         <Link href="/realizacje">Realizacje</Link>
@@ -55,7 +54,7 @@ export function SiteFooter() {
 }
 
 export function QuickWhatsApp() {
-  return <><DemoChatbot /><a className="whatsapp-float" href="https://wa.me/48603806833?text=Dzień%20dobry%2C%20chcę%20porozmawiać%20o%20stronie%20dla%20mojej%20firmy." target="_blank" rel="noreferrer" aria-label="Napisz do Zielonej Marki na WhatsAppie">
+  return <a className="whatsapp-float" href="https://wa.me/48603806833?text=Dzień%20dobry%2C%20chcę%20porozmawiać%20o%20stronie%20dla%20mojej%20firmy." target="_blank" rel="noreferrer" aria-label="Napisz do Zielonej Marki na WhatsAppie">
     <span aria-hidden="true">◌</span><b>Napisz na WhatsApp</b><small>Szybka wiadomość</small><i aria-hidden="true">↗</i>
-  </a></>;
+  </a>;
 }
