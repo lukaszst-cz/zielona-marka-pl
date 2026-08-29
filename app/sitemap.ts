@@ -20,6 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/realizacje/natura-studio`, changeFrequency: "monthly", priority: .6 },
     { url: `${base}/realizacje/bistro-forma`, changeFrequency: "monthly", priority: .6 },
     { url: `${base}/realizacje/dom-dobry`, changeFrequency: "monthly", priority: .6 },
+    { url: `${base}/realizacje/detailflow`, changeFrequency: "monthly", priority: .7 },
     { url: `${base}/polityka-prywatnosci`, changeFrequency: "yearly", priority: .2 },
   ];
 }

@@ -72,6 +72,16 @@ export const projects: Project[] = [
     primaryLabel: "Zobacz stronę",
     secondaryLabel: "Zobacz zaplecze",
   },
+  {
+    n: "06",
+    name: "DetailFlow",
+    type: "Auto detailing",
+    note: "Projekt koncepcyjny / demonstracja",
+    description: "System dla zapytań, stanowisk, kontroli jakości, zdjęć, płatności i powrotów klientów.",
+    imageUrl: "/concept-natura.jpg",
+    websiteUrl: "/realizacje/detailflow",
+    primaryLabel: "Zobacz realizację",
+  },
 ];
 
 export const corePackages = [
