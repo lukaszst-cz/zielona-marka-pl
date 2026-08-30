@@ -7,7 +7,7 @@ export default function ContractPrint({ project: p }: { project: Project }) {
   return <main className="contract-page">
     <div className="contract-actions"><button onClick={() => window.print()}>Pobierz / zapisz jako PDF</button><a href={`/status/${p.publicCode}`}>Wróć do statusu</a></div>
     <article>
-      <header><img src="/logo.png" alt="Zielona Marka" /><div><small>WZÓR UMOWY DO WERYFIKACJI</small><h1>Umowa o wykonanie projektu</h1><p>nr {value(p.contractNumber)}</p></div></header>
+      <header><img src="/logo-zielona-marka-transparent-v1.png" alt="Zielona Marka" /><div><small>WZÓR UMOWY DO WERYFIKACJI</small><h1>Umowa o wykonanie projektu</h1><p>nr {value(p.contractNumber)}</p></div></header>
       <p className="contract-warning">Przed podpisaniem sprawdź wszystkie dane. Dokument stanowi roboczy wzór i powinien zostać dostosowany do konkretnego zlecenia oraz, w razie potrzeby, zweryfikowany prawnie.</p>
       <section><h2>§ 1. Strony umowy</h2><p><b>Wykonawca:</b> {value(p.providerName)}, adres: {value(p.providerAddress)}, NIP: {value(p.providerNip)}, e-mail: kontakt@zielona-marka.pl.</p><p><b>Zamawiający:</b> {value(p.clientCompany || p.clientName)}, reprezentowany przez: {value(p.clientName)}, adres: {value(p.clientAddress)}, NIP: {value(p.clientNip)}, e-mail: {value(p.clientEmail)}.</p></section>
       <section><h2>§ 2. Przedmiot i zakres</h2><p>Wykonawca zobowiązuje się wykonać projekt „{p.title}”. Zakres: {value(p.scope || p.description)}.</p></section>

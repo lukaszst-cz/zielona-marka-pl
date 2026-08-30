@@ -13,7 +13,7 @@ export default function QaReport({ project, checks }: { project: { title: string
       </div>
       <article>
         <header>
-          <img src="/logo.png" alt="Zielona Marka" />
+          <img src="/logo-zielona-marka-transparent-v1.png" alt="Zielona Marka" />
           <div><small>RAPORT ODBIOROWY</small><h1>Kontrola jakości (QA)</h1><p>{project.title}</p></div>
           <b>{complete}/{checks.length}</b>
         </header>
