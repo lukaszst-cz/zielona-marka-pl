@@ -274,3 +274,6 @@ footer .brand-signature .brand-wordmark{margin-left:3px;transform:translateY(6px
 /* Finalna hierarchia znaku w nagłówku: MARKA ma być zielona i mocniejsza. */
 .brand-wordmark b:last-of-type{color:var(--lime);font-weight:800;-webkit-text-stroke:1.5px var(--ink);paint-order:stroke fill;text-shadow:0 -1px 0 var(--ink)}
 .site-header .brand-wordmark b:last-of-type{color:var(--lime);font-weight:800}
+
+.detailflow-role-pwa{font-size:13px;line-height:1.75;color:var(--muted);max-width:380px;margin:24px 0 14px}
+.detailflow-roles .text-link{font-size:11px;font-weight:800;color:#477059;border-bottom:1px solid #477059;padding-bottom:5px}
