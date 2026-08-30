@@ -9,7 +9,7 @@ ALTER TABLE `projects` ADD `client_note` text NOT NULL DEFAULT '';
 ALTER TABLE `projects` ADD `contract_status` text NOT NULL DEFAULT 'Szkic';
 ALTER TABLE `projects` ADD `contract_number` text NOT NULL DEFAULT '';
 ALTER TABLE `projects` ADD `start_date` text;
-ALTER TABLE `projects` ADD `provider_name` text NOT NULL DEFAULT 'Zielona Marka — Łukasz Staniewicz';
+ALTER TABLE `projects` ADD `provider_name` text NOT NULL DEFAULT 'Zielona Marka  -  Łukasz Staniewicz';
 ALTER TABLE `projects` ADD `provider_address` text NOT NULL DEFAULT '';
 ALTER TABLE `projects` ADD `provider_nip` text NOT NULL DEFAULT '';
 UPDATE `projects`

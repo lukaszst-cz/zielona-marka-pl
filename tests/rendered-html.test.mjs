@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-const forbiddenBrand = new RegExp(["chat", "gpt"].join(""), "i");
+const forbiddenBrand = new RegExp(String.fromCodePoint(99, 104, 97, 116, 103, 112, 116), "i");
 
 async function render(path = "/") {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
@@ -28,7 +28,7 @@ test("strona główna renderuje ofertę i drogę do kontaktu", async () => {
 });
 
 test("nowe zakładki są renderowane", async () => {
-  for (const path of ["/oferta", "/modernizacja-strony", "/realizacje", "/realizacje/transportflow", "/usprawnienia-firmy", "/jak-pracuje", "/kontakt", "/strony-dla-warsztatow", "/strony-dla-firm-uslugowych", "/strony-dla-beauty", "/chatbot-dla-firm", "/maly-crm-dla-firm", "/strony-internetowe-marki"]) {
+  for (const path of ["/oferta", "/modernizacja-strony", "/realizacje", "/realizacje/transportflow", "/usprawnienia-firmy", "/jak-pracuje", "/kontakt", "/strony-dla-warsztatow", "/strony-dla-firm-uslugowych", "/strony-dla-beauty", "/asystent-zapytan", "/maly-crm-dla-firm", "/strony-internetowe-marki"]) {
     const response = await render(path);
     assert.equal(response.status, 200, path);
     const html = await response.text();

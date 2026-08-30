@@ -1,4 +1,4 @@
-# Zielona Marka — strony i systemy dla firm
+# Zielona Marka  -  strony i systemy dla firm
 
 Projekt demonstracyjny strony oraz lekkiego zaplecza operacyjnego dla małych
 firm. Pokazuje, jak połączyć ofertę, zbieranie zapytań, mały CRM, statusy
@@ -12,7 +12,7 @@ realizacji i kontrolę jakości w jednym spójnym procesie.
 ## Dla jakich firm
 
 Projekt jest przygotowany jako baza pod strony i usprawnienia dla lokalnych
-firm usługowych — między innymi branży beauty, warsztatów, gastronomii,
+firm usługowych  -  między innymi branży beauty, warsztatów, gastronomii,
 transportu oraz usług dla domu. Każda branża może otrzymać własny język oferty,
 formularz i prosty proces obsługi zapytań.
 

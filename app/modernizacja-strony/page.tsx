@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "../SafeLink";
 import ContactForm from "../ContactForm";
-import { QuickWhatsApp, SiteFooter, SiteHeader } from "../SiteChrome";
+import { QuickContact, SiteFooter, SiteHeader } from "../SiteChrome";
 
 export const metadata: Metadata = { title: "Modernizacja strony internetowej", description: "Ocena starej strony i plan modernizacji: telefon, kontakt, oferta, szybkość oraz przygotowanie do Google." };
 
@@ -15,5 +15,5 @@ export default function ModernizationPage() {
     <section className="section dark-section"><div className="shell rebuild-grid"><div><span className="section-no">CO ZMIENIAMY</span><h2>Najpierw klient musi zrozumieć ofertę. <em>Dopiero potem zachwycać się wyglądem.</em></h2></div><ul className="check-list light-list">{fixes.map((fix) => <li key={fix}>{fix}</li>)}</ul></div></section>
     <section className="section shell decision-grid"><article><span>WARIANT 01</span><h2>Poprawiamy obecną stronę</h2><p>Wybieramy go, gdy techniczny fundament jest dobry, a problemem są przede wszystkim treść, wygląd, kontakt i wersja mobilna.</p><ul><li>krótszy czas realizacji</li><li>mniej kosztów</li><li>zachowanie obecnego adresu i treści</li></ul></article><article><span>WARIANT 02</span><h2>Budujemy od nowa</h2><p>To lepsza opcja, gdy strona jest bardzo wolna, trudna w edycji, niebezpieczna lub jej układ nie pozwala już spokojnie rosnąć.</p><ul><li>nowa struktura i kierunek wizualny</li><li>czyste przygotowanie do Google</li><li>prostsza rozbudowa w przyszłości</li></ul></article></section>
     <section className="section contact-section" id="miniaudyt"><div className="shell contact-grid"><div><span className="section-no">BEZPŁATNA MINI OCENA</span><h2>Wyślij adres strony. Wskażę, od czego warto zacząć.</h2><p>Otrzymasz krótką, konkretną odpowiedź dotyczącą telefonu, oferty, kontaktu i najważniejszego następnego kroku. Bez deklarowania budżetu.</p><Link className="text-link" href="/oferta">Zobacz pakiety modernizacji <span>↗</span></Link></div><div><ContactForm audit /></div></div></section>
-  </main><QuickWhatsApp /><SiteFooter /></>;
+  </main><QuickContact /><SiteFooter /></>;
 }

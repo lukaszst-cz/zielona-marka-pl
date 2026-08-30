@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "../SafeLink";
-import { QuickWhatsApp, SiteFooter, SiteHeader } from "../SiteChrome";
+import { QuickContact, SiteFooter, SiteHeader } from "../SiteChrome";
 
 export const metadata: Metadata = { title: "Usprawnienia firmy", description: "Proste automatyzacje, statusy zleceń, dashboardy i lekkie panele klienta dla rosnących firm." };
 
@@ -25,6 +25,6 @@ export default function ImprovementsPage() {
     <section className="section shell" id="crm"><div className="section-head"><div><span className="section-no">ZACZYNAMY OD KONKRETU</span><h2>Prosty panel zleceń zamiast chaosu w wiadomościach.</h2></div><p>To może być mały CRM, czyli prosty system dopasowany do Twojej firmy. Zamiast kupować duży program, zaczynamy od klientów, zleceń, statusów i kolejnego kroku.</p></div><div className="situation-grid">{situations.map(([title, text], index) => <article key={title}><b>0{index + 1}</b><h3>{title}</h3><p>{text}</p></article>)}</div></section>
     <section className="section dark-section"><div className="shell process-strip"><span>Zapytanie</span><i>→</i><span>Wycena</span><i>→</i><span>Realizacja</span><i>→</i><span>Dokumenty</span><i>→</i><span>Wyniki</span></div></section>
     <section className="section shell" id="automatyzacje"><div className="section-head"><div><span className="section-no">AUTOMATYZACJE, PANELE I INTEGRACJE</span><h2>Dobierane wtedy, gdy są potrzebne.</h2></div><p>Możesz zacząć od jednego przepływu. Jeśli działa, spokojnie rozbudujemy go w kolejnym etapie.</p></div><div className="tool-grid">{tools.map(([title, text], index) => <article key={title}><span>{String(index + 1).padStart(2, "0")}</span><h3>{title}</h3><p>{text}</p></article>)}</div></section>
-    <section className="section transport-demo"><div className="shell transport-demo-grid"><div><span className="section-no">DEMONSTRACJA TRANSPORTU</span><h2>Zobacz, jak wygląda obieg zlecenia od zapytania do faktury.</h2><p className="spaced-copy">Przykład RouteFlow pokazuje osobne widoki dla dyspozytora, kierowcy, księgowości oraz klienta.</p></div><div><Link className="button" href="/demo/transport">Uruchom demonstrację <span>↗</span></Link><a href="https://lukaszst-cz.github.io/operations-office-portfolio/transport-preview/portal/?role=manager" target="_blank" rel="noreferrer">Zobacz Control Tower ↗</a></div></div></section>
-  </main><QuickWhatsApp /><SiteFooter /></>;
+    <section className="section transport-demo"><div className="shell transport-demo-grid"><div><span className="section-no">DEMONSTRACJA TRANSPORTU</span><h2>Zobacz, jak wygląda obieg zlecenia od zapytania do faktury.</h2><p className="spaced-copy">Przykład TransportFlow pokazuje osobne widoki dla dyspozytora, kierowcy, księgowości oraz klienta.</p></div><div><Link className="button" href="/realizacje/transportflow">Poznaj rozwiązanie <span>↗</span></Link><a href="https://transportflow.zielona-marka.pl" target="_blank" rel="noreferrer">Otwórz demonstrację ↗</a></div></div></section>
+  </main><QuickContact /><SiteFooter /></>;
 }

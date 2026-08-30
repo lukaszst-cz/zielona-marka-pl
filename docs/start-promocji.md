@@ -1,4 +1,4 @@
-# Start promocji — Zielona Marka
+# Start promocji  -  Zielona Marka
 
 Cel na pierwsze 30 dni: zdobyć pierwsze prawdziwe zapytania lokalne, zbudować
 zaufanie i przygotować markę do widoczności w Google. Nie kupujemy opinii i nie
@@ -55,16 +55,16 @@ pozwala na oferty usług. Najpierw dołączamy do grup z Marek, Ząbek, Wołomin
 Radzymina, Zielonki, Kobyłki i lokalnych grup przedsiębiorców. Nie kopiujemy
 jednego wpisu masowo; dopasowujemy pierwszy akapit do danej miejscowości.
 
-### Post 1 — oferta startowa
+### Post 1  -  oferta startowa
 
 > Prowadzisz firmę w Markach, Ząbkach lub okolicy i masz tylko wizytówkę Google
 > albo starą stronę? Tworzę lekkie, czytelne strony, które dobrze działają na
 > telefonie i ułatwiają klientom kontakt. Prosta strona-wizytówka od 1449 zł.
 > W cenie ustalamy zakres, przygotowuję projekt, testuję stronę przed publikacją
 > i przekazuję instrukcję obsługi. Zobacz przykłady: https://zielona-marka.pl
-> Napisz na WhatsApp lub wyślij krótki opis firmy — podpowiem, od czego zacząć.
+> Napisz na WhatsApp lub wyślij krótki opis firmy  -  podpowiem, od czego zacząć.
 
-### Post 2 — edukacyjny
+### Post 2  -  edukacyjny
 
 > Klient najczęściej trafia na stronę firmy z telefonu. Dlatego najważniejsze
 > informacje: usługa, lokalizacja, cena lub sposób wyceny i kontakt powinny być
@@ -72,7 +72,7 @@ jednego wpisu masowo; dopasowujemy pierwszy akapit do danej miejscowości.
 > trzy rzeczy do poprawy na Twojej obecnej stronie lub wizytówce Google.
 > https://zielona-marka.pl
 
-### Post 3 — automatyzacja
+### Post 3  -  automatyzacja
 
 > Strona może robić więcej niż wyglądać dobrze. Formularz może porządkować
 > zapytania, wysyłać potwierdzenie, przekazywać klientowi status realizacji lub

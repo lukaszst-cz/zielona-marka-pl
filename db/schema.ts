@@ -39,7 +39,7 @@ export const projects = sqliteTable("projects", {
   contractStatus: text("contract_status").notNull().default("Szkic"),
   contractNumber: text("contract_number").notNull().default(""),
   startDate: text("start_date"),
-  providerName: text("provider_name").notNull().default("Zielona Marka — Łukasz Staniewicz"),
+  providerName: text("provider_name").notNull().default("Zielona Marka  -  Łukasz Staniewicz"),
   providerAddress: text("provider_address").notNull().default(""),
   providerNip: text("provider_nip").notNull().default(""),
   createdAt: text("created_at").notNull(),

@@ -27,7 +27,7 @@ const config = {
     services: ["Konsultacja", "Pielęgnacja twarzy", "Stylizacja", "Masaż"],
     detailLabel: "Ważne informacje przed wizytą",
     detailPlaceholder: "Np. pierwsza wizyta, preferowane godziny popołudniowe",
-    dateLabel: "Preferowany termin (demo — docelowo Booksy, inny system lub formularz)",
+    dateLabel: "Preferowany termin (demo  -  docelowo Booksy, inny system lub formularz)",
   },
 } as const;
 

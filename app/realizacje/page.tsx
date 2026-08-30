@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "../SafeLink";
-import { QuickWhatsApp, SiteFooter, SiteHeader } from "../SiteChrome";
+import { QuickContact, SiteFooter, SiteHeader } from "../SiteChrome";
 import { projects } from "../site-data";
 
 export const metadata: Metadata = { title: "Realizacje", description: "Demonstracje stron internetowych i zapleczy dla branży beauty, gastronomii, nieruchomości, motoryzacji oraz transportu." };

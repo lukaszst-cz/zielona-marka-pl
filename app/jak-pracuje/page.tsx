@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "../SafeLink";
-import { QuickWhatsApp, SiteFooter, SiteHeader } from "../SiteChrome";
+import { QuickContact, SiteFooter, SiteHeader } from "../SiteChrome";
 import { processSteps } from "../site-data";
 
 export const metadata: Metadata = { title: "Jak pracuję", description: "Jasny proces od briefu do publikacji strony: projekt, poprawki, QA, SEO techniczne i opieka." };
@@ -26,5 +26,5 @@ export default function HowWeWorkPage() {
     <section className="section shell seo-grid"><div><span className="section-no">GOTOWA DO DALSZEGO SEO</span><h2>Po starcie nie trzeba naprawiać podstaw.</h2></div><div><p>Strona otrzymuje logiczną strukturę, poprawne adresy, tytuły i opisy, mapę strony, wersję mobilną, szybkie działanie i możliwość podłączenia narzędzi Google.</p><p>Widoczność w Google rozwija się później przez treści, lokalną wiarygodność, opinie i dalsze działania. Uczciwie nie gwarantuję konkretnej pozycji.</p></div></section>
     <section className="section rules-section"><div className="shell rules-grid"><article><span>30%</span><h3>Zaliczka na start</h3><p>Po akceptacji zakresu i umowy rezerwuję termin oraz rozpoczynam pracę.</p></article><article><span>70%</span><h3>Przed publikacją</h3><p>Po odbiorze gotowej wersji i testach QA, przed publikacją na serwerze klienta.</p></article><article><span>02</span><h3>Dwie rundy poprawek</h3><p>Uwagi zbieramy i wprowadzamy w jasno określonym zakresie.</p></article><article><span>14</span><h3>Dni wsparcia startowego</h3><p>Po publikacji pomagam spokojnie przejść przez pierwsze dni działania strony.</p></article></div></section>
     <section className="section shell faq-page"><div className="section-head"><div><span className="section-no">FAQ</span><h2>Najważniejsze odpowiedzi przed startem.</h2></div><p>Krótko, konkretnie i bez technicznego żargonu.</p></div><div className="faq-list">{faq.map(([question, answer], index) => <details key={question} open={index === 0}><summary><span>{String(index + 1).padStart(2, "0")}</span>{question}<i>+</i></summary><p>{answer}</p></details>)}</div></section>
-  </main><QuickWhatsApp /><SiteFooter /></>;
+  </main><QuickContact /><SiteFooter /></>;
 }

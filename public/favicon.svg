@@ -1,7 +1,6 @@
-<svg width="32" height="32" viewBox="0 0 170 170" fill="none" xmlns="http://www.w3.org/2000/svg">
-<defs><linearGradient id="r" x1="38" y1="35" x2="115" y2="158" gradientUnits="userSpaceOnUse"><stop stop-color="#A8D83E"/><stop offset=".48" stop-color="#72BE36"/><stop offset="1" stop-color="#078B4A"/></linearGradient></defs>
-<path d="M154 57C132 40 103 38 78 49C54 37 28 44 15 67C-2 97 10 136 36 153C53 164 68 153 81 145C98 158 123 162 149 146" stroke="#087E45" stroke-width="24" stroke-linecap="round"/>
-<path d="M154 57C132 40 103 38 78 49C54 37 28 44 15 67C-2 97 10 136 36 153C53 164 68 153 81 145C98 158 123 162 149 146" stroke="url(#r)" stroke-width="17" stroke-linecap="round"/>
-<path d="M84 39C86 18 104 1 133 2C126 24 110 38 86 42Z" fill="#82C93B" stroke="#087E45" stroke-width="5"/>
-<path d="M91 36C101 25 112 15 125 7" stroke="#087E45" stroke-width="5" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#f4f1e8"/>
+  <path d="M49 22c-7-6-16-7-24-3C18 15 9 19 7 29c-3 13 7 25 18 29 7 3 12-2 17-5 7 4 15 2 20-3" fill="none" stroke="#087e45" stroke-linecap="round" stroke-width="7"/>
+  <path d="M31 15c1-7 7-11 15-11-2 7-7 11-15 12Z" fill="#9bd43e" stroke="#087e45" stroke-width="2"/>
+  <text x="32" y="41" text-anchor="middle" fill="#13281f" font-family="Arial, sans-serif" font-size="20" font-weight="800" letter-spacing="-2">ZM</text>
 </svg>

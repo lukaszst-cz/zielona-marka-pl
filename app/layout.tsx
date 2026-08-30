@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import PolishTypography from "./PolishTypography";
+import DemoAsystent from "./DemoAssistant";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
     template: "%s | Zielona Marka",
   },
     description:
-      "Strony, formularze wyceny i chatboty dla warsztatów, ekip remontowych, instalatorów i lokalnych firm usługowych z Marek i okolic.",
+      "Strony, formularze wyceny i asystenty dla warsztatów, ekip remontowych, instalatorów i lokalnych firm usługowych z Marek i okolic.",
   keywords: [
     "strony internetowe",
     "projektowanie stron",
@@ -31,7 +32,7 @@ export const metadata: Metadata = {
     "strony dla warsztatów",
     "strony dla firm remontowych",
     "formularz wyceny online",
-    "chatbot dla firmy",
+    "asystent dla firmy",
     "SEO lokalne Marki",
     "Zielona Marka",
   ],
@@ -42,7 +43,7 @@ export const metadata: Metadata = {
     locale: "pl_PL",
     title: "Zielona Marka | strony i systemy zapytań dla firm usługowych",
     description:
-      "Strony, formularze wyceny i chatboty dla lokalnych firm usługowych.",
+      "Strony, formularze wyceny i asystenty dla lokalnych firm usługowych.",
     siteName: "Zielona Marka",
     images: [
       {
@@ -57,11 +58,11 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Zielona Marka | strony i systemy zapytań dla firm usługowych",
     description:
-      "Strony, formularze wyceny i chatboty dla lokalnych firm usługowych.",
+      "Strony, formularze wyceny i asystenty dla lokalnych firm usługowych.",
     images: ["/og.png"],
   },
   icons: {
-    icon: "/favicon.svg",
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
     shortcut: "/favicon.svg",
   },
 };
@@ -75,7 +76,7 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     name: "Zielona Marka",
-    description: "Strony internetowe, formularze wyceny i chatboty dla lokalnych firm usługowych.",
+    description: "Strony internetowe, formularze wyceny i asystenty dla lokalnych firm usługowych.",
     url: "https://zielona-marka.pl",
     email: "kontakt@zielona-marka.pl",
     telephone: "+48 450 458 466",
@@ -107,7 +108,7 @@ export default function RootLayout({
       "Strony dla warsztatów i detailingu",
       "Strony dla firm remontowych i instalatorów",
       "Formularze wyceny online",
-      "Chatboty dla firm usługowych",
+      "Asystenty dla firm usługowych",
       "SEO techniczne",
       "Optymalizacja Profilu Firmy Google",
       "Modernizacja stron internetowych",
@@ -121,6 +122,7 @@ export default function RootLayout({
       >
         {children}
         <PolishTypography />
+        <DemoAsystent />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}

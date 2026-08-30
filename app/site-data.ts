@@ -62,15 +62,15 @@ export const projects: Project[] = [
   },
   {
     n: "05",
-    name: "RouteFlow Transport",
+    name: "TransportFlow",
     type: "Transport i logistyka",
     note: "Projekt koncepcyjny / demonstracja",
-    description: "Odrębny serwis i Control Tower dla zleceń, kierowców, dokumentów oraz wyników firmy.",
-    imageUrl: "https://lukaszst-cz.github.io/operations-office-portfolio/transport-preview/assets/transport-hero.png",
-    websiteUrl: "https://lukaszst-cz.github.io/operations-office-portfolio/transport-preview/",
-    backendUrl: "https://lukaszst-cz.github.io/operations-office-portfolio/transport-preview/portal/?role=manager",
-    primaryLabel: "Zobacz stronę",
-    secondaryLabel: "Zobacz zaplecze",
+    description: "Demonstracyjny system TMS i CRM: zlecenia, kierowcy, dokumenty oraz wyniki firmy. Dane testowe resetują się po odświeżeniu.",
+    imageUrl: "/og.png",
+    websiteUrl: "/realizacje/transportflow",
+    backendUrl: "https://transportflow.zielona-marka.pl",
+    primaryLabel: "Poznaj rozwiązanie",
+    secondaryLabel: "Otwórz demonstrację",
   },
   {
     n: "06",
@@ -106,8 +106,8 @@ export const corePackages = [
     title: "ZM Flow AI",
     price: "od 6 900 zł netto",
     time: "zwykle 14–21 dni roboczych",
-    lead: "Strona, formularz i chatbot połączone z prostym obiegiem zapytań w firmie.",
-    includes: ["strona oraz formularz kwalifikujący", "chatbot FAQ lub AI oparty na zatwierdzonej bazie odpowiedzi", "przekazanie zgłoszeń do właściciela lub zespołu", "testy scenariuszy, analityka i ścieżka dalszej rozbudowy"],
+    lead: "Strona, formularz i asystent połączone z prostym obiegiem zapytań w firmie.",
+    includes: ["strona oraz formularz kwalifikujący", "asystent FAQ lub AI oparty na zatwierdzonej bazie odpowiedzi", "przekazanie zgłoszeń do właściciela lub zespołu", "testy scenariuszy, analityka i ścieżka dalszej rozbudowy"],
   },
 ];
 
