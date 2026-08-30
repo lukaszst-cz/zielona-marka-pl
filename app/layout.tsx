@@ -62,8 +62,14 @@ export const metadata: Metadata = {
     images: ["/og.png"],
   },
   icons: {
-    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
-    shortcut: "/favicon.svg",
+    icon: [
+      {
+        url: "/logo-zielona-marka-transparent-v1.png",
+        type: "image/png",
+      },
+    ],
+    shortcut: "/logo-zielona-marka-transparent-v1.png",
+    apple: "/logo-zielona-marka-transparent-v1.png",
   },
 };
 
