@@ -28,12 +28,13 @@ test("strona główna renderuje ofertę i drogę do kontaktu", async () => {
 });
 
 test("nowe zakładki są renderowane", async () => {
-  for (const path of ["/oferta", "/modernizacja-strony", "/realizacje", "/usprawnienia-firmy", "/jak-pracuje", "/kontakt", "/strony-dla-warsztatow", "/strony-dla-firm-uslugowych", "/strony-dla-beauty", "/chatbot-dla-firm", "/maly-crm-dla-firm", "/strony-internetowe-marki"]) {
+  for (const path of ["/oferta", "/modernizacja-strony", "/realizacje", "/realizacje/transportflow", "/usprawnienia-firmy", "/jak-pracuje", "/kontakt", "/strony-dla-warsztatow", "/strony-dla-firm-uslugowych", "/strony-dla-beauty", "/chatbot-dla-firm", "/maly-crm-dla-firm", "/strony-internetowe-marki"]) {
     const response = await render(path);
     assert.equal(response.status, 200, path);
     const html = await response.text();
     assert.doesNotMatch(html, forbiddenBrand, path);
     if (path === "/oferta") assert.match(html, /Przelewy24/i);
     if (path === "/maly-crm-dla-firm") assert.match(html, /PWA/i);
+    if (path === "/realizacje/transportflow") assert.match(html, /TransportFlow/i);
   }
 });
