@@ -7,7 +7,7 @@ export default function Privacy() {
       <Link className="brand" href="/">
         <BrandSignature />
       </Link>
-      <span className="section-no">INFORMACJE PRAWNE · AKTUALIZACJA 25.08.2026</span>
+      <span className="section-no">INFORMACJE PRAWNE · AKTUALIZACJA 18.09.2026</span>
       <h1>Polityka prywatności</h1>
       <p className="legal-lead">
         Krótko i konkretnie: zbieramy tylko dane potrzebne do odpowiedzi na
@@ -26,9 +26,10 @@ export default function Privacy() {
         <h2>2. Jakie dane zbieramy</h2>
         <p>
           Formularz kontaktowy może zawierać imię, adres e-mail, nazwę firmy,
-          wybrany przedział budżetu oraz wiadomość o projekcie. W Strefie Klienta
-          kod projektu służy wyłącznie do wyświetlenia informacji przypisanych do
-          konkretnego zlecenia.
+          wybrany rodzaj usługi, treść wiadomości oraz  -  przy miniocenie  -  adres
+          obecnej strony. W demonstracyjnym asystencie można opcjonalnie podać
+          numer telefonu. W Strefie Klienta kod projektu służy wyłącznie do
+          wyświetlenia informacji przypisanych do konkretnego zlecenia.
         </p>
         <h2>3. Po co i na jakiej podstawie</h2>
         <p>
@@ -56,7 +57,7 @@ export default function Privacy() {
         <h2>6. Twoje prawa</h2>
         <p>
           Możesz zażądać dostępu do danych, ich sprostowania, usunięcia,
-          ograniczenia przetwarzania, przeniesienia danych lub wnieść sprzeciw.
+          ograniczenia przetwarzania, przeniesienia danych lub wnieść sprzeciw,
           zależnie od podstawy przetwarzania. Masz też prawo złożyć skargę do
           Prezesa Urzędu Ochrony Danych Osobowych.
         </p>
