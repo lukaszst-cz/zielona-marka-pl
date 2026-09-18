@@ -78,7 +78,7 @@ export const projects: Project[] = [
     type: "Auto detailing",
     note: "Projekt koncepcyjny / demonstracja",
     description: "System dla zapytań, stanowisk, kontroli jakości, zdjęć, płatności i powrotów klientów.",
-    imageUrl: "/concept-natura.jpg",
+    imageUrl: "/og.png",
     websiteUrl: "/realizacje/detailflow",
     primaryLabel: "Zobacz realizację",
   },
