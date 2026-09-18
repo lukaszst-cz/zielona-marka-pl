@@ -60,3 +60,21 @@ test("strefa klienta ma zakaz indeksowania", async () => {
   const html = await response.text();
   assert.match(html, /name="robots"[^>]+noindex/i);
 });
+
+
+test("główne wewnętrzne linki nie prowadzą do 404", async () => {
+  const seeds = ["/", "/oferta", "/modernizacja-strony", "/realizacje", "/usprawnienia-firmy", "/jak-pracuje", "/kontakt", "/strony-dla-warsztatow", "/strony-dla-firm-uslugowych", "/strony-dla-beauty", "/asystent-zapytan", "/maly-crm-dla-firm", "/strony-internetowe-marki"];
+  const checked = new Set();
+  for (const seed of seeds) {
+    const response = await render(seed);
+    assert.equal(response.status, 200, seed);
+    const html = await response.text();
+    const hrefs = [...html.matchAll(/href="(\/[^"#?]*)(?:[?#][^"]*)?"/g)].map(match => match[1] || "/");
+    for (const href of hrefs) {
+      if (checked.has(href) || href.startsWith("/status") || href.startsWith("/studio") || href.startsWith("/demo")) continue;
+      checked.add(href);
+      const linked = await render(href);
+      assert.notEqual(linked.status, 404, `${seed} -> ${href}`);
+    }
+  }
+});
