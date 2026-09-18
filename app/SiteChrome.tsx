@@ -55,6 +55,6 @@ export function SiteFooter() {
 
 export function QuickContact() {
   return <a className="whatsapp-float" href="tel:+48450458466" aria-label="Zadzwoń do Zielonej Marki">
-    <span aria-hidden="true">◌</span><b>Zadzwoń lub napisz</b><small>+48 450 458 466</small><i aria-hidden="true">↗</i>
+    <span aria-hidden="true">◌</span><b>Zadzwoń teraz</b><small>+48 450 458 466</small><i aria-hidden="true">↗</i>
   </a>;
 }
