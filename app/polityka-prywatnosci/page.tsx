@@ -1,5 +1,8 @@
+import type { Metadata } from "next";
 import Link from "../SafeLink";
 import BrandSignature from "../BrandSignature";
+
+export const metadata: Metadata = { title: "Polityka prywatności", description: "Informacje o przetwarzaniu danych na zielona-marka.pl, formularzach kontaktowych i Strefie Klienta.", alternates: { canonical: "/polityka-prywatnosci" } };
 
 export default function Privacy() {
   return (
