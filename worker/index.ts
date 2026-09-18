@@ -19,14 +19,20 @@ interface ExecutionContext {
   passThroughOnException(): void;
 }
 
-function secure(response: Response): Response {
+function secure(response: Response, request: Request): Response {
   const headers = new Headers(response.headers);
-  headers.set("Content-Security-Policy", "default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; font-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests");
+  const path = new URL(request.url).pathname;
+  headers.set("Content-Security-Policy", "default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; font-src 'self' data:; connect-src 'self'; object-src 'none'; manifest-src 'self'; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests");
   headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
   headers.set("X-Content-Type-Options", "nosniff");
   headers.set("X-Frame-Options", "DENY");
   headers.set("Permissions-Policy", "camera=(), geolocation=(), microphone=()");
   headers.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+  headers.set("Cross-Origin-Opener-Policy", "same-origin");
+  headers.set("X-Permitted-Cross-Domain-Policies", "none");
+  if (path.startsWith("/studio") || path.startsWith("/status") || path === "/umowa-przykladowa" || path.startsWith("/api/studio")) {
+    headers.set("Cache-Control", "private, no-store");
+  }
   return new Response(response.body, { status: response.status, statusText: response.statusText, headers });
 }
 
@@ -51,7 +57,7 @@ const worker = {
       }, allowedWidths);
     }
 
-    return secure(await handler.fetch(request, env, ctx));
+    return secure(await handler.fetch(request, env, ctx), request);
   },
 };
 
