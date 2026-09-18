@@ -107,14 +107,13 @@ export const corePackages = [
     price: "od 6 900 zł netto",
     time: "zwykle 14–21 dni roboczych",
     lead: "Strona, formularz i asystent połączone z prostym obiegiem zapytań w firmie.",
-    includes: ["strona oraz formularz kwalifikujący", "asystent FAQ lub AI oparty na zatwierdzonej bazie odpowiedzi", "przekazanie zgłoszeń do właściciela lub zespołu", "testy scenariuszy, analityka i ścieżka dalszej rozbudowy"],
+    includes: ["strona oraz formularz kwalifikujący", "asystent FAQ lub AI oparty na zatwierdzonej bazie odpowiedzi", "przekazanie zgłoszeń do właściciela lub zespołu", "testy scenariuszy, analityka, publikacja i 14 dni wsparcia"],
   },
 ];
 
 export const socialLinks = {
   facebook: "https://www.facebook.com/StudioGraficzneZielonaMarka",
   instagram: "https://www.instagram.com/zielona.marka.pl/",
-  github: "https://github.com/lukaszst-cz",
 };
 
 export const processSteps = [
