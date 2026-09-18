@@ -27,8 +27,8 @@ export default function Home() {
         <h1>Tworzę cyfrowe miejsca, <em>w których marki rosną.</em></h1>
         <p className="sales-hero-copy">Projektuję szybkie, charakterystyczne strony, formularze i małe CRM-y, które pomagają firmom zdobywać klientów i nie gubić żadnego zapytania.</p>
         <div className="hero-actions">
-          <Link className="button" href="/kontakt">Sprawdź rozwiązanie dla firmy <span>↗</span></Link>
-          <Link className="text-link" href="/strony-internetowe-marki">Działamy w Markach i okolicy <span>↓</span></Link>
+          <Link className="button" href="/kontakt">Poproś o wycenę <span>↗</span></Link>
+          <Link className="text-link" href="/realizacje">Zobacz realizacje <span>↓</span></Link>
         </div>
         <div className="sales-hero-proof" aria-label="Najważniejsze zasady Zielonej Marki"><span>Jasny zakres</span><span>30% na start · 70% przed publikacją</span><span>Testy QA i 14 dni wsparcia</span></div>
       </section>
