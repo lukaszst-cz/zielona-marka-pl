@@ -45,7 +45,7 @@ export function SiteFooter() {
         <Link href="/studio">Studio pracy</Link>
         <a href={socialLinks.facebook} target="_blank" rel="noreferrer">Facebook ↗</a>
         <a href={socialLinks.instagram} target="_blank" rel="noreferrer">Instagram ↗</a>
-        <a href={socialLinks.github} target="_blank" rel="noreferrer">GitHub ↗</a>
+        <Link href="/jak-pracuje">Jak pracuję</Link>
         <Link href="/polityka-prywatnosci">Prywatność</Link>
       </div>
       <small>© {new Date().getFullYear()} Zielona Marka</small>
