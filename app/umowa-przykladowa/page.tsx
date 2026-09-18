@@ -7,6 +7,9 @@ export const dynamic = "force-dynamic";
 export const metadata = {
   title: "Przykładowy draft umowy",
   description: "Przykładowy zakres umowy na stronę, system lub automatyzację dla firmy.",
+  robots: { index: false, follow: false },
+  openGraph: { images: [] },
+  twitter: { images: [] },
 };
 
 const clauses = [
@@ -27,7 +30,7 @@ const clauses = [
 
 export default async function SampleContract() {
   const user = await requireStudioOwner();
-  if (!user) return <main className="studio-denied"><div><span className="section-no">PRYWATNY DOKUMENT</span><h1>Zaloguj się do Studio pracy.</h1><p>Wzór umowy jest dostępny wyłącznie dla właściciela Zielonej Marki.</p><form className="studio-login-form" method="post" action="/api/studio/session"><label>E-mail<input name="email" type="email" defaultValue="lukasz.staniewicz@gmail.com" required autoComplete="username" /></label><label>Hasło<input name="password" type="password" required autoComplete="current-password" /></label><button className="button" type="submit">Zaloguj się <span>↗</span></button></form><Link href="/">Wróć na stronę</Link></div></main>;
+  if (!user) return <main className="studio-denied"><div><span className="section-no">PRYWATNY DOKUMENT</span><h1>Zaloguj się do Studio pracy.</h1><p>Wzór umowy jest dostępny wyłącznie dla właściciela Zielonej Marki.</p><form className="studio-login-form" method="post" action="/api/studio/session"><label>E-mail<input name="email" type="email" required autoComplete="username" /></label><label>Hasło<input name="password" type="password" required autoComplete="current-password" /></label><button className="button" type="submit">Zaloguj się <span>↗</span></button></form><Link href="/">Wróć na stronę</Link></div></main>;
   return <main className="contract-page">
     <header className="contract-header shell">
       <Link className="brand" href="/"><BrandSignature /></Link>
