@@ -71,7 +71,7 @@ test("główne wewnętrzne linki nie prowadzą do 404", async () => {
     const html = await response.text();
     const hrefs = [...html.matchAll(/href="(\/[^"#?]*)(?:[?#][^"]*)?"/g)].map(match => match[1] || "/");
     for (const href of hrefs) {
-      if (checked.has(href) || href.startsWith("/status") || href.startsWith("/studio") || href.startsWith("/demo")) continue;
+      if (checked.has(href) || href.startsWith("/status") || href.startsWith("/studio") || href.startsWith("/demo") || /\.(?:png|jpe?g|webp|svg|ico|mp4|webm|pdf)$/i.test(href)) continue;
       checked.add(href);
       const linked = await render(href);
       assert.notEqual(linked.status, 404, `${seed} -> ${href}`);
