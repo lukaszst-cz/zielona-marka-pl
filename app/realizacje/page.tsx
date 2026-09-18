@@ -3,7 +3,7 @@ import Link from "../SafeLink";
 import { QuickContact, SiteFooter, SiteHeader } from "../SiteChrome";
 import { projects } from "../site-data";
 
-export const metadata: Metadata = { title: "Realizacje", description: "Demonstracje stron internetowych i zapleczy dla branży beauty, gastronomii, nieruchomości, motoryzacji oraz transportu." };
+export const metadata: Metadata = { title: "Realizacje", description: "Demonstracje stron internetowych i zapleczy dla branży beauty, gastronomii, nieruchomości, motoryzacji oraz transportu.", alternates: { canonical: "/realizacje" } };
 
 export default function RealizationsPage() {
   return <><SiteHeader /><main>
@@ -12,5 +12,5 @@ export default function RealizationsPage() {
     <section className="section dark-section"><div className="shell operations-grid"><div><span className="section-no">NOWA REALIZACJA: TRANSPORT</span><h2>TransportFlow porządkuje zlecenie od pierwszego zapytania do płatności.</h2><p>Demonstracyjny TMS i CRM dla floty 50 zestawów: zlecenia, kierowcy, dokumenty, KPI, terminy płatności oraz widoki dla klienta i kierowcy.</p></div><div><Link className="button button-light" href="/realizacje/transportflow">Poznaj TransportFlow <span>↗</span></Link><a href="https://transportflow.zielona-marka.pl" target="_blank" rel="noreferrer">Otwórz demonstrację ↗</a></div></div></section>
     <section className="section operations-section"><div className="shell operations-grid"><div><span className="section-no">PRZYKŁADY ZAPLECZA FIRMY</span><h2>Strona może być początkiem lepiej uporządkowanej pracy.</h2><p>Te przykłady pokazują obsługę zapytań, statusy, dokumenty i najważniejsze informacje potrzebne właścicielowi firmy bez dokładania dużego systemu.</p></div><div><Link className="button" href="/maly-crm-dla-firm">Zobacz Mały CRM <span>↗</span></Link><Link href="/realizacje/transportflow">Zobacz TransportFlow ↗</Link></div></div></section>
     <section className="section shell next-project"><span className="section-no">TWOJA FIRMA</span><h2>Masz branżę, której jeszcze nie ma w&nbsp;portfolio?</h2><p>Nie kopiuję układu z&nbsp;innego projektu. Zaczynamy od tego, co klient Twojej firmy musi znaleźć i&nbsp;zrobić.</p><Link className="button" href="/kontakt">Porozmawiajmy o projekcie <span>↗</span></Link></section>
-  </main><SiteFooter /></>;
+  </main><QuickContact /><SiteFooter /></>;
 }
