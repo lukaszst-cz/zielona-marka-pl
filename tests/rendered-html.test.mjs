@@ -50,20 +50,23 @@ test("prywatny login nie jest zapisany w publicznym kodzie", async () => {
   const sources = await Promise.all([
     readFile(new URL("../app/studio/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/studio/session.ts", import.meta.url), "utf8"),
+    readFile(new URL("../app/umowa-przykladowa/page.tsx", import.meta.url), "utf8"),
   ]);
   for (const source of sources) assert.doesNotMatch(source, forbiddenPrivateEmail);
 });
 
-test("strefa klienta ma zakaz indeksowania", async () => {
-  const response = await render("/status");
-  assert.equal(response.status, 200);
-  const html = await response.text();
-  assert.match(html, /name="robots"[^>]+noindex/i);
+test("prywatne obszary mają zakaz indeksowania", async () => {
+  for (const path of ["/status", "/studio", "/umowa-przykladowa"]) {
+    const response = await render(path);
+    assert.equal(response.status, 200, path);
+    const html = await response.text();
+    assert.match(html, /name="robots"[^>]+noindex/i, path);
+  }
 });
 
 
 test("główne wewnętrzne linki nie prowadzą do 404", async () => {
-  const seeds = ["/", "/oferta", "/modernizacja-strony", "/realizacje", "/usprawnienia-firmy", "/jak-pracuje", "/kontakt", "/strony-dla-warsztatow", "/strony-dla-firm-uslugowych", "/strony-dla-beauty", "/asystent-zapytan", "/maly-crm-dla-firm", "/strony-internetowe-marki"];
+  const seeds = ["/", "/oferta", "/modernizacja-strony", "/realizacje", "/realizacje/transportflow", "/realizacje/detailflow", "/usprawnienia-firmy", "/jak-pracuje", "/kontakt", "/strony-dla-warsztatow", "/strony-dla-firm-uslugowych", "/strony-dla-beauty", "/asystent-zapytan", "/maly-crm-dla-firm", "/strony-internetowe-marki", "/polityka-prywatnosci", "/en"];
   const checked = new Set();
   for (const seed of seeds) {
     const response = await render(seed);
@@ -77,4 +80,18 @@ test("główne wewnętrzne linki nie prowadzą do 404", async () => {
       assert.notEqual(linked.status, 404, `${seed} -> ${href}`);
     }
   }
+});
+
+
+test("wersja angielska jest zgodna z aktualną ofertą i bez linku deweloperskiego", async () => {
+  const response = await render("/en");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /ZM Start/i);
+  assert.match(html, /2,490|2 490/i);
+  assert.match(html, /ZM LeadFlow/i);
+  assert.match(html, /4,490|4 490/i);
+  assert.match(html, /ZM Flow AI/i);
+  assert.match(html, /6,900|6 900/i);
+  assert.doesNotMatch(html, forbiddenDeveloperLink);
 });
