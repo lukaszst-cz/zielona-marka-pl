@@ -280,3 +280,25 @@ footer .brand-signature .brand-wordmark{margin-left:2px;transform:translateY(13p
 
 .detailflow-role-pwa{font-size:13px;line-height:1.75;color:var(--muted);max-width:380px;margin:24px 0 14px}
 .detailflow-roles .text-link{font-size:11px;font-weight:800;color:#477059;border-bottom:1px solid #477059;padding-bottom:5px}
+
+
+/* Finalne dopasowanie nagłówka na małych ekranach: logo + język + menu bez nakładania. */
+@media(max-width:760px){
+  .site-header .nav{gap:8px}
+  .site-header .brand{max-width:165px;overflow:hidden}
+  .site-header .brand-signature{min-width:160px}
+  .site-header .brand-apple{width:54px;height:48px}
+  .site-header .brand-wordmark{margin-left:0;transform:translateY(6px);row-gap:0}
+  .site-header .brand-wordmark b,.site-header .brand-wordmark b:last-of-type{font-size:15px;line-height:.9}
+  .site-header .brand-wordmark small{font-size:5.5px;margin-top:4px}
+  .site-header .language-switch{right:69px;top:17px}
+  .mobile-menu{top:11px}
+}
+@media(max-width:380px){
+  .site-header .brand{max-width:142px}
+  .site-header .brand-signature{min-width:140px}
+  .site-header .brand-apple{width:46px;height:42px}
+  .site-header .brand-wordmark b,.site-header .brand-wordmark b:last-of-type{font-size:13px}
+  .site-header .brand-wordmark small{display:none}
+  .site-header .language-switch{right:62px}
+}
