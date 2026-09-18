@@ -4,7 +4,7 @@ import EstimateCalculator from "../EstimateCalculator";
 import { QuickContact, SiteFooter, SiteHeader } from "../SiteChrome";
 import { corePackages } from "../site-data";
 
-export const metadata: Metadata = { title: "Oferta i ceny stron, formularzy i asystentów", description: "Pakiety stron WWW, formularzy wyceny i asystentów dla warsztatów, firm remontowych, instalatorów, beauty i usług lokalnych." };
+export const metadata: Metadata = { title: "Oferta i ceny stron, formularzy i asystentów", description: "Pakiety stron WWW, formularzy wyceny i asystentów dla warsztatów, firm remontowych, instalatorów, beauty i usług lokalnych.", alternates: { canonical: "/oferta" } };
 
 const extras = [
   ["Wizytówka Google i widoczność w okolicy", "od 390 zł", "Porządek w danych firmy, usługach, opisie i kontakcie między Mapami Google a stroną. To podstawy lokalnego SEO, czyli widoczności w wyszukiwarce."],
