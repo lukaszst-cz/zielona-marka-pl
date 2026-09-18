@@ -26,23 +26,28 @@ export default function DemoAsystent() {
     setError("");
     const form = event.currentTarget;
     const values = Object.fromEntries(new FormData(form));
-    const response = await fetch("/api/inquiries", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: values.name,
-        email: values.email,
-        company: values.company,
-        companyWebsite: values.companyWebsite,
-        consent: values.consent === "yes",
-        message: `Asystent demonstracyjny\nCel: ${goal}\nBranża: ${industry}\nTelefon: ${values.phone || "nie podano"}\n\n${values.message || "Prośba o kontakt."}`,
-      }),
-    });
-    setSending(false);
-    if (response.ok) {
-      setSent(true);
-      form.reset();
-    } else setError("Nie udało się zapisać zgłoszenia. Napisz na kontakt@zielona-marka.pl.");
+    try {
+      const response = await fetch("/api/inquiries", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: values.name,
+          email: values.email,
+          company: values.company,
+          companyWebsite: values.companyWebsite,
+          consent: values.consent === "yes",
+          message: `Asystent demonstracyjny\nCel: ${goal}\nBranża: ${industry}\nTelefon: ${values.phone || "nie podano"}\n\n${values.message || "Prośba o kontakt."}`,
+        }),
+      });
+      if (response.ok) {
+        setSent(true);
+        form.reset();
+      } else setError("Nie udało się zapisać zgłoszenia. Napisz na kontakt@zielona-marka.pl.");
+    } catch {
+      setError("Brak połączenia lub chwilowy problem z formularzem. Napisz na kontakt@zielona-marka.pl albo spróbuj ponownie.");
+    } finally {
+      setSending(false);
+    }
   }
 
   function reset() {
@@ -74,11 +79,11 @@ export default function DemoAsystent() {
             <label className="kontakt-form-wide">Co jest dziś największym problemem?<textarea name="message" rows={3} /></label>
             <label className="kontakt-consent kontakt-form-wide"><input type="checkbox" name="consent" value="yes" required /> <span>Akceptuję <Link href="/polityka-prywatnosci">politykę prywatności</Link> i proszę o kontakt.</span></label>
             <button className="button kontakt-form-wide" type="submit" disabled={sending}>{sending ? "Wysyłam…" : "Wyślij zgłoszenie"}<span>↗</span></button>
-            {error && <small className="form-error kontakt-form-wide">{error}</small>}
+            {error && <small className="form-error kontakt-form-wide" role="alert">{error}</small>}
           </form>
           <button className="kontakt-back" type="button" onClick={() => setIndustry("")}>← Zmień branżę</button>
         </div>}
-        {sent && <div className="bot-message kontakt-success"><b>Gotowe  -  zgłoszenie zostało zapisane.</b><p>Odpowiem najpóźniej w następnym dniu roboczym.</p><button type="button" onClick={reset}>Rozpocznij ponownie</button></div>}
+        {sent && <div className="bot-message kontakt-success" role="status"><b>Gotowe  -  zgłoszenie zostało zapisane.</b><p>Odpowiem najpóźniej w następnym dniu roboczym.</p><button type="button" onClick={reset}>Rozpocznij ponownie</button></div>}
         <div className="kontakt-demo-links"><Link href="/strony-dla-warsztatow">Demo dla warsztatu</Link><Link href="/strony-dla-firm-uslugowych">Demo dla wykonawcy</Link><Link href="/strony-dla-beauty">Demo beauty</Link></div>
       </div>
       <footer>To demonstracja scenariusza. Wdrożenie AI wymaga zatwierdzonej bazy wiedzy i kontaktu z człowiekiem.</footer>
