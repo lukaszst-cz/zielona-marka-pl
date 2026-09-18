@@ -1,7 +1,10 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { readFile } from "node:fs/promises";
 
 const forbiddenBrand = new RegExp(String.fromCodePoint(99, 104, 97, 116, 103, 112, 116), "i");
+const forbiddenDeveloperLink = /github\.com\/lukaszst-cz/i;
+const forbiddenPrivateEmail = /lukasz\.staniewicz@gmail\.com/i;
 
 async function render(path = "/") {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
@@ -35,6 +38,25 @@ test("nowe zakładki są renderowane", async () => {
     assert.doesNotMatch(html, forbiddenBrand, path);
     if (path === "/oferta") assert.match(html, /Przelewy24/i);
     if (path === "/maly-crm-dla-firm") assert.match(html, /PWA/i);
-    if (path === "/realizacje/transportflow") assert.match(html, /TransportFlow/i);
+    if (path === "/realizacje/transportflow") {
+      assert.match(html, /TransportFlow/i);
+      assert.doesNotMatch(html, forbiddenDeveloperLink);
+    }
+    if (path === "/realizacje") assert.doesNotMatch(html, forbiddenDeveloperLink);
   }
+});
+
+test("prywatny login nie jest zapisany w publicznym kodzie", async () => {
+  const sources = await Promise.all([
+    readFile(new URL("../app/studio/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/studio/session.ts", import.meta.url), "utf8"),
+  ]);
+  for (const source of sources) assert.doesNotMatch(source, forbiddenPrivateEmail);
+});
+
+test("strefa klienta ma zakaz indeksowania", async () => {
+  const response = await render("/status");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /name="robots"[^>]+noindex/i);
 });
