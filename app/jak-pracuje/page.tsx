@@ -3,7 +3,7 @@ import Link from "../SafeLink";
 import { QuickContact, SiteFooter, SiteHeader } from "../SiteChrome";
 import { processSteps } from "../site-data";
 
-export const metadata: Metadata = { title: "Jak pracuję", description: "Jasny proces od briefu do publikacji strony: projekt, poprawki, QA, SEO techniczne i opieka." };
+export const metadata: Metadata = { title: "Jak pracuję", description: "Jasny proces od briefu do publikacji strony: projekt, poprawki, QA, SEO techniczne i opieka.", alternates: { canonical: "/jak-pracuje" } };
 
 const faq = [
   ["Czy musimy spotykać się osobiście?", "Nie. Współpraca może odbywać się przez Google Meet, telefon, e-mail i WhatsApp. Działam lokalnie, ale realizuję projekty zdalnie dla firm z całej Polski."],
