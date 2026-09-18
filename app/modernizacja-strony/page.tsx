@@ -3,7 +3,7 @@ import Link from "../SafeLink";
 import ContactForm from "../ContactForm";
 import { QuickContact, SiteFooter, SiteHeader } from "../SiteChrome";
 
-export const metadata: Metadata = { title: "Modernizacja strony internetowej", description: "Ocena starej strony i plan modernizacji: telefon, kontakt, oferta, szybkość oraz przygotowanie do Google." };
+export const metadata: Metadata = { title: "Modernizacja strony internetowej", description: "Ocena starej strony i plan modernizacji: telefon, kontakt, oferta, szybkość oraz przygotowanie do Google.", alternates: { canonical: "/modernizacja-strony" } };
 
 const symptoms = ["strona źle wygląda na telefonie", "oferta jest nieczytelna albo zbyt ogólna", "telefon i formularz nie są pod ręką", "klienci nie wiedzą, co zrobić dalej", "treści są nieaktualne", "strona działa wolno", "dane w Google i na stronie są niespójne", "nie wiadomo, skąd przychodzą zapytania"];
 const fixes = ["odświeżenie układu, zdjęć i hierarchii treści", "pierwszy ekran z jasną ofertą i kontaktem", "klikalny telefon, WhatsApp i formularz", "wersja mobilna zaprojektowana świadomie", "sprawdzenie linków, formularzy oraz szybkości", "podstawy technicznego SEO i uporządkowane dane firmy"];
