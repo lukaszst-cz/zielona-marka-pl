@@ -119,6 +119,36 @@ export default function RootLayout({
       "Modernizacja stron internetowych",
       "Opieka nad stronami internetowymi",
     ],
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Pakiety Zielonej Marki",
+      itemListElement: [
+        {
+          "@type": "Offer",
+          name: "ZM Start",
+          price: "2490",
+          priceCurrency: "PLN",
+          url: "https://zielona-marka.pl/oferta",
+          itemOffered: { "@type": "Service", name: "Strona One Page dla lokalnej firmy" },
+        },
+        {
+          "@type": "Offer",
+          name: "ZM LeadFlow",
+          price: "4490",
+          priceCurrency: "PLN",
+          url: "https://zielona-marka.pl/oferta",
+          itemOffered: { "@type": "Service", name: "Strona z formularzem kwalifikującym zapytania" },
+        },
+        {
+          "@type": "Offer",
+          name: "ZM Flow AI",
+          price: "6900",
+          priceCurrency: "PLN",
+          url: "https://zielona-marka.pl/oferta",
+          itemOffered: { "@type": "Service", name: "Strona z formularzem i asystentem zapytań" },
+        },
+      ],
+    },
   };
   return (
     <html lang="pl">
