@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "../SafeLink";
 import { QuickContact, SiteFooter, SiteHeader } from "../SiteChrome";
 
-export const metadata: Metadata = { title: "Usprawnienia firmy", description: "Proste automatyzacje, statusy zleceń, dashboardy i lekkie panele klienta dla rosnących firm." };
+export const metadata: Metadata = { title: "Usprawnienia firmy", description: "Proste automatyzacje, statusy zleceń, dashboardy i lekkie panele klienta dla rosnących firm.", alternates: { canonical: "/usprawnienia-firmy" } };
 
 const situations = [
   ["Zapytania giną", "Formularz może utworzyć wpis w uporządkowanej bazie, wysłać potwierdzenie i przypomnieć o odpowiedzi."],
