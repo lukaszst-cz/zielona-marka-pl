@@ -89,7 +89,6 @@ export default function RootLayout({
     sameAs: [
       "https://www.facebook.com/StudioGraficzneZielonaMarka",
       "https://www.instagram.com/zielona.marka.pl/",
-      "https://github.com/lukaszst-cz",
     ],
     areaServed: [
       "Ząbki",
