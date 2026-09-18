@@ -33,6 +33,9 @@ function secure(response: Response, request: Request): Response {
   if (path.startsWith("/studio") || path.startsWith("/status") || path === "/umowa-przykladowa" || path.startsWith("/api/studio")) {
     headers.set("Cache-Control", "private, no-store");
   }
+  if (path.startsWith("/studio") || path.startsWith("/status") || path === "/umowa-przykladowa") {
+    headers.set("X-Robots-Tag", "noindex, nofollow, noarchive");
+  }
   return new Response(response.body, { status: response.status, statusText: response.statusText, headers });
 }
 
