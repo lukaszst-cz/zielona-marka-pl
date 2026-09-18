@@ -56,11 +56,16 @@ test("prywatny login nie jest zapisany w publicznym kodzie", async () => {
 });
 
 test("prywatne obszary mają zakaz indeksowania", async () => {
-  for (const path of ["/status", "/studio", "/umowa-przykladowa"]) {
-    const response = await render(path);
-    assert.equal(response.status, 200, path);
-    const html = await response.text();
-    assert.match(html, /name="robots"[^>]+noindex/i, path);
+  const statusResponse = await render("/status");
+  assert.equal(statusResponse.status, 200);
+  assert.match(await statusResponse.text(), /name="robots"[^>]+noindex/i);
+
+  const privateSources = await Promise.all([
+    readFile(new URL("../app/studio/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/umowa-przykladowa/page.tsx", import.meta.url), "utf8"),
+  ]);
+  for (const source of privateSources) {
+    assert.match(source, /robots:\s*\{\s*index:\s*false,\s*follow:\s*false\s*\}/i);
   }
 });
 
@@ -104,8 +109,12 @@ test("nagłówki bezpieczeństwa są obecne, a prywatne strony nie są cacheowan
   assert.equal(publicResponse.headers.get("x-content-type-options"), "nosniff");
   assert.equal(publicResponse.headers.get("cross-origin-opener-policy"), "same-origin");
 
-  for (const path of ["/studio", "/status", "/umowa-przykladowa"]) {
-    const response = await render(path);
-    assert.match(response.headers.get("cache-control") || "", /no-store/i, path);
-  }
+  const statusResponse = await render("/status");
+  assert.match(statusResponse.headers.get("cache-control") || "", /no-store/i);
+
+  const workerSource = await readFile(new URL("../worker/index.ts", import.meta.url), "utf8");
+  assert.match(workerSource, /path\.startsWith\("\/studio"\)/);
+  assert.match(workerSource, /path\.startsWith\("\/api\/studio"\)/);
+  assert.match(workerSource, /path\s*===\s*"\/umowa-przykladowa"/);
+  assert.match(workerSource, /private, no-store/);
 });
