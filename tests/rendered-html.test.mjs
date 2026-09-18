@@ -111,10 +111,12 @@ test("nagłówki bezpieczeństwa są obecne, a prywatne strony nie są cacheowan
 
   const statusResponse = await render("/status");
   assert.match(statusResponse.headers.get("cache-control") || "", /no-store/i);
+  assert.match(statusResponse.headers.get("x-robots-tag") || "", /noindex/i);
 
   const workerSource = await readFile(new URL("../worker/index.ts", import.meta.url), "utf8");
   assert.match(workerSource, /path\.startsWith\("\/studio"\)/);
   assert.match(workerSource, /path\.startsWith\("\/api\/studio"\)/);
   assert.match(workerSource, /path\s*===\s*"\/umowa-przykladowa"/);
   assert.match(workerSource, /private, no-store/);
+  assert.match(workerSource, /X-Robots-Tag/);
 });
