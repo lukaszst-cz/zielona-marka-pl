@@ -120,3 +120,18 @@ test("nagłówki bezpieczeństwa są obecne, a prywatne strony nie są cacheowan
   assert.match(workerSource, /private, no-store/);
   assert.match(workerSource, /X-Robots-Tag/);
 });
+
+
+test("dane strukturalne oferty zawierają aktualne pakiety i ceny netto", async () => {
+  const response = await render("/");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /"OfferCatalog"/);
+  assert.match(html, /"ZM Start"/);
+  assert.match(html, /"2490"/);
+  assert.match(html, /"ZM LeadFlow"/);
+  assert.match(html, /"4490"/);
+  assert.match(html, /"ZM Flow AI"/);
+  assert.match(html, /"6900"/);
+  assert.match(html, /"valueAddedTaxIncluded":false/);
+});
