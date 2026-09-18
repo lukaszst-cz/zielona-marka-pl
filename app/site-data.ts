@@ -80,7 +80,7 @@ export const projects: Project[] = [
     description: "System dla zapytań, stanowisk, kontroli jakości, zdjęć, płatności i powrotów klientów.",
     imageUrl: "/og.png",
     websiteUrl: "/realizacje/detailflow",
-    primaryLabel: "Zobacz realizację",
+    primaryLabel: "Zobacz demonstrację",
   },
 ];
 
