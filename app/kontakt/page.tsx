@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import ContactForm from "../ContactForm";
 import { QuickContact, SiteFooter, SiteHeader } from "../SiteChrome";
 
-export const metadata: Metadata = { title: "Kontakt i wycena", description: "Skontaktuj się z Zieloną Marką w sprawie strony, formularza wyceny, modernizacji lub asystenta dla lokalnej firmy usługowej." };
+export const metadata: Metadata = { title: "Kontakt i wycena", description: "Skontaktuj się z Zieloną Marką w sprawie strony, formularza wyceny, modernizacji lub asystenta dla lokalnej firmy usługowej.", alternates: { canonical: "/kontakt" } };
 
 export default function ContactPage() {
   return <><SiteHeader /><main>
