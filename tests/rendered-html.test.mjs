@@ -95,3 +95,17 @@ test("wersja angielska jest zgodna z aktualną ofertą i bez linku deweloperskie
   assert.match(html, /6,900|6 900/i);
   assert.doesNotMatch(html, forbiddenDeveloperLink);
 });
+
+
+test("nagłówki bezpieczeństwa są obecne, a prywatne strony nie są cacheowane", async () => {
+  const publicResponse = await render("/");
+  assert.match(publicResponse.headers.get("content-security-policy") || "", /object-src 'none'/i);
+  assert.equal(publicResponse.headers.get("x-frame-options"), "DENY");
+  assert.equal(publicResponse.headers.get("x-content-type-options"), "nosniff");
+  assert.equal(publicResponse.headers.get("cross-origin-opener-policy"), "same-origin");
+
+  for (const path of ["/studio", "/status", "/umowa-przykladowa"]) {
+    const response = await render(path);
+    assert.match(response.headers.get("cache-control") || "", /no-store/i, path);
+  }
+});
