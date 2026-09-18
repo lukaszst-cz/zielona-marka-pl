@@ -12,12 +12,17 @@ export default function ContactForm({ audit = false }: { audit?: boolean }) {
     setSending(true); setError("");
     const form = event.currentTarget;
     const values = Object.fromEntries(new FormData(form));
-    const response = await fetch("/api/inquiries", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...values, consent: values.consent === "yes", message: `${audit ? "Miniocena strony\n" : ""}Usługa: ${values.projectType || "do ustalenia"}\nFirma: ${values.company || "do ustalenia"}\nAdres strony: ${values.website || "brak / nowa strona"}\n\n${values.message || ""}` }) });
-    setSending(false);
-    if (response.ok) { setSent(true); form.reset(); }
-    else setError("Nie udało się wysłać wiadomości. Napisz bezpośrednio na kontakt@zielona-marka.pl.");
+    try {
+      const response = await fetch("/api/inquiries", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...values, consent: values.consent === "yes", message: `${audit ? "Miniocena strony\n" : ""}Usługa: ${values.projectType || "do ustalenia"}\nFirma: ${values.company || "do ustalenia"}\nAdres strony: ${values.website || "brak / nowa strona"}\n\n${values.message || ""}` }) });
+      if (response.ok) { setSent(true); form.reset(); }
+      else setError("Nie udało się wysłać wiadomości. Napisz bezpośrednio na kontakt@zielona-marka.pl.");
+    } catch {
+      setError("Brak połączenia lub chwilowy problem z formularzem. Napisz na kontakt@zielona-marka.pl albo spróbuj ponownie.");
+    } finally {
+      setSending(false);
+    }
   }
-  if (sent) return <div className="form-success"><b>Dziękuję, wiadomość została wysłana.</b><p>Wrócę z propozycją kolejnego kroku i wstępną wyceną.</p></div>;
+  if (sent) return <div className="form-success" role="status"><b>Dziękuję, wiadomość została wysłana.</b><p>Wrócę z propozycją kolejnego kroku i wstępną wyceną.</p></div>;
   return <form className="contact-form" onSubmit={submit}>
     <label>Imię<input required name="name" placeholder="Jak masz na imię?" autoComplete="name" /></label>
     <label>E-mail<input required type="email" name="email" placeholder="twoj@email.pl" autoComplete="email" /></label>
@@ -28,6 +33,6 @@ export default function ContactForm({ audit = false }: { audit?: boolean }) {
     <label className="form-wide">Co dziś nie działa albo jaki efekt chcesz osiągnąć?<textarea required name="message" rows={5} placeholder="Np. mam starą stronę, klienci nie dzwonią, chcę sprzedawać kilka produktów…" /></label>
     <label className="form-consent form-wide"><input required type="checkbox" name="consent" value="yes" /> <span>Zapoznałem/-am się z <Link href="/polityka-prywatnosci">polityką prywatności</Link> i proszę o kontakt.</span></label>
     <button className="button form-wide" disabled={sending} type="submit">{sending ? "Wysyłam…" : audit ? "Poproś o miniocenę" : "Wyślij brief"}<span>↗</span></button>
-    {error && <p className="form-error form-wide">{error}</p>}
+    {error && <p className="form-error form-wide" role="alert">{error}</p>}
   </form>;
 }
