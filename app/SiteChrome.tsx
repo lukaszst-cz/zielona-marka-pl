@@ -42,7 +42,6 @@ export function SiteFooter() {
         <Link href="/oferta">Oferta</Link>
         <Link href="/realizacje">Realizacje</Link>
         <Link href="/status">Status projektu</Link>
-        <Link href="/studio">Studio pracy</Link>
         <a href={socialLinks.facebook} target="_blank" rel="noreferrer">Facebook ↗</a>
         <a href={socialLinks.instagram} target="_blank" rel="noreferrer">Instagram ↗</a>
         <Link href="/jak-pracuje">Jak pracuję</Link>
