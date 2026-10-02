@@ -49,6 +49,26 @@ export function SiteFooter() {
       </div>
       <small>© {new Date().getFullYear()} Zielona Marka</small>
     </div>
+    <div className="shell creator-projects" aria-label="Darmowe aplikacje i wsparcie autora">
+      <div className="creator-projects-copy">
+        <span>DARMOWE APLIKACJE I PROJEKTY</span>
+        <strong>Tworzę też narzędzia, z których można korzystać bezpłatnie.</strong>
+        <p>Zobacz kod, pobierz aplikacje albo śledź ich rozwój na GitHubie.</p>
+      </div>
+      <nav className="creator-project-links" aria-label="Aplikacje na GitHubie">
+        <a href="https://github.com/lukaszst-cz/aktywnik-plus" target="_blank" rel="noopener noreferrer"><strong>Aktywnik+ <span>↗</span></strong><small>Prosty dziennik ruchu dziecka z akceptacją rodzica i czytelnymi raportami.</small></a>
+        <a href="https://github.com/lukaszst-cz/docpilot" target="_blank" rel="noopener noreferrer"><strong>DocPilot <span>↗</span></strong><small>Porządkuje dokumenty, wyciąga terminy i pomaga odnaleźć to, czego potrzebujesz.</small></a>
+        <a href="https://github.com/lukaszst-cz/document-checker" target="_blank" rel="noopener noreferrer"><strong>Document Checker <span>↗</span></strong><small>Wyłapuje braki, błędne dane i rozbieżności w dokumentach przed ich wysłaniem.</small></a>
+        <a href="https://github.com/lukaszst-cz/lead-offer-copilot" target="_blank" rel="noopener noreferrer"><strong>Lead &amp; Offer Copilot <span>↗</span></strong><small>Zamienia chaotyczne zapytanie klienta w uporządkowany lead, szkic odpowiedzi i następny krok.</small></a>
+        <a className="creator-projects-all" href="https://github.com/lukaszst-cz" target="_blank" rel="noopener noreferrer">Zobacz wszystkie projekty na GitHubie ↗</a>
+      </nav>
+      <div className="creator-support-box">
+        <span>☕ DOBROWOLNE WSPARCIE</span>
+        <strong>Podoba Ci się któraś z aplikacji?</strong>
+        <p>Aplikacje pozostają darmowe. Jeśli chcesz wesprzeć ich dalszy rozwój, możesz postawić Naleśnikowi++ kawę.</p>
+        <a className="creator-coffee-button" href="https://buymeacoffee.com/nalesnik_plus_plus" target="_blank" rel="noopener noreferrer">Postaw Naleśnikowi++ kawę ☕</a>
+      </div>
+    </div>
   </footer>;
 }
 

@@ -27,6 +27,13 @@ test("strona główna renderuje ofertę i drogę do kontaktu", async () => {
   assert.match(html, /30% na start/i);
   assert.match(html, /2 490 zł/i);
   assert.match(html, /kontakt@zielona-marka\.pl/i);
+  assert.match(html, /Aktywnik\+/i);
+  assert.match(html, /DocPilot/i);
+  assert.match(html, /Porządkuje dokumenty/i);
+  assert.match(html, /Wyłapuje braki/i);
+  assert.match(html, /uporządkowany lead/i);
+  assert.match(html, /buymeacoffee\.com\/nalesnik_plus_plus/i);
+  assert.match(html, /wsparcie/i);
   assert.doesNotMatch(html, forbiddenBrand);
 });
 
@@ -40,9 +47,9 @@ test("nowe zakładki są renderowane", async () => {
     if (path === "/maly-crm-dla-firm") assert.match(html, /PWA/i);
     if (path === "/realizacje/transportflow") {
       assert.match(html, /TransportFlow/i);
-      assert.doesNotMatch(html, forbiddenDeveloperLink);
+      assert.match(html, /github\.com\/lukaszst-cz/i);
     }
-    if (path === "/realizacje") assert.doesNotMatch(html, forbiddenDeveloperLink);
+    if (path === "/realizacje") assert.match(html, /github\.com\/lukaszst-cz/i);
   }
 });
 
@@ -88,7 +95,7 @@ test("główne wewnętrzne linki nie prowadzą do 404", async () => {
 });
 
 
-test("wersja angielska jest zgodna z aktualną ofertą i bez linku deweloperskiego", async () => {
+test("wersja angielska jest zgodna z aktualną ofertą i pokazuje projekty autora", async () => {
   const response = await render("/en");
   assert.equal(response.status, 200);
   const html = await response.text();
@@ -98,7 +105,7 @@ test("wersja angielska jest zgodna z aktualną ofertą i bez linku deweloperskie
   assert.match(html, /4,490|4 490/i);
   assert.match(html, /ZM Flow AI/i);
   assert.match(html, /6,900|6 900/i);
-  assert.doesNotMatch(html, forbiddenDeveloperLink);
+  assert.match(html, /github\.com\/lukaszst-cz/i);
 });
 
 
