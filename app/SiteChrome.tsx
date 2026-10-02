@@ -49,6 +49,26 @@ export function SiteFooter() {
       </div>
       <small>© {new Date().getFullYear()} Zielona Marka</small>
     </div>
+    <div className="shell creator-projects" aria-label="Darmowe aplikacje i wsparcie autora">
+      <div className="creator-projects-copy">
+        <span>DARMOWE APLIKACJE I PROJEKTY</span>
+        <strong>Tworzę też narzędzia, z których można korzystać bezpłatnie.</strong>
+        <p>Zobacz kod, pobierz aplikacje albo śledź ich rozwój na GitHubie.</p>
+      </div>
+      <nav className="creator-project-links" aria-label="Aplikacje na GitHubie">
+        <a href="https://github.com/lukaszst-cz/aktywnik-plus" target="_blank" rel="noopener noreferrer">Aktywnik+ ↗</a>
+        <a href="https://github.com/lukaszst-cz/docpilot" target="_blank" rel="noopener noreferrer">DocPilot ↗</a>
+        <a href="https://github.com/lukaszst-cz/document-checker" target="_blank" rel="noopener noreferrer">Document Checker ↗</a>
+        <a href="https://github.com/lukaszst-cz/lead-offer-copilot" target="_blank" rel="noopener noreferrer">Lead &amp; Offer Copilot ↗</a>
+        <a href="https://github.com/lukaszst-cz" target="_blank" rel="noopener noreferrer">Wszystkie projekty na GitHubie ↗</a>
+      </nav>
+      <div className="creator-support-box">
+        <span>☕ DOBROWOLNE WSPARCIE</span>
+        <strong>Podoba Ci się któraś z aplikacji?</strong>
+        <p>Aplikacje pozostają darmowe. Jeśli chcesz wesprzeć ich dalszy rozwój, możesz postawić Naleśnikowi++ kawę.</p>
+        <a className="creator-coffee-button" href="https://buymeacoffee.com/nalesnik_plus_plus" target="_blank" rel="noopener noreferrer">Postaw Naleśnikowi++ kawę ☕</a>
+      </div>
+    </div>
   </footer>;
 }
 
