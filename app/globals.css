@@ -302,3 +302,19 @@ footer .brand-signature .brand-wordmark{margin-left:2px;transform:translateY(13p
   .site-header .brand-wordmark small{display:none}
   .site-header .language-switch{right:62px}
 }
+
+
+/* Stopka autora: darmowe aplikacje na GitHubie i dobrowolne wsparcie. */
+.creator-projects{margin-top:34px;padding-top:30px;border-top:1px solid rgba(255,255,255,.16);display:grid;grid-template-columns:1.1fr 1fr 1.05fr;gap:34px;align-items:start}
+.creator-projects-copy,.creator-support-box{display:flex;flex-direction:column;align-items:flex-start;gap:9px}
+.creator-projects-copy>span,.creator-support-box>span{font-size:8px;font-weight:900;letter-spacing:.14em;color:var(--lime)}
+.creator-projects-copy strong,.creator-support-box strong{font:400 22px/1.05 Georgia,serif;color:white}
+.creator-projects-copy p,.creator-support-box p{margin:0;max-width:390px;font-size:11px;line-height:1.65;color:#b9c9bf}
+.creator-project-links{display:flex;flex-direction:column;align-items:flex-start;gap:9px}
+.creator-project-links a{font-size:10px;font-weight:800;color:white;border-bottom:1px solid rgba(255,255,255,.2);padding-bottom:4px}
+.creator-project-links a:hover,.creator-project-links a:focus-visible{color:var(--lime);border-color:var(--lime)}
+.creator-support-box{padding:20px;border:1px solid rgba(216,237,128,.34);background:rgba(9,39,28,.48)}
+.creator-coffee-button{display:inline-flex;margin-top:5px;padding:11px 14px;background:var(--lime);color:var(--ink)!important;font-size:10px;font-weight:900;border:1px solid var(--lime)}
+.creator-coffee-button:hover,.creator-coffee-button:focus-visible{background:white;border-color:white}
+@media(max-width:900px){.creator-projects{grid-template-columns:1fr 1fr}.creator-support-box{grid-column:1/-1}}
+@media(max-width:620px){.creator-projects{grid-template-columns:1fr;gap:26px}.creator-support-box{grid-column:auto}}
