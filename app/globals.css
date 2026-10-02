@@ -318,3 +318,9 @@ footer .brand-signature .brand-wordmark{margin-left:2px;transform:translateY(13p
 .creator-coffee-button:hover,.creator-coffee-button:focus-visible{background:white;border-color:white}
 @media(max-width:900px){.creator-projects{grid-template-columns:1fr 1fr}.creator-support-box{grid-column:1/-1}}
 @media(max-width:620px){.creator-projects{grid-template-columns:1fr;gap:26px}.creator-support-box{grid-column:auto}}
+
+.creator-project-links>a:not(.creator-projects-all){display:flex;flex-direction:column;gap:4px;width:100%;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.16)}
+.creator-project-links>a:not(.creator-projects-all) strong{display:flex;justify-content:space-between;gap:12px;font-size:10px;color:white}
+.creator-project-links>a:not(.creator-projects-all) small{max-width:390px;font-size:9px;line-height:1.45;color:#b9c9bf}
+.creator-project-links>a:not(.creator-projects-all):hover small,.creator-project-links>a:not(.creator-projects-all):focus-visible small{color:white}
+.creator-projects-all{margin-top:5px;font-size:9px!important;color:var(--lime)!important;border-bottom-color:var(--lime)!important}
