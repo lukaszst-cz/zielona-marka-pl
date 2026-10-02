@@ -29,6 +29,9 @@ test("strona główna renderuje ofertę i drogę do kontaktu", async () => {
   assert.match(html, /kontakt@zielona-marka\.pl/i);
   assert.match(html, /Aktywnik\+/i);
   assert.match(html, /DocPilot/i);
+  assert.match(html, /Porządkuje dokumenty/i);
+  assert.match(html, /Wyłapuje braki/i);
+  assert.match(html, /uporządkowany lead/i);
   assert.match(html, /buymeacoffee\.com\/nalesnik_plus_plus/i);
   assert.match(html, /wsparcie/i);
   assert.doesNotMatch(html, forbiddenBrand);
