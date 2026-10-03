@@ -111,13 +111,3 @@ przed kolejnym wdrożeniem.
 Projekt jest rozwijany przez Zieloną Markę dla firm z Ząbek, Marek, Warszawy,
 Kobyłki, Zielonki, Radzymina, Wołomina i okolic. Zobacz
 [profil GitHub](https://github.com/lukaszst-cz).
-
----
-
-## ☕ Wsparcie / Support
-
-Jeśli ten projekt Ci się podoba lub jest dla Ciebie przydatny, możesz dobrowolnie wesprzeć jego dalszy rozwój.  
-If you like this project or find it useful, you can support its further development.
-
-**[☕ Postaw Naleśnikowi++ kawę / Buy Me a Coffee](https://buymeacoffee.com/nalesnik_plus_plus)**
-
