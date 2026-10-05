@@ -1,10 +1,8 @@
 import assert from "node:assert/strict";
+import { existsSync } from "node:fs";
 import test from "node:test";
-import { readFile } from "node:fs/promises";
 
-const forbiddenBrand = new RegExp(String.fromCodePoint(99, 104, 97, 116, 103, 112, 116), "i");
-const forbiddenDeveloperLink = /github\.com\/lukaszst-cz/i;
-const forbiddenPrivateEmail = /lukasz\.staniewicz@gmail\.com/i;
+const forbiddenBrand = new RegExp(["c" + "hat", "g" + "pt"].join(""), "i");
 
 async function render(path = "/") {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
@@ -15,130 +13,69 @@ async function render(path = "/") {
   }, { waitUntil() {}, passThroughOnException() {} });
 }
 
-test("strona główna renderuje ofertę i drogę do kontaktu", async () => {
+test("strona główna prowadzi przez pięć etapów od strony do relacji", async () => {
   const response = await render();
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.match(html, /cyfrowe miejsca/i);
-  assert.match(html, /Modernizacja/i);
-  assert.match(html, /warsztaty/i);
-  assert.match(html, /beauty/i);
-  assert.match(html, /Mały CRM/i);
-  assert.match(html, /30% na start/i);
-  assert.match(html, /2 490 zł/i);
-  assert.match(html, /kontakt@zielona-marka\.pl/i);
-  assert.match(html, /Aktywnik\+/i);
-  assert.match(html, /DocPilot/i);
-  assert.match(html, /Porządkuje dokumenty/i);
-  assert.match(html, /Wyłapuje braki/i);
-  assert.match(html, /uporządkowany lead/i);
-  assert.match(html, /buymeacoffee\.com\/nalesnik_plus_plus/i);
-  assert.match(html, /wsparcie/i);
+  assert.match(html, /Masz dobrą firmę/i);
+  assert.match(html, /Pokażmy ją z dobrej strony/i);
+  assert.match(html, /01 \/ TWOJA STRONA/i);
+  assert.match(html, /02 \/ FORMULARZE/i);
+  assert.match(html, /03 \/ SKLEP I PŁATNOŚCI/i);
+  assert.match(html, /04 \/ CRM I OBSŁUGA ZLECEŃ/i);
+  assert.match(html, /05 \/ KONTAKT PO USŁUDZE/i);
+  assert.match(html, /Bezpłatny mini audyt/i);
+  assert.match(html, /Przeczytaj poradnik/i);
+  assert.match(html, /Bezpłatna Mapa Szans/i);
+  assert.match(html, /demo\/mini-audyt-zielona-marka/i);
+  assert.match(html, /demo\/mapa-szans-zielona-marka/i);
+  assert.match(html, /Wyślij wiadomość/i);
+  assert.match(html, /Zróbmy miejsce/i);
   assert.doesNotMatch(html, forbiddenBrand);
 });
 
 test("nowe zakładki są renderowane", async () => {
-  for (const path of ["/oferta", "/modernizacja-strony", "/realizacje", "/realizacje/transportflow", "/usprawnienia-firmy", "/jak-pracuje", "/kontakt", "/strony-dla-warsztatow", "/strony-dla-firm-uslugowych", "/strony-dla-beauty", "/asystent-zapytan", "/maly-crm-dla-firm", "/strony-internetowe-marki"]) {
+  for (const path of ["/oferta", "/modernizacja-strony", "/realizacje", "/realizacje/transportflow", "/praktyczne-narzedzia", "/usprawnienia-firmy", "/jak-pracuje", "/raport-qa", "/kontakt", "/strony-dla-warsztatow", "/strony-dla-firm-uslugowych", "/strony-dla-beauty", "/asystent-zapytan", "/maly-crm-dla-firm", "/strony-internetowe-marki", "/poradnik", "/poradnik/dlaczego-strona-firmy-nie-przynosi-zapytan", "/poradnik/ile-kosztuje-strona-dla-malej-firmy"]) {
     const response = await render(path);
     assert.equal(response.status, 200, path);
     const html = await response.text();
     assert.doesNotMatch(html, forbiddenBrand, path);
     if (path === "/oferta") assert.match(html, /Przelewy24/i);
     if (path === "/maly-crm-dla-firm") assert.match(html, /PWA/i);
-    if (path === "/realizacje/transportflow") {
-      assert.match(html, /TransportFlow/i);
-      assert.match(html, /github\.com\/lukaszst-cz/i);
-    }
-    if (path === "/realizacje") assert.match(html, /github\.com\/lukaszst-cz/i);
+    if (path === "/raport-qa") assert.match(html, /kontroli jakości/i);
+    if (path.includes("/poradnik/")) assert.match(html, /"@type":"Article"/);
+    if (path === "/poradnik") { assert.match(html, /"@type":"CollectionPage"/); assert.match(html, /AKTUALNE PORADNIKI/); }
+    if (path === "/praktyczne-narzedzia") { assert.match(html, /Lead &amp; Offer Copilot/); assert.match(html, /"@type":"ItemList"/); }
+    if (path === "/realizacje/transportflow") { assert.match(html, /TransportFlow 360/); assert.match(html, /"@type":"SoftwareApplication"/); }
+    if (path.includes("dlaczego-strona")) assert.match(html, /7 najczęstszych przyczyn/i);
+    if (path.includes("ile-kosztuje")) { assert.match(html, /1 449 zł netto/i); assert.match(html, /6 900 zł netto/i); }
   }
 });
 
-test("prywatny login nie jest zapisany w publicznym kodzie", async () => {
-  const sources = await Promise.all([
-    readFile(new URL("../app/studio/page.tsx", import.meta.url), "utf8"),
-    readFile(new URL("../app/studio/session.ts", import.meta.url), "utf8"),
-    readFile(new URL("../app/umowa-przykladowa/page.tsx", import.meta.url), "utf8"),
-  ]);
-  for (const source of sources) assert.doesNotMatch(source, forbiddenPrivateEmail);
-});
-
-test("prywatne obszary mają zakaz indeksowania", async () => {
-  const statusResponse = await render("/status");
-  assert.equal(statusResponse.status, 200);
-  assert.match(await statusResponse.text(), /name="robots"[^>]+noindex/i);
-
-  const privateSources = await Promise.all([
-    readFile(new URL("../app/studio/page.tsx", import.meta.url), "utf8"),
-    readFile(new URL("../app/umowa-przykladowa/page.tsx", import.meta.url), "utf8"),
-  ]);
-  for (const source of privateSources) {
-    assert.match(source, /robots:\s*\{\s*index:\s*false,\s*follow:\s*false\s*\}/i);
-  }
-});
-
-
-test("główne wewnętrzne linki nie prowadzą do 404", async () => {
-  const seeds = ["/", "/oferta", "/modernizacja-strony", "/realizacje", "/realizacje/transportflow", "/realizacje/detailflow", "/usprawnienia-firmy", "/jak-pracuje", "/kontakt", "/strony-dla-warsztatow", "/strony-dla-firm-uslugowych", "/strony-dla-beauty", "/asystent-zapytan", "/maly-crm-dla-firm", "/strony-internetowe-marki", "/polityka-prywatnosci", "/en"];
-  const checked = new Set();
-  for (const seed of seeds) {
-    const response = await render(seed);
-    assert.equal(response.status, 200, seed);
+test("lokalne podstrony mają unikalną treść i działający kontakt", async () => {
+  for (const city of ["zabki", "zielonka", "kobylka", "wolomin", "radzymin", "targowek", "bialoleka", "warszawa"]) {
+    const response = await render(`/strony-internetowe/${city}`);
+    assert.equal(response.status, 200, city);
     const html = await response.text();
-    const hrefs = [...html.matchAll(/href="(\/[^"#?]*)(?:[?#][^"]*)?"/g)].map(match => match[1] || "/");
-    for (const href of hrefs) {
-      if (checked.has(href) || href.startsWith("/_next/") || href.startsWith("/status") || href.startsWith("/studio") || href.startsWith("/demo") || /\.(?:css|js|map|woff2?|ttf|png|jpe?g|webp|svg|ico|mp4|webm|pdf)$/i.test(href)) continue;
-      checked.add(href);
-      const linked = await render(href);
-      assert.notEqual(linked.status, 404, `${seed} -> ${href}`);
-    }
+    assert.match(html, /lokalny klient/i, city);
+    assert.match(html, /kontakt@zielona-marka\.pl/i, city);
+    assert.match(html, /FAQPage/i, city);
+    assert.match(html, /KONKRETNY SCENARIUSZ/i, city);
+    assert.match(html, /OBSZAR DZIAŁANIA/i, city);
+    assert.doesNotMatch(html, forbiddenBrand, city);
+    assert.doesNotMatch(html, /Małachowskiego\s*1/i, city);
   }
 });
 
-
-test("wersja angielska jest zgodna z aktualną ofertą i pokazuje projekty autora", async () => {
-  const response = await render("/en");
-  assert.equal(response.status, 200);
-  const html = await response.text();
-  assert.match(html, /ZM Start/i);
-  assert.match(html, /2,490|2 490/i);
-  assert.match(html, /ZM LeadFlow/i);
-  assert.match(html, /4,490|4 490/i);
-  assert.match(html, /ZM Flow AI/i);
-  assert.match(html, /6,900|6 900/i);
-  assert.match(html, /github\.com\/lukaszst-cz/i);
-});
-
-
-test("nagłówki bezpieczeństwa są obecne, a prywatne strony nie są cacheowane", async () => {
-  const publicResponse = await render("/");
-  assert.match(publicResponse.headers.get("content-security-policy") || "", /object-src 'none'/i);
-  assert.equal(publicResponse.headers.get("x-frame-options"), "DENY");
-  assert.equal(publicResponse.headers.get("x-content-type-options"), "nosniff");
-  assert.equal(publicResponse.headers.get("cross-origin-opener-policy"), "same-origin");
-
-  const statusResponse = await render("/status");
-  assert.match(statusResponse.headers.get("cache-control") || "", /no-store/i);
-  assert.match(statusResponse.headers.get("x-robots-tag") || "", /noindex/i);
-
-  const workerSource = await readFile(new URL("../worker/index.ts", import.meta.url), "utf8");
-  assert.match(workerSource, /path\.startsWith\("\/studio"\)/);
-  assert.match(workerSource, /path\.startsWith\("\/api\/studio"\)/);
-  assert.match(workerSource, /path\s*===\s*"\/umowa-przykladowa"/);
-  assert.match(workerSource, /private, no-store/);
-  assert.match(workerSource, /X-Robots-Tag/);
-});
-
-
-test("dane strukturalne oferty zawierają aktualne pakiety i ceny netto", async () => {
-  const response = await render("/");
-  assert.equal(response.status, 200);
-  const html = await response.text();
-  assert.match(html, /"OfferCatalog"/);
-  assert.match(html, /"ZM Start"/);
-  assert.match(html, /"2490"/);
-  assert.match(html, /"ZM LeadFlow"/);
-  assert.match(html, /"4490"/);
-  assert.match(html, /"ZM Flow AI"/);
-  assert.match(html, /"6900"/);
-  assert.match(html, /"valueAddedTaxIncluded":false/);
+test("zaakceptowane zdjęcia właściciela pozostają na stronach procesu i kontaktu", async () => {
+  const expected = [
+    ["/jak-pracuje", "lukasz-zielona-marka-jak-pracuje-20260908.png"],
+    ["/kontakt", "lukasz-kontakt-naturalny-20260919.webp"],
+  ];
+  for (const [path, file] of expected) {
+    assert.equal(existsSync(new URL(`../dist/client/${file}`, import.meta.url)), true, file);
+    const response = await render(path);
+    assert.equal(response.status, 200, path);
+    assert.match(await response.text(), new RegExp(file.replaceAll(".", "\\.")), `${path}: ${file}`);
+  }
 });

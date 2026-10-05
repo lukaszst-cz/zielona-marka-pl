@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "../SafeLink";
-import { FormEvent, useCallback, useEffect, useMemo, useState } from "react";
+import { FormEvent, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import BrandSignature from "../BrandSignature";
 
 type Lead = { id:number; name:string; company:string; email:string; value:number; stage:string; nextAction:string; dueDate:string|null; source:string };
@@ -18,9 +18,33 @@ export default function StudioClient({ ownerEmail }:{ ownerEmail:string }) {
   const [data,setData] = useState<Data>(empty);
   const [tab,setTab] = useState("pulpit");
   const [loading,setLoading] = useState(true);
+  const [loadError,setLoadError] = useState(false);
+  const [refreshError,setRefreshError] = useState(false);
   const [notice,setNotice] = useState("");
-  const load = useCallback(async()=>{ setLoading(true); const res=await fetch("/api/studio",{cache:"no-store"}); if(res.ok) setData(await res.json()); setLoading(false); },[]);
-  useEffect(()=>{load()},[load]);
+  const loadedOnce = useRef(false);
+  const load = useCallback(async(silent=false)=>{
+    if(!silent && !loadedOnce.current) setLoading(true);
+    try {
+      const res=await fetch("/api/studio",{cache:"no-store"});
+      if(!res.ok) throw new Error("studio request failed");
+      setData(await res.json());
+      loadedOnce.current = true;
+      setLoadError(false);
+      setRefreshError(false);
+    } catch {
+      if(silent || loadedOnce.current) setRefreshError(true);
+      else setLoadError(true);
+    } finally {
+      if(!silent) setLoading(false);
+    }
+  },[]);
+  useEffect(()=>{
+    void load();
+    const refresh = () => { if(document.visibilityState === "visible") void load(true); };
+    const timer = window.setInterval(refresh, 60_000);
+    document.addEventListener("visibilitychange", refresh);
+    return () => { window.clearInterval(timer); document.removeEventListener("visibilitychange", refresh); };
+  },[load]);
   const kpi = useMemo(()=>({ pipeline:data.leads.filter(x=>!["Zakończony","Utracony"].includes(x.stage)).reduce((s,x)=>s+x.value,0), active:data.projects.filter(x=>!["Opublikowany","Opieka"].includes(x.status)).length, newInquiries:data.inquiries.filter(x=>x.status==="Nowe").length, urgent:data.tasks.filter(x=>x.status!=="Gotowe"&&x.priority==="Pilne").length }),[data]);
   async function create(entity:string, form:HTMLFormElement){ const payload=Object.fromEntries(new FormData(form)); const res=await fetch("/api/studio",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({entity,...payload,published:payload.published==="on"})}); if(res.ok){form.reset();flash("Zapisano");await load()} else flash("Nie udało się zapisać"); }
   async function addQaTasks(project:Project){
@@ -42,9 +66,10 @@ export default function StudioClient({ ownerEmail }:{ ownerEmail:string }) {
   async function remove(entity:string,id:number){ if(!confirm("Usunąć ten rekord?"))return; const res=await fetch(`/api/studio/${entity}/${id}`,{method:"DELETE"}); if(res.ok){flash("Usunięto");await load()} }
   function flash(text:string){setNotice(text);setTimeout(()=>setNotice(""),1800)}
   if(loading) return <main className="studio-loading">Ładuję zaplecze Zielonej Marki…</main>;
+  if(loadError) return <main className="studio-loading" role="alert"><div><p>Nie udało się pobrać danych zaplecza. To nie oznacza, że skrzynka jest pusta.</p><button className="button" type="button" onClick={()=>void load()}>Spróbuj ponownie</button></div></main>;
   return <main className="studio-app">
     <aside className="studio-sidebar"><Link className="brand" href="/"><BrandSignature compact /></Link><nav>{tabs.map(([id,label])=><button key={id} className={tab===id?"active":""} onClick={()=>setTab(id)}><span>{id==="pulpit"?"⌂":id==="zapytania"?"↗":id==="sprzedaz"?"◎":id==="projekty"?"▦":"✓"}</span>{label}{id==="zapytania"&&kpi.newInquiries>0?<b>{kpi.newInquiries}</b>:null}</button>)}</nav><div className="studio-account"><small>Zalogowany właściciel</small><span>{ownerEmail}</span><form method="post" action="/api/studio/session"><input type="hidden" name="_action" value="logout"/><button type="submit">Wyloguj</button></form></div></aside>
-    <div className="studio-content"><header><div><span className="section-no">ZAPLECZE OPERACYJNE</span><h1>{tabs.find(x=>x[0]===tab)?.[1]}</h1></div><div className="studio-header-links"><a href="/umowa-przykladowa">Wzór umowy ↗</a><a href="/">Podgląd strony ↗</a></div></header>{notice&&<div className="toast">{notice}</div>}
+    <div className="studio-content"><header><div><span className="section-no">ZAPLECZE OPERACYJNE</span><h1>{tabs.find(x=>x[0]===tab)?.[1]}</h1></div><div className="studio-header-links"><button type="button" onClick={()=>void load()}>Odśwież dane ↻</button><a href="/umowa-przykladowa">Wzór umowy ↗</a><a href="/">Podgląd strony ↗</a></div></header>{refreshError&&<div className="studio-refresh-error" role="status">Nie udało się odświeżyć danych. Pokazuję ostatnio pobraną wersję. <button type="button" onClick={()=>void load()}>Spróbuj ponownie</button></div>}{notice&&<div className="toast">{notice}</div>}
       {tab==="pulpit"&&<Dashboard data={data} kpi={kpi} setTab={setTab}/>} 
       {tab==="zapytania"&&<Inquiries rows={data.inquiries} patch={patch} remove={remove}/>} 
       {tab==="sprzedaz"&&<Leads rows={data.leads} create={create} patch={patch} remove={remove}/>} 

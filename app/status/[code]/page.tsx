@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { eq } from "drizzle-orm";
 import { getDb } from "../../../db";
 import { projects } from "../../../db/schema";
-import BrandSignature from "../../BrandSignature";
+import { SiteHeader, SiteFooter } from "../../SiteChrome";
 
 export const metadata: Metadata = {
   title: "Status projektu",
@@ -28,13 +28,7 @@ export default async function ClientStatus({ params }: { params: Promise<{ code:
   const stageIndex = Math.max(0, stages.indexOf(project.status));
 
   return (
-    <main className="client-status">
-      <nav className="nav shell">
-        <Link className="brand" href="/">
-          <BrandSignature />
-        </Link>
-        <span>Strefa klienta</span>
-      </nav>
+    <><SiteHeader /><main className="client-status zm-public">
       <div className="client-status-shell">
         <header>
           <span className="section-no">PROJEKT {project.publicCode}</span>
@@ -96,6 +90,6 @@ export default async function ClientStatus({ params }: { params: Promise<{ code:
           <p>Masz pytanie? Napisz: <a href="mailto:kontakt@zielona-marka.pl">kontakt@zielona-marka.pl</a></p>
         </footer>
       </div>
-    </main>
+    </main><SiteFooter /></>
   );
 }

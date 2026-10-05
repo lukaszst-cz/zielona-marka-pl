@@ -2,14 +2,22 @@ import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://zielona-marka.pl";
+  const localCities = ["zabki", "zielonka", "kobylka", "wolomin", "radzymin", "targowek", "bialoleka", "warszawa"];
   return [
     { url: base, changeFrequency: "weekly", priority: 1 },
     { url: `${base}/oferta`, changeFrequency: "weekly", priority: .9 },
+    { url: `${base}/opieka-nad-strona`, changeFrequency: "monthly", priority: .7 },
+    { url: `${base}/przyklady-zaplecza`, changeFrequency: "monthly", priority: .7 },
     { url: `${base}/modernizacja-strony`, changeFrequency: "weekly", priority: .9 },
     { url: `${base}/realizacje`, changeFrequency: "monthly", priority: .85 },
-    { url: `${base}/realizacje/transportflow`, changeFrequency: "monthly", priority: .8 },
+    { url: `${base}/realizacje/transportflow`, lastModified: new Date("2026-10-05"), changeFrequency: "monthly", priority: .72 },
+    { url: `${base}/praktyczne-narzedzia`, lastModified: new Date("2026-10-05"), changeFrequency: "monthly", priority: .8 },
+    { url: `${base}/poradnik`, lastModified: new Date("2026-09-30"), changeFrequency: "weekly", priority: .82 },
+    { url: `${base}/poradnik/dlaczego-strona-firmy-nie-przynosi-zapytan`, lastModified: new Date("2026-09-30"), changeFrequency: "monthly", priority: .8 },
+    { url: `${base}/poradnik/ile-kosztuje-strona-dla-malej-firmy`, lastModified: new Date("2026-09-30"), changeFrequency: "monthly", priority: .8 },
     { url: `${base}/usprawnienia-firmy`, changeFrequency: "monthly", priority: .8 },
     { url: `${base}/jak-pracuje`, changeFrequency: "monthly", priority: .75 },
+    { url: `${base}/raport-qa`, changeFrequency: "monthly", priority: .55 },
     { url: `${base}/kontakt`, changeFrequency: "monthly", priority: .75 },
     { url: `${base}/strony-internetowe-marki`, changeFrequency: "weekly", priority: .9 },
     { url: `${base}/strony-dla-warsztatow`, changeFrequency: "weekly", priority: .85 },
@@ -21,7 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/realizacje/natura-studio`, changeFrequency: "monthly", priority: .6 },
     { url: `${base}/realizacje/bistro-forma`, changeFrequency: "monthly", priority: .6 },
     { url: `${base}/realizacje/dom-dobry`, changeFrequency: "monthly", priority: .6 },
-    { url: `${base}/realizacje/detailflow`, changeFrequency: "monthly", priority: .7 },
     { url: `${base}/polityka-prywatnosci`, changeFrequency: "yearly", priority: .2 },
+    ...localCities.map(city => ({ url: `${base}/strony-internetowe/${city}`, lastModified: new Date("2026-09-12"), changeFrequency: "monthly" as const, priority: .82 })),
   ];
 }

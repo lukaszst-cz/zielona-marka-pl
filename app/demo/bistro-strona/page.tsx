@@ -1,47 +1,14 @@
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Bistro Forma | sezonowa kuchnia i rezerwacje",
-  description: "Pełna demonstracyjna strona restauracji: menu, klimat, rezerwacja, godziny i kontakt.",
-  openGraph: { title: "Bistro Forma | demonstracyjna strona restauracji", description: "Menu, klimat i rezerwacja bez szukania informacji.", images: [] },
-  twitter: { card: "summary", title: "Bistro Forma", description: "Menu, klimat i rezerwacja bez szukania informacji.", images: [] },
-};
-
-const menu = [
-  ["01", "Na początek", "Pieczony kalafior", "labneh · pistacje · mięta", "29"],
-  ["02", "Z ognia", "Kurczak kukurydziany", "młode ziemniaki · sos estragonowy", "52"],
-  ["03", "Roślinnie", "Kaszotto z boczniakiem", "szparagi · dojrzewający ser", "44"],
-  ["04", "Na słodko", "Sernik palony", "rabarbar · wanilia · migdał", "25"],
-];
-
-export default function BistroWebsiteDemo() {
-  return <main className="bistro-site">
-    <nav className="bistro-nav">
-      <a className="bistro-wordmark" href="#start"><span>B</span>BISTRO FORMA</a>
-      <div><a href="#menu">Menu</a><a href="#historia">O nas</a><a href="#kontakt">Kontakt</a><a href="/#realizacje">Portfolio</a><a href="/">Zielona Marka</a></div>
-      <a className="bistro-book" href="#rezerwacja">Rezerwuj online</a>
-    </nav>
-
-    <header id="start" className="bistro-hero">
-      <div className="bistro-hero-copy"><span>WARSZAWA · KUCHNIA SEZONOWA</span><h1>Prosto.<br/><em>Świeżo.</em><br/>Razem.</h1><p>Codzienna kuchnia oparta na sezonie, dobrym produkcie i swobodnej atmosferze.</p><div><a href="#menu">Zobacz menu ↓</a><a href="#rezerwacja">Zarezerwuj online ↗</a></div></div>
-      <figure><img src="/concept-bistro.jpg" alt="Stół i potrawy w Bistro Forma"/><figcaption><b>FORMA / 01</b><span>Lunch · kolacja · spotkania</span></figcaption></figure>
-      <div className="bistro-stamp" aria-hidden="true">LOCAL<br/>SEASONAL<br/>HONEST</div>
-    </header>
-
-    <section className="bistro-info" aria-label="Najważniejsze informacje"><div><small>DZISIAJ</small><b>12:00–22:00</b></div><div><small>ADRES</small><b>Warszawa · lokal pokazowy</b></div><div><small>REZERWACJE</small><b>+48 450 458 466</b></div><a href="#kontakt">Jak dojechać ↗</a></section>
-
-    <section id="menu" className="bistro-menu">
-      <header><span>01 / KARTA</span><h2>Krótka karta.<br/>Dużo <em>sezonu.</em></h2><p>Menu demonstracyjne zmienia się razem z dostępnością produktów. Zapytaj obsługę o alergeny i wersje roślinne.</p></header>
-      <div className="bistro-menu-list">{menu.map(([n, category, name, detail, price]) => <article key={n}><b>{n}</b><div><small>{category}</small><h3>{name}</h3><p>{detail}</p></div><strong>{price} zł</strong></article>)}</div>
-      <footer><span>Pełne menu można aktualizować samodzielnie w panelu.</span><a href="/demo/bistro">Zobacz zaplecze restauracji ↗</a></footer>
-    </section>
-
-    <section id="historia" className="bistro-story"><div className="bistro-story-art"><span>FORMA</span><i/><i/><i/></div><div><span>02 / O NAS</span><h2>Miejsce na zwykły dzień i ważny wieczór.</h2><p>Bistro Forma to koncepcyjna marka restauracyjna pokazująca, jak lokal może połączyć charakter, aktualne menu, informacje praktyczne i prostą rezerwację w jednym mobilnym serwisie.</p><ul><li>sezonowa, czytelna karta</li><li>rezerwacja bez szukania numeru</li><li>wydarzenia i aktualności</li></ul></div></section>
-
-    <section className="bistro-evening"><div><span>PIĄTKI / 19:00</span><h2>Stół degustacyjny</h2><p>Pięć dań, jeden wspólny stół i produkty wybrane tego samego tygodnia.</p></div><a href="#rezerwacja">Sprawdź termin <b>↗</b></a></section>
-
-    <section id="rezerwacja" className="bistro-reservation"><div><span>03 / REZERWACJA</span><h2>Zostaw miejsce<br/>na dobry wieczór.</h2></div><div><p>W gotowym wdrożeniu ten przycisk prowadzi do formularza rezerwacji, kalendarza dostępności albo systemu typu Booksy czy Reservio. Klient wybiera termin i liczbę osób online, bez telefonowania.</p><a href="/#kontakt">Zapytaj o wdrożenie rezerwacji online ↗</a><small>To demonstracja portfolio. Dla prawdziwego lokalu podpinamy jego formularz, kalendarz lub system rezerwacji.</small></div></section>
-
-    <footer id="kontakt" className="bistro-footer"><div className="bistro-wordmark"><span>B</span>BISTRO FORMA</div><div><small>GODZINY</small><p>wt–czw 12:00–22:00<br/>pt–sob 12:00–23:00<br/>nd 12:00–20:00</p></div><div><small>KONTAKT Z REALIZATOREM</small><p><a href="/#kontakt">Zielona Marka<br/>strony i systemy dla firm ↗</a></p></div><div><small>PROJEKT DEMONSTRACYJNY</small><p>Projekt i realizacja:<br/><a href="/#realizacje">Zielona Marka ↗</a></p></div></footer>
-  </main>;
-}
+import type { Metadata } from 'next';
+import BistroMenu from './BistroMenu';
+import './bistro-demo.css';
+export const metadata: Metadata={title:'Bistro Forma | sezonowe menu, demonstracja',description:'Poglądowa strona restauracji z menu i wyborem dań.',robots:{index:false,follow:false},openGraph:{images:[]},twitter:{images:[]}};
+export default function BistroWebsiteDemo(){return <main className="bf-site">
+ <div className="bf-demo">DEMONSTRACJA ZIELONEJ MARKI <a href="/realizacje">Wróć do portfolio ↗</a></div>
+ <nav className="bf-nav" aria-label="Bistro Forma"><a className="bf-brand" href="#start">bistro<span>FORMA</span></a><div><a href="#historia">O nas</a><a href="#menu">Menu</a><a href="#klimat">Klimat</a><a href="#kontakt">Kontakt</a></div><a className="bf-cta" href="#menu">Wybierz coś dobrego ↗</a></nav>
+ <header className="bf-hero" id="start"><img src="/concept-bistro.jpg" alt="Ciepłe wnętrze koncepcyjnego bistro"/><div><span>SEZONOWO. LOKALNIE. PRZY JEDNYM STOLE.</span><h1>Dobre jedzenie.<br/><em>Dobry powód,<br/>żeby się spotkać.</em></h1><p>Krótka karta, pełne smaki i miejsce na jeszcze jedną rozmowę.</p><a className="bf-cta" href="#menu">Zajrzyj do menu ↓</a></div><b className="bf-round">ŚWIEŻO<br/>KAŻDEGO<br/>DNIA ✳</b></header>
+ <section className="bf-info" aria-label="Informacje o lokalu"><div><small>KUCHNIA</small><b>Sezonowa i swobodna</b></div><div><small>GODZINY PRZYKŁADOWE</small><b>12:00–22:00</b></div><div><small>NA MIEJSCU I NA WYNOS</small><b>Tak, jak lubisz</b></div><a href="#menu">Odkryj kartę ↗</a></section>
+ <section className="bf-story bf-wrap" id="historia"><span className="bf-kicker">ZAPRASZAMY DO STOŁU</span><h2>Smak zostaje.<br/><em>Reszta może poczekać.</em></h2><p>Pieczemy, mieszamy, doprawiamy. Z prostych składników robimy dania, po które chce się wracać. Wpadnij na szybki lunch albo zostań z nami na cały wieczór.</p></section>
+ <section className="bf-menu" id="menu"><div className="bf-wrap"><header><span className="bf-kicker">CO DOBREGO?</span><h2>Mała karta.<br/>Wielka ochota.</h2><p>Wybierz kategorię i skomponuj przykładowy posiłek. Ceny są poglądowe.</p></header><div className="bf-specials"><div><b>Lunch w dobrym rytmie</b><span>Krótka przerwa, pełny talerz.</span></div><div><b>Zostaw miejsce na deser</b><span>Sernik, kawa i jeszcze chwila.</span></div><div><b>Przy jednym stole</b><span>Dobry smak najlepiej dzielić.</span></div></div><BistroMenu/></div></section>
+ <section className="bf-atmosphere" id="klimat"><img src="/concept-bistro.jpg" alt="Klimat Bistro Forma" loading="lazy"/><div><span className="bf-kicker">NIE TYLKO NA WIELKIE OKAZJE</span><h2>Twój ulubiony<br/>zwykły wieczór.</h2><p>Ciepłe światło. Dobra kuchnia. Swobodna rozmowa.</p><a href="#menu">Co dziś wybierasz? ↗</a></div></section>
+ <footer className="bf-footer" id="kontakt"><div className="bf-brand">bistro<span>FORMA</span></div><p>Autorska marka demonstracyjna.<br/>Ta strona nie przyjmuje prawdziwych zamówień.</p><div><a href="/demo/bistro">Zobacz demonstrację zaplecza ↗</a><a href="/kontakt">Chcę stronę dla restauracji ↗</a><a href="/realizacje">Wróć do portfolio</a></div></footer>
+ </main>}

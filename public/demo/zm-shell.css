@@ -1,0 +1,85 @@
+/* Common Zielona Marka navigation around independent, fictional brand demos. */
+body .zm-demo-header{position:relative;inset:auto;z-index:50;display:block;padding:0;background:linear-gradient(#03160ded,#03160dc9),url('/brand-review-v3/forest-continuous.webp') center/cover;color:#f2f7ec;border-bottom:1px solid #e3f3d438;font-family:Arial,Helvetica,sans-serif}
+body .zm-demo-header nav{box-sizing:border-box;width:min(1190px,calc(100% - 48px));margin:auto;min-height:110px;padding:12px 0;display:flex;align-items:center;justify-content:space-between;gap:24px;position:static;background:none}
+body .zm-demo-header a{color:#f2f7ec!important;text-decoration:none;font-size:15px;letter-spacing:0;font-weight:800}
+body .zm-demo-header .zm-demo-logo{display:flex;align-items:center;gap:12px;flex:none}
+body .zm-demo-header .zm-demo-logo img{width:78px;height:80px;object-fit:contain;background:none}
+body .zm-demo-header .zm-demo-logo span{display:flex;flex-direction:column;gap:3px;background:none;padding:0}
+body .zm-demo-header .zm-demo-logo b{font:500 23px/1 Arial,sans-serif;letter-spacing:.04em;color:#f2f7ec}
+body .zm-demo-header .zm-demo-logo small{font:500 7px/1.5 Arial,sans-serif;letter-spacing:.11em;color:#d9e8d2;margin-top:5px}
+body .zm-demo-header .zm-demo-links{display:flex;align-items:center;gap:24px;text-shadow:0 2px 16px #000d}
+body .zm-demo-header .zm-demo-links>a[href="/status"]{padding:11px 14px;border:1px solid #d4e7c64a;border-radius:999px;background:#02120b57}
+body .zm-demo-header .zm-demo-links>a[lang]{display:grid;place-items:center;min-width:40px;min-height:36px;padding:6px 10px;border:1px solid #f4f8ed59;border-radius:999px;background:#10251c;font-size:12px;letter-spacing:.04em;text-shadow:none}
+body .zm-demo-header .zm-demo-links>a[lang="pl"]{background:#edf2e6;color:#14231c!important}
+body .zm-demo-header details{position:relative}
+body .zm-demo-header summary{cursor:pointer;font-size:15px;font-weight:800;list-style:none;color:#f2f7ec}
+body .zm-demo-header details>div{position:absolute;right:0;top:30px;min-width:240px;padding:18px;display:grid;gap:16px;background:#052015;border:1px solid #c5e3c355;border-radius:12px}
+body .zm-demo-header .zm-demo-mobile{display:none}
+body .zm-demo-header a:focus-visible,body .zm-demo-header summary:focus-visible{outline:2px solid #b0f36c;outline-offset:5px}
+body.zm-demo-panel{background:linear-gradient(110deg,#03180cc9,#03180c88),url('/brand-review-v3/forest-continuous.webp') center/cover fixed!important;color:#eff6e7!important;--navy:#082316;--ink:#eff6e7;--muted:#d9e8d2;--teal:#b0f36c;--orange:#b0f36c;--line:#c5e3c344}
+body.zm-demo-panel :is(.card,.client-card,.kpis article,.lower-grid>article,.table-wrap,.toolbar,.ksef-card,.invoice,form,.boundary,.clock){background:#041d126b!important;color:#eff6e7!important;border-color:#c5e3c344!important}
+body.zm-demo-panel :is(p,small,label,td,th,h1,h2,h3,.kicker,.notice){color:#d9e8d2!important}
+body.zm-demo-panel :is(input,select,dialog){background:#082316!important;color:#eff6e7!important;border-color:#c5e3c366!important}
+body.zm-demo-panel :is(th,.notice){background:#041d12a6!important}
+body.zm-demo-panel>header:not(.zm-demo-header){background:#041d12c9!important;color:#eff6e7!important;position:relative;top:auto}
+body.zm-demo-panel>header:not(.zm-demo-header) a{color:#b0f36c!important}
+body.zm-demo-panel button{background:#b0f36c!important;color:#092312!important;border-color:#b0f36c!important}
+@media(max-width:850px){body .zm-demo-header nav{min-height:88px;width:calc(100% - 36px);padding:10px 0}body .zm-demo-header .zm-demo-logo img{width:60px;height:63px}body .zm-demo-header .zm-demo-logo b{font-size:19px}body .zm-demo-header .zm-demo-logo small{font-size:6px}body .zm-demo-header .zm-demo-links{display:none}body .zm-demo-header .zm-demo-mobile{display:block}body.zm-demo-panel{background-attachment:scroll!important}}
+@media print{body .zm-demo-header{display:none}}
+
+/* Demos and backoffices need only one quiet route back to the main site. */
+body .zm-demo-header{min-height:48px;background:#03180cf2;border-bottom:1px solid rgba(176,243,108,.24)}
+body .zm-demo-header nav{width:min(1320px,calc(100% - 36px));min-height:48px;padding:0}
+body .zm-demo-header .zm-demo-logo{min-height:48px;font-size:0!important;gap:0}
+body .zm-demo-header .zm-demo-logo img,body .zm-demo-header .zm-demo-logo span,body .zm-demo-header .zm-demo-links,body .zm-demo-header .zm-demo-mobile{display:none!important}
+body .zm-demo-header .zm-demo-logo:before{content:'← Wróć do strony głównej';color:#f2f7ec;font:800 12px/1.2 Arial,sans-serif;letter-spacing:.025em}
+
+/* Unified, high-contrast operational surface for static portfolio systems. */
+html:has(body.zm-demo-panel),body.zm-demo-panel{max-width:100%;overflow-x:hidden}
+body.zm-demo-panel{--panel:#041f14f2;--panel-strong:#03190ffc;--panel-soft:#082b1deb;--edge:rgba(190,237,161,.3);--edge-strong:rgba(176,243,108,.58);--muted:#d7e4d0;background:linear-gradient(110deg,#03180ce8,#03180caa),url('/brand-review-v3/forest-continuous.webp') center/cover fixed!important}
+body.zm-demo-panel>header:not(.zm-demo-header){padding-block:13px!important;background:#041d12f2!important;border-bottom:1px solid var(--edge)!important}
+body.zm-demo-panel main,body.zm-demo-panel .view{min-width:0}
+body.zm-demo-panel :is(.card,.client-card,.kpis article,.kpis>div,.lower-grid>article,.table-wrap,.toolbar,.ksef-card,.invoice,form,.boundary,.clock){background:linear-gradient(145deg,rgba(6,43,27,.96),rgba(3,25,16,.98))!important;color:#eff6e7!important;border:1px solid var(--edge)!important;border-radius:10px!important;box-shadow:0 18px 40px rgba(0,13,8,.3)!important}
+body.zm-demo-panel :is(.kpis article,.kpis>div){min-height:112px;padding:18px!important;display:flex;flex-direction:column;justify-content:space-between}
+body.zm-demo-panel :is(.kpis article,.kpis>div) small{color:#c3d5bc!important;font-size:10px!important;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+body.zm-demo-panel :is(.kpis article,.kpis>div) b{color:#f5f9ef!important;font-size:clamp(25px,2.5vw,34px)!important;line-height:1.05}
+body.zm-demo-panel :is(.view-head,.card)>:is(h1,h2,h3),body.zm-demo-panel :is(.view-head,.card) :is(h1,h2,h3){color:#f5f9ef!important}
+body.zm-demo-panel :is(p,small,label,td,th,h1,h2,h3,.kicker,.notice){color:#dce8d6!important}
+body.zm-demo-panel .notice{background:#092f20!important;border-bottom:1px solid var(--edge)!important}
+body.zm-demo-panel :is(input,select,dialog){min-height:42px;background:#06271af2!important;color:#f3f8ef!important;border:1px solid rgba(190,237,161,.42)!important}
+body.zm-demo-panel input::placeholder{color:#adbfaa!important;opacity:1}
+body.zm-demo-panel .toolbar{padding:10px!important}
+body.zm-demo-panel .table-wrap{max-width:100%;min-width:0;overflow:auto;background:rgba(3,29,18,.9)!important}
+body.zm-demo-panel table{background:transparent!important}
+body.zm-demo-panel :is(th,.notice){background:#082c1e!important}
+body.zm-demo-panel th{color:#d9e8d2!important;font-size:10px!important}
+body.zm-demo-panel td{color:#f1f6ed!important;font-size:11px!important}
+body.zm-demo-panel td small{color:#bfd1b8!important;font-size:9px!important}
+body.zm-demo-panel :is(.card,.lower-grid>article){padding:24px!important}
+body.zm-demo-panel :is(.alert,.bay,.fleet-row){border-color:rgba(190,237,161,.2)!important}
+body.zm-demo-panel :is(.alert,.bay,.fleet-row) :is(b,span){color:#eaf2e5!important;font-size:11px!important}
+body.zm-demo-panel :is(.tag,.status){background:#dff4d5!important;color:#153421!important;border:1px solid #efffe8!important;font-size:9px!important}
+body.zm-demo-panel :is(.tag.wait,.status.warning){background:#fff0cf!important;color:#754906!important}
+body.zm-demo-panel :is(.tag.late){background:#ffe1db!important;color:#8b2b20!important}
+body.zm-demo-panel button{min-height:40px;border-radius:6px!important;font-size:10px!important;font-weight:900!important;box-shadow:0 7px 18px rgba(176,243,108,.14)}
+body.zm-demo-panel button:focus-visible,body.zm-demo-panel a:focus-visible,body.zm-demo-panel select:focus-visible,body.zm-demo-panel input:focus-visible{outline:2px solid #b0f36c;outline-offset:3px}
+body.zm-demo-panel .operation-map{border:1px solid var(--edge)!important;filter:sepia(.08) saturate(.86) brightness(.82)}
+body.zm-demo-panel .operation-map:after{color:rgba(4,31,20,.2)!important}
+
+@media(max-width:850px){body .zm-demo-header nav{min-height:46px;width:calc(100% - 28px)}body .zm-demo-header .zm-demo-logo{min-height:46px}body .zm-demo-header .zm-demo-logo:before{font-size:10px}}
+@media(max-width:650px){
+  body.zm-demo-panel{background-attachment:scroll!important}
+  body.zm-demo-panel>header:not(.zm-demo-header){padding:12px!important}
+  body.zm-demo-panel :is(.view,main){max-width:100%;min-width:0}
+  body.zm-demo-panel .kpis{gap:8px!important}
+  body.zm-demo-panel :is(.kpis article,.kpis>div){min-height:120px;padding:15px!important}
+  body.zm-demo-panel :is(.card,.lower-grid>article){padding:18px!important}
+  body.zm-demo-panel .workspace,body.zm-demo-panel .lower-grid{min-width:0}
+  body.zm-demo-panel .table-wrap{width:100%;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  body.zm-demo-panel table{min-width:0}
+}
+
+/* The same restrained hover cue on portfolio showcase tiles. */
+body:not(.zm-demo-panel) :is(.service-grid article,.process li,.dashboard-preview,.kpi-grid article,.decision-grid article,.permission-card,.live-card){transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease}
+@media(hover:hover){body:not(.zm-demo-panel) :is(.service-grid article,.process li,.dashboard-preview,.kpi-grid article,.decision-grid article,.permission-card,.live-card):hover{transform:translateY(-4px);border-color:rgba(176,243,108,.52);box-shadow:0 20px 42px rgba(0,18,10,.2)}}
+@media(prefers-reduced-motion:reduce){body:not(.zm-demo-panel) :is(.service-grid article,.process li,.dashboard-preview,.kpi-grid article,.decision-grid article,.permission-card,.live-card){transition:none}body:not(.zm-demo-panel) :is(.service-grid article,.process li,.dashboard-preview,.kpi-grid article,.decision-grid article,.permission-card,.live-card):hover{transform:none}}

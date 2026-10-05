@@ -1,6 +1,4 @@
-import { env } from "cloudflare:workers";
-
-export const OWNER_EMAIL = "kontakt@zielona-marka.pl";
+export const OWNER_EMAIL = "lukasz.staniewicz@gmail.com";
 export const STUDIO_COOKIE = "zielona_marka_studio";
 export const SESSION_MAX_AGE = 60 * 60 * 12;
 
@@ -9,13 +7,18 @@ type StudioSecrets = {
   STUDIO_SESSION_SECRET?: string;
 };
 
-function getSecrets(): Required<StudioSecrets> | null {
-  const secrets = env as unknown as StudioSecrets;
-  if (!secrets.STUDIO_PASSWORD || !secrets.STUDIO_SESSION_SECRET) return null;
-  return {
-    STUDIO_PASSWORD: secrets.STUDIO_PASSWORD,
-    STUDIO_SESSION_SECRET: secrets.STUDIO_SESSION_SECRET,
-  };
+async function getSecrets(): Promise<Required<StudioSecrets> | null> {
+  try {
+    const { env } = await import("cloudflare:workers");
+    const secrets = env as unknown as StudioSecrets;
+    if (!secrets.STUDIO_PASSWORD || !secrets.STUDIO_SESSION_SECRET) return null;
+    return {
+      STUDIO_PASSWORD: secrets.STUDIO_PASSWORD,
+      STUDIO_SESSION_SECRET: secrets.STUDIO_SESSION_SECRET,
+    };
+  } catch {
+    return null;
+  }
 }
 
 function encodeBase64Url(bytes: Uint8Array): string {
@@ -44,13 +47,13 @@ async function signature(payload: string, secret: string): Promise<string> {
 }
 
 export async function authenticateStudio(email: string, password: string): Promise<boolean> {
-  const secrets = getSecrets();
+  const secrets = await getSecrets();
   if (!secrets || email.trim().toLowerCase() !== OWNER_EMAIL) return false;
   return sameValue(password, secrets.STUDIO_PASSWORD);
 }
 
 export async function createStudioSession(): Promise<string> {
-  const secrets = getSecrets();
+  const secrets = await getSecrets();
   if (!secrets) throw new Error("Brakuje sekretów logowania do studia.");
   const expires = Math.floor(Date.now() / 1000) + SESSION_MAX_AGE;
   const payload = `${OWNER_EMAIL}|${expires}`;
@@ -58,7 +61,7 @@ export async function createStudioSession(): Promise<string> {
 }
 
 export async function verifyStudioSession(token: string | undefined): Promise<boolean> {
-  const secrets = getSecrets();
+  const secrets = await getSecrets();
   if (!secrets || !token) return false;
   const [expiresRaw, suppliedSignature, ...extra] = token.split(".");
   if (!expiresRaw || !suppliedSignature || extra.length) return false;

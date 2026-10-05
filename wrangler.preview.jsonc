@@ -1,0 +1,11 @@
+{
+  "name": "zielona-marka-local-review",
+  "main": "./dist/server/index.js",
+  "compatibility_date": "2026-05-22",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": false,
+  "no_bundle": true,
+  "rules": [{"type":"ESModule","globs":["**/*.js","**/*.mjs"]}],
+  "assets": {"directory":"./dist/client"},
+  "d1_databases": [{"binding":"DB","database_name":"zielona-marka-local-test","database_id":"00000000-0000-4000-8000-000000000001","migrations_dir":"./drizzle"}]
+}

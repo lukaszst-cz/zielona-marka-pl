@@ -1,0 +1,19 @@
+# Zielona Marka: aktualna wersja produkcyjna
+
+Wersja: 1.1.0
+Status: OPUBLIKOWANA I SPRAWDZONA
+Data publikacji: 2026-09-30
+Produkcja: https://zielona-marka.pl/
+Cloudflare Worker: zielona-marka
+Cloudflare Version ID: af2047b0-eae2-4f0a-8a83-90c39a248d49
+
+Build: OK
+TypeScript: OK
+Testy automatyczne: 19/19
+Kontrola produkcji: 32 strony, 82 odnośniki, 0 problemów
+Kontrola responsywna: 38 tras, 76 widoków, 0 problemów
+Sitemap: 32 publiczne adresy
+
+Pełny raport: docs/00_STAN-PRODUKCJI-ZIELONA-MARKA-1.1.0-2026-09-30.md
+
+Wersje 1.0 i 1.0.1 są archiwalne. Kolejne zmiany należy numerować powyżej 1.1.0 i publikować dopiero po lokalnym podglądzie, testach oraz akceptacji.

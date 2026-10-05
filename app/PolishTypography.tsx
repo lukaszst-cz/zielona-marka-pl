@@ -10,6 +10,7 @@ export default function PolishTypography() {
   const pathname = usePathname();
 
   useEffect(() => {
+    if (pathname === '/en' || pathname?.startsWith('/en/')) return;
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
     const textNodes: Text[] = [];
     let current = walker.nextNode();

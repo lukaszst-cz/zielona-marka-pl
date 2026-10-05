@@ -1,0 +1,32 @@
+ZIELONA MARKA, ODTWORZENIE PAKIETU PRODUKCYJNEGO 2026-09-29
+
+Pakiet produkcyjny został zapisany w 17 kolejnych częściach:
+ZIELONA-MARKA-PRODUKCJA-2026-09-29.zip.chunk001
+...
+ZIELONA-MARKA-PRODUKCJA-2026-09-29.zip.chunk017
+
+Wszystkie części muszą znajdować się w jednym katalogu.
+
+Odtworzenie w PowerShell:
+
+$out = [System.IO.File]::Create("ZIELONA-MARKA-PRODUKCJA-2026-09-29.zip")
+try {
+  Get-ChildItem "ZIELONA-MARKA-PRODUKCJA-2026-09-29.zip.chunk*" |
+    Sort-Object Name |
+    ForEach-Object {
+      $input = [System.IO.File]::OpenRead($_.FullName)
+      try { $input.CopyTo($out) } finally { $input.Dispose() }
+    }
+} finally { $out.Dispose() }
+
+Kontrola po połączeniu:
+
+Oczekiwany rozmiar: 175687484 bajtów
+Oczekiwany SHA-256:
+03F5F44A2E5B3056D036399ABE52DE0469F6C3B6739AF54D396746A39E173B3B
+
+Polecenie kontroli:
+
+Get-FileHash -Algorithm SHA256 "ZIELONA-MARKA-PRODUKCJA-2026-09-29.zip"
+
+Archiwum zawiera 601 plików: kod, media, gotowy build, konfigurację, testy, dokumentację i dowody kontroli wydania. Nie zawiera node_modules, katalogu .git, logów Wranglera ani sekretów Cloudflare.

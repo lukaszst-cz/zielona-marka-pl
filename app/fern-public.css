@@ -1,0 +1,161 @@
+/* Shared fern design for all Zielona Marka pages. */
+.zm-header{position:relative;z-index:40;background:#041a11;color:#f5f8f1;border-bottom:1px solid #b0f36c30}
+.zm-nav{width:min(1190px,calc(100% - 48px));margin:auto;min-height:110px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.zm-brand{display:block;flex:none}.zm-nav-desktop{display:flex;align-items:center;gap:24px;font:800 15px/1.5 Arial,sans-serif;text-shadow:0 2px 16px rgba(0,0,0,.82)}.zm-nav-desktop>a,.zm-nav-desktop summary{padding:10px 7px;border-radius:999px;transition:color .18s ease,background .18s ease,box-shadow .18s ease}.zm-nav a{color:#fff}.zm-nav-desktop>a:hover,.zm-nav-desktop>a:focus-visible,.zm-nav-desktop summary:hover,.zm-nav-desktop summary:focus-visible{color:#d8ff9d;background:rgba(2,18,11,.52);box-shadow:0 0 0 1px rgba(216,255,157,.28);outline:none}.zm-nav summary{cursor:pointer;list-style:none;min-height:44px;display:flex;align-items:center;gap:8px}.zm-nav summary::-webkit-details-marker{display:none}.zm-offer-menu{position:relative}.zm-offer-menu>div{position:absolute;z-index:50;top:48px;left:-22px;min-width:290px;padding:18px 22px;display:grid;background:#041a11;border:1px solid #b0f36c55;border-radius:6px;box-shadow:0 18px 50px #0007}.zm-offer-menu>div a{padding:9px 0}.zm-client-link{padding:11px 14px!important;border:1px solid #d4e7c64a;border-radius:999px!important;background:rgba(2,18,11,.34)}.zm-languages{display:flex;gap:10px}.zm-mobile-menu{display:none}
+.zm-footer{display:block!important;background:#041a11;color:#f5f8f1;padding:58px 24px 25px;border-top:1px solid #b0f36c40}
+.zm-footer-inner{width:min(1190px,100%);margin:auto;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:48px}.zm-footer-inner>div{min-width:0;display:flex;align-items:flex-start;flex-direction:column;gap:12px}.zm-footer h2{font:600 17px/1.5 Arial,sans-serif;margin:0 0 5px}.zm-footer p{font:15px/1.7 Arial,sans-serif;color:#d5e1cc;max-width:340px;margin:18px 0 0}.zm-footer a,.zm-footer button{font:14px/1.6 Arial,sans-serif;color:#e3eddc;overflow-wrap:anywhere}.zm-footer a:hover{color:#b0f36c}.zm-footer-bottom{grid-column:1/-1;flex-direction:row!important;flex-wrap:wrap;gap:15px 28px!important;border-top:1px solid #d4e7c62e;padding-top:25px}.zm-footer-bottom small{margin-right:auto;color:#c7d7bd}
+.zm-header .brand-signature,.zm-footer .brand-signature{color:white;min-width:0}.zm-header .brand-wordmark b,.zm-footer .brand-wordmark b{color:white!important}
+.zm-header .zm-brand:hover{background:transparent;box-shadow:none;filter:none}
+.zm-header .zm-nav .zm-languages{display:inline-flex;align-items:center;gap:2px;width:max-content;padding:3px;border:1px solid rgba(244,248,237,.35);border-radius:999px;background:#10251c;text-shadow:none;box-shadow:none}
+.zm-header .zm-nav .zm-languages a{display:grid;place-items:center;min-width:40px;min-height:36px;margin:0;padding:6px 10px;border-radius:999px;font:700 12px/1 Arial,sans-serif;letter-spacing:.04em;color:#f3f6ef;background:transparent;box-shadow:none;filter:none;text-shadow:none;transition:background .16s ease,color .16s ease}
+.zm-header .zm-nav .zm-languages a[aria-current="true"]{color:#14231c;background:#edf2e6}
+.zm-header .zm-nav .zm-languages a:not([aria-current]):hover{background:#2e4538;color:#fff}
+.zm-header .zm-nav .zm-languages a:focus-visible,.zm-header .zm-brand:focus-visible{outline:2px solid #edf2e6;outline-offset:4px}
+@media(max-width:850px){.zm-header .zm-nav .zm-languages{margin-block:10px}.zm-header .zm-nav .zm-languages a{min-height:44px;min-width:44px}}
+.zm-header .brand-apple,.zm-footer .brand-apple{filter:brightness(0) invert(1)}
+.zm-header .brand-frond,.zm-footer .brand-frond{display:none}
+body:has(.zm-public){background:#041a11}
+.zm-public{--ink:#e9f1e5;--green:#b0f36c;--lime:#b0f36c;--cream:#08281b;--line:#c5deba33;background:linear-gradient(90deg,#03170ef5,#03170ec9),url('/brand-review-v3/forest-continuous.webp') center top/cover;color:#f5f8f1;min-height:70vh}
+.zm-public :is(h1,h2,h3,h4){font-family:Arial,Helvetica,sans-serif!important;font-style:normal;line-height:1.15!important;color:#f5f8f1;letter-spacing:-.035em}
+.zm-public h1{font-size:clamp(38px,5.3vw,74px)!important;max-width:1020px;line-height:1.08!important}
+.zm-public h2{font-size:clamp(29px,3.4vw,46px)!important}
+.zm-public h3{font-size:24px!important}
+.zm-public :is(p,li,dd){color:#dce8d5!important;line-height:1.7;font-size:16px}
+.zm-public :is(small,.section-no,.eyebrow){font-size:12px!important;line-height:1.6}
+.zm-public :is(.section-no,.eyebrow,h1 em,h2 em,h3 em){color:#b0f36c!important;font-style:normal}
+.zm-public>.section,.zm-public>section{background-color:transparent!important;background-image:none!important;border-color:#c5deba33}
+.zm-public>.page-hero{padding-top:80px;padding-bottom:80px}
+.zm-public .section{padding-top:80px;padding-bottom:80px}
+.zm-public :is(article,.calculator-card,.estimate-calculator,.leadflow-demo,.leadflow-result,.english-contact-card,.workspace-card,.contact-form){background:#08281bea!important;color:#f5f8f1!important;border-color:#b0f36c45!important;border-radius:8px}
+.zm-public :is(article,.contact-form){padding:26px}
+.zm-public :is(.button,button[type=submit]){background:#b0f36c!important;color:#102513!important;border:1px solid #b0f36c;border-radius:30px;font-size:14px;letter-spacing:0;text-transform:none}
+.zm-public .button span{color:#102513!important}.zm-public .text-link{color:#c1f590!important;border-color:#c1f59066}
+.zm-public :is(input,textarea,select){background:#031a11!important;color:#f5f8f1!important;border:1px solid #99b48e!important;border-radius:4px;min-height:44px;padding:12px;font-size:16px}
+.zm-public input[type=checkbox]{min-height:18px;width:18px;height:18px;padding:0;flex:none;accent-color:#b0f36c}
+.zm-public input::placeholder,.zm-public textarea::placeholder{color:#bbccb3}
+.zm-public .contact-form label{font:500 14px/1.5 Arial,sans-serif;letter-spacing:0;text-transform:none}
+.zm-public .contact-form label span{color:#c6d6be}.zm-public .form-success{background:#113c24;color:white}.zm-public .form-error{color:#ffb6a8!important}
+.zm-public :is(.meeting-visual,.contact-founder-photo,.founder-feature-photo){height:auto!important;aspect-ratio:auto!important;background:transparent;box-shadow:none;overflow:hidden;border-radius:8px}
+.zm-public :is(.meeting-visual,.contact-founder-photo,.founder-feature-photo)>img{display:block;width:100%;height:auto!important;object-fit:contain;transform:none}
+.zm-public figcaption{position:static!important;background:#041a11;color:#e7f0df!important;padding:14px!important;font:13px/1.6 Arial,sans-serif!important}
+.zm-public .project-case{padding:0;overflow:hidden;grid-template-columns:1fr 1fr}.zm-public .project-case-image{min-height:340px}.zm-public .project-case>div:last-child{padding:36px}.zm-public .project-case p{font-size:17px}
+.zm-public .project-case-links{flex-wrap:wrap;gap:18px}.zm-public .timeline article{min-height:250px}.zm-public .faq-list summary{color:#f5f8f1;font-family:Arial,sans-serif;font-size:21px}.zm-public .faq-list details p{max-width:850px}.zm-public :is(.check-list li:hover,.niche-grid article:hover){background:#123923;color:white}
+.zm-public .contact-direct strong{color:#f5f8f1}.zm-public .contact-direct a{overflow-wrap:anywhere}
+.zm-public .english-hero{padding-top:80px;min-height:620px}.zm-public .english-hero>p{color:#e6efdf;margin-left:0}.zm-public .hero-actions{margin-left:0}
+@media(max-width:1080px){.zm-nav-desktop{gap:14px;font-size:13px}.zm-nav{gap:15px}.zm-header .brand-wordmark b{font-size:19px}.zm-header .brand-apple{width:62px;height:62px}}
+@media(max-width:850px){.zm-nav-desktop{display:none}.zm-mobile-menu{display:block;position:relative}.zm-mobile-menu>div{position:absolute;z-index:50;right:0;top:48px;width:min(310px,calc(100vw - 40px));max-height:75vh;overflow:auto;display:grid;gap:3px;background:#041a11;padding:18px 22px;border:1px solid #b0f36c55;border-radius:6px;box-shadow:0 20px 50px #0008}.zm-mobile-menu a{display:block;min-height:40px;padding:8px 0}.zm-mobile-menu>div>span{display:flex;gap:12px;align-items:center}.zm-nav{min-height:90px}.zm-footer-inner{grid-template-columns:1fr 1fr;gap:30px}.zm-footer-brand{grid-column:1/-1}.zm-public .project-case{grid-template-columns:1fr}.zm-public .project-case-image{min-height:260px}}
+@media(max-width:600px){.zm-nav{width:calc(100% - 36px)}.zm-footer{padding:36px 20px 24px}.zm-footer-inner{grid-template-columns:1fr;gap:28px}.zm-footer-brand{grid-column:auto}.zm-footer-bottom{gap:14px!important}.zm-public .section{padding-block:55px}.zm-public>.page-hero{padding-block:55px}.zm-public h1{font-size:39px!important}.zm-public :is(article,.contact-form){padding:22px}.zm-public .project-case{padding:0}.zm-public .project-case>div:last-child{padding:25px}.zm-public .contact-direct strong{font-size:24px}.zm-public .faq-list summary{font-size:18px}}
+/* The approved fern / browser / automation motif, rebuilt as a clean vector. */
+.zm-header .brand-signature,.zm-footer .brand-signature{display:flex;align-items:center;gap:12px;width:270px}
+.zm-header .brand-apple,.zm-footer .brand-apple{width:84px;height:86px;object-fit:contain;filter:none;flex:none}
+.zm-header .brand-wordmark,.zm-footer .brand-wordmark{display:flex;flex-direction:column;gap:0}
+.zm-header .brand-wordmark b,.zm-footer .brand-wordmark b{font:500 24px/1.05 Arial,sans-serif;letter-spacing:.07em}
+.zm-header .brand-wordmark small,.zm-footer .brand-wordmark small{font:8px/1.4 Arial,sans-serif;letter-spacing:.02em;margin-top:7px;color:#dce8d5}
+.zm-v5 .zm-footer{display:block!important;padding:58px 24px 25px!important}
+.zm-v5 .zm-footer-inner{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:48px;justify-content:normal}
+.zm-v5 .zm-footer h2,.zm-public .zm-footer h2{font:600 17px/1.5 Arial,sans-serif!important;letter-spacing:0}
+@media(max-width:1080px){.zm-header .brand-signature{width:225px}.zm-header .brand-apple{width:65px;height:68px}.zm-header .brand-wordmark b{font-size:21px}.zm-header .brand-wordmark small{font-size:7px}}
+@media(max-width:850px){.zm-v5 .zm-footer-inner{grid-template-columns:1fr 1fr;gap:30px}}
+@media(max-width:600px){.zm-v5 .zm-footer-inner{grid-template-columns:1fr;gap:28px}.zm-header .brand-signature{width:215px}.zm-v5 .zm-footer{padding:36px 20px 24px!important}}
+/* Readability fixes from the full-page contrast audit. */
+.zm-public :is(.legal-note,.booksy-note,.workflow-preview-card,.crm-phone){background:#0c3020!important;border-color:#b0f36c55!important;color:#e6efdf}
+.zm-public :is(.contact-form label,.contact-form label>span,.workflow-preview-card small,.external-cost-grid small,.crm-phone header,.crm-phone strong){color:#e6efdf!important}
+.zm-public .contact-form a{color:#b0f36c!important;text-decoration:underline}
+.zm-public .expandable-image>span{background:#041a11;color:#fff}
+.zm-public .crm-phone footer{background:#153e28;color:#e6efdf}
+.zm-public.concept-page .concept-hero{padding-block:60px}
+.zm-public.concept-page .concept-return-links{padding-top:25px}
+.zm-public.concept-page .concept-intro,.zm-public.concept-page .concept-screen{padding-block:50px}
+.zm-public.concept-page .concept-browser{background:#0c3020;color:#f5f8f1;border-color:#b0f36c55}
+.zm-public.legal{padding-block:70px}
+.zm-public.legal>section{padding-block:20px}
+/* Dark translucent feedback keeps all numbers and labels readable. */
+.zm-public :is(.industry-outcomes li,.quality-grid li,.check-list li,.founder-copy li,.price-rules li,.included-grid li,.english-split li,.core-package-grid li,.decision-grid li,.local-area-links a,.faq-list details,.workflow-preview-tabs button,.process-strip span,.crm-flow span,.decision-grid article){transition:transform .2s ease,background-color .2s ease,box-shadow .2s ease}
+.zm-public :is(.industry-outcomes li,.quality-grid li,.check-list li,.founder-copy li,.price-rules li,.included-grid li,.english-split li,.core-package-grid li,.decision-grid li,.local-area-links a,.faq-list details,.workflow-preview-tabs button,.process-strip span,.crm-flow span,.contact-direct a,.more-services-grid>a,.local-industry-grid>a):is(:hover,:focus-within),.zm-public .workflow-preview-tabs button.active{background:#1c4536df!important;color:#f2f7e9!important;border-color:#b0f36c88!important;box-shadow:0 10px 25px #00150c33;transform:translateY(-3px)}
+.zm-public :is(.industry-outcomes,.quality-grid,.local-area-links,.workflow-preview-tabs,.process-strip,.crm-flow,.faq-list) :is(b,span,strong){color:inherit}
+.zm-public :is(.industry-outcomes li>b,.quality-grid li>b,.faq-list summary>b){color:#b0f36c!important}
+.zm-public .process-strip span,.zm-public .crm-flow span{color:#eaf4e2!important}
+.zm-public .process-strip span:hover,.zm-public .crm-flow span:hover{transform:none}
+.zm-public .workflow-preview-tabs button{background:#0c3020;color:#ecf5e5;border-color:#cee7be55}
+.zm-public .qa-seal{background:#103c29!important;border:1px solid #a6e671;color:#d5ffb6!important;box-shadow:0 0 0 10px #b0f36c0d}
+.zm-public .qa-seal :is(span,b){color:#d5ffb6!important}
+.zm-public .decision-grid article:hover{transform:translateY(-6px);background:#163e2de8!important;box-shadow:0 18px 35px #00170c66}
+.zm-public :is(#automatyzacje .section-head,.transport-demo-grid,.transport-demo-grid>div:first-child):hover{transform:none!important;background:transparent!important;box-shadow:none!important}
+.static-owner-photo{display:block;overflow:hidden;cursor:default;border-radius:8px}
+.static-owner-photo img{display:block;width:100%;height:auto}
+.zm-public .contact-person{grid-template-columns:minmax(160px,.85fr) 1fr;align-items:center}
+.zm-public .contact-person .static-owner-photo{aspect-ratio:4/5;max-width:250px}
+.zm-public .contact-person .static-owner-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 28%;transform:scale(1.55);transform-origin:50% 25%;box-shadow:none;transition:none}
+@media(max-width:600px){.zm-public .contact-person{grid-template-columns:1fr;gap:25px}.zm-public .contact-person .static-owner-photo{width:210px;max-width:100%}}
+@media(prefers-reduced-motion:reduce){.zm-public :is(li,a,details,button,article):hover{transform:none!important;transition:none!important}}
+/* Transparent surfaces in both resting and active states. */
+.zm-public{background-image:linear-gradient(90deg,#03170edb,#03170e9c),url('/brand-review-v3/forest-continuous.webp');background-attachment:fixed;background-size:cover}
+.zm-public :is(article,.local-industry-grid>a,.more-services-grid>a,.quick-start-card,.calculator-card,.estimate-calculator,.leadflow-demo,.leadflow-result,.english-contact-card,.workspace-card,.contact-form,.workflow-preview-card,.crm-phone,.faq-list details){background:#071c16b8!important;color:#f3f6ed!important;border:1px solid #d7e8ce40!important;backdrop-filter:blur(7px)}
+.zm-public :is(article,.local-industry-grid>a,.more-services-grid>a,.quick-start-card,.faq-list details):is(:hover,:focus-within){background:#153529b0!important;border-color:#d7e8ce77!important;box-shadow:0 14px 32px #00160e66}
+.zm-public :is(.industry-outcomes li,.quality-grid li,.local-area-links a,.workflow-preview-tabs button,.process-strip span,.crm-flow span,.contact-direct a):is(:hover,:focus-within){background:#28423785!important;border-color:#d7e8ce66!important}
+.zm-public .workflow-preview-tabs button{background:#07261b99;color:#eef4e8}
+.zm-public .workflow-preview-tabs button.active{background:#31523ebb!important;color:#fff!important;border-color:#d7e8ce88!important}
+.zm-public .workflow-preview-tabs i{color:#d5e7c8!important;background:transparent!important}
+.zm-quality-mark{width:184px;min-height:220px;margin:32px 0 0;padding:22px 14px;display:flex;align-items:center;flex-direction:column;text-align:center;background:#082219a8;border:1px solid #d7e7bd88;border-radius:90px 90px 14px 14px;color:#e8efd7;box-shadow:inset 0 0 0 6px #d7e7bd0d,0 15px 35px #00140e33}
+.zm-quality-mark>span{font:9px/1.6 Arial;letter-spacing:.12em;color:#d8e5ca}.zm-quality-mark svg{margin:14px 0 8px;color:#e7efcf}.zm-quality-mark>strong{font:600 25px/1 Arial;letter-spacing:.12em;color:#f4f8ea}.zm-quality-mark>small{font:10px/1.5 Arial!important;letter-spacing:.12em;margin-top:10px;color:#e7efdb}
+.zm-public .situation-grid article{transition:transform .25s ease,box-shadow .25s ease}.zm-public .situation-grid article:hover{transform:translateY(-5px)}
+@media(max-width:700px){.zm-public{background-attachment:scroll;background-size:auto 2100px}}
+@media(prefers-reduced-motion:reduce){.zm-public .situation-grid article:hover{transform:none}}
+
+/* Shared glass finish: visible landscape, readable content, restrained motion. */
+.zm-public,.zm-v5{--glass-rest:rgba(8,24,19,.28);--glass-hover:rgba(25,43,34,.38);--glass-edge:rgba(229,239,215,.32)}
+.zm-public :is(article,.local-industry-grid>a,.more-services-grid>a,.quick-start-card,.calculator-card,.estimate-calculator,.leadflow-demo,.leadflow-result,.english-contact-card,.workspace-card,.contact-form,.workflow-preview-card,.crm-phone,.faq-list details,.qa-report-note,.qa-report-meta,.legal-note,.booksy-note,.industry-outcomes li,.quality-grid li,.local-area-links a,.check-list li,.core-package-grid li,.included-grid li,.decision-grid li){background:var(--glass-rest)!important;background-image:none!important;color:#f3f6ed!important;border-color:var(--glass-edge)!important;backdrop-filter:blur(5px);box-shadow:0 8px 24px #00100a26;transition:background-color .25s,border-color .25s,box-shadow .25s,transform .25s}
+.zm-public :is(article,.local-industry-grid>a,.more-services-grid>a,.quick-start-card,.faq-list details,.industry-outcomes li,.quality-grid li,.local-area-links a,.check-list li,.core-package-grid li,.included-grid li,.decision-grid li):is(:hover,:focus-within){background:var(--glass-hover)!important;border-color:#e5efd76b!important;box-shadow:0 10px 28px #00100a40;transform:translateY(-2px)}
+.zm-public :is(.core-package-grid li,.check-list li,.included-grid li,.decision-grid li){background:transparent!important;box-shadow:none;backdrop-filter:none}
+.zm-public :is(.process-strip span,.crm-flow span,.workflow-preview-tabs button,.workflow-preview-tabs button.active){background:var(--glass-rest)!important;border-color:var(--glass-edge)!important;color:#edf4e5!important;box-shadow:none}
+.zm-public :is(.process-strip span,.crm-flow span,.workflow-preview-tabs button):is(:hover,:focus-visible){background:var(--glass-hover)!important;color:#fff!important;transform:none}
+.zm-public .workflow-preview-tabs button.active{border-color:#c6deb199!important;box-shadow:inset 0 -2px #c6deb1}
+.zm-public :is(.industry-outcomes li,.quality-grid li,.local-benefit-grid article,.local-area-links a,.situation-grid article,.tool-grid article) :is(b,span,strong){color:#d3e8bd!important}
+.zm-public :is(.qa-report-note,.qa-report-meta){border:1px solid var(--glass-edge);border-radius:10px;padding:22px}
+.zm-public .project-case-image{backdrop-filter:none}
+.zm-public .project-case:hover{transform:none}
+.zm-public :is(.calculator-card,.estimate-calculator,.leadflow-demo,.leadflow-result,.english-contact-card,.workspace-card,.contact-form,.workflow-preview-card,.crm-phone,.qa-report-note,.qa-report-meta,.legal-note,.booksy-note):is(:hover,:focus-within){background:var(--glass-hover)!important;border-color:#e5efd785!important;box-shadow:0 14px 30px #00100a40}
+.zm-v5 :is(.zmh-glass,.zmh-cinema-screen,.zmh-more-projects a,.zmh-care-steps li){background:var(--glass-rest);border:1px solid var(--glass-edge);backdrop-filter:blur(5px);box-shadow:0 12px 30px #00110c30}
+.zm-v5 .zmh-care-steps li{padding:24px;border-radius:10px}
+.zm-v5 :is(.zmh-project,.zmh-more-projects a):hover{background:var(--glass-hover);transform:translateY(-2px);box-shadow:0 15px 32px #00110c45;filter:none}
+.zm-v5 .zmh-project:hover img{transform:none}
+.zm-quality-mark{position:relative;isolation:isolate;width:186px;min-height:220px;margin:30px 0 35px;padding:26px 16px 30px;border:1px solid #dfdfb987;border-radius:92px 92px 42px 42px;background:linear-gradient(145deg,#42504080,#0a2019b3);color:#f0edce;box-shadow:inset 0 0 0 6px #e5e1b60d,0 12px 25px #00130d40}
+.zm-quality-mark:before,.zm-quality-mark:after{content:'';position:absolute;bottom:-18px;width:32px;height:42px;background:#d0d5ae3d;border:1px solid #dbe4bf70;clip-path:polygon(0 0,100% 0,100% 100%,50% 76%,0 100%);z-index:-1}.zm-quality-mark:before{left:45px;transform:rotate(8deg)}.zm-quality-mark:after{right:45px;transform:rotate(-8deg)}
+.zm-quality-mark>span{font:9px/1.6 Arial;letter-spacing:.1em;color:#e7ecd5}.zm-quality-mark svg{color:#eeedce;margin:14px 0 7px}.zm-quality-mark>strong{color:#fffbed;font:600 27px/1 Arial;letter-spacing:.13em}.zm-quality-mark>small{font:9px/1.5 Arial!important;letter-spacing:.1em;color:#e7ecd5}
+.zm-public .qa-report>.zm-quality-mark{float:right;margin:0 0 35px 30px}.zm-public .qa-report-meta{clear:both}
+.zm-quality-mark{min-height:270px;padding:30px 18px 64px;overflow:hidden}
+.zm-quality-mark>span{max-width:116px;flex:none;line-height:1.55}
+.zm-quality-mark>small{max-width:148px}
+.zm-quality-mark:before,.zm-quality-mark:after{bottom:12px;height:32px;width:27px}
+@media(max-width:600px){.zm-public .qa-report>.zm-quality-mark{float:none;margin:0 0 35px}.zm-v5 .zmh-care-steps li{padding:22px}}
+@media(prefers-reduced-motion:reduce){.zm-public :is(article,li,a,details):hover,.zm-v5 :is(.zmh-project,.zmh-more-projects a):hover{transform:none!important;transition:none!important}}
+
+/* Open menus should read as one deliberate interaction across public pages. */
+.zm-header :is(.zm-offer-menu,.zm-mobile-menu) summary span{display:inline-block;transition:transform .22s ease}
+.zm-header :is(.zm-offer-menu,.zm-mobile-menu)[open] summary span{transform:rotate(180deg)}
+.zm-header :is(.zm-offer-menu,.zm-mobile-menu)[open]>div{animation:zm-menu-enter .2s ease both}
+@keyframes zm-menu-enter{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.zm-header :is(.zm-offer-menu,.zm-mobile-menu) summary span{transition:none}.zm-header :is(.zm-offer-menu,.zm-mobile-menu)[open]>div{animation:none}}
+
+/* Shared local review: consistent chrome and readable FAQ spacing. */
+.zm-header{background:linear-gradient(180deg,rgba(1,14,9,.78),rgba(1,14,9,.5));border-bottom:1px solid #e3f3d438;backdrop-filter:blur(9px)}
+:is(.zm-header,.zm-footer,.transport-demo>header) .brand-signature{display:flex;align-items:center;gap:12px;width:270px;min-width:0;max-width:100%;height:auto}
+:is(.zm-header,.zm-footer,.transport-demo>header) .brand-apple{width:84px;height:86px;max-height:86px;object-fit:contain;flex:none;transform:none;margin:0}
+:is(.zm-header,.zm-footer,.transport-demo>header) .brand-wordmark{display:flex;flex-direction:column;gap:0;margin:0;transform:none}
+:is(.zm-header,.zm-footer,.transport-demo>header) .brand-wordmark b{font:500 24px/1.05 Arial,sans-serif;letter-spacing:.07em}
+:is(.zm-header,.zm-footer,.transport-demo>header) .brand-wordmark small{display:block;font:8px/1.4 Arial,sans-serif;margin-top:7px}
+.transport-demo>header{height:auto;min-height:110px;flex-wrap:wrap;gap:16px;padding-block:12px}
+.zm-footer,.zm-v5 .zm-footer{background:linear-gradient(110deg,rgba(12,25,21,.9),rgba(17,31,26,.8)),url('/brand-review-v3/forest-continuous.webp') center bottom/cover!important}
+.zm-footer-locations{grid-column:1/-1;border-top:1px solid #e3f3d430;padding-top:24px}
+.zm-footer-locations>div{display:flex;flex-wrap:wrap;gap:12px 24px}
+.zm-footer-locations a:first-child{font-weight:700;color:#d9efbd}
+.zm-public .faq-list summary{grid-template-columns:2rem 1fr 1.25rem;gap:16px;padding:24px;line-height:1.45}
+.zm-public .faq-list summary>:is(b,span,i){position:static;transform:none;margin:0;min-width:0}
+.zm-public .faq-list details>p{margin:0;padding:0 24px 24px 72px;max-width:900px}
+@media(max-width:600px){:is(.zm-header,.zm-footer,.transport-demo>header) .brand-signature{width:215px}:is(.zm-header,.zm-footer,.transport-demo>header) .brand-apple{width:65px;height:68px}:is(.zm-header,.zm-footer,.transport-demo>header) .brand-wordmark b{font-size:21px}:is(.zm-header,.zm-footer,.transport-demo>header) .brand-wordmark small{font-size:7px}.zm-public .faq-list summary{padding:18px 16px;gap:10px;grid-template-columns:1.7rem 1fr 1rem}.zm-public .faq-list details>p{padding:0 16px 20px 53px}}
+
+body:has(>.zm-header){background:linear-gradient(90deg,#06170cb0,#06170c40),url('/brand-review-v3/forest-continuous.webp') center top/cover fixed}
+.zm-footer,.zm-v5 .zm-footer{background:linear-gradient(#03170eed,#03170ed9),url('/brand-review-v3/forest-continuous.webp') center bottom/cover!important}
+
+.transport-demo>header .brand-apple{filter:none!important}.transport-demo>header .brand-wordmark{text-shadow:none!important}
+

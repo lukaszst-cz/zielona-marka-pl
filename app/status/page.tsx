@@ -1,8 +1,7 @@
 "use client";
 
-import Link from "../SafeLink";
 import { FormEvent, useState } from "react";
-import BrandSignature from "../BrandSignature";
+import { SiteHeader, SiteFooter } from "../SiteChrome";
 
 const benefits = [
   ["01", "Aktualny etap", "Widzisz, na jakim etapie jest praca i ile zostało do kolejnego kroku."],
@@ -20,13 +19,7 @@ export default function StatusEntry() {
   }
 
   return (
-    <main className="status-entry">
-      <nav className="nav shell">
-        <Link className="brand" href="/">
-          <BrandSignature />
-        </Link>
-        <Link href="/">Strona główna</Link>
-      </nav>
+    <><SiteHeader /><main className="status-entry zm-public">
       <section className="status-intro">
         <div>
           <span className="section-no">STREFA KLIENTA</span>
@@ -75,6 +68,6 @@ export default function StatusEntry() {
         Kod daje dostęp tylko do jednego projektu. Nie udostępniaj go osobom postronnym.
         W razie problemu napisz na <a href="mailto:kontakt@zielona-marka.pl">kontakt@zielona-marka.pl</a>.
       </p>
-    </main>
+    </main><SiteFooter /></>
   );
 }

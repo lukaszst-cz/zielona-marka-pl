@@ -1,0 +1,96 @@
+/* Refinement after the approved copy audit. Original v3 assets are preserved. */
+.eyebrow,.chapter{font-size:13px;letter-spacing:.105em;line-height:1.6}
+.nav nav{font-size:15px;gap:26px}
+.nav nav a{min-height:44px;display:flex;align-items:center}
+.hero{padding-top:42px;min-height:740px}
+.hero-copy{position:relative;isolation:isolate}
+.hero-copy:before{content:'';position:absolute;z-index:-1;inset:-30px -20px -30px -45px;background:linear-gradient(90deg,#021609ed 0%,#021609d9 43%,#0216098a 65%,transparent 90%);filter:blur(18px);pointer-events:none}
+.hero h1{font-size:clamp(45px,5vw,72px);line-height:1.055;letter-spacing:-.047em;max-width:1030px;margin-bottom:24px}
+.hero .eyebrow{font-size:14px}
+.hero .lead{font-size:20px;line-height:1.5;max-width:615px;margin-bottom:16px}
+.service-line{font-size:15px;line-height:1.65;margin:0 0 27px;color:#e4eddf;max-width:600px}
+.pill{font-size:15px;min-height:48px;line-height:1.3}
+.quiet,.text-link,.contact .text-link{font-size:15px;line-height:1.5}
+.quiet{padding:12px 0 8px}
+.trust-note{font-size:15px;line-height:1.65;color:#e4eddf;max-width:605px;margin:24px 0 0}
+.hero-foot{margin-top:33px;padding-bottom:35px}
+.hero-foot>p{font-size:20px;line-height:1.3;text-shadow:0 2px 8px #001608}
+.aside-note{font-size:11px;line-height:1.65;letter-spacing:.1em}
+.split{min-height:405px;gap:50px;padding-block:48px}
+.story{background:linear-gradient(90deg,#03170ef2 0%,#03170ecc 30%,#03170e4d 53%,transparent 70%)}
+.copy h2{font-size:clamp(34px,3.15vw,46px);line-height:1.1;letter-spacing:-.04em;max-width:500px}
+.copy>p:not(.chapter){font-size:18px;line-height:1.6;max-width:430px;color:#edf3e7}
+.copy .callout{font-size:16px!important;line-height:1.6;font-weight:400}
+.text-link{padding:8px 0;text-underline-offset:6px}
+.caption{font-size:12px;line-height:1.6;color:#e0e9d9}
+.sample-form .caption{font-size:10px}
+.flow b{font-size:14px;line-height:1.5}
+.flow{background:#061b10e8}
+.commerce-copy small{font-size:12px}.commerce-copy p{font-size:14px}
+.relationships .split{padding-bottom:95px}
+.relationships .copy,.relationships .visual{position:relative;z-index:1}
+.intro{font-size:18px;line-height:1.65;max-width:700px}
+.project small{font-size:11px}.project p{font-size:16px;line-height:1.6}.project>div>span{font-size:15px}
+.more-projects{font-size:15px;line-height:1.5;flex-wrap:wrap;gap:24px 35px}
+.more-projects a{padding-block:8px}
+.portfolio{padding-block:66px;background:linear-gradient(#041b0bad,#041b0b42);box-shadow:0 0 80px 45px #041b0b42}
+.process{padding-block:65px;background:linear-gradient(#03170eed,#03170ed9);box-shadow:0 0 65px 30px #03170e5e}
+.process h2{line-height:1.12;letter-spacing:-.04em}
+.process>p:not(.chapter){font-size:18px;line-height:1.65;max-width:720px;color:#edf3e7}
+.care-steps{display:grid;grid-template-columns:repeat(3,1fr);padding:0;list-style:none;text-align:left;gap:35px;margin:45px 0 20px}
+.care-steps li{border-top:1px solid #cee4c05c;padding-top:22px}
+.care-steps li>span{font-size:13px;color:var(--green)}
+.care-steps h3{font-size:22px;letter-spacing:-.025em;font-weight:500;line-height:1.3;margin:13px 0}
+.care-steps p{font-size:16px;line-height:1.65;color:#e4eddf;margin:0}
+.grow .split{padding-block:62px;min-height:410px}
+.growth-words{flex-wrap:wrap;gap:22px}.growth-words span{font-size:18px;padding-right:22px}
+.contact{padding-block:80px 65px;min-height:560px}
+.contact>div{max-width:630px;padding:34px 30px;position:relative;background:linear-gradient(100deg,#03170eea,#03170ebd);box-shadow:0 0 70px 24px #03170e70}
+.contact h2{font-size:54px;line-height:1.08;letter-spacing:-.04em}
+.contact p:not(.eyebrow){font-size:18px;line-height:1.65;max-width:530px;color:#edf3e7}
+.contact .phone{font-size:17px;padding-block:8px;margin-top:12px}
+footer>p{font-size:14px;line-height:1.6}footer>span{font-size:11px;letter-spacing:.04em;line-height:1.75}
+footer>span>a{text-decoration:underline;text-underline-offset:4px;display:inline-block;padding-top:5px}
+.contact-draft{margin-top:18px;font-size:16px}
+summary{cursor:pointer;list-style:none;line-height:1.5;padding:12px 0;display:flex;align-items:center;justify-content:space-between;gap:18px}
+summary::-webkit-details-marker{display:none}
+summary>span{font-size:22px;color:var(--green)}
+details[open]>summary>span{transform:rotate(45deg)}
+.form-surface{margin-top:16px;padding-top:24px;border-top:1px solid #cee4c05c}
+.form-surface h3{font-size:25px;line-height:1.25;font-weight:500;margin:0}
+.contact .form-surface>p{font-size:16px}
+.contact .form-surface>.preview-notice{font-size:14px;border-left:2px solid var(--green);padding:8px 12px;background:#12351c}
+.contact .field-note{font-size:13px}
+form label{display:block;font-size:15px;line-height:1.5;margin:17px 0}
+form input:not([type=checkbox]),form textarea,form select{display:block;width:100%;min-width:0;margin-top:8px;border:1px solid #99b48e;background:#071b0f;color:#f5f8f1;font:16px/1.5 Arial,Helvetica,sans-serif;border-radius:4px;padding:12px}
+form textarea{resize:vertical}
+form input::placeholder,form textarea::placeholder{color:#becdb5;opacity:1}
+.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.extra-fields{border-top:1px solid #cee4c039;border-bottom:1px solid #cee4c039;margin-top:23px}
+.privacy-check{display:flex;gap:12px;align-items:flex-start;font-size:14px}
+.privacy-check input{width:19px;height:19px;accent-color:var(--green);flex:none;margin:2px 0 0}
+.privacy-check a{text-decoration:underline;text-underline-offset:3px}
+form .pill{border:0;font-family:inherit;opacity:.55;cursor:not-allowed}
+summary:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--green);outline-offset:4px}
+@media(max-width:1000px){.split{gap:30px}.hero h1{font-size:60px}.hero .lead{max-width:560px}.copy h2{font-size:36px}.flow{gap:8px;padding:25px 15px}.flow b{font-size:13px}.flow span{width:52px;height:52px}.care-steps{gap:24px}.care-steps h3{font-size:20px}.contact h2{font-size:48px}}
+@media(max-width:620px){
+ .nav{padding-top:8px}.nav nav{font-size:14px;gap:6px;padding:0 0 10px}.nav nav a{padding:8px 0}
+ .hero{padding-top:34px;min-height:790px}.hero h1{font-size:44px;line-height:1.08;letter-spacing:-.04em;max-width:390px}
+ .hero .eyebrow{font-size:13px;max-width:none;margin-bottom:20px;letter-spacing:.06em}
+ .hero .lead{font-size:18px;line-height:1.6}.service-line{font-size:14px;max-width:310px;margin-bottom:20px}
+ .hero-copy:before{inset:-18px -17px -20px -17px;background:linear-gradient(90deg,#021609f2 0%,#021609df 63%,#021609b8);filter:blur(10px)}
+ .actions{gap:16px 20px}.pill{font-size:15px}.quiet{font-size:15px}
+ .trust-note{font-size:15px;line-height:1.65;margin-top:21px}.trust-note br{display:none}
+ .hero-foot{margin-top:25px;padding-bottom:28px}.hero-foot>p{font-size:17px;max-width:100px}.aside-note{font-size:11px}
+ .split{padding-block:43px;gap:27px}.copy h2{font-size:36px;line-height:1.13;letter-spacing:-.035em}.copy>p:not(.chapter){font-size:17px;line-height:1.65}.copy .callout{font-size:16px!important}
+ .chapter{font-size:12px;letter-spacing:.07em}.chapter:after{width:40px;flex-shrink:0}.story{background:linear-gradient(90deg,#03170ef2,#03170ec4 75%,#03170e70)}
+ .caption{font-size:12px}.flow{padding:24px 10px;gap:8px}.flow b{font-size:13px}.flow span{width:50px;height:50px}.flow i{font-size:18px}
+ .commerce{padding:19px;gap:18px}.commerce-copy h3{font-size:24px}.commerce-copy p{font-size:13px}
+ .relationships .split{padding-bottom:85px}.portfolio{padding-block:48px}.section-heading h2{font-size:38px;line-height:1.12}.intro{font-size:17px}
+ .project p{font-size:16px}.more-projects{font-size:15px;gap:13px}.process{padding-block:50px}.process h2{font-size:38px;line-height:1.12}.process>p:not(.chapter){font-size:17px}
+ .care-steps{grid-template-columns:1fr;gap:24px;margin-top:30px}.care-steps li{padding-top:20px}.care-steps h3{font-size:22px;margin:10px 0}.care-steps p{font-size:16px}
+ .growth-words{gap:14px;padding:15px 0 0}.growth-words span{font-size:16px;padding-right:14px}.grow .split{padding-block:45px}
+ .contact{padding-block:40px 45px}.contact>div{max-width:100%;padding:24px 0;background:#03170edb;box-shadow:0 0 50px 18px #03170ebd}.contact h2{font-size:42px;line-height:1.12}.contact .eyebrow{font-size:12px}
+ .contact p:not(.eyebrow){font-size:17px;line-height:1.65;background:none}.contact .phone{font-size:17px}.contact .field-note{font-size:13px}.contact .form-surface>p{font-size:16px}.contact .form-surface>.preview-notice{font-size:14px}
+ .field-grid{grid-template-columns:1fr;gap:0}.contact-draft{font-size:15px}form label{font-size:15px}footer>p{font-size:14px}footer>span{font-size:11px}
+}

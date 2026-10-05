@@ -1,39 +1,108 @@
-import { getDb } from "../../../db";
+import { and, count, eq, gte } from "drizzle-orm";
 import { inquiries } from "../../../db/schema";
 
-const attempts = new Map<string, { count: number; startedAt: number }>();
-const maxBodySize = 12_000;
+type Payload = Record<string, unknown>;
+type NotificationEnv = {
+  RESEND_API_KEY?: string;
+  INQUIRY_NOTIFICATION_TO?: string;
+  INQUIRY_NOTIFICATION_FROM?: string;
+};
 
-function rateLimited(request: Request) {
-  const key = request.headers.get("CF-Connecting-IP") ?? "unknown";
-  const now = Date.now();
-  const current = attempts.get(key);
-  if (!current || now - current.startedAt > 60_000) {
-    attempts.set(key, { count: 1, startedAt: now });
-    return false;
-  }
-  current.count += 1;
-  return current.count > 5;
+function plain(value: unknown) {
+  return String(value ?? "").trim();
+}
+
+async function notifyOwner(data: { name: string; email: string; company: string; message: string }) {
+  const { env } = await import("cloudflare:workers");
+  const runtime = env as unknown as NotificationEnv;
+  if (!runtime.RESEND_API_KEY || !runtime.INQUIRY_NOTIFICATION_TO || !runtime.INQUIRY_NOTIFICATION_FROM) return;
+  const response = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: { Authorization: `Bearer ${runtime.RESEND_API_KEY}`, "Content-Type": "application/json" },
+    body: JSON.stringify({
+      from: runtime.INQUIRY_NOTIFICATION_FROM,
+      to: [runtime.INQUIRY_NOTIFICATION_TO],
+      reply_to: data.email,
+      subject: `Nowe zapytanie ze strony: ${data.name}`,
+      text: `Imię: ${data.name}\nE-mail: ${data.email}\nFirma: ${data.company || "nie podano"}\n\n${data.message}`,
+    }),
+  });
+  if (!response.ok) throw new Error("Notification provider rejected the message.");
 }
 
 export async function POST(request: Request) {
+  const contentType = request.headers.get("content-type") ?? "";
+  const wantsJson = contentType.includes("application/json");
+  const reply = (message: string, status: number) => wantsJson
+    ? Response.json({ error: message }, { status, headers: { "Cache-Control": "no-store" } })
+    : new Response(message, { status, headers: { "Cache-Control": "no-store", "Content-Type": "text/plain; charset=utf-8" } });
+
   try {
-    const contentLength = Number(request.headers.get("content-length") ?? 0);
-    if (contentLength > maxBodySize) return Response.json({ error: "Wiadomość jest zbyt długa." }, { status: 413 });
-    if (rateLimited(request)) return Response.json({ error: "Spróbuj ponownie za chwilę." }, { status: 429 });
-    const payload = (await request.json()) as Record<string, unknown>;
-    const name = String(payload.name ?? "").trim();
-    const email = String(payload.email ?? "").trim();
-    const company = String(payload.company ?? "").trim();
-    const message = String(payload.message ?? "").trim();
-    const honeypot = String(payload.companyWebsite ?? "").trim();
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (honeypot) return Response.json({ error: "Nie udało się wysłać wiadomości." }, { status: 400 });
-    if (payload.consent !== true || !name || !emailPattern.test(email) || !message) return Response.json({ error: "Uzupełnij wymagane pola i potwierdź zgodę na kontakt." }, { status: 400 });
-    if (name.length > 100 || email.length > 254 || company.length > 150 || message.length > 5_000) return Response.json({ error: "Jedno z pól jest zbyt długie." }, { status: 400 });
-    await getDb().insert(inquiries).values({ name, email, company, budget: String(payload.budget ?? "").trim().slice(0, 100), message, status: "Nowe", createdAt: new Date().toISOString() });
-    return Response.json({ ok: true }, { status: 201 });
+    const declaredLength = Number(request.headers.get("content-length") ?? 0);
+    if (declaredLength > 20000) return reply("Wiadomość jest zbyt długa.", 413);
+
+    let payload: Payload;
+    if (wantsJson) {
+      const raw = await request.text();
+      if (raw.length > 20000) return reply("Wiadomość jest zbyt długa.", 413);
+      try { payload = JSON.parse(raw) as Payload; }
+      catch { return reply("Nieprawidłowe dane.", 400); }
+    } else if (contentType.includes("application/x-www-form-urlencoded") || contentType.includes("multipart/form-data")) {
+      payload = Object.fromEntries(await request.formData());
+    } else {
+      return reply("Nieobsługiwany format formularza.", 415);
+    }
+
+    if (!payload || Array.isArray(payload) || typeof payload !== "object") return reply("Nieprawidłowe dane.", 400);
+    if (payload.website_check) {
+      return wantsJson
+        ? Response.json({ ok: true }, { status: 201, headers: { "Cache-Control": "no-store" } })
+        : Response.redirect(new URL("/kontakt?wyslano=1", request.url), 303);
+    }
+
+    const name = plain(payload.name);
+    const email = plain(payload.email).toLowerCase();
+    const company = plain(payload.company);
+    const budget = plain(payload.budget);
+    let message = plain(payload.message);
+    const additionalFields = [payload.phone, payload.website, payload.projectType, payload.timeline, payload.goal, payload.sales].map(plain);
+
+    if (!wantsJson) {
+      const details = [
+        ["Telefon", plain(payload.phone)],
+        ["Firma", company],
+        ["Obecna strona", plain(payload.website)],
+        ["Usługa lub obszar", plain(payload.projectType)],
+        ["Termin", plain(payload.timeline)],
+        ["Cel", plain(payload.goal)],
+        ["Sprzedaż lub płatności", plain(payload.sales)],
+        ["Budżet", budget],
+      ].filter(([, value]) => value).map(([label, value]) => `${label}: ${value}`);
+      if (details.length) message = `${details.join("\n")}\n\n${message}`;
+    }
+
+    const fieldsTooLong = additionalFields.some(value => value.length > 500);
+    if (!name || name.length > 120 || email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !message || message.length > 10000 || payload.consent !== "yes" || company.length > 200 || budget.length > 200 || fieldsTooLong) {
+      return reply("Sprawdź pola formularza i zgodę na kontakt.", 400);
+    }
+
+    const { getDb } = await import("../../../db");
+    const db = getDb();
+    const cutoff = new Date(Date.now() - 10 * 60 * 1000).toISOString();
+    const [recent] = await db.select({ total: count() }).from(inquiries).where(and(eq(inquiries.email, email), gte(inquiries.createdAt, cutoff)));
+    if (Number(recent?.total ?? 0) >= 3) {
+      const response = reply("Zbyt wiele wiadomości w krótkim czasie. Spróbuj ponownie za kilka minut.", 429);
+      response.headers.set("Retry-After", "600");
+      return response;
+    }
+
+    await db.insert(inquiries).values({ name, email, company, budget, message, status: "Nowe", createdAt: new Date().toISOString() });
+    await notifyOwner({ name, email, company, message }).catch(() => undefined);
+
+    return wantsJson
+      ? Response.json({ ok: true }, { status: 201, headers: { "Cache-Control": "no-store" } })
+      : Response.redirect(new URL("/kontakt?wyslano=1", request.url), 303);
   } catch {
-    return Response.json({ error: "Nie udało się zapisać wiadomości. Napisz bezpośrednio na e-mail." }, { status: 500 });
+    return reply("Nie udało się zapisać wiadomości. Napisz bezpośrednio na kontakt@zielona-marka.pl.", 500);
   }
 }

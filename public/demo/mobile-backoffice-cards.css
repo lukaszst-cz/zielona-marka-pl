@@ -1,0 +1,221 @@
+@media (max-width: 650px) {
+  body.zm-demo-panel .table-wrap { overflow: visible; }
+  body.zm-demo-panel .table-wrap table,
+  body.zm-demo-panel .table-wrap tbody { display: block; width: 100%; min-width: 0; }
+  body.zm-demo-panel .table-wrap thead { display: none; }
+  body.zm-demo-panel .table-wrap tbody { display: grid; gap: 10px; padding: 10px; }
+  body.zm-demo-panel .table-wrap tbody tr {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 10px;
+    padding: 14px;
+    border: 1px solid rgba(190, 237, 161, .25);
+    border-radius: 9px;
+    background: rgba(8, 48, 31, .76);
+  }
+  body.zm-demo-panel .table-wrap td {
+    display: block;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    overflow-wrap: anywhere;
+  }
+  body.zm-demo-panel .table-wrap td:nth-child(n + 3) {
+    padding-top: 9px;
+    border-top: 1px solid rgba(190, 237, 161, .16);
+  }
+  body.zm-demo-panel .table-wrap td:last-child:has(button) { grid-column: 1 / -1; }
+  body.zm-demo-panel .table-wrap td:last-child button { width: 100%; }
+}
+
+body.zm-demo-panel .row-action {
+  width: 36px;
+  min-width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+}
+
+/* Shared visual explanation for automations and process maps in static demos. */
+body.zm-demo-panel .backoffice-automation,
+body.zm-demo-panel .backoffice-process {
+  margin-top: 18px;
+  padding: 30px !important;
+  border: 2px solid rgba(176, 243, 108, .46) !important;
+  background: linear-gradient(145deg, rgba(7, 51, 32, .98), rgba(3, 25, 16, .99)) !important;
+  box-shadow: 0 24px 58px rgba(0, 16, 9, .42) !important;
+}
+body.zm-demo-panel .backoffice-automation > header {
+  display: grid;
+  grid-template-columns: 1fr minmax(280px, .75fr);
+  gap: 42px;
+  align-items: end;
+  margin-bottom: 22px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(190, 237, 161, .25);
+}
+body.zm-demo-panel .backoffice-automation h2,
+body.zm-demo-panel .backoffice-process h2 {
+  margin: 8px 0 0;
+  color: #f5f9ef !important;
+  font: 400 clamp(28px, 3vw, 42px)/1.05 Georgia, serif !important;
+}
+body.zm-demo-panel .backoffice-automation > header p {
+  margin: 0;
+  color: #d3e1ce !important;
+  font-size: 12px !important;
+  line-height: 1.65;
+}
+body.zm-demo-panel .backoffice-automation-flow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 11px;
+}
+body.zm-demo-panel .backoffice-automation-flow article {
+  position: relative;
+  min-height: 140px;
+  padding: 19px;
+  border: 1px solid rgba(190, 237, 161, .3);
+  border-radius: 9px;
+  background: rgba(3, 27, 16, .72) !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+}
+body.zm-demo-panel .backoffice-automation-flow article:not(:last-child)::after {
+  content: '→';
+  position: absolute;
+  z-index: 2;
+  right: -11px;
+  top: 50%;
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #b0f36c;
+  color: #092312;
+  font-weight: 900;
+  transform: translateY(-50%);
+}
+body.zm-demo-panel .backoffice-automation-flow span,
+body.zm-demo-panel .backoffice-process li span {
+  color: #b0f36c !important;
+  font-size: 10px !important;
+  font-weight: 900;
+  letter-spacing: .1em;
+}
+body.zm-demo-panel .backoffice-automation-flow b {
+  color: #f3f8ef !important;
+  font: 400 18px/1.25 Georgia, serif;
+}
+body.zm-demo-panel .backoffice-process > header {
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(190, 237, 161, .25);
+}
+body.zm-demo-panel .backoffice-process ol {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 9px;
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+}
+body.zm-demo-panel .backoffice-process li {
+  position: relative;
+  min-height: 130px;
+  padding: 16px;
+  border: 1px solid rgba(190, 237, 161, .28);
+  border-radius: 8px;
+  background: rgba(3, 27, 16, .72);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+body.zm-demo-panel .backoffice-process li:not(:last-child)::after {
+  content: '→';
+  position: absolute;
+  z-index: 2;
+  right: -10px;
+  bottom: 23px;
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #b0f36c;
+  color: #092312;
+  font-size: 10px;
+  font-weight: 900;
+}
+body.zm-demo-panel .backoffice-process li b {
+  color: #b0f36c !important;
+  font: 400 27px Georgia, serif;
+}
+body.zm-demo-panel .backoffice-process li strong { color: #f3f8ef !important; font-size: 12px; }
+
+/* A real schematic of Europe replaces the abstract grid in RouteFlow. */
+body.zm-demo-panel .operation-map {
+  min-height: 330px;
+  background: radial-gradient(circle at 50% 48%, rgba(224, 235, 217, .97), rgba(182, 199, 184, .92)) !important;
+  filter: none !important;
+}
+body.zm-demo-panel .operation-map::after {
+  content: 'EUROPA / TRASY DEMO' !important;
+  color: rgba(4, 31, 20, .12) !important;
+  font-size: clamp(24px, 4vw, 44px) !important;
+}
+body.zm-demo-panel .europe-map {
+  position: absolute;
+  inset: 4% 6% 5%;
+  width: 88%;
+  height: 91%;
+  z-index: 0;
+}
+body.zm-demo-panel .europe-land { fill: rgba(47, 83, 61, .28); stroke: rgba(25, 63, 42, .56); stroke-width: 3; }
+body.zm-demo-panel .europe-borders { fill: none; stroke: rgba(25, 63, 42, .3); stroke-width: 2; }
+body.zm-demo-panel .operation-map .city { color: #102d1d !important; font-size: 10px !important; font-weight: 900; text-shadow: 0 1px rgba(255,255,255,.8); }
+body.zm-demo-panel .operation-map .route-line { z-index: 2; height: 3px; background: rgba(55, 94, 47, .8); box-shadow: 0 0 0 1px rgba(255,255,255,.5); }
+body.zm-demo-panel .operation-map .truck-marker { z-index: 4; }
+body.zm-demo-panel .map-caption { margin: 10px 0 0; color: #c6d7c0 !important; font-size: 9px !important; line-height: 1.5; }
+body.zm-demo-panel main small,
+body.zm-demo-panel main .kicker,
+body.zm-demo-panel main .online,
+body.zm-demo-panel main .clock span,
+body.zm-demo-panel main :is(.status,.tag) { font-size: 10px !important; line-height: 1.4; }
+body.zm-demo-panel .map-caption { font-size: 10px !important; }
+
+@media (max-width: 900px) {
+  body.zm-demo-panel .backoffice-automation > header { grid-template-columns: 1fr; gap: 12px; }
+  body.zm-demo-panel .backoffice-process ol { grid-template-columns: 1fr 1fr; }
+  body.zm-demo-panel .backoffice-process li:nth-child(2n)::after { display: none; }
+}
+
+@media (max-width: 650px) {
+  body.zm-demo-panel .backoffice-automation,
+  body.zm-demo-panel .backoffice-process { padding: 19px !important; }
+  body.zm-demo-panel .backoffice-automation-flow { grid-template-columns: 1fr; }
+  body.zm-demo-panel .backoffice-automation-flow article { min-height: 0; gap: 10px; }
+  body.zm-demo-panel .backoffice-automation-flow article:not(:last-child)::after {
+    content: '↓';
+    right: auto;
+    left: 18px;
+    top: auto;
+    bottom: -16px;
+    transform: none;
+  }
+  body.zm-demo-panel .backoffice-process ol { grid-template-columns: 1fr; }
+  body.zm-demo-panel .backoffice-process li { min-height: 92px; }
+  body.zm-demo-panel .backoffice-process li:nth-child(2n)::after,
+  body.zm-demo-panel .backoffice-process li:not(:last-child)::after {
+    display: grid;
+    content: '↓';
+    right: auto;
+    left: 18px;
+    bottom: -15px;
+  }
+  body.zm-demo-panel .backoffice-process li:last-child::after { display: none; }
+  body.zm-demo-panel .operation-map { min-height: 290px; }
+  body.zm-demo-panel .europe-map { inset: 5% 1%; width: 98%; height: 90%; }
+}

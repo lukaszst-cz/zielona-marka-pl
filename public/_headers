@@ -1,0 +1,14 @@
+/brand-review-v5/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/brand-review-v3/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/og.jpg
+  Cache-Control: public, max-age=31536000, immutable
+
+/demo/*
+  X-Robots-Tag: noindex, nofollow
