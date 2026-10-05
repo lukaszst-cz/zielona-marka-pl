@@ -3,7 +3,7 @@
 Data: 5 października 2026  
 Domena: https://zielona-marka.pl  
 Cloudflare Worker: `zielona-marka`  
-Wersja Cloudflare: `d1b35270-8fcd-43b0-8feb-627aa3b6aa6a`
+Wersja Cloudflare: `f877b757-de48-47e2-93b1-3cbc6fd9e473`
 
 ## Opublikowany zakres
 
@@ -29,20 +29,33 @@ Wersja Cloudflare: `d1b35270-8fcd-43b0-8feb-627aa3b6aa6a`
 
 - 34 publiczne strony z mapy witryny: bez problemów z metadanymi,
 - 85 linków wewnętrznych: bez błędów,
-- 40 tras w wersji mobilnej i komputerowej, łącznie 80 widoków: 0 problemów,
+- 45 tras na telefonie, tablecie i komputerze, łącznie 135 widoków: 0 błędów i 0 ostrzeżeń,
+- trzy zbyt długie tytuły wyników Google zostały skrócone i ponownie sprawdzone na opublikowanej stronie,
 - nowe grafiki projektów: HTTP 200,
 - cztery odrzucone zrzuty ekranów: HTTP 404,
 - `/chatbot-dla-firm`: bezpośrednie przekierowanie HTTP 308,
 - bezpieczny test formularza: niepoprawne dane zostały odrzucone kodem HTTP 400 i niczego nie zapisano.
 
+## Google Search Console
+
+- mapa `https://zielona-marka.pl/sitemap.xml` została ponownie przesłana 5 października 2026,
+- Search Console potwierdził: „Mapa witryny została przesłana pomyślnie”,
+- przed ponownym zgłoszeniem ostatni odczyt miał status „Sukces” i 32 wykryte strony,
+- strona główna była widoczna jako znajdująca się w indeksie Google.
+
+Google potrzebuje czasu na ponowne odwiedzenie mapy i uwzględnienie nowych adresów. Aktualizacja liczby wykrytych stron nie jest natychmiastowa.
+
+## GitHub
+
+- kod znajduje się w repozytorium `lukaszst-cz/zielona-marka-pl`,
+- gałąź publikacyjna: `codex/published-unified-2026-10-05`,
+- pull request do `main`: https://github.com/lukaszst-cz/zielona-marka-pl/pull/2,
+- główna gałąź nie została nadpisana bezpośrednio.
+
 ## Czego nie wykonano
 
 - nie wysłano testowego zgłoszenia z prawidłowymi danymi, aby nie tworzyć fałszywego kontaktu w produkcyjnej bazie,
-- nie wysłano kodu do zewnętrznego repozytorium GitHub,
-- nie zgłoszono ponownie mapy witryny ani adresów do indeksowania w Google Search Console,
 - nie zmieniano danych produkcyjnej bazy D1.
-
-Po publikacji Google potrzebuje czasu na ponowne odwiedzenie i ocenę adresów. Stan indeksowania należy sprawdzić oddzielnie w Search Console.
 
 ## Strumyk na stronie głównej
 

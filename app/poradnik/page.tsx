@@ -4,7 +4,7 @@ import { GuideBreadcrumbs } from "../GuideElements";
 import { QuickWhatsApp, SiteFooter, SiteHeader } from "../SiteChrome";
 
 export const metadata: Metadata = {
-  title: "Poradniki o stronach internetowych dla małych firm",
+  title: "Poradniki dla małych firm",
   description: "Praktyczne poradniki Zielonej Marki o kosztach strony, zdobywaniu zapytań, modernizacji i obsłudze klientów w małej firmie.",
   alternates: { canonical: "/poradnik", types: { "application/rss+xml": "/poradnik/rss.xml" } },
   openGraph: { title: "Poradniki dla małych firm | Zielona Marka", description: "Praktycznie o stronach, zapytaniach i widoczności lokalnej.", url: "/poradnik", images: [{ url: "/og-poradniki-zielona-marka.png", width: 1200, height: 630, alt: "Poradniki Zielonej Marki dla małych firm" }] },

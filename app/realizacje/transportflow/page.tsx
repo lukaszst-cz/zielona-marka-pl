@@ -3,7 +3,7 @@ import Link from "../../SafeLink";
 import { QuickWhatsApp, SiteFooter, SiteHeader } from "../../SiteChrome";
 
 export const metadata: Metadata = {
-  title: "TransportFlow 360 | demonstracja procesu transportowego",
+  title: "TransportFlow 360 | proces transportowy",
   description: "Demonstracyjny proces transportowy od zapytania i wyceny do dokumentów, faktury i kontroli wyników. Portal PWA, Excel, kod i materiały QA.",
   alternates: { canonical: "/realizacje/transportflow" },
   openGraph: { title: "TransportFlow 360 | Zielona Marka", description: "Zobacz demonstrację procesu transportowego, portal PWA, Excel i dokumentację jakości.", images: [{ url: "/demo/routeflow/assets/transport-hero.png", alt: "Demonstracja TransportFlow 360" }] },
