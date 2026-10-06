@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Grafika Aktywnik+">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#123d32"/><stop offset=".52" stop-color="#23634c"/><stop offset="1" stop-color="#9ad36a"/></linearGradient>
+    <radialGradient id="glow" cx="75%" cy="38%" r="55%"><stop stop-color="#e8ffbe" stop-opacity=".9"/><stop offset="1" stop-color="#e8ffbe" stop-opacity="0"/></radialGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="28" stdDeviation="24" flood-color="#071b15" flood-opacity=".34"/></filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#glow)"/>
+  <path d="M-80 760C230 430 455 1010 820 653S1357 250 1700 495" fill="none" stroke="#dff6b1" stroke-opacity=".34" stroke-width="3"/>
+  <path d="M-20 842C296 512 536 1087 934 714S1316 369 1638 589" fill="none" stroke="#dff6b1" stroke-opacity=".22" stroke-width="2"/>
+  <g filter="url(#shadow)"><rect x="1030" y="178" width="368" height="368" rx="82" fill="#f2f7e8" fill-opacity=".96"/><image href="aktywnik-plus-icon.png" x="1070" y="218" width="288" height="288" preserveAspectRatio="xMidYMid meet"/></g>
+  <circle cx="245" cy="226" r="96" fill="#d8f79e" fill-opacity=".18"/><circle cx="390" cy="346" r="34" fill="#f4ffdb" fill-opacity=".52"/>
+  <text x="114" y="644" fill="#f4ffe4" font-family="Georgia,serif" font-size="92" font-weight="700">Aktywnik+</text>
+  <text x="120" y="701" fill="#e1f6bd" font-family="Arial,sans-serif" font-size="25" font-weight="700" letter-spacing="4">SPOKOJNY DZIENNIK AKTYWNOŚCI</text>
+  <g transform="translate(115 756)"><rect width="406" height="58" rx="29" fill="#e6f8c7" fill-opacity=".94"/><text x="31" y="38" fill="#164230" font-family="Arial,sans-serif" font-size="22" font-weight="700">DLA SIEBIE • RODZINY • KLUBU</text></g>
+</svg>

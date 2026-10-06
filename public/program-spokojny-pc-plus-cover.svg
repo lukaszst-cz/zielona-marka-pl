@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">SpokojnyPC+</title><desc id="desc">Grafika programu do spokojnej lokalnej diagnostyki urządzenia.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#071b14"/><stop offset=".48" stop-color="#164331"/><stop offset="1" stop-color="#0b251a"/></linearGradient>
+    <radialGradient id="halo" cx="72%" cy="22%" r="68%"><stop stop-color="#b7ec73" stop-opacity=".42"/><stop offset="1" stop-color="#b7ec73" stop-opacity="0"/></radialGradient>
+    <linearGradient id="screen" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ddf5c7"/><stop offset="1" stop-color="#94ca62"/></linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="22" stdDeviation="18" flood-color="#011008" flood-opacity=".55"/></filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/><rect width="1600" height="900" fill="url(#halo)"/>
+  <path d="M-50 748C196 585 363 701 508 493S761 224 1016 349s323 66 645-134" fill="none" stroke="#d5f9ad" stroke-opacity=".15" stroke-width="2"/>
+  <g fill="none" stroke="#c3f58a" stroke-opacity=".16" stroke-width="5"><path d="M132 124c121 89 187 179 198 270"/><path d="M203 104c-17 164 21 278 115 343"/><path d="M1422 758c-144-89-217-183-219-281"/><path d="M1358 801c26-162-8-280-103-355"/></g>
+  <g filter="url(#shadow)"><rect x="748" y="154" width="626" height="454" rx="31" fill="#06150f" stroke="#caef9f" stroke-opacity=".47" stroke-width="5"/><rect x="774" y="181" width="574" height="374" rx="18" fill="#103a29"/><path d="M774 250h574" stroke="#d4f6ae" stroke-opacity=".18" stroke-width="2"/><circle cx="807" cy="215" r="7" fill="#b5ed73"/><circle cx="833" cy="215" r="7" fill="#d4f6ae" fill-opacity=".45"/><circle cx="859" cy="215" r="7" fill="#d4f6ae" fill-opacity=".25"/>
+  <text x="817" y="299" fill="#dff7cc" font-family="Arial,sans-serif" font-size="20" font-weight="700" letter-spacing="5">SPOKOJNY WYNIK</text><text x="817" y="443" fill="url(#screen)" font-family="Georgia,serif" font-size="162" font-weight="700">82</text><text x="1030" y="429" fill="#dff7cc" font-family="Arial,sans-serif" font-size="31">/ 100</text><path d="M818 482h460" stroke="#d8f6ba" stroke-opacity=".27" stroke-width="2"/><text x="817" y="521" fill="#bde98d" font-family="Arial,sans-serif" font-size="22">Stabilnie. Zobacz 2 spokojne rekomendacje.</text></g>
+  <g transform="translate(145 255)"><circle cx="150" cy="150" r="146" fill="#183f2d" stroke="#cbef9b" stroke-opacity=".55" stroke-width="4"/><path d="M151 64c-49 42-59 108-11 154 32 31 79 40 120 21-1-54-29-100-74-127-12-7-24-13-35-18Z" fill="#bcf073"/><path d="M152 82v184M152 166l-67-58M153 201l72-61" fill="none" stroke="#092416" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><circle cx="151" cy="151" r="19" fill="#f0ffe3"/></g>
+  <text x="142" y="620" fill="#f1ffe7" font-family="Georgia,serif" font-size="86" font-weight="700">SpokojnyPC+</text><text x="149" y="673" fill="#c4eda0" font-family="Arial,sans-serif" font-size="25" font-weight="700" letter-spacing="4">LOKALNY OPIEKUN URZĄDZENIA</text>
+  <g transform="translate(145 744)"><rect width="445" height="61" rx="30" fill="#b8ec75"/><text x="31" y="39" fill="#082617" font-family="Arial,sans-serif" font-size="22" font-weight="700">DIAGNOZA • KONTEKST • BEZPIECZNE DZIAŁANIA</text></g>
+</svg>

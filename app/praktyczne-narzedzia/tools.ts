@@ -1,14 +1,14 @@
 export type PracticalTool = {
   category: "narzedzia" | "flow" | "programy";
   name: string;
-  status: "bezpłatne narzędzie online" | "bezpłatna demonstracja" | "bezpłatny kod i dokumentacja" | "bezpłatny pilot PWA" | "program dla Windows · stabilne wydania";
+  status: "bezpłatne narzędzie online" | "bezpłatna demonstracja" | "bezpłatny kod i dokumentacja" | "bezpłatny pilot PWA" | "program dla Windows · stabilne wydania" | "program Windows i aplikacja Android w rozwoju" | "aplikacja PWA na telefon i komputer";
   problem: string;
   benefit: string;
   freeDetails: string;
   imageUrl: string;
   primaryUrl: string;
   primaryLabel: string;
-  repositoryUrl: string;
+  repositoryUrl?: string;
   scope: string[];
 };
 
@@ -72,7 +72,7 @@ export const practicalTools: PracticalTool[] = [
     problem: "Dla siebie, dla rodziny albo pilotażowo dla szkoły czy klubu potrzebny jest spokojny sposób zapisywania aktywności, bez rankingów i porównywania.",
     benefit: "Prowadzi prosty dziennik aktywności w trybie osobistym lub rodzinnym, z widokiem dziecka, lokalnie chronioną strefą rodzica i raportami.",
     freeDetails: "Pilot jest bezpłatny. To aplikacja PWA, więc działa w przeglądarce na komputerze, telefonie i tablecie. Przed wykorzystaniem w szkole trzeba zapoznać się z warunkami pilota.",
-    imageUrl: "/aktywnik-plus-icon.png",
+    imageUrl: "/program-aktywnik-plus-cover.svg",
     primaryUrl: "https://aktywnik-plus.vercel.app",
     primaryLabel: "Otwórz pilotaż Aktywnik+",
     repositoryUrl: "https://github.com/lukaszst-cz/aktywnik-plus",
@@ -85,20 +85,32 @@ export const practicalTools: PracticalTool[] = [
     problem: "Dokumenty, terminy i akcje łatwo rozchodzą się po folderach, e-mailach i prywatnych notatkach.",
     benefit: "Porządkuje lokalne dokumenty, wspiera OCR, wyszukiwanie, terminy oraz bezpieczną automatyzację pracy na plikach.",
     freeDetails: "Na GitHubie są instalator Windows, wersja przenośna, sumy kontrolne i instrukcja. Najnowsze stabilne wydanie to v4.0.0. Dane pozostają lokalnie.",
-    imageUrl: "/og.jpg",
+    imageUrl: "/program-docpilot-cover.svg",
     primaryUrl: "https://github.com/lukaszst-cz/docpilot",
     primaryLabel: "Pobierz DocPilot z GitHuba",
     repositoryUrl: "https://github.com/lukaszst-cz/docpilot",
     scope: ["OCR i wyszukiwanie", "terminy oraz akcje", "lokalne przechowywanie danych", "Windows: instalator i wersja przenośna"],
+  },
+  {
+    category: "programy",
+    name: "SpokojnyPC+",
+    status: "program Windows i aplikacja Android w rozwoju",
+    problem: "Stan komputera jest zwykle rozproszony między ustawieniami, procesami, autostartem i komunikatami systemu, więc trudno spokojnie ocenić, co naprawdę wymaga uwagi.",
+    benefit: "Pokazuje lokalny wynik kondycji urządzenia, porównuje pomiary z własnym baseline, wyjaśnia odchylenia i prowadzi do bezpiecznych działań zamiast agresywnego czyszczenia.",
+    freeDetails: "Strona portfolio pokazuje aktualny, rzeczywisty zakres: wersję Windows 2.8.0 oraz rozwijany klient Android. Program jest projektowany local-first, bez wymaganego konta i chmury.",
+    imageUrl: "/program-spokojny-pc-plus-cover.svg",
+    primaryUrl: "/spokojny-pc-plus",
+    primaryLabel: "Poznaj SpokojnyPC+",
+    scope: ["wynik kondycji i lokalny baseline", "RAM, dysk, sieć, bateria i bezpieczeństwo", "Startup Radar oraz historia zmian", "Windows 2.8.0 i rozwijany klient Android"],
   },
 ];
 
 export const additionalProjects = [
   {
     name: "CzyToŚciema?",
-    status: "kod i dokumentacja",
-    purpose: "Sprawdza podejrzane wiadomości, linki, obrazy i kody QR. Analiza działa lokalnie w przeglądarce.",
-    access: "Na tym etapie publicznie pokazuję kod, sposób działania i ograniczenia. Nie kieruję jeszcze do osobnej wersji online.",
+    status: "aplikacja PWA na telefon, komputer i tablet",
+    purpose: "Pomaga ostrożnie ocenić podejrzane SMS-y, e-maile, linki, zdjęcia oraz kody QR bez wysyłania analizowanej treści na serwer.",
+    access: "Publiczne repozytorium zawiera kod, opis ograniczeń i aplikację działającą lokalnie w przeglądarce, także offline po pełnym pobraniu.",
     url: "https://github.com/lukaszst-cz/czy-to-sciema",
   },
   {
