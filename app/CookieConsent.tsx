@@ -6,33 +6,54 @@ const STORAGE_KEY = "zm_analytics_consent";
 const MEASUREMENT_ID = "G-CYFQ326JRF";
 
 type AnalyticsWindow = Window & {
-  dataLayer?: unknown[][];
+  dataLayer?: IArguments[];
   gtag?: (...args: unknown[]) => void;
+  __zmAnalyticsReady?: boolean;
 };
+
+function analyticsReady() {
+  const analyticsWindow = window as AnalyticsWindow;
+  if (analyticsWindow.__zmAnalyticsReady) return;
+  analyticsWindow.__zmAnalyticsReady = true;
+  window.dispatchEvent(new Event("zm-analytics-ready"));
+}
+
+function grantAnalyticsConsent() {
+  (window as AnalyticsWindow).gtag?.("consent", "update", { analytics_storage: "granted" });
+}
 
 function loadAnalytics() {
   const analyticsWindow = window as AnalyticsWindow;
-  if (document.querySelector(`script[data-zm-ga="${MEASUREMENT_ID}"]`)) {
-    analyticsWindow.gtag?.("consent", "update", { analytics_storage: "granted" });
+  const existingScript = document.querySelector<HTMLScriptElement>(`script[data-zm-ga="${MEASUREMENT_ID}"]`);
+  if (existingScript) {
+    grantAnalyticsConsent();
+    if (existingScript.dataset.zmGaReady === "true") analyticsReady();
+    else existingScript.addEventListener("load", analyticsReady, { once: true });
     return;
   }
 
   analyticsWindow.dataLayer = analyticsWindow.dataLayer ?? [];
-  analyticsWindow.gtag = (...args: unknown[]) => analyticsWindow.dataLayer?.push(args);
+  // Match Google's installation snippet exactly: the external tag expects
+  // command arguments, rather than a nested array created by an arrow function.
+  analyticsWindow.gtag = function gtag() { analyticsWindow.dataLayer?.push(arguments); };
   analyticsWindow.gtag("consent", "default", {
-    analytics_storage: "granted",
+    analytics_storage: "denied",
     ad_storage: "denied",
     ad_user_data: "denied",
     ad_personalization: "denied",
   });
+  grantAnalyticsConsent();
   analyticsWindow.gtag("js", new Date());
   analyticsWindow.gtag("config", MEASUREMENT_ID, { anonymize_ip: true, send_page_view: false });
-  window.dispatchEvent(new Event("zm-analytics-ready"));
 
   const script = document.createElement("script");
   script.async = true;
   script.src = `https://www.googletagmanager.com/gtag/js?id=${MEASUREMENT_ID}`;
   script.dataset.zmGa = MEASUREMENT_ID;
+  script.addEventListener("load", () => {
+    script.dataset.zmGaReady = "true";
+    analyticsReady();
+  }, { once: true });
   document.head.appendChild(script);
 }
 

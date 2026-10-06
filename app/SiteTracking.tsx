@@ -1,17 +1,23 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { trackAnalyticsEvent } from "./CookieConsent";
 
 export default function SiteTracking() {
   const pathname = usePathname();
+  const lastPageView = useRef<string | null>(null);
 
   useEffect(() => {
-    const sendPageView = () => trackAnalyticsEvent("page_view", { page_path: pathname, page_title: document.title });
-    const timer = window.setTimeout(sendPageView, 0);
+    const sendPageView = () => {
+      const pageKey = `${pathname}:${document.title}`;
+      if (lastPageView.current === pageKey) return;
+      lastPageView.current = pageKey;
+      trackAnalyticsEvent("page_view", { page_path: pathname, page_title: document.title });
+    };
     window.addEventListener("zm-analytics-ready", sendPageView);
-    return () => { window.clearTimeout(timer); window.removeEventListener("zm-analytics-ready", sendPageView); };
+    if ((window as Window & { __zmAnalyticsReady?: boolean }).__zmAnalyticsReady) sendPageView();
+    return () => window.removeEventListener("zm-analytics-ready", sendPageView);
   }, [pathname]);
 
   useEffect(() => {
