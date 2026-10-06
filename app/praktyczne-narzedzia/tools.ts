@@ -1,6 +1,7 @@
 export type PracticalTool = {
+  category: "narzedzia" | "flow" | "programy";
   name: string;
-  status: "bezpłatne narzędzie online" | "bezpłatna demonstracja" | "bezpłatny kod i dokumentacja";
+  status: "bezpłatne narzędzie online" | "bezpłatna demonstracja" | "bezpłatny kod i dokumentacja" | "bezpłatny pilot PWA" | "program dla Windows · stabilne wydania";
   problem: string;
   benefit: string;
   freeDetails: string;
@@ -13,6 +14,7 @@ export type PracticalTool = {
 
 export const practicalTools: PracticalTool[] = [
   {
+    category: "narzedzia",
     name: "Lead & Offer Copilot",
     status: "bezpłatne narzędzie online",
     problem: "Zapytanie przychodzi bez części danych, a odpowiedź i oferta powstają pod presją czasu.",
@@ -25,6 +27,7 @@ export const practicalTools: PracticalTool[] = [
     scope: ["analiza zapytania", "lista braków", "szkic odpowiedzi", "lokalna kolejka spraw"],
   },
   {
+    category: "narzedzia",
     name: "Document Checker",
     status: "bezpłatne narzędzie online",
     problem: "Przed wysłaniem zestawienia łatwo przeoczyć brakujące pole, błędny e-mail albo rozbieżność kwot.",
@@ -37,6 +40,7 @@ export const practicalTools: PracticalTool[] = [
     scope: ["CSV, Excel i PDF", "NIP, daty i e-mail", "kwoty netto, VAT i brutto", "lokalne przetwarzanie pliku"],
   },
   {
+    category: "flow",
     name: "PrintFlow 360",
     status: "bezpłatny kod i dokumentacja",
     problem: "Oferta, produkcja, jakość, wysyłka i faktura są prowadzone w osobnych plikach, więc trudno zobaczyć cały przebieg zlecenia.",
@@ -49,6 +53,7 @@ export const practicalTools: PracticalTool[] = [
     scope: ["portal PWA", "44 arkusze Excela", "dashboard KPI", "RACI i materiały QA"],
   },
   {
+    category: "flow",
     name: "TransportFlow 360",
     status: "bezpłatna demonstracja",
     problem: "Dane o trasie, aucie, kierowcy, dokumentach i płatności rozchodzą się między telefonem, wiadomościami i arkuszami.",
@@ -60,16 +65,35 @@ export const practicalTools: PracticalTool[] = [
     repositoryUrl: "https://github.com/lukaszst-cz/transportflow-360",
     scope: ["kalkulator transportowy", "portal PWA", "flota i dokumenty", "Excel i kontrola jakości"],
   },
+  {
+    category: "programy",
+    name: "Aktywnik+",
+    status: "bezpłatny pilot PWA",
+    problem: "Dla siebie, dla rodziny albo pilotażowo dla szkoły czy klubu potrzebny jest spokojny sposób zapisywania aktywności, bez rankingów i porównywania.",
+    benefit: "Prowadzi prosty dziennik aktywności w trybie osobistym lub rodzinnym, z widokiem dziecka, lokalnie chronioną strefą rodzica i raportami.",
+    freeDetails: "Pilot jest bezpłatny. To aplikacja PWA, więc działa w przeglądarce na komputerze, telefonie i tablecie. Przed wykorzystaniem w szkole trzeba zapoznać się z warunkami pilota.",
+    imageUrl: "/aktywnik-plus-icon.png",
+    primaryUrl: "https://aktywnik-plus.vercel.app",
+    primaryLabel: "Otwórz pilotaż Aktywnik+",
+    repositoryUrl: "https://github.com/lukaszst-cz/aktywnik-plus",
+    scope: ["tryb dla siebie", "tryb rodzinny z PIN-em rodzica", "wpisy i podgląd tygodnia", "PWA na komputer, telefon i tablet"],
+  },
+  {
+    category: "programy",
+    name: "DocPilot",
+    status: "program dla Windows · stabilne wydania",
+    problem: "Dokumenty, terminy i akcje łatwo rozchodzą się po folderach, e-mailach i prywatnych notatkach.",
+    benefit: "Porządkuje lokalne dokumenty, wspiera OCR, wyszukiwanie, terminy oraz bezpieczną automatyzację pracy na plikach.",
+    freeDetails: "Na GitHubie są instalator Windows, wersja przenośna, sumy kontrolne i instrukcja. Najnowsze stabilne wydanie to v4.0.0. Dane pozostają lokalnie.",
+    imageUrl: "/og.jpg",
+    primaryUrl: "https://github.com/lukaszst-cz/docpilot",
+    primaryLabel: "Pobierz DocPilot z GitHuba",
+    repositoryUrl: "https://github.com/lukaszst-cz/docpilot",
+    scope: ["OCR i wyszukiwanie", "terminy oraz akcje", "lokalne przechowywanie danych", "Windows: instalator i wersja przenośna"],
+  },
 ];
 
 export const additionalProjects = [
-  {
-    name: "DocPilot",
-    status: "bezpłatny program dla Windows",
-    purpose: "Porządkuje lokalne dokumenty, odczytuje je przez OCR, pilnuje terminów i pomaga przygotować bezpieczną kopię archiwum.",
-    access: "Na GitHubie są instalator Windows, wersja przenośna, sumy kontrolne i instrukcja. Program przechowuje dane lokalnie.",
-    url: "https://github.com/lukaszst-cz/docpilot",
-  },
   {
     name: "CzyToŚciema?",
     status: "kod i dokumentacja",
