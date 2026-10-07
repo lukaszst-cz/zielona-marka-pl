@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Znak SpokojnyPC+">
+  <rect width="512" height="512" rx="112" fill="#113a29"/>
+  <circle cx="256" cy="252" r="161" fill="#214e36" stroke="#c8ed9d" stroke-width="9"/>
+  <path d="M256 155c-54 46-65 115-14 167 35 36 89 43 132 22-3-64-37-117-90-149l-28-15Z" fill="#b9ec79"/>
+  <path d="M257 174v177m0-100-71-65m72 102 76-65" fill="none" stroke="#103726" stroke-width="19" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="256" cy="256" r="20" fill="#effbe3"/>
+</svg>

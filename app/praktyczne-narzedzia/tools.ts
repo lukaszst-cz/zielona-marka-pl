@@ -1,11 +1,12 @@
 export type PracticalTool = {
-  category: "narzedzia" | "flow" | "programy";
+  category: "narzedzia" | "programy";
   name: string;
-  status: "bezpłatne narzędzie online" | "bezpłatna demonstracja" | "bezpłatny kod i dokumentacja" | "bezpłatny pilot PWA" | "program dla Windows · stabilne wydania" | "program Windows i aplikacja Android w rozwoju" | "aplikacja PWA na telefon i komputer";
+  status: "bezpłatne narzędzie online" | "bezpłatna demonstracja" | "bezpłatny kod i dokumentacja" | "bezpłatny pilot PWA" | "program dla Windows · stabilne wydania" | "program Windows · wydanie testowe" | "aplikacja Android · wydanie testowe" | "aplikacja PWA na telefon i komputer";
   problem: string;
   benefit: string;
   freeDetails: string;
   imageUrl: string;
+  logoUrl?: string;
   primaryUrl: string;
   primaryLabel: string;
   repositoryUrl?: string;
@@ -40,39 +41,14 @@ export const practicalTools: PracticalTool[] = [
     scope: ["CSV, Excel i PDF", "NIP, daty i e-mail", "kwoty netto, VAT i brutto", "lokalne przetwarzanie pliku"],
   },
   {
-    category: "flow",
-    name: "PrintFlow 360",
-    status: "bezpłatny kod i dokumentacja",
-    problem: "Oferta, produkcja, jakość, wysyłka i faktura są prowadzone w osobnych plikach, więc trudno zobaczyć cały przebieg zlecenia.",
-    benefit: "Pokazuje model Order-to-Cash z portalem PWA, Excelem, KPI i podziałem odpowiedzialności.",
-    freeDetails: "Bezpłatnie udostępniony jest kod, opis procesu i materiały demonstracyjne w repozytorium GitHub. Dopasowanie systemu do firmy jest osobnym zakresem.",
-    imageUrl: "/tool-printflow-360-v2.jpg",
-    primaryUrl: "https://github.com/lukaszst-cz/printflow-360",
-    primaryLabel: "Zobacz bezpłatny kod i opis",
-    repositoryUrl: "https://github.com/lukaszst-cz/printflow-360",
-    scope: ["portal PWA", "44 arkusze Excela", "dashboard KPI", "RACI i materiały QA"],
-  },
-  {
-    category: "flow",
-    name: "TransportFlow 360",
-    status: "bezpłatna demonstracja",
-    problem: "Dane o trasie, aucie, kierowcy, dokumentach i płatności rozchodzą się między telefonem, wiadomościami i arkuszami.",
-    benefit: "Łączy przykład wyceny, realizacji przewozu, dokumentów, faktury i wyników w jednym opisanym procesie.",
-    freeDetails: "Bezpłatnie obejrzysz demonstrację na stronie Zielonej Marki oraz kod i dokumentację na GitHubie. Dane, trasy i kwoty są przykładowe.",
-    imageUrl: "/tool-transportflow-360-v2.jpg",
-    primaryUrl: "/demo/transport",
-    primaryLabel: "Otwórz bezpłatną demonstrację",
-    repositoryUrl: "https://github.com/lukaszst-cz/transportflow-360",
-    scope: ["kalkulator transportowy", "portal PWA", "flota i dokumenty", "Excel i kontrola jakości"],
-  },
-  {
     category: "programy",
     name: "Aktywnik+",
     status: "bezpłatny pilot PWA",
-    problem: "Dla siebie, dla rodziny albo pilotażowo dla szkoły czy klubu potrzebny jest spokojny sposób zapisywania aktywności, bez rankingów i porównywania.",
-    benefit: "Prowadzi prosty dziennik aktywności w trybie osobistym lub rodzinnym, z widokiem dziecka, lokalnie chronioną strefą rodzica i raportami.",
+    problem: "Dzieci chętniej wracają do ruchu, kiedy mogą zapamiętać własne małe przygody, bez rankingu, presji i porównywania z innymi.",
+    benefit: "Aktywnik+ zamienia wpisy o aktywności w przyjazny dziennik dla dziecka i rodziny. Dziecko widzi swój tydzień, a rodzic ma osobną, chronioną PIN-em strefę z przeglądem i raportami.",
     freeDetails: "Pilot jest bezpłatny. To aplikacja PWA, więc działa w przeglądarce na komputerze, telefonie i tablecie. Przed wykorzystaniem w szkole trzeba zapoznać się z warunkami pilota.",
-    imageUrl: "/program-aktywnik-plus-cover.svg",
+    imageUrl: "/program-aktywnik-plus-photo-v3.png",
+    logoUrl: "/aktywnik-plus-wordmark.svg",
     primaryUrl: "https://aktywnik-plus.vercel.app",
     primaryLabel: "Otwórz pilotaż Aktywnik+",
     repositoryUrl: "https://github.com/lukaszst-cz/aktywnik-plus",
@@ -85,7 +61,8 @@ export const practicalTools: PracticalTool[] = [
     problem: "Dokumenty, terminy i akcje łatwo rozchodzą się po folderach, e-mailach i prywatnych notatkach.",
     benefit: "Porządkuje lokalne dokumenty, wspiera OCR, wyszukiwanie, terminy oraz bezpieczną automatyzację pracy na plikach.",
     freeDetails: "Na GitHubie są instalator Windows, wersja przenośna, sumy kontrolne i instrukcja. Najnowsze stabilne wydanie to v4.0.0. Dane pozostają lokalnie.",
-    imageUrl: "/program-docpilot-cover.svg",
+    imageUrl: "/program-docpilot-photo-v3.png",
+    logoUrl: "/docpilot-icon.png",
     primaryUrl: "https://github.com/lukaszst-cz/docpilot",
     primaryLabel: "Pobierz DocPilot z GitHuba",
     repositoryUrl: "https://github.com/lukaszst-cz/docpilot",
@@ -94,30 +71,56 @@ export const practicalTools: PracticalTool[] = [
   {
     category: "programy",
     name: "SpokojnyPC+",
-    status: "program Windows i aplikacja Android w rozwoju",
+    status: "program Windows · wydanie testowe",
     problem: "Stan komputera jest zwykle rozproszony między ustawieniami, procesami, autostartem i komunikatami systemu, więc trudno spokojnie ocenić, co naprawdę wymaga uwagi.",
     benefit: "Pokazuje lokalny wynik kondycji urządzenia, porównuje pomiary z własnym baseline, wyjaśnia odchylenia i prowadzi do bezpiecznych działań zamiast agresywnego czyszczenia.",
-    freeDetails: "Strona portfolio pokazuje aktualny, rzeczywisty zakres: wersję Windows 2.8.0 oraz rozwijany klient Android. Program jest projektowany local-first, bez wymaganego konta i chmury.",
-    imageUrl: "/program-spokojny-pc-plus-cover.svg",
+    freeDetails: "Dostępna jest wersja testowa 3.2.0 RC1 dla Windows. Kod źródłowy pozostaje prywatny; publicznego instalatora nie udostępniam jeszcze na tej stronie.",
+    imageUrl: "/program-spokojny-pc-plus-photo-v3.png",
+    logoUrl: "/spokojny-pc-plus-icon.svg",
     primaryUrl: "/spokojny-pc-plus",
     primaryLabel: "Poznaj SpokojnyPC+",
-    scope: ["wynik kondycji i lokalny baseline", "RAM, dysk, sieć, bateria i bezpieczeństwo", "Startup Radar oraz historia zmian", "Windows 2.8.0 i rozwijany klient Android"],
+    scope: ["wynik kondycji i lokalny baseline", "RAM, dysk, sieć, bateria i bezpieczeństwo", "Startup Radar oraz historia zmian", "Windows 3.2.0 RC1 i osobna aplikacja Android RC1"],
+  },
+  {
+    category: "programy",
+    name: "SpokojnyMobile+",
+    status: "aplikacja Android · wydanie testowe",
+    problem: "Informacje o stanie telefonu są rozproszone, a wiele aplikacji obiecuje czyszczenie zamiast spokojnego wyjaśnienia problemu.",
+    benefit: "Pokazuje lokalną ocenę kondycji telefonu, dane o pamięci, baterii i sieci oraz podpowiada bezpieczne kroki. DeviceLink pozwala połączyć znane urządzenia po potwierdzeniu.",
+    freeDetails: "Bezpłatny APK Android 1.0.0 RC1 dla arm64 pobierzesz z osobnego publicznego repo. To wersja testowa podpisana w trybie debug, nie stabilne wydanie. Na stronie wydania jest suma SHA-256 i opis ograniczeń.",
+    imageUrl: "/program-spokojny-pc-plus-photo-v3.png",
+    logoUrl: "/spokojny-pc-plus-icon.svg",
+    primaryUrl: "https://github.com/lukaszst-cz/spokojny-mobile-plus-download/releases/tag/v1.0.0-rc1",
+    primaryLabel: "Pobierz APK testowy z GitHuba",
+    repositoryUrl: "https://github.com/lukaszst-cz/spokojny-mobile-plus-download",
+    scope: ["Android 1.0.0 RC1", "Smart Check i lokalny wynik", "pamięć, bateria i sieć", "DeviceLink z potwierdzeniem parowania"],
+  },
+  {
+    category: "programy",
+    name: "CzyToŚciema?",
+    status: "aplikacja PWA na telefon i komputer",
+    problem: "Podejrzane wiadomości, linki, zdjęcia i kody QR trudno ocenić pod presją czasu.",
+    benefit: "Pomaga zauważyć sygnały ostrzegawcze, wyjaśnia ograniczenia oceny i proponuje bezpieczny następny krok. Analiza treści odbywa się lokalnie.",
+    freeDetails: "Bezpłatny kod i instrukcja są na GitHubie. Aplikacja działa w przeglądarce, także offline po pełnym pobraniu potrzebnych plików. Wynik nie potwierdza bezpieczeństwa wiadomości.",
+    imageUrl: "/program-czy-to-sciema-photo-v3.png",
+    logoUrl: "/czy-to-sciema-icon.svg",
+    primaryUrl: "https://github.com/lukaszst-cz/czy-to-sciema",
+    primaryLabel: "Zobacz aplikację i kod",
+    repositoryUrl: "https://github.com/lukaszst-cz/czy-to-sciema",
+    scope: ["SMS i e-mail", "linki i kody QR", "obrazy i lokalny OCR", "PWA na telefon, tablet i komputer"],
+  },
+  {
+    category: "programy",
+    name: "Fleet Ops Desk",
+    status: "bezpłatny kod i dokumentacja",
+    problem: "Sprawy floty, dokumenty i terminy trudno kontrolować w rozproszonych plikach.",
+    benefit: "Pokazuje demonstracyjną ewidencję floty, umów najmu i leasingu, terminów dokumentów oraz podstawową analizę kosztów.",
+    freeDetails: "Bezpłatnie dostępny jest kod Python i SQLite, instrukcja uruchomienia lokalnego oraz anonimowe dane demonstracyjne. To projekt pokazowy, a nie gotowy system dla firmy.",
+    imageUrl: "/program-fleet-ops-desk-photo-v3.png",
+    logoUrl: "/fleet-ops-desk-icon.svg",
+    primaryUrl: "https://github.com/lukaszst-cz/fleet-ops-desk",
+    primaryLabel: "Zobacz kod i instrukcję",
+    repositoryUrl: "https://github.com/lukaszst-cz/fleet-ops-desk",
+    scope: ["ewidencja floty", "terminy dokumentów", "umowy i koszty", "lokalne uruchomienie kodu"],
   },
 ];
-
-export const additionalProjects = [
-  {
-    name: "CzyToŚciema?",
-    status: "aplikacja PWA na telefon, komputer i tablet",
-    purpose: "Pomaga ostrożnie ocenić podejrzane SMS-y, e-maile, linki, zdjęcia oraz kody QR bez wysyłania analizowanej treści na serwer.",
-    access: "Publiczne repozytorium zawiera kod, opis ograniczeń i aplikację działającą lokalnie w przeglądarce, także offline po pełnym pobraniu.",
-    url: "https://github.com/lukaszst-cz/czy-to-sciema",
-  },
-  {
-    name: "Fleet Ops Desk",
-    status: "kod demonstracyjnej aplikacji",
-    purpose: "Pokazuje ewidencję floty, umowy najmu i leasingu, terminy dokumentów oraz podstawową analizę kosztów.",
-    access: "Repozytorium zawiera aplikację Python i SQLite z anonimowymi danymi demonstracyjnymi oraz instrukcję uruchomienia lokalnego.",
-    url: "https://github.com/lukaszst-cz/fleet-ops-desk",
-  },
-] as const;

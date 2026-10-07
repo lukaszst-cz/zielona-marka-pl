@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Aktywnik+">
+  <defs><linearGradient id="a" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f3ffe4"/><stop offset="1" stop-color="#c9f18a"/></linearGradient></defs>
+  <rect width="512" height="512" rx="112" fill="url(#a)"/>
+  <path d="M111 370 216 148h62l104 222h-68l-20-46H197l-20 46zm109-99h51l-25-61z" fill="#0a4932"/>
+  <circle cx="379" cy="147" r="66" fill="#0d5839"/>
+  <path d="M379 116v62m-31-31h62" stroke="#eaffc9" stroke-width="17" stroke-linecap="round"/>
+  <path d="M123 415c77 40 184 40 262 0" fill="none" stroke="#65a849" stroke-width="13" stroke-linecap="round"/>
+</svg>
