@@ -23,6 +23,12 @@ const items = [
     description: "Oferta, cennik, efekty zabiegów, rezerwacja, przygotowanie do wizyty, lokalna widoczność oraz vouchery i produkty.",
     date: "Wed, 07 Oct 2026 20:15:00 +0200",
   },
+  {
+    title: "Co powinna mieć strona firmy usługowej?",
+    path: "/poradnik/co-powinna-miec-strona-firmy-uslugowej",
+    description: "Zakres usług, obszar działania, realizacje, proces wyceny, formularz z lokalizacją i zdjęciami oraz lokalne SEO.",
+    date: "Wed, 07 Oct 2026 20:20:00 +0200",
+  },
 ] as const;
 
 function xml(value: string) {
