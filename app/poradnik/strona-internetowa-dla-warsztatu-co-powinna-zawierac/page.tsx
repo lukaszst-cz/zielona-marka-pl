@@ -45,6 +45,7 @@ export default function WorkshopWebsiteGuidePage() {
     "@type": "Article",
     headline: "Co powinna zawierać strona internetowa warsztatu?",
     description: metadata.description,
+    image: "https://zielona-marka.pl/og.jpg",
     datePublished: "2026-10-07",
     dateModified: "2026-10-07",
     author: { "@id": "https://zielona-marka.pl/#lukasz-staniewicz" },
