@@ -13,7 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/realizacje/transportflow`, lastModified: new Date("2026-10-05"), changeFrequency: "monthly", priority: .72 },
     { url: `${base}/praktyczne-narzedzia`, lastModified: new Date("2026-10-05"), changeFrequency: "monthly", priority: .8 },
     { url: `${base}/poradnik`, lastModified: new Date("2026-10-07"), changeFrequency: "weekly", priority: .82 },
-    { url: `${base}/poradnik/dlaczego-strona-firmy-nie-przynosi-zapytan`, lastModified: new Date("2026-09-30"), changeFrequency: "monthly", priority: .8 },
+    { url: `${base}/poradnik/dlaczego-strona-firmy-nie-przynosi-zapytan`, lastModified: new Date("2026-10-07"), changeFrequency: "monthly", priority: .8 },
     { url: `${base}/poradnik/ile-kosztuje-strona-dla-malej-firmy`, lastModified: new Date("2026-10-07"), changeFrequency: "monthly", priority: .8 },
     { url: `${base}/poradnik/strona-internetowa-dla-warsztatu-co-powinna-zawierac`, lastModified: new Date("2026-10-07"), changeFrequency: "monthly", priority: .82 },
     { url: `${base}/poradnik/strona-internetowa-dla-salonu-beauty-co-powinna-zawierac`, lastModified: new Date("2026-10-07"), changeFrequency: "monthly", priority: .82 },
@@ -32,6 +32,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/realizacje/natura-studio`, changeFrequency: "monthly", priority: .6 },
     { url: `${base}/realizacje/bistro-forma`, changeFrequency: "monthly", priority: .6 },
     { url: `${base}/realizacje/dom-dobry`, changeFrequency: "monthly", priority: .6 },
-    ...localCities.map(city => ({ url: `${base}/strony-internetowe/${city}`, lastModified: new Date("2026-09-12"), changeFrequency: "monthly" as const, priority: .82 })),
+    ...localCities.map(city => ({ url: `${base}/strony-internetowe/${city}`, lastModified: new Date("2026-10-07"), changeFrequency: "monthly" as const, priority: .82 })),
   ];
 }
