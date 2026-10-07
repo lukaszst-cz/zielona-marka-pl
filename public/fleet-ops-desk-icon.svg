@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Znak Fleet Ops Desk">
+  <rect width="512" height="512" rx="112" fill="#173e32"/>
+  <path d="M91 341h330" stroke="#c5e9a6" stroke-width="22" stroke-linecap="round"/>
+  <path d="M126 254h258l-31-72c-7-16-22-27-40-27H198c-18 0-33 11-40 27l-32 72Z" fill="#ecf6e4"/>
+  <path d="M125 256h262v80H125z" fill="#b7e37f"/>
+  <path d="M181 190h150l21 52H160z" fill="#6caa8e"/>
+  <circle cx="170" cy="343" r="29" fill="#eff8e8"/><circle cx="342" cy="343" r="29" fill="#eff8e8"/>
+  <path d="M255 103v31M227 119h56" stroke="#b7e37f" stroke-width="13" stroke-linecap="round"/>
+</svg>
