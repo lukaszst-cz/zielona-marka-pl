@@ -163,22 +163,44 @@ test("analytics covers guide journeys and form starts without collecting field v
 test("tools page uses verified destinations and avoids generic AI sales language",async()=>{
   const source=await readFile(new URL("../app/praktyczne-narzedzia/tools.ts",import.meta.url),"utf8");
   const page=await readFile(new URL("../app/praktyczne-narzedzia/page.tsx",import.meta.url),"utf8");
+  const flow=await readFile(new URL("../app/projekty-flow/page.tsx",import.meta.url),"utf8");
   const transport=await readFile(new URL("../app/realizacje/transportflow/page.tsx",import.meta.url),"utf8");
-  for(const fragment of ["lead-offer-zm.pages.dev","document-checker-zm.pages.dev","printflow-360","transportflow-360","DocPilot","CzyToŚciema?","Fleet Ops Desk"]){
+  for(const fragment of ["lead-offer-zm.pages.dev","document-checker-zm.pages.dev","DocPilot","CzyToŚciema?","Fleet Ops Desk"]){
     assert.match(source,new RegExp(fragment));
   }
-  assert.match(page,/Co jest bezpłatne:/);
+  assert.match(page,/Bezpłatnie dostępne teraz:/);
   assert.match(page,/price:\s*"0"/);
-  assert.match(source,/primaryUrl:\s*"https:\/\/github\.com\/lukaszst-cz\/printflow-360"/);
+  assert.match(page,/href="\/projekty-flow"/);
+  assert.match(flow,/primaryUrl:\s*"https:\/\/github\.com\/lukaszst-cz\/printflow-360"/);
   assert.doesNotMatch(source,/lukaszst-cz\.github\.io\/(?:printflow|transportflow)-360/);
-  assert.match(source,/primaryUrl:\s*"\/demo\/transport"/);
+  assert.match(flow,/primaryUrl:\s*"\/demo\/transport"/);
+  assert.match(flow,/tool-workshopflow-360-photo\.png/);
+  assert.match(source,/program-czy-to-sciema-photo-v3\.png/);
+  assert.match(source,/program-fleet-ops-desk-photo-v3\.png/);
+  assert.match(source,/program-spokojny-pc-plus-photo-v3\.png/);
+  assert.match(source,/program-docpilot-photo-v3\.png/);
+  assert.match(source,/program-aktywnik-plus-photo-v3\.png/);
+  assert.match(source,/aktywnik-plus-wordmark\.svg/);
+  assert.match(source,/spokojny-mobile-plus-download\/releases\/tag\/v1\.0\.0-rc1/);
+  assert.match(source,/SpokojnyMobile\+/);
+  assert.match(page,/program-card-logo/);
   assert.match(transport,/href="\/demo\/transport"/);
   assert.match(transport,/https:\/\/github\.com\/lukaszst-cz\/transportflow-360/);
-  assert.doesNotMatch(source+page+transport,/coffee|buy me|postaw\w*\s+.*kaw|naleśnik|nalesnik/i);
+  assert.doesNotMatch(source+page+flow+transport,/coffee|buy me|postaw\w*\s+.*kaw|naleśnik|nalesnik/i);
   assert.doesNotMatch(source,/rewolucyjn|innowacyjn|kompleksow|szyt\w* na miarę|przenieś.+poziom|game.?changer/i);
   for(const file of ["tool-lead-offer-copilot-v2.jpg","tool-document-checker-v2.jpg","tool-printflow-360-v2.jpg","tool-transportflow-360-v2.jpg"]){
     const info=await stat(new URL(`../public/${file}`,import.meta.url));
     assert.ok(info.size>20_000,`${file}: ${info.size}`);
+  }
+  const workshop=await stat(new URL("../public/tool-workshopflow-360-photo.png",import.meta.url));
+  assert.ok(workshop.size>20_000);
+  for(const file of ["program-czy-to-sciema-photo-v3.png","program-fleet-ops-desk-photo-v3.png","program-spokojny-pc-plus-photo-v3.png","program-docpilot-photo-v3.png","program-aktywnik-plus-photo-v3.png"]){
+    const photo=await stat(new URL(`../public/${file}`,import.meta.url));
+    assert.ok(photo.size>20_000,`${file}: ${photo.size}`);
+  }
+  for(const file of ["czy-to-sciema-icon.svg","fleet-ops-desk-icon.svg","spokojny-pc-plus-icon.svg","aktywnik-plus-wordmark.svg"]){
+    const icon=await stat(new URL(`../public/${file}`,import.meta.url));
+    assert.ok(icon.size>200,`${file}: ${icon.size}`);
   }
 });
 

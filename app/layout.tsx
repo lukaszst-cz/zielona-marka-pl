@@ -148,13 +148,6 @@ export default async function RootLayout({
   };
   return (
     <html lang={(await headers()).get("x-zm-language") === "en" ? "en" : "pl"}>
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: "window['ga-disable-G-B3QJ910M2Q']=true;",
-          }}
-        />
-      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
