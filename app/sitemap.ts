@@ -17,7 +17,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/poradnik/ile-kosztuje-strona-dla-malej-firmy`, lastModified: new Date("2026-10-07"), changeFrequency: "monthly", priority: .8 },
     { url: `${base}/usprawnienia-firmy`, lastModified: new Date("2026-10-07"), changeFrequency: "monthly", priority: .8 },
     { url: `${base}/jak-pracuje`, changeFrequency: "monthly", priority: .75 },
-    { url: `${base}/raport-qa`, changeFrequency: "monthly", priority: .55 },
     { url: `${base}/kontakt`, changeFrequency: "monthly", priority: .75 },
     { url: `${base}/strony-internetowe`, lastModified: new Date("2026-10-07"), changeFrequency: "weekly", priority: .92 },
     { url: `${base}/strony-internetowe-marki`, lastModified: new Date("2026-10-07"), changeFrequency: "weekly", priority: .9 },
@@ -30,7 +29,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/realizacje/natura-studio`, changeFrequency: "monthly", priority: .6 },
     { url: `${base}/realizacje/bistro-forma`, changeFrequency: "monthly", priority: .6 },
     { url: `${base}/realizacje/dom-dobry`, changeFrequency: "monthly", priority: .6 },
-    { url: `${base}/polityka-prywatnosci`, changeFrequency: "yearly", priority: .2 },
     ...localCities.map(city => ({ url: `${base}/strony-internetowe/${city}`, lastModified: new Date("2026-09-12"), changeFrequency: "monthly" as const, priority: .82 })),
   ];
 }
