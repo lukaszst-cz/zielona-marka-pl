@@ -19,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/jak-pracuje`, changeFrequency: "monthly", priority: .75 },
     { url: `${base}/raport-qa`, changeFrequency: "monthly", priority: .55 },
     { url: `${base}/kontakt`, changeFrequency: "monthly", priority: .75 },
+    { url: `${base}/strony-internetowe`, lastModified: new Date("2026-10-07"), changeFrequency: "weekly", priority: .92 },
     { url: `${base}/strony-internetowe-marki`, changeFrequency: "weekly", priority: .9 },
     { url: `${base}/strony-dla-warsztatow`, changeFrequency: "weekly", priority: .85 },
     { url: `${base}/strony-dla-firm-uslugowych`, changeFrequency: "weekly", priority: .85 },
