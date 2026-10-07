@@ -17,6 +17,12 @@ const items = [
     description: "Usługi, szybki telefon, lokalizacja, formularz z danymi auta, zdjęcia, opinie i lokalna widoczność — praktyczna lista dla warsztatu.",
     date: "Wed, 07 Oct 2026 19:40:00 +0200",
   },
+  {
+    title: "Co powinna zawierać strona internetowa salonu beauty?",
+    path: "/poradnik/strona-internetowa-dla-salonu-beauty-co-powinna-zawierac",
+    description: "Oferta, cennik, efekty zabiegów, rezerwacja, przygotowanie do wizyty, lokalna widoczność oraz vouchery i produkty.",
+    date: "Wed, 07 Oct 2026 20:15:00 +0200",
+  },
 ] as const;
 
 function xml(value: string) {

@@ -16,6 +16,7 @@ const guides = [
   { href: "/poradnik/dlaczego-strona-firmy-nie-przynosi-zapytan", no: "01", label: "WIDOCZNOŚĆ I KONTAKT", title: "Dlaczego strona firmy nie przynosi zapytań?", text: "Siedem częstych przeszkód oraz kolejność poprawek przed inwestycją w reklamę.", time: "około 7 minut" },
   { href: "/poradnik/ile-kosztuje-strona-dla-malej-firmy", no: "02", label: "KOSZT I ZAKRES", title: "Ile kosztuje strona internetowa dla małej firmy?", text: "Trzy praktyczne warianty, czynniki wpływające na cenę oraz koszty płatne osobno.", time: "około 8 minut" },
   { href: "/poradnik/strona-internetowa-dla-warsztatu-co-powinna-zawierac", no: "03", label: "WARSZTAT I DETAILING", title: "Co powinna zawierać strona internetowa warsztatu?", text: "Praktyczna lista elementów: usługi, telefon, lokalizacja, formularz, zdjęcia, opinie i lokalna widoczność.", time: "około 9 minut" },
+  { href: "/poradnik/strona-internetowa-dla-salonu-beauty-co-powinna-zawierac", no: "04", label: "SALON BEAUTY", title: "Co powinna zawierać strona internetowa salonu beauty?", text: "Oferta, cennik, efekty, rezerwacja, przygotowanie do wizyty, lokalna widoczność oraz sprzedaż voucherów i produktów.", time: "około 9 minut" },
 ] as const;
 
 export default function GuidesPage() {
