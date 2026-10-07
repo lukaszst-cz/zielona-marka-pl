@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import Link from "../SafeLink";
 import ContactForm from "../ContactForm";
 import { QuickWhatsApp, SiteFooter, SiteHeader } from "../SiteChrome";
 
 export const metadata: Metadata = {
-  title: "Strony internetowe Warszawa i okolice dla firm",
+  title: "Strony internetowe Warszawa i okolice",
   description: "Strony WWW dla firm z Warszawy, Targówka, Białołęki, Marek, Ząbek, Zielonki, Kobyłki, Wołomina i Radzymina. Lokalna widoczność, formularze i wygodny kontakt.",
   alternates: { canonical: "/strony-internetowe" },
 };
@@ -50,7 +49,7 @@ const structuredData = [
 ];
 
 export default function LocalWebsitesHubPage() {
-  return <><Script id="local-websites-hub-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} /><SiteHeader /><main className="zm-public">
+  return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} /><SiteHeader /><main className="zm-public">
     <section className="page-hero shell">
       <span className="eyebrow"><i />WARSZAWA I OKOLICE · STRONY DLA FIRM</span>
       <h1>Strony internetowe dla lokalnych firm, które mają prowadzić do <em>konkretnego kontaktu.</em></h1>

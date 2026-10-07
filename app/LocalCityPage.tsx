@@ -1,4 +1,3 @@
-import Script from "next/script";
 import Link from "./SafeLink";
 import ContactForm from "./ContactForm";
 import { QuickWhatsApp, SiteFooter, SiteHeader } from "./SiteChrome";
@@ -55,7 +54,7 @@ export default function LocalCityPage({ city }: { city: LocalCity }) {
     },
   ];
 
-  return <><Script id={`local-schema-${city.name}`} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} /><SiteHeader /><main className="zm-public">
+  return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} /><SiteHeader /><main className="zm-public">
     <section className="local-city-hero"><div className="shell"><span className="eyebrow"><i />{city.name.toUpperCase()} · STRONY I SYSTEMY DLA FIRM</span><h1>Strona internetowa, która pomaga firmie z {city.genitive} zdobywać <em>konkretne zapytania.</em></h1><p>{city.lead}</p><div className="hero-actions"><Link className="button" href="#lokalny-kontakt">Porozmawiajmy o firmie <span>↗</span></Link><a className="text-link" href="#przyklady">Zobacz przykłady <span>↓</span></a></div></div></section>
     <section className="section shell local-city-value"><div><span className="section-no">LOKALNY KLIENT CHCE SZYBKIEJ ODPOWIEDZI</span><h2>Od wyniku w Google do informacji potrzebnych do wyceny.</h2></div><div><p>{city.localNeed}</p><p>{city.localContext}</p></div></section>
     <section className="section local-city-process"><div className="shell"><div className="section-head"><div><span className="section-no">CO MOŻE ZYSKAĆ FIRMA</span><h2>Strona pracuje przed pierwszym telefonem.</h2></div><p>Najpierw klient rozumie usługę. Potem przekazuje dane, które pozwalają szybciej odpowiedzieć.</p></div><div className="local-benefit-grid"><article><b>01</b><h3>Lepsza decyzja</h3><p>Czytelna oferta pokazuje zakres, obszar działania i sposób rozpoczęcia współpracy.</p></article><article><b>02</b><h3>Kompletne zapytanie</h3><p>Formularz zbiera usługę, lokalizację, termin, opis i zdjęcia potrzebne do pierwszej oceny.</p></article><article><b>03</b><h3>Widoczny następny krok</h3><p>Telefon, e-mail i formularz prowadzą do konkretnej rozmowy zamiast pozostawiać klienta bez odpowiedzi.</p></article><article><b>04</b><h3>Porządek po kontakcie</h3><p>Prosty system może przypisać status, termin i osobę odpowiedzialną za dalszą obsługę.</p></article></div></div></section>
