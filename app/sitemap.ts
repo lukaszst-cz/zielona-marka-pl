@@ -4,7 +4,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://zielona-marka.pl";
   const localCities = ["zabki", "zielonka", "kobylka", "wolomin", "radzymin", "targowek", "bialoleka", "warszawa"];
   return [
-    { url: base, changeFrequency: "weekly", priority: 1 },
+    { url: base, lastModified: new Date("2026-10-07"), changeFrequency: "weekly", priority: 1 },
     { url: `${base}/oferta`, lastModified: new Date("2026-10-07"), changeFrequency: "weekly", priority: .9 },
     { url: `${base}/opieka-nad-strona`, changeFrequency: "monthly", priority: .7 },
     { url: `${base}/przyklady-zaplecza`, changeFrequency: "monthly", priority: .7 },
