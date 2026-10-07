@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "../SafeLink";
 import { GuideBreadcrumbs } from "../GuideElements";
 import { QuickWhatsApp, SiteFooter, SiteHeader } from "../SiteChrome";
+import RelatedServices from "../RelatedServices";
 
 export const metadata: Metadata = {
   title: "Poradniki dla małych firm",
@@ -22,6 +23,7 @@ export default function GuidesPage() {
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collection) }} />
     <header className="page-hero shell"><GuideBreadcrumbs /><span className="eyebrow"><i />WIEDZA DLA MAŁEJ FIRMY</span><h1>Praktycznie o stronie, widoczności <em>i obsłudze zapytań.</em></h1><p>Bez technicznego nadmiaru. Każdy poradnik pomaga rozpoznać problem, podjąć decyzję i wybrać następny sensowny krok.</p></header>
     <section className="section shell guide-library"><div className="section-head"><div><span className="section-no">AKTUALNE PORADNIKI</span><h2>Zacznij od pytania, które dotyczy Twojej firmy.</h2></div><p>Biblioteka będzie rozwijana na podstawie rzeczywistych pytań klientów, nie przypadkowych słów kluczowych.</p></div><div>{guides.map(guide => <Link href={guide.href} key={guide.href}><span>{guide.no} / {guide.label}</span><h2>{guide.title}</h2><p>{guide.text}</p><div className="guide-card-meta"><b>Czytaj poradnik ↗</b><small>{guide.time}</small></div></Link>)}</div></section>
+    <RelatedServices items={[{ href: "/modernizacja-strony", label: "Modernizacja strony", text: "Sprawdź, co poprawić, gdy obecna strona nie przynosi zapytań lub źle działa na telefonie." }, { href: "/maly-crm-dla-firm", label: "Mały CRM", text: "Uporządkuj kontakty, wyceny, terminy i następne działania po otrzymaniu zapytania." }, { href: "/strony-internetowe", label: "Widoczność lokalna", text: "Zobacz podejście do stron dla firm z Warszawy, Targówka, Marek i okolic." }]} />
     <section className="section guide-cta"><div className="shell"><span className="section-no">NIE WIESZ, OD CZEGO ZACZĄĆ?</span><h2>Wyślij adres strony albo opisz firmę.</h2><p>Wskażę najważniejszy następny krok bez rozmowy o budżecie i bez zobowiązania do dalszej współpracy.</p><Link className="button" href="/modernizacja-strony#miniaudyt">Poproś o mini ocenę <span>↗</span></Link></div></section>
   </main><QuickWhatsApp /><SiteFooter /></>;
 }
