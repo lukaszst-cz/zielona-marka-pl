@@ -19,7 +19,7 @@ const metadataByCity: Record<string, { title: string; description: string }> = {
   kobylka: { title: "Strony internetowe Kobyłka | formularze wyceny", description: "Strony WWW dla firm z Kobyłki z adresem realizacji, zdjęciami i danymi potrzebnymi przed oddzwonieniem." },
   wolomin: { title: "Strony internetowe Wołomin i okolice", description: "Strony dla firm z Wołomina obsługujących miasto i sąsiednie gminy. Zasięg, dojazd i wycena opisane bez niedomówień." },
   radzymin: { title: "Strony internetowe Radzymin dla usług z dojazdem", description: "Strony WWW dla firm z Radzymina: miejscowości w zasięgu, adres w formularzu i konkretne zasady pierwszej wyceny." },
-  targowek: { title: "Strony internetowe Targówek, Bródno i Zacisze", description: "Strony dla firm z Targówka, Bródna i Zacisza. Specjalizacja, dowód pracy i szybki kontakt widoczne na telefonie." },
+  targowek: { title: "Strony internetowe Targówek i Bródno", description: "Strony dla firm z Targówka, Bródna i Zacisza. Specjalizacja, dowód pracy i szybki kontakt widoczne na telefonie." },
   bialoleka: { title: "Strony internetowe Białołęka dla firm usługowych", description: "Strony WWW dla firm z Białołęki z dokładną lokalizacją, zakresem usługi i wygodnym formularzem mobilnym." },
   warszawa: { title: "Strony internetowe Warszawa dla małych firm", description: "Strony i formularze dla warszawskich firm usługowych. Konkretna specjalizacja, dzielnice i jasny pierwszy krok klienta." },
 };

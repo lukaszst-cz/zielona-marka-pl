@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "../SafeLink";
 import { QuickWhatsApp, SiteFooter, SiteHeader } from "../SiteChrome";
 
-export const metadata: Metadata = { title: "Asystent zapytań dla lokalnej firmy usługowej", description: "Automatyczna obsługa powtarzalnych pytań, kwalifikacja zapytań i przekazanie kontaktu dla warsztatów, wykonawców, salonów beauty i lokalnych usług.", alternates: { canonical: "/asystent-zapytan" } };
+export const metadata: Metadata = { title: "Asystent zapytań dla firmy usługowej", description: "Automatyczna obsługa powtarzalnych pytań, kwalifikacja zapytań i przekazanie kontaktu dla warsztatów, wykonawców, salonów beauty i lokalnych usług.", alternates: { canonical: "/asystent-zapytan" } };
 
 export default function AssistantPage() {
   return <><SiteHeader /><main className="zm-public">
