@@ -4,7 +4,7 @@ import EstimateCalculator from "../EstimateCalculator";
 import { QuickWhatsApp, SiteFooter, SiteHeader } from "../SiteChrome";
 import { corePackages } from "../site-data";
 
-export const metadata: Metadata = { title: "Oferta Zielonej Marki | Strona, brief i CRM", description: "Strona, która prowadzi klienta do działania, formularz zbierający właściwe dane i Mały CRM dla lokalnej firmy.", alternates: { canonical: "/oferta" } };
+export const metadata: Metadata = { title: "Strony internetowe dla firm – oferta i ceny", description: "Strony WWW od 1 449 zł netto, formularze, modernizacja i mały CRM dla firm usługowych. Zobacz zakresy, ceny i wybierz pierwszy krok.", alternates: { canonical: "/oferta" } };
 
 const extras = [
   ["Wizytówka Google i widoczność w okolicy", "od 390 zł", "Porządek w danych firmy, usługach, opisie i kontakcie między Mapami Google a stroną. To podstawy lokalnego SEO, czyli widoczności w wyszukiwarce."],

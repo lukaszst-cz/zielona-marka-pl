@@ -3,7 +3,7 @@ import Link from "../SafeLink";
 import RelatedServices from "../RelatedServices";
 import { QuickWhatsApp, SiteFooter, SiteHeader } from "../SiteChrome";
 
-export const metadata: Metadata = { title: "Usprawnienia firmy", description: "Proste automatyzacje, statusy zleceń, dashboardy i lekkie panele klienta dla rosnących firm.", alternates: { canonical: "/usprawnienia-firmy" } };
+export const metadata: Metadata = { title: "Automatyzacje i CRM dla małej firmy", description: "Proste automatyzacje, mały CRM, statusy zleceń i panele klienta. Mniej ręcznej pracy i lepszy porządek w obsłudze firmy.", alternates: { canonical: "/usprawnienia-firmy" } };
 
 const situations = [
   ["Zapytania giną", "Formularz może utworzyć wpis w uporządkowanej bazie, wysłać potwierdzenie i przypomnieć o odpowiedzi."],

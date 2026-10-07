@@ -4,8 +4,8 @@ import { SiteHeader, SiteFooter } from "../SiteChrome";
 import "../home-v5.css";
 
 export const metadata: Metadata = {
-  title: "Websites and business systems",
-  description: "Websites for service businesses, enquiry forms, online shops and CRM. Work directly with Łukasz, from the first conversation to your approval before launch.",
+  title: "Websites for service businesses in Warsaw",
+  description: "Websites, enquiry forms, online shops and CRM for service businesses in Warsaw and Poland. Work directly with Łukasz from scope to launch.",
   alternates: { canonical: "/en", languages: { pl: "/", en: "/en" } },
   openGraph: {
     locale: "en_GB",
