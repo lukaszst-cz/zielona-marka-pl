@@ -22,7 +22,7 @@ export default function ContactForm({ audit = false }: { audit?: boolean }) {
     } catch { trackAnalyticsEvent("form_submit_error", { form_name: audit ? "miniocena" : "brief", error_type: "connection" }); setError("Brak połączenia. Spróbuj ponownie lub zadzwoń: +48 450 458 466."); } finally { setSending(false); }
   }
   if (sent) return <div className="form-success" role="status"><b>Dziękuję, wiadomość została wysłana.</b><p>Wrócę z propozycją kolejnego kroku i wstępną wyceną.</p></div>;
-  return <form className="contact-form" method="post" action="/api/inquiries" onSubmit={submit}>
+  return <form className="contact-form" data-analytics-form={audit ? "miniocena" : "brief"} method="post" action="/api/inquiries" onSubmit={submit}>
     <input className="form-trap" name="website_check" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" />
     <label>Imię<input required name="name" maxLength={120} placeholder="Jak masz na imię?" autoComplete="name" /></label>
     <label>E-mail<input required type="email" name="email" maxLength={254} placeholder="twoj@email.pl" autoComplete="email" /></label>

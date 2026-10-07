@@ -49,7 +49,7 @@ export default function HomeContactForm() {
 
   if (sent) return <div className="zmh-form-success" role="status"><b>Dziękuję, wiadomość dotarła.</b><p>Zapoznam się z Twoją sprawą i odezwę się w sprawie kolejnego kroku.</p></div>;
 
-  return <form method="post" action="/api/inquiries" onSubmit={submit}>
+  return <form data-analytics-form="homepage_v5" method="post" action="/api/inquiries" onSubmit={submit}>
     <input className="form-trap" name="website_check" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" />
     <div className="zmh-field-grid">
       <label>Imię<input required name="name" maxLength={120} autoComplete="name" placeholder="Jak masz na imię?" /></label>
