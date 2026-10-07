@@ -6,7 +6,7 @@ import { QuickWhatsApp, SiteFooter, SiteHeader } from "../SiteChrome";
 import { processSteps } from "../site-data";
 
 export const metadata: Metadata = {
-  title: "Jak pracuję",
+  title: "Jak wygląda współpraca nad stroną",
   description: "Jasny proces od briefu do publikacji strony: projekt, poprawki, kontrola jakości, przygotowanie do Google i opieka.",
   alternates: { canonical: "/jak-pracuje" },
 };
