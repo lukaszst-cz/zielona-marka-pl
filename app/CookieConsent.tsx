@@ -71,7 +71,7 @@ export function trackAnalyticsEvent(name: string, params: Record<string, string 
   if (typeof window === "undefined") return;
   try { if (localStorage.getItem(STORAGE_KEY) !== "accepted") return; } catch { return; }
   const analyticsWindow = window as AnalyticsWindow;
-  analyticsWindow.gtag?.("event", name, params);
+  analyticsWindow.gtag?.("event", name, { send_to: MEASUREMENT_ID, ...params });
 }
 
 export function CookieSettingsLink({ english = false }: { english?: boolean }) {
