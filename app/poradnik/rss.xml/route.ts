@@ -11,6 +11,12 @@ const items = [
     description: "Trzy praktyczne warianty, czynniki wpływające na cenę oraz koszty płatne osobno.",
     date: "Wed, 30 Sep 2026 08:00:00 +0200",
   },
+  {
+    title: "Co powinna zawierać strona internetowa warsztatu?",
+    path: "/poradnik/strona-internetowa-dla-warsztatu-co-powinna-zawierac",
+    description: "Usługi, szybki telefon, lokalizacja, formularz z danymi auta, zdjęcia, opinie i lokalna widoczność — praktyczna lista dla warsztatu.",
+    date: "Wed, 07 Oct 2026 19:40:00 +0200",
+  },
 ] as const;
 
 function xml(value: string) {

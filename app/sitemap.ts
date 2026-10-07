@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/poradnik`, lastModified: new Date("2026-10-07"), changeFrequency: "weekly", priority: .82 },
     { url: `${base}/poradnik/dlaczego-strona-firmy-nie-przynosi-zapytan`, lastModified: new Date("2026-09-30"), changeFrequency: "monthly", priority: .8 },
     { url: `${base}/poradnik/ile-kosztuje-strona-dla-malej-firmy`, lastModified: new Date("2026-10-07"), changeFrequency: "monthly", priority: .8 },
+    { url: `${base}/poradnik/strona-internetowa-dla-warsztatu-co-powinna-zawierac`, lastModified: new Date("2026-10-07"), changeFrequency: "monthly", priority: .82 },
     { url: `${base}/usprawnienia-firmy`, lastModified: new Date("2026-10-07"), changeFrequency: "monthly", priority: .8 },
     { url: `${base}/jak-pracuje`, changeFrequency: "monthly", priority: .75 },
     { url: `${base}/kontakt`, changeFrequency: "monthly", priority: .75 },
