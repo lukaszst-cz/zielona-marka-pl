@@ -17,13 +17,6 @@
       "zone_name": "zielona-marka.pl"
     }
   ],
-  "no_bundle": true,
-  "rules": [
-    {
-      "type": "ESModule",
-      "globs": ["**/*.js", "**/*.mjs"]
-    }
-  ],
   "assets": {
     "directory": "./dist/client"
   },
