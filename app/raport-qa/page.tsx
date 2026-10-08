@@ -7,7 +7,6 @@ export const metadata: Metadata = {
   title: "Przykładowy raport kontroli jakości",
   description: "Przykład prostego raportu kontroli jakości (QA), który klient otrzymuje przed publikacją strony.",
   alternates: { canonical: "/raport-qa" },
-  robots: { index: false, follow: true },
 };
 
 const checks = [
