@@ -469,3 +469,20 @@ test("new-tab links explicitly protect opener context",async()=>{
     }
   }
 });
+
+
+test("Polish and English pages keep reciprocal language metadata",async()=>{
+  const pl=await(await fetchPage("/")).text();
+  const en=await(await fetchPage("/en")).text();
+
+  assert.match(pl,/<html lang="pl"/);
+  assert.match(en,/<html lang="en"/);
+
+  for(const html of [pl,en]){
+    assert.match(html,/<link rel="alternate" hreflang="pl" href="https:\/\/zielona-marka\.pl"/);
+    assert.match(html,/<link rel="alternate" hreflang="en" href="https:\/\/zielona-marka\.pl\/en"/);
+    assert.match(html,/<link rel="alternate" hreflang="x-default" href="https:\/\/zielona-marka\.pl"/);
+  }
+
+  assert.match(en,/<meta property="og:url" content="https:\/\/zielona-marka\.pl\/en"/);
+});
