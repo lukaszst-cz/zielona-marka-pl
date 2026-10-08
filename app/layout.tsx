@@ -79,7 +79,7 @@ export const metadata: Metadata = {
       },
     ],
     shortcut: "/favicon-zielona-marka.png",
-    apple: "/logo-zielona-marka-transparent-v1.png",
+    apple: "/logo-zielona-marka-transparent-v1.webp",
   },
 };
 
@@ -95,7 +95,7 @@ export default async function RootLayout({
     name: "Zielona Marka",
     description: "Strony internetowe, formularze wyceny i proste systemy dla lokalnych firm usługowych.",
     url: "https://zielona-marka.pl",
-    logo: "https://zielona-marka.pl/logo-zielona-marka-transparent-v1.png",
+    logo: "https://zielona-marka.pl/logo-zielona-marka-transparent-v1.webp",
     image: "https://zielona-marka.pl/og.jpg",
     email: "kontakt@zielona-marka.pl",
     telephone: "+48 450 458 466",
