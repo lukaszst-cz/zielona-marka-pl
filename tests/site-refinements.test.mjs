@@ -177,7 +177,7 @@ test("tools page uses verified destinations and avoids generic AI sales language
   assert.match(flow,/tool-workshopflow-360-photo\.png/);
   assert.match(source,/program-czy-to-sciema-photo-v3\.png/);
   assert.match(source,/program-fleet-ops-desk-photo-v3\.png/);
-  assert.match(source,/program-spokojny-pc-plus-photo-v3\.png/);
+  assert.match(source,/program-spokojny-pc-plus-cover\.svg/);
   assert.match(source,/program-docpilot-photo-v3\.png/);
   assert.match(source,/program-aktywnik-plus-photo-v3\.png/);
   assert.match(source,/aktywnik-plus-wordmark\.svg/);
