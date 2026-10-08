@@ -23,7 +23,9 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - name: Dependency audit report
+      - name: Production dependency audit
+        run: npm audit --omit=dev --audit-level=high
+      - name: Full dependency audit report
         run: npm audit --json || true
       - run: npm run lint
       - run: npm test
