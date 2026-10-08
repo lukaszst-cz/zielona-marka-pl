@@ -522,3 +522,57 @@ test("rendered pages keep unique ids and accessible form controls",async()=>{
     }
   }
 });
+
+
+test("sitemap pages avoid duplicate search snippets",async()=>{
+  const sitemap=await(await fetchPage("/sitemap.xml")).text();
+  const paths=[...sitemap.matchAll(/<loc>https:\/\/zielona-marka\.pl([^<]*)<\/loc>/g)]
+    .map(match=>match[1]||"/");
+  const titles=new Map();
+  const descriptions=new Map();
+
+  for(const path of paths){
+    const html=await(await fetchPage(path)).text();
+    const title=html.match(/<title>(.*?)<\/title>/)?.[1]?.trim()||"";
+    const description=html.match(/<meta name="description" content="([^"]*)"/)?.[1]?.trim()||"";
+    assert.ok(title.length>0,`missing title on ${path}`);
+    assert.ok(description.length>0,`missing description on ${path}`);
+    if(!titles.has(title)) titles.set(title,[]);
+    if(!descriptions.has(description)) descriptions.set(description,[]);
+    titles.get(title).push(path);
+    descriptions.get(description).push(path);
+  }
+
+  for(const [title,owners] of titles){
+    assert.equal(owners.length,1,`duplicate title on ${owners.join(", ")}: ${title}`);
+  }
+  for(const [description,owners] of descriptions){
+    assert.equal(owners.length,1,`duplicate meta description on ${owners.join(", ")}: ${description}`);
+  }
+});
+
+test("structured data on sitemap pages is valid JSON-LD",async()=>{
+  const sitemap=await(await fetchPage("/sitemap.xml")).text();
+  const paths=[...sitemap.matchAll(/<loc>https:\/\/zielona-marka\.pl([^<]*)<\/loc>/g)]
+    .map(match=>match[1]||"/");
+  let schemaCount=0;
+
+  for(const path of paths){
+    const html=await(await fetchPage(path)).text();
+    for(const match of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)){
+      schemaCount++;
+      let parsed;
+      try{
+        parsed=JSON.parse(match[1].replace(/&quot;/g,'"').replace(/&amp;/g,'&').replace(/&#x27;/g,"'"));
+      }catch(error){
+        assert.fail(`invalid JSON-LD on ${path}: ${error}`);
+      }
+      const items=Array.isArray(parsed)?parsed:[parsed];
+      for(const item of items){
+        assert.equal(item?.["@context"],"https://schema.org",`unexpected JSON-LD context on ${path}`);
+        assert.ok(item?.["@type"]||item?.["@graph"],`JSON-LD missing type/graph on ${path}`);
+      }
+    }
+  }
+  assert.ok(schemaCount>=paths.length,`expected at least one schema block per sitemap page, found ${schemaCount} for ${paths.length} pages`);
+});
