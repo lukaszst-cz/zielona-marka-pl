@@ -35,6 +35,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/realizacje/natura-studio`, lastModified: new Date("2026-10-07"), changeFrequency: "monthly", priority: .6 },
     { url: `${base}/realizacje/bistro-forma`, lastModified: new Date("2026-10-07"), changeFrequency: "monthly", priority: .6 },
     { url: `${base}/realizacje/dom-dobry`, lastModified: new Date("2026-10-07"), changeFrequency: "monthly", priority: .6 },
-    ...localCities.map(city => ({ url: `${base}/strony-internetowe/${city}`, lastModified: new Date("2026-10-07"), changeFrequency: "monthly" as const, priority: .82 })),
+    ...localCities.map(city => ({ url: `${base}/strony-internetowe/${city}`, lastModified: new Date("2026-10-08"), changeFrequency: "monthly" as const, priority: .82 })),
   ];
 }
