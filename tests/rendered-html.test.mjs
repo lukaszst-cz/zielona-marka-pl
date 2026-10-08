@@ -69,7 +69,7 @@ test("lokalne podstrony mają unikalną treść i działający kontakt", async (
 
 test("zaakceptowane zdjęcia właściciela pozostają na stronach procesu i kontaktu", async () => {
   const expected = [
-    ["/jak-pracuje", "lukasz-zielona-marka-jak-pracuje-20260908.png"],
+    ["/jak-pracuje", "lukasz-zielona-marka-jak-pracuje-20260908.webp"],
     ["/kontakt", "lukasz-kontakt-naturalny-20260919.webp"],
   ];
   for (const [path, file] of expected) {
