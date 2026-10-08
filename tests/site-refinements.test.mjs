@@ -486,3 +486,32 @@ test("Polish and English pages keep reciprocal language metadata",async()=>{
 
   assert.match(en,/<meta property="og:url" content="https:\/\/zielona-marka\.pl\/en"/);
 });
+
+
+test("rendered pages keep unique ids and accessible form controls",async()=>{
+  const sitemap=await(await fetchPage("/sitemap.xml")).text();
+  const paths=[...sitemap.matchAll(/<loc>https:\/\/zielona-marka\.pl([^<]*)<\/loc>/g)]
+    .map(match=>match[1]||"/");
+
+  for(const path of paths){
+    const html=await(await fetchPage(path)).text();
+
+    const ids=[...html.matchAll(/\sid="([^"]+)"/g)].map(match=>match[1]);
+    assert.equal(new Set(ids).size,ids.length,`duplicate id on ${path}`);
+
+    for(const match of html.matchAll(/<img\b([^>]*)>/g)){
+      assert.match(match[1],/\balt="[^"]*"/,`image without alt on ${path}: <img${match[1]}>`);
+    }
+
+    for(const match of html.matchAll(/<(input|textarea|select)\b([^>]*)>/g)){
+      const tag=match[1];
+      const attrs=match[2];
+      if(/\btype="hidden"/.test(attrs)) continue;
+      if(/\baria-label="[^"]+"/.test(attrs)||/\baria-labelledby="[^"]+"/.test(attrs)) continue;
+      const id=attrs.match(/\bid="([^"]+)"/)?.[1];
+      if(!id) continue;
+      const escaped=id.replace(/[.*+?^$()|[\]\\]/g,"\\$&");
+      assert.match(html,new RegExp(`<label[^>]*for="${escaped}"`),`${tag}#${id} has no label on ${path}`);
+    }
+  }
+});
