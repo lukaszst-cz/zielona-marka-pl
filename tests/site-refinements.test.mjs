@@ -215,7 +215,7 @@ test("SEO release guard keeps sitemap and robots aligned",async()=>{
   const sitemapResponse=await fetchPage("/sitemap.xml");
   assert.equal(sitemapResponse.status,200);
   const sitemap=await sitemapResponse.text();
-  for(const path of ["/","/oferta","/poradnik","/strony-internetowe","/projekty-flow","/spokojny-pc-plus","/strony-dla-warsztatow","/strony-dla-beauty","/strony-dla-firm-uslugowych"]){
+  for(const path of ["/","/oferta","/poradnik","/strony-internetowe","/projekty-flow","/raport-qa","/strony-dla-warsztatow","/strony-dla-beauty","/strony-dla-firm-uslugowych"]){
     const expected=path==="/"?"https://zielona-marka.pl":"https://zielona-marka.pl"+path;
     assert.match(sitemap,new RegExp(expected.replace(/[.*+?^$()|[\]\\]/g,"\\$&")),path);
   }
