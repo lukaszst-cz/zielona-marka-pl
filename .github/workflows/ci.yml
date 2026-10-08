@@ -29,19 +29,6 @@ jobs:
         run: npm audit --json || true
       - run: npm run lint
       - run: npm test
-      - name: Preview security dependency upgrades
+      - name: Dependency update report
         continue-on-error: true
-        run: |
-          npm install --save-exact --no-audit \
-            react@19.3.0 react-dom@19.3.0 react-server-dom-webpack@19.3.0 \
-            vite@8.3.4 @cloudflare/vite-plugin@1.63.0 @cloudflare/workers-types@5.20261008.1 wrangler@4.146.0 \
-            vinext@1.0.1 @vitejs/plugin-rsc@0.5.36 @next/eslint-plugin-next@16.4.0 drizzle-kit@0.31.11
-      - name: Candidate dependency files
-        if: always()
-        run: |
-          echo "__PACKAGE_JSON_BEGIN__"
-          base64 package.json
-          echo "__PACKAGE_JSON_END__"
-          echo "__PACKAGE_LOCK_BEGIN__"
-          base64 package-lock.json
-          echo "__PACKAGE_LOCK_END__"
+        run: npm outdated || true
