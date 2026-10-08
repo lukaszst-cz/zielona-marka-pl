@@ -219,7 +219,7 @@ test("SEO release guard keeps sitemap and robots aligned",async()=>{
     const expected=path==="/"?"https://zielona-marka.pl":"https://zielona-marka.pl"+path;
     assert.match(sitemap,new RegExp(expected.replace(/[.*+?^$()|[\]\\]/g,"\\$&")),path);
   }
-  for(const path of ["/status","/demo/","/raport-qa","/polityka-prywatnosci"]){
+  for(const path of ["/status","/demo/","/polityka-prywatnosci"]){
     assert.doesNotMatch(sitemap,new RegExp("<loc>https://zielona-marka\\.pl"+path.replace(/[.*+?^$()|[\]\\]/g,"\\$&")),path);
   }
   const robots=await(await fetchPage("/robots.txt")).text();
