@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "../../SafeLink";
 import { notFound } from "next/navigation";
 import { concepts } from "../../content";
@@ -65,7 +66,7 @@ export default async function ConceptPage({ params }: { params: Promise<{ slug: 
     <nav className="demo-simple-nav" aria-label="Powrót do serwisu"><Link href="/">← Wróć do strony głównej</Link><Link href="/realizacje">Wszystkie projekty ↗</Link></nav>
     <header className="concept-hero shell">
       <div><span className="section-no">PROJEKT KONCEPCYJNY / {project.category}</span><h1>{project.name}</h1><p>{project.headline}</p></div>
-      <figure><img src={project.image} alt={`Koncepcyjny wizerunek marki ${project.name}`}/></figure>
+      <figure><Image src={project.image} alt={`Koncepcyjny wizerunek marki ${project.name}`} width={1200} height={800} priority unoptimized /></figure>
     </header>
     <section className="concept-intro shell">
       <article><small>WYZWANIE</small><h2>{project.challenge}</h2></article>
