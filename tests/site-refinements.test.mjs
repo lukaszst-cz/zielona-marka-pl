@@ -302,7 +302,7 @@ test("public SEO pages do not reference missing local assets",async()=>{
   for(const pageUrl of pageUrls){
     const pagePath=new URL(pageUrl).pathname;
     const html=await(await fetchPage(pagePath)).text();
-    for(const match of html.matchAll(/(?:src|href)="([^"]+)"/g)){
+    for(const match of html.matchAll(/(?:src|href|content)="([^"]+)"/g)){
       const raw=match[1];
       if(!raw || raw.startsWith("data:") || raw.startsWith("#")) continue;
       let url;
