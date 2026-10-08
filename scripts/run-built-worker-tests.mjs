@@ -1,18 +1,16 @@
-import { spawn } from "node:child_process";
+import { spawn, spawnSync } from "node:child_process";
 import { once } from "node:events";
 
 const host = "127.0.0.1";
 const port = 8788;
 const baseUrl = `http://${host}:${port}`;
 const npx = process.platform === "win32" ? "npx.cmd" : "npx";
-const groupedProcess = process.platform !== "win32";
 const logs = [];
 
 const wrangler = spawn(
   npx,
   ["--no-install", "wrangler", "dev", "--compatibility-date", "2026-05-22", "--ip", host, "--port", String(port), "--log-level", "error"],
   {
-    detached: groupedProcess,
     stdio: ["ignore", "pipe", "pipe"],
     env: {
       ...process.env,
@@ -51,14 +49,42 @@ async function waitForWorker() {
   throw new Error(`Timed out waiting for Wrangler at ${baseUrl}.\n${logs.join("")}`);
 }
 
-function signalWorker(signal) {
-  if (wrangler.exitCode !== null) return;
+function descendantPids(rootPid) {
+  if (process.platform === "win32" || !rootPid) return [];
+  const result = spawnSync("ps", ["-eo", "pid=,ppid="], { encoding: "utf8" });
+  if (result.status !== 0 || !result.stdout) return [];
+  const children = new Map();
+  for (const line of result.stdout.split("\n")) {
+    const [pidText, ppidText] = line.trim().split(/\s+/);
+    const pid = Number(pidText);
+    const ppid = Number(ppidText);
+    if (!Number.isInteger(pid) || !Number.isInteger(ppid)) continue;
+    if (!children.has(ppid)) children.set(ppid, []);
+    children.get(ppid).push(pid);
+  }
+  const ordered = [];
+  const visit = (pid) => {
+    for (const child of children.get(pid) ?? []) {
+      visit(child);
+      ordered.push(child);
+    }
+  };
+  visit(rootPid);
+  return ordered;
+}
+
+function killPid(pid, signal) {
   try {
-    if (groupedProcess && wrangler.pid) process.kill(-wrangler.pid, signal);
-    else wrangler.kill(signal);
+    process.kill(pid, signal);
   } catch (error) {
     if (error?.code !== "ESRCH") throw error;
   }
+}
+
+function signalWorker(signal) {
+  if (!wrangler.pid) return;
+  for (const pid of descendantPids(wrangler.pid)) killPid(pid, signal);
+  if (wrangler.exitCode === null) killPid(wrangler.pid, signal);
 }
 
 async function stopWorker() {
