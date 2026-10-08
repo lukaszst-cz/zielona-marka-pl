@@ -5,17 +5,18 @@ const host = "127.0.0.1";
 const port = 8788;
 const baseUrl = `http://${host}:${port}`;
 const npx = process.platform === "win32" ? "npx.cmd" : "npx";
-const testWranglerVersion = "4.148.0";
 const logs = [];
 
 const wrangler = spawn(
   npx,
-  ["--yes", `wrangler@${testWranglerVersion}`, "dev", "--no-bundle", "--ip", host, "--port", String(port), "--log-level", "error"],
+  ["--no-install", "vinext", "start", "--port", String(port)],
   {
     stdio: ["ignore", "pipe", "pipe"],
     env: {
       ...process.env,
       NO_COLOR: "1",
+      HOST: host,
+      PORT: String(port),
       WRANGLER_SEND_METRICS: "false",
     },
   },
@@ -33,7 +34,7 @@ async function waitForWorker() {
   const deadline = Date.now() + 45_000;
   while (Date.now() < deadline) {
     if (wrangler.exitCode !== null) {
-      throw new Error(`Wrangler exited before tests started (code ${wrangler.exitCode}).\n${logs.join("")}`);
+      throw new Error(`vinext start exited before tests started (code ${wrangler.exitCode}).\n${logs.join("")}`);
     }
     try {
       const response = await fetch(`${baseUrl}/`, { redirect: "manual", signal: AbortSignal.timeout(2_000) });
@@ -43,11 +44,11 @@ async function waitForWorker() {
         if (confirm.status < 500) return;
       }
     } catch {
-      // Wrangler is still starting.
+      // vinext start is still starting.
     }
     await new Promise((resolve) => setTimeout(resolve, 350));
   }
-  throw new Error(`Timed out waiting for Wrangler at ${baseUrl}.\n${logs.join("")}`);
+  throw new Error(`Timed out waiting for vinext start at ${baseUrl}.\n${logs.join("")}`);
 }
 
 function descendantPids(rootPid) {
@@ -132,7 +133,7 @@ try {
   ]);
   clearTimeout(timeout);
   if (outcome.type === "wrangler") {
-    console.error(`Wrangler exited during tests (code ${outcome.code}, signal ${outcome.signal ?? "none"}).\n${logs.join("")}`);
+    console.error(`vinext start exited during tests (code ${outcome.code}, signal ${outcome.signal ?? "none"}).\n${logs.join("")}`);
     if (tests.exitCode === null) tests.kill("SIGTERM");
     exitCode = 1;
   } else {
