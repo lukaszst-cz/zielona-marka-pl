@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "SpokojnyPC+ i SpokojnyMobile+",
   description: "Spokojny+ to lokalne aplikacje dla Windows i Androida: ocena kondycji urządzenia, zrozumiałe wyjaśnienia i bezpieczne działania.",
   alternates: { canonical: "/spokojny-pc-plus" },
-  openGraph: { title: "Spokojny+ | Zielona Marka", description: "Lokalna ocena kondycji komputera i telefonu bez agresywnego czyszczenia.", images: [{ url: "/program-spokojny-pc-plus-photo-v3.png", alt: "Spokojny+" }] },
+  openGraph: { title: "Spokojny+ | Zielona Marka", description: "Lokalna ocena kondycji komputera i telefonu bez agresywnego czyszczenia.", images: [{ url: "/og.jpg", alt: "Spokojny+ | Zielona Marka" }] },
 };
 
 const capabilities = [
