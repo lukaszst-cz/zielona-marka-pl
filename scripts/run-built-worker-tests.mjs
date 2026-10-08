@@ -9,7 +9,7 @@ const logs = [];
 
 const wrangler = spawn(
   npx,
-  ["--no-install", "wrangler", "dev", "--compatibility-date", "2026-05-22", "--ip", host, "--port", String(port), "--log-level", "error"],
+  ["--no-install", "wrangler", "dev", "--ip", host, "--port", String(port), "--log-level", "error"],
   {
     stdio: ["ignore", "pipe", "pipe"],
     env: {
@@ -35,10 +35,10 @@ async function waitForWorker() {
       throw new Error(`Wrangler exited before tests started (code ${wrangler.exitCode}).\n${logs.join("")}`);
     }
     try {
-      const response = await fetch(`${baseUrl}/robots.txt`, { redirect: "manual", signal: AbortSignal.timeout(2_000) });
+      const response = await fetch(`${baseUrl}/`, { redirect: "manual", signal: AbortSignal.timeout(2_000) });
       if (response.status < 500) {
         await new Promise((resolve) => setTimeout(resolve, 600));
-        const confirm = await fetch(`${baseUrl}/robots.txt`, { redirect: "manual", signal: AbortSignal.timeout(2_000) });
+        const confirm = await fetch(`${baseUrl}/`, { redirect: "manual", signal: AbortSignal.timeout(2_000) });
         if (confirm.status < 500) return;
       }
     } catch {
