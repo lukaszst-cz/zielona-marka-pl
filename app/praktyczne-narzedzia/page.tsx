@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "../SafeLink";
 import { QuickWhatsApp, SiteFooter, SiteHeader } from "../SiteChrome";
 import { practicalTools } from "./tools";
@@ -55,7 +56,7 @@ export default function PracticalToolsPage() {
     })),
   };
   const renderToolCard = (tool: (typeof practicalTools)[number], index: number) => <article className="project-case" key={tool.name}>
-    <div className={`project-case-image${tool.logoUrl ? " photo-program-card" : ""}`}><img className="project-card-media" src={tool.imageUrl} alt="" aria-hidden="true" loading="lazy" decoding="async" /><span>{tool.status}</span>{tool.logoUrl && <img className="program-card-logo" src={tool.logoUrl} alt="" aria-hidden="true" loading="lazy" decoding="async" />}<b>{String(index + 1).padStart(2, "0")}</b></div>
+    <div className={`project-case-image${tool.logoUrl ? " photo-program-card" : ""}`}><Image className="project-card-media" src={tool.imageUrl} alt="" aria-hidden="true" fill sizes="(max-width: 900px) 100vw, 52vw" unoptimized /><span>{tool.status}</span>{tool.logoUrl && <Image className="program-card-logo" src={tool.logoUrl} alt="" aria-hidden="true" width={160} height={160} unoptimized />}<b>{String(index + 1).padStart(2, "0")}</b></div>
     <div><small>{tool.status}</small><h2>{tool.name}</h2><p><b>Do czego służy:</b> {tool.benefit}</p><p className="tool-free-note"><b>{tool.name === "SpokojnyPC+" ? "Aktualny stan:" : "Bezpłatnie dostępne teraz:"}</b> {tool.freeDetails}</p><ul className="tool-scope">{tool.scope.map(item => <li key={item}>{item}</li>)}</ul><div className="project-case-links"><a className="button" href={tool.primaryUrl} target={tool.primaryUrl.startsWith("http") ? "_blank" : undefined} rel="noreferrer">{tool.primaryLabel} <span>↗</span></a>{tool.repositoryUrl && tool.repositoryUrl !== tool.primaryUrl && <a className="text-link" href={tool.repositoryUrl} target="_blank" rel="noreferrer">{tool.name === "SpokojnyMobile+" ? "Repo wydaniowe i instrukcja" : "Kod i dokumentacja na GitHubie"} <span>↗</span></a>}</div></div>
   </article>;
 
