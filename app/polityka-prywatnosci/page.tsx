@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function Privacy() {
   return (
     <><SiteHeader /><main className="zm-public legal shell">
-      <span className="section-no">INFORMACJE PRAWNE · AKTUALIZACJA 04.09.2026</span>
+      <span className="section-no">INFORMACJE PRAWNE · AKTUALIZACJA 08.10.2026</span>
       <h1>Polityka prywatności</h1>
       <p className="legal-lead">
         Krótko i konkretnie: zbieramy tylko dane potrzebne do odpowiedzi na
@@ -31,10 +31,12 @@ export default function Privacy() {
         </p>
         <h2>2. Jakie dane zbieramy</h2>
         <p>
-          Formularz kontaktowy może zawierać imię, adres e-mail, nazwę firmy,
-          wybrany przedział budżetu oraz wiadomość o projekcie. W Strefie Klienta
-          kod projektu służy wyłącznie do wyświetlenia informacji przypisanych do
-          konkretnego zlecenia.
+          Formularze mogą zawierać imię, adres e-mail oraz wiadomość. Opcjonalnie
+          możesz podać także numer telefonu, nazwę firmy, adres obecnej strony,
+          rodzaj projektu lub usługi, oczekiwany efekt, planowany termin,
+          informacje o sprzedaży lub płatnościach oraz orientacyjny budżet.
+          W Strefie Klienta kod projektu służy wyłącznie do wyświetlenia
+          informacji przypisanych do konkretnego zlecenia.
         </p>
         <h2>3. Po co i na jakiej podstawie</h2>
         <p>
@@ -48,8 +50,11 @@ export default function Privacy() {
         <p>
           Dane z formularza są zapisywane w bazie danych używanej przez stronę,
           działającą w infrastrukturze Cloudflare. Dostęp do Studio pracy ma
-          wyłącznie właściciel marki po zalogowaniu. Dane nie są przekazywane do
-          systemów reklamowych ani sprzedawane innym podmiotom.
+          wyłącznie właściciel marki po zalogowaniu. Jeżeli włączone są
+          powiadomienia e-mail o nowych zapytaniach, dane potrzebne do takiego
+          powiadomienia mogą być przekazane do usługi Resend obsługującej wysyłkę
+          wiadomości. Dane nie są sprzedawane ani przekazywane do systemów
+          reklamowych.
         </p>
         <h2>5. Czas przechowywania</h2>
         <p>
@@ -69,16 +74,20 @@ export default function Privacy() {
         <h2>7. Cookie, analityka i bezpieczeństwo</h2>
         <p>
           Po wyrażeniu zgody strona korzysta z Google Analytics 4, aby mierzyć
-          odwiedziny, źródła ruchu, oglądane podstrony oraz wysłane formularze.
-          Pomiar nie służy do reklam ani profilowania użytkowników. Google może
-          przetwarzać dane techniczne, takie jak skrócony adres IP, informacje o
-          urządzeniu i sposobie korzystania ze strony. Zgoda jest dobrowolna i
-          można ją zmienić w każdej chwili.
+          odwiedziny, źródła ruchu, oglądane podstrony i zdarzenia prowadzące do
+          kontaktu, na przykład kliknięcie telefonu lub wysłanie formularza.
+          Nie przekazujemy do Google Analytics treści pól formularza, adresu
+          e-mail, imienia ani wiadomości. Pomiar nie służy do reklam ani
+          profilowania użytkowników. Zgoda jest dobrowolna i można ją zmienić
+          w każdej chwili.
         </p>
         <p>
-          Studio pracy używa wyłącznie technicznego pliku sesji potrzebnego do
-          bezpiecznego logowania. Hosting może przetwarzać podstawowe dane
-          techniczne niezbędne do działania i ochrony strony, takie jak logi żądań.
+          Decyzja o zgodzie na analitykę jest zapisywana lokalnie w przeglądarce.
+          Po zgodzie Google Analytics może ustawić własne pliki cookie analityczne;
+          po wycofaniu zgody strona próbuje usunąć pliki analityczne zaczynające
+          się od „_ga”. Studio pracy używa technicznej sesji potrzebnej do
+          logowania. Cloudflare może przetwarzać podstawowe dane techniczne
+          niezbędne do działania i ochrony strony, takie jak logi żądań.
         </p>
         <p><CookieSettingsLink /></p>
         <h2>8. Zmiany dokumentu</h2>
