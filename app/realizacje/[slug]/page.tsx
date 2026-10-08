@@ -54,7 +54,7 @@ export default async function ConceptPage({ params }: { params: Promise<{ slug: 
     headline: `${project.name}, projekt koncepcyjny`,
     abstract: project.solution,
     genre: `Projekt koncepcyjny dla branży ${project.category.toLowerCase()}`,
-    creator: { "@type": "Organization", name: "Zielona Marka", url: "https://zielona-marka.pl", logo: "https://zielona-marka.pl/logo-zielona-marka-transparent-v1.png" },
+    creator: { "@type": "Organization", name: "Zielona Marka", url: "https://zielona-marka.pl", logo: "https://zielona-marka.pl/logo-zielona-marka-transparent-v1.webp" },
     url: `https://zielona-marka.pl/realizacje/${slug}`,
     image: new URL(project.image, "https://zielona-marka.pl").toString(),
     keywords: project.stack,
