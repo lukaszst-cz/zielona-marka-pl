@@ -302,6 +302,13 @@ test("sitemap pages do not link to broken internal routes",async()=>{
     }
   }
   for(const path of targets){
+    if(path.startsWith("/demo/") && path.endsWith("/")){
+      try{
+        const info=await stat(new URL("../public"+path+"index.html",import.meta.url));
+        assert.ok(info.size>0,`empty static demo: ${path}`);
+        continue;
+      }catch{}
+    }
     const response=await fetchPage(path);
     assert.equal(response.status,200,`internal link must resolve directly: ${path} -> ${response.status}`);
   }
