@@ -209,3 +209,59 @@ test("old chatbot address has one direct destination",async()=>{
   assert.match(config,/source:\s*"\/chatbot-dla-firm"[\s\S]*destination:\s*"\/asystent-zapytan"/);
   assert.doesNotMatch(config,/realizacje\/transportflow[\s\S]*demo\/transport/);
 });
+
+
+test("SEO release guard keeps sitemap and robots aligned",async()=>{
+  const sitemapResponse=await fetchPage("/sitemap.xml");
+  assert.equal(sitemapResponse.status,200);
+  const sitemap=await sitemapResponse.text();
+  for(const path of ["/","/oferta","/poradnik","/strony-internetowe","/projekty-flow","/spokojny-pc-plus","/strony-dla-warsztatow","/strony-dla-beauty","/strony-dla-firm-uslugowych"]){
+    const expected=path==="/"?"https://zielona-marka.pl":"https://zielona-marka.pl"+path;
+    assert.match(sitemap,new RegExp(expected.replace(/[.*+?^$()|[\]\\]/g,"\\$&")),path);
+  }
+  for(const path of ["/status","/demo/","/raport-qa","/polityka-prywatnosci"]){
+    assert.doesNotMatch(sitemap,new RegExp("<loc>https://zielona-marka\\.pl"+path.replace(/[.*+?^$()|[\]\\]/g,"\\$&")),path);
+  }
+  const robots=await(await fetchPage("/robots.txt")).text();
+  assert.match(robots,/Sitemap:\s*https:\/\/zielona-marka\.pl\/sitemap\.xml/i);
+});
+
+test("public SEO pages keep self canonicals and private areas keep noindex",async()=>{
+  for(const path of ["/oferta","/projekty-flow","/spokojny-pc-plus","/strony-internetowe","/poradnik"]){
+    const html=await(await fetchPage(path)).text();
+    const escaped=("https://zielona-marka.pl"+path).replace(/[.*+?^$()|[\]\\]/g,"\\$&");
+    assert.match(html,new RegExp('<link rel="canonical" href="'+escaped+'"'),path);
+    assert.doesNotMatch(html,/<meta name="robots" content="noindex/i,path);
+  }
+  for(const path of ["/status","/demo/natura"]){
+    const response=await fetchPage(path);
+    assert.match((response.headers.get("x-robots-tag")||"")+" "+await response.text(),/noindex/i,path);
+  }
+});
+
+test("inquiry endpoint rejects cross-site browser submissions",async()=>{
+  const response=await fetchPage("/api/inquiries",{
+    method:"POST",
+    headers:{
+      "content-type":"application/json",
+      "origin":"https://example.com",
+      "sec-fetch-site":"cross-site"
+    },
+    body:JSON.stringify({name:"Test",email:"test@example.com",message:"Test",consent:"yes"})
+  });
+  assert.equal(response.status,403);
+});
+
+test("analytics names every lead form and tracks funnel without field values",async()=>{
+  const [tracking,contact,home]=await Promise.all([
+    readFile(new URL("../app/SiteTracking.tsx",import.meta.url),"utf8"),
+    readFile(new URL("../app/ContactForm.tsx",import.meta.url),"utf8"),
+    readFile(new URL("../app/HomeContactForm.tsx",import.meta.url),"utf8"),
+  ]);
+  assert.match(contact,/data-analytics-form/);
+  assert.match(home,/data-analytics-form="homepage_v5"/);
+  for(const event of ["lead_start","click_phone","click_email","click_whatsapp","cta_contact"]){
+    assert.match(tracking,new RegExp(event),event);
+  }
+  assert.doesNotMatch(tracking,/\.value/);
+});
