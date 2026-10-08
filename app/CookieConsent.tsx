@@ -35,6 +35,8 @@ function loadAnalytics() {
   analyticsWindow.dataLayer = analyticsWindow.dataLayer ?? [];
   // Match Google's installation snippet exactly: the external tag expects
   // command arguments, rather than a nested array created by an arrow function.
+  // Keep the native Arguments object: Google's gtag queue consumes this command shape.
+  // eslint-disable-next-line prefer-rest-params
   analyticsWindow.gtag = function gtag() { analyticsWindow.dataLayer?.push(arguments); };
   analyticsWindow.gtag("consent", "default", {
     analytics_storage: "denied",
@@ -85,7 +87,7 @@ export default function CookieConsent() {
 
   useEffect(() => {
     let saved: "accepted" | "denied" | null = null;
-    try { const value = localStorage.getItem(STORAGE_KEY); if (value === "accepted" || value === "denied") saved = value; } catch {}
+    try { const value = localStorage.getItem(STORAGE_KEY); if (value === "accepted" || value === "denied") saved = value; } catch { /* Storage may be unavailable. */ }
     const choiceTimer = window.setTimeout(() => { setChoice(saved); setReady(true); }, 0);
     if (saved === "accepted") loadAnalytics();
     const showSettings = () => setOpen(true);
@@ -97,7 +99,7 @@ export default function CookieConsent() {
   }, []);
 
   function save(next: "accepted" | "denied") {
-    try { localStorage.setItem(STORAGE_KEY, next); } catch {}
+    try { localStorage.setItem(STORAGE_KEY, next); } catch { /* Storage may be unavailable. */ }
     setChoice(next);
     setOpen(false);
     if (next === "accepted") loadAnalytics();

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-
+import Link from "../../SafeLink";
 import { notFound } from "next/navigation";
 import { concepts } from "../../content";
 import { SiteFooter } from "../../SiteChrome";
@@ -62,7 +62,7 @@ export default async function ConceptPage({ params }: { params: Promise<{ slug: 
     isAccessibleForFree: true,
   };
   return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(conceptStructuredData) }} /><main className={`zm-public concept-page concept-${slug}`} style={{ "--concept": project.accent } as React.CSSProperties}>
-    <nav className="demo-simple-nav" aria-label="Powrót do serwisu"><a href="/">← Wróć do strony głównej</a><a href="/realizacje">Wszystkie projekty ↗</a></nav>
+    <nav className="demo-simple-nav" aria-label="Powrót do serwisu"><Link href="/">← Wróć do strony głównej</Link><Link href="/realizacje">Wszystkie projekty ↗</Link></nav>
     <header className="concept-hero shell">
       <div><span className="section-no">PROJEKT KONCEPCYJNY / {project.category}</span><h1>{project.name}</h1><p>{project.headline}</p></div>
       <figure><img src={project.image} alt={`Koncepcyjny wizerunek marki ${project.name}`}/></figure>
@@ -76,9 +76,9 @@ export default async function ConceptPage({ params }: { params: Promise<{ slug: 
       <article><small>JAK DZIAŁA ŚCIEŻKA</small><h2>{details.flowTitle}</h2><p>{details.flow}</p><p><b>Przy wdrożeniu:</b> {details.implementation}</p></article>
     </section>
     <section className="concept-screen shell">
-      <div className="concept-browser"><span>● ● ●</span><div><small>{project.category}</small><h2>{project.headline}</h2><a className="button" href={project.website}>Zobacz demonstrację →</a></div></div>
+      <div className="concept-browser"><span>● ● ●</span><div><small>{project.category}</small><h2>{project.headline}</h2><Link className="button" href={project.website}>Zobacz demonstrację →</Link></div></div>
       <aside><span className="section-no">ZAKRES I TECHNOLOGIE</span>{project.stack.map((item, index)=><div key={item}><b>{String(index+1).padStart(2,"0")}</b><span>{item}</span></div>)}</aside>
     </section>
-    <section className="concept-cta"><div className="shell"><span className="section-no">STRONA + ZAPLECZE PROCESOWE</span><h2>Zobacz pełny efekt oraz sposób pracy firmy od środka.</h2><div className="concept-actions">{"website" in project && <a className="button" href={project.website}>Otwórz pełną stronę <span>↗</span></a>}<a className="button" href={project.demo}>Uruchom demo zaplecza <span>↗</span></a><a className="text-link" href="tel:+48450458466">Porozmawiajmy o wdrożeniu</a></div></div></section>
+    <section className="concept-cta"><div className="shell"><span className="section-no">STRONA + ZAPLECZE PROCESOWE</span><h2>Zobacz pełny efekt oraz sposób pracy firmy od środka.</h2><div className="concept-actions">{"website" in project && <Link className="button" href={project.website}>Otwórz pełną stronę <span>↗</span></Link>}<Link className="button" href={project.demo}>Uruchom demo zaplecza <span>↗</span></Link><a className="text-link" href="tel:+48450458466">Porozmawiajmy o wdrożeniu</a></div></div></section>
   </main><SiteFooter /></>;
 }
