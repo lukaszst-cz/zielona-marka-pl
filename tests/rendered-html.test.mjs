@@ -4,13 +4,11 @@ import test from "node:test";
 
 const forbiddenBrand = new RegExp(["c" + "hat", "g" + "pt"].join(""), "i");
 
+const testBaseUrl = process.env.TEST_BASE_URL;
+if (!testBaseUrl) throw new Error("TEST_BASE_URL is required. Run tests through scripts/run-built-worker-tests.mjs.");
+
 async function render(path = "/") {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
-  workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}-${path}`);
-  const { default: worker } = await import(workerUrl.href);
-  return worker.fetch(new Request(`http://localhost${path}`, { headers: { accept: "text/html" } }), {
-    ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) },
-  }, { waitUntil() {}, passThroughOnException() {} });
+  return fetch(new URL(path, testBaseUrl), { headers: { accept: "text/html" } });
 }
 
 test("strona główna prowadzi przez pięć etapów od strony do relacji", async () => {
