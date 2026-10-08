@@ -1,0 +1,51 @@
+name: Dependency security refresh
+
+on:
+  push:
+    branches:
+      - chore/dependency-security-20261008
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    if: ${{ !contains(github.event.head_commit.message, '[deps-lock]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: chore/dependency-security-20261008
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Update security-sensitive toolchain
+        run: |
+          npm install --save-exact react@19.3.0 react-dom@19.3.0
+          npm install --save-dev --save-exact \
+            @cloudflare/vite-plugin@1.63.0 \
+            react-server-dom-webpack@19.3.0 \
+            vinext@1.0.1 \
+            vite@8.3.4 \
+            wrangler@4.148.0 \
+            @vitejs/plugin-react@6.1.2 \
+            @vitejs/plugin-rsc@0.5.36
+      - name: Production dependency audit
+        run: npm audit --omit=dev --audit-level=high
+      - name: Full dependency audit report
+        run: npm audit --json || true
+      - run: npm run lint
+      - run: npm test
+      - name: Commit refreshed lockfile
+        run: |
+          if git diff --quiet -- package.json package-lock.json; then
+            echo "No dependency changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package.json package-lock.json
+          git commit -m "[deps-lock] security refresh"
+          git push origin HEAD:chore/dependency-security-20261008
