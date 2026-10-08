@@ -136,7 +136,14 @@ export default async function RootLayout({
     founder: { "@type": "Person", "@id": "https://zielona-marka.pl/#lukasz-staniewicz", name: "Łukasz Staniewicz", url: "https://zielona-marka.pl/jak-pracuje" },
   };
   return (
-    <html lang={(await headers()).get("x-zm-language") === "en" ? "en" : "pl"}>
+    <html lang={language}>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "window['ga-disable-G-B3QJ910M2Q']=true;",
+          }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
