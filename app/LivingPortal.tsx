@@ -10,6 +10,7 @@ export default function LivingPortal({ contact = false }: { contact?: boolean })
   const [reduced, setReduced] = useState(false);
   useEffect(() => {
     const el = root.current;
+    const clip = video.current;
     if (!el) return;
     const media = matchMedia("(prefers-reduced-motion: reduce)");
     let visible = false;
@@ -24,7 +25,6 @@ export default function LivingPortal({ contact = false }: { contact?: boolean })
     const playback = () => {
       setReduced(media.matches);
       update();
-      const clip = video.current;
       if (!clip) return;
       if (!visible || document.hidden || media.matches || paused) { clip.pause(); return; }
       if ((navigator as Navigator & {connection?:{saveData?:boolean}}).connection?.saveData) return;
@@ -44,7 +44,7 @@ export default function LivingPortal({ contact = false }: { contact?: boolean })
     addEventListener("scroll", schedule, { passive: true });
     addEventListener("resize", schedule, { passive: true });
     playback();
-    return () => { observer.disconnect(); cancelAnimationFrame(frame); media.removeEventListener("change", playback); document.removeEventListener("visibilitychange", playback); removeEventListener("scroll", schedule); removeEventListener("resize", schedule); video.current?.pause(); };
+    return () => { observer.disconnect(); cancelAnimationFrame(frame); media.removeEventListener("change", playback); document.removeEventListener("visibilitychange", playback); removeEventListener("scroll", schedule); removeEventListener("resize", schedule); clip?.pause(); };
   }, [paused]);
 
   return <div ref={root} id={contact ? undefined : "opowiesc"} className={contact ? "zmh-water-portal" : "zmh-assembly"} onPointerMove={event => {
