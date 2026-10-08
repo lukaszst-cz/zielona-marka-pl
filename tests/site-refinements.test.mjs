@@ -265,3 +265,59 @@ test("analytics names every lead form and tracks funnel without field values",as
   }
   assert.doesNotMatch(tracking,/\.value/);
 });
+
+
+test("sitemap pages do not link to broken internal routes",async()=>{
+  const sitemap=await(await fetchPage("/sitemap.xml")).text();
+  const pageUrls=[...sitemap.matchAll(/<loc>(https:\/\/zielona-marka\.pl[^<]*)<\/loc>/g)].map(m=>m[1]);
+  assert.ok(pageUrls.length>=30,`unexpected sitemap size: ${pageUrls.length}`);
+  const targets=new Set();
+  for(const pageUrl of pageUrls){
+    const pagePath=new URL(pageUrl).pathname;
+    const response=await fetchPage(pagePath);
+    assert.ok(response.status<400,`${pagePath} returned ${response.status}`);
+    const html=await response.text();
+    for(const match of html.matchAll(/href="([^"]+)"/g)){
+      const raw=match[1];
+      if(!raw || raw.startsWith("#") || raw.startsWith("mailto:") || raw.startsWith("tel:") || raw.startsWith("javascript:")) continue;
+      let url;
+      try{url=new URL(raw,"https://zielona-marka.pl"+pagePath);}catch{continue;}
+      if(url.hostname!=="zielona-marka.pl" && url.hostname!=="www.zielona-marka.pl") continue;
+      const pathname=url.pathname;
+      if(pathname.startsWith("/_next/")) continue;
+      if(/\.[a-z0-9]{2,6}$/i.test(pathname) && pathname!=="/poradnik/rss.xml") continue;
+      targets.add(pathname);
+    }
+  }
+  for(const path of targets){
+    const response=await fetchPage(path);
+    assert.ok(response.status<400,`broken internal link: ${path} -> ${response.status}`);
+  }
+});
+
+test("public SEO pages do not reference missing local assets",async()=>{
+  const sitemap=await(await fetchPage("/sitemap.xml")).text();
+  const pageUrls=[...sitemap.matchAll(/<loc>(https:\/\/zielona-marka\.pl[^<]*)<\/loc>/g)].map(m=>m[1]);
+  const assetPaths=new Set();
+  for(const pageUrl of pageUrls){
+    const pagePath=new URL(pageUrl).pathname;
+    const html=await(await fetchPage(pagePath)).text();
+    for(const match of html.matchAll(/(?:src|href)="([^"]+)"/g)){
+      const raw=match[1];
+      if(!raw || raw.startsWith("data:") || raw.startsWith("#")) continue;
+      let url;
+      try{url=new URL(raw,"https://zielona-marka.pl"+pagePath);}catch{continue;}
+      if(url.hostname!=="zielona-marka.pl" && url.hostname!=="www.zielona-marka.pl") continue;
+      if(url.pathname.startsWith("/_next/") || !/\.[a-z0-9]{2,6}$/i.test(url.pathname) || url.pathname==="/poradnik/rss.xml") continue;
+      assetPaths.add(url.pathname);
+    }
+  }
+  for(const pathname of assetPaths){
+    try{
+      const info=await stat(new URL("../public"+pathname,import.meta.url));
+      assert.ok(info.size>0,`empty asset: ${pathname}`);
+    }catch(error){
+      assert.fail(`missing public asset referenced by HTML: ${pathname} (${error?.code||error})`);
+    }
+  }
+});
