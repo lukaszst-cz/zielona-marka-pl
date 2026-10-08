@@ -204,6 +204,18 @@ test("tools page uses verified destinations and avoids generic AI sales language
   }
 });
 
+test("optimized critical assets stay lightweight",async()=>{
+  const limits=[
+    ["lukasz-zielona-marka-jak-pracuje-20260908.webp",150_000],
+    ["logo-zielona-marka-transparent-v1.webp",60_000],
+    ["program-spokojny-pc-plus-cover.svg",20_000],
+  ];
+  for(const [file,maxBytes] of limits){
+    const info=await stat(new URL(`../public/${file}`,import.meta.url));
+    assert.ok(info.size>0 && info.size<maxBytes,`${file}: ${info.size} bytes exceeds ${maxBytes}`);
+  }
+});
+
 test("old chatbot address has one direct destination",async()=>{
   const config=await readFile(new URL("../next.config.ts",import.meta.url),"utf8");
   assert.match(config,/source:\s*"\/chatbot-dla-firm"[\s\S]*destination:\s*"\/asystent-zapytan"/);
