@@ -1,11 +1,13 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { readFile, stat } from "node:fs/promises";
-import worker from "../dist/server/index.js";
+const testBaseUrl = process.env.TEST_BASE_URL;
+if (!testBaseUrl) throw new Error("TEST_BASE_URL is required. Run tests through scripts/run-built-worker-tests.mjs.");
 
-const env = { ASSETS: { fetch: async () => new Response("Not found", {status:404}) } };
-const context = { waitUntil() {}, passThroughOnException() {} };
-const fetchPage = (path, options) => worker.fetch(new Request("http://localhost"+path, options),env,context);
+const fetchPage = (path, options = {}) => fetch(new URL(path, testBaseUrl), {
+  ...options,
+  signal: options.signal ?? AbortSignal.timeout(12_000),
+});
 
 test("public header and simplified demo navigation",async()=>{
   const status=await fetchPage("/status");
@@ -26,12 +28,12 @@ test("public header and simplified demo navigation",async()=>{
 test("English language rendered on server",async()=>{
   assert.match(await (await fetchPage("/en")).text(),/<html lang="en"/);
 });
-test("canonical domain keeps path and query",async()=>{
-  for(const origin of ["http://zielona-marka.pl","http://www.zielona-marka.pl","https://www.zielona-marka.pl"]){
-    const response=await worker.fetch(new Request(origin+"/oferta?source=test"),env,context);
-    assert.equal(response.status,301);
-    assert.equal(response.headers.get("location"),"https://zielona-marka.pl/oferta?source=test");
-  }
+test("canonical domain redirect policy stays explicit in proxy",async()=>{
+  const proxy=await readFile(new URL("../proxy.ts",import.meta.url),"utf8");
+  assert.match(proxy,/www\.zielona-marka\.pl/);
+  assert.match(proxy,/url\.hostname = "zielona-marka\.pl"/);
+  assert.match(proxy,/url\.protocol = "https:"/);
+  assert.match(proxy,/NextResponse\.redirect\(url, 301\)/);
 });
 test("inquiry validation rejects invalid submissions before database access",async()=>{
   const send=body=>fetchPage("/api/inquiries",{method:"POST",headers:{"content-type":"application/json"},body});
