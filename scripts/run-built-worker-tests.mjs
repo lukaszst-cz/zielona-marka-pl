@@ -82,6 +82,7 @@ try {
     process.execPath,
     [
       "--test",
+      "--test-concurrency=1",
       "--test-force-exit",
       "tests/rendered-html.test.mjs",
       "tests/site-refinements.test.mjs",
@@ -96,9 +97,18 @@ try {
     console.error("Test process exceeded 180 seconds; terminating.");
     tests.kill("SIGTERM");
   }, 180_000);
-  const [code] = await once(tests, "exit");
+  const outcome = await Promise.race([
+    once(tests, "exit").then(([code]) => ({ type: "tests", code })),
+    once(wrangler, "exit").then(([code, signal]) => ({ type: "wrangler", code, signal })),
+  ]);
   clearTimeout(timeout);
-  exitCode = typeof code === "number" ? code : 1;
+  if (outcome.type === "wrangler") {
+    console.error(`Wrangler exited during tests (code ${outcome.code}, signal ${outcome.signal ?? "none"}).\n${logs.join("")}`);
+    if (tests.exitCode === null) tests.kill("SIGTERM");
+    exitCode = 1;
+  } else {
+    exitCode = typeof outcome.code === "number" ? outcome.code : 1;
+  }
 } finally {
   await stopWorker();
 }
