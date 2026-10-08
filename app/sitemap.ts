@@ -14,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/realizacje/transportflow`, lastModified: new Date("2026-10-05"), changeFrequency: "monthly", priority: .72 },
     { url: `${base}/praktyczne-narzedzia`, lastModified: new Date("2026-10-05"), changeFrequency: "monthly", priority: .8 },
     { url: `${base}/projekty-flow`, lastModified: new Date("2026-10-08"), changeFrequency: "monthly", priority: .72 },
+    { url: `${base}/spokojny-pc-plus`, lastModified: new Date("2026-10-08"), changeFrequency: "monthly", priority: .68 },
     { url: `${base}/poradnik`, lastModified: new Date("2026-10-07"), changeFrequency: "weekly", priority: .82 },
     { url: `${base}/poradnik/dlaczego-strona-firmy-nie-przynosi-zapytan`, lastModified: new Date("2026-10-07"), changeFrequency: "monthly", priority: .8 },
     { url: `${base}/poradnik/ile-kosztuje-strona-dla-malej-firmy`, lastModified: new Date("2026-10-07"), changeFrequency: "monthly", priority: .8 },
