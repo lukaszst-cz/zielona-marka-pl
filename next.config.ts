@@ -17,7 +17,7 @@ const contentSecurityPolicy = [
 ].join("; ");
 
 const nextConfig: NextConfig = {
-  async redirects() { return [{ source: "/chatbot-dla-firm", destination: "/asystent-zapytan", permanent: true }]; },
+  async redirects() { return [{ source: "/chatbot-dla-firm", destination: "https://zielona-marka.pl/asystent-zapytan", permanent: true }]; },
   async headers() {
     const privatePaths = ["/studio", "/studio/:path*", "/status", "/status/:path*", "/demo", "/demo/:path*", "/umowa-przykladowa", "/koncepcja-zielonej-marki"];
     const securityHeaders = [

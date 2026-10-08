@@ -250,7 +250,7 @@ test("optimized critical assets stay lightweight",async()=>{
 
 test("old chatbot address has one direct destination",async()=>{
   const config=await readFile(new URL("../next.config.ts",import.meta.url),"utf8");
-  assert.match(config,/source:\s*"\/chatbot-dla-firm"[\s\S]*destination:\s*"\/asystent-zapytan"/);
+  assert.match(config,/source:\s*"\/chatbot-dla-firm"[\s\S]*destination:\s*"https:\/\/zielona-marka\.pl\/asystent-zapytan"/);
   assert.doesNotMatch(config,/realizacje\/transportflow[\s\S]*demo\/transport/);
 });
 
