@@ -363,3 +363,28 @@ test("internal links from sitemap pages never point to missing routes",async()=>
     assert.ok(response.status<400,`broken internal link ${target} -> HTTP ${response.status}; linked from ${[...sources].join(", ")}`);
   }
 });
+
+
+test("every sitemap page keeps core SEO invariants",async()=>{
+  const sitemap=await(await fetchPage("/sitemap.xml")).text();
+  const paths=[...sitemap.matchAll(/<loc>https:\/\/zielona-marka\.pl([^<]*)<\/loc>/g)]
+    .map(match=>match[1]||"/");
+  assert.ok(paths.length>=35,`expected a substantial sitemap, got ${paths.length}`);
+
+  for(const path of paths){
+    const response=await fetchPage(path);
+    assert.equal(response.status,200,`HTTP status for ${path}`);
+    const html=await response.text();
+
+    assert.doesNotMatch(html,/<meta name="robots" content="[^"]*noindex/i,`noindex leaked onto sitemap page ${path}`);
+    assert.doesNotMatch(html,/<meta name="keywords"/i,`obsolete meta keywords on ${path}`);
+
+    const expectedCanonical="https://zielona-marka.pl"+(path==="/"?"":path);
+    const escaped=expectedCanonical.replace(/[.*+?^$()|[\]\\]/g,"\\$&");
+    assert.match(html,new RegExp('<link rel="canonical" href="'+escaped+'"'),`canonical for ${path}`);
+
+    assert.equal((html.match(/<h1\b/g)||[]).length,1,`H1 count for ${path}`);
+    const title=html.match(/<title>(.*?)<\/title>/)?.[1]||"";
+    assert.ok((title.match(/Zielona Marka/g)||[]).length<=1,`duplicated brand in title for ${path}: ${title}`);
+  }
+});
