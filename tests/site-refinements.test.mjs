@@ -388,3 +388,44 @@ test("every sitemap page keeps core SEO invariants",async()=>{
     assert.ok((title.match(/Zielona Marka/g)||[]).length<=1,`duplicated brand in title for ${path}: ${title}`);
   }
 });
+
+
+test("internal hash links resolve to existing section ids",async()=>{
+  const sitemap=await(await fetchPage("/sitemap.xml")).text();
+  const pagePaths=[...sitemap.matchAll(/<loc>https:\/\/zielona-marka\.pl([^<]*)<\/loc>/g)]
+    .map(match=>match[1]||"/");
+  const htmlCache=new Map();
+
+  async function pageHtml(path){
+    if(!htmlCache.has(path)){
+      const response=await fetchPage(path);
+      assert.equal(response.status,200,`hash-link target page failed: ${path}`);
+      htmlCache.set(path,await response.text());
+    }
+    return htmlCache.get(path);
+  }
+
+  for(const sourcePath of pagePaths){
+    const html=await pageHtml(sourcePath);
+    for(const match of html.matchAll(/<a\b[^>]*\bhref="([^"]*#[^"]+)"/g)){
+      const raw=match[1].replace(/&amp;/g,"&");
+      if(raw.startsWith("http://")||raw.startsWith("https://")){
+        const absolute=new URL(raw);
+        if(!["zielona-marka.pl","www.zielona-marka.pl"].includes(absolute.hostname)) continue;
+      }
+      let target;
+      try{target=new URL(raw,"https://zielona-marka.pl"+sourcePath);}catch{continue;}
+      if(!target.hash) continue;
+      const targetPath=(target.pathname.replace(/\/$/,"")||"/");
+      const id=decodeURIComponent(target.hash.slice(1));
+      if(!id) continue;
+      const targetHtml=await pageHtml(targetPath);
+      const escaped=id.replace(/[.*+?^$()|[\]\\]/g,"\\$&");
+      assert.match(
+        targetHtml,
+        new RegExp(`(?:id|name)="${escaped}"`),
+        `broken hash link ${sourcePath} -> ${targetPath}#${id}`
+      );
+    }
+  }
+});
