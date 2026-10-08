@@ -10,6 +10,10 @@ export type LocalCity = {
   lead: string;
   localNeed: string;
   localContext: string;
+  fitTitle: string;
+  fit: string;
+  contactTitle: string;
+  contactFlow: string;
   exampleTitle: string;
   example: string;
   checklist: string[];
@@ -57,6 +61,7 @@ export default function LocalCityPage({ city }: { city: LocalCity }) {
   return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} /><SiteHeader /><main className="zm-public">
     <section className="local-city-hero"><div className="shell"><span className="eyebrow"><i />{city.name.toUpperCase()} · STRONY I SYSTEMY DLA FIRM</span><h1>Strona internetowa, która pomaga firmie z {city.genitive} zdobywać <em>konkretne zapytania.</em></h1><p>{city.lead}</p><div className="hero-actions"><Link className="button" href="#lokalny-kontakt">Porozmawiajmy o firmie <span>↗</span></Link><a className="text-link" href="#przyklady">Zobacz przykłady <span>↓</span></a></div></div></section>
     <section className="section shell local-city-value"><div><span className="section-no">LOKALNY KLIENT CHCE SZYBKIEJ ODPOWIEDZI</span><h2>Od wyniku w Google do informacji potrzebnych do wyceny.</h2></div><div><p>{city.localNeed}</p><p>{city.localContext}</p></div></section>
+    <section className="section shell local-city-fit"><div><span className="section-no">DOPASOWANIE DO PROCESU</span><h2>{city.fitTitle}</h2><p>{city.fit}</p></div><div><span className="section-no">PIERWSZY KONTAKT</span><h2>{city.contactTitle}</h2><p>{city.contactFlow}</p></div></section>
     <section className="section local-city-process"><div className="shell"><div className="section-head"><div><span className="section-no">CO MOŻE ZYSKAĆ FIRMA</span><h2>Strona pracuje przed pierwszym telefonem.</h2></div><p>Najpierw klient rozumie usługę. Potem przekazuje dane, które pozwalają szybciej odpowiedzieć.</p></div><div className="local-benefit-grid"><article><b>01</b><h3>Lepsza decyzja</h3><p>Czytelna oferta pokazuje zakres, obszar działania i sposób rozpoczęcia współpracy.</p></article><article><b>02</b><h3>Kompletne zapytanie</h3><p>Formularz zbiera usługę, lokalizację, termin, opis i zdjęcia potrzebne do pierwszej oceny.</p></article><article><b>03</b><h3>Widoczny następny krok</h3><p>Telefon, e-mail i formularz prowadzą do konkretnej rozmowy zamiast pozostawiać klienta bez odpowiedzi.</p></article><article><b>04</b><h3>Porządek po kontakcie</h3><p>Prosty system może przypisać status, termin i osobę odpowiedzialną za dalszą obsługę.</p></article></div></div></section>
     <section className="section shell local-city-example"><div><span className="section-no">KONKRETNY SCENARIUSZ</span><h2>{city.exampleTitle}</h2><p>{city.example}</p></div><div><small>Na stronie warto jasno podać:</small><ul>{city.checklist.map(item => <li key={item}>{item}</li>)}</ul></div></section>
     <section className="section shell local-industry-section" id="przyklady"><div className="section-head"><div><span className="section-no">PRZYKŁADY DLA BRANŻ</span><h2>Zobacz, jak strona może działać w praktyce.</h2></div><p>Demonstracje pokazują mechanizm. Wdrożenie otrzymuje treść, pytania i wygląd dopasowane do konkretnej firmy.</p></div><div className="local-industry-grid">{industries.map(item => <Link href={item.href} key={item.title}><img src={item.image} alt={`${item.title} – przykład strony dla lokalnej firmy`} loading="lazy" /><div><h3>{item.title}</h3><p>{item.copy}</p><b>Zobacz rozwiązanie ↗</b></div></Link>)}</div></section>
