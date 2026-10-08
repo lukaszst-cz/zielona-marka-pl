@@ -333,3 +333,33 @@ test("public SEO pages do not reference missing local assets",async()=>{
     }
   }
 });
+
+
+test("internal links from sitemap pages never point to missing routes",async()=>{
+  const sitemapResponse=await fetchPage("/sitemap.xml");
+  assert.equal(sitemapResponse.status,200);
+  const sitemap=await sitemapResponse.text();
+  const pagePaths=[...sitemap.matchAll(/<loc>https:\/\/zielona-marka\.pl([^<]*)<\/loc>/g)]
+    .map(match=>match[1]||"/");
+  assert.ok(pagePaths.length>=35,`expected a substantial sitemap, got ${pagePaths.length}`);
+
+  const targets=new Map();
+  for(const pagePath of pagePaths){
+    const response=await fetchPage(pagePath||"/");
+    assert.equal(response.status,200,`sitemap page failed: ${pagePath}`);
+    const html=await response.text();
+    for(const match of html.matchAll(/href="([^"]+)"/g)){
+      const raw=match[1].replace(/&amp;/g,"&");
+      if(!raw.startsWith("/") || raw.startsWith("//")) continue;
+      if(raw.startsWith("/_next/") || raw.startsWith("/api/")) continue;
+      const target=(raw.split("#")[0].split("?")[0]||"/").replace(/\/$/,"")||"/";
+      if(!targets.has(target)) targets.set(target,new Set());
+      targets.get(target).add(pagePath||"/");
+    }
+  }
+
+  for(const [target,sources] of targets){
+    const response=await fetchPage(target);
+    assert.ok(response.status<400,`broken internal link ${target} -> HTTP ${response.status}; linked from ${[...sources].join(", ")}`);
+  }
+});
