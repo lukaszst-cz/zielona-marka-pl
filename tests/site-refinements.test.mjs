@@ -94,7 +94,7 @@ test("key commercial pages include page-specific structured data",async()=>{
   assert.match(await(await fetchPage("/oferta")).text(),/"@type":"Service"/);
   const realization=await(await fetchPage("/realizacje/natura-studio")).text();
   assert.match(realization,/"@type":"CreativeWork"/);
-  assert.match(realization,/"logo":"https:\/\/zielona-marka\.pl\/logo-zielona-marka-transparent-v1\.png"/);
+  assert.match(realization,/"logo":"https:\/\/zielona-marka\.pl\/logo-zielona-marka-transparent-v1\.webp"/);
   assert.match(await(await fetchPage("/realizacje/transportflow")).text(),/"@type":"SoftwareApplication"/);
 });
 test("SEO content package links key services and labels the case study template honestly",async()=>{
@@ -194,7 +194,7 @@ test("tools page uses verified destinations and avoids generic AI sales language
   }
   const workshop=await stat(new URL("../public/tool-workshopflow-360-photo.png",import.meta.url));
   assert.ok(workshop.size>20_000);
-  for(const file of ["program-czy-to-sciema-photo-v3.png","program-fleet-ops-desk-photo-v3.png","program-spokojny-pc-plus-cover.svg","program-docpilot-photo-v3.png","program-aktywnik-plus-photo-v3.png"]){
+  for(const file of ["program-czy-to-sciema-photo-v3.png","program-fleet-ops-desk-photo-v3.png","program-docpilot-photo-v3.png","program-aktywnik-plus-photo-v3.png"]){
     const photo=await stat(new URL(`../public/${file}`,import.meta.url));
     assert.ok(photo.size>20_000,`${file}: ${photo.size}`);
   }
@@ -206,13 +206,13 @@ test("tools page uses verified destinations and avoids generic AI sales language
 
 test("optimized critical assets stay lightweight",async()=>{
   const limits=[
-    ["lukasz-zielona-marka-jak-pracuje-20260908.webp",150_000],
-    ["logo-zielona-marka-transparent-v1.webp",60_000],
-    ["program-spokojny-pc-plus-cover.svg",20_000],
+    ["lukasz-zielona-marka-jak-pracuje-20260908.webp",20_000,150_000],
+    ["logo-zielona-marka-transparent-v1.webp",5_000,60_000],
+    ["program-spokojny-pc-plus-cover.svg",2_000,20_000],
   ];
-  for(const [file,maxBytes] of limits){
+  for(const [file,minBytes,maxBytes] of limits){
     const info=await stat(new URL(`../public/${file}`,import.meta.url));
-    assert.ok(info.size>0 && info.size<maxBytes,`${file}: ${info.size} bytes exceeds ${maxBytes}`);
+    assert.ok(info.size>minBytes && info.size<maxBytes,`${file}: ${info.size} bytes outside ${minBytes}-${maxBytes}`);
   }
 });
 
