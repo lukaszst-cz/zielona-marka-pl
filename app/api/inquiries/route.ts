@@ -38,6 +38,12 @@ export async function POST(request: Request) {
     : new Response(message, { status, headers: { "Cache-Control": "no-store", "Content-Type": "text/plain; charset=utf-8" } });
 
   try {
+    const requestUrl = new URL(request.url);
+    const origin = request.headers.get("origin");
+    const fetchSite = request.headers.get("sec-fetch-site");
+    if (origin && new URL(origin).host !== requestUrl.host) return reply("Niedozwolone źródło formularza.", 403);
+    if (fetchSite && !["same-origin", "same-site", "none"].includes(fetchSite)) return reply("Niedozwolone źródło formularza.", 403);
+
     const declaredLength = Number(request.headers.get("content-length") ?? 0);
     if (declaredLength > 20000) return reply("Wiadomość jest zbyt długa.", 413);
 
