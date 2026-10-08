@@ -62,6 +62,7 @@ try {
     process.execPath,
     [
       "--test",
+      "--test-force-exit",
       "tests/rendered-html.test.mjs",
       "tests/site-refinements.test.mjs",
       "tests/local-city-grammar.test.mjs",
