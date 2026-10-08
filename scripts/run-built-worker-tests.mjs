@@ -5,11 +5,12 @@ const host = "127.0.0.1";
 const port = 8788;
 const baseUrl = `http://${host}:${port}`;
 const npx = process.platform === "win32" ? "npx.cmd" : "npx";
+const testWranglerVersion = "4.148.0";
 const logs = [];
 
 const wrangler = spawn(
   npx,
-  ["--no-install", "wrangler", "dev", "--ip", host, "--port", String(port), "--log-level", "error"],
+  ["--yes", `wrangler@${testWranglerVersion}`, "dev", "--ip", host, "--port", String(port), "--log-level", "error"],
   {
     stdio: ["ignore", "pipe", "pipe"],
     env: {
