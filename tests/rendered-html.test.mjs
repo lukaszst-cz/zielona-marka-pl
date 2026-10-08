@@ -8,7 +8,7 @@ const testBaseUrl = process.env.TEST_BASE_URL;
 if (!testBaseUrl) throw new Error("TEST_BASE_URL is required. Run tests through scripts/run-built-worker-tests.mjs.");
 
 async function render(path = "/") {
-  return fetch(new URL(path, testBaseUrl), { headers: { accept: "text/html" } });
+  return fetch(new URL(path, testBaseUrl), { headers: { accept: "text/html" }, signal: AbortSignal.timeout(12_000) });
 }
 
 test("strona główna prowadzi przez pięć etapów od strony do relacji", async () => {
