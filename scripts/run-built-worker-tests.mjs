@@ -10,7 +10,7 @@ const logs = [];
 
 const wrangler = spawn(
   npx,
-  ["--yes", `wrangler@${testWranglerVersion}`, "dev", "--ip", host, "--port", String(port), "--log-level", "error"],
+  ["--yes", `wrangler@${testWranglerVersion}`, "dev", "--no-bundle", "--ip", host, "--port", String(port), "--log-level", "error"],
   {
     stdio: ["ignore", "pipe", "pipe"],
     env: {
