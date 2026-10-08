@@ -303,7 +303,7 @@ test("sitemap pages do not link to broken internal routes",async()=>{
   }
   for(const path of targets){
     const response=await fetchPage(path);
-    assert.ok(response.status<400,`broken internal link: ${path} -> ${response.status}`);
+    assert.equal(response.status,200,`internal link must resolve directly: ${path} -> ${response.status}`);
   }
 });
 
