@@ -8,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/oferta`, lastModified: new Date("2026-10-07"), changeFrequency: "weekly", priority: .9 },
     { url: `${base}/opieka-nad-strona`, changeFrequency: "monthly", priority: .7 },
     { url: `${base}/przyklady-zaplecza`, lastModified: new Date("2026-10-07"), changeFrequency: "monthly", priority: .7 },
+    { url: `${base}/raport-qa`, lastModified: new Date("2026-10-08"), changeFrequency: "monthly", priority: .65 },
     { url: `${base}/modernizacja-strony`, changeFrequency: "weekly", priority: .9 },
     { url: `${base}/realizacje`, changeFrequency: "monthly", priority: .85 },
     { url: `${base}/realizacje/transportflow`, lastModified: new Date("2026-10-05"), changeFrequency: "monthly", priority: .72 },
