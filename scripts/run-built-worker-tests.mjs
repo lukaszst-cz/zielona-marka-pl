@@ -35,7 +35,7 @@ async function waitForWorker() {
       throw new Error(`Wrangler exited before tests started (code ${wrangler.exitCode}).\n${logs.join("")}`);
     }
     try {
-      const response = await fetch(`${baseUrl}/robots.txt`, { redirect: "manual" });
+      const response = await fetch(`${baseUrl}/robots.txt`, { redirect: "manual", signal: AbortSignal.timeout(2_000) });
       if (response.status < 500) return;
     } catch {
       // Wrangler is still starting.
