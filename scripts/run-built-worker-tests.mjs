@@ -1,16 +1,20 @@
 import { spawn } from "node:child_process";
 import { once } from "node:events";
+import { createRequire } from "node:module";
 
 const host = "127.0.0.1";
 const port = 8788;
 const baseUrl = `http://${host}:${port}`;
-const npx = process.platform === "win32" ? "npx.cmd" : "npx";
+const require = createRequire(import.meta.url);
+const wranglerCli = require.resolve("wrangler/bin/wrangler.js");
+const groupedProcess = process.platform !== "win32";
 const logs = [];
 
 const wrangler = spawn(
-  npx,
-  ["--no-install", "wrangler", "dev", "--compatibility-date", "2026-05-22", "--ip", host, "--port", String(port), "--log-level", "error"],
+  process.execPath,
+  [wranglerCli, "dev", "--compatibility-date", "2026-05-22", "--ip", host, "--port", String(port), "--log-level", "error"],
   {
+    detached: groupedProcess,
     stdio: ["ignore", "pipe", "pipe"],
     env: {
       ...process.env,
@@ -45,14 +49,30 @@ async function waitForWorker() {
   throw new Error(`Timed out waiting for Wrangler at ${baseUrl}.\n${logs.join("")}`);
 }
 
+function signalWorker(signal) {
+  if (wrangler.exitCode !== null) return;
+  try {
+    if (groupedProcess && wrangler.pid) process.kill(-wrangler.pid, signal);
+    else wrangler.kill(signal);
+  } catch (error) {
+    if (error?.code !== "ESRCH") throw error;
+  }
+}
+
 async function stopWorker() {
   if (wrangler.exitCode !== null) return;
-  wrangler.kill("SIGTERM");
+  signalWorker("SIGTERM");
   await Promise.race([
     once(wrangler, "exit"),
     new Promise((resolve) => setTimeout(resolve, 3_000)),
   ]);
-  if (wrangler.exitCode === null) wrangler.kill("SIGKILL");
+  if (wrangler.exitCode === null) {
+    signalWorker("SIGKILL");
+    await Promise.race([
+      once(wrangler, "exit"),
+      new Promise((resolve) => setTimeout(resolve, 2_000)),
+    ]);
+  }
 }
 
 let exitCode = 1;
