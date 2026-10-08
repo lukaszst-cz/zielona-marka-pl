@@ -429,3 +429,43 @@ test("internal hash links resolve to existing section ids",async()=>{
     }
   }
 });
+
+
+test("sitemap has no duplicate URLs",async()=>{
+  const xml=await(await fetchPage("/sitemap.xml")).text();
+  const urls=[...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match=>match[1]);
+  assert.ok(urls.length>=35,`unexpected sitemap size: ${urls.length}`);
+  assert.equal(new Set(urls).size,urls.length,"duplicate URL found in sitemap");
+  for(const url of urls){
+    assert.match(url,/^https:\/\/zielona-marka\.pl(?:\/|$)/,`unexpected sitemap host: ${url}`);
+  }
+});
+
+test("public pages keep baseline security headers",async()=>{
+  for(const path of ["/","/oferta","/kontakt"]){
+    const response=await fetchPage(path);
+    assert.equal(response.status,200,path);
+    assert.equal(response.headers.get("x-content-type-options"),"nosniff",path);
+    assert.equal(response.headers.get("x-frame-options"),"SAMEORIGIN",path);
+    assert.equal(response.headers.get("referrer-policy"),"strict-origin-when-cross-origin",path);
+    assert.match(response.headers.get("strict-transport-security")||"",/max-age=31536000/i,path);
+    const csp=response.headers.get("content-security-policy")||"";
+    assert.match(csp,/default-src 'self'/,path);
+    assert.match(csp,/object-src 'none'/,path);
+    assert.match(csp,/frame-ancestors 'self'/,path);
+  }
+});
+
+test("new-tab links explicitly protect opener context",async()=>{
+  const sitemap=await(await fetchPage("/sitemap.xml")).text();
+  const paths=[...sitemap.matchAll(/<loc>https:\/\/zielona-marka\.pl([^<]*)<\/loc>/g)]
+    .map(match=>match[1]||"/");
+  for(const path of paths){
+    const html=await(await fetchPage(path)).text();
+    for(const match of html.matchAll(/<a\b([^>]*\btarget="_blank"[^>]*)>/g)){
+      const attrs=match[1];
+      const rel=attrs.match(/\brel="([^"]*)"/)?.[1]||"";
+      assert.match(rel,/(?:^|\s)(?:noopener|noreferrer)(?:\s|$)/,`missing noopener/noreferrer on ${path}: <a${attrs}>`);
+    }
+  }
+});
