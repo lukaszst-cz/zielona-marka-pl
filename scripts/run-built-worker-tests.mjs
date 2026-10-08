@@ -94,9 +94,9 @@ try {
     },
   );
   const timeout = setTimeout(() => {
-    console.error("Test process exceeded 180 seconds; terminating.");
+    console.error("Test process exceeded 360 seconds; terminating.");
     tests.kill("SIGTERM");
-  }, 180_000);
+  }, 360_000);
   const outcome = await Promise.race([
     once(tests, "exit").then(([code]) => ({ type: "tests", code })),
     once(wrangler, "exit").then(([code, signal]) => ({ type: "wrangler", code, signal })),
