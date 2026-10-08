@@ -23,8 +23,8 @@ try{
    const selectors='.hero .eyebrow,.hero h1,.lead,.service-line,.trust-note,.quiet,.pill,.copy h2,.copy>p,.copy>.text-link,.intro,.section-heading h2,.process>h2,.process>p,.care-steps h3,.care-steps p,.contact h2,.contact>div>p,.phone';
    const seen=new Set(),items=[];
    for(const el of document.querySelectorAll(selectors)){
-    const walker=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);let node;
-    while(node=walker.nextNode()){
+    const walker=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);
+    for(let node=walker.nextNode();node;node=walker.nextNode()){
      if(seen.has(node)||!node.textContent.trim())continue;seen.add(node);
      const style=getComputedStyle(node.parentElement),color=style.color.match(/[\d.]+/g).slice(0,3).map(Number);
      const range=document.createRange();range.selectNodeContents(node);

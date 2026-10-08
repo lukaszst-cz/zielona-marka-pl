@@ -22,7 +22,7 @@ try {
         window.__auditPerf = { lcp: 0, cls: 0, longTasks: [] };
         new PerformanceObserver((list) => { for (const entry of list.getEntries()) window.__auditPerf.lcp = entry.startTime; }).observe({ type: "largest-contentful-paint", buffered: true });
         new PerformanceObserver((list) => { for (const entry of list.getEntries()) if (!entry.hadRecentInput) window.__auditPerf.cls += entry.value; }).observe({ type: "layout-shift", buffered: true });
-        try { new PerformanceObserver((list) => { for (const entry of list.getEntries()) window.__auditPerf.longTasks.push(entry.duration); }).observe({ type: "longtask", buffered: true }); } catch {}
+        try { new PerformanceObserver((list) => { for (const entry of list.getEntries()) window.__auditPerf.longTasks.push(entry.duration); }).observe({ type: "longtask", buffered: true }); } catch { /* Long Task API may be unavailable in some Chromium builds. */ }
       });
       const cdp = await context.newCDPSession(page);
       await cdp.send("Network.enable");
