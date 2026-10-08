@@ -608,3 +608,17 @@ test("structured data on sitemap pages is valid JSON-LD",async()=>{
   }
   assert.ok(schemaCount>=paths.length,`expected at least one schema block per sitemap page, found ${schemaCount} for ${paths.length} pages`);
 });
+
+
+test("security headers stay enabled on public and private routes",async()=>{
+  const home=await fetchPage("/");
+  assert.match(home.headers.get("content-security-policy")||"",/default-src 'self'/);
+  assert.match(home.headers.get("strict-transport-security")||"",/max-age=31536000/i);
+  assert.equal(home.headers.get("x-content-type-options"),"nosniff");
+  assert.equal(home.headers.get("referrer-policy"),"strict-origin-when-cross-origin");
+  for(const path of ["/status","/demo/natura","/studio"]){
+    const response=await fetchPage(path);
+    assert.match(response.headers.get("x-robots-tag")||"",/noindex/i,path);
+    assert.match(response.headers.get("x-robots-tag")||"",/nofollow/i,path);
+  }
+});
