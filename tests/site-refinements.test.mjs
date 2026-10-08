@@ -194,7 +194,7 @@ test("tools page uses verified destinations and avoids generic AI sales language
   }
   const workshop=await stat(new URL("../public/tool-workshopflow-360-photo.png",import.meta.url));
   assert.ok(workshop.size>20_000);
-  for(const file of ["program-czy-to-sciema-photo-v3.png","program-fleet-ops-desk-photo-v3.png","program-spokojny-pc-plus-photo-v3.png","program-docpilot-photo-v3.png","program-aktywnik-plus-photo-v3.png"]){
+  for(const file of ["program-czy-to-sciema-photo-v3.png","program-fleet-ops-desk-photo-v3.png","program-spokojny-pc-plus-cover.svg","program-docpilot-photo-v3.png","program-aktywnik-plus-photo-v3.png"]){
     const photo=await stat(new URL(`../public/${file}`,import.meta.url));
     assert.ok(photo.size>20_000,`${file}: ${photo.size}`);
   }
