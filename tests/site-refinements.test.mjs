@@ -289,7 +289,7 @@ test("sitemap pages do not link to broken internal routes",async()=>{
     const response=await fetchPage(pagePath);
     assert.ok(response.status<400,`${pagePath} returned ${response.status}`);
     const html=await response.text();
-    for(const match of html.matchAll(/href="([^"]+)"/g)){
+    for(const match of html.matchAll(/<a\b[^>]*\bhref="([^"]+)"/g)){
       const raw=match[1];
       if(!raw || raw.startsWith("#") || raw.startsWith("mailto:") || raw.startsWith("tel:") || raw.startsWith("javascript:")) continue;
       let url;
