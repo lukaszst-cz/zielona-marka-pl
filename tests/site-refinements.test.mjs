@@ -4,10 +4,40 @@ import { readFile, stat } from "node:fs/promises";
 const testBaseUrl = process.env.TEST_BASE_URL;
 if (!testBaseUrl) throw new Error("TEST_BASE_URL is required. Run tests through scripts/run-built-worker-tests.mjs.");
 
-const fetchPage = (path, options = {}) => fetch(new URL(path, testBaseUrl), {
-  ...options,
-  signal: options.signal ?? AbortSignal.timeout(12_000),
-});
+const pageCache = new Map();
+
+async function fetchPage(path, options = {}) {
+  const method = String(options.method ?? "GET").toUpperCase();
+  if (method !== "GET" || options.body) {
+    return fetch(new URL(path, testBaseUrl), {
+      ...options,
+      signal: options.signal ?? AbortSignal.timeout(12_000),
+    });
+  }
+
+  const key = String(path);
+  if (!pageCache.has(key)) {
+    pageCache.set(key, (async () => {
+      const response = await fetch(new URL(path, testBaseUrl), {
+        ...options,
+        signal: options.signal ?? AbortSignal.timeout(12_000),
+      });
+      return {
+        status: response.status,
+        statusText: response.statusText,
+        headers: [...response.headers.entries()],
+        body: await response.arrayBuffer(),
+      };
+    })());
+  }
+
+  const cached = await pageCache.get(key);
+  return new Response(cached.body.slice(0), {
+    status: cached.status,
+    statusText: cached.statusText,
+    headers: cached.headers,
+  });
+}
 
 test("public header and simplified demo navigation",async()=>{
   const status=await fetchPage("/status");
