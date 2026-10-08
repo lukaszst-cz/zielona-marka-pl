@@ -31,19 +31,6 @@ export const metadata: Metadata = {
   },
     description:
       "Strony, formularze wyceny i automatyczny asystent dla warsztatów, ekip remontowych, instalatorów i lokalnych firm usługowych z Warszawy, Targówka i okolic.",
-  keywords: [
-    "strony internetowe",
-    "projektowanie stron",
-    "strony internetowe Targówek",
-    "strony internetowe Warszawa",
-    "strony internetowe Marki",
-    "strony dla warsztatów",
-    "strony dla firm remontowych",
-    "formularz wyceny online",
-    "asystent zapytań dla firmy",
-    "SEO lokalne Warszawa",
-    "Zielona Marka",
-  ],
   authors: [{ name: "Zielona Marka" }],
   creator: "Zielona Marka",
   openGraph: {
