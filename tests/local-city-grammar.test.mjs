@@ -12,13 +12,11 @@ const cities = [
   ["warszawa", "Warszawy", "Warszawie"],
 ];
 
+const testBaseUrl = process.env.TEST_BASE_URL;
+if (!testBaseUrl) throw new Error("TEST_BASE_URL is required. Run tests through scripts/run-built-worker-tests.mjs.");
+
 async function render(path) {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
-  workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}-${path}`);
-  const { default: worker } = await import(workerUrl.href);
-  return worker.fetch(new Request(`http://localhost${path}`, { headers: { accept: "text/html" } }), {
-    ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) },
-  }, { waitUntil() {}, passThroughOnException() {} });
+  return fetch(new URL(path, testBaseUrl), { headers: { accept: "text/html" } });
 }
 
 test("lokalne strony używają właściwego przypadku nazwy miasta", async () => {
