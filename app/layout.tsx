@@ -75,6 +75,8 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const requestHeaders = await headers();
+  const language = requestHeaders.get("x-zm-language") === "en" ? "en" : "pl";
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
