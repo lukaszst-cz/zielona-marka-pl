@@ -1,18 +1,16 @@
 import { spawn } from "node:child_process";
 import { once } from "node:events";
-import { createRequire } from "node:module";
 
 const host = "127.0.0.1";
 const port = 8788;
 const baseUrl = `http://${host}:${port}`;
-const require = createRequire(import.meta.url);
-const wranglerCli = require.resolve("wrangler/bin/wrangler.js");
+const npx = process.platform === "win32" ? "npx.cmd" : "npx";
 const groupedProcess = process.platform !== "win32";
 const logs = [];
 
 const wrangler = spawn(
-  process.execPath,
-  [wranglerCli, "dev", "--compatibility-date", "2026-05-22", "--ip", host, "--port", String(port), "--log-level", "error"],
+  npx,
+  ["--no-install", "wrangler", "dev", "--compatibility-date", "2026-05-22", "--ip", host, "--port", String(port), "--log-level", "error"],
   {
     detached: groupedProcess,
     stdio: ["ignore", "pipe", "pipe"],
@@ -40,7 +38,11 @@ async function waitForWorker() {
     }
     try {
       const response = await fetch(`${baseUrl}/robots.txt`, { redirect: "manual", signal: AbortSignal.timeout(2_000) });
-      if (response.status < 500) return;
+      if (response.status < 500) {
+        await new Promise((resolve) => setTimeout(resolve, 600));
+        const confirm = await fetch(`${baseUrl}/robots.txt`, { redirect: "manual", signal: AbortSignal.timeout(2_000) });
+        if (confirm.status < 500) return;
+      }
     } catch {
       // Wrangler is still starting.
     }
