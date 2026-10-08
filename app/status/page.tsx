@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { useRouter } from "next/navigation";
 import { SiteHeader, SiteFooter } from "../SiteChrome";
 
 const benefits = [
@@ -11,11 +12,12 @@ const benefits = [
 
 export default function StatusEntry() {
   const [code, setCode] = useState("");
+  const router = useRouter();
 
   function submit(event: FormEvent) {
     event.preventDefault();
     const clean = code.trim().toUpperCase();
-    if (clean) window.location.href = `/status/${encodeURIComponent(clean)}`;
+    if (clean) router.push(`/status/${encodeURIComponent(clean)}`);
   }
 
   return (
