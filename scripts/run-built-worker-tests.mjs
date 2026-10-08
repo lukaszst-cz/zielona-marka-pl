@@ -71,7 +71,12 @@ try {
       env: { ...process.env, TEST_BASE_URL: baseUrl },
     },
   );
+  const timeout = setTimeout(() => {
+    console.error("Test process exceeded 180 seconds; terminating.");
+    tests.kill("SIGTERM");
+  }, 180_000);
   const [code] = await once(tests, "exit");
+  clearTimeout(timeout);
   exitCode = typeof code === "number" ? code : 1;
 } finally {
   await stopWorker();
