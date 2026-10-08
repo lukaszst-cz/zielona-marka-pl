@@ -348,7 +348,7 @@ test("internal links from sitemap pages never point to missing routes",async()=>
     const response=await fetchPage(pagePath||"/");
     assert.equal(response.status,200,`sitemap page failed: ${pagePath}`);
     const html=await response.text();
-    for(const match of html.matchAll(/href="([^"]+)"/g)){
+    for(const match of html.matchAll(/<a\\b[^>]*\\bhref="([^"]+)"/g)){
       const raw=match[1].replace(/&amp;/g,"&");
       if(!raw.startsWith("/") || raw.startsWith("//")) continue;
       if(raw.startsWith("/_next/") || raw.startsWith("/api/")) continue;
