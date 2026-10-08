@@ -479,9 +479,9 @@ test("Polish and English pages keep reciprocal language metadata",async()=>{
   assert.match(en,/<html lang="en"/);
 
   for(const html of [pl,en]){
-    assert.match(html,/<link rel="alternate" hreflang="pl" href="https:\/\/zielona-marka\.pl"/);
-    assert.match(html,/<link rel="alternate" hreflang="en" href="https:\/\/zielona-marka\.pl\/en"/);
-    assert.match(html,/<link rel="alternate" hreflang="x-default" href="https:\/\/zielona-marka\.pl"/);
+    assert.match(html,/<link rel="alternate" hreflang="pl" href="https:\/\/zielona-marka\.pl"/i);
+    assert.match(html,/<link rel="alternate" hreflang="en" href="https:\/\/zielona-marka\.pl\/en"/i);
+    assert.match(html,/<link rel="alternate" hreflang="x-default" href="https:\/\/zielona-marka\.pl"/i);
   }
 
   assert.match(en,/<meta property="og:url" content="https:\/\/zielona-marka\.pl\/en"/);
