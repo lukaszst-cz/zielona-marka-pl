@@ -35,6 +35,9 @@ test("strona główna prowadzi przez pięć etapów od strony do relacji", async
   assert.match(html, /demo\/mapa-szans-zielona-marka/i);
   assert.match(html, /Wyślij wiadomość/i);
   assert.match(html, /Zróbmy miejsce/i);
+  assert.match(html, /href="\/realizacje\/natura-studio"/i);
+  assert.match(html, /href="\/realizacje\/bistro-forma"/i);
+  assert.match(html, /href="\/realizacje\/dom-dobry"/i);
   assert.doesNotMatch(html, forbiddenBrand);
 });
 
@@ -45,6 +48,7 @@ test("nowe zakładki są renderowane", async () => {
     const html = await response.text();
     assert.doesNotMatch(html, forbiddenBrand, path);
     if (path === "/oferta") assert.match(html, /Przelewy24/i);
+    if (path === "/realizacje") { assert.match(html, /href="\/realizacje\/natura-studio"/i); assert.match(html, /href="\/realizacje\/bistro-forma"/i); assert.match(html, /href="\/realizacje\/dom-dobry"/i); }
     if (path === "/maly-crm-dla-firm") assert.match(html, /PWA/i);
     if (path === "/raport-qa") assert.match(html, /kontroli jakości/i);
     if (path.includes("/poradnik/")) assert.match(html, /"@type":"Article"/);
