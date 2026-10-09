@@ -32,9 +32,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/asystent-zapytan`, lastModified: new Date("2026-10-07"), changeFrequency: "weekly", priority: .85 },
     { url: `${base}/maly-crm-dla-firm`, changeFrequency: "weekly", priority: .9 },
     { url: `${base}/en`, lastModified: new Date("2026-10-07"), changeFrequency: "weekly", priority: .7 },
-    { url: `${base}/realizacje/natura-studio`, lastModified: new Date("2026-10-07"), changeFrequency: "monthly", priority: .6 },
-    { url: `${base}/realizacje/bistro-forma`, lastModified: new Date("2026-10-07"), changeFrequency: "monthly", priority: .6 },
-    { url: `${base}/realizacje/dom-dobry`, lastModified: new Date("2026-10-07"), changeFrequency: "monthly", priority: .6 },
-    ...localCities.map(city => ({ url: `${base}/strony-internetowe/${city}`, lastModified: new Date("2026-10-08"), changeFrequency: "monthly" as const, priority: .82 })),
+    { url: `${base}/realizacje/natura-studio`, lastModified: new Date("2026-10-09"), changeFrequency: "monthly", priority: .6 },
+    { url: `${base}/realizacje/bistro-forma`, lastModified: new Date("2026-10-09"), changeFrequency: "monthly", priority: .6 },
+    { url: `${base}/realizacje/dom-dobry`, lastModified: new Date("2026-10-09"), changeFrequency: "monthly", priority: .6 },
+    ...localCities.map(city => ({ url: `${base}/strony-internetowe/${city}`, lastModified: new Date("2026-10-09"), changeFrequency: "monthly" as const, priority: .82 })),
   ];
 }
