@@ -11,6 +11,12 @@ async function render(path = "/") {
   return fetch(new URL(path, testBaseUrl), { headers: { accept: "text/html" }, signal: AbortSignal.timeout(12_000) });
 }
 
+function headMarkup(html) {
+  const match = html.match(/<head(?:\s[^>]*)?>[\s\S]*?<\/head>/i);
+  assert.ok(match, "document head not found");
+  return match[0];
+}
+
 test("strona główna prowadzi przez pięć etapów od strony do relacji", async () => {
   const response = await render();
   assert.equal(response.status, 200);
@@ -60,9 +66,18 @@ test("lokalne podstrony mają unikalną treść i działający kontakt", async (
     assert.match(html, /FAQPage/i, city);
     assert.match(html, /KONKRETNY SCENARIUSZ/i, city);
     assert.match(html, /OBSZAR DZIAŁANIA/i, city);
+    const head = headMarkup(html);
+    assert.ok(head.includes(`rel="canonical" href="https://zielona-marka.pl/strony-internetowe/${city}"`), city);
     assert.doesNotMatch(html, forbiddenBrand, city);
     assert.doesNotMatch(html, /Małachowskiego\s*1/i, city);
   }
+});
+
+test("dynamiczna strona projektu ma canonical w head", async () => {
+  const response = await render("/realizacje/natura-studio");
+  assert.equal(response.status, 200);
+  const head = headMarkup(await response.text());
+  assert.ok(head.includes('rel="canonical" href="https://zielona-marka.pl/realizacje/natura-studio"'));
 });
 
 test("zaakceptowane zdjęcia właściciela pozostają na stronach procesu i kontaktu", async () => {
