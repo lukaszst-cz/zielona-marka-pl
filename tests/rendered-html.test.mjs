@@ -12,7 +12,7 @@ async function render(path = "/") {
 }
 
 function headMarkup(html) {
-  const match = html.match(/<head(?:\\s[^>]*)?>[\\s\\S]*?<\\/head>/i);
+  const match = html.match(/<head(?:\s[^>]*)?>[\s\S]*?<\/head>/i);
   assert.ok(match, "document head not found");
   return match[0];
 }
