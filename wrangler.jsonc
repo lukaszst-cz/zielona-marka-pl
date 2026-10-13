@@ -30,5 +30,6 @@
   ],
   "observability": {
     "enabled": true
-  }
+  },
+  "cache": { "enabled": true }
 }

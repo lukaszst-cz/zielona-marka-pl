@@ -11,7 +11,11 @@
     "start": "vinext start",
     "test": "npm run build && node scripts/run-built-worker-tests.mjs",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
-    "db:generate": "drizzle-kit generate"
+    "db:generate": "drizzle-kit generate",
+    "dev:vinext": "vinext dev --port 3001",
+    "build:vinext": "vinext build",
+    "start:vinext": "wrangler dev --config dist/server/wrangler.json",
+    "deploy:vinext": "npm run build:vinext && node scripts/prepare-vinext-wrangler-config.mjs && wrangler deploy --config dist/server/wrangler.json --no-bundle --keep-vars"
   },
   "dependencies": {
     "drizzle-orm": "0.45.2",
@@ -20,7 +24,7 @@
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "1.37.1",
-    "@cloudflare/workers-types": "4.20260702.1",
+    "@cloudflare/workers-types": "^5.20261013.1",
     "@eslint/js": "9.39.4",
     "@next/eslint-plugin-next": "16.2.6",
     "@openai/sites-vite-plugin": "0.1.0",
@@ -28,6 +32,7 @@
     "@types/node": "22.19.19",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
+    "@vinext/cloudflare": "^1.0.0-beta.2",
     "@vitejs/plugin-react": "6.0.2",
     "@vitejs/plugin-rsc": "0.5.26",
     "drizzle-kit": "0.31.10",
@@ -42,7 +47,7 @@
     "typescript-eslint": "8.59.3",
     "vinext": "1.0.0-beta.2",
     "vite": "8.0.13",
-    "wrangler": "4.92.0"
+    "wrangler": "^4.150.0"
   },
   "type": "module",
   "packageManager": "npm@11.17.0"
