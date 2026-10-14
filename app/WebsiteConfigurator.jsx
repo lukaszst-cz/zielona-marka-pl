@@ -308,7 +308,7 @@ export default function WebsiteConfigurator() {
       </div>
       <div className={"zm-creator-preview-frame " + (view === "mobile" ? "mobile" : "desktop")}>
         <div className={"zm-demo-page zm-demo-layout-" + siteLayout} style={{ "--demo-bg": theme.bg, "--demo-ink": theme.ink,
-          "--demo-accent": theme.accent, "--demo-text": theme.text, "--demo-panel": theme.panel, "--demo-hero": theme.hero }}>
+          "--demo-accent": theme.accent, "--demo-on-accent": palette === "dark" ? "#14291b" : "#fff", "--demo-text": theme.text, "--demo-panel": theme.panel, "--demo-hero": theme.hero }}>
           <header className="zm-demo-nav">
             <strong>{businessName}</strong>
             <div aria-hidden="true"><span>Oferta</span><span>O firmie</span><span>Kontakt</span></div>
