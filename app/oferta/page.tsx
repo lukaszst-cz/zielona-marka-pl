@@ -5,7 +5,7 @@ import { QuickWhatsApp, SiteFooter, SiteHeader } from "../SiteChrome";
 import { corePackages } from "../site-data";
 import ProcessStandard from "../ProcessStandard";
 
-export const metadata: Metadata = { title: "Strony internetowe – cennik i koszt utrzymania", description: "Wizytówka od 899 zł netto (3 sekcje), pełna strona od 1 449 zł. Sprawdź koszt hostingu, domeny, opieki i łączne wydatki na 3 lata.", alternates: { canonical: "/oferta" }
+export const metadata: Metadata = { title: "Strony internetowe – cennik i koszt utrzymania", description: "Wizytówka od 899 zł netto (3 sekcje), pełna strona od 1 449 zł. Sprawdź koszt hostingu, domeny, opieki i łączne wydatki na 3 lata.", alternates: { canonical: "/oferta" },
   openGraph: { type: "website", url: "/oferta", title: "Strony internetowe – cennik i koszt utrzymania | Zielona Marka", description: "Wizytówka od 899 zł netto (3 sekcje), pełna strona od 1 449 zł. Sprawdź koszt hostingu, domeny, opieki i łączne wydatki na 3 lata.", images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Zielona Marka – strony internetowe, DTP i rozwiązania dla firm" }] },
   twitter: { card: "summary_large_image", title: "Strony internetowe – cennik i koszt utrzymania | Zielona Marka", description: "Wizytówka od 899 zł netto (3 sekcje), pełna strona od 1 449 zł. Sprawdź koszt hostingu, domeny, opieki i łączne wydatki na 3 lata.", images: ["/og.jpg"] }, };
 
