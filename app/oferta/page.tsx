@@ -3,6 +3,7 @@ import Link from "../SafeLink";
 import TotalCostCalculator from "../TotalCostCalculator";
 import { QuickWhatsApp, SiteFooter, SiteHeader } from "../SiteChrome";
 import { corePackages } from "../site-data";
+import ProcessStandard from "../ProcessStandard";
 
 export const metadata: Metadata = { title: "Strony internetowe – cennik i koszt utrzymania", description: "Wizytówka od 899 zł netto (3 sekcje), pełna strona od 1 449 zł. Sprawdź koszt hostingu, domeny, opieki i łączne wydatki na 3 lata.", alternates: { canonical: "/oferta" } };
 
@@ -66,6 +67,7 @@ export default function OfferPage() {
 
     <section className="section shell" aria-labelledby="pelny-koszt-title"><div className="section-head"><div><span className="section-no">WYCENA BEZ NIESPODZIANEK</span><h2 id="pelny-koszt-title">Ile naprawdę kosztuje strona: start, serwer i utrzymanie?</h2></div><p>Wybierz wariant strony, domenę, hosting, opiekę i dodatki. Poznasz osobno opłatę za wykonanie, koszt pierwszego roku, kolejnego roku i trzech lat. Całość możesz wysłać w jednym zapytaniu.</p></div><TotalCostCalculator /></section>
 
+    <ProcessStandard variant="offer" />
     <section className="section shell price-rules"><div><span className="section-no">JASNE ZASADY 30/70</span><h2>Najpierw odbierasz gotową stronę, potem publikujemy ją u Ciebie.</h2></div><ol><li><b>30% zaliczki</b> po akceptacji zakresu i umowy rezerwuje termin i rozpoczyna pracę.</li><li><b>Wersja robocza</b> jest przedstawiana pod bezpiecznym adresem do akceptacji i dwóch rund poprawek.</li><li><b>70% po odbiorze i kontroli jakości (QA)</b> jest płatne przed publikacją na domenie lub serwerze klienta.</li><li><b>Publikacja i przekazanie</b> następują po pełnym rozliczeniu; koszty zewnętrzne są zatwierdzane osobno.</li></ol></section>
   </main><QuickWhatsApp /><SiteFooter /></>;
 }
