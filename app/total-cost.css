@@ -69,3 +69,26 @@
 .zm-dtp-wizard-grid .zm-total-results p{color:#dbe9d6}
 @media(max-width:900px){.zm-dtp-wizard-grid{grid-template-columns:1fr}.zm-dtp-summary{position:static}}
 @media(max-width:620px){.zm-dtp-stepper{grid-template-columns:repeat(2,minmax(0,1fr))}.zm-dtp-stepper button{min-height:54px}.zm-dtp-actions{justify-content:stretch}.zm-dtp-actions>*{flex:1}.zm-dtp-schedule th,.zm-dtp-schedule td{padding:8px 4px;font-size:12px}}
+
+
+/* ZM Studio demo is intentionally lightweight and preserves brand-page framing. */
+.zm-web-creator{display:grid;grid-template-columns:minmax(280px,.85fr) minmax(320px,1.15fr);gap:24px;align-items:stretch}
+.zm-web-creator .zm-total-fields{align-content:start}
+.zm-web-creator .zm-total-fields>.button{text-align:center;justify-content:center}
+.zm-web-estimate-link{font-size:13px;text-decoration:underline;color:#164831;font-weight:700}
+.zm-web-preview-shell{background:#1c4231;padding:clamp(14px,2vw,28px);display:flex;min-height:590px;align-items:stretch}
+.zm-web-preview{width:100%;min-width:0;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 16px 50px #081b1380}
+.zm-web-preview-nav{padding:20px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px;font-size:12px;border-bottom:1px solid #7774}
+.zm-web-preview-nav b{font-size:16px}
+.zm-web-preview-hero{padding:clamp(28px,5vw,58px) clamp(24px,4vw,50px)}
+.zm-web-preview-hero small{font-size:10px;letter-spacing:.15em;font-weight:700}
+.zm-web-preview-hero h3{font:400 clamp(28px,3.5vw,52px)/1.02 Georgia,serif;letter-spacing:-.04em;margin:20px 0;max-width:500px}
+.zm-web-preview-hero p{font-size:14px;line-height:1.65;max-width:410px;margin-bottom:25px}
+.zm-web-preview-button{display:inline-block;padding:13px 16px;font-size:12px;font-weight:700}
+.zm-web-preview-blocks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:0 22px}
+.zm-web-preview-blocks>div{padding:20px 18px;min-height:130px}
+.zm-web-preview-blocks strong{font-size:13px}
+.zm-web-preview-blocks p{font-size:12px;line-height:1.5}
+.zm-web-preview-bottom{margin-top:auto;padding:20px 24px;font-size:10px;opacity:.65}
+@media(max-width:950px){.zm-web-creator{grid-template-columns:1fr}.zm-web-preview-shell{min-height:450px}}
+@media(max-width:620px){.zm-web-preview-nav span{font-size:10px}.zm-web-preview-hero{padding:30px 22px}.zm-web-preview-blocks{grid-template-columns:1fr;padding:0 16px 16px}.zm-web-preview-shell{padding:10px}.zm-web-preview-blocks>div{min-height:90px}}
