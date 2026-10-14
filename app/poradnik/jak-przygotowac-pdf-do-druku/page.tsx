@@ -6,9 +6,9 @@ import { QuickWhatsApp, SiteFooter, SiteHeader } from "../../SiteChrome";
 export const metadata: Metadata = {
   title: "Jak przygotować PDF do druku? Spady, CMYK i PDF/X",
   description: "Praktyczna lista do kontroli plików PDF przed drukiem: format, spady, marginesy, fonty, rozdzielczość obrazów, ICC i PDF/X. Bez typowych błędów produkcyjnych.",
-  alternates: { canonical: "/poradnik/jak-przygotowac-pdf-do-druku" }
+  alternates: { canonical: "/poradnik/jak-przygotowac-pdf-do-druku" },
   openGraph: { type: "article", url: "/poradnik/jak-przygotowac-pdf-do-druku", title: "Jak przygotować PDF do druku? Spady, CMYK i PDF/X | Zielona Marka", description: "Praktyczna lista do kontroli plików PDF przed drukiem: format, spady, marginesy, fonty, rozdzielczość obrazów, ICC i PDF/X. Bez typowych błędów produkcyjnych.", images: [{ url: "/og-poradniki-zielona-marka.png", width: 1200, height: 630, alt: "Blog Zielonej Marki – poradniki dla firm" }], publishedTime: "2026-10-14", modifiedTime: "2026-10-14" },
-  twitter: { card: "summary_large_image", title: "Jak przygotować PDF do druku? Spady, CMYK i PDF/X | Zielona Marka", description: "Praktyczna lista do kontroli plików PDF przed drukiem: format, spady, marginesy, fonty, rozdzielczość obrazów, ICC i PDF/X. Bez typowych błędów produkcyjnych.", images: ["/og-poradniki-zielona-marka.png"] },,
+  twitter: { card: "summary_large_image", title: "Jak przygotować PDF do druku? Spady, CMYK i PDF/X | Zielona Marka", description: "Praktyczna lista do kontroli plików PDF przed drukiem: format, spady, marginesy, fonty, rozdzielczość obrazów, ICC i PDF/X. Bez typowych błędów produkcyjnych.", images: ["/og-poradniki-zielona-marka.png"] },
 };
 
 const checks = [
