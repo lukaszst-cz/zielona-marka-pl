@@ -76,8 +76,8 @@ export default function PriceGuideDtp() {
       <section className="section shell faq-page"><div className="section-head"><div><span className="section-no">PYTANIA PRZED ZAMÓWIENIEM</span><h2>Odpowiedzi w jednym miejscu.</h2></div></div>
         <div className="faq-list">{faq.map(([q,a],i)=><details key={q} open={i===0}><summary><span>{String(i+1).padStart(2,"0")}</span>{q}<i>+</i></summary><p>{a}</p></details>)}</div>
       </section>
+            <div className="shell zm-article-author-wrap"><GuideAuthor published="14 października 2026" updated="14 października 2026" /></div>
       <section className="section guide-cta"><div className="shell"><span className="section-no">WYCENA Z PEŁNYM ZAKRESEM</span><h2>Wybierz liczbę stron, materiały i cykl wydań.</h2><p>Kalkulator pokaże pierwszy koszt, prognozę następnych wydań i sumę serii. Nie musisz znać wszystkich szczegółów — można je doprecyzować przed zleceniem.</p><Link className="button" href="/dtp#kalkulator-dtp">Otwórz konfigurator DTP ↗</Link></div></section>
-      <div className="shell zm-article-author-wrap"><GuideAuthor published="14 października 2026" updated="14 października 2026" /></div>
     </article>
   </main><QuickWhatsApp/><SiteFooter/></>;
 }
