@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { trackAnalyticsEvent } from "./CookieConsent";
+import { saveQuoteTransfer } from "./QuoteTransfer";
 import { asMoney, dtpFormats, dtpKinds, periodOptions, priceDtp } from "./dtp-pricing.mjs";
 
 const defaults = {
@@ -53,8 +54,7 @@ export default function DtpQuoteBuilder() {
     "Uwagi: " + (state.description.trim().slice(0, 250) || "brak"),
     "Druk/dostawa/licencje zdjęć poza wyceną. Potwierdzenie po obejrzeniu materiałów.",
   ].join("\n");
-  const contactUrl = "/kontakt?pakiet=" + encodeURIComponent("DTP: " + quote.kind.name)
-    + "&wycena=" + encodeURIComponent(summary.slice(0, 1140));
+  const contactUrl = "/kontakt?pakiet=" + encodeURIComponent("DTP: " + quote.kind.name);
 
   const numeric = (id, label, key, max = 200, min = 0, disabled = false) =>
     <div className="zm-field"><label htmlFor={id}>{label}</label><input id={id} type="number" min={min} max={max} value={state[key]}
@@ -152,7 +152,7 @@ export default function DtpQuoteBuilder() {
         <div className="zm-dtp-actions">
           {step > 0 && <button type="button" className="zm-dtp-secondary" onClick={() => navigate(step - 1)}>← Wstecz</button>}
           {step < 3 ? <button type="button" className="button" onClick={() => navigate(step + 1)}>Dalej <span aria-hidden="true">↗</span></button>
-            : <a className="button" href={contactUrl} onClick={() => trackAnalyticsEvent("dtp_quote_to_contact", { product: state.kind, editions: quote.count })}>Wyślij konfigurację do wyceny ↗</a>}
+            : <a className="button" href={contactUrl} onClick={() => { saveQuoteTransfer("DTP: " + quote.kind.name, summary); trackAnalyticsEvent("dtp_quote_to_contact", { product: state.kind, editions: quote.count }); }}>Wyślij konfigurację do wyceny ↗</a>}
         </div>
       </div>
       <aside className="zm-total-results zm-dtp-summary" aria-live="polite">
@@ -166,7 +166,7 @@ export default function DtpQuoteBuilder() {
           <p>Rabat rośnie w każdym wydaniu do {quote.maximumDiscountPercent}% na powtarzalne prace nad układem. W kolejnych etapach stawka pozostaje na ustalonym poziomie.</p>
         </>}
         <p>To ceny orientacyjne netto, nie gwarantowana oferta. Druk i koszty operatorów nie są wliczone.</p>
-        <a href={contactUrl} className="zm-cost-link">Wyślij tę konfigurację ↗</a>
+        <a href={contactUrl} className="zm-cost-link" onClick={() => saveQuoteTransfer("DTP: " + quote.kind.name, summary)}>Wyślij tę konfigurację ↗</a>
       </aside>
     </div>
   </div>;
