@@ -158,7 +158,7 @@ test("guides expose author, visible breadcrumbs, FAQ schema and dedicated social
   for(const path of ["/poradnik/dlaczego-strona-firmy-nie-przynosi-zapytan","/poradnik/ile-kosztuje-strona-dla-malej-firmy"]){
     const html=await(await fetchPage(path)).text();
     assert.match(html,/guide-breadcrumbs/,path);
-    assert.match(html,/Łukasz St-cz[\s\S]*Zielona Marka/,path);
+    assert.match(html,/Łukasz Staniewicz[\s\S]*Zielona Marka/,path);
     assert.match(html,/"@type":"FAQPage"/,path);
     assert.match(html,/30\.09\.2026/,path);
   }

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "../../SafeLink";
-import { GuideBreadcrumbs } from "../../GuideElements";
+import { GuideAuthor, GuideBreadcrumbs } from "../../GuideElements";
 import { QuickWhatsApp, SiteFooter, SiteHeader } from "../../SiteChrome";
 
 export const metadata: Metadata = {
@@ -70,6 +70,7 @@ export default function ClientInquiriesGuide() {
       <section className="section shell faq-page"><div className="section-head"><div><span className="section-no">PYTANIA PRAKTYCZNE</span><h2>Czy CRM musi być skomplikowany?</h2></div></div>
         <div className="faq-list">{questions.map(([q, a], i) => <details key={q} open={i === 0}><summary><span>{String(i + 1).padStart(2, "0")}</span>{q}<i>+</i></summary><p>{a}</p></details>)}</div>
       </section>
+            <div className="shell zm-article-author-wrap"><GuideAuthor published="14 października 2026" updated="14 października 2026" /></div>
       <section className="section guide-cta"><div className="shell"><span className="section-no">UPORZĄDKOWANE ZGŁOSZENIA</span>
         <h2>Chcesz prostszy proces od pierwszego kontaktu do wyceny?</h2>
         <p>Możemy zacząć od poprawienia formularza albo zbudować lekki rejestr klientów i statusów. Technologię dobieramy do sposobu pracy firmy.</p>

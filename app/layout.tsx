@@ -10,6 +10,7 @@ import "./total-cost.css";
 import "./blog.css";
 import "./full-site-builder.css";
 import "./navigation-refresh.css";
+import "./premium-polish.css";
 import PolishTypography from "./PolishTypography";
 import CookieConsent from "./CookieConsent";
 import SiteTracking from "./SiteTracking";
@@ -35,8 +36,8 @@ export const metadata: Metadata = {
   },
     description:
       "Strony, formularze wyceny i automatyczny asystent dla warsztatów, ekip remontowych, instalatorów i lokalnych firm usługowych z Warszawy, Targówka i okolic.",
-  authors: [{ name: "Zielona Marka" }],
-  creator: "Zielona Marka",
+  authors: [{ name: "Łukasz Staniewicz", url: "/jak-pracuje" }],
+  creator: "Łukasz Staniewicz",
   openGraph: {
     type: "website",
     url: "/",
@@ -127,7 +128,7 @@ export default async function RootLayout({
       "Halinów",
       "Dąbrówka",
     ],
-    priceRange: "od 990 PLN netto",
+    priceRange: "od 899 PLN netto",
     serviceType: [
       "Projektowanie stron internetowych",
       "Strony dla warsztatów i detailingu",
@@ -153,7 +154,7 @@ export default async function RootLayout({
       {
         "@type": "Person",
         "@id": "https://zielona-marka.pl/#lukasz-st-cz",
-        name: "Łukasz St-cz",
+        name: "Łukasz Staniewicz",
         url: "https://zielona-marka.pl/jak-pracuje",
         worksFor: { "@id": "https://zielona-marka.pl/#business" },
       },

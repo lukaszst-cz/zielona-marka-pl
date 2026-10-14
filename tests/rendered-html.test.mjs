@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { existsSync } from "node:fs";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 const forbiddenBrand = new RegExp(["c" + "hat", "g" + "pt"].join(""), "i");
@@ -79,7 +80,7 @@ test("lokalne podstrony mają unikalną treść i działający kontakt", async (
 
 test("kluczowe statyczne podstrony mają własne metadata w head", async () => {
   const expected = [
-    ["/oferta", "Strony internetowe – cennik i koszt utrzymania", "Wizytówka od 990 zł netto", "https://zielona-marka.pl/oferta"],
+    ["/oferta", "Strony internetowe – cennik i koszt utrzymania", "Wizytówka od 899 zł netto", "https://zielona-marka.pl/oferta"],
     ["/poradnik", "Blog – strony WWW, SEO, DTP i porady dla firm", "Blog Zielonej Marki", "https://zielona-marka.pl/poradnik"],
     ["/dtp", "DTP, wizytówki, ulotki i przygotowanie do druku", "Projektowanie wizytówek", "https://zielona-marka.pl/dtp"],
     ["/opieka-nad-strona", "Opieka nad stroną, hosting i koszty utrzymania", "Ile kosztuje utrzymanie strony WWW?", "https://zielona-marka.pl/opieka-nad-strona"],
@@ -152,5 +153,43 @@ test("Global navigation uses categorized menu and branded social icons", async (
     const footer = html.match(/<footer\b[\s\S]*?<\/footer>/i);
     assert.ok(footer, path + ": missing footer");
     assert.ok((footer[0].match(/href="\/dtp"/g) || []).length <= 1, path + ": repeated DTP link");
+  }
+});
+
+test("Premium clarity and ZM Mini pricing are consistent in public website", async () => {
+  const routes = ["/", "/oferta", "/projektuj-strone", "/poradnik/ile-kosztuje-strona-dla-malej-firmy"];
+  for (const path of routes) {
+    const response = await render(path);
+    assert.equal(response.status, 200, path);
+    const html = await response.text();
+    assert.match(html, /899 zł|899 PLN/, path + ": starter price");
+    assert.doesNotMatch(html, /wizytówk[^<]{0,70}990 zł/, path + ": outdated Mini price");
+  }
+  const offer = await (await render("/oferta")).text();
+  assert.match(offer, /jednostronicowy układ z 3 sekcjami/);
+  const studio = await (await render("/projektuj-strone")).text();
+  assert.match(studio, /899 zł/);
+  const home = await (await render("/")).text();
+  assert.match(home, /zmh-social-panel/);
+  assert.match(home, /\/icon-github-zielona-marka\.svg/);
+  assert.match(home, /Zaprojektuj przykładową stronę/);
+  const article = await (await render("/poradnik/jak-przygotowac-pdf-do-druku")).text();
+  assert.match(article, /Łukasz Staniewicz/);
+});
+
+test("ZM Studio offers five distinct full-site templates and six independent palettes", async () => {
+  const html = await (await render("/projektuj-strone")).text();
+  for (const name of ["Klasyczny firmowy", "Editorial premium", "Minimal &amp; elegancja", "Galeria i realizacje", "Lokalny kontakt"]) {
+    assert.match(html, new RegExp(name), "Missing distinct template: " + name);
+  }
+  for (const color of ["Botaniczny", "Nowoczesny", "Elegancki premium", "Jasny atelier", "Ciepły terrakota", "Kreatywny śliwkowy"]) {
+    assert.match(html, new RegExp(color), "Missing palette: " + color);
+  }
+  assert.match(html, /aria-label="Wybierz układ i wygląd strony"/);
+  assert.match(html, /zm-demo-layout-classic/);
+  assert.match(html, /zm-demo-footer/);
+  const styles = await readFile(new URL("../app/full-site-builder.css", import.meta.url), "utf8");
+  for (const layout of ["editorial", "minimal", "showcase", "contact"]) {
+    assert.match(styles, new RegExp("zm-demo-layout-" + layout), "Missing responsive layout CSS: " + layout);
   }
 });

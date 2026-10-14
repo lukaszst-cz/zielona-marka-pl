@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { trackAnalyticsEvent } from "./CookieConsent";
 
 const siteOptions = [
-  { id: "mini", name: "ZM Mini – prosta wizytówka", price: 990 },
+  { id: "mini", name: "ZM Mini – 3 sekcje, bez formularza", price: 899 },
   { id: "start", name: "ZM Start – kompletna strona", price: 1449 },
   { id: "leadflow", name: "ZM LeadFlow – strona z formularzem", price: 4490 },
   { id: "flow", name: "ZM Flow – strona i automatyzacja", price: 6900 },
