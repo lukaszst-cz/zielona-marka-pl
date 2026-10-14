@@ -1,13 +1,22 @@
 "use client";
 
 import Link from "./SafeLink";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
+import { takeQuoteTransfer } from "./QuoteTransfer";
 import { trackAnalyticsEvent } from "./CookieConsent";
 
 export default function ContactForm({ audit = false, initialPackage = "", initialEstimate = "" }: { audit?: boolean; initialPackage?: string; initialEstimate?: string }) {
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
+  const messageRef = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    const summary = takeQuoteTransfer(initialPackage);
+    if (!summary || !messageRef.current) return;
+    const current = messageRef.current.value;
+    messageRef.current.value = [current, summary].filter(Boolean).join("\n\n").slice(0, 8000);
+  }, [initialPackage]);
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     trackAnalyticsEvent("form_submit_attempt", { form_name: audit ? "miniocena" : "brief", page_path: window.location.pathname });
@@ -32,7 +41,7 @@ export default function ContactForm({ audit = false, initialPackage = "", initia
     <label>Najważniejszy efekt<select name="goal" defaultValue=""><option value="">Wybierz, jeśli wiesz</option><option>Więcej konkretnych zapytań</option><option>Lepsza prezentacja firmy i oferty</option><option>Porządek w obsłudze klientów</option><option>Sprzedaż produktów lub voucherów</option><option>Mniej ręcznej pracy i powtarzalnych pytań</option></select></label>
     <label>Sprzedaż lub płatności <span>(opcjonalnie)</span><select name="sales" defaultValue=""><option value="">Nie dotyczy / jeszcze nie wiem</option><option>Produkty lub vouchery online</option><option>Rezerwacje usług</option><option>Płatność za usługę lub zaliczka</option></select></label>
     <label>Orientacyjny budżet <span>(opcjonalnie)</span><select name="budget" defaultValue=""><option value="">Wolę najpierw poznać zakres</option><option>do 3 000 zł</option><option>3 000–6 000 zł</option><option>6 000–12 000 zł</option><option>powyżej 12 000 zł</option></select></label>
-    <label className="form-wide">Co dziś nie działa albo jaki efekt chcesz osiągnąć?<textarea required name="message" maxLength={8000} rows={5} defaultValue={[initialPackage && "Wybrany pakiet: " + initialPackage, initialEstimate].filter(Boolean).join("\n\n")} placeholder="Np. mam starą stronę, klienci nie dzwonią, chcę sprzedawać kilka produktów…" /></label>
+    <label className="form-wide">Co dziś nie działa albo jaki efekt chcesz osiągnąć?<textarea required name="message" ref={messageRef} maxLength={8000} rows={5} defaultValue={[initialPackage && "Wybrany pakiet: " + initialPackage, initialEstimate].filter(Boolean).join("\n\n")} placeholder="Np. mam starą stronę, klienci nie dzwonią, chcę sprzedawać kilka produktów…" /></label>
     <label className="form-consent form-wide"><input required type="checkbox" name="consent" value="yes" /> <span>Zapoznałem/-am się z <Link href="/polityka-prywatnosci">polityką prywatności</Link> i proszę o kontakt.</span></label>
     <button className="button form-wide" disabled={sending} type="submit">{sending ? "Wysyłam…" : audit ? "Poproś o miniocenę" : "Wyślij brief"}<span>↗</span></button>
     {error && <p role="alert" className="form-error form-wide">{error}</p>}
