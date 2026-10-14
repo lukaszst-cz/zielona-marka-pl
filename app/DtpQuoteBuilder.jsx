@@ -76,7 +76,6 @@ export default function DtpQuoteBuilder() {
         <span className="section-no">KROK {step + 1} Z 4</span>
         {step === 0 && <>
           <h3>Jaki materiał przygotowujemy?</h3>
-          {select("dtp-kind", "Rodzaj materiału", "kind", dtpKinds.map((item) => [item.id, item.name]))}
           <div className="zm-field"><label htmlFor="dtp-kind-change">Zmiana rodzaju materiału</label><select id="dtp-kind-change" value={state.kind} onChange={(event) => updateKind(event.target.value)}>
             {dtpKinds.map((kind) => <option key={kind.id} value={kind.id}>{kind.name}</option>)}
           </select><small>Wybranie innego materiału ustawi typową liczbę stron. Dla niestandardowych układów potwierdzimy produkcję.</small></div>
