@@ -6,7 +6,7 @@ import RelatedServices from "../RelatedServices";
 
 export const metadata: Metadata = {
   title: "Poradniki dla małych firm",
-  description: "Praktyczne poradniki Zielonej Marki o kosztach strony, zdobywaniu zapytań, modernizacji i obsłudze klientów w małej firmie.",
+  description: "Poradniki o kosztach stron, SEO lokalnym, DTP, gazetkach produktowych, modernizacji i obsłudze zapytań w małych firmach.",
   alternates: { canonical: "/poradnik", types: { "application/rss+xml": "/poradnik/rss.xml" } },
   openGraph: { title: "Poradniki dla małych firm | Zielona Marka", description: "Praktycznie o stronach, zapytaniach i widoczności lokalnej.", url: "/poradnik", images: [{ url: "/og-poradniki-zielona-marka.png", width: 1200, height: 630, alt: "Poradniki Zielonej Marki dla małych firm" }] },
   twitter: { card: "summary_large_image", images: ["/og-poradniki-zielona-marka.png"] },
@@ -18,6 +18,7 @@ const guides = [
   { href: "/poradnik/strona-internetowa-dla-warsztatu-co-powinna-zawierac", no: "03", label: "WARSZTAT I DETAILING", title: "Co powinna zawierać strona internetowa warsztatu?", text: "Praktyczna lista elementów: usługi, telefon, lokalizacja, formularz, zdjęcia, opinie i lokalna widoczność.", time: "około 9 minut" },
   { href: "/poradnik/strona-internetowa-dla-salonu-beauty-co-powinna-zawierac", no: "04", label: "SALON BEAUTY", title: "Co powinna zawierać strona internetowa salonu beauty?", text: "Oferta, cennik, efekty, rezerwacja, przygotowanie do wizyty, lokalna widoczność oraz sprzedaż voucherów i produktów.", time: "około 9 minut" },
   { href: "/poradnik/co-powinna-miec-strona-firmy-uslugowej", no: "05", label: "FIRMA USŁUGOWA", title: "Co powinna mieć strona firmy usługowej?", text: "Zakres usług, obszar działania, realizacje, proces wyceny, formularz z lokalizacją i zdjęciami oraz lokalne SEO.", time: "około 9 minut" },
+  { href: "/poradnik/ile-kosztuje-projekt-gazetki", no: "06", label: "DTP I GAZETKI", title: "Ile kosztuje projekt gazetki reklamowej?", text: "Skład, zdjęcia, produkty, pliki produkcyjne i oszczędności przy cyklicznych wydaniach.", time: "około 7 minut" },
 ] as const;
 
 export default function GuidesPage() {
