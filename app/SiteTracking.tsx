@@ -34,14 +34,15 @@ export default function SiteTracking() {
       const link = (event.target as Element | null)?.closest<HTMLAnchorElement>("a[href]");
       if (!link) return;
       const href = link.getAttribute("href") ?? "";
-      if (href.startsWith("/poradnik") && !pathname.startsWith("/poradnik")) trackAnalyticsEvent("guide_entry_click", { link_url: href, source_path: pathname });
-      if (pathname.startsWith("/poradnik") && href.startsWith("/") && !href.startsWith("/poradnik")) trackAnalyticsEvent("guide_cta_click", { link_url: href, source_path: pathname, link_text: (link.textContent ?? "").trim().slice(0, 80) });
+      const analyticsHref = href.split("?")[0];
+      if (href.startsWith("/poradnik") && !pathname.startsWith("/poradnik")) trackAnalyticsEvent("guide_entry_click", { link_url: analyticsHref, source_path: pathname });
+      if (pathname.startsWith("/poradnik") && href.startsWith("/") && !href.startsWith("/poradnik")) trackAnalyticsEvent("guide_cta_click", { link_url: analyticsHref, source_path: pathname, link_text: (link.textContent ?? "").trim().slice(0, 80) });
       const linkText = (link.textContent ?? "").trim().slice(0, 80);
-      if (href.startsWith("tel:")) { trackAnalyticsEvent("contact_click", { method: "phone", link_url: href, source_path: pathname }); trackAnalyticsEvent("click_phone", { link_url: href, source_path: pathname }); }
-      else if (href.startsWith("mailto:")) { trackAnalyticsEvent("contact_click", { method: "email", link_url: href, source_path: pathname }); trackAnalyticsEvent("click_email", { link_url: href, source_path: pathname }); }
-      else if (href.includes("wa.me/")) { trackAnalyticsEvent("contact_click", { method: "whatsapp", link_url: href, source_path: pathname }); trackAnalyticsEvent("click_whatsapp", { link_url: href, source_path: pathname }); }
-      else if (link.target === "_blank") trackAnalyticsEvent("outbound_click", { link_url: link.href, source_path: pathname });
-      else if (href.includes("/kontakt") || href.startsWith("#lokalny-kontakt")) { trackAnalyticsEvent("cta_click", { link_url: href, link_text: linkText, source_path: pathname }); trackAnalyticsEvent("cta_contact", { link_url: href, link_text: linkText, source_path: pathname }); }
+      if (href.startsWith("tel:")) { trackAnalyticsEvent("contact_click", { method: "phone", link_url: analyticsHref, source_path: pathname }); trackAnalyticsEvent("click_phone", { link_url: analyticsHref, source_path: pathname }); }
+      else if (href.startsWith("mailto:")) { trackAnalyticsEvent("contact_click", { method: "email", link_url: analyticsHref, source_path: pathname }); trackAnalyticsEvent("click_email", { link_url: analyticsHref, source_path: pathname }); }
+      else if (href.includes("wa.me/")) { trackAnalyticsEvent("contact_click", { method: "whatsapp", link_url: analyticsHref, source_path: pathname }); trackAnalyticsEvent("click_whatsapp", { link_url: analyticsHref, source_path: pathname }); }
+      else if (link.target === "_blank") trackAnalyticsEvent("outbound_click", { link_url: link.href.split("?")[0], source_path: pathname });
+      else if (href.includes("/kontakt") || href.startsWith("#lokalny-kontakt")) { trackAnalyticsEvent("cta_click", { link_url: analyticsHref, link_text: linkText, source_path: pathname }); trackAnalyticsEvent("cta_contact", { link_url: analyticsHref, link_text: linkText, source_path: pathname }); }
     };
     const startedForms = new Set<HTMLFormElement>();
     const onFormFocus = (event: FocusEvent) => {
