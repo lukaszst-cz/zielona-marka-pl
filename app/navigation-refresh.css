@@ -1,0 +1,53 @@
+/* Global navigation: keep the existing brand/logo and all established routes.
+   A single responsive, categorized offer panel replaces the 13-item ungrouped list. */
+.zm-header .zm-nav{position:relative}
+.zm-header .zm-nav-desktop{gap:clamp(8px,1.3vw,19px);font-size:14px}
+.zm-header .zm-offer-menu{position:static}
+.zm-header .zm-nav-desktop .zm-offer-menu > .zm-mega-menu{
+  position:absolute;z-index:60;top:calc(100% - 2px);left:0;right:0;
+  width:100%;max-width:none;min-width:0;
+  display:grid;grid-template-columns:minmax(200px,.28fr) minmax(0,.72fr);
+  gap:24px;background:#061d13;border:1px solid #a8d07a88;border-radius:8px;
+  padding:clamp(20px,2.5vw,32px);box-shadow:0 24px 55px #000b;
+  max-height:min(78vh,710px);overflow:auto;text-shadow:none;
+}
+.zm-header .zm-mega-intro{border-right:1px solid #a1c79555;padding-right:25px}
+.zm-header .zm-mega-intro>strong{display:block;font:600 clamp(20px,2vw,27px)/1.19 Georgia,serif;color:#f5f8ed;margin-bottom:14px}
+.zm-header .zm-mega-intro p{color:#d2e3c9;font:400 14px/1.65 Arial,sans-serif;margin:0 0 25px}
+.zm-header .zm-mega-intro>a{color:#b9f17f;text-decoration:underline;text-underline-offset:4px;font-size:14px;font-weight:700}
+.zm-header .zm-mega-groups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:25px 28px}
+.zm-header .zm-mega-group{min-width:0}
+.zm-header .zm-mega-group h2{color:#b0f36c;font:700 14px/1.35 Arial,sans-serif;letter-spacing:.025em;margin:0 0 7px}
+.zm-header .zm-mega-group p{font:400 13px/1.5 Arial,sans-serif;color:#cadfc4;margin:0 0 10px}
+.zm-header .zm-mega-group a{display:block;min-height:37px;padding:7px 0;color:#f2f6ed;font:500 15px/1.42 Arial,sans-serif;text-decoration:none}
+.zm-header .zm-mega-group a:hover,.zm-header .zm-mega-group a:focus-visible{color:#b8f584;text-decoration:underline;text-underline-offset:3px}
+.zm-header .zm-nav .zm-mega-menu :is(a,button):focus-visible{outline:2px solid #cbfba0;outline-offset:3px}
+.zm-header .zm-mobile-menu > .zm-mobile-menu-panel{width:min(440px,calc(100vw - 28px));max-height:min(82vh,760px);padding:20px;gap:10px}
+.zm-header .zm-mobile-menu-shortcuts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.zm-header .zm-mobile-menu-shortcuts a{display:flex;justify-content:center;align-items:center;min-height:47px;padding:9px 12px;background:#163b27;border:1px solid #7ba575;color:#fff;font-size:15px;font-weight:700;border-radius:5px;text-align:center}
+.zm-header .zm-mobile-menu-group{padding:16px 0 9px;border-top:1px solid #b8d4a447;display:grid;gap:3px}
+.zm-header .zm-mobile-menu-group h2{font:700 14px/1.5 Arial,sans-serif;color:#bdf486;margin:0 0 5px}
+.zm-header .zm-mobile-menu-group>a{font:500 15px/1.35 Arial,sans-serif;color:#eff8e8;min-height:42px;padding:10px 2px}
+.zm-header .zm-mobile-menu-group>a:hover{text-decoration:underline;text-underline-offset:3px}
+.zm-footer .zm-footer-social-links{display:flex;flex-wrap:wrap;gap:9px 16px;align-items:center;margin-top:4px}
+.zm-footer .zm-footer-social-links a{display:inline-flex;gap:9px;align-items:center;min-height:42px;color:#ecf3e7;font-size:15px;text-decoration:none}
+.zm-footer .zm-footer-social-links img{display:block;width:22px;height:22px;object-fit:contain;flex:none}
+.zm-footer .zm-footer-social-links a:hover{text-decoration:underline;text-underline-offset:3px;color:#b0f36c}
+.zm-footer .zm-footer-social-links a:focus-visible{outline:2px solid #b0f36c;outline-offset:4px}
+.zm-footer .brand-wordmark small{font-size:10px!important;line-height:1.35}
+.zm-footer :is(a,button){font-size:15px!important;line-height:1.6}
+.zm-public.zm-blog-page .zm-blog-tools label{font-size:15px!important}
+.zm-public.zm-blog-page .zm-blog-tools input{font-size:16px!important;min-height:50px}
+.zm-public.zm-blog-page .zm-blog-filters button{font-size:15px!important;padding:11px 16px;min-height:46px}
+.zm-public.zm-blog-page .zm-blog-tools-bottom{font-size:15px;color:#e9f4e5}
+.zm-public.zm-blog-page .guide-library .zm-blog-results>a>span{font-size:13px!important;letter-spacing:.09em;line-height:1.5}
+.zm-public.zm-blog-page .guide-library .zm-blog-results>a p{font-size:16px!important;color:#e3efdf!important}
+.zm-public.zm-blog-page .guide-card-meta :is(b,small){font-size:14px!important;line-height:1.4}
+.zm-public.zm-blog-page .zm-blog-service-grid>a>span{font-size:13px}
+.zm-public.zm-blog-page .zm-blog-service-grid>a p{font-size:16px!important}
+.zm-public.zm-blog-page .zm-blog-service-grid>a b{font-size:14px}
+.zm-public.zm-blog-page .section-no{font-size:13px!important}
+.zm-public.zm-blog-page .guide-breadcrumbs{font-size:14px!important}
+@media(max-width:1120px){.zm-header .zm-nav-desktop{gap:8px;font-size:13px}.zm-header .zm-nav-desktop>a{padding-inline:4px}}
+@media(max-width:850px){.zm-header .zm-mega-groups{grid-template-columns:1fr}.zm-header .zm-nav-desktop .zm-offer-menu>.zm-mega-menu{grid-template-columns:1fr}}
+@media(max-width:600px){.zm-public.zm-blog-page .guide-library .zm-blog-results>a>span{font-size:12px!important}.zm-public.zm-blog-page .guide-card-meta :is(b,small){font-size:13px!important}.zm-footer .zm-footer-social-links{gap:5px 12px}}
