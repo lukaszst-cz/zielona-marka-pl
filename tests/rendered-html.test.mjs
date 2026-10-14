@@ -232,3 +232,36 @@ test("Company services and readable footer are consistent across current pages",
     assert.ok(style.includes(name), name + ": missing readability rule");
   }
 });
+
+test("Customer-first navigation features Studio and keeps older service routes discoverable", async () => {
+  for (const route of ["/", "/oferta", "/poradnik", "/projektuj-strone"]) {
+    const response = await render(route);
+    assert.equal(response.status, 200, route);
+    const html = await response.text();
+    assert.match(html, /class="zm-nav-studio"/);
+    assert.match(html, /Zaprojektuj własną stronę/);
+    assert.match(html, /Porównaj pakiety i ceny/);
+    assert.match(html, /Narzędzia bezpłatne/);
+    assert.match(html, /href="\\/dtp"/);
+    assert.match(html, /href="\\/projektuj-strone"/);
+  }
+});
+
+test("DTP and website care list included services separately from exclusions", async () => {
+  const [dtp, care, offer, blog] = await Promise.all([
+    render("/dtp").then(x=>x.text()),
+    render("/opieka-nad-strona").then(x=>x.text()),
+    render("/oferta").then(x=>x.text()),
+    render("/poradnik/ile-kosztuje-strona-dla-malej-firmy").then(x=>x.text()),
+  ]);
+  assert.match(dtp, /Orientacyjna cena projektu/);
+  assert.match(dtp, /Druk i dostawa nie są wliczone w cenę projektu/);
+  assert.match(care, /Zakres opieki/);
+  assert.match(care, /Ważne:/);
+  assert.match(offer, /W cenie pakietu/);
+  assert.match(blog, /Co obejmuje orientacyjna cena/);
+  const styles = await readFile(new URL("../app/premium-clarity.css", import.meta.url), "utf8");
+  for (const cls of [".zm-dtp-prices", ".cost-packages", ".faq-list", ".guide-faq", ".zm-creator-config", ".zm-mega-group"]) {
+    assert.ok(styles.includes(cls), cls + ": no shared readability style");
+  }
+});
