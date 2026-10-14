@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "../SafeLink";
 import ContactForm from "../ContactForm";
+import ProcessStandard from "../ProcessStandard";
 import { QuickWhatsApp, SiteFooter, SiteHeader } from "../SiteChrome";
 
 export const metadata: Metadata = {
@@ -78,6 +79,7 @@ export default function LocalWebsitesHubPage() {
       </div>
     </section>
 
+    <ProcessStandard variant="web" />
     <section className="section contact-section"><div className="shell contact-grid"><div><span className="section-no">KRÓTKA ROZMOWA</span><h2>Powiedz, gdzie działasz i czego potrzebują Twoi klienci.</h2><p>Na tej podstawie ustalimy, czy wystarczy jedna mocna strona, czy warto wydzielić osobne usługi lub lokalizacje.</p></div><ContactForm audit /></div></section>
   </main><QuickWhatsApp /><SiteFooter /></>;
 }

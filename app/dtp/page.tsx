@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "../SafeLink";
 import DtpQuoteBuilder from "../DtpQuoteBuilder";
+import ProcessStandard from "../ProcessStandard";
 import { QuickWhatsApp, SiteFooter, SiteHeader } from "../SiteChrome";
 
 export const metadata: Metadata = {
@@ -49,6 +50,7 @@ export default function DtpPage() {
     <section className="section shell"><div className="section-head"><div><span className="section-no">SPÓJNY WIZERUNEK</span><h2>Strona, wizytówka, ulotka i katalog mogą mówić jednym językiem.</h2></div><p>Jedna typografia, kolory marki, zdjęcia i konsekwentna prezentacja oferty pomagają zbudować rozpoznawalność. Nie musisz zamawiać wszystkiego naraz.</p></div><p className="zm-dtp-note"><Link href="/oferta">Zobacz ofertę stron WWW ↗</Link></p></section>
     <section className="section shell"><div className="section-head"><div><span className="section-no">PRZEWODNIK DLA FIRM</span><h2>Co wpływa na koszt cyklicznej gazetki?</h2></div><p>Sprawdź, jak przygotować arkusz produktów, zdjęcia i stałą makietę, żeby obniżyć cenę kolejnych wydań bez utraty jakości.</p></div><Link className="button" href="/poradnik/ile-kosztuje-projekt-gazetki">Przeczytaj o cenie i rabatach ↗</Link></section>
     <section className="section shell faq-page"><div className="section-head"><div><span className="section-no">PYTANIA PRZED ZAMÓWIENIEM</span><h2>DTP bez niejasnych ustaleń.</h2></div></div><div className="faq-list">{faq.map(([question, answer], index) => <details key={question} open={index === 0}><summary><span>{String(index + 1).padStart(2, "0")}</span>{question}<i>+</i></summary><p>{answer}</p></details>)}</div></section>
+    <ProcessStandard variant="dtp" />
     <section className="section guide-cta"><div className="shell"><span className="section-no">WYCENA DTP</span><h2>Wyślij format, liczbę stron i materiały.</h2><p>Powiedz, czy potrzebujesz projektu od początku, czy tylko sprawdzenia i przygotowania pliku do druku. W odpowiedzi ustalimy zakres, termin i cenę.</p><Link className="button" href="/kontakt?pakiet=DTP%20i%20przygotowanie%20do%20druku">Poproś o wycenę <span>↗</span></Link></div></section>
   </main><QuickWhatsApp /><SiteFooter /></>;
 }
