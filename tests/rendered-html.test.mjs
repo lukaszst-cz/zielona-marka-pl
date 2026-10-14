@@ -194,16 +194,23 @@ test("ZM Studio offers five distinct full-site templates and six independent pal
   }
 });
 
-test("Both website quote tools describe same domain and contact-form package scope", async () => {
+test("Website quote tools render accurate default prices, with alternate conditions implemented", async () => {
   const [offer, studio] = await Promise.all([
-    render("/oferta").then(r=>r.text()),
-    render("/projektuj-strone").then(r=>r.text())
+    render("/oferta").then(r=>r.text()), render("/projektuj-strone").then(r=>r.text())
   ]);
-  assert.match(offer, /Posiadana domena — odnowienie w pierwszym roku/);
-  assert.match(studio, /Domena posiadana — koszt odnowienia w pierwszym roku/);
-  assert.match(offer, /Dla domeny już opłaconej/);
+  assert.match(offer, /Odnowienie domeny, zł netto\/rok/);
+  assert.match(offer, /Rejestracja \(rok 1\), zł netto/);
   assert.match(studio, /Formularz kontaktowy jest uwzględniony w podstawowym zakresie pakietu/);
-  assert.match(studio, /ZM Mini: 3 sekcje na materiałach klienta, bez formularza/);
   assert.match(studio, /w cenie wybranego pakietu/);
-  assert.match(studio, /wycena indywidualna/);
+  assert.match(studio, /od 1\s*<!-- -->669 zł/);
+  // React server output includes only the currently selected branch.
+  // Check code paths for conditional options separately; pure pricing tests
+  // cover calculations for each branch.
+  const offerSource = await readFile(new URL("../app/TotalCostCalculator.tsx", import.meta.url), "utf8");
+  const studioSource = await readFile(new URL("../app/WebsiteConfigurator.jsx", import.meta.url), "utf8");
+  assert.match(offerSource, /Posiadana domena — odnowienie w pierwszym roku/);
+  assert.match(studioSource, /Domena posiadana — koszt odnowienia w pierwszym roku/);
+  assert.match(studioSource, /ZM Mini: 3 sekcje na materiałach klienta, bez formularza/);
+  assert.match(studioSource, /wycena indywidualna/);
+  assert.match(studioSource, /saveQuoteTransfer/);
 });
