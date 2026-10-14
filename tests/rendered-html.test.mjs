@@ -116,3 +116,22 @@ test("zaakceptowane zdjęcia właściciela pozostają na stronach procesu i kont
     assert.match(await response.text(), new RegExp(file.replaceAll(".", "\\.")), `${path}: ${file}`);
   }
 });
+
+
+test("ZM Studio is part of the real website and previews a complete customer page", async () => {
+  const response = await render("/projektuj-strone");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  for (const className of [
+    "zm-header", "zm-footer", "zm-creator-config", "zm-creator-quote",
+    "zm-creator-preview-wrap", "zm-demo-nav", "zm-demo-hero",
+    "zm-demo-services", "zm-demo-about", "zm-demo-steps", "zm-demo-faq",
+    "zm-demo-contact", "zm-demo-footer",
+  ]) assert.match(html, new RegExp(className), className);
+  assert.match(html, /Cała przykładowa strona/);
+  assert.match(html, /Pierwszy rok łącznie/);
+  assert.match(html, /Łącznie przez 3 lata/);
+  assert.match(html, /od 1[\s\u00a0]*669 zł/);
+  assert.match(html, /Wyślij projekt i wycenę/);
+  assert.doesNotMatch(html, /class="zm-web-preview"/);
+});
