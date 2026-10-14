@@ -36,8 +36,8 @@ export const metadata: Metadata = {
   },
     description:
       "Strony, formularze wyceny i automatyczny asystent dla warsztatów, ekip remontowych, instalatorów i lokalnych firm usługowych z Warszawy, Targówka i okolic.",
-  authors: [{ name: "Zielona Marka" }],
-  creator: "Zielona Marka",
+  authors: [{ name: "Łukasz Staniewicz", url: "/jak-pracuje" }],
+  creator: "Łukasz Staniewicz",
   openGraph: {
     type: "website",
     url: "/",
