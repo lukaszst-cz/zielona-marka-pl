@@ -162,3 +162,13 @@ html body .zm-public.guide-page>article :is(.guide-cta,.mini-shop-section){borde
   html body .zm-public.guide-page>article>.page-hero{padding-left:20px;padding-right:20px}
   html body .zm-public.guide-page>article>.section:not(.shell)>div.shell{width:calc(100% - 40px)}
 }
+
+
+/* Editorial digest uses the same 1190px shell and forest card materials. */
+html body .zm-public.guide-page .zm-guide-highlights{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;padding-block:20px 35px}
+html body .zm-public.guide-page .zm-guide-highlights>div{min-height:200px;padding:27px;display:flex;flex-direction:column;gap:11px;background:linear-gradient(145deg,#0d3825,#08261c);border:1px solid rgba(184,226,155,.42);border-radius:8px}
+html body .zm-public.guide-page .zm-guide-highlights>div>span{font:750 12px/1.5 Arial,sans-serif;letter-spacing:.08em;color:#bff28e}
+html body .zm-public.guide-page .zm-guide-highlights h2{font:650 clamp(21px,2vw,27px)/1.24 Arial,sans-serif!important;color:#f2f9ef!important;margin:2px 0 4px}
+html body .zm-public.guide-page .zm-guide-highlights p{font:400 16px/1.68 Arial,sans-serif!important;color:#e3eedc!important;margin:0}
+html body .zm-public.guide-page>article>.page-hero{padding-block:clamp(60px,7vw,85px)}
+@media(max-width:850px){html body .zm-public.guide-page .zm-guide-highlights{grid-template-columns:1fr;gap:10px;padding-block:20px}html body .zm-public.guide-page .zm-guide-highlights>div{min-height:0;padding:23px}}
