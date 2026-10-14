@@ -29,7 +29,7 @@ export default function GuidePrintPdf() {
     headline: "Jak przygotować PDF do druku? Spady, CMYK i PDF/X",
     datePublished: "2026-10-14",
     dateModified: "2026-10-14",
-    author: { "@id": "https://zielona-marka.pl/#lukasz-staniewicz" },
+    author: { "@id": "https://zielona-marka.pl/#lukasz-st-cz" },
     publisher: { "@id": "https://zielona-marka.pl/#business" },
     mainEntityOfPage: "https://zielona-marka.pl/poradnik/jak-przygotowac-pdf-do-druku",
   };
