@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { trackAnalyticsEvent } from "./CookieConsent";
+import { saveQuoteTransfer } from "./QuoteTransfer";
 
 const siteOptions = [
   { id: "mini", name: "ZM Mini – 3 sekcje, bez formularza", price: 899 },
@@ -67,8 +68,7 @@ export default function TotalCostCalculator() {
     "Dostawca hostingu: " + result.selectedHost.name,
   ].join("\n");
 
-  const url = "/kontakt?pakiet=" + encodeURIComponent(result.selectedSite.name)
-    + "&wycena=" + encodeURIComponent(summary);
+  const url = "/kontakt?pakiet=" + encodeURIComponent(result.selectedSite.name);
 
   return <div className="zm-total-builder" id="kalkulator-pelnego-kosztu">
     <div className="zm-total-fields">
@@ -117,7 +117,7 @@ export default function TotalCostCalculator() {
       <div className="zm-cost-next"><span>Kolejny rok (odnowienia + opieka)</span><strong>{pln(result.nextYear)}</strong></div>
       <div className="zm-cost-next"><span>Łącznie 3 lata</span><strong>{pln(result.threeYears)}</strong></div>
       <p>Wszystkie kwoty netto, orientacyjne i nie stanowią wiążącej oferty. Ceny domeny i hostingu zależą od operatora; konto i faktura powinny należeć do klienta. Dla posiadanych już usług wprowadź ich rzeczywiste koszty roczne. Zakładamy 12 miesięcy opieki w każdym porównywanym roku. Ostateczną wycenę potwierdzamy przed zamówieniem.</p>
-      <a className="button" href={url} onClick={() => trackAnalyticsEvent("website_quote_to_contact", { package_id: site, care_plan: care, hosting_type: hosting })}>Wyślij konfigurację do wyceny <span aria-hidden="true">↗</span></a>
+      <a className="button" href={url} onClick={() => { saveQuoteTransfer(result.selectedSite.name, summary); trackAnalyticsEvent("website_quote_to_contact", { package_id: site, care_plan: care, hosting_type: hosting }); }}>Wyślij konfigurację do wyceny <span aria-hidden="true">↗</span></a>
       <a className="zm-cost-link" href="/opieka-nad-strona">Porównaj zakres opieki ↗</a>
     </div>
   </div>;
