@@ -5,7 +5,9 @@ import RelatedServices from "../RelatedServices";
 import ProcessStandard from "../ProcessStandard";
 import { QuickWhatsApp, SiteFooter, SiteHeader } from "../SiteChrome";
 
-export const metadata: Metadata = { title: "Mały CRM dla firmy", description: "Od dobrego zapytania do następnego kroku: prosty CRM do klientów, wycen, zleceń i terminów dla firm usługowych.", alternates: { canonical: "/maly-crm-dla-firm" } };
+export const metadata: Metadata = { title: "Mały CRM dla firmy", description: "Od dobrego zapytania do następnego kroku: prosty CRM do klientów, wycen, zleceń i terminów dla firm usługowych.", alternates: { canonical: "/maly-crm-dla-firm" },
+  openGraph: { type: "website", url: "/maly-crm-dla-firm", title: "Mały CRM dla firmy | Zielona Marka", description: "Od dobrego zapytania do następnego kroku: prosty CRM do klientów, wycen, zleceń i terminów dla firm usługowych.", images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Zielona Marka – strony WWW i narzędzia dla firm" }] },
+  twitter: { card: "summary_large_image", title: "Mały CRM dla firmy | Zielona Marka", description: "Od dobrego zapytania do następnego kroku: prosty CRM do klientów, wycen, zleceń i terminów dla firm usługowych.", images: ["/og.jpg"] },};
 
 const modules = [
   ["01", "Zapytania", "Wszystkie formularze i kontakty w jednej kolejce, z informacją skąd przyszły."],
