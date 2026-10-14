@@ -98,6 +98,32 @@ test("kluczowe statyczne podstrony mają własne metadata w head", async () => {
   }
 });
 
+test("key service pages and new guides share their own Open Graph metadata", async () => {
+  const pages = [
+    ["/oferta", "Strony internetowe – cennik"],
+    ["/dtp", "DTP, wizytówki"],
+    ["/projektuj-strone", "Kreator całej strony"],
+    ["/kontakt", "Kontakt i wycena"],
+    ["/opieka-nad-strona", "Opieka nad stroną"],
+    ["/modernizacja-strony", "Modernizacja strony"],
+    ["/poradnik/jak-przygotowac-pdf-do-druku", "Jak przygotować PDF"],
+    ["/poradnik/jak-uporzadkowac-zapytania-klientow", "Jak uporządkować zapytania"],
+    ["/poradnik/ile-kosztuje-projekt-gazetki", "Ile kosztuje projekt gazetki"],
+  ];
+  for (const [path, titlePart] of pages) {
+    const response = await render(path);
+    assert.equal(response.status, 200, path);
+    const head = headMarkup(await response.text());
+    const ogTitle = head.match(/<meta property="og:title" content="([^"]+)"/)?.[1] ?? "";
+    const ogUrl = head.match(/<meta property="og:url" content="([^"]+)"/)?.[1] ?? "";
+    const twitterTitle = head.match(/<meta name="twitter:title" content="([^"]+)"/)?.[1] ?? "";
+    assert.ok(ogTitle.includes(titlePart), `${path}: Open Graph title ${ogTitle}`);
+    assert.equal(ogUrl, "https://zielona-marka.pl" + path, `${path}: Open Graph URL`);
+    assert.ok(twitterTitle.includes(titlePart), `${path}: Twitter title`);
+    assert.match(head, /<meta property="og:description" content="/, path);
+  }
+});
+
 test("dynamiczna strona projektu ma canonical w head", async () => {
   const response = await render("/realizacje/natura-studio");
   assert.equal(response.status, 200);
