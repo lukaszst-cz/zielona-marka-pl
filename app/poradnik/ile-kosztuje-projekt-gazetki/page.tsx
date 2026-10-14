@@ -6,7 +6,9 @@ import { QuickWhatsApp, SiteFooter, SiteHeader } from "../../SiteChrome";
 export const metadata: Metadata = {
   title: "Ile kosztuje projekt gazetki reklamowej? Skład i aktualizacje",
   description: "Od czego zależy cena projektu gazetki reklamowej? Liczba stron, produkty, zdjęcia, teksty, pliki do druku i rabaty za kolejne wydania. Sprawdź kalkulator DTP.",
-  alternates: { canonical: "/poradnik/ile-kosztuje-projekt-gazetki" },
+  alternates: { canonical: "/poradnik/ile-kosztuje-projekt-gazetki" }
+  openGraph: { type: "article", url: "/poradnik/ile-kosztuje-projekt-gazetki", title: "Ile kosztuje projekt gazetki reklamowej? Skład i aktualizacje | Zielona Marka", description: "Od czego zależy cena projektu gazetki reklamowej? Liczba stron, produkty, zdjęcia, teksty, pliki do druku i rabaty za kolejne wydania. Sprawdź kalkulator DTP.", images: [{ url: "/og-poradniki-zielona-marka.png", width: 1200, height: 630, alt: "Blog Zielonej Marki – poradniki dla firm" }], publishedTime: "2026-10-14", modifiedTime: "2026-10-14" },
+  twitter: { card: "summary_large_image", title: "Ile kosztuje projekt gazetki reklamowej? Skład i aktualizacje | Zielona Marka", description: "Od czego zależy cena projektu gazetki reklamowej? Liczba stron, produkty, zdjęcia, teksty, pliki do druku i rabaty za kolejne wydania. Sprawdź kalkulator DTP.", images: ["/og-poradniki-zielona-marka.png"] },,
 };
 
 const faq = [
