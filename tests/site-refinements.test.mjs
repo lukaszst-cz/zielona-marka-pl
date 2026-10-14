@@ -158,7 +158,7 @@ test("guides expose author, visible breadcrumbs, FAQ schema and dedicated social
   for(const path of ["/poradnik/dlaczego-strona-firmy-nie-przynosi-zapytan","/poradnik/ile-kosztuje-strona-dla-malej-firmy"]){
     const html=await(await fetchPage(path)).text();
     assert.match(html,/guide-breadcrumbs/,path);
-    assert.match(html,/Łukasz Staniewicz[\s\S]*Zielona Marka/,path);
+    assert.match(html,/Łukasz St-cz[\s\S]*Zielona Marka/,path);
     assert.match(html,/"@type":"FAQPage"/,path);
     assert.match(html,/30\.09\.2026/,path);
   }
@@ -167,6 +167,22 @@ test("guides expose author, visible breadcrumbs, FAQ schema and dedicated social
     assert.ok(info.size>20_000,`${file}: ${info.size}`);
   }
 });
+test("site entity graph and calculator tracking stay connected",async()=>{
+  const home=await(await fetchPage("/")).text();
+  assert.match(home,/"@type":"Organization"/);
+  assert.match(home,/"@type":"WebSite"/);
+  assert.match(home,/"@type":"Person"/);
+  assert.match(home,/"@id":"https:\/\/zielona-marka\.pl\/#lukasz-st-cz"/);
+  assert.doesNotMatch(home,/Łukasz Staniewicz/);
+  const guide=await(await fetchPage("/poradnik/dlaczego-strona-firmy-nie-przynosi-zapytan")).text();
+  assert.match(guide,/"author":\{"@id":"https:\/\/zielona-marka\.pl\/#lukasz-st-cz"\}/);
+  const offer=await(await fetchPage("/oferta")).text();
+  assert.match(offer,/Omów ten wariant/);
+  const calculator=await readFile(new URL("../app/EstimateCalculator.tsx",import.meta.url),"utf8");
+  assert.match(calculator,/estimate_calculator_change/);
+  assert.match(calculator,/estimate_net/);
+});
+
 test("guide hub exposes a durable feed and missing pages offer useful navigation",async()=>{
   const hub=await(await fetchPage("/poradnik")).text();
   assert.match(hub,/application\/rss\+xml/);
