@@ -4,7 +4,7 @@ import ContactForm from "../ContactForm";
 import RelatedServices from "../RelatedServices";
 import { QuickWhatsApp, SiteFooter, SiteHeader } from "../SiteChrome";
 
-export const metadata: Metadata = { title: "Modernizacja strony internetowej", description: "Ocena starej strony i plan modernizacji: telefon, kontakt, oferta, szybkość oraz przygotowanie do Google.", alternates: { canonical: "/modernizacja-strony" }
+export const metadata: Metadata = { title: "Modernizacja strony internetowej", description: "Ocena starej strony i plan modernizacji: telefon, kontakt, oferta, szybkość oraz przygotowanie do Google.", alternates: { canonical: "/modernizacja-strony" },
   openGraph: { type: "website", url: "/modernizacja-strony", title: "Modernizacja strony internetowej | Zielona Marka", description: "Ocena starej strony i plan modernizacji: telefon, kontakt, oferta, szybkość oraz przygotowanie do Google.", images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Zielona Marka – strony internetowe, DTP i rozwiązania dla firm" }] },
   twitter: { card: "summary_large_image", title: "Modernizacja strony internetowej | Zielona Marka", description: "Ocena starej strony i plan modernizacji: telefon, kontakt, oferta, szybkość oraz przygotowanie do Google.", images: ["/og.jpg"] }, };
 
