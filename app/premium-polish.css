@@ -172,3 +172,34 @@ html body .zm-public.guide-page .zm-guide-highlights h2{font:650 clamp(21px,2vw,
 html body .zm-public.guide-page .zm-guide-highlights p{font:400 16px/1.68 Arial,sans-serif!important;color:#e3eedc!important;margin:0}
 html body .zm-public.guide-page>article>.page-hero{padding-block:clamp(60px,7vw,85px)}
 @media(max-width:850px){html body .zm-public.guide-page .zm-guide-highlights{grid-template-columns:1fr;gap:10px;padding-block:20px}html body .zm-public.guide-page .zm-guide-highlights>div{min-height:0;padding:23px}}
+
+
+/* Final legibility pass for homepage illustrative UI.
+   These are mockups, but their labels should still be readable on mobile. */
+html body .zm-v5 .zmh-site-interior p{font-size:14px!important;line-height:1.65!important;color:#e8f3df!important}
+html body .zm-v5 .zmh-sample-form .zmh-caption{font-size:13px!important;line-height:1.5;color:#e6f4de!important}
+html body .zm-v5 .zmh-sample-form>div{grid-template-columns:minmax(55px,.48fr) minmax(0,1.52fr);gap:9px;font-size:14px!important;line-height:1.4}
+html body .zm-v5 .zmh-sample-form>div>span{overflow-wrap:anywhere}
+html body .zm-v5 .zmh-sample-form>div>span:last-child{font-size:14px!important;min-height:43px;display:flex;align-items:center}
+html body .zm-v5 .zmh-sample-form .zmh-sample-button{font-size:14px!important;min-height:42px;padding:12px 15px}
+html body .zm-v5 .zmh-mini-nav{font-size:13px!important;gap:10px;flex-wrap:wrap;line-height:1.45}
+html body .zm-v5 .zmh-flow b{font-size:15px!important;line-height:1.4;min-height:0}
+html body .zm-v5 .zmh-commerce-copy p{font-size:16px!important;line-height:1.6}
+html body .zm-v5 .zmh-commerce-copy small{font-size:14px!important;line-height:1.55;color:#e3f1dc!important}
+html body .zm-v5 .zmh-project small{font-size:14px!important;line-height:1.5;color:#e2f1d7!important}
+html body .zm-v5 .zmh-project>div>span{font-size:15px!important;line-height:1.5}
+html body .zm-v5 .zmh-more-projects{font-size:15px!important;line-height:1.6}
+html body .zm-v5 .zmh-process-line{font-size:15px!important;line-height:1.55}
+html body .zm-v5 .zmh-cinema-status{font-size:13px!important;letter-spacing:.035em;line-height:1.5;flex-wrap:wrap}
+html body .zm-v5 .zmh-motion-intro p{font-size:15px!important;line-height:1.58;max-width:290px}
+html body .zm-v5 .zmh-motion-intro button{font-size:14px!important;min-height:43px}
+html body .zm-v5 .zmh-assembly-note{font-size:12px!important;letter-spacing:.055em!important;max-width:min(260px,80vw)}
+html body .zm-v5 .zmh-sample-form,
+html body .zm-v5 .zmh-commerce-copy{max-width:100%}
+html body .zm-footer .zm-footer-brand p{font-size:16px!important;line-height:1.65;color:#e3f0de!important}
+@media(max-width:620px){
+  html body .zm-v5 .zmh-sample-form>div{font-size:13px!important}
+  html body .zm-v5 .zmh-sample-form>div>span:last-child{font-size:13px!important}
+  html body .zm-v5 .zmh-cinema-status{font-size:12px!important}
+  html body .zm-v5 .zmh-flow b{font-size:14px!important}
+}
