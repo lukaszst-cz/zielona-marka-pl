@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { trackAnalyticsEvent } from "./CookieConsent";
+import { websiteBudget } from "./website-budget.mjs";
 
 const siteOptions = [
   { id: "mini", name: "ZM Mini – 3 sekcje, bez formularza", price: 899 },
