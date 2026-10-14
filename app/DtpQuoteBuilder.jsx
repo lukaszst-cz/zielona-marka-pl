@@ -24,7 +24,7 @@ export default function DtpQuoteBuilder() {
     setState((prev) => ({
       ...prev, kind: id, pages: selected.defaultPages,
       frequency: id === "preflight" ? "once" : prev.frequency,
-      format: id === "wizytowka" ? "business" : prev.format,
+      format: id === "wizytowka" ? "business" : prev.format === "business" ? "a4" : prev.format,
     }));
   }
   function navigate(next) {
@@ -119,7 +119,7 @@ export default function DtpQuoteBuilder() {
         </>}
         {step === 2 && <>
           <h3>Jednorazowo czy w stałej współpracy?</h3>
-          {select("dtp-frequency", "Jak często będzie zamawiany materiał?", "frequency", periodOptions.map((item) => [item.id, item.name]),
+          {select("dtp-frequency", "Jak często będzie zamawiany materiał?", "frequency", (state.kind === "preflight" ? periodOptions.slice(0, 1) : periodOptions).map((item) => [item.id, item.name]),
             "Stały rabat dotyczy zamówionej serii z wykorzystaniem wcześniejszych materiałów i makiety.")}
           {state.frequency !== "once" && state.kind !== "preflight" && <>
             {numeric("dtp-editions", "Ile wydań planujesz zamówić?", "editions", 24, 2)}
