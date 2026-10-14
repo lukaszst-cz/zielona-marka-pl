@@ -55,3 +55,44 @@
 @media(max-width:980px){.zm-blog-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.zm-blog-feature{grid-template-columns:1fr minmax(180px,.5fr)}}
 @media(max-width:750px){.zm-blog-feature,.zm-blog-action{grid-template-columns:1fr}.zm-blog-feature-art{display:none}.zm-blog-feature-text{min-height:340px}.zm-blog-library-top,.zm-blog-search-row{align-items:start;flex-direction:column}.zm-blog-result-count{padding:0}.zm-blog-action{gap:25px}}
 @media(max-width:560px){.zm-blog-grid{grid-template-columns:1fr}.zm-blog-card{min-height:300px}.zm-blog-explorer{gap:45px}.zm-blog-feature-text{padding:28px}.zm-blog-feature-text h2{font-size:39px}.zm-blog-search input{font-size:16px}}
+
+
+/* Readability pass. Public pages use the forest background and force light text on
+   articles; keep the blog deliberately dark rather than layering pale cards over it. */
+.zm-public.zm-blog-page .zm-blog-feature{background:#103624!important;border:1px solid #7da47e!important;color:#f6faed!important}
+.zm-public.zm-blog-page .zm-blog-feature-text{color:#f6faed!important}
+.zm-public.zm-blog-page .zm-blog-feature-text h2 a{color:#fff!important}
+.zm-public.zm-blog-page .zm-blog-feature-text>p{color:#e9f1e4!important;font-size:16px}
+.zm-public.zm-blog-page .zm-blog-feature-foot{color:#d5e8d0!important;font-size:13px}
+.zm-public.zm-blog-page .zm-blog-feature-foot a{color:#e4ffc0!important}
+.zm-public.zm-blog-page .zm-blog-kicker{color:#d5f3a8!important;font-size:12px}
+.zm-public.zm-blog-page .zm-blog-feature-art>b{color:#173b29!important}
+.zm-public.zm-blog-page .zm-blog-rss,
+.zm-public.zm-blog-page .zm-blog-action-links a{color:#deffb4!important;text-decoration-color:#c5f098!important;font-size:14px}
+.zm-public.zm-blog-page .zm-blog-rss:hover,
+.zm-public.zm-blog-page .zm-blog-action-links a:hover{text-decoration:underline}
+.zm-public.zm-blog-page .zm-blog-search label{color:#f5f8ef!important;font-size:14px}
+.zm-public.zm-blog-page .zm-blog-search input{background:#08291c!important;color:#fff!important;border:2px solid #a7c79d!important;min-height:54px}
+.zm-public.zm-blog-page .zm-blog-search input::placeholder{color:#d4e2d0!important;opacity:1}
+.zm-public.zm-blog-page .zm-blog-result-count{color:#e9f1e2!important;font-size:14px}
+.zm-public.zm-blog-page .zm-blog-categories button{background:#173b29;color:#f1f8eb;border:1px solid #a4c29e;font-size:13px;font-weight:700;min-height:46px}
+.zm-public.zm-blog-page .zm-blog-categories button.active{background:#c7efa0;color:#142d1f;border:2px solid #e0ffd0}
+.zm-public.zm-blog-page .zm-blog-categories button:not(.active):hover{background:#2b573a;color:#fff}
+.zm-public.zm-blog-page .zm-blog-card{background:#153c2a!important;color:#f5faef!important;border:1px solid #85a88a!important;box-shadow:0 8px 30px #00000022}
+.zm-public.zm-blog-page .zm-blog-card h3,
+.zm-public.zm-blog-page .zm-blog-card h3 a{color:#f8fff2!important}
+.zm-public.zm-blog-page .zm-blog-card h3 a:hover{color:#e2ffa9!important}
+.zm-public.zm-blog-page .zm-blog-card-category{color:#d5f3a8!important;font-size:12px}
+.zm-public.zm-blog-page .zm-blog-card>p{color:#e1eddf!important;font-size:15px!important}
+.zm-public.zm-blog-page .zm-blog-card-foot{color:#d1e3cd!important;font-size:12px;border-top-color:#739578}
+.zm-public.zm-blog-page .zm-blog-card-link{color:#d9ffa2!important;font-size:14px}
+.zm-public.zm-blog-page .zm-blog-card-link:hover{text-decoration:underline;text-underline-offset:3px}
+.zm-public.zm-blog-page .zm-blog-empty{background:#133a29!important;border-color:#85a88a;color:#fff}
+.zm-public.zm-blog-page .zm-blog-empty h3{color:#fff!important}
+.zm-public.zm-blog-page .zm-blog-empty p{color:#e7f2e3!important}
+.zm-public.zm-blog-page .zm-blog-empty button{color:#d9ffa2!important}
+.zm-public.zm-blog-page .zm-blog-action{border-top-color:#6e9175}
+.zm-public.zm-blog-page .zm-blog-action p{color:#e1edde!important;font-size:15px}
+.zm-public.zm-blog-page .zm-blog-action-links a{border-bottom:1px solid #91ae90}
+.zm-public.zm-blog-page :is(a,button,input):focus-visible{outline:3px solid #dbff9c!important;outline-offset:3px}
+@media (prefers-reduced-motion:reduce){.zm-blog-page :is(a,button){transition:none!important}}
