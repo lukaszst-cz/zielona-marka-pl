@@ -46,6 +46,13 @@ const palettes = [
   { id: "ocean", label: "Nowoczesny", bg: "#eaf2f8", ink: "#173c58", accent: "#276d9d", text: "#456479", panel: "#ffffff", hero: "#123d5b" },
   { id: "dark", label: "Elegancki premium", bg: "#111d19", ink: "#f2f5e9", accent: "#c1e58b", text: "#c3d5c7", panel: "#20332a", hero: "#172a20" },
 ];
+const siteLayouts = [
+  { id: "classic", label: "Klasyczny firmowy", description: "Sprawdzona struktura: tekst obok grafiki, niżej oferta i zaufanie.", mark: "▥" },
+  { id: "editorial", label: "Editorial premium", description: "Duża typografia, szeroki hero i wizualne sekcje jak w magazynie.", mark: "▤" },
+  { id: "minimal", label: "Minimal & elegancja", description: "Wyśrodkowane komunikaty, dużo oddechu i staranna siatka.", mark: "▭" },
+  { id: "showcase", label: "Galeria i realizacje", description: "Mocniejsza część wizualna, niestandardowa kompozycja oraz oferta w kaflach.", mark: "◫" },
+  { id: "contact", label: "Lokalny kontakt", description: "Telefon i szybkie zapytanie na pierwszym planie, oferta od razu pod nagłówkiem.", mark: "▦" },
+];
 const plans = [
   { id: "mini", label: "ZM Mini — 3 sekcje, bez formularza", amount: 899 },
   { id: "start", label: "ZM Start — kompletna strona", amount: 1449 },
@@ -73,6 +80,7 @@ export default function WebsiteConfigurator() {
   const [brand, setBrand] = useState("Solidna Usługa");
   const [place, setPlace] = useState("Warszawa i okolice");
   const [palette, setPalette] = useState("forest");
+  const [siteLayout, setSiteLayout] = useState("classic");
   const [plan, setPlan] = useState("start");
   const [sections, setSections] = useState(["about", "services", "process", "faq", "contact"]);
   const [extras, setExtras] = useState(["contact"]);
@@ -143,7 +151,7 @@ export default function WebsiteConfigurator() {
   const summary = [
     "KONFIGURACJA STRONY WWW — ZM STUDIO",
     "Branża: " + concept.label + "; nazwa: " + businessName + "; obszar: " + locationName,
-    "Kolory: " + theme.label + "; pakiet: " + selectedPlan.label,
+    "Kolory: " + theme.label + "; układ: " + (siteLayouts.find(x => x.id === siteLayout)?.label ?? "Klasyczny firmowy") + "; pakiet: " + selectedPlan.label,
     "Sekcje na stronie głównej: " + sectionsForPreview.join(", "),
     "Dodatkowe podstrony: " + extraPages + "; funkcje: " + (extras.join(", ") || "brak"),
     "Dodatki: teksty " + (copywriting ? "tak" : "nie") + ", Profil Firmy Google " + (googleProfile ? "tak" : "nie"),
@@ -176,6 +184,19 @@ export default function WebsiteConfigurator() {
         <label>Miasto lub obszar działania
           <input value={place} onChange={(event) => setPlace(event.target.value.slice(0, 65))} maxLength={65} placeholder="Np. Warszawa i okolice" />
         </label>
+        <fieldset className="zm-creator-layouts" aria-label="Wybierz układ i wygląd strony">
+          <legend>Układ gotowej strony — wybierz kompozycję</legend>
+          <p>Warianty różnią się proporcjami nagłówka, układem oferty, sekcji i ścieżką kontaktu — nie tylko kolorami.</p>
+          <div className="zm-creator-layout-grid">
+            {siteLayouts.map((item) => <button type="button" key={item.id}
+              aria-pressed={siteLayout === item.id} className={siteLayout === item.id ? "selected" : ""}
+              onClick={() => setSiteLayout(item.id)}>
+              <span className={"zm-creator-layout-icon layout-icon-" + item.id} aria-hidden="true"><i /><i /><i /><i /></span>
+              <span className="zm-creator-layout-label">{item.label}</span>
+              <small>{item.description}</small>
+            </button>)}
+          </div>
+        </fieldset>
         <div className="zm-creator-pair">
           <label>Styl graficzny
             <select value={palette} onChange={(event) => setPalette(event.target.value)}>
@@ -275,7 +296,7 @@ export default function WebsiteConfigurator() {
         <div>
           <span className="section-no">04 / PEŁNY PODGLĄD STRONY</span>
           <h3>Cała przykładowa strona — od menu po stopkę.</h3>
-          <p>To demonstracja struktury i kolorów, a nie działająca strona klienta. Przewiń, aby zobaczyć wszystkie sekcje. Dodatkowe podstrony wymagają osobnego projektu.</p>
+          <p>Wybierz jeden z pięciu prawdziwie różnych układów, niezależnie od kolorystyki. Przewiń podgląd od menu po stopkę. To projekt demonstracyjny; dodatkowe podstrony wymagają osobnego ustalenia zakresu.</p>
         </div>
         <div className="zm-creator-preview-modes" role="group" aria-label="Szerokość podglądu strony">
           <button type="button" aria-pressed={view === "desktop"} className={view === "desktop" ? "active" : ""} onClick={() => setView("desktop")}>Komputer</button>
@@ -283,7 +304,7 @@ export default function WebsiteConfigurator() {
         </div>
       </div>
       <div className={"zm-creator-preview-frame " + (view === "mobile" ? "mobile" : "desktop")}>
-        <div className="zm-demo-page" style={{ "--demo-bg": theme.bg, "--demo-ink": theme.ink,
+        <div className={"zm-demo-page zm-demo-layout-" + siteLayout} style={{ "--demo-bg": theme.bg, "--demo-ink": theme.ink,
           "--demo-accent": theme.accent, "--demo-text": theme.text, "--demo-panel": theme.panel, "--demo-hero": theme.hero }}>
           <header className="zm-demo-nav">
             <strong>{businessName}</strong>
@@ -296,14 +317,14 @@ export default function WebsiteConfigurator() {
                 <span className="zm-demo-overline">{concept.kicker.replace("TWOJE MIASTO",locationName.toUpperCase("pl-PL"))}</span>
                 <h2>{concept.title}</h2>
                 <p>{concept.lead}</p>
-                <span className="zm-demo-hero-cta">Poznaj ofertę ↗</span>
+                <span className="zm-demo-hero-cta">{siteLayout === "contact" ? "Zadzwoń lub wyślij zapytanie ↗" : siteLayout === "showcase" ? "Zobacz nasze realizacje ↗" : "Poznaj ofertę ↗"}</span>
                 <span className="zm-demo-hero-location">OBSZAR DZIAŁANIA · {locationName.toUpperCase("pl-PL")}</span>
               </div>
               <div className="zm-demo-art" aria-hidden="true"><span>{businessName.split(" ").slice(0,2).map((w)=>w.slice(0,1)).join("")}</span></div>
             </section>
             {sectionsForPreview.includes("services") && <section className="zm-demo-section">
               <span className="zm-demo-kicker">01 / NASZA OFERTA</span>
-              <h3>W czym możemy pomóc?</h3>
+              <h3>{siteLayout === "showcase" ? "Wybrane realizacje i usługi." : siteLayout === "minimal" ? "Prosto o tym, co ważne." : "W czym możemy pomóc?"}</h3>
               <p>Przykładowa prezentacja usług z czytelną hierarchią i możliwością przejścia do kontaktu.</p>
               <div className="zm-demo-services">{concept.services.map((name, index) =>
                 <article key={name}><span>0{index + 1}</span><h4>{name}</h4><p>Zakres usługi i najważniejsze informacje przedstawione zrozumiałym językiem.</p><b>Zapytaj o usługę ↗</b></article>)}</div>
