@@ -681,3 +681,22 @@ test("security headers stay enabled on public and private routes",async()=>{
     assert.match(response.headers.get("x-robots-tag")||"",/nofollow/i,path);
   }
 });
+
+
+test("quote configuration is transferred without personal details in URLs",async()=>{
+  const sources=await Promise.all([
+    "TotalCostCalculator.tsx","DtpQuoteBuilder.jsx","WebsiteConfigurator.jsx"
+  ].map(file=>readFile(new URL("../app/"+file,import.meta.url),"utf8")));
+  for(const source of sources){
+    assert.match(source,/saveQuoteTransfer\(/);
+    assert.doesNotMatch(source,/&wycena=/);
+  }
+  const transfer=await readFile(new URL("../app/QuoteTransfer.ts",import.meta.url),"utf8");
+  assert.match(transfer,/sessionStorage\.setItem/);
+  assert.match(transfer,/sessionStorage\.removeItem/);
+  assert.match(transfer,/LIFETIME_MS/);
+  const contact=await readFile(new URL("../app/ContactForm.tsx",import.meta.url),"utf8");
+  assert.match(contact,/takeQuoteTransfer\(initialPackage\)/);
+  assert.match(contact,/ref=\{messageRef\}/);
+});
+
