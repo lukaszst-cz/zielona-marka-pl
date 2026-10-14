@@ -152,7 +152,7 @@ test("guide is discoverable and its diagnostic steps have restrained motion",asy
 test("guides expose author, visible breadcrumbs, FAQ schema and dedicated social images",async()=>{
   const hub=await(await fetchPage("/poradnik")).text();
   const css=await readFile(new URL("../app/site-refinements.css",import.meta.url),"utf8");
-  assert.match(hub,/guide-card-meta/);
+  assert.match(hub,/zm-blog-card-foot/);
   assert.doesNotMatch(hub,/<footer><b>Czytaj poradnik/);
   assert.match(css,/\.guide-card-meta\{[^}]*background:transparent/);
   for(const path of ["/poradnik/dlaczego-strona-firmy-nie-przynosi-zapytan","/poradnik/ile-kosztuje-strona-dla-malej-firmy"]){
@@ -174,7 +174,10 @@ test("guide hub exposes a durable feed and missing pages offer useful navigation
   const feed=await fetchPage("/poradnik/rss.xml");
   assert.equal(feed.status,200);
   assert.match(feed.headers.get("content-type")||"",/application\/rss\+xml/);
-  assert.match(await feed.text(),/<rss version="2\.0">/);
+  const rssText=await feed.text();
+  assert.match(rssText,/<rss version="2\.0">/);
+  assert.match(rssText,/jak-przygotowac-pdf-do-druku/);
+  assert.match(rssText,/jak-uporzadkowac-zapytania-klientow/);
   const missing=await fetchPage("/nie-ma-takiej-strony-seo-test");
   assert.equal(missing.status,404);
   assert.match(await missing.text(),/Zobacz poradniki/);
