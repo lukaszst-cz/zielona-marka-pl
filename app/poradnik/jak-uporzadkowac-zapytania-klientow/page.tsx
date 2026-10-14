@@ -7,6 +7,8 @@ export const metadata: Metadata = {
   title: "Jak uporządkować zapytania klientów bez rozbudowanego CRM?",
   description: "Prosty proces obsługi klientów: formularz, status zapytania, właściciel sprawy, termin odpowiedzi i przypomnienie. Praktyczny poradnik dla małej firmy.",
   alternates: { canonical: "/poradnik/jak-uporzadkowac-zapytania-klientow" },
+  openGraph: { type: "article", url: "/poradnik/jak-uporzadkowac-zapytania-klientow", title: "Jak uporządkować zapytania klientów bez rozbudowanego CRM? | Zielona Marka", description: "Prosty proces obsługi klientów: formularz, status zapytania, właściciel sprawy, termin odpowiedzi i przypomnienie. Praktyczny poradnik dla małej firmy.", images: [{ url: "/og-poradniki-zielona-marka.png", width: 1200, height: 630, alt: "Blog Zielonej Marki – poradniki dla firm" }], publishedTime: "2026-10-14", modifiedTime: "2026-10-14" },
+  twitter: { card: "summary_large_image", title: "Jak uporządkować zapytania klientów bez rozbudowanego CRM? | Zielona Marka", description: "Prosty proces obsługi klientów: formularz, status zapytania, właściciel sprawy, termin odpowiedzi i przypomnienie. Praktyczny poradnik dla małej firmy.", images: ["/og-poradniki-zielona-marka.png"] },
 };
 
 const steps = [
