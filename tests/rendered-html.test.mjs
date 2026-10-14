@@ -131,7 +131,7 @@ test("ZM Studio is part of the real website and previews a complete customer pag
   assert.match(html, /Cała przykładowa strona/);
   assert.match(html, /Pierwszy rok łącznie/);
   assert.match(html, /Łącznie przez 3 lata/);
-  assert.match(html, /od 1[\s\u00a0]*669 zł/);
+  assert.match(html, /<dd>od\s*<!-- -->1669 zł<\/dd>/);
   assert.match(html, /Wyślij projekt i wycenę/);
   assert.doesNotMatch(html, /class="zm-web-preview"/);
 });
