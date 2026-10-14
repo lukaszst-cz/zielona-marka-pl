@@ -6,6 +6,7 @@ import "./botanical-brand.css";
 import "./brand-system.css";
 import "./fern-public.css";
 import "./site-refinements.css";
+import "./total-cost.css";
 import PolishTypography from "./PolishTypography";
 import CookieConsent from "./CookieConsent";
 import SiteTracking from "./SiteTracking";
@@ -121,7 +122,7 @@ export default async function RootLayout({
       "Halinów",
       "Dąbrówka",
     ],
-    priceRange: "od 1 449 PLN netto",
+    priceRange: "od 990 PLN netto",
     serviceType: [
       "Projektowanie stron internetowych",
       "Strony dla warsztatów i detailingu",
@@ -132,6 +133,7 @@ export default async function RootLayout({
       "Optymalizacja Profilu Firmy Google",
       "Modernizacja stron internetowych",
       "Opieka nad stronami internetowymi",
+      "DTP i przygotowanie plików do druku",
     ],
     founder: { "@type": "Person", "@id": "https://zielona-marka.pl/#lukasz-staniewicz", name: "Łukasz Staniewicz", url: "https://zielona-marka.pl/jak-pracuje" },
   };

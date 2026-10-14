@@ -1,4 +1,4 @@
 import type { Metadata } from "next";
 import { OrganicHome } from "./OrganicHome";
-export const metadata: Metadata = {title: "Strony internetowe Warszawa Targówek", description: "Strony WWW, formularze, systemy dla firm i CRM. Płatności za produkty i vouchery, obsługa zapytań i wsparcie firm z Targówka, Warszawy oraz okolic.", alternates:{canonical:"/",languages:{pl:"/",en:"/en","x-default":"/"}}};
+export const metadata: Metadata = {title: "Strony internetowe i wizytówki dla firm – Warszawa", description: "Strony wizytówki od 990 zł netto, strony firmowe, formularze i CRM. Projekt, hosting, opieka i DTP dla firm z Warszawy, Marek i okolic.", alternates:{canonical:"/",languages:{pl:"/",en:"/en","x-default":"/"}}};
 export default function Home() {return <OrganicHome />;}
