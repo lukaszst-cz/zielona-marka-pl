@@ -193,3 +193,17 @@ test("ZM Studio offers five distinct full-site templates and six independent pal
     assert.match(styles, new RegExp("zm-demo-layout-" + layout), "Missing responsive layout CSS: " + layout);
   }
 });
+
+test("Both website quote tools describe same domain and contact-form package scope", async () => {
+  const [offer, studio] = await Promise.all([
+    render("/oferta").then(r=>r.text()),
+    render("/projektuj-strone").then(r=>r.text())
+  ]);
+  assert.match(offer, /Posiadana domena — odnowienie w pierwszym roku/);
+  assert.match(studio, /Domena posiadana — koszt odnowienia w pierwszym roku/);
+  assert.match(offer, /Dla domeny już opłaconej/);
+  assert.match(studio, /Formularz kontaktowy jest uwzględniony w podstawowym zakresie pakietu/);
+  assert.match(studio, /ZM Mini: 3 sekcje na materiałach klienta, bez formularza/);
+  assert.match(studio, /w cenie wybranego pakietu/);
+  assert.match(studio, /wycena indywidualna/);
+});
