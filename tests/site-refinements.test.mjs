@@ -158,7 +158,7 @@ test("guides expose author, visible breadcrumbs, FAQ schema and dedicated social
   for(const path of ["/poradnik/dlaczego-strona-firmy-nie-przynosi-zapytan","/poradnik/ile-kosztuje-strona-dla-malej-firmy"]){
     const html=await(await fetchPage(path)).text();
     assert.match(html,/guide-breadcrumbs/,path);
-    assert.match(html,/Łukasz Staniewicz[\s\S]*Zielona Marka/,path);
+    assert.match(html,/Łukasz St-cz[\s\S]*Zielona Marka/,path);
     assert.match(html,/"@type":"FAQPage"/,path);
     assert.match(html,/30\.09\.2026/,path);
   }
@@ -167,6 +167,62 @@ test("guides expose author, visible breadcrumbs, FAQ schema and dedicated social
     assert.ok(info.size>20_000,`${file}: ${info.size}`);
   }
 });
+test("business identity, authors and client-safe quote tracking stay consistent",async()=>{
+  const home=await(await fetchPage("/")).text();
+  for(const kind of ["ProfessionalService","WebSite","Person","Service"]){
+    assert.ok(home.includes(`"@type":"${kind}"`),kind);
+  }
+  assert.match(home,/"@id":"https:\/\/zielona-marka\.pl\/#website"/);
+  assert.match(home,/"@id":"https:\/\/zielona-marka\.pl\/#lukasz-st-cz"/);
+  const guides=[
+    "/poradnik/dlaczego-strona-firmy-nie-przynosi-zapytan",
+    "/poradnik/ile-kosztuje-strona-dla-malej-firmy",
+    "/poradnik/strona-internetowa-dla-warsztatu-co-powinna-zawierac",
+    "/poradnik/strona-internetowa-dla-salonu-beauty-co-powinna-zawierac",
+    "/poradnik/co-powinna-miec-strona-firmy-uslugowej",
+    "/poradnik/ile-kosztuje-projekt-gazetki",
+    "/poradnik/jak-przygotowac-pdf-do-druku",
+    "/poradnik/jak-uporzadkowac-zapytania-klientow",
+  ];
+  for(const path of guides){
+    const html=await(await fetchPage(path)).text();
+    assert.match(html,/"author":\{"@id":"https:\/\/zielona-marka\.pl\/#lukasz-st-cz"\}/,path);
+  }
+  const tracker=await readFile(new URL("../app/SiteTracking.tsx",import.meta.url),"utf8");
+  assert.match(tracker,/const analyticsHref = href\.split\("\?"\)\[0\]/);
+  assert.doesNotMatch(tracker,/link_url: href/);
+  assert.match(tracker,/link_url: analyticsHref/);
+  const cost=await readFile(new URL("../app/TotalCostCalculator.tsx",import.meta.url),"utf8");
+  assert.match(cost,/website_quote_to_contact/);
+  assert.match(cost,/package_id: site, care_plan: care, hosting_type: hosting/);
+});
+
+test("new guides expose navigable and structured breadcrumbs",async()=>{
+  for(const path of ["/poradnik/ile-kosztuje-projekt-gazetki","/poradnik/jak-przygotowac-pdf-do-druku","/poradnik/jak-uporzadkowac-zapytania-klientow"]){
+    const html=await(await fetchPage(path)).text();
+    assert.match(html,/guide-breadcrumbs/,path);
+    assert.match(html,/"@type":"BreadcrumbList"/,path);
+    assert.match(html,/"@type":"ListItem","position":3/,path);
+  }
+});
+
+test("indexable sitemap pages have unique titles and descriptions",async()=>{
+  const xml=await(await fetchPage("/sitemap.xml")).text();
+  const urls=[...xml.matchAll(/<loc>(https:\/\/zielona-marka\.pl[^<]*)<\/loc>/g)].map(m=>m[1]);
+  assert.ok(urls.length>=44,"expected current site and guides in sitemap");
+  const seen=new Map();
+  for(const url of urls){
+    const path=new URL(url).pathname;
+    const html=await(await fetchPage(path)).text();
+    const title=html.match(/<title>([^<]+)<\/title>/)?.[1]?.trim()||"";
+    assert.ok(title.length>=10,`missing title: ${path}`);
+    assert.ok(!seen.has(title),`duplicate title ${title}: ${path} and ${seen.get(title)}`);
+    seen.set(title,path);
+    const description=html.match(/<meta name="description" content="([^"]+)"/)?.[1]||"";
+    assert.ok(description.length>=40,`missing or short description: ${path}`);
+  }
+});
+
 test("guide hub exposes a durable feed and missing pages offer useful navigation",async()=>{
   const hub=await(await fetchPage("/poradnik")).text();
   assert.match(hub,/application\/rss\+xml/);

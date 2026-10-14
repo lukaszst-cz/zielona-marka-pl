@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { trackAnalyticsEvent } from "./CookieConsent";
 
 const siteOptions = [
   { id: "mini", name: "ZM Mini – prosta wizytówka", price: 990 },
@@ -116,7 +117,7 @@ export default function TotalCostCalculator() {
       <div className="zm-cost-next"><span>Kolejny rok (odnowienia + opieka)</span><strong>{pln(result.nextYear)}</strong></div>
       <div className="zm-cost-next"><span>Łącznie 3 lata</span><strong>{pln(result.threeYears)}</strong></div>
       <p>Wszystkie kwoty netto, orientacyjne i nie stanowią wiążącej oferty. Ceny domeny i hostingu zależą od operatora; konto i faktura powinny należeć do klienta. Dla posiadanych już usług wprowadź ich rzeczywiste koszty roczne. Zakładamy 12 miesięcy opieki w każdym porównywanym roku. Ostateczną wycenę potwierdzamy przed zamówieniem.</p>
-      <a className="button" href={url}>Wyślij konfigurację do wyceny <span aria-hidden="true">↗</span></a>
+      <a className="button" href={url} onClick={() => trackAnalyticsEvent("website_quote_to_contact", { package_id: site, care_plan: care, hosting_type: hosting })}>Wyślij konfigurację do wyceny <span aria-hidden="true">↗</span></a>
       <a className="zm-cost-link" href="/opieka-nad-strona">Porównaj zakres opieki ↗</a>
     </div>
   </div>;

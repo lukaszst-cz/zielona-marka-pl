@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "../../SafeLink";
+import { GuideBreadcrumbs } from "../../GuideElements";
 import { QuickWhatsApp, SiteFooter, SiteHeader } from "../../SiteChrome";
 
 export const metadata: Metadata = {
@@ -22,15 +23,26 @@ export default function PriceGuideDtp() {
     headline: "Ile kosztuje projekt gazetki reklamowej?",
     datePublished: "2026-10-14",
     dateModified: "2026-10-14",
-    author: { "@id": "https://zielona-marka.pl/#lukasz-staniewicz" },
+    author: { "@id": "https://zielona-marka.pl/#lukasz-st-cz" },
     publisher: { "@id": "https://zielona-marka.pl/#business" },
     mainEntityOfPage: "https://zielona-marka.pl/poradnik/ile-kosztuje-projekt-gazetki",
     description: metadata.description,
   };
+
+  const breadcrumbs = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Strona główna", item: "https://zielona-marka.pl/" },
+      { "@type": "ListItem", position: 2, name: "Blog", item: "https://zielona-marka.pl/poradnik" },
+      { "@type": "ListItem", position: 3, name: "Ile kosztuje projekt gazetki reklamowej?", item: "https://zielona-marka.pl/poradnik/ile-kosztuje-projekt-gazetki" },
+    ],
+  };
   return <><SiteHeader/><main className="zm-public guide-page">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structured) }}/>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} />
     <article>
-      <header className="page-hero shell"><span className="eyebrow"><i/>PORADNIK DTP / CENNIK</span>
+      <header className="page-hero shell"><GuideBreadcrumbs current="Ile kosztuje projekt gazetki reklamowej?" /><span className="eyebrow"><i/>PORADNIK DTP / CENNIK</span>
         <h1>Ile kosztuje projekt gazetki reklamowej <em>i jak obniżyć cenę kolejnych wydań?</em></h1>
         <p>Przy składzie gazetki największe znaczenie ma nie tylko liczba stron. Liczy się również gotowość danych produktowych, liczba zdjęć do obróbki, dostępność makiety, terminy oraz zakres zmian w kolejnych wydaniach.</p>
         <div className="hero-actions"><Link className="button" href="/dtp#kalkulator-dtp">Oblicz koszt gazetki ↗</Link><Link className="text-link" href="/dtp">Cała oferta DTP ↗</Link></div>

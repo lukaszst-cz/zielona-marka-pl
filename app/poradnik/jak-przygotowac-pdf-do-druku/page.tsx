@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "../../SafeLink";
+import { GuideBreadcrumbs } from "../../GuideElements";
 import { QuickWhatsApp, SiteFooter, SiteHeader } from "../../SiteChrome";
 
 export const metadata: Metadata = {
@@ -29,14 +30,25 @@ export default function GuidePrintPdf() {
     headline: "Jak przygotować PDF do druku? Spady, CMYK i PDF/X",
     datePublished: "2026-10-14",
     dateModified: "2026-10-14",
-    author: { "@id": "https://zielona-marka.pl/#lukasz-staniewicz" },
+    author: { "@id": "https://zielona-marka.pl/#lukasz-st-cz" },
     publisher: { "@id": "https://zielona-marka.pl/#business" },
     mainEntityOfPage: "https://zielona-marka.pl/poradnik/jak-przygotowac-pdf-do-druku",
   };
+
+  const breadcrumbs = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Strona główna", item: "https://zielona-marka.pl/" },
+      { "@type": "ListItem", position: 2, name: "Blog", item: "https://zielona-marka.pl/poradnik" },
+      { "@type": "ListItem", position: 3, name: "Jak przygotować PDF do druku?", item: "https://zielona-marka.pl/poradnik/jak-przygotowac-pdf-do-druku" },
+    ],
+  };
   return <><SiteHeader /><main className="zm-public guide-page">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} />
     <article>
-      <header className="page-hero shell"><span className="eyebrow"><i />PORADNIK DTP · 14.10.2026 · 6 MIN</span>
+      <header className="page-hero shell"><GuideBreadcrumbs current="Jak przygotować PDF do druku?" /><span className="eyebrow"><i />PORADNIK DTP · 14.10.2026 · 6 MIN</span>
         <h1>Jak przygotować PDF do drukarni? <em>Spady, CMYK i PDF/X bez zgadywania.</em></h1>
         <p>Przed wysyłką wizytówki, ulotki lub gazetki warto sprawdzić siedem podstawowych elementów. Zbyt małe spady, niewłaściwy profil barwny albo błędny format mogą zatrzymać produkcję lub wymusić poprawki.</p>
         <div className="hero-actions"><Link className="button" href="/dtp">Sprawdź ofertę przygotowania do druku ↗</Link><Link className="text-link" href="/poradnik">Wróć do bloga ↗</Link></div>

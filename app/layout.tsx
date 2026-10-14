@@ -83,7 +83,9 @@ export default async function RootLayout({
   const language = requestHeaders.get("x-zm-language") === "en" ? "en" : "pl";
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
+    "@graph": [
+      {
+        "@type": "ProfessionalService",
     "@id": "https://zielona-marka.pl/#business",
     name: "Zielona Marka",
     description: "Strony internetowe, formularze wyceny i proste systemy dla lokalnych firm usługowych.",
@@ -138,7 +140,34 @@ export default async function RootLayout({
       "Opieka nad stronami internetowymi",
       "DTP i przygotowanie plików do druku",
     ],
-    founder: { "@type": "Person", "@id": "https://zielona-marka.pl/#lukasz-staniewicz", name: "Łukasz Staniewicz", url: "https://zielona-marka.pl/jak-pracuje" },
+    founder: { "@id": "https://zielona-marka.pl/#lukasz-st-cz" },
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://zielona-marka.pl/#website",
+        name: "Zielona Marka",
+        url: "https://zielona-marka.pl",
+        inLanguage: ["pl-PL", "en"],
+        publisher: { "@id": "https://zielona-marka.pl/#business" },
+      },
+      {
+        "@type": "Person",
+        "@id": "https://zielona-marka.pl/#lukasz-st-cz",
+        name: "Łukasz St-cz",
+        url: "https://zielona-marka.pl/jak-pracuje",
+        worksFor: { "@id": "https://zielona-marka.pl/#business" },
+      },
+      {
+        "@type": "Service",
+        "@id": "https://zielona-marka.pl/#web-services",
+        name: "Strony internetowe, projektowanie DTP i systemy obsługi klientów",
+        provider: { "@id": "https://zielona-marka.pl/#business" },
+        areaServed: { "@type": "Country", name: "Polska" },
+        serviceType: ["Projektowanie stron internetowych", "Modernizacja stron WWW", "DTP i prepress", "Formularze wyceny", "Mały CRM", "Asystent zapytań"],
+        url: "https://zielona-marka.pl/oferta",
+      },
+    ],
+
   };
   return (
     <html lang={language}>
