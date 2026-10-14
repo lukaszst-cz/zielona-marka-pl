@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "../../SafeLink";
+import { GuideBreadcrumbs } from "../../GuideElements";
 import { QuickWhatsApp, SiteFooter, SiteHeader } from "../../SiteChrome";
 
 export const metadata: Metadata = {
@@ -33,10 +34,21 @@ export default function ClientInquiriesGuide() {
     publisher: { "@id": "https://zielona-marka.pl/#business" },
     mainEntityOfPage: "https://zielona-marka.pl/poradnik/jak-uporzadkowac-zapytania-klientow",
   };
+
+  const breadcrumbs = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Strona główna", item: "https://zielona-marka.pl/" },
+      { "@type": "ListItem", position: 2, name: "Blog", item: "https://zielona-marka.pl/poradnik" },
+      { "@type": "ListItem", position: 3, name: "Jak uporządkować zapytania klientów?", item: "https://zielona-marka.pl/poradnik/jak-uporzadkowac-zapytania-klientow" },
+    ],
+  };
   return <><SiteHeader /><main className="zm-public guide-page">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} />
     <article>
-      <header className="page-hero shell"><span className="eyebrow"><i />PORADNIK DLA FIRM · 14.10.2026 · 6 MIN</span>
+      <header className="page-hero shell"><GuideBreadcrumbs current="Jak uporządkować zapytania klientów?" /><span className="eyebrow"><i />PORADNIK DLA FIRM · 14.10.2026 · 6 MIN</span>
         <h1>Zapytania klientów nie powinny ginąć <em>między skrzynką a telefonem.</em></h1>
         <p>Klient prosi o wycenę, ktoś oddzwania, potem przychodzi kolejna wiadomość. Bez wspólnego miejsca na statusy i terminy łatwo zgubić kolejne działanie. Nie trzeba jednak zaczynać od wielkiego systemu.</p>
         <div className="hero-actions"><Link className="button" href="/maly-crm-dla-firm">Zobacz mały CRM ↗</Link><Link className="text-link" href="/poradnik">Wróć do bloga ↗</Link></div>
