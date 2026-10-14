@@ -8,7 +8,7 @@ import { CookieSettingsLink } from "./CookieConsent";
 
 
 export const offerNavigation = [
-  ["Strony WWW", "/oferta"], ["Kalkulator pełnych kosztów", "/oferta#kalkulator-pelnego-kosztu"], ["Opieka i hosting", "/opieka-nad-strona"], ["DTP i przygotowanie do druku", "/dtp"], ["Modernizacja strony", "/modernizacja-strony"],
+  ["Strony WWW", "/oferta"], ["ZM Studio – zaprojektuj stronę", "/projektuj-strone"], ["Kalkulator pełnych kosztów", "/oferta#kalkulator-pelnego-kosztu"], ["Opieka i hosting", "/opieka-nad-strona"], ["DTP i przygotowanie do druku", "/dtp"], ["Modernizacja strony", "/modernizacja-strony"],
   ["CRM i obsługa klientów", "/maly-crm-dla-firm"], ["Usprawnienia i automatyzacje", "/usprawnienia-firmy"],
   ["Firmy usługowe", "/strony-dla-firm-uslugowych"], ["Beauty", "/strony-dla-beauty"],
   ["Warsztaty", "/strony-dla-warsztatow"], ["Asystent zapytań", "/asystent-zapytan"],
@@ -26,7 +26,7 @@ export function SiteHeader({ english = false }: { english?: boolean }) {
   return <header className="zm-header"><nav className="zm-nav" aria-label={english ? "Main navigation" : "Główna nawigacja"}>
     <Link className="zm-brand" href={english ? "/en" : "/"} aria-label="Zielona Marka"><BrandSignature /></Link>
     <div className="zm-nav-desktop">
-      <details className="zm-offer-menu"><summary>{english ? "Services" : "Oferta"} <span aria-hidden="true">⌄</span></summary><div>{offerNavigation.map(([label, href]) => <Link key={href} href={english ? "/en#services" : href}>{english ? ({"Strony WWW":"Websites","Kalkulator pełnych kosztów":"Total cost calculator","Opieka i hosting":"Website maintenance","DTP i przygotowanie do druku":"DTP and print design","Modernizacja strony":"Website redesign","CRM i obsługa klientów":"CRM and client service","Usprawnienia i automatyzacje":"Process automation","Firmy usługowe":"Service businesses","Beauty":"Beauty","Warsztaty":"Car workshops","Asystent zapytań":"Enquiry assistant","Chatbot dla firmy":"Business chatbot","Warszawa i okolice":"Local websites"}[label]) : label}</Link>)}</div></details>
+      <details className="zm-offer-menu"><summary>{english ? "Services" : "Oferta"} <span aria-hidden="true">⌄</span></summary><div>{offerNavigation.map(([label, href]) => <Link key={href} href={english ? "/en#services" : href}>{english ? ({"Strony WWW":"Websites","ZM Studio – zaprojektuj stronę":"Website configurator","Kalkulator pełnych kosztów":"Total cost calculator","Opieka i hosting":"Website maintenance","DTP i przygotowanie do druku":"DTP and print design","Modernizacja strony":"Website redesign","CRM i obsługa klientów":"CRM and client service","Usprawnienia i automatyzacje":"Process automation","Firmy usługowe":"Service businesses","Beauty":"Beauty","Warsztaty":"Car workshops","Asystent zapytań":"Enquiry assistant","Chatbot dla firmy":"Business chatbot","Warszawa i okolice":"Local websites"}[label]) : label}</Link>)}</div></details>
       <Link href={english ? "/en#projects" : "/realizacje"}>{english ? "Projects" : "Projekty"}</Link>{!english && <Link href="/praktyczne-narzedzia">Narzędzia</Link>}<Link href={english ? "/en#process" : "/jak-pracuje"}>{english ? "Working together" : "Współpraca"}</Link><Link href={english ? "/en#contact" : "/kontakt"}>{english ? "Contact" : "Kontakt"}</Link><Link className="zm-client-link" href="/status" rel="nofollow">{english ? "Client area (PL)" : "Strefa klienta"}</Link>
       <LanguageSwitch english={english} />
     </div>
