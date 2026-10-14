@@ -5,9 +5,9 @@ import { QuickWhatsApp, SiteFooter, SiteHeader } from "../SiteChrome";
 export const metadata: Metadata = {
   title: "Opieka nad stroną, hosting i koszty utrzymania",
   description: "Ile kosztuje utrzymanie strony WWW? Porównaj opiekę od 79 zł netto miesięcznie, hosting, domenę, SSL i odnowienia. Zobacz pełny koszt w kalkulatorze Zielonej Marki.",
-  alternates: { canonical: "/opieka-nad-strona" }
+  alternates: { canonical: "/opieka-nad-strona" },
   openGraph: { type: "website", url: "/opieka-nad-strona", title: "Opieka nad stroną, hosting i koszty utrzymania | Zielona Marka", description: "Ile kosztuje utrzymanie strony WWW? Porównaj opiekę od 79 zł netto miesięcznie, hosting, domenę, SSL i odnowienia. Zobacz pełny koszt w kalkulatorze Zielonej Marki.", images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Zielona Marka – strony internetowe, DTP i rozwiązania dla firm" }] },
-  twitter: { card: "summary_large_image", title: "Opieka nad stroną, hosting i koszty utrzymania | Zielona Marka", description: "Ile kosztuje utrzymanie strony WWW? Porównaj opiekę od 79 zł netto miesięcznie, hosting, domenę, SSL i odnowienia. Zobacz pełny koszt w kalkulatorze Zielonej Marki.", images: ["/og.jpg"] },,
+  twitter: { card: "summary_large_image", title: "Opieka nad stroną, hosting i koszty utrzymania | Zielona Marka", description: "Ile kosztuje utrzymanie strony WWW? Porównaj opiekę od 79 zł netto miesięcznie, hosting, domenę, SSL i odnowienia. Zobacz pełny koszt w kalkulatorze Zielonej Marki.", images: ["/og.jpg"] },
 };
 
 const care = [
