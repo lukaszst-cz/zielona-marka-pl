@@ -235,3 +235,12 @@
 .zm-creator-preview-frame.mobile .zm-demo-layout-contact .zm-demo-form>span:nth-child(3){grid-column:auto}
 .zm-creator-preview-frame.mobile .zm-demo-layout-minimal .zm-demo-hero-inner{padding:40px 18px}
 .zm-public .zm-creator-preview-frame.mobile .zm-demo-layout-minimal .zm-demo-hero h2{font-size:33px!important}
+
+
+/* Contrast-safe CTA-first template for both dark and light accent palettes. */
+.zm-demo-layout-contact .zm-demo-contact{color:var(--demo-on-accent)!important}
+.zm-public .zm-demo-layout-contact .zm-demo-contact h3,
+.zm-public .zm-demo-layout-contact .zm-demo-contact p,
+.zm-demo-layout-contact .zm-demo-contact .zm-demo-kicker{color:var(--demo-on-accent)!important}
+.zm-demo-layout-contact .zm-demo-contact .zm-demo-inline-feature{color:var(--demo-on-accent)!important;border-color:currentColor}
+.zm-demo-layout-contact .zm-demo-contact .zm-demo-form>span{color:#23412e}
