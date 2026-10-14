@@ -101,7 +101,7 @@ export default function WebsiteConfigurator() {
   }, [plan, sections]);
   const quote = useMemo(() => {
     const project = selectedPlan.amount + (copywriting ? 350 : 0) + (googleProfile ? 390 : 0);
-    const providerFirst = (domain === "new" ? priceCap(domainFirst) : priceCap(domainRenew))
+    const providerFirst = (domain === "new" ? priceCap(domainFirst) : 0)
       + (host === "own" ? priceCap(ownHostFirst) : selectedHost.year1);
     const providerRenew = priceCap(domainRenew) + (host === "own" ? priceCap(ownHostRenew) : selectedHost.renewal);
     const careYear = selectedCare.amount * 12;
@@ -250,7 +250,7 @@ export default function WebsiteConfigurator() {
               <option key={x.id} value={x.id}>{x.label} — {pln(x.amount)}/mies.</option>)}
           </select>
         </label>
-        <p className="zm-creator-note">Domena i hosting to orientacyjne koszty zewnętrzne. Konto i faktura powinny należeć do klienta. Opieka Mini jest dostępna tylko dla prostych stron statycznych.</p>
+        <p className="zm-creator-note">Domena i hosting to orientacyjne koszty zewnętrzne. Jeśli masz opłaconą domenę, w pierwszym roku nie doliczamy jej ponownie; odnowienie uwzględniamy w kolejnych latach. Konto i faktura powinny należeć do klienta. Opieka Mini dotyczy tylko prostych stron statycznych.</p>
       </div>
       <aside className="zm-creator-quote" aria-live="polite" aria-label="Orientacyjna wycena projektu i utrzymania">
         <span className="section-no">TWÓJ BUDŻET / NA BIEŻĄCO</span>
@@ -290,7 +290,7 @@ export default function WebsiteConfigurator() {
             <div aria-hidden="true"><span>Oferta</span><span>O firmie</span><span>Kontakt</span></div>
             <span className="zm-demo-nav-cta">Zapytaj ↗</span>
           </header>
-          <main>
+          <div className="zm-demo-content">
             <section className="zm-demo-hero">
               <div className="zm-demo-hero-inner">
                 <span className="zm-demo-overline">{concept.kicker.replace("TWOJE MIASTO",locationName.toUpperCase("pl-PL"))}</span>
@@ -337,7 +337,7 @@ export default function WebsiteConfigurator() {
               {extras.includes("booking") && <div className="zm-demo-inline-feature">Kalendarz rezerwacji — funkcja do indywidualnej wyceny</div>}
               {extras.includes("crm") && <div className="zm-demo-inline-feature">CRM działałby na zapleczu, nie jako publiczny element strony</div>}
             </section>}
-          </main>
+          </div>
           <footer className="zm-demo-footer"><strong>{businessName}</strong><span>Oferta · O firmie · Kontakt</span>
             <small>Przykładowa stopka. Informacje i politykę prywatności uzupełnimy podczas realizacji.</small></footer>
         </div>
