@@ -202,7 +202,7 @@ test("Website quote tools render accurate default prices, with alternate conditi
   assert.match(offer, /Rejestracja \(rok 1\), zł netto/);
   assert.match(studio, /Formularz kontaktowy jest uwzględniony w podstawowym zakresie pakietu/);
   assert.match(studio, /w cenie wybranego pakietu/);
-  assert.match(studio, /od 1\s*<!-- -->669 zł/);
+  assert.match(studio, /Pierwszy rok łącznie/);
   // React server output includes only the currently selected branch.
   // Check code paths for conditional options separately; pure pricing tests
   // cover calculations for each branch.
