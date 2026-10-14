@@ -9,6 +9,10 @@ function clean(value: string) {
   return value.toLocaleLowerCase("pl-PL").normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
 }
 
+function publishedLabel(date: string) {
+  return new Intl.DateTimeFormat("pl-PL", { year: "numeric", month: "long", day: "numeric", timeZone: "Europe/Warsaw" }).format(new Date(date));
+}
+
 export default function BlogExplorer() {
   const [category, setCategory] = useState<"all" | BlogCategory>("all");
   const [search, setSearch] = useState("");
@@ -58,7 +62,7 @@ export default function BlogExplorer() {
         <p>{article.summary}</p>
         <div className="guide-card-meta">
           <b>Czytaj artykuł ↗</b>
-          <small>{article.minutes} min czytania</small>
+          <small><time dateTime={article.publishedAt}>{publishedLabel(article.publishedAt)}</time> · {article.minutes} min czytania</small>
         </div>
       </Link>) : <div className="zm-blog-empty" role="status">
         <h3>Nie znaleziono artykułów.</h3>
