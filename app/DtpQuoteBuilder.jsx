@@ -81,7 +81,7 @@ export default function DtpQuoteBuilder() {
           </select><small>Wybranie innego materiału ustawi typową liczbę stron. Dla niestandardowych układów potwierdzimy produkcję.</small></div>
           {select("dtp-format", "Format docelowy", "format", dtpFormats.map((item) => [item.id, item.name]))}
           <div className="zm-cost-pair">
-            {numeric("dtp-pages", state.kind === "folder" ? "Panele / strony" : "Liczba stron", "pages", 64, 1, state.kind === "wizytowka")}
+            {numeric("dtp-pages", state.kind === "folder" ? "Panele / strony" : "Liczba stron", "pages", 64, (dtpKinds.find((item) => item.id === state.kind) ?? dtpKinds[0]).minPages, state.kind === "wizytowka")}
             {numeric("dtp-copies", "Planowany nakład (sztuk)", "copies", 100000)}
           </div>
           {select("dtp-finish", "Wykończenie / składanie", "finish", [
