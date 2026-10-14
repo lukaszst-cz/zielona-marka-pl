@@ -152,7 +152,7 @@ test("guide is discoverable and its diagnostic steps have restrained motion",asy
 test("guides expose author, visible breadcrumbs, FAQ schema and dedicated social images",async()=>{
   const hub=await(await fetchPage("/poradnik")).text();
   const css=await readFile(new URL("../app/site-refinements.css",import.meta.url),"utf8");
-  assert.match(hub,/zm-blog-card-foot/);
+  assert.match(hub,/guide-card-meta/);
   assert.doesNotMatch(hub,/<footer><b>Czytaj poradnik/);
   assert.match(css,/\.guide-card-meta\{[^}]*background:transparent/);
   for(const path of ["/poradnik/dlaczego-strona-firmy-nie-przynosi-zapytan","/poradnik/ile-kosztuje-strona-dla-malej-firmy"]){
