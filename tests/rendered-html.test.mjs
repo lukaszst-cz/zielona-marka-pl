@@ -214,3 +214,18 @@ test("Website quote tools render accurate default prices, with alternate conditi
   assert.match(studioSource, /wycena indywidualna/);
   assert.match(studioSource, /saveQuoteTransfer/);
 });
+
+test("Company services and readable footer are consistent across current pages", async () => {
+  for (const route of ["/", "/oferta", "/dtp", "/poradnik", "/projektuj-strone"]) {
+    const response = await render(route);
+    assert.equal(response.status, 200, route);
+    const page = await response.text();
+    const footer = page.match(/<footer\\b[\\s\\S]*?<\\/footer>/i)?.[0] ?? "";
+    assert.match(footer, /Strony internetowe, DTP i systemy dla firm/, route);
+    assert.match(footer, /icon-github-zielona-marka\\.svg/, route);
+  }
+  const style = await readFile(new URL("../app/premium-polish.css", import.meta.url), "utf8");
+  for (const name of ["zmh-sample-form", "zmh-site-interior", "zmh-cinema-status", "zmh-project small"]) {
+    assert.ok(style.includes(name), name + ": missing readability rule");
+  }
+});
