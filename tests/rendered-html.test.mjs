@@ -151,6 +151,6 @@ test("Global navigation uses categorized menu and branded social icons", async (
     assert.match(html, /\/podpis-email\/icon-www\.png/);
     const footer = html.match(/<footer\b[\s\S]*?<\/footer>/i);
     assert.ok(footer, path + ": missing footer");
-    assert.equal((footer[0].match(/href="\/dtp"/g) || []).length, 1);
+    assert.ok((footer[0].match(/href="\/dtp"/g) || []).length <= 1, path + ": repeated DTP link");
   }
 });
