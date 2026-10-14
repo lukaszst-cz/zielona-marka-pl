@@ -6,9 +6,9 @@ import { SiteHeader, SiteFooter, QuickWhatsApp } from "../SiteChrome";
 export const metadata: Metadata = {
   title: "Kreator całej strony WWW i wycena — ZM Studio",
   description: "Zobacz pełną przykładową stronę WWW od nagłówka po stopkę. Dobierz branżę, kolory, sekcje i funkcje. Oblicz budżet wykonania oraz koszt pierwszego i trzech lat.",
-  alternates: { canonical: "/projektuj-strone" }
+  alternates: { canonical: "/projektuj-strone" },
   openGraph: { type: "website", url: "/projektuj-strone", title: "Kreator całej strony WWW i wycena — ZM Studio | Zielona Marka", description: "Zobacz pełną przykładową stronę WWW od nagłówka po stopkę. Dobierz branżę, kolory, sekcje i funkcje. Oblicz budżet wykonania oraz koszt pierwszego i trzech lat.", images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Zielona Marka – strony internetowe, DTP i rozwiązania dla firm" }] },
-  twitter: { card: "summary_large_image", title: "Kreator całej strony WWW i wycena — ZM Studio | Zielona Marka", description: "Zobacz pełną przykładową stronę WWW od nagłówka po stopkę. Dobierz branżę, kolory, sekcje i funkcje. Oblicz budżet wykonania oraz koszt pierwszego i trzech lat.", images: ["/og.jpg"] },,
+  twitter: { card: "summary_large_image", title: "Kreator całej strony WWW i wycena — ZM Studio | Zielona Marka", description: "Zobacz pełną przykładową stronę WWW od nagłówka po stopkę. Dobierz branżę, kolory, sekcje i funkcje. Oblicz budżet wykonania oraz koszt pierwszego i trzech lat.", images: ["/og.jpg"] },
 };
 
 export default function Page() {
