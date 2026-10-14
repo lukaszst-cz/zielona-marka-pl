@@ -79,7 +79,7 @@ test("lokalne podstrony mają unikalną treść i działający kontakt", async (
 
 test("kluczowe statyczne podstrony mają własne metadata w head", async () => {
   const expected = [
-    ["/oferta", "Strony internetowe – cennik i koszt utrzymania", "Wizytówka od 990 zł netto", "https://zielona-marka.pl/oferta"],
+    ["/oferta", "Strony internetowe – cennik i koszt utrzymania", "Wizytówka od 899 zł netto", "https://zielona-marka.pl/oferta"],
     ["/poradnik", "Blog – strony WWW, SEO, DTP i porady dla firm", "Blog Zielonej Marki", "https://zielona-marka.pl/poradnik"],
     ["/dtp", "DTP, wizytówki, ulotki i przygotowanie do druku", "Projektowanie wizytówek", "https://zielona-marka.pl/dtp"],
     ["/opieka-nad-strona", "Opieka nad stroną, hosting i koszty utrzymania", "Ile kosztuje utrzymanie strony WWW?", "https://zielona-marka.pl/opieka-nad-strona"],
