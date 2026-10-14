@@ -150,7 +150,6 @@ html body .zm-v5 .zmh-form-surface :is(label,span):focus-within{outline-offset:3
 /* Article pages are full public subpages, not a single padded article card.
    The global article-card rule must never wrap the entire editorial layout. */
 html body .zm-public.guide-page>article{display:block;width:100%;max-width:none;min-width:0;margin:0;padding:0!important;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important}
-html body .zm-public.guide-page>article>.page-hero{padding-left:max(24px,calc((100% - 1190px)/2));padding-right:max(24px,calc((100% - 1190px)/2));max-width:none}
 html body .zm-public.guide-page>article>.section:not(.shell)>div.shell{width:min(1190px,calc(100% - 48px));margin-inline:auto}
 html body .zm-public.guide-page>article .section h2{line-height:1.19}
 html body .zm-public.guide-page>article .section>p{max-width:930px;font-size:17px;line-height:1.8;color:#eaf4e3}
