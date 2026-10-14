@@ -48,7 +48,7 @@ export default function WorkshopWebsiteGuidePage() {
     image: "https://zielona-marka.pl/og.jpg",
     datePublished: "2026-10-07",
     dateModified: "2026-10-07",
-    author: { "@id": "https://zielona-marka.pl/#lukasz-staniewicz" },
+    author: { "@id": "https://zielona-marka.pl/#lukasz-st-cz" },
     publisher: { "@id": "https://zielona-marka.pl/#business" },
     mainEntityOfPage: "https://zielona-marka.pl/poradnik/strona-internetowa-dla-warsztatu-co-powinna-zawierac",
   };
