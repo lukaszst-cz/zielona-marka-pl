@@ -31,7 +31,7 @@ export function priceDtp(raw = {}) {
   let pages = Math.floor(limit(raw.pages ?? kind.defaultPages, kind.minPages, 64));
   if (kind.id === "wizytowka") pages = 2;
   if (kind.id === "ulotka") pages = Math.min(2, pages);
-  const count = Math.floor(limit(raw.editions ?? 3, 3, 12));
+  const count = Math.floor(limit(raw.editions ?? 3, 2, 24));
   const recurring = raw.frequency && raw.frequency !== "once" && kind.id !== "preflight";
   const imageFiles = Math.floor(limit(raw.imageFiles ?? 0, 0, 200));
   const textFiles = Math.floor(limit(raw.textFiles ?? 0, 0, 200));
@@ -60,15 +60,33 @@ export function priceDtp(raw = {}) {
   const expressExtra = raw.urgent ? round(regular * .25) : 0;
   if (expressExtra) lineItems.push({ name: "Tryb pilny (+25%, po potwierdzeniu dostępności)", amount: expressExtra });
   const oneOff = round(regular + expressExtra);
-  const firstDiscount = recurring ? .06 : 0;
-  const renewalDiscount = recurring ? ({ minor: .22, medium: .12, major: .04 }[raw.changeLevel] ?? .12) : 0;
-  const first = round(oneOff * (1 - firstDiscount));
-  const next = recurring ? round(oneOff * (1 - renewalDiscount)) : 0;
-  const total = recurring ? first + (count - 1) * next : oneOff;
+  // Loyalty applies only to repeatable layout work. New writing, image licenses,
+  // rush work and other independently scoped items are never discounted.
+  const loyalty = {
+    minor: { firstRepeat: .18, step: .04, cap: .40 },
+    medium: { firstRepeat: .12, step: .03, cap: .30 },
+    major: { firstRepeat: .05, step: .02, cap: .15 },
+  };
+  const tier = loyalty[raw.changeLevel] ?? loyalty.medium;
+  const eligible = special ? 0 : baseLayout;
+  const series = Array.from({ length: recurring ? count : 1 }, (_, index) => {
+    const number = index + 1;
+    const discount = !recurring ? 0 : index === 0 ? .05 : Math.min(tier.cap, tier.firstRepeat + (index - 1) * tier.step);
+    const savings = Math.floor(eligible * discount);
+    const price = oneOff - savings;
+    return { number, discountPercent: Math.round(discount * 100), amount: price, savings };
+  });
+  const first = series[0].amount;
+  const next = series.length > 1 ? series[1].amount : 0;
+  const total = series.reduce((sum, edition) => sum + edition.amount, 0);
+  const saved = oneOff * series.length - total;
   return {
-    kind, format, pages, textFiles, imageFiles, products, recurring: Boolean(recurring), count: recurring ? count : 1,
-    oneOff, first, next, total, firstDiscountPercent: Math.round(firstDiscount * 100),
-    renewalDiscountPercent: Math.round(renewalDiscount * 100), saved: recurring ? oneOff * count - total : 0, lineItems,
-    needsReview: raw.format === "custom" || raw.urgent || pages >= 32 || products > 150,
+    kind, format, pages, textFiles, imageFiles, products, recurring: Boolean(recurring), count: series.length,
+    oneOff, first, next, total, saved, series,
+    firstDiscountPercent: series[0].discountPercent,
+    renewalDiscountPercent: series.length > 1 ? series[1].discountPercent : 0,
+    maximumDiscountPercent: Math.round(tier.cap * 100),
+    lineItems, eligible,
+    needsReview: raw.format === "custom" || raw.urgent || pages >= 32 || products > 150 || raw.finish === "nietypowe",
   };
 }
