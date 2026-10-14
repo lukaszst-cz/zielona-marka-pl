@@ -39,21 +39,26 @@ export default function GuidesPage() {
   };
   return <><SiteHeader /><main className="zm-public guide-page guide-hub zm-blog-page">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collection) }} />
-    <header className="page-hero shell zm-blog-hero">
+    <section className="page-hero shell">
       <GuideBreadcrumbs />
-      <span className="eyebrow"><i /> BLOG ZIELONEJ MARKI / WIEDZA DLA FIRM</span>
-      <h1>Blog Zielonej Marki. <em>Wiedza, która pomaga firmie rosnąć.</em></h1>
-      <p>Strony internetowe, widoczność w Google, DTP i sprawna obsługa klientów. Konkretne artykuły, przykłady i narzędzia do wykorzystania w codziennej pracy — bez marketingowego żargonu.</p>
-      <div className="hero-actions"><a className="button" href="#artykuly">Przeglądaj artykuły <span>↘</span></a><Link className="text-link" href="/dtp#kalkulator-dtp">Sprawdź kalkulator DTP ↗</Link></div>
-    </header>
-    <section className="section shell zm-blog-main" id="artykuly"><BlogExplorer /></section>
-    <section className="section shell zm-blog-action">
-      <div><span className="section-no">OD ARTYKUŁU DO DZIAŁANIA</span><h2>Masz temat, który chcesz przełożyć na działanie?</h2>
-        <p>Możesz zacząć od minioceny obecnej strony, wyceny nowej witryny albo konfiguratora materiałów drukowanych. Dobieramy rozwiązanie do rzeczywistej potrzeby.</p></div>
-      <div className="zm-blog-action-links">
-        <Link href="/projektuj-strone">Zaprojektuj przykładową stronę ↗</Link>
-        <Link href="/oferta#kalkulator-pelnego-kosztu">Policz koszt strony i utrzymania ↗</Link>
-        <Link href="/dtp#kalkulator-dtp">Wyceń gazetkę, folder lub ulotkę ↗</Link>
+      <span className="eyebrow"><i /> BLOG / ZIELONA MARKA</span>
+      <h1>Blog Zielonej Marki. <em>Wiedza przydatna w Twojej firmie.</em></h1>
+      <p>Strony WWW, widoczność w Google, projektowanie materiałów do druku i proste sposoby usprawniania pracy. Sprawdzone rozwiązania wyjaśnione zrozumiałym językiem.</p>
+      <div className="hero-actions">
+        <a className="button" href="#artykuly">Zobacz artykuły <span aria-hidden="true">↗</span></a>
+        <Link className="text-link" href="/dtp">Oferta DTP <span aria-hidden="true">↗</span></Link>
+      </div>
+    </section>
+    <section className="section shell" id="artykuly"><BlogExplorer /></section>
+    <section className="section shell zm-blog-service-links">
+      <div className="section-head">
+        <div><span className="section-no">OD INFORMACJI DO DZIAŁANIA</span><h2>Możemy też zająć się tym za Ciebie.</h2></div>
+        <p>Gdy artykuł wyjaśni problem, możesz przejść bezpośrednio do właściwej usługi Zielonej Marki.</p>
+      </div>
+      <div className="zm-blog-service-grid">
+        <Link href="/oferta#kalkulator-pelnego-kosztu"><span>01 / STRONY WWW</span><h3>Wyceń stronę internetową</h3><p>Sprawdź koszty wykonania, domeny, serwera i opieki.</p><b>Sprawdź kalkulator ↗</b></Link>
+        <Link href="/dtp#kalkulator-dtp"><span>02 / DTP I DRUK</span><h3>Wyceń gazetkę lub ulotkę</h3><p>Dobierz format, materiały, liczbę stron i kolejne wydania.</p><b>Konfigurator DTP ↗</b></Link>
+        <Link href="/maly-crm-dla-firm"><span>03 / OBSŁUGA KLIENTÓW</span><h3>Uporządkuj zapytania</h3><p>Formularze, statusy i terminy kontaktu z klientami.</p><b>Zobacz rozwiązanie ↗</b></Link>
       </div>
     </section>
     <section className="section guide-cta"><div className="shell"><span className="section-no">NIE ZNALAZŁEŚ ODPOWIEDZI?</span>
