@@ -13,6 +13,7 @@ export const dtpFormats = [
   { id: "a4", name: "A4", factor: 1 },
   { id: "a3", name: "A3", factor: 1.25 },
   { id: "dl", name: "DL", factor: 1 },
+  { id: "business", name: "Wizytówka 90 × 50 mm", factor: 1 },
   { id: "custom", name: "Inny format – do potwierdzenia", factor: 1.15 },
 ];
 export const periodOptions = [
