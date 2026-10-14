@@ -52,7 +52,7 @@ test("nowe zakładki są renderowane", async () => {
     if (path === "/maly-crm-dla-firm") assert.match(html, /PWA/i);
     if (path === "/raport-qa") assert.match(html, /kontroli jakości/i);
     if (path.includes("/poradnik/")) assert.match(html, /"@type":"Article"/);
-    if (path === "/poradnik") { assert.match(html, /"@type":"CollectionPage"/); assert.match(html, /BIBLIOTEKA WIEDZY/); assert.match(html, /Szukaj na blogu/); assert.match(html, /DTP i druk/); }
+    if (path === "/poradnik") { assert.match(html, /"@type":"CollectionPage"/); assert.match(html, /BLOG \/ ARTYKUŁY I WIEDZA/); assert.match(html, /Szukaj na blogu/); assert.match(html, /DTP i druk/); }
     if (path === "/praktyczne-narzedzia") { assert.match(html, /Lead &amp; Offer Copilot/); assert.match(html, /"@type":"ItemList"/); }
     if (path === "/realizacje/transportflow") { assert.match(html, /TransportFlow 360/); assert.match(html, /"@type":"SoftwareApplication"/); }
     if (path.includes("dlaczego-strona")) assert.match(html, /7 najczęstszych przyczyn/i);
