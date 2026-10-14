@@ -42,7 +42,7 @@ test("strona główna prowadzi przez pięć etapów od strony do relacji", async
 });
 
 test("nowe zakładki są renderowane", async () => {
-  for (const path of ["/oferta", "/modernizacja-strony", "/realizacje", "/realizacje/transportflow", "/praktyczne-narzedzia", "/usprawnienia-firmy", "/jak-pracuje", "/raport-qa", "/kontakt", "/strony-dla-warsztatow", "/strony-dla-firm-uslugowych", "/strony-dla-beauty", "/asystent-zapytan", "/maly-crm-dla-firm", "/strony-internetowe-marki", "/poradnik", "/poradnik/dlaczego-strona-firmy-nie-przynosi-zapytan", "/poradnik/ile-kosztuje-strona-dla-malej-firmy"]) {
+  for (const path of ["/dtp", "/opieka-nad-strona", "/oferta", "/modernizacja-strony", "/realizacje", "/realizacje/transportflow", "/praktyczne-narzedzia", "/usprawnienia-firmy", "/jak-pracuje", "/raport-qa", "/kontakt", "/strony-dla-warsztatow", "/strony-dla-firm-uslugowych", "/strony-dla-beauty", "/asystent-zapytan", "/maly-crm-dla-firm", "/strony-internetowe-marki", "/poradnik", "/poradnik/dlaczego-strona-firmy-nie-przynosi-zapytan", "/poradnik/ile-kosztuje-strona-dla-malej-firmy"]) {
     const response = await render(path);
     assert.equal(response.status, 200, path);
     const html = await response.text();
@@ -74,6 +74,25 @@ test("lokalne podstrony mają unikalną treść i działający kontakt", async (
     assert.ok(head.includes(`rel="canonical" href="https://zielona-marka.pl/strony-internetowe/${city}"`), city);
     assert.doesNotMatch(html, forbiddenBrand, city);
     assert.doesNotMatch(html, /Małachowskiego\s*1/i, city);
+  }
+});
+
+test("kluczowe statyczne podstrony mają własne metadata w head", async () => {
+  const expected = [
+    ["/oferta", "Strony internetowe – cennik i koszt utrzymania", "Wizytówka od 990 zł netto", "https://zielona-marka.pl/oferta"],
+    ["/dtp", "DTP, wizytówki, ulotki i przygotowanie do druku", "Projektowanie wizytówek", "https://zielona-marka.pl/dtp"],
+    ["/opieka-nad-strona", "Opieka nad stroną, hosting i koszty utrzymania", "Ile kosztuje utrzymanie strony WWW?", "https://zielona-marka.pl/opieka-nad-strona"],
+    ["/modernizacja-strony", "Modernizacja strony internetowej", "Ocena starej strony i plan modernizacji", "https://zielona-marka.pl/modernizacja-strony"],
+    ["/kontakt", "Kontakt i wycena", "Skontaktuj się z Zieloną Marką", "https://zielona-marka.pl/kontakt"],
+    ["/maly-crm-dla-firm", "Mały CRM dla firmy", "Od dobrego zapytania do następnego kroku", "https://zielona-marka.pl/maly-crm-dla-firm"],
+  ];
+  for (const [path, titlePart, descriptionPart, canonical] of expected) {
+    const response = await render(path);
+    assert.equal(response.status, 200, path);
+    const head = headMarkup(await response.text());
+    assert.ok(head.includes(`<title>${titlePart} | Zielona Marka</title>`) || head.includes(`<title>${titlePart}</title>`), `${path}: title`);
+    assert.ok(head.includes(descriptionPart), `${path}: description`);
+    assert.ok(head.includes(`rel="canonical" href="${canonical}"`), `${path}: canonical`);
   }
 });
 
