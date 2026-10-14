@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { trackAnalyticsEvent } from "./CookieConsent";
 import { saveQuoteTransfer } from "./QuoteTransfer";
+import { websiteBudget } from "./website-budget.mjs";
 
 const industries = [
   {
@@ -94,6 +95,7 @@ export default function WebsiteConfigurator() {
   const [care, setCare] = useState("none");
   const [domain, setDomain] = useState("new");
   const [domainFirst, setDomainFirst] = useState(20);
+  const [ownDomainFirst, setOwnDomainFirst] = useState(0);
   const [domainRenew, setDomainRenew] = useState(90);
   const [host, setHost] = useState("basic");
   const [ownHostFirst, setOwnHostFirst] = useState(0);
@@ -113,20 +115,23 @@ export default function WebsiteConfigurator() {
   }, [plan, sections]);
   const quote = useMemo(() => {
     const project = selectedPlan.amount + (copywriting ? 350 : 0) + (googleProfile ? 390 : 0);
-    const providerFirst = (domain === "new" ? priceCap(domainFirst) : 0)
-      + (host === "own" ? priceCap(ownHostFirst) : selectedHost.year1);
-    const providerRenew = priceCap(domainRenew) + (host === "own" ? priceCap(ownHostRenew) : selectedHost.renewal);
-    const careYear = selectedCare.amount * 12;
+    const costs = websiteBudget({
+      project, domainType: domain, domainRegistration: domainFirst,
+      existingDomainFirstYear: ownDomainFirst, domainRenewal: domainRenew,
+      hostingFirstYear: host === "own" ? ownHostFirst : selectedHost.year1,
+      hostingRenewal: host === "own" ? ownHostRenew : selectedHost.renewal,
+      careMonthly: selectedCare.amount,
+    });
     const manualItems = [
       ...(extraPages > 0 ? ["Dodatkowe podstrony"] : []),
       ...(extras.includes("booking") ? ["Rezerwacje"] : []),
       ...(extras.includes("crm") ? ["Mały CRM"] : []),
-      ...(extras.includes("contact") && simple ? ["Formularz kontaktowy"] : []),
+      ...(extras.includes("contact") && plan === "mini" ? ["Formularz kontaktowy — poza ceną ZM Mini"] : []),
     ];
-    return { project, firstYear: project + providerFirst + careYear, renewal: providerRenew + careYear,
-      threeYears: project + providerFirst + providerRenew * 2 + careYear * 3, careYear, providerFirst, manualItems };
-  }, [selectedPlan, selectedCare, selectedHost, domain, domainFirst, domainRenew, host, ownHostFirst,
-    ownHostRenew, copywriting, googleProfile, extraPages, extras, simple]);
+    return { project, firstYear: costs.firstYear, renewal: costs.nextYear,
+      threeYears: costs.threeYears, careYear: costs.careYear, providerFirst: costs.providerFirst, manualItems };
+  }, [selectedPlan, selectedCare, selectedHost, domain, domainFirst, ownDomainFirst, domainRenew, host, ownHostFirst,
+    ownHostRenew, copywriting, googleProfile, extraPages, extras, plan]);
 
   function changeIndustry(id) {
     const newChoice = industries.find((x) => x.id === id) ?? industries[0];
@@ -136,6 +141,7 @@ export default function WebsiteConfigurator() {
   function changePlan(id) {
     const isSimple = id === "mini" || id === "start";
     setPlan(id);
+    setExtras((previous) => id === "mini" ? previous.filter((x) => x !== "contact") : previous.includes("contact") ? previous : [...previous, "contact"]);
     if (!isSimple) {
       if (care === "mini") setCare("standard");
       if (host === "free") setHost("basic");
@@ -148,7 +154,7 @@ export default function WebsiteConfigurator() {
   const businessName = safeText(brand, 56) || concept.brand;
   const locationName = safeText(place, 65) || "Twoja okolica";
   const features = [
-    { id: "contact", label: "Formularz zapytań", hint: simple ? "osobna wycena" : "zakres zależny od pakietu" },
+    { id: "contact", label: "Formularz zapytań", hint: plan === "mini" ? "nie jest w cenie — wycena indywidualna" : "w cenie wybranego pakietu" },
     { id: "booking", label: "Rezerwacje wizyt", hint: "osobna wycena" },
     { id: "crm", label: "Mały CRM", hint: "osobna wycena" },
   ];
@@ -159,7 +165,7 @@ export default function WebsiteConfigurator() {
     "Sekcje na stronie głównej: " + sectionsForPreview.join(", "),
     "Dodatkowe podstrony: " + extraPages + "; funkcje: " + (extras.join(", ") || "brak"),
     "Dodatki: teksty " + (copywriting ? "tak" : "nie") + ", Profil Firmy Google " + (googleProfile ? "tak" : "nie"),
-    "Domena: " + domain + "; hosting: " + selectedHost.label + "; opieka: " + selectedCare.label,
+    "Domena: " + domain + (domain === "own" ? " (opłata w pierwszym roku: " + pln(ownDomainFirst) + ")" : " (rejestracja: " + pln(domainFirst) + ")") + "; odnowienie: " + pln(domainRenew) + "; hosting: " + selectedHost.label + "; opieka: " + selectedCare.label,
     "Znane koszty projektu: od " + pln(quote.project) + " netto",
     "Pierwszy rok: od " + pln(quote.firstYear) + " netto",
     "Kolejne lata: od " + pln(quote.renewal) + " netto/rok",
@@ -227,6 +233,7 @@ export default function WebsiteConfigurator() {
             <span>{x.label} <small>({x.hint})</small></span>
           </label>)}
         </fieldset>
+        <p className="zm-creator-scope-note">{plan === "mini" ? "ZM Mini: 3 sekcje na materiałach klienta, bez formularza. Formularz i dodatkowe funkcje wymagają indywidualnej wyceny." : "Formularz kontaktowy jest uwzględniony w podstawowym zakresie pakietu. Dodatkowe podstrony, rezerwacje i CRM wyceniamy osobno."}</p>
         <div className="zm-creator-pair">
           <label>Dodatkowe podstrony
             <select value={extraPages} onChange={(e) => setExtraPages(Number(e.target.value))}>
@@ -253,8 +260,10 @@ export default function WebsiteConfigurator() {
           </label>
         </div>
         <div className="zm-creator-pair">
-          {domain === "new" && <label>Domena — pierwszy rok, zł netto
+          {domain === "new" ? <label>Domena — pierwszy rok, zł netto
             <input type="number" min="0" max="100000" value={domainFirst} onChange={(e) => setDomainFirst(priceCap(e.target.value))} />
+          </label> : <label>Domena posiadana — koszt odnowienia w pierwszym roku, jeśli przypada (0 zł, gdy jest opłacona)
+            <input type="number" min="0" max="100000" value={ownDomainFirst} onChange={(e) => setOwnDomainFirst(priceCap(e.target.value))} />
           </label>}
           <label>Domena — odnowienie roczne, zł netto
             <input type="number" min="0" max="100000" value={domainRenew} onChange={(e) => setDomainRenew(priceCap(e.target.value))} />
@@ -274,7 +283,7 @@ export default function WebsiteConfigurator() {
               <option key={x.id} value={x.id}>{x.label} — {pln(x.amount)}/mies.</option>)}
           </select>
         </label>
-        <p className="zm-creator-note">Domena i hosting to orientacyjne koszty zewnętrzne. Jeśli masz opłaconą domenę, w pierwszym roku nie doliczamy jej ponownie; odnowienie uwzględniamy w kolejnych latach. Konto i faktura powinny należeć do klienta. Opieka Mini dotyczy tylko prostych stron statycznych.</p>
+        <p className="zm-creator-note">Domena i hosting to orientacyjne koszty zewnętrzne. Jeśli masz opłaconą domenę na pierwszy rok, pozostaw koszt jej odnowienia na 0 zł. Jeżeli w tym czasie termin wygasa, wpisz kwotę odnowienia, by wycena była rzetelna. Konto i faktura powinny należeć do klienta. Opieka Mini dotyczy tylko prostych stron statycznych.</p>
       </div>
       <aside className="zm-creator-quote" aria-live="polite" aria-label="Orientacyjna wycena projektu i utrzymania">
         <span className="section-no">TWÓJ BUDŻET / NA BIEŻĄCO</span>
