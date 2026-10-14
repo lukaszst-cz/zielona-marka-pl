@@ -47,6 +47,11 @@ export default function PriceGuideDtp() {
         <p>Przy składzie gazetki największe znaczenie ma nie tylko liczba stron. Liczy się również gotowość danych produktowych, liczba zdjęć do obróbki, dostępność makiety, terminy oraz zakres zmian w kolejnych wydaniach.</p>
         <div className="hero-actions"><Link className="button" href="/dtp#kalkulator-dtp">Oblicz koszt gazetki ↗</Link><Link className="text-link" href="/dtp">Cała oferta DTP ↗</Link></div>
       </header>
+      <aside className="shell zm-guide-highlights" aria-label="Najważniejsze informacje z artykułu">
+        <div><span>01 / W PIGUŁCE</span><h2>Co wpływa na koszt?</h2><p>Liczba stron, produkty, zdjęcia, stan materiałów i liczba rund poprawek.</p></div>
+        <div><span>02 / W PIGUŁCE</span><h2>Czego nie obejmuje?</h2><p>Sam projekt nie zawiera kosztu druku, papieru, dostawy ani licencji.</p></div>
+        <div><span>03 / W PIGUŁCE</span><h2>Jak obniżyć koszt?</h2><p>Stała makieta i uporządkowane dane pozwalają ograniczać pracę nad kolejnymi wydaniami.</p></div>
+      </aside>
       <section className="section shell guide-intro"><div><span className="section-no">JAK POWSTAJE WYCENA</span><h2>Ta sama liczba stron może oznaczać zupełnie inną ilość pracy.</h2></div>
         <p>Ośmiostronicowa gazetka z gotowym szablonem, uporządkowanym arkuszem Excel i przygotowanymi zdjęciami wymaga mniej pracy niż ośmiostronicowy projekt z niekompletnymi cenami, zdjęciami różnej jakości i bez określonego układu. Różnice dotyczą przygotowania, składu, weryfikacji i poprawek.</p></section>
       <section className="section shell"><div className="section-head"><div><span className="section-no">CO WPŁYWA NA CENĘ</span><h2>Sześć rzeczy, które warto przekazać przed zamówieniem.</h2></div></div>
