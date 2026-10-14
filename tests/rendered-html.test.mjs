@@ -175,3 +175,20 @@ test("Premium clarity and ZM Mini pricing are consistent in public website", asy
   const article = await (await render("/poradnik/jak-przygotowac-pdf-do-druku")).text();
   assert.match(article, /Łukasz Staniewicz/);
 });
+
+test("ZM Studio offers five distinct full-site templates and six independent palettes", async () => {
+  const html = await (await render("/projektuj-strone")).text();
+  for (const name of ["Klasyczny firmowy", "Editorial premium", "Minimal &amp; elegancja", "Galeria i realizacje", "Lokalny kontakt"]) {
+    assert.match(html, new RegExp(name), "Missing distinct template: " + name);
+  }
+  for (const color of ["Botaniczny", "Nowoczesny", "Elegancki premium", "Jasny atelier", "Ciepły terrakota", "Kreatywny śliwkowy"]) {
+    assert.match(html, new RegExp(color), "Missing palette: " + color);
+  }
+  assert.match(html, /aria-label="Wybierz układ i wygląd strony"/);
+  assert.match(html, /zm-demo-layout-classic/);
+  assert.match(html, /zm-demo-footer/);
+  const styles = await readFile(new URL("../app/full-site-builder.css", import.meta.url), "utf8");
+  for (const layout of ["editorial", "minimal", "showcase", "contact"]) {
+    assert.match(styles, new RegExp("zm-demo-layout-" + layout), "Missing responsive layout CSS: " + layout);
+  }
+});
