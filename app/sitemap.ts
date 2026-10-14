@@ -5,8 +5,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const localCities = ["zabki", "zielonka", "kobylka", "wolomin", "radzymin", "targowek", "bialoleka", "warszawa"];
   return [
     { url: base, lastModified: new Date("2026-10-09"), changeFrequency: "weekly", priority: 1 },
-    { url: `${base}/oferta`, lastModified: new Date("2026-10-07"), changeFrequency: "weekly", priority: .9 },
-    { url: `${base}/opieka-nad-strona`, changeFrequency: "monthly", priority: .7 },
+    { url: `${base}/oferta`, lastModified: new Date("2026-10-14"), changeFrequency: "weekly", priority: .9 },
+    { url: `${base}/opieka-nad-strona`, lastModified: new Date("2026-10-14"), changeFrequency: "monthly", priority: .78 },
+    { url: `${base}/dtp`, lastModified: new Date("2026-10-14"), changeFrequency: "monthly", priority: .82 },
     { url: `${base}/przyklady-zaplecza`, lastModified: new Date("2026-10-07"), changeFrequency: "monthly", priority: .7 },
     { url: `${base}/raport-qa`, lastModified: new Date("2026-10-08"), changeFrequency: "monthly", priority: .65 },
     { url: `${base}/modernizacja-strony`, changeFrequency: "weekly", priority: .9 },
