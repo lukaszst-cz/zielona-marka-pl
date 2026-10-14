@@ -154,3 +154,24 @@ test("Global navigation uses categorized menu and branded social icons", async (
     assert.ok((footer[0].match(/href="\/dtp"/g) || []).length <= 1, path + ": repeated DTP link");
   }
 });
+
+test("Premium clarity and ZM Mini pricing are consistent in public website", async () => {
+  const routes = ["/", "/oferta", "/projektuj-strone", "/poradnik/ile-kosztuje-strona-dla-malej-firmy"];
+  for (const path of routes) {
+    const response = await render(path);
+    assert.equal(response.status, 200, path);
+    const html = await response.text();
+    assert.match(html, /899 zł|899 PLN/, path + ": starter price");
+    assert.doesNotMatch(html, /wizytówk[^<]{0,70}990 zł/, path + ": outdated Mini price");
+  }
+  const offer = await (await render("/oferta")).text();
+  assert.match(offer, /jednostronicowy układ z 3 sekcjami/);
+  const studio = await (await render("/projektuj-strone")).text();
+  assert.match(studio, /899 zł/);
+  const home = await (await render("/")).text();
+  assert.match(home, /zmh-social-panel/);
+  assert.match(home, /\/icon-github-zielona-marka\.svg/);
+  assert.match(home, /Zaprojektuj przykładową stronę/);
+  const article = await (await render("/poradnik/jak-przygotowac-pdf-do-druku")).text();
+  assert.match(article, /Łukasz Staniewicz/);
+});
