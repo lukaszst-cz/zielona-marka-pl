@@ -6,14 +6,14 @@ import BlogExplorer from "./BlogExplorer";
 import { blogArticles } from "./blog-data";
 
 export const metadata: Metadata = {
-  title: "Blog i poradniki dla firm – strony WWW, SEO, DTP",
+  title: "Blog – strony WWW, SEO, DTP i porady dla firm",
   description: "Blog Zielonej Marki: praktyczne artykuły o stronach internetowych, kosztach utrzymania, lokalnym SEO, projektowaniu gazetek, DTP i organizacji zapytań klientów.",
   alternates: { canonical: "/poradnik", types: { "application/rss+xml": "/poradnik/rss.xml" } },
   openGraph: {
-    title: "Blog i poradniki dla firm | Zielona Marka",
+    title: "Blog | Zielona Marka",
     description: "Praktycznie o stronach WWW, Google, DTP i sprawnym prowadzeniu małej firmy.",
     url: "/poradnik",
-    images: [{ url: "/og-poradniki-zielona-marka.png", width: 1200, height: 630, alt: "Blog i poradniki Zielonej Marki" }],
+    images: [{ url: "/og-poradniki-zielona-marka.png", width: 1200, height: 630, alt: "Blog Zielonej Marki" }],
   },
   twitter: { card: "summary_large_image", images: ["/og-poradniki-zielona-marka.png" ] },
 };
@@ -23,7 +23,7 @@ export default function GuidesPage() {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "@id": "https://zielona-marka.pl/poradnik#webpage",
-    name: "Blog i poradniki Zielonej Marki",
+    name: "Blog Zielonej Marki",
     description: metadata.description,
     url: "https://zielona-marka.pl/poradnik",
     isPartOf: { "@id": "https://zielona-marka.pl/#website" },
@@ -42,13 +42,13 @@ export default function GuidesPage() {
     <header className="page-hero shell zm-blog-hero">
       <GuideBreadcrumbs />
       <span className="eyebrow"><i /> BLOG ZIELONEJ MARKI / WIEDZA DLA FIRM</span>
-      <h1>Praktyczna wiedza, <em>która pomaga firmie rosnąć.</em></h1>
-      <p>Strony internetowe, widoczność w Google, DTP i sprawna obsługa klientów. Konkretne poradniki, przykłady i narzędzia do wykorzystania w codziennej pracy — bez marketingowego żargonu.</p>
+      <h1>Blog Zielonej Marki. <em>Wiedza, która pomaga firmie rosnąć.</em></h1>
+      <p>Strony internetowe, widoczność w Google, DTP i sprawna obsługa klientów. Konkretne artykuły, przykłady i narzędzia do wykorzystania w codziennej pracy — bez marketingowego żargonu.</p>
       <div className="hero-actions"><a className="button" href="#artykuly">Przeglądaj artykuły <span>↘</span></a><Link className="text-link" href="/dtp#kalkulator-dtp">Sprawdź kalkulator DTP ↗</Link></div>
     </header>
     <section className="section shell zm-blog-main" id="artykuly"><BlogExplorer /></section>
     <section className="section shell zm-blog-action">
-      <div><span className="section-no">OD PORADNIKA DO KONKRETU</span><h2>Masz temat, który chcesz przełożyć na działanie?</h2>
+      <div><span className="section-no">OD ARTYKUŁU DO DZIAŁANIA</span><h2>Masz temat, który chcesz przełożyć na działanie?</h2>
         <p>Możesz zacząć od minioceny obecnej strony, wyceny nowej witryny albo konfiguratora materiałów drukowanych. Dobieramy rozwiązanie do rzeczywistej potrzeby.</p></div>
       <div className="zm-blog-action-links">
         <Link href="/projektuj-strone">Zaprojektuj przykładową stronę ↗</Link>
