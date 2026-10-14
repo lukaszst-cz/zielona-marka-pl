@@ -7,9 +7,9 @@ import { QuickWhatsApp, SiteFooter, SiteHeader } from "../SiteChrome";
 export const metadata: Metadata = {
   title: "DTP, wizytówki, ulotki i przygotowanie do druku",
   description: "Projektowanie wizytówek, ulotek, folderów, gazetek i przygotowanie plików do druku. Kontrola PDF, spady, CMYK, kolory dodatkowe i współpraca z drukarnią. Warszawa, Marki i cała Polska.",
-  alternates: { canonical: "/dtp" }
+  alternates: { canonical: "/dtp" },
   openGraph: { type: "website", url: "/dtp", title: "DTP, wizytówki, ulotki i przygotowanie do druku | Zielona Marka", description: "Projektowanie wizytówek, ulotek, folderów, gazetek i przygotowanie plików do druku. Kontrola PDF, spady, CMYK, kolory dodatkowe i współpraca z drukarnią. Warszawa, Marki i cała Polska.", images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Zielona Marka – strony internetowe, DTP i rozwiązania dla firm" }] },
-  twitter: { card: "summary_large_image", title: "DTP, wizytówki, ulotki i przygotowanie do druku | Zielona Marka", description: "Projektowanie wizytówek, ulotek, folderów, gazetek i przygotowanie plików do druku. Kontrola PDF, spady, CMYK, kolory dodatkowe i współpraca z drukarnią. Warszawa, Marki i cała Polska.", images: ["/og.jpg"] },,
+  twitter: { card: "summary_large_image", title: "DTP, wizytówki, ulotki i przygotowanie do druku | Zielona Marka", description: "Projektowanie wizytówek, ulotek, folderów, gazetek i przygotowanie plików do druku. Kontrola PDF, spady, CMYK, kolory dodatkowe i współpraca z drukarnią. Warszawa, Marki i cała Polska.", images: ["/og.jpg"] },
 };
 
 const services = [
