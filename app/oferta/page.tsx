@@ -34,7 +34,7 @@ const offerStructuredData = {
     "@type": "OfferCatalog",
     name: "Pakiety Zielonej Marki",
     itemListElement: [
-      { "@type": "Offer", name: "ZM Mini – prosta wizytówka internetowa", description: "Jednostronicowa wizytówka z 3–4 sekcjami, na sprawdzonym układzie i z materiałami klienta.", url: "https://zielona-marka.pl/oferta#zm-mini" },
+      { "@type": "Offer", name: "ZM Mini – prosta wizytówka internetowa", description: "Jednostronicowa wizytówka z 3 sekcjami na sprawdzonym układzie, z materiałami klienta, bez formularza.", url: "https://zielona-marka.pl/oferta#zm-mini" },
       ...corePackages.map((item) => ({
         "@type": "Offer", name: item.title, description: item.lead,
         url: "https://zielona-marka.pl/oferta",
