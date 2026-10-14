@@ -135,3 +135,22 @@ test("ZM Studio is part of the real website and previews a complete customer pag
   assert.match(html, /Wyślij projekt i wycenę/);
   assert.doesNotMatch(html, /class="zm-web-preview"/);
 });
+
+test("Global navigation uses categorized menu and branded social icons", async () => {
+  for (const path of ["/", "/poradnik", "/projektuj-strone"]) {
+    const response = await render(path);
+    assert.equal(response.status, 200, path);
+    const html = await response.text();
+    for (const heading of ["Strony internetowe", "Materiały i identyfikacja", "Systemy dla firm", "Strony dla branż"]) {
+      assert.match(html, new RegExp(heading), path + " menu: " + heading);
+    }
+    assert.match(html, /class="zm-mega-groups"/);
+    assert.match(html, /class="zm-mobile-menu-group"/);
+    assert.match(html, /\/podpis-email\/icon-facebook\.png/);
+    assert.match(html, /\/podpis-email\/icon-instagram\.png/);
+    assert.match(html, /\/podpis-email\/icon-www\.png/);
+    const footer = html.match(/<footer\b[\s\S]*?<\/footer>/i);
+    assert.ok(footer, path + ": missing footer");
+    assert.equal((footer[0].match(/href="\/dtp"/g) || []).length, 1);
+  }
+});
