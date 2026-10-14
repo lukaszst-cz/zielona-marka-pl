@@ -144,7 +144,7 @@ test("guide is discoverable and its diagnostic steps have restrained motion",asy
   const guide=await(await fetchPage("/poradnik/dlaczego-strona-firmy-nie-przynosi-zapytan")).text();
   const css=await readFile(new URL("../app/site-refinements.css",import.meta.url),"utf8");
   assert.match(home,/Przeczytaj poradnik/);
-  assert.match(guide,/Poradniki<\/a>/);
+  assert.match(guide,/Blog<\/a>/);
   assert.match(css,/\.guide-reasons li:hover\{transform:translateY\(-5px\)/);
   assert.match(css,/\.guide-check li:hover\{transform:translateX\(7px\)/);
   assert.match(css,/@media\(prefers-reduced-motion:reduce\)\{\.guide-reasons li/);
