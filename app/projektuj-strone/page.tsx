@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return <><SiteHeader/><main className="zm-public">
     <section className="page-hero shell"><span className="eyebrow"><i/> ZM STUDIO / KONFIGURATOR STRONY WWW</span><h1>Wybierz styl strony. <em>Zobacz, jak może wyglądać Twoja firma w internecie.</em></h1>
-      <p>W kilku krokach określisz branżę, kolorystykę i funkcje strony. Otrzymasz podgląd poglądowej kompozycji. Następnie możesz wysłać wybrane ustawienia do wyceny — bez logowania i bez zobowiązań.</p>
+      <p>Wybierz branżę, nazwę firmy, styl, sekcje i funkcje. Zobacz pełną przykładową stronę od menu po stopkę oraz koszt wykonania, hostingu, domeny i opieki — bez logowania i bez zobowiązań.</p>
       <div className="hero-actions"><a href="#zm-konfigurator" className="button">Przejdź do konfiguratora ↗</a><Link href="/oferta#kalkulator-pelnego-kosztu" className="text-link">Koszt pierwszego i kolejnych lat ↗</Link></div>
     </section>
     <section id="zm-konfigurator" className="section shell"><div className="section-head"><div><span className="section-no">INTERAKTYWNY PODGLĄD</span><h2>Wybierz, sprawdź i zapytaj o swój projekt.</h2></div><p>Podgląd zmienia się na bieżąco. Pokazuje przykładową kompozycję, a nie ukończoną stronę. Ostateczny projekt i zakres uzgadniamy indywidualnie.</p></div><WebsiteConfigurator /></section>
