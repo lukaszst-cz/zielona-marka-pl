@@ -153,7 +153,7 @@ export default async function RootLayout({
       {
         "@type": "Person",
         "@id": "https://zielona-marka.pl/#lukasz-st-cz",
-        name: "Łukasz St-cz",
+        name: "Łukasz Staniewicz",
         url: "https://zielona-marka.pl/jak-pracuje",
         worksFor: { "@id": "https://zielona-marka.pl/#business" },
       },
