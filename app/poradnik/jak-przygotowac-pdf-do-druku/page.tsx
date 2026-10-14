@@ -69,9 +69,9 @@ export default function GuidePrintPdf() {
       <section className="section shell faq-page"><div className="section-head"><div><span className="section-no">NAJCZĘSTSZE PYTANIA</span><h2>Jeszcze przed produkcją.</h2></div></div>
         <div className="faq-list">{questions.map(([q,a],i) => <details key={q} open={i === 0}><summary><span>{String(i + 1).padStart(2,"0")}</span>{q}<i>+</i></summary><p>{a}</p></details>)}</div>
       </section>
+            <div className="shell zm-article-author-wrap"><GuideAuthor published="14 października 2026" updated="14 października 2026" /></div>
       <section className="section guide-cta"><div className="shell"><span className="section-no">KONTROLA DTP</span><h2>Masz gotowy PDF, ale nie masz pewności, czy nadaje się do druku?</h2>
         <p>Możesz zlecić weryfikację techniczną, korekty lub przygotowanie całego projektu. Ocena nie zastępuje sprawdzenia treści i cen przez zamawiającego.</p><Link className="button" href="/kontakt?pakiet=DTP%3A%20Kontrola%20PDF">Zapytaj o kontrolę pliku ↗</Link></div></section>
-      <div className="shell zm-article-author-wrap"><GuideAuthor published="14 października 2026" updated="14 października 2026" /></div>
     </article>
   </main><QuickWhatsApp /><SiteFooter /></>;
 }
