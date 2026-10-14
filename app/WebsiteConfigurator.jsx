@@ -93,6 +93,7 @@ export default function WebsiteConfigurator() {
   const [care, setCare] = useState("none");
   const [domain, setDomain] = useState("new");
   const [domainFirst, setDomainFirst] = useState(20);
+  const [ownDomainFirst, setOwnDomainFirst] = useState(0);
   const [domainRenew, setDomainRenew] = useState(90);
   const [host, setHost] = useState("basic");
   const [ownHostFirst, setOwnHostFirst] = useState(0);
@@ -112,7 +113,7 @@ export default function WebsiteConfigurator() {
   }, [plan, sections]);
   const quote = useMemo(() => {
     const project = selectedPlan.amount + (copywriting ? 350 : 0) + (googleProfile ? 390 : 0);
-    const providerFirst = (domain === "new" ? priceCap(domainFirst) : 0)
+    const providerFirst = (domain === "new" ? priceCap(domainFirst) : priceCap(ownDomainFirst))
       + (host === "own" ? priceCap(ownHostFirst) : selectedHost.year1);
     const providerRenew = priceCap(domainRenew) + (host === "own" ? priceCap(ownHostRenew) : selectedHost.renewal);
     const careYear = selectedCare.amount * 12;
@@ -124,7 +125,7 @@ export default function WebsiteConfigurator() {
     ];
     return { project, firstYear: project + providerFirst + careYear, renewal: providerRenew + careYear,
       threeYears: project + providerFirst + providerRenew * 2 + careYear * 3, careYear, providerFirst, manualItems };
-  }, [selectedPlan, selectedCare, selectedHost, domain, domainFirst, domainRenew, host, ownHostFirst,
+  }, [selectedPlan, selectedCare, selectedHost, domain, domainFirst, ownDomainFirst, domainRenew, host, ownHostFirst,
     ownHostRenew, copywriting, googleProfile, extraPages, extras, simple]);
 
   function changeIndustry(id) {
@@ -159,7 +160,7 @@ export default function WebsiteConfigurator() {
     "Sekcje na stronie głównej: " + sectionsForPreview.join(", "),
     "Dodatkowe podstrony: " + extraPages + "; funkcje: " + (extras.join(", ") || "brak"),
     "Dodatki: teksty " + (copywriting ? "tak" : "nie") + ", Profil Firmy Google " + (googleProfile ? "tak" : "nie"),
-    "Domena: " + domain + "; hosting: " + selectedHost.label + "; opieka: " + selectedCare.label,
+    "Domena: " + domain + (domain === "own" ? " (opłata w pierwszym roku: " + pln(ownDomainFirst) + ")" : " (rejestracja: " + pln(domainFirst) + ")") + "; odnowienie: " + pln(domainRenew) + "; hosting: " + selectedHost.label + "; opieka: " + selectedCare.label,
     "Znane koszty projektu: od " + pln(quote.project) + " netto",
     "Pierwszy rok: od " + pln(quote.firstYear) + " netto",
     "Kolejne lata: od " + pln(quote.renewal) + " netto/rok",
@@ -255,8 +256,10 @@ export default function WebsiteConfigurator() {
           </label>
         </div>
         <div className="zm-creator-pair">
-          {domain === "new" && <label>Domena — pierwszy rok, zł netto
+          {domain === "new" ? <label>Domena — rejestracja w pierwszym roku, zł netto
             <input type="number" min="0" max="100000" value={domainFirst} onChange={(e) => setDomainFirst(priceCap(e.target.value))} />
+          </label> : <label>Domena posiadana — czy trzeba ją odnowić w pierwszym roku? Jeśli nie, wpisz 0 zł
+            <input type="number" min="0" max="100000" value={ownDomainFirst} onChange={(e) => setOwnDomainFirst(priceCap(e.target.value))} />
           </label>}
           <label>Domena — odnowienie roczne, zł netto
             <input type="number" min="0" max="100000" value={domainRenew} onChange={(e) => setDomainRenew(priceCap(e.target.value))} />
@@ -276,7 +279,7 @@ export default function WebsiteConfigurator() {
               <option key={x.id} value={x.id}>{x.label} — {pln(x.amount)}/mies.</option>)}
           </select>
         </label>
-        <p className="zm-creator-note">Domena i hosting to orientacyjne koszty zewnętrzne. Jeśli masz opłaconą domenę, w pierwszym roku nie doliczamy jej ponownie; odnowienie uwzględniamy w kolejnych latach. Konto i faktura powinny należeć do klienta. Opieka Mini dotyczy tylko prostych stron statycznych.</p>
+        <p className="zm-creator-note">Domena i hosting to orientacyjne koszty zewnętrzne. Jeśli masz opłaconą domenę na cały pierwszy rok, pozostaw w polu kosztu odnowienia 0 zł. Jeżeli odnowienie przypada wcześniej, wpisz jego kwotę; przyszłe odnowienia są rozliczane osobno. Konto i faktura powinny należeć do klienta. Opieka Mini dotyczy tylko prostych stron statycznych.</p>
       </div>
       <aside className="zm-creator-quote" aria-live="polite" aria-label="Orientacyjna wycena projektu i utrzymania">
         <span className="section-no">TWÓJ BUDŻET / NA BIEŻĄCO</span>
