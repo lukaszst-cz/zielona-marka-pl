@@ -288,7 +288,7 @@ export default function WebsiteConfigurator() {
           <header className="zm-demo-nav">
             <strong>{businessName}</strong>
             <div aria-hidden="true"><span>Oferta</span><span>O firmie</span><span>Kontakt</span></div>
-            <span className="zm-demo-nav-cta">Zapytaj ↗</span>
+            <span className="zm-demo-nav-cta" style={{ color: palette === "dark" ? "#112515" : "#fff" }}>Zapytaj ↗</span>
           </header>
           <div className="zm-demo-content">
             <section className="zm-demo-hero">
