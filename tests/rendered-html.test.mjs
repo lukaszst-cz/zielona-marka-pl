@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { existsSync } from "node:fs";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 const forbiddenBrand = new RegExp(["c" + "hat", "g" + "pt"].join(""), "i");
