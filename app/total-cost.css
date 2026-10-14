@@ -1,0 +1,39 @@
+/* Transparent cost calculator and DTP offer. Uses existing Zielona Marka palette/typography. */
+.zm-total-builder{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(300px,.92fr);gap:26px;align-items:start}
+.zm-total-fields,.zm-total-results{border:1px solid rgba(17,57,39,.2);padding:clamp(22px,3vw,36px);background:#f5f7ef;color:#123727}
+.zm-total-fields{display:grid;gap:19px}
+.zm-field{display:grid;gap:8px}
+.zm-field>label,.zm-cost-extras legend{font-size:13px;font-weight:700;color:#123727}
+.zm-field select,.zm-field input{width:100%;min-height:47px;background:#fff;border:1px solid #c3d1bf;color:#123727;border-radius:5px;padding:11px 12px;font:inherit}
+.zm-field select:focus-visible,.zm-field input:focus-visible,.zm-cost-extras input:focus-visible{outline:3px solid #82a98b;outline-offset:2px}
+.zm-field small{color:#59685d;font-size:12px;line-height:1.65}
+.zm-cost-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.zm-cost-extras{border:1px solid #ced8cb;padding:15px;display:grid;gap:12px}
+.zm-cost-extras label{display:flex;gap:9px;align-items:flex-start;font-size:13px;line-height:1.45}
+.zm-cost-extras input{accent-color:#226442;margin-top:3px}
+.zm-total-results{background:#123727;color:#eef7e9;position:sticky;top:100px}
+.zm-total-results h3{color:#fff;font:400 clamp(27px,3vw,39px)/1.1 Georgia,serif;margin:17px 0 25px}
+.zm-total-results .section-no{color:#d2eebd}
+.zm-total-results dl{margin:0;display:grid;gap:14px}
+.zm-total-results dl div,.zm-cost-next{display:flex;justify-content:space-between;gap:22px;align-items:baseline}
+.zm-total-results dt,.zm-cost-next span{font-size:13px;line-height:1.5;color:#dce8d9}
+.zm-total-results dd{margin:0;white-space:nowrap;font-size:15px;font-weight:700}
+.zm-cost-total{display:grid;gap:4px;border-top:1px solid #b5d4b166;border-bottom:1px solid #b5d4b166;padding:22px 0;margin:23px 0 18px}
+.zm-cost-total span{font-size:13px;text-transform:uppercase;letter-spacing:.09em}
+.zm-cost-total strong{font:400 clamp(36px,4vw,53px)/1 Georgia,serif;color:#d5ecbb}
+.zm-cost-next{margin-top:11px}
+.zm-cost-next strong{white-space:nowrap;color:#fff;font-weight:700}
+.zm-total-results p{font-size:12px;line-height:1.7;color:#dbe9d6;margin:24px 0}
+.zm-total-results .button{display:inline-flex;align-items:center;justify-content:space-between;gap:10px;background:#e5f1d7;color:#123727;padding:15px 18px;text-decoration:none}
+.zm-cost-link{display:block;margin-top:15px;color:#e5f1d7;text-decoration:underline;font-size:13px}
+.zm-care-price{font:400 38px/1 Georgia,serif;color:#204b33;display:block;margin:15px 0}
+.zm-dtp-note{color:#576659;line-height:1.7}
+.zm-dtp-prices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.zm-dtp-prices article{border:1px solid rgba(17,57,39,.2);background:#f4f7ee;padding:25px}
+.zm-dtp-prices h3{font:400 28px/1.1 Georgia,serif;margin:12px 0}
+.zm-dtp-prices strong{display:block;font-size:20px;color:#164c33}
+.zm-dtp-prices p,.zm-dtp-prices li{font-size:14px;line-height:1.7;color:#425748}
+.zm-dtp-prices ul{padding-left:20px}
+.zm-dtp-prices a{color:#164c33;font-weight:700;text-decoration:underline;font-size:13px}
+@media(max-width:900px){.zm-total-builder{grid-template-columns:1fr}.zm-total-results{position:static}.zm-dtp-prices{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.zm-cost-pair,.zm-dtp-prices{grid-template-columns:1fr}.zm-total-results dl div,.zm-cost-next{align-items:flex-start}.zm-total-results dd,.zm-cost-next strong{font-size:13px;text-align:right}.zm-total-fields,.zm-total-results{padding:20px}}
