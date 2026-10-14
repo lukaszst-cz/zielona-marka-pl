@@ -52,7 +52,7 @@ test("nowe zakładki są renderowane", async () => {
     if (path === "/maly-crm-dla-firm") assert.match(html, /PWA/i);
     if (path === "/raport-qa") assert.match(html, /kontroli jakości/i);
     if (path.includes("/poradnik/")) assert.match(html, /"@type":"Article"/);
-    if (path === "/poradnik") { assert.match(html, /"@type":"CollectionPage"/); assert.match(html, /BIBLIOTEKA WIEDZY/); assert.match(html, /Szukaj w poradnikach/); assert.match(html, /DTP i druk/); }
+    if (path === "/poradnik") { assert.match(html, /"@type":"CollectionPage"/); assert.match(html, /BIBLIOTEKA WIEDZY/); assert.match(html, /Szukaj na blogu/); assert.match(html, /DTP i druk/); }
     if (path === "/praktyczne-narzedzia") { assert.match(html, /Lead &amp; Offer Copilot/); assert.match(html, /"@type":"ItemList"/); }
     if (path === "/realizacje/transportflow") { assert.match(html, /TransportFlow 360/); assert.match(html, /"@type":"SoftwareApplication"/); }
     if (path.includes("dlaczego-strona")) assert.match(html, /7 najczęstszych przyczyn/i);
@@ -80,7 +80,7 @@ test("lokalne podstrony mają unikalną treść i działający kontakt", async (
 test("kluczowe statyczne podstrony mają własne metadata w head", async () => {
   const expected = [
     ["/oferta", "Strony internetowe – cennik i koszt utrzymania", "Wizytówka od 990 zł netto", "https://zielona-marka.pl/oferta"],
-    ["/poradnik", "Blog i poradniki dla firm – strony WWW, SEO, DTP", "Blog Zielonej Marki", "https://zielona-marka.pl/poradnik"],
+    ["/poradnik", "Blog – strony WWW, SEO, DTP i porady dla firm", "Blog Zielonej Marki", "https://zielona-marka.pl/poradnik"],
     ["/dtp", "DTP, wizytówki, ulotki i przygotowanie do druku", "Projektowanie wizytówek", "https://zielona-marka.pl/dtp"],
     ["/opieka-nad-strona", "Opieka nad stroną, hosting i koszty utrzymania", "Ile kosztuje utrzymanie strony WWW?", "https://zielona-marka.pl/opieka-nad-strona"],
     ["/modernizacja-strony", "Modernizacja strony internetowej", "Ocena starej strony i plan modernizacji", "https://zielona-marka.pl/modernizacja-strony"],
