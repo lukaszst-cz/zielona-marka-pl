@@ -4,7 +4,7 @@ import WebsiteConfigurator from "../WebsiteConfigurator";
 import { SiteHeader, SiteFooter, QuickWhatsApp } from "../SiteChrome";
 
 export const metadata: Metadata = {
-  title: "Konfigurator strony internetowej – wybierz styl i funkcje",
+  title: "Kreator całej strony WWW i wycena — ZM Studio",
   description: "Zaprojektuj przykładową stronę dla swojej firmy. Wybierz branżę, kolory, funkcje i wariant witryny. Zobacz podgląd oraz przejdź do indywidualnej wyceny.",
   alternates: { canonical: "/projektuj-strone" },
 };
