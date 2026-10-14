@@ -120,7 +120,7 @@ export default function WebsiteConfigurator() {
       ...(extraPages > 0 ? ["Dodatkowe podstrony"] : []),
       ...(extras.includes("booking") ? ["Rezerwacje"] : []),
       ...(extras.includes("crm") ? ["Mały CRM"] : []),
-      ...(extras.includes("contact") && simple ? ["Formularz kontaktowy"] : []),
+      ...(extras.includes("contact") && plan === "mini" ? ["Formularz kontaktowy — poza zakresem ZM Mini"] : []),
     ];
     return { project, firstYear: project + providerFirst + careYear, renewal: providerRenew + careYear,
       threeYears: project + providerFirst + providerRenew * 2 + careYear * 3, careYear, providerFirst, manualItems };
@@ -135,6 +135,7 @@ export default function WebsiteConfigurator() {
   function changePlan(id) {
     const isSimple = id === "mini" || id === "start";
     setPlan(id);
+    setExtras((previous) => id === "mini" ? previous.filter((x) => x !== "contact") : previous.includes("contact") ? previous : [...previous, "contact"]);
     if (!isSimple) {
       if (care === "mini") setCare("standard");
       if (host === "free") setHost("basic");
@@ -147,7 +148,7 @@ export default function WebsiteConfigurator() {
   const businessName = safeText(brand, 56) || concept.brand;
   const locationName = safeText(place, 65) || "Twoja okolica";
   const features = [
-    { id: "contact", label: "Formularz zapytań", hint: simple ? "osobna wycena" : "zakres zależny od pakietu" },
+    { id: "contact", label: "Formularz zapytań", hint: plan === "mini" ? "poza ceną ZM Mini — wycena indywidualna" : "w cenie wybranego pakietu" },
     { id: "booking", label: "Rezerwacje wizyt", hint: "osobna wycena" },
     { id: "crm", label: "Mały CRM", hint: "osobna wycena" },
   ];
@@ -227,6 +228,7 @@ export default function WebsiteConfigurator() {
             <span>{x.label} <small>({x.hint})</small></span>
           </label>)}
         </fieldset>
+        <p className="zm-creator-scope-note">{plan === "mini" ? "ZM Mini od 899 zł: trzy sekcje (oferta, o firmie, kontakt z telefonem i e-mailem), materiały klienta, bez formularza. Formularz, rezerwacje i CRM wymagają osobnej wyceny." : "Formularz kontaktowy jest uwzględniony w podstawowym zakresie tego pakietu. Rezerwacje, CRM i dodatkowe podstrony wyceniamy osobno."}</p>
         <div className="zm-creator-pair">
           <label>Dodatkowe podstrony
             <select value={extraPages} onChange={(e) => setExtraPages(Number(e.target.value))}>
