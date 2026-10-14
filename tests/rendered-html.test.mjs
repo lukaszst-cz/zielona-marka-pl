@@ -242,8 +242,8 @@ test("Customer-first navigation features Studio and keeps older service routes d
     assert.match(html, /Zaprojektuj własną stronę/);
     assert.match(html, /Porównaj pakiety i ceny/);
     assert.match(html, /Narzędzia bezpłatne/);
-    assert.match(html, /href="\\/dtp"/);
-    assert.match(html, /href="\\/projektuj-strone"/);
+    assert.ok(html.includes('href="/dtp"'), "dtp link missing");
+    assert.ok(html.includes('href="/projektuj-strone"'), "projektuj-strone link missing");
   }
 });
 
