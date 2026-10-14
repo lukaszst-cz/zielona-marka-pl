@@ -46,16 +46,17 @@ export default function TotalCostCalculator() {
     const selectedCare = careOptions.find((item) => item.id === care) ?? careOptions[0];
     const selectedHost = hostingOptions.find((item) => item.id === hosting) ?? hostingOptions[2];
     const production = selectedSite.price + (copywriting ? 350 : 0) + (googleProfile ? 390 : 0);
-    const domainYear1 = domainType === "new" ? cap(domainFirst) : cap(ownDomainFirst);
-    const domainRenewal = cap(domainNext);
-    const hostYear1 = hosting === "own" ? cap(ownHostingFirst) : selectedHost.first;
-    const hostYearNext = hosting === "own" ? cap(ownHostingNext) : selectedHost.next;
-    const providerYear1 = domainYear1 + hostYear1;
-    const providerYearNext = domainRenewal + hostYearNext;
-    const careYear = selectedCare.monthly * 12;
-    const firstYear = production + providerYear1 + careYear;
-    const nextYear = providerYearNext + careYear;
-    return { selectedSite, selectedCare, selectedHost, production, providerYear1, providerYearNext, careYear, firstYear, nextYear, threeYears: firstYear + 2 * nextYear };
+    const costs = websiteBudget({
+      project: production,
+      domainType, domainRegistration: domainFirst, existingDomainFirstYear: ownDomainFirst,
+      domainRenewal: domainNext,
+      hostingFirstYear: hosting === "own" ? ownHostingFirst : selectedHost.first,
+      hostingRenewal: hosting === "own" ? ownHostingNext : selectedHost.next,
+      careMonthly: selectedCare.monthly,
+    });
+    return { selectedSite, selectedCare, selectedHost, production,
+      providerYear1: costs.providerFirst, providerYearNext: costs.providerRenew,
+      careYear: costs.careYear, firstYear: costs.firstYear, nextYear: costs.nextYear, threeYears: costs.threeYears };
   }, [site, care, hosting, domainType, domainFirst, ownDomainFirst, domainNext, ownHostingFirst, ownHostingNext, copywriting, googleProfile]);
 
   const summary = [
