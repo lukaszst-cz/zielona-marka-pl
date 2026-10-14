@@ -129,7 +129,7 @@ export default function WebsiteConfigurator() {
       if (host === "free") setHost("basic");
     }
   }
-  function toggle(key, setter, name) {
+  function toggle(setter, name) {
     setter((items) => items.includes(name) ? items.filter((x) => x !== name) : [...items, name]);
   }
 
@@ -193,13 +193,13 @@ export default function WebsiteConfigurator() {
           <fieldset className="zm-creator-checks"><legend>Sekcje strony głównej</legend>
             {[["services", "Oferta usług"], ["about", "O firmie"], ["process", "Przebieg współpracy"], ["faq", "Pytania klientów"], ["contact", "Kontakt"]].map(([id, label]) =>
               <label key={id}><input type="checkbox" checked={sections.includes(id)}
-                onChange={() => toggle("sections", setSections, id)} /> {label}</label>)}
+                onChange={() => toggle(setSections, id)} /> {label}</label>)}
           </fieldset>
         </>}
         <fieldset className="zm-creator-checks"><legend>Funkcje i dodatki</legend>
           {features.map((x) => <label key={x.id}>
             <input type="checkbox" checked={extras.includes(x.id)}
-              onChange={() => toggle("extras", setExtras, x.id)} />
+              onChange={() => toggle(setExtras, x.id)} />
             <span>{x.label} <small>({x.hint})</small></span>
           </label>)}
         </fieldset>
