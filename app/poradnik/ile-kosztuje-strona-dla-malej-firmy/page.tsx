@@ -6,7 +6,7 @@ import { QuickWhatsApp, SiteFooter, SiteHeader } from "../../SiteChrome";
 
 export const metadata: Metadata = {
   title: "Ile kosztuje strona dla małej firmy?",
-  description: "Ile kosztuje strona dla małej firmy? Wizytówka od 990 zł netto, pełna strona od 1 449 zł. Hosting, domena, opieka i wydatki po roku.",
+  description: "Ile kosztuje strona dla małej firmy? Wizytówka od 899 zł netto, pełna strona od 1 449 zł. Hosting, domena, opieka i wydatki po roku.",
   alternates: { canonical: "/poradnik/ile-kosztuje-strona-dla-malej-firmy" },
   openGraph: { type: "article", title: "Ile kosztuje strona internetowa dla małej firmy?", description: "Trzy warianty, zakres i koszty, które mogą pojawić się osobno.", url: "/poradnik/ile-kosztuje-strona-dla-malej-firmy", publishedTime: "2026-09-30", modifiedTime: "2026-10-14", images: [{ url: "/og-ile-kosztuje-strona-dla-malej-firmy.png", width: 1200, height: 630, alt: "Ile kosztuje strona dla małej firmy, poradnik Zielonej Marki" }] },
   twitter: { card: "summary_large_image", images: ["/og-ile-kosztuje-strona-dla-malej-firmy.png"] },
@@ -31,7 +31,7 @@ const faq = [
 ] as const;
 
 const packages = [
-  ["00", "ZM Mini", "od 990 zł netto", "Prosta wizytówka jednostronicowa ze sprawdzonego układu.", ["3–4 sekcje", "telefon i e-mail, bez formularza", "materiały dostarczone przez klienta", "jedna runda poprawek"]],
+  ["00", "ZM Mini", "od 899 zł netto", "Prosta wizytówka jednostronicowa ze sprawdzonego układu.", ["3 sekcje", "telefon i e-mail, bez formularza", "materiały dostarczone przez klienta", "jedna runda poprawek"]],
   ["01", "ZM Start", "od 1 449 zł netto", "Jedna kompletna, przewijana strona dla lokalnej firmy usługowej.", ["około 6–7 sekcji", "telefon, e-mail, WhatsApp i formularz", "wersja mobilna i podstawy Google", "publikacja, testy i 14 dni wsparcia"]],
   ["02", "ZM LeadFlow", "od 4 490 zł netto", "Strona do 6 podstron i formularz, który zbiera konkrety potrzebne do rozmowy lub wyceny.", ["indywidualny układ i treści", "termin, opis i możliwość dodania zdjęć", "lokalne SEO i mierzenie zapytań", "zwykle 10–14 dni roboczych"]],
   ["03", "ZM Flow", "od 6 900 zł netto", "Strona, formularz i asystent zapytań połączone z prostym obiegiem kontaktów.", ["kwalifikacja powtarzalnych pytań", "zatwierdzona baza odpowiedzi", "przekazanie sprawy człowiekowi", "możliwość dalszej automatyzacji"]],
