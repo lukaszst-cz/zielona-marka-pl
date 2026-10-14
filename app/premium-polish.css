@@ -145,3 +145,21 @@ html body .zm-v5 .zmh-form-surface button[type=submit]{font-size:16px!important;
 html body .zm-v5 .zmh-form-surface :is(label,span):focus-within{outline-offset:3px}
 @media(max-width:800px){html body .zm-v5 .zmh-social-panel{flex-direction:column;align-items:stretch}html body .zm-v5 .zmh-social-panel-links a{flex:1 1 150px;justify-content:center}}
 @media(max-width:480px){html body .zm-v5 .zmh-social-panel-links{display:grid;grid-template-columns:1fr 1fr}html body .zm-v5 .zmh-social-panel-links a{min-width:0;font-size:13px;padding:9px;gap:7px}}
+
+
+/* Article pages are full public subpages, not a single padded article card.
+   The global article-card rule must never wrap the entire editorial layout. */
+html body .zm-public.guide-page>article{display:block;width:100%;max-width:none;min-width:0;margin:0;padding:0!important;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important}
+html body .zm-public.guide-page>article>.page-hero{padding-left:max(24px,calc((100% - 1190px)/2));padding-right:max(24px,calc((100% - 1190px)/2));max-width:none}
+html body .zm-public.guide-page>article>.section:not(.shell)>div.shell{width:min(1190px,calc(100% - 48px));margin-inline:auto}
+html body .zm-public.guide-page>article .section h2{line-height:1.19}
+html body .zm-public.guide-page>article .section>p{max-width:930px;font-size:17px;line-height:1.8;color:#eaf4e3}
+html body .zm-public.guide-page>article .section li{font-size:16px;line-height:1.7}
+html body .zm-public.guide-page>article :is(.faq-list,.guide-faq)>div{min-width:0}
+html body .zm-public.guide-page>article .section-head{gap:24px}
+html body .zm-public.guide-page>article .section-head p{font-size:17px!important;line-height:1.7;color:#dcebd5!important}
+html body .zm-public.guide-page>article :is(.guide-cta,.mini-shop-section){border-top:1px solid rgba(176,243,108,.22)}
+@media(max-width:650px){
+  html body .zm-public.guide-page>article>.page-hero{padding-left:20px;padding-right:20px}
+  html body .zm-public.guide-page>article>.section:not(.shell)>div.shell{width:calc(100% - 40px)}
+}
