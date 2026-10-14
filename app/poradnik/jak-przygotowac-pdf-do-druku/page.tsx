@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "../../SafeLink";
-import { GuideBreadcrumbs } from "../../GuideElements";
+import { GuideAuthor, GuideBreadcrumbs } from "../../GuideElements";
 import { QuickWhatsApp, SiteFooter, SiteHeader } from "../../SiteChrome";
 
 export const metadata: Metadata = {
@@ -71,6 +71,7 @@ export default function GuidePrintPdf() {
       </section>
       <section className="section guide-cta"><div className="shell"><span className="section-no">KONTROLA DTP</span><h2>Masz gotowy PDF, ale nie masz pewności, czy nadaje się do druku?</h2>
         <p>Możesz zlecić weryfikację techniczną, korekty lub przygotowanie całego projektu. Ocena nie zastępuje sprawdzenia treści i cen przez zamawiającego.</p><Link className="button" href="/kontakt?pakiet=DTP%3A%20Kontrola%20PDF">Zapytaj o kontrolę pliku ↗</Link></div></section>
+      <div className="shell zm-article-author-wrap"><GuideAuthor published="14 października 2026" updated="14 października 2026" /></div>
     </article>
   </main><QuickWhatsApp /><SiteFooter /></>;
 }
