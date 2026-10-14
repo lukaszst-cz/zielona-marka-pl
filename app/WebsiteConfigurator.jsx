@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { trackAnalyticsEvent } from "./CookieConsent";
+import { saveQuoteTransfer } from "./QuoteTransfer";
 
 const industries = [
   {
@@ -166,8 +167,7 @@ export default function WebsiteConfigurator() {
     quote.manualItems.length ? "DO OSOBNEJ WYCENY: " + quote.manualItems.join(", ") : "Bez pozycji wymagających osobnej wyceny.",
     "Kwoty orientacyjne, bez zobowiązania. Podgląd nie jest gotową stroną.",
   ].join("\n");
-  const quoteUrl = "/kontakt?pakiet=" + encodeURIComponent("Projekt WWW z ZM Studio")
-    + "&wycena=" + encodeURIComponent(summary.slice(0, 1180));
+  const quoteUrl = "/kontakt?pakiet=" + encodeURIComponent("Projekt WWW z ZM Studio");
 
   return <div className="zm-creator" id="zm-studio-builder">
     <div className="zm-creator-top">
@@ -289,7 +289,7 @@ export default function WebsiteConfigurator() {
           <div className="zm-creator-manual"><strong>Do indywidualnej wyceny:</strong>
             <span>{quote.manualItems.join(", ")}</span></div>}
         <p>Kwoty netto są orientacyjnym minimum przy wybranym zakresie. Nie uwzględniają indywidualnych funkcji oznaczonych powyżej ani przyszłych zmian cenników operatorów.</p>
-        <a href={quoteUrl} className="button" onClick={() => trackAnalyticsEvent("website_creator_lead", { industry, palette, plan, extras: extras.length })}>Wyślij projekt i wycenę ↗</a>
+        <a href={quoteUrl} className="button" onClick={() => { saveQuoteTransfer("Projekt WWW z ZM Studio", summary); trackAnalyticsEvent("website_creator_lead", { industry, palette, plan, extras: extras.length }); }}>Wyślij projekt i wycenę ↗</a>
         <a className="zm-creator-secondary-link" href="/oferta#kalkulator-pelnego-kosztu">Szczegóły pakietów i opieki ↗</a>
       </aside>
     </div>
