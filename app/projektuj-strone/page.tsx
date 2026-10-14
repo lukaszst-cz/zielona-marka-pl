@@ -1,0 +1,21 @@
+import type { Metadata } from "next";
+import Link from "../SafeLink";
+import WebsiteConfigurator from "../WebsiteConfigurator";
+import { SiteHeader, SiteFooter, QuickWhatsApp } from "../SiteChrome";
+
+export const metadata: Metadata = {
+  title: "Konfigurator strony internetowej – wybierz styl i funkcje",
+  description: "Zaprojektuj przykładową stronę dla swojej firmy. Wybierz branżę, kolory, funkcje i wariant witryny. Zobacz podgląd oraz przejdź do indywidualnej wyceny.",
+  alternates: { canonical: "/projektuj-strone" },
+};
+
+export default function Page() {
+  return <><SiteHeader/><main className="zm-public">
+    <section className="page-hero shell"><span className="eyebrow"><i/> ZM STUDIO / KONFIGURATOR STRONY WWW</span><h1>Wybierz styl strony. <em>Zobacz, jak może wyglądać Twoja firma w internecie.</em></h1>
+      <p>W kilku krokach określisz branżę, kolorystykę i funkcje strony. Otrzymasz podgląd poglądowej kompozycji. Następnie możesz wysłać wybrane ustawienia do wyceny — bez logowania i bez zobowiązań.</p>
+      <div className="hero-actions"><a href="#zm-konfigurator" className="button">Przejdź do konfiguratora ↗</a><Link href="/oferta#kalkulator-pelnego-kosztu" className="text-link">Koszt pierwszego i kolejnych lat ↗</Link></div>
+    </section>
+    <section id="zm-konfigurator" className="section shell"><div className="section-head"><div><span className="section-no">INTERAKTYWNY PODGLĄD</span><h2>Wybierz, sprawdź i zapytaj o swój projekt.</h2></div><p>Podgląd zmienia się na bieżąco. Pokazuje przykładową kompozycję, a nie ukończoną stronę. Ostateczny projekt i zakres uzgadniamy indywidualnie.</p></div><WebsiteConfigurator /></section>
+    <section className="section mini-shop-section"><div className="shell mini-shop-grid"><div><span className="section-no">PEŁNA PRZEJRZYSTOŚĆ</span><h2>Projekt to jedno. Domena, serwer i opieka to osobne koszty.</h2><p>W naszym kalkulatorze zobaczysz orientacyjne koszty wykonania, pierwszego roku działania strony, jej odnowienia oraz trzech lat użytkowania.</p><Link className="button" href="/oferta#kalkulator-pelnego-kosztu">Policz całkowity koszt ↗</Link></div><div><h3>Możesz też zacząć od:</h3><ul className="check-list"><li>ZM Mini — prosta wizytówka na start</li><li>ZM Start — kompletna jednostronicowa oferta</li><li>ZM LeadFlow — rozbudowana obsługa zapytań</li><li>Materiały drukowane — wizytówki, foldery i gazetki</li></ul><Link href="/dtp">Zobacz DTP i materiały drukowane ↗</Link></div></div></section>
+  </main><QuickWhatsApp/><SiteFooter/></>;
+}
