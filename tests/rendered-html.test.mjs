@@ -296,3 +296,12 @@ test("DTP and website care list included services separately from exclusions", a
     assert.ok(styles.includes(cls), cls + ": no shared readability style");
   }
 });
+
+test("All public author presentations use the complete name", async () => {
+  for (const route of ["/", "/en", "/poradnik/ile-kosztuje-projekt-gazetki", "/poradnik/ile-kosztuje-strona-dla-malej-firmy"]) {
+    const response = await render(route);
+    assert.equal(response.status, 200, route);
+    const html = await response.text();
+    assert.match(html, /Łukasz Staniewicz/, route + ": incomplete public name");
+  }
+});
