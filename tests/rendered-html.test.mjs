@@ -88,7 +88,7 @@ test("kluczowe statyczne podstrony mają własne metadata w head", async () => {
     const response = await render(path);
     assert.equal(response.status, 200, path);
     const head = headMarkup(await response.text());
-    assert.match(head, new RegExp(`<title>[^<]*${titlePart.replace(/[.*+?^$}{()|[\\]\\\\]/g, "\\\\test("dynamiczna strona projektu ma canonical w head", async () => {")}[^<]*<\\/title>`, "i"), path);
+    assert.ok(head.includes(`<title>${titlePart} | Zielona Marka</title>`) || head.includes(`<title>${titlePart}</title>`), `${path}: title`);
     assert.ok(head.includes(descriptionPart), `${path}: description`);
     assert.ok(head.includes(`rel="canonical" href="${canonical}"`), `${path}: canonical`);
   }
