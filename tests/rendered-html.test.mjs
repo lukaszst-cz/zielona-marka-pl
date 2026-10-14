@@ -109,6 +109,11 @@ test("key service pages and new guides share their own Open Graph metadata", asy
     ["/poradnik/jak-przygotowac-pdf-do-druku", "Jak przygotować PDF"],
     ["/poradnik/jak-uporzadkowac-zapytania-klientow", "Jak uporządkować zapytania"],
     ["/poradnik/ile-kosztuje-projekt-gazetki", "Ile kosztuje projekt gazetki"],
+    ["/strony-internetowe", "Strony internetowe Warszawa"],
+    ["/strony-internetowe-marki", "Strony internetowe Marki"],
+    ["/asystent-zapytan", "Asystent zapytań"],
+    ["/maly-crm-dla-firm", "Mały CRM"],
+    ["/usprawnienia-firmy", "Automatyzacje i CRM"],
   ];
   for (const [path, titlePart] of pages) {
     const response = await render(path);

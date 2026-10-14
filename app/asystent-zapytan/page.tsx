@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import Link from "../SafeLink";
 import { QuickWhatsApp, SiteFooter, SiteHeader } from "../SiteChrome";
 
-export const metadata: Metadata = { title: "Asystent zapytań dla firmy usługowej", description: "Automatyczna obsługa powtarzalnych pytań, kwalifikacja zapytań i przekazanie kontaktu dla warsztatów, wykonawców, salonów beauty i lokalnych usług.", alternates: { canonical: "/asystent-zapytan" } };
+export const metadata: Metadata = { title: "Asystent zapytań dla firmy usługowej", description: "Automatyczna obsługa powtarzalnych pytań, kwalifikacja zapytań i przekazanie kontaktu dla warsztatów, wykonawców, salonów beauty i lokalnych usług.", alternates: { canonical: "/asystent-zapytan" },
+  openGraph: { type: "website", url: "/asystent-zapytan", title: "Asystent zapytań dla firmy usługowej | Zielona Marka", description: "Automatyczna obsługa powtarzalnych pytań, kwalifikacja zapytań i przekazanie kontaktu dla warsztatów, wykonawców, salonów beauty i lokalnych usług.", images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Zielona Marka – strony WWW i narzędzia dla firm" }] },
+  twitter: { card: "summary_large_image", title: "Asystent zapytań dla firmy usługowej | Zielona Marka", description: "Automatyczna obsługa powtarzalnych pytań, kwalifikacja zapytań i przekazanie kontaktu dla warsztatów, wykonawców, salonów beauty i lokalnych usług.", images: ["/og.jpg"] },};
 
 export default function AssistantPage() {
   return <><SiteHeader /><main className="zm-public">

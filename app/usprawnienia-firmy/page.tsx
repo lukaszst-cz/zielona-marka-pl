@@ -3,7 +3,9 @@ import Link from "../SafeLink";
 import RelatedServices from "../RelatedServices";
 import { QuickWhatsApp, SiteFooter, SiteHeader } from "../SiteChrome";
 
-export const metadata: Metadata = { title: "Automatyzacje i CRM dla małej firmy", description: "Proste automatyzacje, mały CRM, statusy zleceń i panele klienta. Mniej ręcznej pracy i lepszy porządek w obsłudze firmy.", alternates: { canonical: "/usprawnienia-firmy" } };
+export const metadata: Metadata = { title: "Automatyzacje i CRM dla małej firmy", description: "Proste automatyzacje, mały CRM, statusy zleceń i panele klienta. Mniej ręcznej pracy i lepszy porządek w obsłudze firmy.", alternates: { canonical: "/usprawnienia-firmy" },
+  openGraph: { type: "website", url: "/usprawnienia-firmy", title: "Automatyzacje i CRM dla małej firmy | Zielona Marka", description: "Proste automatyzacje, mały CRM, statusy zleceń i panele klienta. Mniej ręcznej pracy i lepszy porządek w obsłudze firmy.", images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Zielona Marka – strony WWW i narzędzia dla firm" }] },
+  twitter: { card: "summary_large_image", title: "Automatyzacje i CRM dla małej firmy | Zielona Marka", description: "Proste automatyzacje, mały CRM, statusy zleceń i panele klienta. Mniej ręcznej pracy i lepszy porządek w obsłudze firmy.", images: ["/og.jpg"] },};
 
 const situations = [
   ["Zapytania giną", "Formularz może utworzyć wpis w uporządkowanej bazie, wysłać potwierdzenie i przypomnieć o odpowiedzi."],

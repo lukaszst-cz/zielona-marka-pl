@@ -3,7 +3,9 @@ import Link from "../SafeLink";
 import ContactForm from "../ContactForm";
 import { QuickWhatsApp, SiteFooter, SiteHeader } from "../SiteChrome";
 
-export const metadata: Metadata = { title: "Strony internetowe Marki i okolice", description: "Strony WWW, formularze wyceny, modernizacja i proste systemy dla lokalnych firm z Marek, Ząbek, Zielonki, Kobyłki, Targówka i Bródna.", alternates: { canonical: "/strony-internetowe-marki" } };
+export const metadata: Metadata = { title: "Strony internetowe Marki i okolice", description: "Strony WWW, formularze wyceny, modernizacja i proste systemy dla lokalnych firm z Marek, Ząbek, Zielonki, Kobyłki, Targówka i Bródna.", alternates: { canonical: "/strony-internetowe-marki" },
+  openGraph: { type: "website", url: "/strony-internetowe-marki", title: "Strony internetowe Marki i okolice | Zielona Marka", description: "Strony WWW, formularze wyceny, modernizacja i proste systemy dla lokalnych firm z Marek, Ząbek, Zielonki, Kobyłki, Targówka i Bródna.", images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Zielona Marka – strony WWW i narzędzia dla firm" }] },
+  twitter: { card: "summary_large_image", title: "Strony internetowe Marki i okolice | Zielona Marka", description: "Strony WWW, formularze wyceny, modernizacja i proste systemy dla lokalnych firm z Marek, Ząbek, Zielonki, Kobyłki, Targówka i Bródna.", images: ["/og.jpg"] },};
 
 export default function LocalPage() {
   const structuredData = [
