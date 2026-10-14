@@ -12,6 +12,7 @@ import "./full-site-builder.css";
 import "./navigation-refresh.css";
 import "./premium-polish.css";
 import "./process-standard.css";
+import "./premium-clarity.css";
 import PolishTypography from "./PolishTypography";
 import CookieConsent from "./CookieConsent";
 import SiteTracking from "./SiteTracking";
