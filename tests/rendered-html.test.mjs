@@ -220,9 +220,12 @@ test("Company services and readable footer are consistent across current pages",
     const response = await render(route);
     assert.equal(response.status, 200, route);
     const page = await response.text();
-    const footer = page.match(/<footer\\b[\\s\\S]*?<\\/footer>/i)?.[0] ?? "";
+    const start = page.indexOf("<footer");
+    const end = page.indexOf("</footer>");
+    assert.ok(start >= 0 && end > start, route + ": footer missing");
+    const footer = page.slice(start, end + 9);
     assert.match(footer, /Strony internetowe, DTP i systemy dla firm/, route);
-    assert.match(footer, /icon-github-zielona-marka\\.svg/, route);
+    assert.ok(footer.includes("icon-github-zielona-marka.svg"), route + ": GitHub icon missing");
   }
   const style = await readFile(new URL("../app/premium-polish.css", import.meta.url), "utf8");
   for (const name of ["zmh-sample-form", "zmh-site-interior", "zmh-cinema-status", "zmh-project small"]) {
