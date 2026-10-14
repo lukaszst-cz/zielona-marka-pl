@@ -22,7 +22,7 @@ export default function PriceGuideDtp() {
     headline: "Ile kosztuje projekt gazetki reklamowej?",
     datePublished: "2026-10-14",
     dateModified: "2026-10-14",
-    author: { "@id": "https://zielona-marka.pl/#lukasz-staniewicz" },
+    author: { "@id": "https://zielona-marka.pl/#lukasz-st-cz" },
     publisher: { "@id": "https://zielona-marka.pl/#business" },
     mainEntityOfPage: "https://zielona-marka.pl/poradnik/ile-kosztuje-projekt-gazetki",
     description: metadata.description,
