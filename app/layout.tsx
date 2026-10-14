@@ -127,7 +127,7 @@ export default async function RootLayout({
       "Halinów",
       "Dąbrówka",
     ],
-    priceRange: "od 990 PLN netto",
+    priceRange: "od 899 PLN netto",
     serviceType: [
       "Projektowanie stron internetowych",
       "Strony dla warsztatów i detailingu",
