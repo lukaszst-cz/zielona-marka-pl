@@ -77,6 +77,23 @@ test("lokalne podstrony mają unikalną treść i działający kontakt", async (
   }
 });
 
+test("kluczowe statyczne podstrony mają własne metadata w head", async () => {
+  const expected = [
+    ["/oferta", "Strony internetowe dla firm – oferta i ceny", "Strony WWW od 1 449 zł netto", "https://zielona-marka.pl/oferta"],
+    ["/modernizacja-strony", "Modernizacja strony internetowej", "Ocena starej strony i plan modernizacji", "https://zielona-marka.pl/modernizacja-strony"],
+    ["/kontakt", "Kontakt", "Porozmawiaj o stronie", "https://zielona-marka.pl/kontakt"],
+    ["/maly-crm-dla-firm", "Mały CRM dla firmy", "Od dobrego zapytania do następnego kroku", "https://zielona-marka.pl/maly-crm-dla-firm"],
+  ];
+  for (const [path, titlePart, descriptionPart, canonical] of expected) {
+    const response = await render(path);
+    assert.equal(response.status, 200, path);
+    const head = headMarkup(await response.text());
+    assert.match(head, new RegExp(`<title>[^<]*${titlePart.replace(/[.*+?^$}{()|[\\]\\\\]/g, "\\\\test("dynamiczna strona projektu ma canonical w head", async () => {")}[^<]*<\\/title>`, "i"), path);
+    assert.ok(head.includes(descriptionPart), `${path}: description`);
+    assert.ok(head.includes(`rel="canonical" href="${canonical}"`), `${path}: canonical`);
+  }
+});
+
 test("dynamiczna strona projektu ma canonical w head", async () => {
   const response = await render("/realizacje/natura-studio");
   assert.equal(response.status, 200);
