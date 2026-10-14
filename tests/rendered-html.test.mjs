@@ -42,7 +42,7 @@ test("strona główna prowadzi przez pięć etapów od strony do relacji", async
 });
 
 test("nowe zakładki są renderowane", async () => {
-  for (const path of ["/dtp", "/opieka-nad-strona", "/oferta", "/modernizacja-strony", "/realizacje", "/realizacje/transportflow", "/praktyczne-narzedzia", "/usprawnienia-firmy", "/jak-pracuje", "/raport-qa", "/kontakt", "/strony-dla-warsztatow", "/strony-dla-firm-uslugowych", "/strony-dla-beauty", "/asystent-zapytan", "/maly-crm-dla-firm", "/strony-internetowe-marki", "/poradnik", "/poradnik/dlaczego-strona-firmy-nie-przynosi-zapytan", "/poradnik/ile-kosztuje-strona-dla-malej-firmy"]) {
+  for (const path of ["/dtp", "/opieka-nad-strona", "/oferta", "/modernizacja-strony", "/realizacje", "/realizacje/transportflow", "/praktyczne-narzedzia", "/usprawnienia-firmy", "/jak-pracuje", "/raport-qa", "/kontakt", "/strony-dla-warsztatow", "/strony-dla-firm-uslugowych", "/strony-dla-beauty", "/asystent-zapytan", "/maly-crm-dla-firm", "/strony-internetowe-marki", "/poradnik", "/poradnik/jak-przygotowac-pdf-do-druku", "/poradnik/jak-uporzadkowac-zapytania-klientow", "/poradnik/dlaczego-strona-firmy-nie-przynosi-zapytan", "/poradnik/ile-kosztuje-strona-dla-malej-firmy"]) {
     const response = await render(path);
     assert.equal(response.status, 200, path);
     const html = await response.text();
@@ -52,7 +52,7 @@ test("nowe zakładki są renderowane", async () => {
     if (path === "/maly-crm-dla-firm") assert.match(html, /PWA/i);
     if (path === "/raport-qa") assert.match(html, /kontroli jakości/i);
     if (path.includes("/poradnik/")) assert.match(html, /"@type":"Article"/);
-    if (path === "/poradnik") { assert.match(html, /"@type":"CollectionPage"/); assert.match(html, /AKTUALNE PORADNIKI/); }
+    if (path === "/poradnik") { assert.match(html, /"@type":"CollectionPage"/); assert.match(html, /BIBLIOTEKA WIEDZY/); assert.match(html, /Szukaj w poradnikach/); assert.match(html, /DTP i druk/); }
     if (path === "/praktyczne-narzedzia") { assert.match(html, /Lead &amp; Offer Copilot/); assert.match(html, /"@type":"ItemList"/); }
     if (path === "/realizacje/transportflow") { assert.match(html, /TransportFlow 360/); assert.match(html, /"@type":"SoftwareApplication"/); }
     if (path.includes("dlaczego-strona")) assert.match(html, /7 najczęstszych przyczyn/i);
@@ -80,6 +80,7 @@ test("lokalne podstrony mają unikalną treść i działający kontakt", async (
 test("kluczowe statyczne podstrony mają własne metadata w head", async () => {
   const expected = [
     ["/oferta", "Strony internetowe – cennik i koszt utrzymania", "Wizytówka od 990 zł netto", "https://zielona-marka.pl/oferta"],
+    ["/poradnik", "Blog i poradniki dla firm – strony WWW, SEO, DTP", "Blog Zielonej Marki", "https://zielona-marka.pl/poradnik"],
     ["/dtp", "DTP, wizytówki, ulotki i przygotowanie do druku", "Projektowanie wizytówek", "https://zielona-marka.pl/dtp"],
     ["/opieka-nad-strona", "Opieka nad stroną, hosting i koszty utrzymania", "Ile kosztuje utrzymanie strony WWW?", "https://zielona-marka.pl/opieka-nad-strona"],
     ["/modernizacja-strony", "Modernizacja strony internetowej", "Ocena starej strony i plan modernizacji", "https://zielona-marka.pl/modernizacja-strony"],
