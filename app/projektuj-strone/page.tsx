@@ -5,7 +5,7 @@ import { SiteHeader, SiteFooter, QuickWhatsApp } from "../SiteChrome";
 
 export const metadata: Metadata = {
   title: "Kreator całej strony WWW i wycena — ZM Studio",
-  description: "Zaprojektuj przykładową stronę dla swojej firmy. Wybierz branżę, kolory, funkcje i wariant witryny. Zobacz podgląd oraz przejdź do indywidualnej wyceny.",
+  description: "Zobacz pełną przykładową stronę WWW od nagłówka po stopkę. Dobierz branżę, kolory, sekcje i funkcje. Oblicz budżet wykonania oraz koszt pierwszego i trzech lat.",
   alternates: { canonical: "/projektuj-strone" },
 };
 
