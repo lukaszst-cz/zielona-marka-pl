@@ -32,18 +32,18 @@ export default function BlogExplorer() {
         <span className="zm-blog-kicker">WYRÓŻNIONY ARTYKUŁ · {categoryName(featured.category).toLocaleUpperCase("pl-PL")}</span>
         <h2><Link href={featured.href}>{featured.title}</Link></h2>
         <p>{featured.summary}</p>
-        <div className="zm-blog-feature-foot"><span>{dateLabel(featured.publishedAt)} · {featured.minutes} min czytania</span><Link href={featured.href}>Czytaj poradnik ↗</Link></div>
+        <div className="zm-blog-feature-foot"><span>{dateLabel(featured.publishedAt)} · {featured.minutes} min czytania</span><Link href={featured.href}>Czytaj artykuł ↗</Link></div>
       </div>
       <div className="zm-blog-feature-art" aria-hidden="true"><span>01</span><b>WIEDZA, KTÓRA PRACUJE</b><i>↗</i></div>
     </section>}
-    <section className="zm-blog-library" aria-label="Lista poradników">
+    <section className="zm-blog-library" aria-label="Lista artykułów bloga">
       <div className="zm-blog-library-top">
         <div><span className="section-no">BIBLIOTEKA WIEDZY</span><h2>Znajdź odpowiedź na konkretne pytanie.</h2></div>
         <a href="/poradnik/rss.xml" className="zm-blog-rss" type="application/rss+xml">Kanał RSS ↗</a>
       </div>
       <div className="zm-blog-search-row">
         <div className="zm-blog-search">
-          <label htmlFor="zm-blog-search">Szukaj w poradnikach</label>
+          <label htmlFor="zm-blog-search">Szukaj na blogu</label>
           <input id="zm-blog-search" type="search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Np. gazetka, koszt strony, Google…" autoComplete="off" />
         </div>
         <div className="zm-blog-result-count" role="status" aria-live="polite">{results.length} {results.length === 1 ? "artykuł" : results.length >= 2 && results.length <= 4 ? "artykuły" : "artykułów"}</div>
@@ -59,7 +59,7 @@ export default function BlogExplorer() {
         <div className="zm-blog-card-foot"><time dateTime={item.publishedAt}>{dateLabel(item.publishedAt)}</time><span>{item.minutes} min</span></div>
         <Link className="zm-blog-card-link" href={item.href}>Przeczytaj artykuł <span aria-hidden="true">↗</span></Link>
       </article>)}</div> : <div className="zm-blog-empty" role="status">
-        <h3>Nie znaleziono poradników.</h3>
+        <h3>Nie znaleziono artykułów.</h3>
         <p>Zmień słowo lub kategorię, aby zobaczyć inne tematy.</p>
         <button type="button" onClick={() => { setCategory("all"); setSearch(""); }}>Pokaż wszystkie artykuły ↗</button>
       </div>}
