@@ -47,7 +47,7 @@ const palettes = [
   { id: "dark", label: "Elegancki premium", bg: "#111d19", ink: "#f2f5e9", accent: "#c1e58b", text: "#c3d5c7", panel: "#20332a", hero: "#172a20" },
 ];
 const plans = [
-  { id: "mini", label: "ZM Mini — prosta wizytówka", amount: 990 },
+  { id: "mini", label: "ZM Mini — 3 sekcje, bez formularza", amount: 899 },
   { id: "start", label: "ZM Start — kompletna strona", amount: 1449 },
   { id: "leadflow", label: "ZM LeadFlow — strona i formularz", amount: 4490 },
   { id: "flow", label: "ZM Flow — strona i automatyzacja", amount: 6900 },
