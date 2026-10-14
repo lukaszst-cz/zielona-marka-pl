@@ -33,6 +33,8 @@ export default function TotalCostCalculator() {
   const [domainType, setDomainType] = useState("new");
   const [domainFirst, setDomainFirst] = useState(20);
   const [domainNext, setDomainNext] = useState(90);
+  const [ownHostingFirst, setOwnHostingFirst] = useState(0);
+  const [ownHostingNext, setOwnHostingNext] = useState(0);
   const [copywriting, setCopywriting] = useState(false);
   const [googleProfile, setGoogleProfile] = useState(false);
 
@@ -41,15 +43,17 @@ export default function TotalCostCalculator() {
     const selectedCare = careOptions.find((item) => item.id === care) ?? careOptions[0];
     const selectedHost = hostingOptions.find((item) => item.id === hosting) ?? hostingOptions[2];
     const production = selectedSite.price + (copywriting ? 350 : 0) + (googleProfile ? 390 : 0);
-    const domainYear1 = domainType === "new" ? cap(domainFirst) : 0;
-    const domainRenewal = domainType === "new" ? cap(domainNext) : 0;
-    const providerYear1 = domainYear1 + selectedHost.first;
-    const providerYearNext = domainRenewal + selectedHost.next;
+    const domainYear1 = domainType === "new" ? cap(domainFirst) : cap(domainNext);
+    const domainRenewal = cap(domainNext);
+    const hostYear1 = hosting === "own" ? cap(ownHostingFirst) : selectedHost.first;
+    const hostYearNext = hosting === "own" ? cap(ownHostingNext) : selectedHost.next;
+    const providerYear1 = domainYear1 + hostYear1;
+    const providerYearNext = domainRenewal + hostYearNext;
     const careYear = selectedCare.monthly * 12;
     const firstYear = production + providerYear1 + careYear;
     const nextYear = providerYearNext + careYear;
     return { selectedSite, selectedCare, selectedHost, production, providerYear1, providerYearNext, careYear, firstYear, nextYear, threeYears: firstYear + 2 * nextYear };
-  }, [site, care, hosting, domainType, domainFirst, domainNext, copywriting, googleProfile]);
+  }, [site, care, hosting, domainType, domainFirst, domainNext, ownHostingFirst, ownHostingNext, copywriting, googleProfile]);
 
   const summary = [
     result.selectedSite.name,
@@ -75,19 +79,20 @@ export default function TotalCostCalculator() {
       <div className="zm-field"><label htmlFor="zm-cost-domain">2. Domena</label>
         <select id="zm-cost-domain" value={domainType} onChange={(event) => setDomainType(event.target.value)}>
           <option value="new">Nowa domena .pl – wprowadź szacunkowe opłaty</option>
-          <option value="own">Mam już domenę – bez doliczania kosztu</option>
+          <option value="own">Mam już domenę – podam cenę jej odnowienia</option>
         </select>
       </div>
-      {domainType === "new" && <div className="zm-cost-pair">
-        <div className="zm-field"><label htmlFor="zm-domain-first">Rejestracja (rok 1), zł netto</label><input id="zm-domain-first" type="number" min={0} max={100000} value={domainFirst} onChange={(e) => setDomainFirst(cap(Number(e.target.value)))} /></div>
-        <div className="zm-field"><label htmlFor="zm-domain-renew">Odnowienie (kolejne lata), zł netto/rok</label><input id="zm-domain-renew" type="number" min={0} max={100000} value={domainNext} onChange={(e) => setDomainNext(cap(Number(e.target.value)))} /></div>
-      </div>}
+      <div className="zm-cost-pair">
+        {domainType === "new" && <div className="zm-field"><label htmlFor="zm-domain-first">Rejestracja (rok 1), zł netto</label><input id="zm-domain-first" type="number" min={0} max={100000} value={domainFirst} onChange={(e) => setDomainFirst(cap(Number(e.target.value)))} /></div>}
+        <div className="zm-field"><label htmlFor="zm-domain-renew">Odnowienie domeny, zł netto/rok</label><input id="zm-domain-renew" type="number" min={0} max={100000} value={domainNext} onChange={(e) => setDomainNext(cap(Number(e.target.value)))} /></div>
+      </div>
       <div className="zm-field"><label htmlFor="zm-cost-host">3. Hosting i serwer</label>
         <select id="zm-cost-host" value={hosting} onChange={(event) => setHosting(event.target.value as typeof hosting)}>
           {hostingOptions.map((item) => <option value={item.id} key={item.id}>{item.name}</option>)}
         </select>
         <small>Kwoty dostawcy są przykładowymi budżetami, nie ofertą konkretnego operatora. Hosting 0 zł może wymagać spełnienia warunków planu bezpłatnego. SSL często bywa bezpłatny.</small>
       </div>
+      {hosting === "own" && <div className="zm-cost-pair"><div className="zm-field"><label htmlFor="zm-host-own-first">Hosting na pierwszy rok, zł netto</label><input id="zm-host-own-first" type="number" min={0} max={100000} value={ownHostingFirst} onChange={(e) => setOwnHostingFirst(cap(Number(e.target.value)))} /></div><div className="zm-field"><label htmlFor="zm-host-own-next">Hosting – roczne odnowienie, zł netto</label><input id="zm-host-own-next" type="number" min={0} max={100000} value={ownHostingNext} onChange={(e) => setOwnHostingNext(cap(Number(e.target.value)))} /></div></div>}
       <div className="zm-field"><label htmlFor="zm-cost-care">4. Opcjonalna opieka</label>
         <select id="zm-cost-care" value={care} onChange={(event) => setCare(event.target.value as typeof care)}>
           {careOptions.map((item) => <option value={item.id} key={item.id}>{item.name} – {pln(item.monthly)} netto/mies.</option>)}
@@ -110,7 +115,7 @@ export default function TotalCostCalculator() {
       <div className="zm-cost-total"><span>Razem pierwszy rok</span><strong>{pln(result.firstYear)}</strong></div>
       <div className="zm-cost-next"><span>Kolejny rok (odnowienia + opieka)</span><strong>{pln(result.nextYear)}</strong></div>
       <div className="zm-cost-next"><span>Łącznie 3 lata</span><strong>{pln(result.threeYears)}</strong></div>
-      <p>Wszystkie kwoty netto, orientacyjne i nie stanowią wiążącej oferty. Ceny domeny i hostingu zależą od operatora; konto i faktura powinny należeć do klienta. Koszt odnowienia istniejącej domeny i hostingu pominięto, jeśli zaznaczono „Mam już”. Ostateczną wycenę potwierdzamy przed zamówieniem.</p>
+      <p>Wszystkie kwoty netto, orientacyjne i nie stanowią wiążącej oferty. Ceny domeny i hostingu zależą od operatora; konto i faktura powinny należeć do klienta. Dla posiadanych już usług wprowadź ich rzeczywiste koszty roczne. Zakładamy 12 miesięcy opieki w każdym porównywanym roku. Ostateczną wycenę potwierdzamy przed zamówieniem.</p>
       <a className="button" href={url}>Wyślij konfigurację do wyceny <span aria-hidden="true">↗</span></a>
       <a className="zm-cost-link" href="/opieka-nad-strona">Porównaj zakres opieki ↗</a>
     </div>
