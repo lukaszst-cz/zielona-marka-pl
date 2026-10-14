@@ -221,7 +221,7 @@ test("Company services and readable footer are consistent across current pages",
     assert.equal(response.status, 200, route);
     const page = await response.text();
     const start = page.lastIndexOf("<footer");
-    const end = page.indexOf("</footer>");
+    const end = page.indexOf("</footer>", start);
     assert.ok(start >= 0 && end > start, route + ": footer missing");
     const footer = page.slice(start, end + 9);
     assert.match(footer, /Strony internetowe, DTP i systemy dla firm/, route);
