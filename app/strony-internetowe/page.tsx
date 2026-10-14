@@ -8,6 +8,8 @@ export const metadata: Metadata = {
   title: "Strony internetowe Warszawa i okolice",
   description: "Strony WWW dla firm z Warszawy, Targówka, Białołęki, Marek, Ząbek, Zielonki, Kobyłki, Wołomina i Radzymina. Lokalna widoczność, formularze i wygodny kontakt.",
   alternates: { canonical: "/strony-internetowe" },
+  openGraph: { type: "website", url: "/strony-internetowe", title: "Strony internetowe Warszawa i okolice | Zielona Marka", description: "Strony WWW dla firm z Warszawy, Targówka, Białołęki, Marek, Ząbek, Zielonki, Kobyłki, Wołomina i Radzymina. Lokalna widoczność, formularze i wygodny kontakt.", images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Zielona Marka – strony WWW i narzędzia dla firm" }] },
+  twitter: { card: "summary_large_image", title: "Strony internetowe Warszawa i okolice | Zielona Marka", description: "Strony WWW dla firm z Warszawy, Targówka, Białołęki, Marek, Ząbek, Zielonki, Kobyłki, Wołomina i Radzymina. Lokalna widoczność, formularze i wygodny kontakt.", images: ["/og.jpg"] },
 };
 
 const areas = [
