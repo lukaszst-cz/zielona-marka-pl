@@ -45,6 +45,9 @@ const palettes = [
   { id: "forest", label: "Botaniczny", bg: "#e9f0e4", ink: "#173c2d", accent: "#236144", text: "#456551", panel: "#ffffff", hero: "#103b28" },
   { id: "ocean", label: "Nowoczesny", bg: "#eaf2f8", ink: "#173c58", accent: "#276d9d", text: "#456479", panel: "#ffffff", hero: "#123d5b" },
   { id: "dark", label: "Elegancki premium", bg: "#111d19", ink: "#f2f5e9", accent: "#c1e58b", text: "#c3d5c7", panel: "#20332a", hero: "#172a20" },
+  { id: "stone", label: "Jasny atelier", bg: "#f3efe7", ink: "#263b36", accent: "#315b50", text: "#4c5d57", panel: "#fffdf9", hero: "#253d35" },
+  { id: "clay", label: "Ciepły terrakota", bg: "#fbf0e8", ink: "#51312b", accent: "#9d4d3b", text: "#66514b", panel: "#fffaf5", hero: "#60342b" },
+  { id: "plum", label: "Kreatywny śliwkowy", bg: "#f1eaf1", ink: "#36253f", accent: "#6b3c75", text: "#58465f", panel: "#fff", hero: "#3f2748" },
 ];
 const siteLayouts = [
   { id: "classic", label: "Klasyczny firmowy", description: "Sprawdzona struktura: tekst obok grafiki, niżej oferta i zaufanie.", mark: "▥" },
@@ -198,7 +201,7 @@ export default function WebsiteConfigurator() {
           </div>
         </fieldset>
         <div className="zm-creator-pair">
-          <label>Styl graficzny
+          <label>Kolorystyka — niezależna od układu
             <select value={palette} onChange={(event) => setPalette(event.target.value)}>
               {palettes.map((x) => <option key={x.id} value={x.id}>{x.label}</option>)}
             </select>
