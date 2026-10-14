@@ -1,0 +1,117 @@
+/* Blog uses the SAME forest, typography, spacing and card styles as other
+   public Zielona Marka pages. Existing .page-hero, .section, .section-head,
+   .guide-library and .guide-card-meta rules remain the primary design system. */
+.zm-public.zm-blog-page .zm-blog-library { padding-top: 0; }
+.zm-public.zm-blog-page .zm-blog-tools {
+  display: grid;
+  gap: 20px;
+  padding: 24px 0 30px;
+  margin: 30px 0 25px;
+  border-top: 1px solid rgba(215,238,206,.25);
+  border-bottom: 1px solid rgba(215,238,206,.25);
+}
+.zm-public.zm-blog-page .zm-blog-search { display: grid; gap: 9px; max-width: 620px; }
+.zm-public.zm-blog-page .zm-blog-search label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #eff9e8;
+}
+.zm-public.zm-blog-page .zm-blog-search input {
+  width: 100%;
+  min-height: 48px;
+  color: #f6fff1 !important;
+  background: #08281b !important;
+  border: 1px solid #a5c09c !important;
+  padding: 12px 16px;
+}
+.zm-public.zm-blog-page .zm-blog-search input::placeholder { color: #c7d8c4 !important; opacity: 1; }
+.zm-public.zm-blog-page .zm-blog-filters { display: flex; flex-wrap: wrap; gap: 9px; }
+.zm-public.zm-blog-page .zm-blog-filters button {
+  min-height: 44px;
+  border: 1px solid #a2c69d;
+  color: #e8f4e5;
+  background: #0b2e20;
+  padding: 9px 15px;
+  border-radius: 24px;
+  font: 700 13px/1.4 Arial,sans-serif;
+  cursor: pointer;
+}
+.zm-public.zm-blog-page .zm-blog-filters button.selected {
+  color: #102513;
+  border-color: #b0f36c;
+  background: #b0f36c;
+}
+.zm-public.zm-blog-page .zm-blog-filters button:not(.selected):hover { background: #225039; color: #fff; }
+.zm-public.zm-blog-page .zm-blog-tools-bottom {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+  font-size: 13px;
+  color: #e0efda;
+}
+.zm-public.zm-blog-page .zm-blog-tools-bottom a { color: #bff27e; font-weight: 700; }
+.zm-public.zm-blog-page .zm-blog-results {
+  /* The existing .guide-library > div:last-child style supplies the
+     two-column grid and matching forest-cover article cards. */
+  align-items: stretch;
+}
+.zm-public.zm-blog-page .zm-blog-results > a {
+  /* All card colors, hover states and hierarchy come from .guide-library. */
+  text-decoration: none;
+}
+.zm-public.zm-blog-page .zm-blog-results > a h2 { color: #f5f8f1 !important; }
+.zm-public.zm-blog-page .zm-blog-results > a p { color: #ddebd7 !important; }
+.zm-public.zm-blog-page .zm-blog-results .guide-card-meta small { color: #d5e6ce !important; }
+.zm-public.zm-blog-page .zm-blog-empty {
+  grid-column: 1/-1;
+  padding: 26px;
+  background: rgba(9,42,28,.94);
+  border: 1px solid rgba(176,243,108,.4);
+  border-radius: 8px;
+}
+.zm-public.zm-blog-page .zm-blog-empty button {
+  color: #b0f36c;
+  background: transparent;
+  border: 0;
+  padding: 12px 0;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: underline;
+}
+.zm-public.zm-blog-page .zm-blog-service-links {
+  border-top: 1px solid rgba(215,238,206,.25);
+}
+.zm-public.zm-blog-page .zm-blog-service-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px; }
+.zm-public.zm-blog-page .zm-blog-service-grid>a {
+  min-height: 230px;
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  background: rgba(6,39,25,.9);
+  border: 1px solid rgba(176,243,108,.35);
+  border-radius: 8px;
+  color: #f5f8ef;
+  text-decoration: none;
+}
+.zm-public.zm-blog-page .zm-blog-service-grid>a>span {
+  color: #b0f36c;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .06em;
+}
+.zm-public.zm-blog-page .zm-blog-service-grid>a h3 { margin: 24px 0 12px; font-size: 23px !important; color: #f5f8ef !important; }
+.zm-public.zm-blog-page .zm-blog-service-grid>a p { color: #d4e5d0 !important; font-size: 14px !important; }
+.zm-public.zm-blog-page .zm-blog-service-grid>a b { margin-top: auto; padding-top: 16px; color: #b0f36c; font-size: 12px; }
+.zm-public.zm-blog-page :is(button,input,a):focus-visible { outline: 3px solid #b0f36c; outline-offset: 3px; }
+@media (max-width: 850px) {
+  .zm-public.zm-blog-page .zm-blog-service-grid { grid-template-columns: 1fr; }
+  .zm-public.zm-blog-page .zm-blog-service-grid>a { min-height: 200px; }
+}
+@media (max-width: 600px) {
+  .zm-public.zm-blog-page .zm-blog-tools { margin-top: 20px; }
+  .zm-public.zm-blog-page .zm-blog-search input { font-size: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .zm-blog-page :is(a,button) { transition: none !important; }
+}

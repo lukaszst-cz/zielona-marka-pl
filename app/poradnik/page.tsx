@@ -2,32 +2,69 @@ import type { Metadata } from "next";
 import Link from "../SafeLink";
 import { GuideBreadcrumbs } from "../GuideElements";
 import { QuickWhatsApp, SiteFooter, SiteHeader } from "../SiteChrome";
-import RelatedServices from "../RelatedServices";
+import BlogExplorer from "./BlogExplorer";
+import { blogArticles } from "./blog-data";
 
 export const metadata: Metadata = {
-  title: "Poradniki dla małych firm",
-  description: "Poradniki o kosztach stron, SEO lokalnym, DTP, gazetkach produktowych, modernizacji i obsłudze zapytań w małych firmach.",
+  title: "Blog – strony WWW, SEO, DTP i porady dla firm",
+  description: "Blog Zielonej Marki: praktyczne artykuły o stronach internetowych, kosztach utrzymania, lokalnym SEO, projektowaniu gazetek, DTP i organizacji zapytań klientów.",
   alternates: { canonical: "/poradnik", types: { "application/rss+xml": "/poradnik/rss.xml" } },
-  openGraph: { title: "Poradniki dla małych firm | Zielona Marka", description: "Praktycznie o stronach, zapytaniach i widoczności lokalnej.", url: "/poradnik", images: [{ url: "/og-poradniki-zielona-marka.png", width: 1200, height: 630, alt: "Poradniki Zielonej Marki dla małych firm" }] },
-  twitter: { card: "summary_large_image", images: ["/og-poradniki-zielona-marka.png"] },
+  openGraph: {
+    title: "Blog | Zielona Marka",
+    description: "Praktycznie o stronach WWW, Google, DTP i sprawnym prowadzeniu małej firmy.",
+    url: "/poradnik",
+    images: [{ url: "/og-poradniki-zielona-marka.png", width: 1200, height: 630, alt: "Blog Zielonej Marki" }],
+  },
+  twitter: { card: "summary_large_image", images: ["/og-poradniki-zielona-marka.png" ] },
 };
 
-const guides = [
-  { href: "/poradnik/dlaczego-strona-firmy-nie-przynosi-zapytan", no: "01", label: "WIDOCZNOŚĆ I KONTAKT", title: "Dlaczego strona firmy nie przynosi zapytań?", text: "Siedem częstych przeszkód oraz kolejność poprawek przed inwestycją w reklamę.", time: "około 7 minut" },
-  { href: "/poradnik/ile-kosztuje-strona-dla-malej-firmy", no: "02", label: "KOSZT I ZAKRES", title: "Ile kosztuje strona internetowa dla małej firmy?", text: "Trzy praktyczne warianty, czynniki wpływające na cenę oraz koszty płatne osobno.", time: "około 8 minut" },
-  { href: "/poradnik/strona-internetowa-dla-warsztatu-co-powinna-zawierac", no: "03", label: "WARSZTAT I DETAILING", title: "Co powinna zawierać strona internetowa warsztatu?", text: "Praktyczna lista elementów: usługi, telefon, lokalizacja, formularz, zdjęcia, opinie i lokalna widoczność.", time: "około 9 minut" },
-  { href: "/poradnik/strona-internetowa-dla-salonu-beauty-co-powinna-zawierac", no: "04", label: "SALON BEAUTY", title: "Co powinna zawierać strona internetowa salonu beauty?", text: "Oferta, cennik, efekty, rezerwacja, przygotowanie do wizyty, lokalna widoczność oraz sprzedaż voucherów i produktów.", time: "około 9 minut" },
-  { href: "/poradnik/co-powinna-miec-strona-firmy-uslugowej", no: "05", label: "FIRMA USŁUGOWA", title: "Co powinna mieć strona firmy usługowej?", text: "Zakres usług, obszar działania, realizacje, proces wyceny, formularz z lokalizacją i zdjęciami oraz lokalne SEO.", time: "około 9 minut" },
-  { href: "/poradnik/ile-kosztuje-projekt-gazetki", no: "06", label: "DTP I GAZETKI", title: "Ile kosztuje projekt gazetki reklamowej?", text: "Skład, zdjęcia, produkty, pliki produkcyjne i oszczędności przy cyklicznych wydaniach.", time: "około 7 minut" },
-] as const;
-
 export default function GuidesPage() {
-  const collection = { "@context": "https://schema.org", "@type": "CollectionPage", "@id": "https://zielona-marka.pl/poradnik#webpage", name: "Poradniki Zielonej Marki", url: "https://zielona-marka.pl/poradnik", isPartOf: { "@id": "https://zielona-marka.pl/#website" }, mainEntity: { "@type": "ItemList", itemListElement: guides.map((guide, index) => ({ "@type": "ListItem", position: index + 1, url: `https://zielona-marka.pl${guide.href}`, name: guide.title })) } };
-  return <><SiteHeader /><main className="zm-public guide-page guide-hub">
+  const collection = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": "https://zielona-marka.pl/poradnik#webpage",
+    name: "Blog Zielonej Marki",
+    description: metadata.description,
+    url: "https://zielona-marka.pl/poradnik",
+    isPartOf: { "@id": "https://zielona-marka.pl/#website" },
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: blogArticles.map((article, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        url: `https://zielona-marka.pl${article.href}`,
+        name: article.title,
+      })),
+    },
+  };
+  return <><SiteHeader /><main className="zm-public guide-page guide-hub zm-blog-page">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collection) }} />
-    <header className="page-hero shell"><GuideBreadcrumbs /><span className="eyebrow"><i />WIEDZA DLA MAŁEJ FIRMY</span><h1>Praktycznie o stronie, widoczności <em>i obsłudze zapytań.</em></h1><p>Bez technicznego nadmiaru. Każdy poradnik pomaga rozpoznać problem, podjąć decyzję i wybrać następny sensowny krok.</p></header>
-    <section className="section shell guide-library"><div className="section-head"><div><span className="section-no">AKTUALNE PORADNIKI</span><h2>Zacznij od pytania, które dotyczy Twojej firmy.</h2></div><p>Biblioteka będzie rozwijana na podstawie rzeczywistych pytań klientów, nie przypadkowych słów kluczowych.</p></div><div>{guides.map(guide => <Link href={guide.href} key={guide.href}><span>{guide.no} / {guide.label}</span><h2>{guide.title}</h2><p>{guide.text}</p><div className="guide-card-meta"><b>Czytaj poradnik ↗</b><small>{guide.time}</small></div></Link>)}</div></section>
-    <RelatedServices items={[{ href: "/modernizacja-strony", label: "Modernizacja strony", text: "Sprawdź, co poprawić, gdy obecna strona nie przynosi zapytań lub źle działa na telefonie." }, { href: "/maly-crm-dla-firm", label: "Mały CRM", text: "Uporządkuj kontakty, wyceny, terminy i następne działania po otrzymaniu zapytania." }, { href: "/strony-internetowe", label: "Widoczność lokalna", text: "Zobacz podejście do stron dla firm z Warszawy, Targówka, Marek i okolic." }]} />
-    <section className="section guide-cta"><div className="shell"><span className="section-no">NIE WIESZ, OD CZEGO ZACZĄĆ?</span><h2>Wyślij adres strony albo opisz firmę.</h2><p>Wskażę najważniejszy następny krok bez rozmowy o budżecie i bez zobowiązania do dalszej współpracy.</p><Link className="button" href="/modernizacja-strony#miniaudyt">Poproś o mini ocenę <span>↗</span></Link></div></section>
+    <section className="page-hero shell">
+      <GuideBreadcrumbs />
+      <span className="eyebrow"><i /> BLOG / ZIELONA MARKA</span>
+      <h1>Blog Zielonej Marki. <em>Wiedza przydatna w Twojej firmie.</em></h1>
+      <p>Strony WWW, widoczność w Google, projektowanie materiałów do druku i proste sposoby usprawniania pracy. Sprawdzone rozwiązania wyjaśnione zrozumiałym językiem.</p>
+      <div className="hero-actions">
+        <a className="button" href="#artykuly">Zobacz artykuły <span aria-hidden="true">↗</span></a>
+        <Link className="text-link" href="/dtp">Oferta DTP <span aria-hidden="true">↗</span></Link>
+      </div>
+    </section>
+    <section className="section shell" id="artykuly"><BlogExplorer /></section>
+    <section className="section shell zm-blog-service-links">
+      <div className="section-head">
+        <div><span className="section-no">OD INFORMACJI DO DZIAŁANIA</span><h2>Możemy też zająć się tym za Ciebie.</h2></div>
+        <p>Gdy artykuł wyjaśni problem, możesz przejść bezpośrednio do właściwej usługi Zielonej Marki.</p>
+      </div>
+      <div className="zm-blog-service-grid">
+        <Link href="/oferta#kalkulator-pelnego-kosztu"><span>01 / STRONY WWW</span><h3>Wyceń stronę internetową</h3><p>Sprawdź koszty wykonania, domeny, serwera i opieki.</p><b>Sprawdź kalkulator ↗</b></Link>
+        <Link href="/dtp#kalkulator-dtp"><span>02 / DTP I DRUK</span><h3>Wyceń gazetkę lub ulotkę</h3><p>Dobierz format, materiały, liczbę stron i kolejne wydania.</p><b>Konfigurator DTP ↗</b></Link>
+        <Link href="/maly-crm-dla-firm"><span>03 / OBSŁUGA KLIENTÓW</span><h3>Uporządkuj zapytania</h3><p>Formularze, statusy i terminy kontaktu z klientami.</p><b>Zobacz rozwiązanie ↗</b></Link>
+      </div>
+    </section>
+    <section className="section guide-cta"><div className="shell"><span className="section-no">NIE ZNALAZŁEŚ ODPOWIEDZI?</span>
+      <h2>Opisz swoją firmę albo podeślij stronę do oceny.</h2>
+      <p>Wskażę pierwszy sensowny krok — bez presji i zobowiązania do współpracy.</p>
+      <Link className="button" href="/modernizacja-strony#miniaudyt">Poproś o mini ocenę <span>↗</span></Link>
+    </div></section>
   </main><QuickWhatsApp /><SiteFooter /></>;
 }

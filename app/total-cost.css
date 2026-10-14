@@ -92,3 +92,27 @@
 .zm-web-preview-bottom{margin-top:auto;padding:20px 24px;font-size:10px;opacity:.65}
 @media(max-width:950px){.zm-web-creator{grid-template-columns:1fr}.zm-web-preview-shell{min-height:450px}}
 @media(max-width:620px){.zm-web-preview-nav span{font-size:10px}.zm-web-preview-hero{padding:30px 22px}.zm-web-preview-blocks{grid-template-columns:1fr;padding:0 16px 16px}.zm-web-preview-shell{padding:10px}.zm-web-preview-blocks>div{min-height:90px}}
+
+
+/* High-contrast correction: forest-themed public pages force light text globally.
+   New quote forms use matching dark surfaces to avoid invisible pale-on-pale labels. */
+.zm-public .zm-total-fields{background:#123a29!important;color:#f4f9ef!important;border:1px solid #88aa8a!important}
+.zm-public .zm-total-results{background:#08291b!important;color:#f5fbef!important;border:1px solid #8bb091!important}
+.zm-public .zm-total-fields :is(h2,h3,h4),
+.zm-public .zm-dtp-wizard-grid .zm-total-fields h3{color:#f8fff1!important}
+.zm-public .zm-total-fields :is(.zm-field>label,.zm-cost-extras legend,.zm-dtp-toggle){color:#f2f9eb!important;font-size:14px}
+.zm-public .zm-total-fields :is(small,.zm-dtp-hint){color:#dbead8!important;font-size:13px}
+.zm-public .zm-total-fields :is(select,input,textarea){background:#09261a!important;color:#f7fff4!important;border:1px solid #a7c79c!important}
+.zm-public .zm-total-fields :is(input,textarea)::placeholder{color:#d9e8d1!important;opacity:1}
+.zm-public .zm-total-fields .zm-cost-extras{border:1px solid #94b193}
+.zm-public .zm-total-fields .zm-cost-extras label{color:#f2f9ed!important}
+.zm-public .zm-total-fields .zm-dtp-line-items>div,
+.zm-public .zm-total-fields .zm-dtp-schedule :is(th,td){color:#f4faef!important;border-color:#76987b}
+.zm-public .zm-total-fields .zm-dtp-secondary{border:1px solid #aacaa2;color:#f4fff0!important;background:#1c4932}
+.zm-public .zm-total-fields .zm-dtp-secondary:hover{background:#2b5b40}
+.zm-public .zm-dtp-stepper button{border-color:#91b191;background:#183d2c;color:#eef8e9}
+.zm-public .zm-dtp-stepper button span{color:#d7edba}
+.zm-public .zm-dtp-stepper button.selected{background:#c9eea2;border-color:#e4ffbd;color:#152b1c}
+.zm-public .zm-dtp-stepper button.selected span{color:#17462d}
+.zm-public .zm-web-estimate-link{color:#d7ffa8!important}
+.zm-public .zm-total-fields :is(a,button,input,select,textarea):focus-visible{outline:3px solid #deffa1!important;outline-offset:3px}

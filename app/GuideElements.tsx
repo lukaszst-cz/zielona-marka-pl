@@ -2,11 +2,11 @@ import Image from "next/image";
 import Link from "./SafeLink";
 
 export function GuideBreadcrumbs({ current }: { current?: string }) {
-  return <nav className="guide-breadcrumbs" aria-label="Ścieżka strony"><Link href="/">Strona główna</Link><span aria-hidden="true">›</span>{current ? <><Link href="/poradnik">Poradniki</Link><span aria-hidden="true">›</span><span aria-current="page">{current}</span></> : <span aria-current="page">Poradniki</span>}</nav>;
+  return <nav className="guide-breadcrumbs" aria-label="Ścieżka strony"><Link href="/">Strona główna</Link><span aria-hidden="true">›</span>{current ? <><Link href="/poradnik">Blog</Link><span aria-hidden="true">›</span><span aria-current="page">{current}</span></> : <span aria-current="page">Blog</span>}</nav>;
 }
 
 export function GuideAuthor({ published, updated }: { published: string; updated: string }) {
-  return <aside className="guide-author" aria-label="Autor i aktualność poradnika"><Image src="/lukasz-zielona-marka-jak-pracuje-20260908.webp" width={96} height={96} alt="Łukasz Staniewicz, autor poradnika Zielonej Marki" unoptimized /><div><span>AUTOR PORADNIKA</span><h2>Łukasz Staniewicz <i aria-hidden="true">|</i> Zielona Marka</h2><p>Tworzę strony i proste systemy dla firm usługowych. Łączę czytelną ofertę, formularze, kontrolę jakości i praktyczną obsługę zapytań.</p><small>Opublikowano: {published} · aktualizacja: {updated}</small><Link href="/jak-pracuje">Zobacz, jak pracuję ↗</Link></div></aside>;
+  return <aside className="guide-author" aria-label="Autor i aktualność poradnika"><Image src="/lukasz-zielona-marka-jak-pracuje-20260908.webp" width={96} height={96} alt="Łukasz Staniewicz, autor poradnika Zielonej Marki" unoptimized /><div><span>AUTOR ARTYKUŁU</span><h2>Łukasz Staniewicz <i aria-hidden="true">|</i> Zielona Marka</h2><p>Tworzę strony i proste systemy dla firm usługowych. Łączę czytelną ofertę, formularze, kontrolę jakości i praktyczną obsługę zapytań.</p><small>Opublikowano: {published} · aktualizacja: {updated}</small><Link href="/jak-pracuje">Zobacz, jak pracuję ↗</Link></div></aside>;
 }
 
 export function GuideFaq({ items }: { items: ReadonlyArray<readonly [string, string]> }) {
