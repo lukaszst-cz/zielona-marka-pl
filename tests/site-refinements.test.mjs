@@ -863,3 +863,28 @@ test("SEO monitor recognizes index blocking on all sitemap URLs", async () => {
   const monitor = await readFile(new URL("../scripts/monitor-public-seo.mjs", import.meta.url), "utf8");
   assert.equal(monitor.split("hasNoindex(body, response.headers").length - 1, 2, "Priority pages and additional sitemap pages must use identical detection");
 });
+
+
+
+test("versioned asset monitor extracts safe first-party paths and rejects HTML fallback", async () => {
+  const { referencedAssets, isUnusableAssetResponse } = await import("../scripts/public-asset-utils.mjs");
+  const html = [
+    '<script defer src="/_next/static/chunks/entry-AbC123.js?download=1"></script>',
+    '<link rel="modulepreload" href="/_next/static/chunks/entry-AbC123.js">',
+    '<link rel="stylesheet" href="/_next/static/css/styles-123.css">',
+    '<script src="https://external.example/_next/static/chunks/evil.js"></script>',
+    '<link href="/kontakt" rel="canonical">',
+  ].join("");
+  assert.deepEqual(referencedAssets(html, "https://zielona-marka.pl"), [
+    "/_next/static/chunks/entry-AbC123.js",
+    "/_next/static/css/styles-123.css",
+  ].sort());
+  assert.equal(isUnusableAssetResponse("/_next/static/chunks/a.js", 404, "text/html"), true);
+  assert.equal(isUnusableAssetResponse("/_next/static/chunks/a.js", 200, "text/html"), true);
+  assert.equal(isUnusableAssetResponse("/_next/static/chunks/a.js", 200, "application/javascript"), false);
+  assert.equal(isUnusableAssetResponse("/_next/static/chunks/a.js", 206, "text/javascript"), false);
+  assert.equal(isUnusableAssetResponse("/_next/static/css/a.css", 200, "text/css"), false);
+  const script = await readFile(new URL("../scripts/monitor-public-assets.mjs", import.meta.url), "utf8");
+  assert.match(script, /asset-monitor-artifacts\/report\.json/);
+  assert.match(script, /versionedAssetsFound/);
+});
