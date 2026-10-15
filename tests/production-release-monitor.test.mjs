@@ -21,11 +21,13 @@ test("fully simulated latest release passes without touching production", async 
   const css = "--zm-ui-card:rgba(5,30,19,.32);.care-plans{}.zm-dtp-prices{}.local-related nav a{}";
   const request = async (url) => {
     const path = new URL(url).pathname;
+    if (path === "/api/inquiries") return new Response("Uzupełnij firmę, rodzaj projektu i opis (10–4000 znaków).", { status: 400 });
     if (path.endsWith(".css")) return new Response(css, { status: 200, headers: { "content-type": "text/css" } });
     return new Response(htmlByRoute.get(path) ?? "", { status: htmlByRoute.has(path) ? 200 : 404, headers: { "content-type": "text/html" } });
   };
   const report = await monitorRelease({ request });
   assert.equal(report.isCurrent, true);
+  assert.deepEqual(report.conceptFormProbe, { status: 400, currentHandler: true });
   assert.deepEqual(report.failures, []);
   assert.equal(report.pages.length, releasePages.length);
 });
