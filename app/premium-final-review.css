@@ -204,3 +204,17 @@
   .zm-contact-dock .demo-assistant-trigger{width:100%;min-width:0;justify-content:center;}
   .zm-contact-dock .whatsapp-float{justify-content:center;}
 }
+
+/* Hasło usług przy logo pozostaje czytelne także na wąskim telefonie. */
+@media(max-width:620px){
+  .zm-header .brand-wordmark small {
+    font-size:11.2px!important;line-height:1.36!important;
+    letter-spacing:0!important;max-width:220px;
+  }
+  .zm-header .brand-wordmark small span:first-child {
+    white-space:normal!important;overflow-wrap:normal;
+  }
+  .zm-header .brand-wordmark small span:last-child {
+    font-size:11.2px!important;letter-spacing:.045em!important;
+  }
+}
