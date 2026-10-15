@@ -27,7 +27,7 @@ export default function LivingPortal({ contact = false }: { contact?: boolean })
     });
     observer.observe(el);
     media.addEventListener("change", reflectPreference);
-        addEventListener("scroll", schedule, { passive: true });
+    addEventListener("scroll", schedule, { passive: true });
     addEventListener("resize", schedule, { passive: true });
     reflectPreference();
     return () => { observer.disconnect(); cancelAnimationFrame(frame); media.removeEventListener("change", reflectPreference); removeEventListener("scroll", schedule); removeEventListener("resize", schedule); };
