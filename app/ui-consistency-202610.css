@@ -282,3 +282,8 @@ html body .zm-public.improvements-page :is(.situation-grid,.tool-grid) article{
     transform:none!important;
   }
 }
+
+
+html body .zm-public :is(.about-proof-list,.technology-grid,.timeline) article :is(h3,p){color:#e9f6e5!important;line-height:1.65}
+html body .zm-public :is(.about-proof-list,.technology-grid,.timeline) article h3{line-height:1.26}
+html body .zm-public :is(.about-proof-list,.technology-grid,.timeline) article>b{color:#d7ffab!important}
