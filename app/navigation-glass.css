@@ -1,0 +1,93 @@
+/* The offer mega-menu uses restrained glass surfaces over the shared forest. */
+.zm-header .zm-nav-desktop .zm-offer-menu > .zm-mega-menu {
+  background: linear-gradient(135deg, rgba(3, 24, 16, .72), rgba(5, 30, 21, .59));
+  border: 1px solid rgba(217, 239, 196, .37);
+  border-radius: 12px;
+  -webkit-backdrop-filter: blur(17px) saturate(112%);
+  backdrop-filter: blur(17px) saturate(112%);
+  box-shadow: 0 22px 55px rgba(0, 12, 8, .48), inset 0 1px rgba(255, 255, 255, .08);
+}
+
+.zm-header .zm-mega-intro {
+  border-right-color: rgba(223, 240, 203, .23);
+}
+
+.zm-header .zm-mega-group {
+  background: linear-gradient(140deg, rgba(226, 248, 220, .105), rgba(132, 174, 149, .055));
+  border: 1px solid rgba(228, 244, 220, .26);
+  border-radius: 9px;
+  -webkit-backdrop-filter: blur(11px) saturate(110%);
+  backdrop-filter: blur(11px) saturate(110%);
+  box-shadow: inset 0 1px rgba(255, 255, 255, .07), 0 6px 20px rgba(0, 15, 9, .11);
+  transition: background .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+
+.zm-header .zm-mega-group:is(:hover, :focus-within) {
+  background: linear-gradient(140deg, rgba(226, 248, 220, .16), rgba(132, 174, 149, .09));
+  border-color: rgba(231, 247, 221, .46);
+  box-shadow: inset 0 1px rgba(255, 255, 255, .09), 0 9px 23px rgba(0, 15, 9, .16);
+}
+
+.zm-header .zm-mega-quick-actions a,
+.zm-header .zm-mega-quick-actions a:first-child {
+  background: rgba(202, 238, 188, .075);
+  border: 1px solid rgba(219, 246, 204, .36);
+  border-radius: 7px;
+  color: #f3faed;
+  -webkit-backdrop-filter: blur(9px);
+  backdrop-filter: blur(9px);
+  transition: background-color .2s ease, border-color .2s ease;
+}
+
+.zm-header .zm-mega-quick-actions a:first-child {
+  border-color: rgba(186, 243, 140, .72);
+  color: #dbffc1;
+}
+
+.zm-header .zm-mega-quick-actions a:is(:hover, :focus-visible),
+.zm-header .zm-mega-quick-actions a:first-child:is(:hover, :focus-visible) {
+  background: rgba(189, 234, 170, .2);
+  color: #fff;
+  border-color: rgba(222, 255, 201, .74);
+}
+
+/* Match the finish in the mobile navigation without sacrificing legibility. */
+.zm-header .zm-mobile-menu > .zm-mobile-menu-panel {
+  background: linear-gradient(155deg, rgba(3, 24, 16, .9), rgba(5, 32, 21, .82));
+  border-color: rgba(220, 241, 204, .4);
+  -webkit-backdrop-filter: blur(16px) saturate(110%);
+  backdrop-filter: blur(16px) saturate(110%);
+  box-shadow: 0 20px 48px rgba(0, 12, 8, .5);
+}
+
+.zm-header .zm-mobile-menu-shortcuts a {
+  background: rgba(211, 244, 194, .09);
+  border-color: rgba(221, 244, 204, .32);
+  color: #f4faef;
+  -webkit-backdrop-filter: blur(9px);
+  backdrop-filter: blur(9px);
+}
+
+.zm-header .zm-mobile-menu-shortcuts a:is(:hover, :focus-visible) {
+  background: rgba(211, 244, 194, .19);
+  border-color: rgba(221, 244, 204, .57);
+}
+
+@media (max-width: 850px) {
+  .zm-header .zm-mobile-menu-group {
+    border-top-color: rgba(223, 240, 203, .28);
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .zm-header .zm-nav-desktop .zm-offer-menu > .zm-mega-menu,
+  .zm-header .zm-mobile-menu > .zm-mobile-menu-panel {
+    background: #09241a;
+  }
+  .zm-header .zm-mega-group,
+  .zm-header .zm-mega-quick-actions a,
+  .zm-header .zm-mega-quick-actions a:first-child,
+  .zm-header .zm-mobile-menu-shortcuts a {
+    background: #19392b;
+  }
+}

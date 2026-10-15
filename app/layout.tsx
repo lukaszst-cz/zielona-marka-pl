@@ -16,6 +16,7 @@ import "./premium-clarity.css";
 import "./premium-final-review.css";
 import "./qa-integrated.css";
 import "./blog-layout-unification.css";
+import "./navigation-glass.css";
 import PolishTypography from "./PolishTypography";
 import CookieConsent from "./CookieConsent";
 import SiteTracking from "./SiteTracking";
