@@ -5,9 +5,9 @@ import { QaDocumentCards, QaLocalNav } from "../QaStandardsNavigation";
 
 export const metadata: Metadata = {
   title: "Jakość i normy ISO — standardy pracy i dokumenty",
-  description: "Poznaj standardy kontroli jakości Zielonej Marki, proces odbioru projektów, zakres QA dla WWW i DTP oraz pobierz firmowe PDF. Uczciwe odniesienia do norm ISO — bez deklaracji certyfikacji.",
+  description: "Poznaj standardy kontroli jakości Zielonej Marki, proces odbioru projektów, zakres sprawdzania stron WWW i plików do druku oraz pobierz firmowe PDF. Uczciwe odniesienia do norm ISO — bez deklaracji certyfikacji.",
   alternates: { canonical: "/standardy-jakosci" },
-  openGraph: { type: "website", url: "/standardy-jakosci", title: "Standardy jakości i normy ISO | Zielona Marka", description: "Jak sprawdzamy strony, sklepy, CRM i pliki do druku? Procedury QA, punkty odniesienia ISO oraz dokumenty PDF do pobrania." },
+  openGraph: { type: "website", url: "/standardy-jakosci", title: "Standardy jakości i normy ISO | Zielona Marka", description: "Jak sprawdzamy strony, sklepy, CRM i pliki do druku? Procedury sprawdzania jakości, punkty odniesienia ISO oraz dokumenty PDF do pobrania." },
 };
 
 export default function QualityHubPage() {
@@ -16,7 +16,7 @@ export default function QualityHubPage() {
       <nav className="qa-crumbs" aria-label="Ścieżka nawigacji"><Link href="/">Strona główna</Link><span aria-hidden="true">/</span><span>Jakość i normy</span></nav>
       <span className="eyebrow">ZIELONA MARKA / ZASADY PRACY I KONTROLI</span>
       <h1>Jakość, którą można <em>sprawdzić, a nie tylko obiecać.</em></h1>
-      <p>Przejrzysty proces, własne procedury kontroli oraz kryteria odbioru odpowiednie dla stron WWW, sklepów internetowych, CRM i projektów DTP. Tutaj znajdziesz opis metody oraz gotową dokumentację.</p>
+      <p>QA (od angielskiego Quality Assurance) oznacza zapewnianie jakości. Mówiąc prosto: ustalamy, co powinno działać, sprawdzamy projekt, poprawiamy błędy i zapisujemy wyniki. Tak pracujemy przy stronach WWW, sklepach, systemach CRM i materiałach do druku.</p>
       <div className="hero-actions qa-hero-actions">
         <a className="button" href="#dokumenty">Pobierz standardy pracy <span aria-hidden="true">↓</span></a>
         <a className="text-link" href="#iso">Jak odnosimy się do ISO? <span aria-hidden="true">↓</span></a>
@@ -26,13 +26,13 @@ export default function QualityHubPage() {
     <QaLocalNav active="/standardy-jakosci" />
 
     <section className="section shell qa-section" id="proces">
-      <div className="section-head"><div><span className="section-no">OD POCZĄTKU DO ODBIORU</span><h2>Klient wie, co się dzieje z projektem.</h2></div><p>Kontrola jakości jest jednym z etapów współpracy, ale o ryzykach, kryteriach odbioru i sposobie przekazania dokumentacji myślimy od samego początku.</p></div>
+      <div className="section-head"><div><span className="section-no">OD POCZĄTKU DO ODBIORU</span><h2>Klient wie, co się dzieje z projektem.</h2></div><p>Zapewnianie jakości nie polega tylko na końcowym teście. Już na początku ustalamy wymagania, sposób sprawdzenia projektu i warunki jego odbioru.</p></div>
       <div className="qa-cards qa-cards--three">
         <article className="qa-card"><span className="qa-kicker">01 / USTALENIA</span><h3>Wymagania i zakres</h3><p>Dokumentujemy cel, materiały, wymagania techniczne i sposób akceptacji, zanim rozpoczniemy produkcję.</p></article>
         <article className="qa-card"><span className="qa-kicker">02 / REALIZACJA</span><h3>Kontrole właściwe dla produktu</h3><p>Inne testy wykonuje się dla formularza strony, inne dla sklepu i systemu, a jeszcze inne dla pliku drukarskiego.</p></article>
         <article className="qa-card"><span className="qa-kicker">03 / WYDANIE</span><h3>Wynik, poprawki, odbiór</h3><p>Problemy są poprawiane i sprawdzane ponownie, a gotowość do wydania wymaga uzasadnionej decyzji.</p></article>
       </div>
-      <div className="qa-link-stack"><Link href="/standard-jakosci">Osiem etapów i zakres kontroli WWW / CRM ↗</Link><Link href="/raport-qa">Przykładowa struktura raportu QA ↗</Link></div>
+      <div className="qa-link-stack"><Link href="/standard-jakosci">Osiem etapów i zakres kontroli WWW / CRM ↗</Link><Link href="/raport-qa">Przykładowy raport kontroli jakości ↗</Link></div>
     </section>
 
     <section className="section shell qa-section" id="dokumenty">
@@ -56,7 +56,7 @@ export default function QualityHubPage() {
         <article className="qa-card"><span className="qa-kicker">OPROGRAMOWANIE</span><h3>ISO/IEC 25010</h3><p>Model jakości pomocny przy definiowaniu oczekiwań wobec produktu cyfrowego i jego testów.</p></article>
         <article className="qa-card"><span className="qa-kicker">POLIGRAFIA</span><h3>ISO 15930, 12647 i inne</h3><p>Standardy określające wybrane aspekty plików PDF/X, druku, proofingu i oceny barwy — zależnie od technologii.</p></article>
       </div>
-      <div className="qa-standards-note"><strong>Stan faktyczny:</strong> Zielona Marka ma własne procedury QA inspirowane odpowiednimi normami. Nie oznacza to certyfikacji ISO 9001, zewnętrznego audytu, akredytacji ani pełnej zgodności z każdą przywołaną normą. Certyfikowane wdrożenie jest osobnym przedsięwzięciem.</div>
+      <div className="qa-standards-note"><strong>Stan faktyczny:</strong> Zielona Marka ma własne procedury zapewniania jakości, inspirowane odpowiednimi normami. Nie oznacza to certyfikacji ISO 9001, zewnętrznego audytu, akredytacji ani pełnej zgodności z każdą przywołaną normą. Certyfikowane wdrożenie jest osobnym przedsięwzięciem.</div>
       <details className="qa-faq"><summary>Czy Zielona Marka posiada certyfikat ISO 9001?</summary><p>Nie. Publicznie prezentujemy własną metodykę pracy i kontrolę jakości, a nie certyfikację ISO.</p></details>
       <details className="qa-faq"><summary>Czy każdy projekt przechodzi wszystkie testy?</summary><p>Nie. Zakres kontroli określają funkcje, technologie, specyfikacja drukarni i uzgodnione ryzyka. Wynik konkretnych testów wymaga faktycznej weryfikacji.</p></details>
       <details className="qa-faq"><summary>Czy raport przykładowy jest potwierdzeniem wykonania testów?</summary><p>Nie. Pokazuje formę dokumentacji. Raport konkretnej realizacji powstaje na podstawie rzeczywistych wyników i dostępnych dowodów.</p></details>

@@ -79,8 +79,8 @@ export default async function ClientStatus({ params }: { params: Promise<{ code:
         <section className="client-qa">
           <div>
             <span className="section-no">STANDARD PRZED PUBLIKACJĄ</span>
-            <h2>QA oznacza kontrolę jakości.</h2>
-            <p>Po zakończeniu wdrożenia sprawdzamy projekt na uzgodnionych urządzeniach i w rzeczywistych ścieżkach klienta. Wyniki można otworzyć, wydrukować lub zapisać jako PDF.</p>
+            <h2>QA oznacza zapewnianie jakości.</h2>
+            <p>To skrót od angielskiego Quality Assurance. W praktyce: sprawdzamy, czy gotowa strona dobrze wygląda i działa na uzgodnionych urządzeniach, czy formularze i linki spełniają swoje zadanie. Wyniki można otworzyć, wydrukować lub zapisać jako PDF.</p>
             <Link className="button" href={`/status/${project.publicCode}/qa`}>Otwórz raport jakości <span>↗</span></Link>
           </div>
           <ul>{qaChecks.map((check) => <li key={check}>{check}</li>)}</ul>

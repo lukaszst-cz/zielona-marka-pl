@@ -22,7 +22,7 @@ const steps=[
  ["08","Wsparcie i rozwój","Uzgadniamy opiekę, analizujemy zgłoszenia i doskonalimy procedury."],
 ] as const;
 const tracks=[
- {num:"01 / WWW",title:"Strony i landing page",items:["Responsywność, czytelność i dostępność","Linki, formularze i ścieżka kontaktu","Metadane, mapa strony i indeksowanie","Wydajność, HTTPS i testy po publikacji"],href:"/raport-qa",cta:"Przykładowy raport QA"},
+ {num:"01 / WWW",title:"Strony i landing page",items:["Responsywność, czytelność i dostępność","Linki, formularze i ścieżka kontaktu","Metadane, mapa strony i indeksowanie","Wydajność, HTTPS i testy po publikacji"],href:"/raport-qa",cta:"Przykładowy raport kontroli jakości"},
  {num:"02 / E-COMMERCE",title:"Sklepy internetowe",items:["Koszyk i pełna ścieżka zamówienia","Testy płatności, wyjątków i powiadomień","Dostępność i prywatność w uzgodnionym zakresie","Role użytkowników i zabezpieczenia"],href:"/oferta",cta:"Zobacz ofertę"},
  {num:"03 / PREPRESS",title:"Grafika i DTP",items:["Treść, typografia, fonty i obrazy","Spady, PDF/X, ICC i separacje","Overprint, lakier, wykrojniki i falcowanie","Proofing, akceptacja i plik produkcyjny"],href:"/standard-dtp",cta:"Pełny standard DTP"},
  {num:"04 / SYSTEMY",title:"CRM i automatyzacje",items:["Mapa procesów i wymagań","Role, uprawnienia, integralność danych","Integracje, scenariusze błędów i kopie zapasowe","Testy odbiorowe i przekazanie dostępu"],href:"/maly-crm-dla-firm",cta:"Poznaj CRM"},
@@ -33,7 +33,7 @@ export default function QualityStandardPage() {
       <nav className="qa-crumbs" aria-label="Ścieżka nawigacji"><Link href="/">Strona główna</Link><span aria-hidden="true">/</span><Link href="/standardy-jakosci">Jakość i normy</Link><span aria-hidden="true">/</span><span>Standard projektów</span></nav>
       <span className="eyebrow">STANDARDY ZIELONEJ MARKI / ZM-QMS-001</span>
       <h1 id="qa-main-heading">Dobry projekt powstaje w <em>dobrze prowadzonym procesie.</em></h1>
-      <p>Od pierwszego zapytania po odbiór — jasno określamy zakres, odpowiedzialność i punkty kontroli. Przejrzyj zasady, sprawdź zakres testów i pobierz dokumentację.</p>
+      <p>QA (ang. Quality Assurance) to zapewnianie jakości. W praktyce ustalamy wymagania, sprawdzamy działanie strony lub systemu, poprawiamy wykryte błędy i potwierdzamy wynik przed przekazaniem projektu. Zobacz kolejne etapy i pobierz opis procedur.</p>
       <div className="hero-actions qa-hero-actions">
         <a className="button" href="/downloads/zielona-marka-standard-jakosci-www-dtp-crm.pdf" download>Pobierz standard jakości · PDF <span aria-hidden="true">↓</span></a>
         <a className="text-link" href="#etapy">Poznaj 8 etapów <span aria-hidden="true">↓</span></a>
@@ -59,14 +59,14 @@ export default function QualityStandardPage() {
     </section>
 
     <section className="section shell qa-section" id="wyniki">
-      <div className="section-head"><div><span className="section-no">KONTROLA I DECYZJA</span><h2>Wynik QA musi mieć uzasadnienie.</h2></div><p>Sama checklista nie jest dowodem kontroli. Wyniki konkretnego projektu wymagają sprawdzenia i zapisania informacji o teście.</p></div>
+      <div className="section-head"><div><span className="section-no">KONTROLA I DECYZJA</span><h2>Wynik kontroli jakości musi mieć uzasadnienie.</h2></div><p>Sama checklista nie jest dowodem kontroli. Wyniki konkretnego projektu wymagają sprawdzenia i zapisania informacji o teście.</p></div>
       <div className="qa-statuses">
         <div><strong>PASS — sprawdzone</strong><p>Wymaganie spełnione, a wynik kontroli potwierdzony w dokumentacji.</p></div>
         <div><strong>REWORK — poprawa</strong><p>Zidentyfikowana niezgodność wymaga poprawki i powtórzenia testu.</p></div>
         <div><strong>HOLD — wstrzymanie</strong><p>Etap zatrzymujemy, jeżeli brakuje specyfikacji, akceptacji lub bezpieczeństwa wykonania.</p></div>
       </div>
       <p className="qa-note-p">Początkowy status punktu to „NIE SPRAWDZONO”. „N/D” oznacza brak zastosowania danego kryterium i wymaga uzasadnienia.</p>
-      <p><Link className="text-link" href="/raport-qa">Zobacz przykładową strukturę raportu QA <span aria-hidden="true">↗</span></Link></p>
+      <p><Link className="text-link" href="/raport-qa">Zobacz przykładowy raport kontroli jakości <span aria-hidden="true">↗</span></Link></p>
     </section>
 
     <section className="section shell qa-section" id="normy-iso">
