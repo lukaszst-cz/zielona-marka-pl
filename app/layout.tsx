@@ -178,7 +178,7 @@ export default async function RootLayout({
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: "window['ga-disable-G-B3QJ910M2Q']=true;",
+            __html: "window['ga-disable-G-B3QJ910M2Q']=true;window['ga-disable-G-CYFQ326JRF']=true;",
           }}
         />
       </head>
