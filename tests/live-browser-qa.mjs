@@ -7,7 +7,7 @@ const { chromium } = await import(process.env.BROWSER_QA_PLAYWRIGHT_ENTRY || "pl
 const base = (process.env.BROWSER_QA_URL || "https://zielona-marka.pl").replace(/\/$/, "");
 const dir = "browser-qa-artifacts";
 mkdirSync(dir, { recursive: true });
-const result = { base, checkedAt: new Date().toISOString(), checks: [], screenshots: [], warnings: [], privacyProtections: { blockedCloudflareAnalytics: 0 } };
+const result = { base, checkedAt: new Date().toISOString(), checks: [], screenshots: [], warnings: [], assetFailures: [], privacyProtections: { blockedCloudflareAnalytics: 0 } };
 const routes = [
   ["/", "home"], ["/oferta", "offer"], ["/dtp", "dtp"],
   ["/opieka-nad-strona", "care"], ["/poradnik", "blog"],
@@ -53,8 +53,24 @@ try {
     const failedJsChunks = [];
     page.on("response", response => {
       const url = new URL(response.url());
-      if (url.pathname.startsWith("/_next/static/chunks/") && response.status() >= 400) {
-        failedJsChunks.push({ path: url.pathname, status: response.status() });
+      const status = response.status();
+      if (url.pathname.startsWith("/_next/static/chunks/") && status >= 400) {
+        failedJsChunks.push({ path: url.pathname, status });
+      }
+      if (url.origin === new URL(base).origin && status >= 400 &&
+          /\.(?:js|css|svg|webp|png|jpe?g|woff2?|mp4|ico)$/i.test(url.pathname)) {
+        const assetFailure = {
+          viewport: size.name,
+          route: new URL(page.url()).pathname,
+          path: url.pathname,
+          status,
+          cfCache: response.headers()["cf-cache-status"] ?? "unknown",
+        };
+        if (result.assetFailures.length < 60 && !result.assetFailures.some(item =>
+          item.viewport === assetFailure.viewport && item.route === assetFailure.route &&
+          item.path === assetFailure.path && item.status === assetFailure.status)) {
+          result.assetFailures.push(assetFailure);
+        }
       }
     });
     page.on("request", request => {
