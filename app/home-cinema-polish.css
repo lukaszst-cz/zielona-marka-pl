@@ -8,7 +8,7 @@ html body .zm-v5 .zmh-cinema::before{
   content:"";
   pointer-events:none;
   position:absolute;
-  right:-27px;top:38px;width:clamp(90px,14vw,200px);
+  right:40px;top:38px;width:clamp(90px,14vw,200px);
   height:clamp(160px,24vw,300px);
   background:url('/brand-review-v6/fern-frond.svg') center/contain no-repeat;
   opacity:.13;
@@ -176,7 +176,7 @@ html body .zm-v5 .zmh-cinema .zmh-cine-shot.zmh-is-current{
 }
 @media(max-width:900px){
   html body .zm-v5 .zmh-cinema::before{
-    right:-15px;top:24px;width:130px;height:225px;opacity:.10;
+    right:26px;top:24px;width:130px;height:225px;opacity:.10;
   }
   html body .zm-v5 .zmh-cinema .zmh-flow{
     min-height:165px;
