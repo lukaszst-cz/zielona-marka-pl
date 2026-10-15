@@ -838,5 +838,5 @@ test("inquiry email notification failures remain observable after CRM save", asy
   assert.ok(route.indexOf("await db.insert(inquiries)") < route.indexOf("await notifyOwner("), "Save the inquiry before sending optional email notification");
   assert.match(route, /Inquiry saved in CRM, but email notification delivery failed/);
   assert.match(route, /Inquiry notification not configured; saved lead remains in CRM/);
-  assert.doesNotMatch(route, /notifyOwner\\([^;]*\\.catch\\(\\(\\) => undefined\\)/);
+  assert.ok(!route.includes(".catch(() => undefined)"), "Do not swallow notification failures without a log");
 });
