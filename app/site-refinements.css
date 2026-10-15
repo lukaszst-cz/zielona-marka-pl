@@ -338,6 +338,12 @@ html body .zm-v5 .zmh-opening:after{
   background:linear-gradient(to bottom,rgba(6,28,19,0) 0%,rgba(6,28,19,.12) 24%,rgba(6,28,19,.4) 49%,rgba(6,28,19,.76) 75%,#061c13 100%);
 }
 html body .zm-v5 .zmh-opening>.zmh-hero{position:relative;z-index:4!important}
+/* Fade the entire photographic layer, including its fallback image. Masking
+   only the video left an abrupt edge when the poster remained visible. */
+html body .zm-v5 .zmh-opening .zmh-living-forest{
+  -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 55%,rgba(0,0,0,.65) 73%,rgba(0,0,0,.22) 88%,transparent 100%);
+  mask-image:linear-gradient(to bottom,#000 0%,#000 55%,rgba(0,0,0,.65) 73%,rgba(0,0,0,.22) 88%,transparent 100%);
+}
 html body .zm-v5 .zmh-living-forest video{
   -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 calc(100% - 180px),transparent 100%)!important;
   mask-image:linear-gradient(to bottom,#000 0%,#000 calc(100% - 180px),transparent 100%)!important;
