@@ -319,3 +319,24 @@ test("Brand services appear in two deliberately separated lines on all public pa
   const styles = await readFile(new URL("../app/premium-polish.css", import.meta.url), "utf8");
   assert.match(styles, /brand-wordmark small span\{display:block;white-space:nowrap\}/);
 });
+
+test("Cennik i nawigacja zachowują czytelność najważniejszych informacji", async () => {
+  const home = await (await render("/")).text();
+  assert.match(home, /899 zł netto/);
+  assert.match(home, /STRONY I SKLEPY WWW/);
+  assert.match(home, /icon-facebook\.png/);
+  assert.match(home, /icon-instagram\.png/);
+  assert.match(home, /icon-github-zielona-marka\.svg/);
+
+  const offer = await (await render("/oferta")).text();
+  assert.match(offer, /Ile naprawdę kosztuje strona: projekt, hosting i jej utrzymanie\?/);
+  assert.match(offer, /DODATKI, KTÓRE MAJĄ SENS/);
+  assert.match(offer, /899 zł netto/);
+
+  const dtp = await (await render("/dtp")).text();
+  assert.match(dtp, /Orientacyjna cena projektu/);
+  const care = await (await render("/opieka-nad-strona")).text();
+  assert.match(care, /netto \/ mies\./);
+  const article = await (await render("/poradnik/ile-kosztuje-projekt-gazetki")).text();
+  assert.match(article, /Łukasz Staniewicz/);
+});
