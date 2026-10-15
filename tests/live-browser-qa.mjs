@@ -14,6 +14,7 @@ const routes = [
   ["/poradnik/ile-kosztuje-projekt-gazetki", "article-dtp"],
   ["/poradnik/ile-kosztuje-strona-dla-malej-firmy", "article-www"],
   ["/modernizacja-strony", "modernization"],
+  ["/bezplatna-koncepcja-strony?fbclid=qa-check", "free-concept"],
   ["/usprawnienia-firmy", "improvements"],
   ["/projektuj-strone", "studio"],
   ["/standardy-jakosci", "quality-hub"],
@@ -204,6 +205,23 @@ try {
         return metrics;
       });
     }
+    await check(size.name + ": Free concept form works with Facebook link", async () => {
+      const response = await page.goto(base + "/bezplatna-koncepcja-strony?fbclid=qa-check", {
+        waitUntil: "domcontentloaded", timeout: 45000,
+      });
+      assert.ok(response?.ok(), "Landing page not available");
+      const form = page.locator("form.zm-concept-form");
+      await form.waitFor({ state: "visible", timeout: 15000 });
+      assert.equal(await form.locator('input[name="mode"]').count(), 5, "Missing project choices");
+      await form.locator('input[name="mode"][value="logo"]').check();
+      await page.waitForFunction(() => {
+        const radio = document.querySelector('form.zm-concept-form input[name="mode"][value="logo"]');
+        return radio?.checked === true;
+      }, null, { timeout: 10000 });
+      assert.ok(await form.locator('textarea[name="details"]').isVisible(), "Description field hidden");
+      assert.ok(await form.locator('input[name="consent"]').isVisible(), "Consent field hidden");
+      return { projectChoices: 5, selectedMode: "logo", fbclid: true };
+    });
     if (["desktop", "laptop"].includes(size.name)) {
       await check(size.name + ": Opening to process section spacing", async () => {
         await page.goto(base + "/", { waitUntil: "domcontentloaded", timeout: 45000 });
