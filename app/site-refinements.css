@@ -328,69 +328,65 @@ html body .zm-v5 .zmh-free-start-note{margin:18px 0 0;color:#adc0a7;font-size:10
 .practical-tools-page .project-case-image:after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(115deg,rgba(10,31,22,.62),rgba(10,31,22,.06));pointer-events:none}
 .practical-tools-page .project-case-image>span,.practical-tools-page .project-case-image>b,.practical-tools-page .project-case-image>.program-card-logo{z-index:2}
 
-/* Subtle forest-to-stream dissolve: no decorative dividing line.
-   The overlay starts inside the last part of the film, keeping the next
-   section in its original document position and preserving hero text. */
+/* The opening and story share the same forest background. A single fade
+   replaces the stacked dark overlays and the visible section boundary. */
 html body .zm-v5 .zmh-opening{
   min-height:max(880px,100svh)!important;
-  /* The forest continues behind the opening, so fade its parent background
-     as well as the child video to avoid an abrupt green image boundary. */
-  background:linear-gradient(to bottom,transparent 0%,rgba(6,28,19,.07) 49%,rgba(6,28,19,.48) 73%,rgba(6,28,19,.86) 89%,#061c13 100%)!important;
+  background:transparent!important;
 }
-html body .zm-v5 .zmh-opening::before{
-  content:"";position:absolute;z-index:3;inset:0;pointer-events:none;
-  background:linear-gradient(to bottom,
-    rgba(6,28,19,0) 0%,rgba(6,28,19,.05) 34%,
-    rgba(6,28,19,.18) 44%,rgba(6,28,19,.54) 55%,
-    rgba(6,28,19,.86) 64%,#061c13 73%);
-}
-html body .zm-v5 .zmh-opening:after{
-  content:'';position:absolute;z-index:3;left:0;right:0;bottom:0;
-  height:clamp(240px,24vw,350px);pointer-events:none;
-  background:linear-gradient(to bottom,rgba(6,28,19,0) 0%,rgba(6,28,19,.12) 24%,rgba(6,28,19,.4) 49%,rgba(6,28,19,.76) 75%,#061c13 100%);
-}
+html body .zm-v5 .zmh-opening::before,
+html body .zm-v5 .zmh-opening::after{content:none!important}
 html body .zm-v5 .zmh-opening>.zmh-hero{position:relative;z-index:4!important}
-/* Fade the entire photographic layer, including its fallback image. Masking
-   only the video left an abrupt edge when the poster remained visible. */
+/* Reveal the common forest photograph behind the moving water, not a flat
+   dark rectangle. Fade the whole media layer once, not the video twice. */
 html body .zm-v5 .zmh-opening .zmh-living-forest{
-  -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 44%,rgba(0,0,0,.7) 54%,rgba(0,0,0,.32) 64%,transparent 77%);
-  mask-image:linear-gradient(to bottom,#000 0%,#000 44%,rgba(0,0,0,.7) 54%,rgba(0,0,0,.32) 64%,transparent 77%);
+  -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 66%,rgba(0,0,0,.8) 79%,transparent 100%);
+  mask-image:linear-gradient(to bottom,#000 0%,#000 66%,rgba(0,0,0,.8) 79%,transparent 100%);
 }
 html body .zm-v5 .zmh-living-forest video{
-  -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 calc(100% - 180px),transparent 100%)!important;
-  mask-image:linear-gradient(to bottom,#000 0%,#000 calc(100% - 180px),transparent 100%)!important;
+  -webkit-mask-image:none!important;
+  mask-image:none!important;
 }
-html body .zm-v5 .zmh-living-forest:after{
-  content:'';position:absolute;z-index:2;inset:auto 0 0;
-  height:clamp(190px,22vw,270px);pointer-events:none;
-  background:linear-gradient(to bottom,rgba(6,28,19,0),rgba(6,28,19,.12) 32%,rgba(6,28,19,.48) 69%,#061c13 100%)!important;
-}
+html body .zm-v5 .zmh-living-forest:after{display:none!important}
+/* Do not insert an opaque block or extra vertical space at the seam. */
 html body .zm-v5 .zmh-scene-transition{
-  --zmh-dissolve-height:clamp(280px,31vw,440px);
-  position:relative;z-index:3;pointer-events:none;
-  height:var(--zmh-dissolve-height);
-  margin-top:calc(46px - var(--zmh-dissolve-height));
-  overflow:hidden;
-  background:linear-gradient(to bottom,rgba(6,28,19,0) 0%,rgba(6,28,19,.1) 18%,rgba(6,28,19,.31) 43%,rgba(6,28,19,.71) 75%,#061c13 100%);
+  height:0!important;margin:0!important;background:none!important;
+  overflow:visible;pointer-events:none;
 }
-html body .zm-v5 .zmh-scene-transition:before,
+html body .zm-v5 .zmh-scene-transition::before,
 html body .zm-v5 .zmh-scene-transition span{display:none!important}
 html body .zm-v5 .zmh-assembly{
+  position:relative;isolation:isolate;
   margin-top:0!important;padding-top:88px!important;z-index:2;
   border-top:0!important;
   -webkit-mask-image:none!important;mask-image:none!important;
   pointer-events:auto!important;
-  background:linear-gradient(to bottom,#061c13 0%,rgba(6,28,19,.82) 20%,rgba(6,28,19,.5) 50%,rgba(6,28,19,.7))!important;
+  background:transparent!important;
 }
-html body .zm-v5 .zmh-assembly.zmh-media-ready{
-  background:linear-gradient(to bottom,#061c13 0%,rgba(6,28,19,.82) 20%,rgba(6,28,19,.5) 50%,rgba(6,28,19,.7)),url('/brand-review-v5/stream-water-bottom.webp') center top/cover no-repeat!important;
+html body .zm-v5 .zmh-assembly.zmh-media-ready{background:transparent!important}
+/* The second photograph fades in separately, while the same forest stays
+   visible beneath it. This also avoids an image swap on intersection. */
+html body .zm-v5 .zmh-assembly::before{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:url('/brand-review-v5/stream-water-bottom.webp') center top/cover no-repeat;
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.15) 16%,rgba(0,0,0,.55) 34%,#000 64%);
+  mask-image:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.15) 16%,rgba(0,0,0,.55) 34%,#000 64%);
 }
+html body .zm-v5 .zmh-assembly::after{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:linear-gradient(to bottom,transparent 0%,rgba(6,28,19,.08) 42%,rgba(6,28,19,.24) 100%);
+}
+html body .zm-v5 .zmh-assembly>*{position:relative;z-index:1}
 @media(max-width:700px){
-  html body .zm-v5 .zmh-living-forest video{
-    -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 calc(100% - 140px),transparent 100%)!important;
-    mask-image:linear-gradient(to bottom,#000 0%,#000 calc(100% - 140px),transparent 100%)!important;
+  html body .zm-v5 .zmh-opening{min-height:max(900px,100svh)!important}
+  html body .zm-v5 .zmh-opening .zmh-living-forest{
+    -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 71%,rgba(0,0,0,.7) 84%,transparent 100%);
+    mask-image:linear-gradient(to bottom,#000 0%,#000 71%,rgba(0,0,0,.7) 84%,transparent 100%);
   }
-  html body .zm-v5 .zmh-living-forest:after{height:180px}
+  html body .zm-v5 .zmh-assembly::before{
+    -webkit-mask-image:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.2) 22%,#000 65%);
+    mask-image:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.2) 22%,#000 65%);
+  }
 }
 
 /* On desktop the process cards were centered inside an 850px panel, leaving
