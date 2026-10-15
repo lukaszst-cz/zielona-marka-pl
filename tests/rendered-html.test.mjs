@@ -85,7 +85,7 @@ test("kluczowe statyczne podstrony mają własne metadata w head", async () => {
     ["/dtp", "DTP, wizytówki, ulotki i przygotowanie do druku", "Projektowanie wizytówek", "https://zielona-marka.pl/dtp"],
     ["/opieka-nad-strona", "Opieka nad stroną, hosting i koszty utrzymania", "Ile kosztuje utrzymanie strony WWW?", "https://zielona-marka.pl/opieka-nad-strona"],
     ["/modernizacja-strony", "Modernizacja strony internetowej", "Ocena starej strony i plan modernizacji", "https://zielona-marka.pl/modernizacja-strony"],
-    ["/kontakt", "Kontakt i wycena", "Skontaktuj się z Zieloną Marką", "https://zielona-marka.pl/kontakt"],
+    ["/kontakt", "Kontakt i wycena", "Skontaktuj się z zespołem marki Zielona Marka", "https://zielona-marka.pl/kontakt"],
     ["/maly-crm-dla-firm", "Mały CRM dla firmy", "Od dobrego zapytania do następnego kroku", "https://zielona-marka.pl/maly-crm-dla-firm"],
   ];
   for (const [path, titlePart, descriptionPart, canonical] of expected) {
