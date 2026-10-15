@@ -1,6 +1,9 @@
 name: Public technical SEO monitor
 
 on:
+  workflow_run:
+    workflows: ["Verify project"]
+    types: [completed]
   workflow_dispatch:
   schedule:
     - cron: "15 5 * * *"
@@ -15,10 +18,16 @@ permissions:
 
 jobs:
   technical-seo:
+    if: >-
+      ${{ github.event_name != 'workflow_run' ||
+          (github.event.workflow_run.head_branch == 'main' &&
+           github.event.workflow_run.conclusion == 'success') }}
     runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'workflow_run' && 'main' || github.ref }}
       - uses: actions/setup-node@v4
         with:
           node-version: 22
