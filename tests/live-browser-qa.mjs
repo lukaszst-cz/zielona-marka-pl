@@ -35,6 +35,7 @@ try {
     ...(process.env.BROWSER_QA_FULL === "1" ? [
       { name: "tablet", width: 768, height: 1024 },
       { name: "laptop", width: 1024, height: 900 },
+      { name: "compact", width: 320, height: 720 },
     ] : []),
   ]) {
     const context = await browser.newContext({
@@ -142,7 +143,11 @@ try {
         assert.deepEqual(oversizedCtas, [], route + " CTA grows beyond expected mobile height");
 
         if (metrics.width > metrics.viewport + 8) {
-          result.warnings.push({ viewport: size.name, route, overflowPx: metrics.width - metrics.viewport });
+          const overflowPx = metrics.width - metrics.viewport;
+          result.warnings.push({ viewport: size.name, route, overflowPx });
+          if (process.env.BROWSER_QA_FULL === "1") {
+            assert.fail(route + " exceeds " + metrics.viewport + "px viewport by " + overflowPx + "px");
+          }
         }
         const path = dir + "/" + size.name + "-" + key + ".png";
         await page.evaluate(() => {
