@@ -7,7 +7,7 @@ import { referencedAssets } from "./public-asset-utils.mjs";
    not merely exist in a successful GitHub build. */
 export const releasePages = [
   { path: "/", markers: ["zm-home-offers", "zm-home-carousel", "zm-home-slide-counter", "Pokaż slajd 1: Mini audyt", "Pokaż slajd 2: Mapa Szans", "Pokaż slajd 3: Bezpłatna koncepcja", "Zobacz swoją firmę", "zmh-contact-preview"] },
-  { path: "/bezplatna-koncepcja-strony", markers: ["Gazetka sprzedażowa", "Koncepcja logo", "zm-concept-services"] },
+  { path: "/bezplatna-koncepcja-strony", markers: ["Gazetka sprzedażowa", "Koncepcja logo", "zm-concept-services", "zc-hero-stage", "zc-sample-sales-items", "Poproś o indywidualną koncepcję"] },
   { path: "/opieka-nad-strona", markers: ["care-plans", "care-plan-benefit", "care-plan-difference", "Co zyskujesz?"] },
   { path: "/strony-internetowe", markers: ["Wybierz miasto lub dzielnicę."] },
   { path: "/dtp", markers: ["DTP"] },
@@ -21,7 +21,7 @@ export function missingPageMarkers(html, markers) {
 export function missingUiStyles(css) {
   // Unlike general file availability checks, these tokens identify the
   // actual Oct 2026 shared layout changes in the served CSS bundle.
-  return ["--zm-ui-card", ".care-plans", ".zm-dtp-prices", ".local-related nav a", ".zm-home-slide[hidden]", ".zm-home-carousel-controls", ".zm-offer-browser", ".zmh-contact-preview-message"].filter(
+  return ["--zm-ui-card", ".care-plans", ".zm-dtp-prices", ".local-related nav a", ".zm-home-slide[hidden]", ".zm-home-carousel-controls", ".zm-offer-browser", ".zmh-contact-preview-message", ".zc-hero-mobile", ".zc-sample-sales-items"].filter(
     (marker) => !css.includes(marker),
   );
 }
@@ -104,7 +104,7 @@ export async function monitorRelease({
   }
   return {
     checkedAt: new Date().toISOString(), origin, pages, cssFiles,
-    expectedChanges: "PR #88 (free concepts), PR #89 (UI and care plans), PR #95 (homepage offer slides)",
+    expectedChanges: "PR #88 (free concepts), PR #89 (UI and care plans), PR #95 (homepage offer slides), PR #102 (free concept previews and request paths)",
     missingCss, conceptFormProbe, failures, isCurrent: failures.length === 0,
     note: "This checks public release parity; successful GitHub CI alone cannot prove Cloudflare deployment.",
   };
