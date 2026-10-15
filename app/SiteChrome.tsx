@@ -16,12 +16,14 @@ export const offerGroups = [
       ["Kalkulator kosztów", "/oferta#kalkulator-pelnego-kosztu"],
       ["Modernizacja strony", "/modernizacja-strony"],
       ["Opieka, domena i hosting", "/opieka-nad-strona"],
+      ["Standard jakości WWW i CRM", "/standard-jakosci"],
     ],
   },
   {
     title: "Materiały i identyfikacja", description: "Projekty przygotowane do druku",
     links: [
       ["DTP, gazetki i katalogi", "/dtp"],
+      ["Standard kontroli DTP", "/standard-dtp"],
     ],
   },
   {
@@ -68,20 +70,20 @@ export function SiteHeader({ english = false }: { english?: boolean }) {
               </section>)}</div>
             </div>
           </details>}
-      <Link href={english ? "/en#projects" : "/realizacje"}>{english ? "Projects" : "Projekty"}</Link>{!english && <><Link className="zm-nav-studio" href="/projektuj-strone">ZM Studio</Link><Link href="/poradnik">Blog</Link></>}<Link href={english ? "/en#process" : "/jak-pracuje"}>{english ? "Working together" : "Współpraca"}</Link><Link href={english ? "/en#contact" : "/kontakt"}>{english ? "Contact" : "Kontakt"}</Link><Link className="zm-client-link" href="/status" rel="nofollow">{english ? "Client area (PL)" : "Strefa klienta"}</Link>
+      <Link href={english ? "/en#projects" : "/realizacje"}>{english ? "Projects" : "Projekty"}</Link>{!english && <><Link className="zm-nav-studio" href="/projektuj-strone">ZM Studio</Link><Link href="/poradnik">Blog</Link></>}<Link href={english ? "/en#process" : "/jak-pracuje"}>{english ? "Working together" : "Współpraca"}</Link>{!english && <Link href="/standardy-jakosci">Jakość i ISO</Link>}<Link href={english ? "/en#contact" : "/kontakt"}>{english ? "Contact" : "Kontakt"}</Link><Link className="zm-client-link" href="/status" rel="nofollow">{english ? "Client area (PL)" : "Strefa klienta"}</Link>
       <LanguageSwitch english={english} />
     </div>
     <details className="zm-mobile-menu"><summary>Menu <span aria-hidden="true">+</span></summary>
       <div className="zm-mobile-menu-panel">
         {english ? <><a href="/en#services">Services</a><a href="/en#projects">Projects</a><a href="/en#process">Working together</a><a href="/en#contact">Contact</a></>
           : <>
-            <div className="zm-mobile-menu-shortcuts"><Link href="/oferta">Oferta</Link><Link href="/realizacje">Projekty</Link><Link href="/poradnik">Blog</Link><Link href="/kontakt">Kontakt</Link></div>
+            <div className="zm-mobile-menu-shortcuts"><Link href="/oferta">Oferta</Link><Link href="/realizacje">Projekty</Link><Link href="/poradnik">Blog</Link><Link href="/standardy-jakosci">Jakość i normy</Link><Link href="/kontakt">Kontakt</Link></div>
             {offerGroups.map((group) => <section className="zm-mobile-menu-group" key={group.title} aria-label={group.title}>
               <h2>{group.title}</h2>
               {group.links.map(([label, href]) => <Link href={href} key={href}>{label}</Link>)}
             </section>)}
             <section className="zm-mobile-menu-group" aria-label="O Zielonej Marce"><h2>Więcej informacji</h2>
-              <Link href="/praktyczne-narzedzia">Narzędzia</Link><Link href="/projektuj-strone">ZM Studio — kreator strony</Link><Link href="/jak-pracuje">Współpraca</Link>
+              <Link href="/praktyczne-narzedzia">Narzędzia</Link><Link href="/projektuj-strone">ZM Studio — kreator strony</Link><Link href="/jak-pracuje">Współpraca</Link><Link href="/standardy-jakosci">Jakość i ISO</Link><Link href="/standard-dtp">Standard DTP</Link>
             </section>
           </>}
         <Link href="/status" rel="nofollow">{english ? "Client area (PL)" : "Strefa klienta"}</Link>
@@ -95,7 +97,7 @@ export function SiteHeader({ english = false }: { english?: boolean }) {
 export function SiteFooter({ english = false }: { english?: boolean }) {
   return <footer className="zm-footer"><div className="zm-footer-inner">
     <div className="zm-footer-brand"><Link href={english ? "/en" : "/"}><BrandSignature /></Link><p>{english ? "Websites and systems for businesses." : "Strony i sklepy WWW, systemy CRM i DTP dla firm."}<br />{english ? "Warsaw, Targówek and nearby. Remote work across Poland." : "Warszawa, Targówek i okolice. Zdalnie w całej Polsce."}</p></div>
-    <div><h2>{english ? "Explore" : "Poznaj ofertę"}</h2><Link href={english ? "/en#services" : "/oferta"}>{english ? "Services" : "Oferta"}</Link><Link href={english ? "/en#projects" : "/realizacje"}>{english ? "Projects" : "Projekty"}</Link><Link href={english ? "/en#process" : "/jak-pracuje"}>{english ? "Working together" : "Współpraca"}</Link>{!english && <Link href="/dtp">DTP i materiały do druku</Link>}<Link href="/status" rel="nofollow">{english ? "Client area (PL)" : "Strefa klienta"}</Link></div>
+    <div><h2>{english ? "Explore" : "Poznaj ofertę"}</h2><Link href={english ? "/en#services" : "/oferta"}>{english ? "Services" : "Oferta"}</Link><Link href={english ? "/en#projects" : "/realizacje"}>{english ? "Projects" : "Projekty"}</Link><Link href={english ? "/en#process" : "/jak-pracuje"}>{english ? "Working together" : "Współpraca"}</Link>{!english && <><Link href="/dtp">DTP i materiały do druku</Link><Link href="/standardy-jakosci">Standardy jakości i ISO</Link></>}<Link href="/status" rel="nofollow">{english ? "Client area (PL)" : "Strefa klienta"}</Link></div>
     <div><h2>{english ? "Resources" : "Centrum zasobów"}</h2>{english ? <><Link href="/poradnik">Blog (PL)</Link><Link href="/praktyczne-narzedzia">Free zone and tools (PL)</Link></> : <><Link href="/poradnik">Blog</Link><Link href="/praktyczne-narzedzia">Narzędzia i Strefa Free</Link><Link href="/projektuj-strone">ZM Studio — projekt i wycena</Link><Link href="/projekty-flow">Projekty Flow</Link></>}</div>
     <div><h2>{english ? "Contact" : "Porozmawiajmy"}</h2><a href="tel:+48450458466">+48 450 458 466</a><a href="mailto:kontakt@zielona-marka.pl">kontakt@zielona-marka.pl</a><div className="zm-footer-social-links">
       <a href={socialLinks.facebook} target="_blank" rel="noopener noreferrer"><Image src="/podpis-email/icon-facebook.png" width={22} height={22} alt="" unoptimized />Facebook <span aria-hidden="true">↗</span></a>
