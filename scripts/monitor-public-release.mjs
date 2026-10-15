@@ -21,7 +21,7 @@ export function missingPageMarkers(html, markers) {
 export function missingUiStyles(css) {
   // Unlike general file availability checks, these tokens identify the
   // actual Oct 2026 shared layout changes in the served CSS bundle.
-  return ["--zm-ui-card", ".care-plans", ".zm-dtp-prices", ".local-related nav a", ".zm-home-slide[hidden]", ".zm-home-carousel-controls", ".zm-offer-browser", ".zmh-contact-preview-message", ".zc-hero-mobile", ".zc-sample-sales-items"].filter(
+  return ["--zm-ui-card", ".care-plans", ".zm-dtp-prices", ".local-related nav a", ".zm-home-slide[hidden]", ".zm-home-carousel-controls", ".zm-offer-browser", ".zmh-contact-preview-message", ".zc-hero-mobile", ".zc-sample-sales-items", ".zm-public.zm-concept .page-hero.zm-concept-hero"].filter(
     (marker) => !css.includes(marker),
   );
 }
@@ -104,7 +104,7 @@ export async function monitorRelease({
   }
   return {
     checkedAt: new Date().toISOString(), origin, pages, cssFiles,
-    expectedChanges: "PR #88 (free concepts), PR #89 (UI and care plans), PR #95 (homepage offer slides), PR #102 (free concept previews and request paths)",
+    expectedChanges: "PR #88 (free concepts), PR #89 (UI and care plans), PR #95 (homepage offer slides), PR #102 (free concept previews and request paths), PR #105 (shared light hero layout)",
     missingCss, conceptFormProbe, failures, isCurrent: failures.length === 0,
     note: "This checks public release parity; successful GitHub CI alone cannot prove Cloudflare deployment.",
   };
