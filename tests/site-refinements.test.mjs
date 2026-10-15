@@ -925,6 +925,9 @@ test("home scrolled layout restores photography and shares public-page section r
   const home = await readFile(new URL("../app/OrganicHome.tsx", import.meta.url), "utf8");
   const css = await readFile(new URL("../app/home-scroll-editorial.css", import.meta.url), "utf8");
   assert.match(home, /import "\.\/home-scroll-editorial\.css"/);
+  assert.match(home, /className="zmh-scroll-content"/);
+  assert.match(css, /\.zmh-scroll-content/);
+  assert.match(css, /\.zm-home-offers-intro h2/);
   assert.ok(home.indexOf('import "./home-scroll-editorial.css"') >
     home.indexOf('import "./home-layout-repair.css"'), "Load final homepage rules after earlier repair");
   assert.match(css, /\.zmh-assembly\.zmh-media-ready/);
