@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "../SafeLink";
-import { GuideBreadcrumbs } from "../GuideElements";
+import { GuideBreadcrumbs, GuideFaq } from "../GuideElements";
 import { QuickWhatsApp, SiteFooter, SiteHeader } from "../SiteChrome";
 import BlogExplorer from "./BlogExplorer";
 import { blogArticles } from "./blog-data";
@@ -17,6 +18,13 @@ export const metadata: Metadata = {
   },
   twitter: { card: "summary_large_image", images: ["/og-poradniki-zielona-marka.png" ] },
 };
+
+const blogFaq = [
+  ["Od którego artykułu najlepiej zacząć?", "Wybierz temat związany z najbliższym zadaniem firmy: nową stroną, usprawnieniem kontaktu, widocznością w Google albo przygotowaniem materiałów do druku. Możesz też skorzystać z wyszukiwarki i filtrów."],
+  ["Czy porady przydadzą się, jeśli mam już stronę?", "Tak. Część tekstów dotyczy poprawiania istniejącej witryny, jej kosztów utrzymania, treści, formularzy i widoczności lokalnej."],
+  ["Czy artykuły zastępują audyt i indywidualną wycenę?", "Nie. Pokazują zasady i możliwe rozwiązania. Dobór zakresu i kosztów do konkretnej firmy wymaga poznania jej potrzeb i sprawdzenia obecnej sytuacji."],
+  ["Kto przygotowuje poradniki?", "Autorem jest Łukasz Staniewicz z Zielonej Marki. Na stronie każdego artykułu znajdziesz informację o autorze i dacie aktualizacji."],
+] as const;
 
 export default function GuidesPage() {
   const collection = {
@@ -37,7 +45,7 @@ export default function GuidesPage() {
       })),
     },
   };
-  return <><SiteHeader /><main className="zm-public guide-page guide-hub zm-blog-page">
+  return <><SiteHeader /><main className="zm-public guide-page zm-blog-page">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collection) }} />
     <section className="page-hero shell">
       <GuideBreadcrumbs />
@@ -48,6 +56,14 @@ export default function GuidesPage() {
         <a className="button" href="#artykuly">Zobacz artykuły <span aria-hidden="true">↗</span></a>
         <Link className="text-link" href="/dtp">Oferta DTP <span aria-hidden="true">↗</span></Link>
       </div>
+      <aside className="zm-blog-byline" aria-label="Autor artykułów">
+        <Image src="/lukasz-kontakt-naturalny-20260919.webp" alt="" width={60} height={60} unoptimized />
+        <div>
+          <small>AUTOR PORADNIKÓW</small>
+          <strong>Łukasz Staniewicz</strong>
+          <Link href="/jak-pracuje">Poznaj autora i sposób pracy ↗</Link>
+        </div>
+      </aside>
     </section>
     <section className="section shell" id="artykuly"><BlogExplorer /></section>
     <section className="section shell zm-blog-service-links">
@@ -61,6 +77,7 @@ export default function GuidesPage() {
         <Link href="/maly-crm-dla-firm"><span>03 / OBSŁUGA KLIENTÓW</span><h3>Uporządkuj zapytania</h3><p>Formularze, statusy i terminy kontaktu z klientami.</p><b>Zobacz rozwiązanie ↗</b></Link>
       </div>
     </section>
+    <GuideFaq items={blogFaq} />
     <section className="section guide-cta"><div className="shell"><span className="section-no">NIE ZNALAZŁEŚ ODPOWIEDZI?</span>
       <h2>Opisz swoją firmę albo podeślij stronę do oceny.</h2>
       <p>Wskażę pierwszy sensowny krok — bez presji i zobowiązania do współpracy.</p>

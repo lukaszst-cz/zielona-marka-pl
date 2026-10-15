@@ -162,6 +162,49 @@ try {
         return metrics;
       });
     }
+    if (["desktop", "mobile", "compact"].includes(size.name)) {
+      await check(size.name + ": Blog shares public layout with Offer", async () => {
+        const blogResponse = await page.goto(base + "/poradnik", { waitUntil: "networkidle", timeout: 45000 });
+        assert.ok(blogResponse?.ok(), "Blog did not load");
+        const blog = await page.evaluate(() => {
+          const main = document.querySelector("main.zm-blog-page");
+          const hero = main?.querySelector(":scope > .page-hero.shell");
+          const cards = [...(main?.querySelectorAll(".zm-blog-results > a") ?? [])];
+          const grid = main?.querySelector(".zm-blog-results");
+          const first = cards[0];
+          const byline = main?.querySelector(".zm-blog-byline");
+          return {
+            hasHero: !!hero,
+            heroWidth: hero?.getBoundingClientRect().width ?? 0,
+            headerCount: document.querySelectorAll(".zm-header").length,
+            footerCount: document.querySelectorAll(".zm-footer").length,
+            cards: cards.length,
+            columns: grid ? getComputedStyle(grid).gridTemplateColumns.split(" ").length : 0,
+            cardBackgroundImage: first ? getComputedStyle(first).backgroundImage : "",
+            cardMinHeight: first ? parseFloat(getComputedStyle(first).minHeight) : -1,
+            author: byline?.textContent?.includes("Łukasz Staniewicz") ?? false,
+            documentWidth: document.documentElement.scrollWidth,
+            viewportWidth: window.innerWidth,
+          };
+        });
+        assert.equal(blog.hasHero, true, "Blog missing shared hero");
+        assert.equal(blog.headerCount, 1, "Blog missing shared header");
+        assert.equal(blog.footerCount, 1, "Blog missing shared footer");
+        assert.equal(blog.author, true, "Blog author byline missing");
+        assert.ok(blog.cards >= 6, "Blog cards disappeared");
+        assert.equal(blog.columns, size.name === "desktop" ? 2 : 1, "Blog card columns");
+        assert.equal(blog.cardBackgroundImage, "none", "Blog still uses an isolated photographic card theme");
+        assert.ok(blog.cardMinHeight <= 350, "Blog cards still force the oversized former layout");
+        assert.ok(blog.documentWidth <= blog.viewportWidth + 8, "Blog overflows the viewport");
+
+        const offerResponse = await page.goto(base + "/oferta", { waitUntil: "domcontentloaded", timeout: 45000 });
+        assert.ok(offerResponse?.ok(), "Offer did not load");
+        const offerWidth = await page.locator("main.zm-public > .page-hero.shell").evaluate(el => el.getBoundingClientRect().width);
+        assert.ok(Math.abs(offerWidth - blog.heroWidth) < 3,
+          "Blog and Offer hero container widths differ: " + blog.heroWidth + " vs " + offerWidth);
+        return { blogCards: blog.cards, columns: blog.columns, sharedHeroWidth: Math.round(blog.heroWidth) };
+      });
+    }
     if (["desktop", "mobile"].includes(size.name)) {
       await check(size.name + ": ZM Studio layout previews", async () => {
         await page.goto(base + "/projektuj-strone", { waitUntil: "networkidle", timeout: 45000 });
