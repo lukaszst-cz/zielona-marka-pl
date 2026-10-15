@@ -312,6 +312,10 @@ try {
             videoCount: document.querySelectorAll(".zmh-opening video").length,
             scrollWidth: document.documentElement.scrollWidth,
             viewport: window.innerWidth,
+            leafInsets: {
+              cinema: Number.parseFloat(getComputedStyle(document.querySelector(".zmh-cinema"), "::before").right),
+              offers: Number.parseFloat(getComputedStyle(document.querySelector(".zm-home-offers"), "::after").right),
+            },
             assemblyMarkup: !!document.querySelector(".zmh-assembly-board--premium .zmh-preview-website")
               && !!document.querySelector(".zmh-assembly-board--premium .zmh-preview-statuses"),
             offenders: [...document.body.querySelectorAll("*")].map(el => {
@@ -339,6 +343,8 @@ try {
         assert.equal(info.chapters, 5, "Homepage story chapters disappeared");
         assert.equal(info.videoCount, 1, "Original river hero video must remain");
         assert.equal(info.assemblyMarkup, true, "Interactive process illustration missing after hydration");
+        assert.ok(info.leafInsets.cinema >= 0 && info.leafInsets.offers >= 0,
+          "Decorative ferns may not extend past section boundaries: " + JSON.stringify(info.leafInsets));
         assert.ok(info.scrollWidth <= info.viewport + 8,
           "Homepage horizontal overflow: " + info.scrollWidth + " / " + info.viewport + "px; elements: " + JSON.stringify(info.offenders));
         return { sageSections: 2, cards: 6, chapters: info.chapters, photoBackdrops: 3 };

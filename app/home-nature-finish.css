@@ -196,7 +196,7 @@ html body .zm-v5 .zmh-assembly-board--premium .zmh-assembly-note{
 }
 .zm-v5 .zm-home-offers{position:relative;isolation:isolate}
 .zm-v5 .zm-home-offers::after{
-  content:"";position:absolute;right:-100px;top:-95px;
+  content:"";position:absolute;right:52px;top:-95px;
   width:230px;height:375px;z-index:-1;pointer-events:none;
   background:url('/brand-review-v6/fern-frond.svg') center/contain no-repeat;
   opacity:.23;transform:scaleX(-1) rotate(-18deg);
@@ -317,7 +317,7 @@ html body .zm-v5 .zmh-cine-shot.zmh-is-current{
   html body .zm-v5 .zmh-assembly-board--premium>.zmh-piece-order b{font-size:14px}
   .zm-v5 .zmh-preview-statuses span{font-size:9px;padding:5px 7px}
   html body .zm-v5 .zmh-assembly-board--premium .zmh-assembly-note{bottom:0;font-size:9px!important}
-  .zm-v5 .zm-home-offers::after{right:-38px;top:-65px;width:110px;height:190px;opacity:.14}
+  .zm-v5 .zm-home-offers::after{right:32px;top:-65px;width:110px;height:190px;opacity:.14}
   html body .zm-v5 .zmh-contact::before{left:-60px;width:130px;height:220px;opacity:.1}
 }
 @media(prefers-reduced-motion:reduce){
