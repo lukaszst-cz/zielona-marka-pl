@@ -1,0 +1,85 @@
+
+/* One large interactive concept preview, based on the approved V4 concept. */
+.zm-public.zm-concept .zm-concept-gallery{background:#eaf0e5}
+.zm-concept .zv5-gallery-intro{display:grid;grid-template-columns:minmax(0,1fr) 335px;gap:55px;align-items:end;margin-bottom:40px}
+.zm-concept .zv5-kicker{font-size:12px;letter-spacing:.13em;font-weight:800;color:#367b54}
+.zm-concept .zv5-gallery-intro h2{margin:16px 0 0;font:400 clamp(36px,4vw,58px)/1.12 Georgia,serif;letter-spacing:-.04em;color:#193a2c}
+.zm-concept .zv5-gallery-intro h2 em{color:#3e865b;font-style:italic}
+.zm-concept .zv5-gallery-intro>p{font-size:16px;line-height:1.75;color:#5c7062}
+.zm-concept .zv5-gallery-layout{display:grid;grid-template-columns:minmax(270px,.8fr) minmax(0,1.2fr);gap:24px;align-items:start}
+.zm-concept .zv5-tabs{display:flex;flex-direction:column;gap:7px;min-width:0}
+.zm-concept .zv5-tab{display:grid;grid-template-columns:22px minmax(0,1fr) 20px;gap:4px 11px;align-items:start;width:100%;background:transparent;color:#203b2a;border:1px solid transparent;border-bottom-color:#cbd8cb;padding:20px 15px;text-align:left;cursor:pointer;border-radius:5px}
+.zm-concept .zv5-tab>span{font-size:11px;font-weight:800;color:#4c9769;padding-top:5px}
+.zm-concept .zv5-tab b{font:400 22px/1.2 Georgia,serif;letter-spacing:-.03em}
+.zm-concept .zv5-tab small{grid-column:2;color:#638571;font-size:12px}
+.zm-concept .zv5-tab i{grid-column:3;grid-row:1 / 3;font-style:normal;color:#4f8b5d}
+.zm-concept .zv5-tab:hover,.zm-concept .zv5-tab:focus-visible{background:#f5f8f1}
+.zm-concept .zv5-tab.is-active{background:white;border:1px solid #c7d6c6;box-shadow:0 10px 25px #163b2a14}
+.zm-concept .zv5-preview-panel{min-width:0;overflow:hidden;background:#fff;border:1px solid #cbdaca;border-radius:8px;box-shadow:0 18px 35px #153c2714}
+.zm-concept .zv5-preview-top{display:flex;align-items:center;justify-content:space-between;gap:10px;height:44px;padding:0 22px;border-bottom:1px solid #e6ece3;color:#6b7c71;font-size:10px;font-weight:800;letter-spacing:.08em}
+.zm-concept .zv5-preview-top strong{color:#367c55}
+.zm-concept .zv5-preview-stage{height:318px;display:flex;overflow:hidden;background:#e3ecdf}
+.zm-concept .zv5-preview-stage>div{min-width:0;width:100%;position:relative}
+.zm-concept .zv5-demo-comparison{display:flex}.zm-concept .zv5-demo-old{width:43%;padding:25px 19px;display:flex;flex-direction:column;gap:16px;background:#e4e7e0;color:#637569}
+.zm-concept .zv5-demo-old small,.zm-concept .zv5-demo-new small{font-size:10px;font-weight:800;letter-spacing:.1em}
+.zm-concept .zv5-demo-old strong{font:400 27px Georgia,serif;margin-top:29px}.zm-concept .zv5-demo-old i{height:8px;width:85%;background:#c1ccc1;border-radius:10px}.zm-concept .zv5-demo-old i:nth-last-of-type(1){width:50%}
+.zm-concept .zv5-demo-old>span{background:#a0b0a3;padding:9px 15px;margin-top:auto;width:max-content;color:white;font-size:11px}
+.zm-concept .zv5-demo-arrow{position:absolute;z-index:2;left:39%;top:44%;background:#215a3d;color:white;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-size:22px;box-shadow:0 7px 15px #123a2530}
+.zm-concept .zv5-demo-new{width:57%;display:flex;flex-direction:column;align-items:flex-start;gap:25px;padding:27px 22px;background:linear-gradient(130deg,#f6f7ec,#b0cfb0)}
+.zm-concept .zv5-demo-new strong{font:400 clamp(28px,3.5vw,45px)/1.08 Georgia,serif;letter-spacing:-.04em}.zm-concept .zv5-demo-new em{color:#5a8f6a}
+.zm-concept .zv5-demo-new>span{margin-top:auto;background:#1d543a;padding:10px 15px;color:#fff;font-size:11px;font-weight:800}
+.zm-concept .zv5-demo-brand{background:#f4f5e9}.zm-concept .zv5-demo-brand>header{height:55px;padding:0 22px;border-bottom:1px solid #d8dfcf;display:flex;justify-content:space-between;align-items:center}
+.zm-concept .zv5-demo-brand>header b{font:400 28px Georgia,serif}.zm-concept .zv5-demo-brand>header b span{color:#7ea06b}
+.zm-concept .zv5-demo-brand>header small{color:#64816e;font-size:9px}
+.zm-concept .zv5-demo-brand-body{display:grid;grid-template-columns:1fr .84fr;height:263px}
+.zm-concept .zv5-demo-brand-body>div:first-child{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:20px;padding:24px}
+.zm-concept .zv5-demo-brand-body small{font-size:10px;color:#548869;letter-spacing:.12em;font-weight:800}
+.zm-concept .zv5-demo-brand-body strong{font:400 clamp(30px,3.4vw,46px)/1.08 Georgia,serif;letter-spacing:-.04em}
+.zm-concept .zv5-demo-brand-body em{color:#5e9a70}
+.zm-concept .zv5-demo-brand-body>div:first-child>span{color:white;background:#20583d;padding:11px;font-size:10px}
+.zm-concept .zv5-demo-brand-nature{display:flex;align-items:center;justify-content:center;gap:8px;overflow:hidden;background:radial-gradient(circle,#c7dfba,#689b7c)}
+.zm-concept .zv5-demo-brand-nature i{width:34px;height:160px;background:#4c8960;transform:rotate(27deg);border-radius:100% 0 100% 0}
+.zm-concept .zv5-demo-brand-nature i:nth-child(2){height:220px;background:#27794d;transform:rotate(-26deg)}
+.zm-concept .zv5-demo-brand-nature i:nth-child(3){height:130px;background:#81af88;transform:rotate(18deg)}
+.zm-concept .zv5-demo-logo{background:#f1f3e8;padding:35px;display:flex;align-items:center;justify-content:center;gap:27px}
+.zm-concept .zv5-demo-sign{flex-shrink:0;width:128px;height:128px;display:grid;place-items:center;border:2px solid #326d49;border-radius:50%;font:italic 82px Georgia,serif;color:#377c51}
+.zm-concept .zv5-demo-logo>div:nth-child(2){display:flex;flex-direction:column;gap:7px}
+.zm-concept .zv5-demo-logo strong{font:400 clamp(42px,5vw,70px) Georgia,serif;letter-spacing:-.04em}
+.zm-concept .zv5-demo-logo small{font-size:9px;color:#759580;letter-spacing:.14em}
+.zm-concept .zv5-demo-logo footer{position:absolute;bottom:19px;left:30px;right:30px;display:flex;align-items:center;gap:8px;background:transparent;color:#557561;padding:0}
+.zm-concept .zv5-demo-logo footer span{height:20px;width:20px;border-radius:50%;background:#234934}.zm-concept .zv5-demo-logo footer span:nth-child(2){background:#7ba57d}.zm-concept .zv5-demo-logo footer span:nth-child(3){background:#d0d8b5}
+.zm-concept .zv5-demo-logo footer b{font-size:9px;margin-left:auto}
+.zm-concept .zv5-demo-promo{background:#deead6;display:flex;align-items:center;justify-content:center;gap:23px;padding:19px}
+.zm-concept .zv5-demo-paper{height:277px;width:60%;max-width:320px;background:linear-gradient(138deg,#eef4e4,#b2d3b4);box-shadow:7px 10px 20px #34523a30;padding:23px;display:flex;flex-direction:column;gap:13px}
+.zm-concept .zv5-demo-paper small{font-size:9px;font-weight:800;letter-spacing:.1em}.zm-concept .zv5-demo-paper strong{font:400 clamp(35px,4.5vw,58px)/1 Georgia,serif}
+.zm-concept .zv5-demo-paper em{color:#5e986a}.zm-concept .zv5-demo-paper>span{font-size:12px;color:#648875}.zm-concept .zv5-demo-paper b{margin-top:auto;font-size:9px}
+.zm-concept .zv5-demo-ribbon{writing-mode:vertical-rl;transform:rotate(180deg);font-size:11px;font-weight:800;letter-spacing:.13em;color:#397451}
+.zm-concept .zv5-demo-sales{background:#f8f6ee;padding:26px;display:flex;flex-direction:column;gap:22px}
+.zm-concept .zv5-demo-sales-head{display:flex;flex-direction:column;gap:7px}.zm-concept .zv5-demo-sales-head small{color:#5a8f6d;letter-spacing:.12em;font-size:10px;font-weight:800}
+.zm-concept .zv5-demo-sales-head strong{font:400 28px Georgia,serif}
+.zm-concept .zv5-demo-products{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;flex:1;min-height:0}
+.zm-concept .zv5-demo-products>div{display:flex;flex-direction:column;gap:7px;font-size:10px}
+.zm-concept .zv5-demo-products i{flex:1;min-height:65px;background:linear-gradient(135deg,#c9dcc9,#8cba9b);border-radius:3px}
+.zm-concept .zv5-demo-products>div:nth-child(2) i{background:linear-gradient(135deg,#e4d0bc,#bcd9b5)}.zm-concept .zv5-demo-products>div:nth-child(3) i{background:linear-gradient(135deg,#bcd5d8,#c4d9bd)}
+.zm-concept .zv5-demo-products small{color:#637f6d}.zm-concept .zv5-demo-products span{color:#28744a;font-size:12px;font-weight:800}
+.zm-concept .zv5-preview-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;padding:24px}
+.zm-concept .zv5-preview-bottom h3{font:400 25px Georgia,serif;margin:0 0 9px;color:#193e2c}
+.zm-concept .zv5-preview-bottom p{margin:0;max-width:340px;color:#5e7969;font-size:13px;line-height:1.65}
+.zm-concept .zv5-preview-cta{flex-shrink:0;background:#1c5239;color:#fff;font-weight:800;font-size:11px;padding:15px 16px;border-radius:4px;text-decoration:none}
+.zm-concept .zv5-preview-cta:hover{background:#2d7750}
+.zm-concept .zv5-preview-clarity{margin:0;padding:12px 24px;border-top:1px solid #e4eae3;color:#64806c;font-size:11px;line-height:1.65}
+.zm-concept .zv5-gallery-foot{margin:26px 0 0;color:#557361;line-height:1.7;font-size:14px}.zm-concept .zv5-gallery-foot a{font-weight:800;text-decoration:underline;text-underline-offset:4px;color:#245b3b}
+.zm-concept .zv5-tab:focus-visible,.zm-concept .zv5-preview-cta:focus-visible{outline:3px solid #2c8e5a;outline-offset:3px}
+@media(max-width:1000px){.zm-concept .zv5-gallery-intro{grid-template-columns:1fr;gap:5px}.zm-concept .zv5-gallery-intro>p{max-width:700px}}
+@media(max-width:900px){.zm-concept .zv5-gallery-layout{grid-template-columns:1fr}.zm-concept .zv5-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){
+.zm-concept .zv5-tabs{grid-template-columns:1fr}.zm-concept .zv5-tab{padding:14px 16px}
+.zm-concept .zv5-preview-stage{height:245px}.zm-concept .zv5-preview-bottom{flex-direction:column;align-items:stretch;padding:17px}
+.zm-concept .zv5-preview-cta{text-align:center}.zm-concept .zv5-demo-old{padding:16px 10px}.zm-concept .zv5-demo-old strong{font-size:20px}
+.zm-concept .zv5-demo-new{padding:15px}.zm-concept .zv5-demo-new strong{font-size:26px}
+.zm-concept .zv5-demo-logo{gap:15px;padding:17px}.zm-concept .zv5-demo-sign{width:72px;height:72px;font-size:46px}
+.zm-concept .zv5-demo-logo strong{font-size:38px}.zm-concept .zv5-demo-logo footer{left:16px;right:16px}.zm-concept .zv5-demo-logo footer b{font-size:8px}
+.zm-concept .zv5-demo-brand-body{height:190px}.zm-concept .zv5-demo-brand-body>div:first-child{padding:17px;gap:12px}.zm-concept .zv5-demo-brand-body strong{font-size:28px}
+.zm-concept .zv5-demo-products{gap:6px}.zm-concept .zv5-demo-sales{padding:14px}
+}
+@media(max-width:360px){.zm-concept .zv5-demo-logo{gap:8px}.zm-concept .zv5-demo-logo strong{font-size:32px}.zm-concept .zv5-demo-logo footer b{font-size:7px}}
