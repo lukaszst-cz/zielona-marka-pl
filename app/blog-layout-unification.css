@@ -138,6 +138,13 @@
     min-height: 0;
   }
 }
+@media (max-width: 520px) {
+  /* The legacy .guide-page .shell used a 40px gutter; the same public
+     28px mobile gutter as Oferta/DTP is needed for true alignment. */
+  .zm-public.zm-blog-page .shell {
+    width: min(1180px, calc(100% - 28px));
+  }
+}
 @media (max-width: 600px) {
   .zm-public.zm-blog-page > .page-hero.shell,
   .zm-public.zm-blog-page > .section.shell {
