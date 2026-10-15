@@ -88,13 +88,13 @@ try {
         assert.equal(await page.locator(".zm-demo-layout-editorial").count(), 1);
       });
       await check("Desktop: DTP wizard changes steps and quote is displayed", async () => {
-        await page.goto(base + "/dtp", { waitUntil: "domcontentloaded" });
+        await page.goto(base + "/dtp", { waitUntil: "networkidle", timeout: 45000 });
         const steps = page.locator(".zm-dtp-stepper button");
         assert.equal(await steps.count(), 4);
         await steps.nth(1).click();
-        assert.ok((await page.locator(".zm-total-fields").innerText()).includes("KROK 2 Z 4"));
+        await page.waitForFunction(() => document.querySelector(".zm-total-fields")?.textContent?.includes("KROK 2 Z 4"), null, { timeout: 8000 });
         await steps.nth(3).click();
-        assert.ok((await page.locator(".zm-total-fields").innerText()).includes("KROK 4 Z 4"));
+        await page.waitForFunction(() => document.querySelector(".zm-total-fields")?.textContent?.includes("KROK 4 Z 4"), null, { timeout: 8000 });
         assert.ok((await page.locator(".zm-dtp-summary").innerText()).includes("zł"));
       });
       await check("Desktop: previously owned domain updates first-year price", async () => {
@@ -111,14 +111,17 @@ try {
         assert.equal(price(next) - price(first), 90);
       });
       await check("Desktop: Blog search filters articles without page reload", async () => {
-        await page.goto(base + "/poradnik", { waitUntil: "domcontentloaded" });
+        await page.goto(base + "/poradnik", { waitUntil: "networkidle", timeout: 45000 });
         const cards = page.locator(".zm-blog-results > a");
         const before = await cards.count();
         assert.ok(before >= 4);
         await page.locator("#zm-blog-search").fill("gazetka");
-        await page.waitForTimeout(250);
+        await page.waitForFunction(initial => {
+          const count = document.querySelectorAll(".zm-blog-results > a").length;
+          return count > 0 && count < initial;
+        }, before, { timeout: 8000 });
         const after = await cards.count();
-        assert.ok(after > 0 && after < before, "Search did not narrow entries");
+        assert.ok(after > 0 && after < before, "Search did not narrow entries: " + before + " to " + after);
       });
       await check("Desktop: web quote transfers privately into contact message; no submission", async () => {
         await page.goto(base + "/oferta", { waitUntil: "domcontentloaded" });
