@@ -1,0 +1,333 @@
+/* Zielona Marka — organic flow, 2026.
+   The animated stream is ONLY the opening scene. Subsequent sections have
+   their own quiet botanical lighting. Keep all content and links intact. */
+html body .zm-v5 .zmh-forest{
+  background:
+    radial-gradient(ellipse at 90% 19%,rgba(48,111,72,.24),transparent 36%),
+    radial-gradient(ellipse at 4% 45%,rgba(42,91,58,.19),transparent 32%),
+    linear-gradient(180deg,#08291e 0%,#0a3022 24%,#0a291e 53%,#08241a 77%,#061e16 100%)!important;
+  background-attachment:scroll!important;
+}
+html body .zm-v5 .zmh-opening{
+  position:relative;isolation:isolate;
+  background:linear-gradient(180deg,#061e15,#09291d)!important;
+}
+html body .zm-v5 .zmh-opening::after{
+  content:""!important;
+  position:absolute;inset:auto 0 0;height:clamp(100px,17vw,225px);
+  z-index:3;pointer-events:none;
+  background:linear-gradient(180deg,rgba(8,38,26,0),rgba(8,38,26,.15) 39%,#09291e 100%);
+}
+html body .zm-v5 .zmh-opening .zmh-living-forest{
+  -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 67%,rgba(0,0,0,.85) 78%,transparent 100%)!important;
+  mask-image:linear-gradient(to bottom,#000 0%,#000 67%,rgba(0,0,0,.85) 78%,transparent 100%)!important;
+}
+html body .zm-v5 .zmh-opening .zmh-living-forest video{
+  -webkit-mask-image:none!important;mask-image:none!important;
+}
+/* The second screen gets soft leaf light, never a duplicate water image. */
+html body .zm-v5 .zmh-assembly,
+html body .zm-v5 .zmh-assembly.zmh-media-ready{
+  position:relative;isolation:isolate;
+  margin-top:0!important;
+  border-top:0!important;
+  background:transparent!important;
+  -webkit-mask-image:none!important;mask-image:none!important;
+}
+html body .zm-v5 .zmh-assembly::before{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:
+    url('/brand-review-v6/fern-frond.svg') no-repeat left -130px top 10px / clamp(175px,23vw,290px) auto,
+    radial-gradient(ellipse at 72% 37%,rgba(143,205,111,.16),transparent 50%),
+    linear-gradient(180deg,#09291e 0%,rgba(15,62,41,.54) 54%,rgba(9,40,28,0) 100%)!important;
+  opacity:.9;
+  -webkit-mask-image:none!important;mask-image:none!important;
+}
+html body .zm-v5 .zmh-assembly::after{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse at 8% 80%,rgba(79,153,85,.11),transparent 45%)!important;
+}
+html body .zm-v5 .zmh-assembly>*{position:relative;z-index:1}
+html body .zm-v5 .zmh-assembly-heading{
+  position:relative;z-index:2;
+}
+html body .zm-v5 .zmh-assembly-heading h2{
+  color:#f4f8ef;
+  text-shadow:0 2px 28px rgba(0,22,12,.2);
+}
+html body .zm-v5 .zmh-assembly-heading p{color:#e3efdd}
+html body .zm-v5 .zmh-scene-transition{background:none!important;height:0!important;margin:0!important}
+html body .zm-v5 .zmh-forest .zmh-assembly .zmh-piece-photo{
+  background:url('/concept-natura.jpg') center / cover no-repeat!important;
+}
+html body .zm-v5 .zmh-assembly-board--premium{
+  width:100%;min-height:450px;height:clamp(450px,37vw,535px);
+  position:relative;isolation:isolate;
+  perspective:none!important;transform:none!important;
+  --gather:1;
+}
+html body .zm-v5 .zmh-assembly-board--premium::before{
+  content:"";position:absolute;inset:8% -2% 7%;
+  background:radial-gradient(ellipse at 56% 54%,rgba(127,206,118,.18),transparent 68%);
+  filter:blur(14px);pointer-events:none;
+}
+html body .zm-v5 .zmh-assembly-board--premium .zmh-assembly-lines{
+  inset:7% 0 2%;opacity:calc(.23 + var(--gather,1)*.35);
+  pointer-events:none;
+}
+html body .zm-v5 .zmh-assembly-board--premium .zmh-assembly-lines path{
+  stroke:#b0f36c;stroke-width:1.7;filter:drop-shadow(0 0 6px rgba(146,241,117,.34));
+}
+html body .zm-v5 .zmh-assembly-board--premium>.zmh-piece-web{
+  box-sizing:border-box;position:absolute;left:1%;top:8%;right:auto;bottom:auto;
+  width:83%;max-width:500px;min-width:0;
+  display:block;overflow:hidden;padding:0!important;z-index:2;
+  color:#143d2a;background:#eef3e9!important;
+  border:1px solid rgba(233,249,220,.86)!important;border-radius:17px!important;
+  box-shadow:0 32px 75px rgba(0,16,8,.43),0 4px 15px rgba(0,11,7,.15);
+  transform:translate3d(0,calc((1 - var(--gather,1))*12px),0)!important;
+  transition:box-shadow .45s ease,transform .5s cubic-bezier(.2,.7,.2,1);
+  will-change:auto;
+}
+.zm-v5 .zmh-preview-chrome{
+  box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;
+  gap:8px;padding:11px 15px;
+  background:#f7f9f4;color:#557361;border-bottom:1px solid #cbdcc7;
+  font:500 11px/1.4 Arial,sans-serif;
+}
+.zm-v5 .zmh-preview-dots{display:flex;gap:5px;align-items:center}
+.zm-v5 .zmh-preview-dots i{display:block;width:7px;height:7px;background:#9bbca0;border-radius:50%}
+.zm-v5 .zmh-preview-dots i:nth-child(2){background:#b4c6a4}
+.zm-v5 .zmh-preview-dots i:nth-child(3){background:#c8d5b4}
+.zm-v5 .zmh-preview-chrome>i{font-style:normal;color:#477653;font-size:13px}
+.zm-v5 .zmh-preview-website{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.88fr);
+  min-height:252px;color:#ecf5e7;
+  background:linear-gradient(120deg,#0b3726 0%,#194b32 100%);
+}
+.zm-v5 .zmh-preview-site-copy{
+  padding:clamp(16px,2.1vw,29px) clamp(14px,2vw,26px);
+  display:flex;flex-direction:column;align-items:flex-start;gap:11px;min-width:0;
+}
+.zm-v5 .zmh-assembly-board--premium .zmh-preview-site-copy small{
+  display:block;color:#c8f29c;font:700 9px/1.4 Arial,sans-serif;letter-spacing:.095em;
+}
+html body .zm-v5 .zmh-assembly-board--premium .zmh-preview-site-copy strong{
+  display:block;margin:0;color:#f6f9f0;
+  font:400 clamp(25px,2.65vw,35px)/1.08 Georgia,serif;letter-spacing:-.045em;
+}
+.zm-v5 .zmh-preview-site-copy>span:not(.zmh-preview-button){
+  font:11px/1.5 Arial,sans-serif;color:#d5e7cf;
+}
+.zm-v5 .zmh-preview-button{
+  display:inline-flex;margin-top:auto;padding:10px 13px;border-radius:22px;
+  background:#b0f36c;color:#16331d;font:700 10px Arial,sans-serif;white-space:nowrap;
+}
+html body .zm-v5 .zmh-assembly-board--premium .zmh-piece-photo{
+  height:auto!important;min-height:100%;margin:0;border-radius:0;
+  background:url('/concept-natura.jpg') center/cover no-repeat!important;
+}
+html body .zm-v5 .zmh-assembly-board--premium .zmh-piece-photo::after{
+  background:linear-gradient(90deg,rgba(10,49,29,.15),transparent 62%);opacity:1;
+}
+.zm-v5 .zmh-preview-site-foot{
+  display:flex;align-items:center;justify-content:space-around;gap:8px;
+  padding:13px 16px;color:#44674b;background:#eef3e9;
+  font:700 10px/1.35 Arial,sans-serif;
+}
+html body .zm-v5 .zmh-assembly-board--premium>.zmh-piece-inquiry{
+  box-sizing:border-box;position:absolute;top:46%;right:0;left:auto;bottom:auto;
+  width:min(58%,305px);min-height:103px;z-index:3;
+  display:flex;align-items:center;gap:12px;
+  border:1px solid rgba(240,253,226,.64)!important;border-radius:15px!important;
+  background:linear-gradient(128deg,rgba(237,246,227,.98),rgba(218,236,207,.97))!important;
+  color:#183a2a;box-shadow:0 25px 45px rgba(0,23,10,.26);
+  padding:clamp(12px,1.8vw,18px)!important;
+  transform:translate3d(0,calc((1 - var(--gather,1))*18px),0)!important;
+  opacity:calc(.84 + var(--gather,1)*.16);
+}
+.zm-v5 .zmh-preview-card-icon{
+  flex:0 0 37px;width:37px;height:37px;border-radius:12px;
+  display:grid;place-items:center;background:#c7e7bd;color:#22673d;font:700 21px Arial;
+}
+.zm-v5 .zmh-assembly-board--premium>.zmh-piece-inquiry>div:last-child{
+  display:grid;gap:7px;min-width:0;
+}
+html body .zm-v5 .zmh-assembly-board--premium>.zmh-piece-inquiry small{
+  color:#477b51;font:700 9px/1.3 Arial,sans-serif;letter-spacing:.075em;
+}
+html body .zm-v5 .zmh-assembly-board--premium>.zmh-piece-inquiry b{
+  color:#123f27;font:700 clamp(13px,1.25vw,17px)/1.2 Arial,sans-serif;
+}
+html body .zm-v5 .zmh-assembly-board--premium>.zmh-piece-inquiry span{
+  color:#506e55;font:10px/1.5 Arial,sans-serif;white-space:normal;
+}
+html body .zm-v5 .zmh-assembly-board--premium>.zmh-piece-inquiry i{color:#3e9d56;font-style:normal}
+html body .zm-v5 .zmh-assembly-board--premium>.zmh-piece-order{
+  box-sizing:border-box;position:absolute;left:auto;right:5%;top:auto;bottom:2%;
+  width:min(72%,390px);min-height:106px;z-index:4;
+  display:grid;align-content:center;gap:10px;
+  border:1px solid rgba(199,249,170,.4)!important;border-radius:16px!important;
+  background:linear-gradient(135deg,rgba(7,48,30,.97),rgba(13,75,47,.97))!important;
+  box-shadow:0 26px 55px rgba(1,18,8,.4);
+  padding:17px 20px!important;
+  transform:translate3d(0,calc((1 - var(--gather,1))*16px),0)!important;
+  opacity:calc(.85 + var(--gather,1)*.15);
+}
+html body .zm-v5 .zmh-assembly-board--premium>.zmh-piece-order small{
+  color:#b4ed95;font:700 9px Arial,sans-serif;letter-spacing:.09em;
+}
+html body .zm-v5 .zmh-assembly-board--premium>.zmh-piece-order b{
+  color:#eef8ec;font:600 clamp(13px,1.5vw,18px)/1.3 Arial,sans-serif;
+}
+.zm-v5 .zmh-preview-statuses{
+  display:flex;align-items:center;gap:7px;flex-wrap:wrap;color:#e8f6df;
+}
+.zm-v5 .zmh-preview-statuses span{
+  border:1px solid rgba(210,237,201,.3);border-radius:24px;
+  padding:6px 9px;font:600 10px/1 Arial,sans-serif;
+  background:rgba(235,251,221,.07);
+}
+.zm-v5 .zmh-preview-statuses i{color:#b0f36c;font-style:normal;margin-right:4px}
+html body .zm-v5 .zmh-assembly-board--premium .zmh-assembly-note{
+  bottom:-4px;left:1%;font:700 10px/1.4 Arial,sans-serif!important;
+  letter-spacing:.09em;color:#cde3c6;
+}
+.zm-v5 .zm-home-offers{position:relative;isolation:isolate}
+.zm-v5 .zm-home-offers::after{
+  content:"";position:absolute;right:-100px;top:-95px;
+  width:230px;height:375px;z-index:-1;pointer-events:none;
+  background:url('/brand-review-v6/fern-frond.svg') center/contain no-repeat;
+  opacity:.23;transform:scaleX(-1) rotate(-18deg);
+}
+html body .zm-v5 .zm-home-carousel{
+  background:
+    radial-gradient(ellipse at 88% 25%,rgba(128,196,92,.19),transparent 58%),
+    linear-gradient(126deg,rgba(5,39,26,.97),rgba(11,63,41,.95) 72%,rgba(8,44,30,.97));
+  border-color:rgba(209,242,191,.4);
+  box-shadow:0 22px 60px rgba(0,16,8,.27),inset 0 1px rgba(242,255,230,.12);
+}
+html body .zm-v5 .zm-home-slide:not([hidden]){
+  animation:zm-slide-rise .52s cubic-bezier(.2,.72,.21,1) both;
+}
+html body .zm-v5 .zm-home-slide:not([hidden]) .zm-offer-art{
+  animation:zm-art-rise .62s .07s cubic-bezier(.2,.7,.2,1) both;
+}
+@keyframes zm-slide-rise{from{opacity:.75;transform:translateY(11px)}to{opacity:1;transform:translateY(0)}}
+@keyframes zm-art-rise{from{opacity:.78;transform:translate3d(0,13px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+/* Keep sample screens crisp and calm: only slight depth, no spinning cards. */
+html body .zm-v5 .zm-offer-browser{
+  transform:perspective(1200px) rotateY(-2deg) rotateZ(.5deg);
+  box-shadow:0 22px 54px rgba(0,18,11,.35);
+}
+html body .zm-v5 .zm-offer-app{
+  transform:rotate(-.6deg);box-shadow:0 22px 54px rgba(0,18,11,.35);
+}
+html body .zm-v5 .zm-offer-floating-card--logo{transform:rotate(-2deg)}
+html body .zm-v5 .zm-offer-floating-card--inquiry{transform:rotate(1deg)}
+html body .zm-v5 .zm-offer-floating-card--audit{transform:rotate(1deg)}
+html body .zm-v5 .zm-offer-floating-card--map{transform:rotate(1deg)}
+html body .zm-v5 .zm-home-slide .zm-offer-art{transform-style:flat}
+html body .zm-v5 .zm-home-slide .zm-offer-art .zm-offer-floating-card{
+  transition:box-shadow .28s ease,translate .28s ease;
+}
+@media(hover:hover){
+  html body .zm-v5 .zm-home-slide .zm-offer-art:hover .zm-offer-floating-card{
+    translate:0 -4px;
+    box-shadow:0 21px 42px rgba(0,16,9,.3);
+  }
+}
+html body .zm-v5 .zmh-contact{position:relative;isolation:isolate}
+html body .zm-v5 .zmh-contact::before{
+  content:"";position:absolute;top:-75px;left:-120px;width:220px;height:360px;
+  pointer-events:none;z-index:-1;
+  background:url('/brand-review-v6/fern-frond.svg') center/contain no-repeat;
+  opacity:.14;transform:rotate(-24deg);
+}
+html body .zm-v5 .zmh-contact-preview{
+  box-shadow:0 20px 52px rgba(0,16,9,.25);
+  border:1px solid rgba(211,243,193,.35);
+}
+/* Modern scroll narrative: retain the five factual service sections, but
+   replace stage tilt/rotation with restrained, readable movement. */
+html body .zm-v5.zmh-cinema-enhanced .zmh-cinema-screen,
+html body .zm-v5 .zmh-cinema-enhanced .zmh-cinema-screen{
+  transform:translate3d(0,calc((1 - var(--portal-entry,1))*16px),0)!important;
+  opacity:calc(.90 + var(--portal-entry,1)*.10)!important;
+  transition:transform .3s ease-out,opacity .3s ease-out!important;
+}
+html body .zm-v5 .zmh-cine-shot{
+  transition:opacity .42s ease,transform .55s cubic-bezier(.23,.72,.22,1)!important;
+}
+html body .zm-v5 .zmh-cine-shot.zmh-is-current{
+  transform:translate3d(0,0,0) scale(1)!important;
+}
+@supports (animation-timeline:view()) {
+  html body .zm-v5 .zm-home-offers-intro,
+  html body .zm-v5 .zmh-quick-brief-copy {
+    animation:zm-nature-appear linear both;
+    animation-timeline:view();
+    animation-range:entry 0% cover 28%;
+  }
+}
+@keyframes zm-nature-appear{
+  from{opacity:.78;transform:translate3d(0,16px,0)}
+  to{opacity:1;transform:translate3d(0,0,0)}
+}
+@media(max-width:900px){
+  html body .zm-v5 .zmh-assembly::before{
+    background:
+      url('/brand-review-v6/fern-frond.svg') no-repeat right -100px top -20px / 210px auto,
+      radial-gradient(ellipse at 75% 34%,rgba(143,205,111,.13),transparent 60%),
+      linear-gradient(180deg,#09291e,rgba(14,54,36,.4))!important;
+  }
+  html body .zm-v5 .zmh-assembly-board--premium{
+    width:min(100%,610px);height:475px;min-height:0;margin-inline:auto;
+  }
+}
+@media(max-width:620px){
+  html body .zm-v5 .zmh-opening::after{height:110px}
+  html body .zm-v5 .zmh-opening .zmh-living-forest{
+    -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 72%,rgba(0,0,0,.88) 84%,transparent 100%)!important;
+    mask-image:linear-gradient(to bottom,#000 0%,#000 72%,rgba(0,0,0,.88) 84%,transparent 100%)!important;
+  }
+  html body .zm-v5 .zmh-assembly-board--premium{
+    width:min(100%,430px);height:380px;min-height:0;
+  }
+  html body .zm-v5 .zmh-assembly-board--premium>.zmh-piece-web{top:5%;width:91%;left:0}
+  .zm-v5 .zmh-preview-chrome{padding:8px 10px;font-size:9px}
+  .zm-v5 .zmh-preview-website{min-height:185px}
+  .zm-v5 .zmh-preview-site-copy{padding:14px 10px;gap:7px}
+  html body .zm-v5 .zmh-assembly-board--premium .zmh-preview-site-copy strong{
+    font-size:clamp(20px,5.9vw,28px);
+  }
+  .zm-v5 .zmh-preview-button{padding:8px 10px;font-size:9px}
+  .zm-v5 .zmh-preview-site-foot{padding:10px;font-size:9px}
+  html body .zm-v5 .zmh-assembly-board--premium>.zmh-piece-inquiry{
+    top:57%;right:0;width:65%;min-height:68px;gap:8px;padding:10px!important;
+  }
+  .zm-v5 .zmh-preview-card-icon{width:30px;flex-basis:30px;height:30px;font-size:15px}
+  html body .zm-v5 .zmh-assembly-board--premium>.zmh-piece-inquiry small{font-size:8px}
+  html body .zm-v5 .zmh-assembly-board--premium>.zmh-piece-inquiry b{font-size:13px}
+  html body .zm-v5 .zmh-assembly-board--premium>.zmh-piece-inquiry span{font-size:9px}
+  html body .zm-v5 .zmh-assembly-board--premium>.zmh-piece-order{
+    bottom:6%;right:1%;width:81%;gap:7px;min-height:0;padding:12px 13px!important;
+  }
+  html body .zm-v5 .zmh-assembly-board--premium>.zmh-piece-order b{font-size:14px}
+  .zm-v5 .zmh-preview-statuses span{font-size:9px;padding:5px 7px}
+  html body .zm-v5 .zmh-assembly-board--premium .zmh-assembly-note{bottom:0;font-size:9px!important}
+  .zm-v5 .zm-home-offers::after{right:-38px;top:-65px;width:110px;height:190px;opacity:.14}
+  html body .zm-v5 .zmh-contact::before{left:-60px;width:130px;height:220px;opacity:.1}
+}
+@media(prefers-reduced-motion:reduce){
+  html body .zm-v5 .zmh-opening .zmh-living-forest,
+  html body .zm-v5 .zmh-assembly-board--premium>*,
+  html body .zm-v5 .zm-home-slide,
+  html body .zm-v5 .zm-home-slide .zm-offer-art{
+    animation:none!important;transition:none!important;
+  }
+  html body .zm-v5 .zmh-assembly-board--premium .zmh-piece{
+    transform:none!important;opacity:1!important;
+  }
+  html body .zm-v5.zmh-cinema-enhanced .zmh-cinema-screen{transform:none!important;opacity:1!important}
+}
