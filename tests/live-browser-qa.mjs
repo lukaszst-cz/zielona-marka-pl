@@ -88,7 +88,14 @@ try {
           title: document.title,
           text: document.body.innerText.length,
         }));
-        assert.ok(metrics.text > 200, "Empty public page");
+        if (metrics.text <= 200) {
+          // A streamed HTML response can finish populating the route after
+          // the main element becomes visible. Wait briefly, but still fail
+          // if the public page remains empty.
+          await page.waitForFunction(() => document.body.innerText.length > 200, { timeout: 7000 }).catch(() => {});
+          metrics.text = await page.evaluate(() => document.body.innerText.length);
+        }
+        assert.ok(metrics.text > 200, "Empty public page after waiting for streamed HTML");
         const overlappingActions = await page.evaluate(() => {
           const visible = (node) => {
             const rect = node.getBoundingClientRect();
