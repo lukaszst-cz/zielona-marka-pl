@@ -2,7 +2,9 @@ name: Review branch visual QA
 
 on:
   push:
-    branches: [review/premium-clarity-a-b-c-20261015]
+    branches: [review/premium-clarity-a-b-c-20261015, fix/soft-forest-transition-20261015]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -61,7 +63,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: zm-pr41-visual-preview
+          name: zm-visual-preview
           path: browser-qa-artifacts/
           retention-days: 14
           if-no-files-found: warn
