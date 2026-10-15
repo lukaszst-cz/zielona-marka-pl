@@ -17,7 +17,7 @@ try {
       viewport: { width: size.width, height: size.height }, reducedMotion: "reduce", locale: "pl-PL",
     });
     await context.addInitScript(() => {
-      try { localStorage.setItem("zm_analytics_consent", "denied"); } catch {}
+      try { localStorage.setItem("zm_analytics_consent", "denied"); } catch { /* Storage may be unavailable in restricted browsers. */ }
     });
     const page = await context.newPage();
     for (const route of routes) {
