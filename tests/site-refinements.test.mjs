@@ -830,3 +830,13 @@ test("key public routes use their own social preview metadata", async () => {
   }
   assert.equal(titles.size, pages.length, "Social previews must not all inherit the generic homepage title");
 });
+
+
+test("inquiry email notification failures remain observable after CRM save", async () => {
+  const route = await readFile(new URL("../app/api/inquiries/route.ts", import.meta.url), "utf8");
+  assert.ok(route.indexOf("await db.insert(inquiries)") >= 0);
+  assert.ok(route.indexOf("await db.insert(inquiries)") < route.indexOf("await notifyOwner("), "Save the inquiry before sending optional email notification");
+  assert.match(route, /Inquiry saved in CRM, but email notification delivery failed/);
+  assert.match(route, /Inquiry notification not configured; saved lead remains in CRM/);
+  assert.ok(!route.includes(".catch(() => undefined)"), "Do not swallow notification failures without a log");
+});
