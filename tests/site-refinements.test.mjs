@@ -113,7 +113,7 @@ test("v1.0.1 defers non-critical home media and caches hashed assets",async()=>{
   assert.match(refinements,/\.zmh-scene-transition span\{display:none!important\}/);
   assert.equal((refinements.match(/Subtle forest-to-stream dissolve/g) || []).length, 1, "Keep only one canonical transition block");
   assert.doesNotMatch(refinements, /Approved visual treatment: no visible divider/, "Remove later CSS that overrides the dissolve");
-  assert.match(refinements, /\.zmh-opening \.zmh-living-forest\{[^}]*mask-image:linear-gradient\(to bottom,[^}]*transparent 100%\)/, "Fade the fallback photo too, not just the video");
+  assert.match(refinements, /\.zmh-opening \.zmh-living-forest\{[^}]*mask-image:linear-gradient\(to bottom,[^}]*transparent 77%\)/, "Fade the fallback photo too, not just the video");
   assert.ok(refinements.lastIndexOf("Subtle forest-to-stream dissolve") > refinements.lastIndexOf("Mobile controls and secondary calls to action"), "Transition styles must follow legacy mobile overrides");
   assert.match(refinements, /\.zmh-opening::before\{[^}]*background:linear-gradient\(to bottom,[^}]*#061c13 73%\)/, "Entire hero must blend into dark forest before the hard edge");
 });
