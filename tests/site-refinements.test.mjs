@@ -971,3 +971,30 @@ test("organic homepage keeps the original content and confines the stream to the
   assert.match(theme,/\.zm-home-slide:not\(\[hidden\]\)/);
 });
 
+
+
+test("cinematic homepage keeps five helpful visuals without heavy pointer effects", async () => {
+  const [home, story, css, html] = await Promise.all([
+    readFile(new URL("../app/OrganicHome.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/HomeStoryMotion.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/home-cinema-polish.css", import.meta.url), "utf8"),
+    (await fetchPage("/")).text(),
+  ]);
+  assert.match(home, /import "\.\/home-cinema-polish\.css";/);
+  assert.match(home, /<HomeStoryMotion \/>/);
+  assert.match(home, /<HomeContactForm \/>/);
+  assert.match(home, /<HomeOffersCarousel \/>/);
+  assert.match(html, /zmh-cinema/);
+  assert.match(story, /document\.createDocumentFragment\(\)/);
+  assert.match(story, /visual\.cloneNode\(true\)/);
+  assert.doesNotMatch(story, /innerHTML\s*=/);
+  assert.doesNotMatch(story, /addEventListener\("pointermove"/);
+  assert.match(story, /!document\.hidden/);
+  assert.match(story, /String\(stages\.length\)\.padStart\(2, "0"\)/);
+  assert.match(css, /\.zmh-cinema \.zmh-website/);
+  assert.match(css, /\.zmh-cinema \.zmh-flow-item/);
+  assert.match(css, /\.zmh-cinema \.zmh-sample-form/);
+  assert.match(css, /\.zmh-cinema \.zmh-voucher/);
+  assert.match(css, /fern-frond\.svg/);
+  assert.match(css, /prefers-reduced-motion:reduce/);
+});
