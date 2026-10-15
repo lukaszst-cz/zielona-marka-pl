@@ -31,7 +31,7 @@ export default function DtpStandardPage() {
       <nav className="qa-crumbs" aria-label="Ścieżka nawigacji"><Link href="/">Strona główna</Link><span aria-hidden="true">/</span><Link href="/standardy-jakosci">Jakość i normy</Link><span aria-hidden="true">/</span><span>DTP / Prepress</span></nav>
       <span className="eyebrow">STANDARDY ZIELONEJ MARKI / ZM-DTP-QA-001</span>
       <h1 id="qa-dtp-heading">Przed drukiem <em>liczy się każdy szczegół.</em></h1>
-      <p>Kontrola obejmuje nie tylko spady i rozdzielczość. Sprawdzamy też treść, typografię, obrazy, profile barwne, separacje, PDF i wymagania konkretnej drukarni.</p>
+      <p>QA (ang. Quality Assurance) oznacza zapewnianie jakości — czyli zaplanowane sprawdzenie materiału przed oddaniem do drukarni. W praktyce weryfikujemy treść, wymiary, zdjęcia, kolory i poprawność pliku PDF, aby wychwycić błędy przed drukiem.</p>
       <div className="hero-actions qa-hero-actions">
         <a className="button" href="/downloads/zielona-marka-standard-dtp-prepress-qa.pdf" download>Pobierz checklistę DTP · PDF <span aria-hidden="true">↓</span></a>
         <a className="text-link" href="#lista">Zobacz 12 obszarów kontroli <span aria-hidden="true">↓</span></a>
@@ -42,13 +42,13 @@ export default function DtpStandardPage() {
     <QaLocalNav active="/standard-dtp" />
 
     <section className="section shell qa-section" id="dokumenty">
-      <div className="section-head"><div><span className="section-no">DOKUMENTACJA / DTP I WWW</span><h2>Pobierz standard do wykorzystania przy zleceniu.</h2></div><p>Materiały pozwalają ustalić, co będzie sprawdzane i w jaki sposób dokumentujemy wyniki. PDF-y są bezpłatne i dostępne bez formularza.</p></div>
+      <div className="section-head"><div><span className="section-no">DOKUMENTACJA / DRUK I STRONY WWW</span><h2>Pobierz standard do wykorzystania przy zleceniu.</h2></div><p>Materiały pozwalają ustalić, co będzie sprawdzane i w jaki sposób dokumentujemy wyniki. PDF-y są bezpłatne i dostępne bez formularza.</p></div>
       <QaDocumentCards />
     </section>
 
     <section className="section shell qa-section" id="lista">
       <div className="section-head"><div><span className="section-no">PREPRESS / 12 OBSZARÓW</span><h2>Co dokładnie sprawdzamy przed produkcją?</h2></div><p>Dobór kryteriów zależy od podłoża, technologii, uszlachetnień, sposobu introligatorni i zaakceptowanej specyfikacji drukarni.</p></div>
-      <div className="qa-cards qa-cards--three">{checks.map(item => <article className="qa-card" key={item.n}><span className="qa-kicker">QA / {item.n}</span><h3>{item.title}</h3><ul>{item.items.map(text => <li key={text}>{text}</li>)}</ul></article>)}</div>
+      <div className="qa-cards qa-cards--three">{checks.map(item => <article className="qa-card" key={item.n}><span className="qa-kicker">KONTROLA / {item.n}</span><h3>{item.title}</h3><ul>{item.items.map(text => <li key={text}>{text}</li>)}</ul></article>)}</div>
     </section>
 
     <section className="section shell qa-section" id="odbior">
@@ -70,7 +70,7 @@ export default function DtpStandardPage() {
         <article className="qa-card"><span className="qa-kicker">OPAKOWANIA / ETYKIETY</span><h3>ISO 19593-1</h3><p>Struktura danych technologicznych PDF, np. dla wykrojników, bieli i lakierów.</p></article>
       </div>
       <div className="qa-standards-note"><strong>Bez mylenia pojęć:</strong> powyższe normy są technicznymi punktami odniesienia dla naszych procedur. Zielona Marka nie deklaruje certyfikacji ISO, akredytacji ani sprawdzenia każdej realizacji według wszystkich przywołanych standardów.</div>
-      <div className="qa-link-stack"><Link href="/standardy-jakosci#iso">Jak opisujemy korzystanie z norm ISO ↗</Link><Link href="/standard-jakosci">Zasady QA dla WWW i CRM ↗</Link></div>
+      <div className="qa-link-stack"><Link href="/standardy-jakosci#iso">Jak opisujemy korzystanie z norm ISO ↗</Link><Link href="/standard-jakosci">Zasady sprawdzania stron i CRM ↗</Link></div>
     </section>
 
     <section className="section shell qa-section"><div className="qa-ending"><span className="section-no">DTP / WYDAJEMY PLIK PO KONTROLI</span><h2>Potrzebujesz projektu lub preflightu?</h2><p>Przygotujemy zakres kontroli i plik produkcyjny według specyfikacji Twojej drukarni.</p><div className="hero-actions"><Link className="button" href="/kontakt?pakiet=DTP%20i%20przygotowanie%20do%20druku">Zapytaj o kontrolę DTP <span aria-hidden="true">↗</span></Link><Link className="text-link" href="/dtp">Zobacz ofertę DTP <span aria-hidden="true">↗</span></Link></div></div></section>
