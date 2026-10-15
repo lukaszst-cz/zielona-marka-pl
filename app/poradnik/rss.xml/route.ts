@@ -15,7 +15,7 @@ export function GET() {
 </item>`).join("\n");
   const body = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0"><channel>
-<title>Blog Zielonej Marki — praktyczne poradniki dla firm</title>
+<title>Blog Zielona Marka — praktyczne poradniki dla firm</title>
 <link>${base}/poradnik</link>
 <description>Strony WWW, SEO, DTP, organizacja pracy i obsługa zapytań klientów.</description>
 <language>pl-PL</language>

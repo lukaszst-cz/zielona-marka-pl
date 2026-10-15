@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Polityka prywatności",
-  description: "Informacje o przetwarzaniu danych z formularzy Zielonej Marki, plikach cookie i kontakcie w sprawie prywatności.",
+  description: "Informacje o przetwarzaniu danych z formularzy marki Zielona Marka, plikach cookie i kontakcie w sprawie prywatności.",
   alternates: { canonical: "/polityka-prywatnosci" },
   robots: { index: false, follow: true },
 };

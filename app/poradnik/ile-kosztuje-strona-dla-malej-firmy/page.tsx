@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "Ile kosztuje strona dla małej firmy?",
   description: "Ile kosztuje strona dla małej firmy? Wizytówka od 899 zł netto, pełna strona od 1 449 zł. Hosting, domena, opieka i wydatki po roku.",
   alternates: { canonical: "/poradnik/ile-kosztuje-strona-dla-malej-firmy" },
-  openGraph: { type: "article", title: "Ile kosztuje strona internetowa dla małej firmy?", description: "Trzy warianty, zakres i koszty, które mogą pojawić się osobno.", url: "/poradnik/ile-kosztuje-strona-dla-malej-firmy", publishedTime: "2026-09-30", modifiedTime: "2026-10-14", images: [{ url: "/og-ile-kosztuje-strona-dla-malej-firmy.png", width: 1200, height: 630, alt: "Ile kosztuje strona dla małej firmy, poradnik Zielonej Marki" }] },
+  openGraph: { type: "article", title: "Ile kosztuje strona internetowa dla małej firmy?", description: "Trzy warianty, zakres i koszty, które mogą pojawić się osobno.", url: "/poradnik/ile-kosztuje-strona-dla-malej-firmy", publishedTime: "2026-09-30", modifiedTime: "2026-10-14", images: [{ url: "/og-ile-kosztuje-strona-dla-malej-firmy.png", width: 1200, height: 630, alt: "Ile kosztuje strona dla małej firmy, poradnik marki Zielona Marka" }] },
   twitter: { card: "summary_large_image", images: ["/og-ile-kosztuje-strona-dla-malej-firmy.png"] },
 };
 

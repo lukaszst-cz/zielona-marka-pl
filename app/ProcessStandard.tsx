@@ -12,7 +12,7 @@ const content: Record<Variant, {
   cta: string;
 }> = {
   home: {
-    eyebrow: "STANDARD REALIZACJI ZIELONEJ MARKI",
+    eyebrow: "STANDARD REALIZACJI / ZIELONA MARKA",
     title: "Dobra strona to także dobrze poprowadzony projekt.",
     intro: "Wiesz, na jakim etapie jesteśmy, co akceptujesz i co zostanie sprawdzone przed startem.",
     steps: [

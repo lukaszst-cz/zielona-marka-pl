@@ -5,7 +5,7 @@ import { QaDocumentCards, QaLocalNav } from "../QaStandardsNavigation";
 
 export const metadata: Metadata = {
   title: "Jakość i normy ISO — standardy pracy i dokumenty",
-  description: "Poznaj standardy kontroli jakości Zielonej Marki, proces odbioru projektów, zakres sprawdzania stron WWW i plików do druku oraz pobierz firmowe PDF. Uczciwe odniesienia do norm ISO — bez deklaracji certyfikacji.",
+  description: "Poznaj standardy kontroli jakości marki Zielona Marka, proces odbioru projektów, zakres sprawdzania stron WWW i plików do druku oraz pobierz firmowe PDF. Uczciwe odniesienia do norm ISO — bez deklaracji certyfikacji.",
   alternates: { canonical: "/standardy-jakosci" },
   openGraph: { type: "website", url: "/standardy-jakosci", title: "Standardy jakości i normy ISO | Zielona Marka", description: "Jak sprawdzamy strony, sklepy, CRM i pliki do druku? Procedury sprawdzania jakości, punkty odniesienia ISO oraz dokumenty PDF do pobrania." },
 };
@@ -21,7 +21,7 @@ export default function QualityHubPage() {
         <a className="button" href="#dokumenty">Pobierz standardy pracy <span aria-hidden="true">↓</span></a>
         <a className="text-link" href="#iso">Jak odnosimy się do ISO? <span aria-hidden="true">↓</span></a>
       </div>
-      <p className="qa-hero-detail">To własne standardy Zielonej Marki inspirowane dobrymi praktykami i wybranymi normami technicznymi, a nie komunikat o certyfikacji.</p>
+      <p className="qa-hero-detail">To własne standardy marki Zielona Marka inspirowane dobrymi praktykami i wybranymi normami technicznymi, a nie komunikat o certyfikacji.</p>
     </section>
     <QaLocalNav active="/standardy-jakosci" />
 

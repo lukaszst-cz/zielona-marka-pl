@@ -30,7 +30,7 @@ export default function QaReport({ project, checks }: { project: { title: string
             return <div key={`${check.title}-${index}`} className={done ? "done" : "pending"}><b>{String(index + 1).padStart(2, "0")}</b><span>{check.title.replace(/^QA:\s*/i, "")}</span><i>{done ? "SPRAWDZONE ✓" : check.status.toUpperCase()}</i></div>;
           })}
         </section>
-        <p className="qa-report-note">Raport pokazuje aktualny stan checklisty projektu. Pozycja oznaczona jako „sprawdzone” została zakończona w Studio Zielonej Marki. Pozostałe punkty wymagają jeszcze wykonania lub potwierdzenia.</p>
+        <p className="qa-report-note">Raport pokazuje aktualny stan checklisty projektu. Pozycja oznaczona jako „sprawdzone” została zakończona w Studio marki Zielona Marka. Pozostałe punkty wymagają jeszcze wykonania lub potwierdzenia.</p>
         <footer><span>ZIELONA MARKA</span><span>zielona-marka.pl</span><span>kontakt@zielona-marka.pl</span></footer>
       </article>
     </main>

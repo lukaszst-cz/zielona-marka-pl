@@ -68,7 +68,7 @@ export default function DemoAssistant() {
     <button ref={trigger} className="demo-assistant-trigger" type="button" onClick={() => setOpen(value => !value)} aria-label="Wypróbuj asystenta" aria-expanded={open} aria-controls="demo-assistant-panel">
       <span aria-hidden="true">✦</span><b>Wypróbuj asystenta</b><small>demonstracja ZM</small>
     </button>
-    {open && <section className="demo-assistant-panel" id="demo-assistant-panel" role="dialog" aria-label="Demonstracyjny asystent zapytań Zielonej Marki">
+    {open && <section className="demo-assistant-panel" id="demo-assistant-panel" role="dialog" aria-label="Demonstracyjny asystent zapytań marki Zielona Marka">
       <header><div><span>DEMO · ZIELONA MARKA</span><b>Asystent zapytań</b></div><button ref={closeButton} type="button" onClick={() => { setOpen(false); trigger.current?.focus(); }} aria-label="Zamknij asystenta">×</button></header>
       <div className="demo-assistant-body" aria-live="polite">
         <div className="bot-message"><b>Cześć!</b><p>Jestem demonstracyjnym asystentem działającym według przygotowanego scenariusza. Pomogę określić, czego potrzebuje Twoja firma.</p><small>Nie udaję człowieka i nie podaję wiążącej wyceny.</small></div>
@@ -76,7 +76,7 @@ export default function DemoAssistant() {
         {goal && !industry && <div className="assistant-step"><div className="user-message">{goal}</div><p>W jakiej branży działasz?</p><div className="assistant-options">{industries.map(item => <button key={item} type="button" onClick={() => setIndustry(item)}>{item}</button>)}</div><button className="assistant-back" type="button" onClick={() => setGoal("")}>← Wróć</button></div>}
         {goal && industry && !sent && <div className="assistant-step"><div className="user-message">{industry}</div>
           {goal === "Ceny i terminy" && <div className="bot-message"><p><b>Orientacyjnie:</b> Mała, podstawowa strona ZM Start od 1 449 zł netto / od 72 godzin do 14 dni od otrzymania kompletu materiałów i ustalenia zakresu. LeadFlow od 4 490 zł netto / 10–14 dni roboczych, ZM Flow od 6 900 zł netto / 14–21 dni roboczych.</p><small>30% na start, 70% po odbiorze i kontroli jakości (QA), przed publikacją na serwerze klienta.</small></div>}
-          <p>Zostaw kontakt. Zgłoszenie trafi do panelu Zielonej Marki.</p>
+          <p>Zostaw kontakt. Zgłoszenie trafi do panelu marki Zielona Marka.</p>
           <form className="assistant-lead-form" method="post" action="/api/inquiries" onSubmit={submit}>
             <input className="form-trap" name="website_check" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" />
             <label>Imię<input name="name" required autoComplete="name" /></label>

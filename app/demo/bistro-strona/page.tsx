@@ -3,7 +3,7 @@ import BistroMenu from './BistroMenu';
 import './bistro-demo.css';
 export const metadata: Metadata={title:'Bistro Forma | sezonowe menu, demonstracja',description:'Poglądowa strona restauracji z menu i wyborem dań.',robots:{index:false,follow:false},openGraph:{images:[]},twitter:{images:[]}};
 export default function BistroWebsiteDemo(){return <main className="bf-site">
- <div className="bf-demo">DEMONSTRACJA ZIELONEJ MARKI <a href="/realizacje">Wróć do portfolio ↗</a></div>
+ <div className="bf-demo">DEMONSTRACJA / ZIELONA MARKA <a href="/realizacje">Wróć do portfolio ↗</a></div>
  <nav className="bf-nav" aria-label="Bistro Forma"><a className="bf-brand" href="#start">bistro<span>FORMA</span></a><div><a href="#historia">O nas</a><a href="#menu">Menu</a><a href="#klimat">Klimat</a><a href="#kontakt">Kontakt</a></div><a className="bf-cta" href="#menu">Wybierz coś dobrego ↗</a></nav>
  <header className="bf-hero" id="start"><img src="/concept-bistro.jpg" alt="Ciepłe wnętrze koncepcyjnego bistro"/><div><span>SEZONOWO. LOKALNIE. PRZY JEDNYM STOLE.</span><h1>Dobre jedzenie.<br/><em>Dobry powód,<br/>żeby się spotkać.</em></h1><p>Krótka karta, pełne smaki i miejsce na jeszcze jedną rozmowę.</p><a className="bf-cta" href="#menu">Zajrzyj do menu ↓</a></div><b className="bf-round">ŚWIEŻO<br/>KAŻDEGO<br/>DNIA ✳</b></header>
  <section className="bf-info" aria-label="Informacje o lokalu"><div><small>KUCHNIA</small><b>Sezonowa i swobodna</b></div><div><small>GODZINY PRZYKŁADOWE</small><b>12:00–22:00</b></div><div><small>NA MIEJSCU I NA WYNOS</small><b>Tak, jak lubisz</b></div><a href="#menu">Odkryj kartę ↗</a></section>
