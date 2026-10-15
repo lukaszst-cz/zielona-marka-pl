@@ -16,7 +16,7 @@ mkdirSync("browser-qa-artifacts", { recursive: true });
 try {
   const context = await browser.newContext({ viewport: { width: 1365, height: 850 }, locale: "pl-PL" });
   await context.addInitScript(() => {
-    try { localStorage.setItem("zm_analytics_consent", "denied"); } catch {}
+    try { localStorage.setItem("zm_analytics_consent", "denied"); } catch { /* Storage may be blocked in browser test environments. */ }
   });
   const page = await context.newPage();
   const pathsToCheck = new Map();
