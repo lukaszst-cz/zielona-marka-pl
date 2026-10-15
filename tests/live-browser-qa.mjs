@@ -88,7 +88,13 @@ try {
           title: document.title,
           text: document.body.innerText.length,
         }));
-        assert.ok(metrics.text > 200, "Empty public page");
+        if (metrics.text <= 200) {
+          // DOMContentLoaded can precede client-side content rendering; wait briefly,
+          // but keep the failure if the page remains empty.
+          await page.waitForFunction(() => document.body.innerText.length > 200, null, { timeout: 10000 });
+          metrics.text = await page.evaluate(() => document.body.innerText.length);
+        }
+        assert.ok(metrics.text > 200, "Empty public page after content readiness wait");
         const overlappingActions = await page.evaluate(() => {
           const visible = (node) => {
             const rect = node.getBoundingClientRect();
