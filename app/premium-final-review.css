@@ -222,3 +222,20 @@
     font-size:11.2px!important;letter-spacing:.045em!important;
   }
 }
+
+
+/* Kompaktowa stopka: logotyp nie może wymuszać 345 px przy ekranie 320 px. */
+@media (max-width: 370px) {
+  html body .zm-footer .brand-signature {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+  html body .zm-footer .brand-wordmark {
+    min-width: 0;
+  }
+  html body .zm-footer .brand-wordmark small span:first-child {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+}
