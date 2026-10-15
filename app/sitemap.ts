@@ -16,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/standard-jakosci`, lastModified: new Date("2026-10-14"), changeFrequency: "monthly", priority: .72 },
     { url: `${base}/standard-dtp`, lastModified: new Date("2026-10-14"), changeFrequency: "monthly", priority: .72 },
     { url: `${base}/modernizacja-strony`, changeFrequency: "weekly", priority: .9 },
+    { url: `${base}/bezplatna-koncepcja-strony`, lastModified: new Date("2026-10-15"), changeFrequency: "weekly", priority: .88 },
     { url: `${base}/realizacje`, lastModified: new Date("2026-10-09"), changeFrequency: "monthly", priority: .85 },
     { url: `${base}/realizacje/transportflow`, lastModified: new Date("2026-10-05"), changeFrequency: "monthly", priority: .72 },
     { url: `${base}/praktyczne-narzedzia`, lastModified: new Date("2026-10-05"), changeFrequency: "monthly", priority: .8 },
