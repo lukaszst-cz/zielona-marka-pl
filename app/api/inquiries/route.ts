@@ -77,6 +77,31 @@ export async function POST(request: Request) {
     const additionalFields = [payload.phone, payload.website, payload.projectType, payload.timeline, payload.goal, payload.sales].map(plain);
 
     if (!wantsJson) {
+      // Accept the landing page's native form submission if client JS fails.
+      if (typeof payload.mode === "string" && typeof payload.details === "string") {
+        const labels: Record<string, string> = {
+          existing: "Nowy wygląd obecnej strony WWW",
+          new: "Koncepcja strony dla nowej firmy",
+          logo: "Koncepcja nowego lub odświeżonego logo",
+          promo: "Koncepcja gazetki reklamowej",
+          sales: "Koncepcja gazetki sprzedażowej",
+        };
+        const label = Object.prototype.hasOwnProperty.call(labels, payload.mode)
+          ? labels[payload.mode] : undefined;
+        const conceptDetails = plain(payload.details);
+        if (!label || !company || conceptDetails.length < 10 || conceptDetails.length > 4000) {
+          return reply("Uzupełnij firmę, rodzaj projektu i opis (10–4000 znaków).", 400);
+        }
+        message = [
+          "ZGŁOSZENIE: BEZPŁATNA KONCEPCJA WIZUALNA",
+          "Źródło: /bezplatna-koncepcja-strony",
+          "Typ: " + label,
+          "",
+          conceptDetails,
+          "",
+          "Odpowiedź na zamówioną koncepcję: e-mail z formularza. Brak zgody na odrębny marketing.",
+        ].join("\n");
+      }
       const details = [
         ["Telefon", plain(payload.phone)],
         ["Firma", company],
