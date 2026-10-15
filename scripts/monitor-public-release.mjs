@@ -6,7 +6,7 @@ import { referencedAssets } from "./public-asset-utils.mjs";
 /* Public contract: these markers must come from the live site,
    not merely exist in a successful GitHub build. */
 export const releasePages = [
-  { path: "/", markers: ["zm-home-offers", "zm-home-carousel", "zm-home-slide-counter", "Pokaż slajd 1: Mini audyt", "Pokaż slajd 2: Mapa Szans", "Pokaż slajd 3: Bezpłatna koncepcja", "Zobacz swoją firmę", "zmh-contact-preview"] },
+  { path: "/", markers: ["zm-home-offers", "zm-home-carousel", "zm-home-slide-counter", "Pokaż slajd 1: Mini audyt", "Pokaż slajd 2: Mapa Szans", "Pokaż slajd 3: Bezpłatna koncepcja", "Zobacz swoją firmę", "zmh-contact-preview", "zmh-assembly-board--premium", "zmh-preview-website", "zmh-preview-statuses"] },
   { path: "/bezplatna-koncepcja-strony", markers: ["Gazetka sprzedażowa", "Koncepcja logo", "zv5-hero-art", "zv5-tabs", "Zanim zamówisz,", "Żyj trochę", "Wybierz ten kierunek"] },
   { path: "/opieka-nad-strona", markers: ["care-plans", "care-plan-benefit", "care-plan-difference", "Co zyskujesz?"] },
   { path: "/strony-internetowe", markers: ["Wybierz miasto lub dzielnicę."] },
