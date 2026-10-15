@@ -62,6 +62,17 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: zm-review-visual-preview
-          path: browser-qa-artifacts/
+          path: |
+            browser-qa-artifacts/report.json
+            browser-qa-artifacts/desktop-blog.png
+            browser-qa-artifacts/desktop-offer.png
+            browser-qa-artifacts/mobile-blog.png
+            browser-qa-artifacts/mobile-offer.png
+            browser-qa-artifacts/compact-blog.png
+            browser-qa-artifacts/compact-offer.png
+            browser-qa-artifacts/tablet-blog.png
+            browser-qa-artifacts/tablet-offer.png
+            browser-qa-artifacts/laptop-blog.png
+            browser-qa-artifacts/laptop-offer.png
           retention-days: 14
           if-no-files-found: warn
