@@ -1,5 +1,6 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
+import { resolve } from "node:path";
 import { referencedAssets } from "./public-asset-utils.mjs";
 
 /* Public contract: these markers must come from the live site,
@@ -74,7 +75,7 @@ export async function monitorRelease({
   };
 }
 
-if (process.argv[1] && fileURLToPath(import.meta.url) === fileURLToPath(new URL("file://" + process.argv[1]))) {
+if (process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1])) {
   const report = await monitorRelease();
   await mkdir("release-monitor-artifacts", { recursive: true });
   await writeFile("release-monitor-artifacts/report.json", JSON.stringify(report, null, 2) + "\n");
