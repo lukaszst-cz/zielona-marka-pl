@@ -4,7 +4,7 @@ const pages = [
   { href: "/standardy-jakosci", label: "Jakość i normy" },
   { href: "/standard-jakosci", label: "Standard WWW / CRM" },
   { href: "/standard-dtp", label: "Standard DTP" },
-  { href: "/raport-qa", label: "Przykładowy raport QA" },
+  { href: "/raport-qa", label: "Przykładowy raport kontroli jakości" },
 ] as const;
 
 export function QaLocalNav({ active }: { active: string }) {
@@ -15,7 +15,7 @@ export function QaLocalNav({ active }: { active: string }) {
 
 const manuals = [
   { number: "01 / PROCEDURA", name: "Standard jakości WWW, sklepów i CRM", pages: "PDF · 10 stron · wersja 3", description: "Osiem etapów współpracy, kontrole funkcjonalne, techniczne, bezpieczeństwo, odbiór i zasady dokumentowania wyników.", href: "/downloads/zielona-marka-standard-jakosci-www-dtp-crm.pdf", details: "/standard-jakosci" },
-  { number: "02 / PREPRESS", name: "Standard DTP — 73 punkty kontroli", pages: "PDF · 15 stron · wersja 3", description: "Dwanaście obszarów: treść, spady, typografia, obrazy, ICC, separacje, PDF/X, proof, kody i wydanie produkcyjne.", href: "/downloads/zielona-marka-standard-dtp-prepress-qa.pdf", details: "/standard-dtp" },
+  { number: "02 / PREPRESS", name: "Standard DTP — 73 punkty kontroli", pages: "PDF · 15 stron · wersja 3", description: "Dwanaście obszarów sprawdzania pliku przed drukiem — m.in. treść, spady, zdjęcia, kolory, zgodność pliku PDF z wymaganiami drukarni i akceptacja.", href: "/downloads/zielona-marka-standard-dtp-prepress-qa.pdf", details: "/standard-dtp" },
 ] as const;
 
 export function QaDocumentCards() {
