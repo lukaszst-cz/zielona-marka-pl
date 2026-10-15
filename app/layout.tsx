@@ -15,6 +15,7 @@ import "./process-standard.css";
 import "./quality-manual.css";
 import "./premium-clarity.css";
 import "./premium-final-review.css";
+import "./qa-integrated.css";
 import PolishTypography from "./PolishTypography";
 import CookieConsent from "./CookieConsent";
 import SiteTracking from "./SiteTracking";
