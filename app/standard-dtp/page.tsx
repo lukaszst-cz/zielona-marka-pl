@@ -28,7 +28,7 @@ export default function DtpStandardPage(){return <><SiteHeader/><main className=
 <section className="zm-manual__hero"><div className="zm-manual__inner"><span className="zm-manual__label">ZM-DTP-QA-001 / DTP • PREPRESS • DRUK</span>
 <h1>Przed drukiem <em>liczy się każdy szczegół.</em></h1>
 <p>Przed oddaniem materiału do produkcji sprawdzamy treść, geometrię, jakość obrazów, kolorystykę, PDF i wymagania konkretnej drukarni. Poniżej pokazujemy 12 obszarów kontroli jakości.</p>
-<div className="zm-manual__actions"><a href="#lista">Zobacz checklistę ↓</a><Link href="/dtp">Oferta DTP ↗</Link><QualityPrintButton/></div>
+<div className="zm-manual__actions"><a href="/downloads/zielona-marka-standard-dtp-prepress-qa.pdf" download>Pobierz standard DTP (PDF, 15 stron) ↓</a><a href="#lista">Zobacz checklistę ↓</a><QualityPrintButton/></div>
 </div></section>
 <div className="zm-manual__content">
 <section className="zm-manual__section" id="lista"><h2>12 obszarów QA przed produkcją</h2><p className="zm-manual__intro">Nie wszystkie kontrole dotyczą każdego materiału. O ich zastosowaniu decydują produkt, technologia druku, sposób wykończenia i zaakceptowana specyfikacja. Parametrów technicznych nie ustalamy w oderwaniu od wymagań drukarni.</p>
