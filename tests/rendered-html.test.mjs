@@ -333,6 +333,9 @@ test("Cennik i nawigacja zachowują czytelność najważniejszych informacji", a
   assert.match(offer, /DODATKI, KTÓRE MAJĄ SENS/);
   assert.match(offer, /899 zł netto/);
 
+  const studio = await (await render("/projektuj-strone")).text();
+  assert.match(studio, /Atelier asymetryczne/);
+  assert.match(studio, /Katalog ofertowy/);
   const dtp = await (await render("/dtp")).text();
   assert.match(dtp, /Orientacyjna cena projektu/);
   const care = await (await render("/opieka-nad-strona")).text();
