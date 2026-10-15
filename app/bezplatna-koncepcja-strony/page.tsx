@@ -5,6 +5,7 @@ import ConceptRequestForm from "./ConceptRequestForm";
 import { ConceptHeroPreview, ConceptTilePreview } from "./ConceptPreviews";
 import "./koncepcja.css";
 import "./concept-gallery.css";
+import "./shared-hero.css";
 
 export const metadata: Metadata = {
   title: "Bezpłatna koncepcja strony, logo lub gazetki",
