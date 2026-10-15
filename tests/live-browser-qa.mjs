@@ -372,8 +372,16 @@ try {
       const intercepted = [];
       const pattern = "**/api/inquiries";
       await page.route(pattern, async route => {
-        intercepted.push({ url: route.request().url(), method: route.request().method(), body: route.request().postDataJSON() });
-        await route.fulfill({ status: 201, contentType: "application/json", body: JSON.stringify({ ok: true }) });
+        const request = route.request();
+        intercepted.push({ url: request.url(), method: request.method(), body: request.postDataJSON() });
+        const isJson = (request.headers()["content-type"] || "").includes("application/json");
+        // Before hydration the native form posts encoded fields. Production
+        // responds with a 303 redirect; the mock must preserve this fallback.
+        if (isJson) {
+          await route.fulfill({ status: 201, contentType: "application/json", body: JSON.stringify({ ok: true }) });
+        } else {
+          await route.fulfill({ status: 303, headers: { location: base + "/kontakt?wyslano=1" }, body: "" });
+        }
       });
       try {
         const contactResponse = await page.goto(base + "/kontakt", { waitUntil: "domcontentloaded", timeout: 45000 });
@@ -397,7 +405,7 @@ try {
         assert.equal(await form.locator('input[name="email"]').evaluate(el => el.validity.typeMismatch), true);
         await form.locator('input[name="email"]').fill("test@example.com");
         await form.locator('button[type="submit"]').click();
-        await page.getByText("Dziękuję, wiadomość została wysłana.").waitFor({ state: "visible", timeout: 15000 });
+        await page.getByText(/Dziękuję, wiadomość (została wysłana|dotarła)\./).waitFor({ state: "visible", timeout: 15000 });
         assert.equal(intercepted.length, 1, "Expected one intercepted POST; no real request should be sent");
         assert.equal(intercepted[0].method, "POST");
         assert.equal(intercepted[0].body.email, "test@example.com");
