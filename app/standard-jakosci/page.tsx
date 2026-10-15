@@ -30,7 +30,7 @@ export default function QualityStandardPage(){return <><SiteHeader/><main classN
 <section className="zm-manual__hero"><div className="zm-manual__inner"><span className="zm-manual__label">ZM-QMS-001 / STANDARD JAKOŚCI ZIELONEJ MARKI</span>
 <h1>Dobry projekt powstaje w <em>dobrze prowadzonym procesie.</em></h1>
 <p>Sprawdź, co dzieje się od pierwszego zapytania do odbioru. Każda realizacja ma określony zakres, etapy i właściwe dla niej punkty kontroli.</p>
-<div className="zm-manual__actions"><a href="#etapy">Zobacz osiem etapów ↓</a><Link href="/standard-dtp">Kontrole DTP ↗</Link><QualityPrintButton/></div>
+<div className="zm-manual__actions"><a href="/downloads/zielona-marka-standard-jakosci-www-dtp-crm.pdf" download>Pobierz standard jakości (PDF, 10 stron) ↓</a><a href="#etapy">Zobacz osiem etapów ↓</a><QualityPrintButton/></div>
 </div></section>
 <div className="zm-manual__content">
 <section className="zm-manual__section" id="etapy"><h2>Osiem etapów. Jedna zasada jakości.</h2>
