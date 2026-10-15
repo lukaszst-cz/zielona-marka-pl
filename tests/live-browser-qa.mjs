@@ -237,7 +237,7 @@ try {
       });
     }
     if (["desktop", "mobile", "compact"].includes(size.name)) {
-      await check(size.name + ": Homepage scroll sections retain premium editorial layout", async () => {
+      await check(size.name + ": Homepage scroll sections match public-page editorial hierarchy", async () => {
         const response = await page.goto(base + "/", { waitUntil: "domcontentloaded", timeout: 45000 });
         assert.ok(response?.ok(), "Home did not load");
         const info = await page.evaluate(() => {
@@ -246,17 +246,23 @@ try {
             if (!el) return null;
             const rect = el.getBoundingClientRect();
             const computed = getComputedStyle(el);
-            return { background: computed.backgroundImage, border: computed.borderTopWidth,
-              radius: parseFloat(computed.borderTopLeftRadius), width: rect.width,
-              overflow: computed.overflow, display: computed.display };
+            return {
+              background: computed.backgroundImage,
+              color: computed.color,
+              radius: parseFloat(computed.borderTopLeftRadius),
+              width: rect.width,
+            };
           };
           return {
             opening: style(".zmh-opening"),
             assembly: style(".zmh-assembly"),
+            magazine: style(".zmh-scroll-content"),
             brief: style(".zmh-quick-brief"),
-            cinema: style(".zmh-cinema"),
+            chapter: style(".zmh-cinema-chapters .zmh-story"),
+            lower: style(".zmh-lower-forest"),
             portfolio: style(".zmh-portfolio"),
             process: style(".zmh-process"),
+            standard: style(".zm-process-standard--home"),
             contact: style(".zmh-contact"),
             chapters: document.querySelectorAll(".zmh-cinema-chapters .zmh-story").length,
             videoCount: document.querySelectorAll(".zmh-opening video").length,
@@ -264,18 +270,22 @@ try {
             viewport: window.innerWidth,
           };
         });
-        for (const key of ["assembly", "brief", "cinema", "portfolio", "process", "contact"]) {
+        for (const key of ["assembly", "magazine", "brief", "chapter", "lower", "portfolio", "process", "standard", "contact"]) {
           assert.ok(info[key], "Missing homepage section " + key);
-          if (key !== "assembly") assert.ok(info[key].radius >= 12, key + " has no differentiated editorial card");
           assert.ok(info[key].width <= info.viewport + 2, key + " exceeds viewport");
         }
-        for (const key of ["assembly", "brief", "cinema"]) {
+        for (const key of ["brief", "chapter", "portfolio", "process", "standard", "contact"]) {
+          assert.ok(info[key].radius >= 12, key + " lacks a distinct card layout");
+        }
+        for (const key of ["assembly", "brief", "standard"]) {
           assert.ok(info[key].background.includes(".webp"), key + " reverted to flat green-only background");
         }
+        assert.equal(info.magazine.color, "rgb(21, 60, 43)", "Scrolled homepage lost its sage editorial canvas");
+        assert.equal(info.lower.color, "rgb(21, 60, 43)", "Lower homepage lost its sage editorial canvas");
         assert.equal(info.chapters, 5, "Homepage story chapters disappeared");
         assert.equal(info.videoCount, 1, "Original river hero video must remain");
         assert.ok(info.scrollWidth <= info.viewport + 8, "Homepage horizontal overflow");
-        return { sections: 6, chapters: info.chapters, photoBackdrops: 3 };
+        return { sageSections: 2, cards: 6, chapters: info.chapters, photoBackdrops: 3 };
       });
     }
     if (["desktop", "mobile", "compact"].includes(size.name)) {
