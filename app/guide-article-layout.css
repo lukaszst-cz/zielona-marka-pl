@@ -1,0 +1,246 @@
+/* Article detail pages: use the public-site design system, not the blog listing
+   layout. Scoped to all /poradnik/* articles; the Blog hub remains unchanged. */
+.zm-public.guide-page:not(.zm-blog-page) {
+  --guide-line: rgba(218, 238, 205, .29);
+  --guide-glass: rgba(7, 28, 22, .42);
+  --guide-glass-strong: rgba(8, 34, 24, .63);
+  --guide-accent: #c6f598;
+  color: #f3f7ef;
+}
+
+/* A real page header with the same width and spacing as Oferta and DTP. */
+.zm-public.guide-page:not(.zm-blog-page) > article > .page-hero.shell {
+  position: relative;
+  padding-block: clamp(70px, 7vw, 98px);
+  border-bottom: 1px solid var(--guide-line);
+  background: transparent !important;
+}
+.zm-public.guide-page:not(.zm-blog-page) .page-hero .guide-breadcrumbs {
+  margin-bottom: 30px;
+  font-size: 14px;
+}
+.zm-public.guide-page:not(.zm-blog-page) .page-hero h1 {
+  max-width: 1040px;
+  margin-bottom: clamp(24px, 3vw, 35px);
+  text-wrap: balance;
+}
+.zm-public.guide-page:not(.zm-blog-page) .page-hero > p {
+  max-width: 860px;
+  font-size: clamp(17px, 1.6vw, 20px) !important;
+  line-height: 1.75 !important;
+  color: #e0ebdb !important;
+}
+.zm-public.guide-page:not(.zm-blog-page) > article .hero-actions {
+  margin-top: clamp(24px, 3vw, 35px);
+}
+.zm-public.guide-page:not(.zm-blog-page) > article > .section.shell {
+  padding-block: clamp(58px, 6vw, 82px);
+}
+.zm-public.guide-page:not(.zm-blog-page) > article > .section:not(.shell) {
+  padding-block: clamp(58px, 6vw, 82px);
+}
+.zm-public.guide-page:not(.zm-blog-page) .section-head {
+  gap: clamp(18px, 3vw, 40px);
+}
+.zm-public.guide-page:not(.zm-blog-page) .section-head h2 {
+  text-wrap: balance;
+}
+
+/* These article templates were retaining opaque and even lime/light sections.
+   Light copy on those backgrounds was hard to see. Preserve a coherent, dark
+   translucent forest surface for article sections of every template. */
+.zm-public.guide-page:not(.zm-blog-page) > article
+  :is(.mini-shop-section,.guide-intro,.guide-reasons,.guide-check,
+      .guide-faq,.guide-cta,.faq-page,.cost-external) {
+  background: transparent !important;
+  background-image: none !important;
+  color: #f4f8ef !important;
+  border-color: var(--guide-line) !important;
+}
+.zm-public.guide-page:not(.zm-blog-page) > article .mini-shop-section {
+  position: relative;
+  border-block: 1px solid var(--guide-line);
+}
+.zm-public.guide-page:not(.zm-blog-page) > article .mini-shop-grid {
+  gap: clamp(26px, 5vw, 74px);
+}
+.zm-public.guide-page:not(.zm-blog-page) > article .mini-shop-grid > div {
+  min-width: 0;
+}
+.zm-public.guide-page:not(.zm-blog-page) > article .mini-shop-grid > div:last-child {
+  padding: clamp(23px, 3vw, 36px);
+  border: 1px solid var(--guide-line);
+  border-radius: 10px;
+  background: var(--guide-glass) !important;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.zm-public.guide-page:not(.zm-blog-page) > article .mini-shop-grid
+  :is(p,li,small,.muted) {
+  color: #e0ebdb !important;
+}
+.zm-public.guide-page:not(.zm-blog-page) > article .mini-shop-grid :is(h2,h3) {
+  color: #f5f8f1 !important;
+}
+.zm-public.guide-page:not(.zm-blog-page) > article .mini-shop-grid .shop-price {
+  color: var(--guide-accent) !important;
+}
+
+/* Clear editorial hierarchy: distinct sections, consistent forest transitions. */
+.zm-public.guide-page:not(.zm-blog-page) > article .guide-reasons {
+  border-block: 1px solid var(--guide-line);
+}
+.zm-public.guide-page:not(.zm-blog-page) > article .guide-intro {
+  gap: clamp(26px, 5vw, 62px);
+}
+.zm-public.guide-page:not(.zm-blog-page) > article .guide-check {
+  border-block: 1px solid var(--guide-line);
+}
+.zm-public.guide-page:not(.zm-blog-page) > article
+  :is(.guide-intro,.guide-check,.guide-reasons,.faq-page) :is(p,li) {
+  color: #e0ebdb !important;
+}
+.zm-public.guide-page:not(.zm-blog-page) > article
+  :is(.guide-reasons li,.local-benefit-grid article,.about-proof-list article,
+      .cost-packages article) {
+  min-width: 0;
+  background: var(--guide-glass) !important;
+  border-color: var(--guide-line) !important;
+  border-radius: 8px;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 10px 24px rgba(0, 13, 8, .16);
+}
+.zm-public.guide-page:not(.zm-blog-page) > article
+  :is(.guide-reasons li,.local-benefit-grid article,.about-proof-list article,
+      .cost-packages article):is(:hover,:focus-within) {
+  background: var(--guide-glass-strong) !important;
+  border-color: rgba(208, 244, 181, .65) !important;
+}
+.zm-public.guide-page:not(.zm-blog-page) > article
+  :is(.local-benefit-grid,.about-proof-list) {
+  gap: 14px;
+  border: 0;
+  margin-top: clamp(22px, 3vw, 42px);
+}
+.zm-public.guide-page:not(.zm-blog-page) > article
+  :is(.local-benefit-grid,.about-proof-list) article {
+  min-height: 210px;
+  padding: clamp(21px, 2.4vw, 29px) !important;
+}
+.zm-public.guide-page:not(.zm-blog-page) > article
+  :is(.local-benefit-grid,.about-proof-list) :is(b,span) {
+  color: var(--guide-accent) !important;
+}
+.zm-public.guide-page:not(.zm-blog-page) > article
+  :is(.local-benefit-grid,.about-proof-list) h3 {
+  margin-block: 22px 12px;
+}
+.zm-public.guide-page:not(.zm-blog-page) > article
+  :is(.local-benefit-grid,.about-proof-list) p {
+  color: #dcebd7 !important;
+  font-size: 16px !important;
+  line-height: 1.65 !important;
+}
+
+/* Executive summaries use a readable dark-glass treatment, never an
+   isolated cream/light background. */
+.zm-public.guide-page:not(.zm-blog-page) .zm-guide-highlights > div {
+  min-height: 0;
+  background: var(--guide-glass) !important;
+  border: 1px solid var(--guide-line) !important;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.zm-public.guide-page:not(.zm-blog-page) .zm-guide-highlights > div :is(p,small) {
+  color: #e0ebdb !important;
+}
+.zm-public.guide-page:not(.zm-blog-page) .zm-guide-highlights > div > span {
+  color: var(--guide-accent) !important;
+}
+
+/* FAQ, references and the end-of-article conversion follow site-wide cards. */
+.zm-public.guide-page:not(.zm-blog-page) .faq-page .faq-list details,
+.zm-public.guide-page:not(.zm-blog-page) .guide-faq details {
+  background: var(--guide-glass) !important;
+  border: 1px solid var(--guide-line) !important;
+  border-radius: 8px;
+  padding-inline: clamp(16px, 2vw, 25px);
+  margin-bottom: 10px;
+}
+.zm-public.guide-page:not(.zm-blog-page) :is(.faq-page,.guide-faq)
+  summary {
+  color: #f5f8f1 !important;
+}
+.zm-public.guide-page:not(.zm-blog-page) :is(.faq-page,.guide-faq)
+  details > p {
+  color: #e0ebdb !important;
+}
+.zm-public.guide-page:not(.zm-blog-page) .guide-cta {
+  border-top: 1px solid var(--guide-line);
+  border-bottom: 0;
+}
+.zm-public.guide-page:not(.zm-blog-page) .guide-cta > .shell {
+  max-width: 900px;
+}
+.zm-public.guide-page:not(.zm-blog-page) .seo-related {
+  background: transparent !important;
+  padding-block: clamp(55px, 6vw, 80px) !important;
+  border-top: 1px solid var(--guide-line);
+}
+.zm-public.guide-page:not(.zm-blog-page) .seo-related-grid > a {
+  background: var(--guide-glass) !important;
+  border: 1px solid var(--guide-line);
+  border-radius: 8px;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.zm-public.guide-page:not(.zm-blog-page) .seo-related-grid > a:is(:hover,:focus-visible) {
+  background: var(--guide-glass-strong) !important;
+  border-color: rgba(208, 244, 181, .65);
+}
+.zm-public.guide-page:not(.zm-blog-page) .guide-author {
+  background: var(--guide-glass) !important;
+  border-color: var(--guide-line) !important;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+/* The same gutters and type scale as other service pages, including small phones. */
+@media (max-width: 900px) {
+  .zm-public.guide-page:not(.zm-blog-page) .mini-shop-grid {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+  .zm-public.guide-page:not(.zm-blog-page) .local-benefit-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 600px) {
+  .zm-public.guide-page:not(.zm-blog-page) .shell {
+    width: min(1180px, calc(100% - 28px));
+  }
+  .zm-public.guide-page:not(.zm-blog-page) > article > .page-hero.shell {
+    padding-block: 55px;
+  }
+  .zm-public.guide-page:not(.zm-blog-page) > article > .section.shell,
+  .zm-public.guide-page:not(.zm-blog-page) > article > .section:not(.shell) {
+    padding-block: 55px;
+  }
+  .zm-public.guide-page:not(.zm-blog-page) .local-benefit-grid {
+    grid-template-columns: 1fr;
+  }
+  .zm-public.guide-page:not(.zm-blog-page) .mini-shop-grid > div:last-child {
+    padding: 22px;
+  }
+  .zm-public.guide-page:not(.zm-blog-page) .faq-page .faq-list details,
+  .zm-public.guide-page:not(.zm-blog-page) .guide-faq details {
+    padding-inline: 16px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .zm-public.guide-page:not(.zm-blog-page)
+    :is(.guide-reasons li,.seo-related-grid > a):hover {
+    transform: none !important;
+  }
+}
