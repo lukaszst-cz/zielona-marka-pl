@@ -200,6 +200,34 @@ try {
         assert.equal(await menu.evaluate(el => el.open), false);
       });
     }
+    await check(size.name + ": contact brief submits to mock endpoint only", async () => {
+      const intercepted = [];
+      const pattern = "**/api/inquiries";
+      await page.route(pattern, async route => {
+        intercepted.push({ url: route.request().url(), method: route.request().method(), body: route.request().postDataJSON() });
+        await route.fulfill({ status: 201, contentType: "application/json", body: JSON.stringify({ ok: true }) });
+      });
+      try {
+        await page.goto(base + "/kontakt", { waitUntil: "networkidle", timeout: 45000 });
+        const form = page.locator('form[data-analytics-form="brief"]');
+        await form.locator('input[name="name"]').fill("Przykładowa osoba QA");
+        await form.locator('input[name="email"]').fill("not-an-email");
+        await form.locator('textarea[name="message"]').fill("Proszę o informację o stworzeniu strony firmowej.");
+        await form.locator('input[name="consent"]').check();
+        await form.locator('button[type="submit"]').click();
+        assert.equal(intercepted.length, 0, "Invalid email must not reach the mock endpoint");
+        assert.equal(await form.locator('input[name="email"]').evaluate(el => el.validity.typeMismatch), true);
+        await form.locator('input[name="email"]').fill("test@example.com");
+        await form.locator('button[type="submit"]').click();
+        await page.getByText("Dziękuję, wiadomość została wysłana.").waitFor({ state: "visible", timeout: 15000 });
+        assert.equal(intercepted.length, 1, "Expected one intercepted POST; no real request should be sent");
+        assert.equal(intercepted[0].method, "POST");
+        assert.equal(intercepted[0].body.email, "test@example.com");
+        assert.equal(intercepted[0].body.consent, "yes");
+      } finally {
+        await page.unroute(pattern);
+      }
+    });
     await check(size.name + ": no analytics requests without consent", async () => {
       assert.equal(await page.evaluate(() => localStorage.getItem("zm_analytics_consent")), "denied");
       assert.deepEqual(analyticsRequestsWithoutConsent, [], "Google analytics loaded before consent");
