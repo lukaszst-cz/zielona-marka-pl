@@ -5,6 +5,6 @@ export const dynamic = "force-dynamic";
 
 export default async function StudioPage() {
   const user = await requireStudioOwner();
-  if (!user) return <main className="studio-denied"><div><span className="section-no">PRYWATNE ZAPLECZE</span><h1>Zaloguj się do marki Zielona Marka.</h1><p>Panel klientów, projektów, zapytań i zadań jest dostępny wyłącznie dla właściciela.</p><form className="studio-login-form" method="post" action="/api/studio/session"><label>E-mail<input name="email" type="email" placeholder="E-mail właściciela" required autoComplete="username" /></label><label>Hasło<input name="password" type="password" required autoComplete="current-password" /></label><button className="button" type="submit">Zaloguj się <span>↗</span></button></form><a href="/">Wróć na stronę</a></div></main>;
+  if (!user) return <main className="studio-denied"><div><span className="section-no">PRYWATNE ZAPLECZE</span><h1>Zaloguj się do panelu Zielona Marka.</h1><p>Panel klientów, projektów, zapytań i zadań jest dostępny wyłącznie dla właściciela.</p><form className="studio-login-form" method="post" action="/api/studio/session"><label>E-mail<input name="email" type="email" placeholder="E-mail właściciela" required autoComplete="username" /></label><label>Hasło<input name="password" type="password" required autoComplete="current-password" /></label><button className="button" type="submit">Zaloguj się <span>↗</span></button></form><a href="/">Wróć na stronę</a></div></main>;
   return <StudioClient ownerEmail={user.email} />;
 }

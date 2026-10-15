@@ -23,7 +23,7 @@ const blogFaq = [
   ["Od którego artykułu najlepiej zacząć?", "Wybierz temat związany z najbliższym zadaniem firmy: nową stroną, usprawnieniem kontaktu, widocznością w Google albo przygotowaniem materiałów do druku. Możesz też skorzystać z wyszukiwarki i filtrów."],
   ["Czy porady przydadzą się, jeśli mam już stronę?", "Tak. Część tekstów dotyczy poprawiania istniejącej witryny, jej kosztów utrzymania, treści, formularzy i widoczności lokalnej."],
   ["Czy artykuły zastępują audyt i indywidualną wycenę?", "Nie. Pokazują zasady i możliwe rozwiązania. Dobór zakresu i kosztów do konkretnej firmy wymaga poznania jej potrzeb i sprawdzenia obecnej sytuacji."],
-  ["Kto przygotowuje poradniki?", "Autorem jest Łukasz Staniewicz z marki Zielona Marka. Na stronie każdego artykułu znajdziesz informację o autorze i dacie aktualizacji."],
+  ["Kto przygotowuje poradniki?", "Autorem jest Łukasz Staniewicz, twórca serwisu Zielona Marka. Na stronie każdego artykułu znajdziesz informację o autorze i dacie aktualizacji."],
 ] as const;
 
 export default function GuidesPage() {
