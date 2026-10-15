@@ -318,7 +318,7 @@ try {
               const rect = el.getBoundingClientRect();
               const overshoot = Math.max(rect.right - window.innerWidth, -rect.left, 0);
               return { selector: el.tagName.toLowerCase() + (el.id ? "#" + el.id : "")
-                + (typeof el.className === "string" && el.className ? "." + el.className.trim().split(/\\s+/).slice(0, 3).join(".") : ""),
+                + (typeof el.className === "string" && el.className ? "." + el.className.trim().split(/\s+/).slice(0, 3).join(".") : ""),
                 left: Math.round(rect.left), right: Math.round(rect.right),
                 width: Math.round(rect.width), overshoot: Math.round(overshoot) };
             }).filter(el => el.overshoot > 6).sort((a,b) => b.overshoot - a.overshoot).slice(0, 14),
