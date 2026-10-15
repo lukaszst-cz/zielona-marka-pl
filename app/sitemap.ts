@@ -12,6 +12,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/poradnik/ile-kosztuje-projekt-gazetki`, lastModified: new Date("2026-10-14"), changeFrequency: "monthly", priority: .78 },
     { url: `${base}/przyklady-zaplecza`, lastModified: new Date("2026-10-07"), changeFrequency: "monthly", priority: .7 },
     { url: `${base}/raport-qa`, lastModified: new Date("2026-10-08"), changeFrequency: "monthly", priority: .65 },
+    { url: `${base}/standard-jakosci`, lastModified: new Date("2026-10-14"), changeFrequency: "monthly", priority: .72 },
+    { url: `${base}/standard-dtp`, lastModified: new Date("2026-10-14"), changeFrequency: "monthly", priority: .72 },
     { url: `${base}/modernizacja-strony`, changeFrequency: "weekly", priority: .9 },
     { url: `${base}/realizacje`, lastModified: new Date("2026-10-09"), changeFrequency: "monthly", priority: .85 },
     { url: `${base}/realizacje/transportflow`, lastModified: new Date("2026-10-05"), changeFrequency: "monthly", priority: .72 },
