@@ -283,6 +283,7 @@ try {
       await check(size.name + ": Homepage scroll sections match public-page editorial hierarchy", async () => {
         const response = await page.goto(base + "/", { waitUntil: "domcontentloaded", timeout: 45000 });
         assert.ok(response?.ok(), "Home did not load");
+        await page.locator(".zmh-assembly-board--premium .zmh-preview-website").first().waitFor({ state: "attached", timeout: 20000 });
         const info = await page.evaluate(() => {
           const style = (selector) => {
             const el = document.querySelector(selector);
@@ -311,6 +312,16 @@ try {
             videoCount: document.querySelectorAll(".zmh-opening video").length,
             scrollWidth: document.documentElement.scrollWidth,
             viewport: window.innerWidth,
+            assemblyMarkup: !!document.querySelector(".zmh-assembly-board--premium .zmh-preview-website")
+              && !!document.querySelector(".zmh-assembly-board--premium .zmh-preview-statuses"),
+            offenders: [...document.body.querySelectorAll("*")].map(el => {
+              const rect = el.getBoundingClientRect();
+              const overshoot = Math.max(rect.right - window.innerWidth, -rect.left, 0);
+              return { selector: el.tagName.toLowerCase() + (el.id ? "#" + el.id : "")
+                + (typeof el.className === "string" && el.className ? "." + el.className.trim().split(/\s+/).slice(0, 3).join(".") : ""),
+                left: Math.round(rect.left), right: Math.round(rect.right),
+                width: Math.round(rect.width), overshoot: Math.round(overshoot) };
+            }).filter(el => el.overshoot > 6).sort((a,b) => b.overshoot - a.overshoot).slice(0, 14),
           };
         });
         for (const key of ["assembly", "magazine", "brief", "chapter", "lower", "portfolio", "process", "standard", "contact"]) {
@@ -327,7 +338,9 @@ try {
         assert.equal(info.lower.color, "rgb(21, 60, 43)", "Lower homepage lost its sage editorial canvas");
         assert.equal(info.chapters, 5, "Homepage story chapters disappeared");
         assert.equal(info.videoCount, 1, "Original river hero video must remain");
-        assert.ok(info.scrollWidth <= info.viewport + 8, "Homepage horizontal overflow");
+        assert.equal(info.assemblyMarkup, true, "Interactive process illustration missing after hydration");
+        assert.ok(info.scrollWidth <= info.viewport + 8,
+          "Homepage horizontal overflow: " + info.scrollWidth + " / " + info.viewport + "px; elements: " + JSON.stringify(info.offenders));
         return { sageSections: 2, cards: 6, chapters: info.chapters, photoBackdrops: 3 };
       });
     }
