@@ -91,7 +91,7 @@ try {
         if (metrics.text <= 200) {
           // DOMContentLoaded can precede client-side content rendering; wait briefly,
           // but keep the failure if the page remains empty.
-          await page.waitForFunction(() => document.body.innerText.length > 200, { timeout: 10000 });
+          await page.waitForFunction(() => document.body.innerText.length > 200, null, { timeout: 10000 });
           metrics.text = await page.evaluate(() => document.body.innerText.length);
         }
         assert.ok(metrics.text > 200, "Empty public page after content readiness wait");
