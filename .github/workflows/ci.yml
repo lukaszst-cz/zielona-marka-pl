@@ -37,6 +37,8 @@ jobs:
           test -d dist/client
           node scripts/prepare-vinext-wrangler-config.mjs
           npx --no-install wrangler deploy --config dist/server/wrangler.json --no-bundle --dry-run
+      - name: Simulate default Workers Builds deployment command
+        run: npx --no-install wrangler deploy --dry-run
       - name: Dependency update report
         continue-on-error: true
         run: npm outdated || true
