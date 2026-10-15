@@ -29,7 +29,7 @@ const findings = [
     title: "Dać klientowi wartość przed rozmową.",
     observation: "Obecne CTA prowadzą do oferty lub rozmowy. Brakuje małego, bezpiecznego kroku dla osoby, która jeszcze nie wie, czego potrzebuje.",
     action: "Dodać „Bezpłatny Mini Audyt: 3 obserwacje + 1 priorytet + przykład zmiany”.",
-    effect: "Klient poznaje sposób pracy Zielonej Marki, zanim zdecyduje się na wycenę.",
+    effect: "Klient poznaje sposób pracy marki Zielona Marka, zanim zdecyduje się na wycenę.",
   },
 ] as const;
 

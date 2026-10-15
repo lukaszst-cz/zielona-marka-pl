@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Przykład bezpłatnej Mapy Szans",
-  description: "Alternatywny materiał pierwszego kontaktu przygotowany dla Zielonej Marki.",
+  description: "Alternatywny materiał pierwszego kontaktu przygotowany dla marki Zielona Marka.",
   robots: { index: false, follow: false },
 };
 
@@ -35,14 +35,14 @@ export default function OpportunityMapExample() {
         </div>
         <figure className="opportunity-browser">
           <div><i></i><i></i><i></i><span>zielona-marka.pl</span></div>
-          <img src="/mini-audit-zm/live-desktop.png" alt="Aktualny pierwszy ekran Zielonej Marki"/>
+          <img src="/mini-audit-zm/live-desktop.png" alt="Aktualny pierwszy ekran marki Zielona Marka"/>
           <figcaption><b>PUNKT WYJŚCIA</b><span>Silna marka i dobre portfolio. Szansa: szybciej przeprowadzić klienta od zainteresowania do konkretnego zapytania.</span></figcaption>
         </figure>
       </div>
     </section>
 
     <section className="opportunity-context opportunity-shell">
-      <div><span className="opportunity-kicker">CEL DLA ZIELONEJ MARKI</span><h2>Więcej dobrych rozmów, nie więcej przypadkowych kliknięć.</h2></div>
+      <div><span className="opportunity-kicker">CEL / ZIELONA MARKA</span><h2>Więcej dobrych rozmów, nie więcej przypadkowych kliknięć.</h2></div>
       <blockquote>„Klient ma w ciągu kilkudziesięciu sekund zrozumieć, czy Zielona Marka pasuje do jego firmy, zobaczyć dowód i wykonać prosty następny krok.”</blockquote>
     </section>
 
@@ -74,7 +74,7 @@ export default function OpportunityMapExample() {
       <header><span className="opportunity-kicker">DWA RÓŻNE NARZĘDZIA</span><h2>Kiedy proponować którą opcję.</h2></header>
       <div>
         <article><span>OPCJA A</span><h3>Mini Audyt</h3><p>Dla firmy, która ma stronę i chce wiedzieć, co konkretnie poprawić.</p><a href="/demo/mini-audyt-zielona-marka">Zobacz przykład →</a></article>
-        <article className="recommended"><span>OPCJA B · ALTERNATYWA</span><h3>Mapa Szans</h3><p>Dla firmy, która nie ma jasnego kierunku albo chce połączyć stronę z obsługą zapytań.</p><b>Większy efekt „wow”, lepiej pokazuje pełne możliwości Zielonej Marki.</b></article>
+        <article className="recommended"><span>OPCJA B · ALTERNATYWA</span><h3>Mapa Szans</h3><p>Dla firmy, która nie ma jasnego kierunku albo chce połączyć stronę z obsługą zapytań.</p><b>Większy efekt „wow”, lepiej pokazuje pełne możliwości marki Zielona Marka.</b></article>
       </div>
     </section>
 

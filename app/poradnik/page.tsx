@@ -8,13 +8,13 @@ import { blogArticles } from "./blog-data";
 
 export const metadata: Metadata = {
   title: "Blog – strony WWW, SEO, DTP i porady dla firm",
-  description: "Blog Zielonej Marki: praktyczne artykuły o stronach internetowych, kosztach utrzymania, lokalnym SEO, projektowaniu gazetek, DTP i organizacji zapytań klientów.",
+  description: "Blog Zielona Marka: praktyczne artykuły o stronach internetowych, kosztach utrzymania, lokalnym SEO, projektowaniu gazetek, DTP i organizacji zapytań klientów.",
   alternates: { canonical: "/poradnik", types: { "application/rss+xml": "/poradnik/rss.xml" } },
   openGraph: {
     title: "Blog | Zielona Marka",
     description: "Praktycznie o stronach WWW, Google, DTP i sprawnym prowadzeniu małej firmy.",
     url: "/poradnik",
-    images: [{ url: "/og-poradniki-zielona-marka.png", width: 1200, height: 630, alt: "Blog Zielonej Marki" }],
+    images: [{ url: "/og-poradniki-zielona-marka.png", width: 1200, height: 630, alt: "Blog Zielona Marka" }],
   },
   twitter: { card: "summary_large_image", images: ["/og-poradniki-zielona-marka.png" ] },
 };
@@ -23,7 +23,7 @@ const blogFaq = [
   ["Od którego artykułu najlepiej zacząć?", "Wybierz temat związany z najbliższym zadaniem firmy: nową stroną, usprawnieniem kontaktu, widocznością w Google albo przygotowaniem materiałów do druku. Możesz też skorzystać z wyszukiwarki i filtrów."],
   ["Czy porady przydadzą się, jeśli mam już stronę?", "Tak. Część tekstów dotyczy poprawiania istniejącej witryny, jej kosztów utrzymania, treści, formularzy i widoczności lokalnej."],
   ["Czy artykuły zastępują audyt i indywidualną wycenę?", "Nie. Pokazują zasady i możliwe rozwiązania. Dobór zakresu i kosztów do konkretnej firmy wymaga poznania jej potrzeb i sprawdzenia obecnej sytuacji."],
-  ["Kto przygotowuje poradniki?", "Autorem jest Łukasz Staniewicz z Zielonej Marki. Na stronie każdego artykułu znajdziesz informację o autorze i dacie aktualizacji."],
+  ["Kto przygotowuje poradniki?", "Autorem jest Łukasz Staniewicz, twórca serwisu Zielona Marka. Na stronie każdego artykułu znajdziesz informację o autorze i dacie aktualizacji."],
 ] as const;
 
 export default function GuidesPage() {
@@ -31,7 +31,7 @@ export default function GuidesPage() {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "@id": "https://zielona-marka.pl/poradnik#webpage",
-    name: "Blog Zielonej Marki",
+    name: "Blog Zielona Marka",
     description: metadata.description,
     url: "https://zielona-marka.pl/poradnik",
     isPartOf: { "@id": "https://zielona-marka.pl/#website" },
@@ -50,7 +50,7 @@ export default function GuidesPage() {
     <section className="page-hero shell">
       <GuideBreadcrumbs />
       <span className="eyebrow"><i /> BLOG / ZIELONA MARKA</span>
-      <h1>Blog Zielonej Marki. <em>Wiedza przydatna w Twojej firmie.</em></h1>
+      <h1>Blog Zielona Marka. <em>Wiedza przydatna w Twojej firmie.</em></h1>
       <p>Strony WWW, widoczność w Google, projektowanie materiałów do druku i proste sposoby usprawniania pracy. Sprawdzone rozwiązania wyjaśnione zrozumiałym językiem.</p>
       <div className="hero-actions">
         <a className="button" href="#artykuly">Zobacz artykuły <span aria-hidden="true">↗</span></a>
@@ -69,7 +69,7 @@ export default function GuidesPage() {
     <section className="section shell zm-blog-service-links">
       <div className="section-head">
         <div><span className="section-no">OD INFORMACJI DO DZIAŁANIA</span><h2>Możemy też zająć się tym za Ciebie.</h2></div>
-        <p>Gdy artykuł wyjaśni problem, możesz przejść bezpośrednio do właściwej usługi Zielonej Marki.</p>
+        <p>Gdy artykuł wyjaśni problem, możesz przejść bezpośrednio do właściwej usługi marki Zielona Marka.</p>
       </div>
       <div className="zm-blog-service-grid">
         <Link href="/oferta#kalkulator-pelnego-kosztu"><span>01 / STRONY WWW</span><h3>Wyceń stronę internetową</h3><p>Sprawdź koszty wykonania, domeny, serwera i opieki.</p><b>Sprawdź kalkulator ↗</b></Link>

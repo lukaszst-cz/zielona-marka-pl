@@ -68,7 +68,7 @@ export default function LocalWebsitesHubPage() {
     <section className="section shell"><div className="section-head"><div><span className="section-no">DLA MIKROFIRM</span><h2>Prosta wizytówka internetowa od 899 zł netto — 3 sekcje i materiały klienta.</h2></div><p>Na początek może wystarczyć jedna przejrzysta strona z ofertą i kontaktem. Domena, hosting i opcjonalna opieka są rozliczane osobno.</p></div><Link className="button" href="/oferta#kalkulator-pelnego-kosztu">Sprawdź pełny koszt strony <span>↗</span></Link></section>
     <section className="section shell local-related" id="lokalizacje">
       <div><span className="section-no">OBSZAR DZIAŁANIA</span><h2>Wybierz miasto lub dzielnicę.</h2></div>
-      <nav aria-label="Lokalizacje obsługiwane przez Zieloną Markę">{areas.map(([name, href, copy]) => <Link key={href} href={href}><span><b>{name}</b><small>{copy}</small></span><span>↗</span></Link>)}</nav>
+      <nav aria-label="Lokalizacje obsługiwane przez markę Zielona Marka">{areas.map(([name, href, copy]) => <Link key={href} href={href}><span><b>{name}</b><small>{copy}</small></span><span>↗</span></Link>)}</nav>
     </section>
 
     <section className="section shell local-city-process">

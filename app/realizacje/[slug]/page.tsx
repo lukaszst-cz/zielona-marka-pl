@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const project = concepts[slug as Slug];
   if (!project) return {};
   const description = `${project.headline} Zobacz koncepcję strony, drogę klienta i przykładowe zaplecze procesowe dla branży ${project.category.toLowerCase()}.`;
-  return { alternates: {canonical: `/realizacje/${slug}`}, title: `${project.name} | projekt koncepcyjny`, description, openGraph: { title: `${project.name} | projekt koncepcyjny Zielonej Marki`, description, images: [{ url: project.image, alt: `Koncepcja marki ${project.name}` }] }, twitter: { card: "summary_large_image", title: project.name, description, images: [project.image] } };
+  return { alternates: {canonical: `/realizacje/${slug}`}, title: `${project.name} | projekt koncepcyjny`, description, openGraph: { title: `${project.name} | projekt koncepcyjny marki Zielona Marka`, description, images: [{ url: project.image, alt: `Koncepcja marki ${project.name}` }] }, twitter: { card: "summary_large_image", title: project.name, description, images: [project.image] } };
 }
 
 export default async function ConceptPage({ params }: { params: Promise<{ slug: string }> }) {

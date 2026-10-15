@@ -8,7 +8,7 @@ export const metadata: Metadata = {
  title: "Standard kontroli jakości DTP i Prepress",
  description: "Szczegółowa lista kontroli przed drukiem: PDF/X, spady, TrimBox, BleedBox, ICC, CMYK, overprint, obrazy, proofy, kody i introligatornia.",
  alternates:{canonical:"/standard-dtp"},
-  openGraph: { type: "website", url: "/standard-dtp", title: "Standard kontroli jakości DTP i prepress | Zielona Marka", description: "Szczegółowa lista kontroli przed drukiem: PDF/X, spady, TrimBox, BleedBox, ICC, CMYK, overprint, obrazy, proofy, kody i introligatornia.", images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Standard DTP Zielonej Marki – przygotowanie plików do druku" }] },
+  openGraph: { type: "website", url: "/standard-dtp", title: "Standard kontroli jakości DTP i prepress | Zielona Marka", description: "Szczegółowa lista kontroli przed drukiem: PDF/X, spady, TrimBox, BleedBox, ICC, CMYK, overprint, obrazy, proofy, kody i introligatornia.", images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Standard DTP marki Zielona Marka – przygotowanie plików do druku" }] },
   twitter: { card: "summary_large_image", title: "Standard kontroli jakości DTP i prepress | Zielona Marka", description: "Szczegółowa lista kontroli przed drukiem: PDF/X, spady, TrimBox, BleedBox, ICC, CMYK, overprint, obrazy, proofy, kody i introligatornia.", images: ["/og.jpg"] },
 };
 const checks=[
@@ -29,7 +29,7 @@ export default function DtpStandardPage() {
   return <><SiteHeader /><main className="zm-public qa-page">
     <section className="page-hero shell qa-hero" aria-labelledby="qa-dtp-heading">
       <nav className="qa-crumbs" aria-label="Ścieżka nawigacji"><Link href="/">Strona główna</Link><span aria-hidden="true">/</span><Link href="/standardy-jakosci">Jakość i normy</Link><span aria-hidden="true">/</span><span>DTP / Prepress</span></nav>
-      <span className="eyebrow">STANDARDY ZIELONEJ MARKI / ZM-DTP-QA-001</span>
+      <span className="eyebrow">STANDARDY / ZIELONA MARKA / ZM-DTP-QA-001</span>
       <h1 id="qa-dtp-heading">Przed drukiem <em>liczy się każdy szczegół.</em></h1>
       <p>QA (ang. Quality Assurance) oznacza zapewnianie jakości — czyli zaplanowane sprawdzenie materiału przed oddaniem do drukarni. W praktyce weryfikujemy treść, wymiary, zdjęcia, kolory i poprawność pliku PDF, aby wychwycić błędy przed drukiem.</p>
       <div className="hero-actions qa-hero-actions">

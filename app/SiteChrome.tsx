@@ -104,7 +104,7 @@ export function SiteFooter({ english = false }: { english?: boolean }) {
       <a href={socialLinks.facebook} target="_blank" rel="noopener noreferrer"><Image src="/podpis-email/icon-facebook.png" width={22} height={22} alt="" unoptimized />Facebook <span aria-hidden="true">↗</span></a>
       <a href={socialLinks.instagram} target="_blank" rel="noopener noreferrer"><Image src="/podpis-email/icon-instagram.png" width={22} height={22} alt="" unoptimized />Instagram <span aria-hidden="true">↗</span></a>
       <Link href="/" aria-label="Zielona Marka — strona internetowa"><Image src="/podpis-email/icon-www.png" width={22} height={22} alt="" unoptimized />WWW</Link>
-      <a href="https://www.google.com/maps/search/?api=1&amp;query=Zielona%20Marka%20strony%20WWW%20Warszawa" target="_blank" rel="noopener noreferrer" aria-label="Wyszukaj Zieloną Markę w Mapach Google"><Image src="/podpis-email/icon-google.png" width={22} height={22} alt="" unoptimized />Mapy Google <span aria-hidden="true">↗</span></a>
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=Zielona%20Marka%20strony%20WWW%20Warszawa" target="_blank" rel="noopener noreferrer" aria-label="Wyszukaj markę Zielona Marka w Mapach Google"><Image src="/podpis-email/icon-google.png" width={22} height={22} alt="" unoptimized />Mapy Google <span aria-hidden="true">↗</span></a>
       <a href={socialLinks.github} target="_blank" rel="noopener noreferrer"><Image src="/icon-github-zielona-marka.svg" width={22} height={22} alt="" unoptimized />GitHub <span aria-hidden="true">↗</span></a>
     </div></div>
     {!english && <div className="zm-footer-locations"><h2>Warszawa · Targówek i okolice</h2><div><Link href="/strony-internetowe">Wszystkie lokalizacje</Link>{[["Targówek", "targowek"], ["Warszawa", "warszawa"], ["Ząbki", "zabki"], ["Zielonka", "zielonka"], ["Kobyłka", "kobylka"], ["Wołomin", "wolomin"], ["Radzymin", "radzymin"], ["Białołęka", "bialoleka"]].map(([name, slug]) => <Link key={slug} href={`/strony-internetowe/${slug}`}>{name}</Link>)}<Link href="/strony-internetowe-marki">Marki</Link></div></div>}<div className="zm-footer-bottom"><small>© {new Date().getFullYear()} Zielona Marka · Łukasz Staniewicz</small><Link href="/polityka-prywatnosci">{english ? "Privacy policy (PL)" : "Polityka prywatności"}</Link><CookieSettingsLink english={english} /><Link href={english ? "/" : "/en"}>{english ? "Polski" : "English"}</Link></div>
@@ -112,7 +112,7 @@ export function SiteFooter({ english = false }: { english?: boolean }) {
 }
 
 export function QuickWhatsApp() {
-  return <aside className="zm-contact-dock" aria-label="Szybki kontakt z Zieloną Marką"><DemoAssistant /><a className="whatsapp-float" href="https://wa.me/48603806833?text=Dzień%20dobry%2C%20chcę%20porozmawiać%20o%20stronie%20dla%20mojej%20firmy." target="_blank" rel="noreferrer" aria-label="Napisz do Zielonej Marki na WhatsAppie">
+  return <aside className="zm-contact-dock" aria-label="Szybki kontakt z marką Zielona Marka"><DemoAssistant /><a className="whatsapp-float" href="https://wa.me/48603806833?text=Dzień%20dobry%2C%20chcę%20porozmawiać%20o%20stronie%20dla%20mojej%20firmy." target="_blank" rel="noreferrer" aria-label="Napisz do zespołu Zielona Marka na WhatsAppie">
     <span aria-hidden="true">◌</span><b>Napisz na WhatsApp</b><small>Szybka wiadomość</small><i aria-hidden="true">↗</i>
   </a></aside>;
 }

@@ -10,8 +10,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/praktyczne-narzedzia" },
   openGraph: {
     title: "Praktyczne narzędzia i aplikacje | Zielona Marka",
-    description: "Sprawdź bezpłatne narzędzia, demonstracje i kod projektów Zielonej Marki.",
-    images: [{ url: "/og.jpg", alt: "Praktyczne narzędzia i aplikacje Zielonej Marki" }],
+    description: "Sprawdź bezpłatne narzędzia, demonstracje i kod projektów marki Zielona Marka.",
+    images: [{ url: "/og.jpg", alt: "Praktyczne narzędzia i aplikacje marki Zielona Marka" }],
   },
 };
 
@@ -35,7 +35,7 @@ export default function PracticalToolsPage() {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: "Praktyczne narzędzia i aplikacje Zielonej Marki",
+    name: "Praktyczne narzędzia i aplikacje marki Zielona Marka",
     url: "https://zielona-marka.pl/praktyczne-narzedzia",
     numberOfItems: availableTools.length,
     itemListElement: availableTools.map((tool, index) => ({

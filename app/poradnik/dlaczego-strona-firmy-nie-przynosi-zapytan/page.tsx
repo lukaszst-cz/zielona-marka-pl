@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "Dlaczego strona nie zdobywa zapytań?",
   description: "Praktyczna lista siedmiu powodów, przez które strona firmy usługowej nie pozyskuje zapytań, oraz kolejność poprawek.",
   alternates: { canonical: "/poradnik/dlaczego-strona-firmy-nie-przynosi-zapytan" },
-  openGraph: { type: "article", title: "Dlaczego strona firmy nie przynosi zapytań?", description: "Siedem przyczyn i praktyczna kolejność poprawek.", url: "/poradnik/dlaczego-strona-firmy-nie-przynosi-zapytan", publishedTime: "2026-09-30", modifiedTime: "2026-09-30", images: [{ url: "/og-dlaczego-strona-nie-przynosi-zapytan.png", width: 1200, height: 630, alt: "Dlaczego strona firmy nie przynosi zapytań, poradnik Zielonej Marki" }] },
+  openGraph: { type: "article", title: "Dlaczego strona firmy nie przynosi zapytań?", description: "Siedem przyczyn i praktyczna kolejność poprawek.", url: "/poradnik/dlaczego-strona-firmy-nie-przynosi-zapytan", publishedTime: "2026-09-30", modifiedTime: "2026-09-30", images: [{ url: "/og-dlaczego-strona-nie-przynosi-zapytan.png", width: 1200, height: 630, alt: "Dlaczego strona firmy nie przynosi zapytań, poradnik marki Zielona Marka" }] },
   twitter: { card: "summary_large_image", images: ["/og-dlaczego-strona-nie-przynosi-zapytan.png"] },
 };
 

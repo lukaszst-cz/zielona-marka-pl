@@ -24,7 +24,7 @@ export default function DomSite() {
       <section className="dom-list" id="lokale"><header><div><span>02 / DOSTĘPNE LOKALE</span><h2>Wybierz swój dom.</h2></div></header><DomAvailabilityDemo /></section>
       <section className="dom-standard" id="standard"><div className="dom-blueprint" aria-hidden="true"><i/><i/><i/><b>A.01</b><span>61,8 M²</span></div><div><span>03 / STANDARD</span><h2>Konkrety, które budują zaufanie.</h2><ul><li>pompa ciepła i ogrzewanie podłogowe</li><li>duże przeszklenia i prywatny ogród</li><li>dwa miejsca postojowe</li><li>przygotowanie pod fotowoltaikę</li></ul></div></section>
       <section className="dom-contact" id="kontakt"><span>POROZMAWIAJMY O TWOIM DOMU</span><h2>Zapytaj o dostępność, cenę i harmonogram.</h2><div><a href="tel:+48450458466">+48 450 458 466 ↗</a><a href="/#kontakt">Wyślij zapytanie ↗</a></div><small>Projekt demonstracyjny. Lokale i ceny są przykładowe.</small></section>
-      <footer className="dom-footer"><a className="dom-brand" href="/"><i>DD</i><span>DOM <b>DOBRY</b></span></a><p>Projekt koncepcyjny Zielonej Marki.</p><a href="/demo/dom">Zobacz panel sprzedaży ↗</a></footer>
+      <footer className="dom-footer"><a className="dom-brand" href="/"><i>DD</i><span>DOM <b>DOBRY</b></span></a><p>Projekt koncepcyjny marki Zielona Marka.</p><a href="/demo/dom">Zobacz panel sprzedaży ↗</a></footer>
     </main>
   );
 }
