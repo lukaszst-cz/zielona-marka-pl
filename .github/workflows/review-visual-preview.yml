@@ -2,7 +2,7 @@ name: Review branch visual QA
 
 on:
   push:
-    branches: [review/premium-clarity-a-b-c-20261015]
+    branches: [review/premium-clarity-a-b-c-20261015, release/blog-unification-20261015]
   workflow_dispatch:
 
 permissions:
@@ -61,7 +61,18 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: zm-pr41-visual-preview
-          path: browser-qa-artifacts/
+          name: zm-review-visual-preview
+          path: |
+            browser-qa-artifacts/report.json
+            browser-qa-artifacts/desktop-blog.png
+            browser-qa-artifacts/desktop-offer.png
+            browser-qa-artifacts/mobile-blog.png
+            browser-qa-artifacts/mobile-offer.png
+            browser-qa-artifacts/compact-blog.png
+            browser-qa-artifacts/compact-offer.png
+            browser-qa-artifacts/tablet-blog.png
+            browser-qa-artifacts/tablet-offer.png
+            browser-qa-artifacts/laptop-blog.png
+            browser-qa-artifacts/laptop-offer.png
           retention-days: 14
           if-no-files-found: warn
