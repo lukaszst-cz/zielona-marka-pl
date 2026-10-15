@@ -734,3 +734,45 @@ test("DTP wizard keeps step controls inactive until React handlers are ready",as
   assert.match(code,/data-ready=\{hydrated \? "true" : "false"\}/);
   assert.match(code,/stepNames\.map\(\(name, index\) => <button type="button" key=\{name\} disabled=\{!hydrated\}/);
 });
+
+test("consent-gated analytics stays protected in browser QA", async () => {
+  const qa = await readFile(new URL("../tests/live-browser-qa.mjs", import.meta.url), "utf8");
+  assert.ok(qa.includes("analyticsRequestsWithoutConsent"));
+  assert.ok(qa.includes("no analytics requests without consent"));
+  assert.ok(qa.includes("privacyProtections.blockedCloudflareAnalytics"));
+  const response = await fetchPage("/");
+  const csp = response.headers.get("content-security-policy") || "";
+  const scriptDirective = csp.split(";").find(item => item.trim().startsWith("script-src ")) || "";
+  assert.ok(scriptDirective.includes("www.googletagmanager.com"));
+  assert.ok(!scriptDirective.includes("static.cloudflareinsights.com"));
+});
+
+test("failed client navigation has a usable recovery screen and asset health guard", async () => {
+  const fallback = await readFile(new URL("../app/error.tsx", import.meta.url), "utf8");
+  assert.ok(fallback.includes("window.location.reload()"));
+  assert.ok(fallback.includes("onClick={reset}"));
+  assert.ok(fallback.includes("kontakt@zielona-marka.pl"));
+  const browserQA = await readFile(new URL("../tests/live-browser-qa.mjs", import.meta.url), "utf8");
+  assert.ok(browserQA.includes("failedJsChunks"));
+  assert.ok(browserQA.includes("JS asset failures recover after a fresh navigation"));
+});
+
+test("public Chromium QA also runs nightly without new commits", async () => {
+  const workflow = await readFile(new URL("../.github/workflows/live-browser-qa.yml", import.meta.url), "utf8");
+  assert.ok(workflow.includes("schedule:"));
+  assert.ok(workflow.includes('cron: "30 4 * * *"'));
+  assert.ok(workflow.includes("github.event_name == 'schedule'"));
+  assert.ok(workflow.includes("retention-days: 7"));
+});
+
+test("GA4 disable flag matches the consent-gated measurement ID", async () => {
+  const [layout, consent] = await Promise.all([
+    readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/CookieConsent.tsx", import.meta.url), "utf8"),
+  ]);
+  assert.match(consent, /const MEASUREMENT_ID = "G-CYFQ326JRF"/);
+  assert.match(layout, /ga-disable-G-CYFQ326JRF.*=true/);
+  assert.match(consent, /`ga-disable-\$\{MEASUREMENT_ID\}`\] = false/);
+  assert.match(consent, /`ga-disable-\$\{MEASUREMENT_ID\}`\] = true/);
+  assert.ok(consent.includes("localStorage.getItem(STORAGE_KEY) !== \"accepted\""));
+});
