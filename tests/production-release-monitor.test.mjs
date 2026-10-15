@@ -10,7 +10,7 @@ test("checks exact public UI release markers instead of just HTTP 200", () => {
 });
 
 test("requires current shared UI rules in public CSS", () => {
-  assert.equal(missingUiStyles("--zm-ui-card .care-plans .zm-dtp-prices .local-related nav a .zm-home-slide[hidden] .zm-home-carousel-controls .zm-offer-browser .zmh-contact-preview-message .zmh-assembly-board--premium .zmh-preview-site-copy fern-frond.svg .zv5-desktop .zv5-preview-stage .zm-public.zm-concept .page-hero.zm-concept-hero").length, 0);
+  assert.equal(missingUiStyles("--zm-ui-card .care-plans .zm-dtp-prices .local-related nav a .zm-home-slide[hidden] .zm-home-carousel-controls .zm-offer-browser .zmh-contact-preview-message .zmh-assembly-board--premium .zmh-preview-site-copy fern-frond.svg .zv5-desktop .zv5-preview-stage .zm-public.zm-concept .page-hero.zm-concept-hero .zmh-cinema .zmh-website .zmh-cinema .zmh-flow-item").length, 0);
   assert.ok(missingUiStyles("body { background: green }").includes("--zm-ui-card"));
 });
 
@@ -18,7 +18,7 @@ test("fully simulated latest release passes without touching production", async 
   const htmlByRoute = new Map(releasePages.map(({ path, markers }) => [path,
     '<html><head><link rel="stylesheet" href="/_next/static/a234.css"></head><body>' + markers.join(" ") + "</body></html>",
   ]));
-  const css = "--zm-ui-card:rgba(5,30,19,.32);.care-plans{}.zm-dtp-prices{}.local-related nav a{}.zm-home-slide[hidden]{display:none}.zm-home-carousel-controls{}.zm-offer-browser{}.zmh-contact-preview-message{}.zmh-assembly-board--premium{}.zmh-preview-site-copy{}.fern-frond.svg{}.zv5-desktop{}.zv5-preview-stage{}.zm-public.zm-concept .page-hero.zm-concept-hero{}";
+  const css = "--zm-ui-card:rgba(5,30,19,.32);.care-plans{}.zm-dtp-prices{}.local-related nav a{}.zm-home-slide[hidden]{display:none}.zm-home-carousel-controls{}.zm-offer-browser{}.zmh-contact-preview-message{}.zmh-assembly-board--premium{}.zmh-preview-site-copy{}.fern-frond.svg{}.zv5-desktop{}.zv5-preview-stage{}.zm-public.zm-concept .page-hero.zm-concept-hero{}.zmh-cinema .zmh-website{}.zmh-cinema .zmh-flow-item{}";
   const request = async (url) => {
     const path = new URL(url).pathname;
     if (path === "/api/inquiries") return new Response("Uzupełnij firmę, rodzaj projektu i opis (10–4000 znaków).", { status: 400 });
