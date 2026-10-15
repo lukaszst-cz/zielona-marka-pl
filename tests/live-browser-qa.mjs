@@ -94,6 +94,7 @@ try {
       });
       await check("Desktop: DTP wizard changes steps and quote is displayed", async () => {
         await page.goto(base + "/dtp", { waitUntil: "networkidle", timeout: 45000 });
+        await page.locator('.zm-dtp-builder[data-ready="true"]').waitFor({ state: "visible", timeout: 15000 });
         const steps = page.locator(".zm-dtp-stepper button");
         assert.equal(await steps.count(), 4);
         const waitForWizardStep = async (expected) => {

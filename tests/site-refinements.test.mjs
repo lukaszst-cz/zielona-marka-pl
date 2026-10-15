@@ -728,3 +728,9 @@ test("quote configuration is transferred without personal details in URLs",async
   assert.match(contact,/ref=\{messageRef\}/);
 });
 
+
+test("DTP wizard keeps step controls inactive until React handlers are ready",async()=>{
+  const code=await readFile(new URL("../app/DtpQuoteBuilder.jsx",import.meta.url),"utf8");
+  assert.match(code,/data-ready=\{hydrated \? "true" : "false"\}/);
+  assert.match(code,/stepNames\.map\(\(name, index\) => <button type="button" key=\{name\} disabled=\{!hydrated\}/);
+});

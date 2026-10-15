@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { trackAnalyticsEvent } from "./CookieConsent";
 import { saveQuoteTransfer } from "./QuoteTransfer";
 import { asMoney, dtpFormats, dtpKinds, periodOptions, priceDtp } from "./dtp-pricing.mjs";
@@ -18,6 +18,8 @@ const clamp = (value, min, max) => Math.min(max, Math.max(min, Number.isFinite(v
 export default function DtpQuoteBuilder() {
   const [state, setState] = useState(defaults);
   const [step, setStep] = useState(0);
+  const [hydrated, setHydrated] = useState(false);
+  useEffect(() => { setHydrated(true); }, []);
   const quote = useMemo(() => priceDtp(state), [state]);
   const update = (key, value) => setState((prev) => ({ ...prev, [key]: value }));
   function updateKind(id) {
@@ -64,9 +66,9 @@ export default function DtpQuoteBuilder() {
       {options.map(([value, name]) => <option key={value} value={value}>{name}</option>)}
     </select>{hint && <small>{hint}</small>}</div>;
 
-  return <div className="zm-dtp-builder" id="kalkulator-dtp">
+  return <div className="zm-dtp-builder" id="kalkulator-dtp" data-ready={hydrated ? "true" : "false"}>
     <div className="zm-dtp-stepper" aria-label="Etapy konfiguratora DTP">
-      {stepNames.map((name, index) => <button type="button" key={name} onClick={() => navigate(index)}
+      {stepNames.map((name, index) => <button type="button" key={name} disabled={!hydrated} onClick={() => navigate(index)}
         className={index === step ? "selected" : ""} aria-current={index === step ? "step" : undefined}>
         <span>{String(index + 1).padStart(2, "0")}</span>{name}
       </button>)}
@@ -150,8 +152,8 @@ export default function DtpQuoteBuilder() {
           <p className="zm-dtp-hint">Orientacyjna wycena netto prac DTP. Bez kosztów druku, dostawy, licencji zdjęć i nieuzgodnionych poprawek. Zlecenie powstaje dopiero po indywidualnym potwierdzeniu zakresu.</p>
         </>}
         <div className="zm-dtp-actions">
-          {step > 0 && <button type="button" className="zm-dtp-secondary" onClick={() => navigate(step - 1)}>← Wstecz</button>}
-          {step < 3 ? <button type="button" className="button" onClick={() => navigate(step + 1)}>Dalej <span aria-hidden="true">↗</span></button>
+          {step > 0 && <button type="button" className="zm-dtp-secondary" disabled={!hydrated} onClick={() => navigate(step - 1)}>← Wstecz</button>}
+          {step < 3 ? <button type="button" className="button" disabled={!hydrated} onClick={() => navigate(step + 1)}>Dalej <span aria-hidden="true">↗</span></button>
             : <a className="button" href={contactUrl} onClick={() => { saveQuoteTransfer("DTP: " + quote.kind.name, summary); trackAnalyticsEvent("dtp_quote_to_contact", { product: state.kind, editions: quote.count }); }}>Wyślij konfigurację do wyceny ↗</a>}
         </div>
       </div>
