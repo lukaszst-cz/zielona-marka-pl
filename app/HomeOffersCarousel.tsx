@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Link from "./SafeLink";
 
 const slides = [
@@ -105,6 +105,7 @@ function SlideArtwork({ kind }: { kind: Artwork }) {
 
 export default function HomeOffersCarousel() {
   const [active, setActive] = useState(2);
+  const swipeStart = useRef<{x:number,y:number}|null>(null);
   const show = (step: number) => setActive(current => (current + step + slides.length) % slides.length);
 
   return (
@@ -116,7 +117,25 @@ export default function HomeOffersCarousel() {
         </div>
         <p>Mini audyt, Mapa Szans lub indywidualna koncepcja wyglądu. Wybierz pierwszy krok, zobacz przykład i zdecyduj bez presji.</p>
       </header>
-      <div className="zm-home-carousel" role="region" aria-roledescription="karuzela" aria-label="Trzy bezpłatne propozycje dla firmy">
+      <div className="zm-home-carousel" role="region" aria-roledescription="karuzela" aria-label="Trzy bezpłatne propozycje dla firmy"
+        onTouchStart={event => {
+          const touch = event.touches[0];
+          if (touch) swipeStart.current = {x: touch.clientX, y: touch.clientY};
+        }}
+        onTouchEnd={event => {
+          const start = swipeStart.current;
+          swipeStart.current = null;
+          const touch = event.changedTouches[0];
+          if (!start || !touch) return;
+          const deltaX = touch.clientX - start.x;
+          const deltaY = touch.clientY - start.y;
+          // Do not intercept a user's normal vertical page scroll.
+          if (Math.abs(deltaX) > 60 && Math.abs(deltaX) > Math.abs(deltaY) * 1.3) {
+            show(deltaX < 0 ? 1 : -1);
+          }
+        }}
+        onTouchCancel={() => { swipeStart.current = null; }}
+      >
         {slides.map((slide, index) => (
           <article className="zm-home-slide" hidden={index !== active} key={slide.kind} aria-roledescription="slajd" aria-label={slide.name}>
             <div className="zm-home-slide-copy">
