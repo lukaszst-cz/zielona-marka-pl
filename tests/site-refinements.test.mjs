@@ -971,3 +971,13 @@ test("organic homepage keeps the original content and confines the stream to the
   assert.match(theme,/\.zm-home-slide:not\(\[hidden\]\)/);
 });
 
+
+test("botanical ornaments stay inside homepage sections at mobile and desktop widths", async () => {
+  const css = await readFile(new URL("../app/home-nature-finish.css", import.meta.url), "utf8");
+  assert.doesNotMatch(css, /\.zm-home-offers::after\s*\{[^}]*right:\s*-/s, "Offer fern must not extend the viewport");
+  assert.doesNotMatch(css, /\.zmh-contact::before\s*\{[^}]*left:\s*-/s, "Contact fern must not extend the viewport");
+  assert.match(css, /\.zm-home-offers::after\s*\{[^}]*right:36px/s, "Mobile fern must remain in bounds even when rotated");
+  assert.match(css, /\.zmh-contact::before\s*\{[^}]*left:48px/s, "Mobile contact fern must remain in bounds even when rotated");
+  assert.match(css, /right:clamp\(68px,7vw,110px\)/);
+  assert.match(css, /left:clamp\(70px,7vw,120px\)/);
+});
