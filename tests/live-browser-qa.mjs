@@ -42,6 +42,13 @@ try {
     });
     const page = await context.newPage();
     const analyticsRequestsWithoutConsent = [];
+    const failedJsChunks = [];
+    page.on("response", response => {
+      const url = new URL(response.url());
+      if (url.pathname.startsWith("/_next/static/chunks/") && response.status() >= 400) {
+        failedJsChunks.push({ path: url.pathname, status: response.status() });
+      }
+    });
     page.on("request", request => {
       const address = new URL(request.url());
       if ((address.hostname === "www.googletagmanager.com" && address.pathname.startsWith("/gtag/js"))
@@ -227,6 +234,16 @@ try {
       } finally {
         await page.unroute(pattern);
       }
+    });
+    await check(size.name + ": JS asset failures recover after a fresh navigation", async () => {
+      if (!failedJsChunks.length) return { missingChunks: 0 };
+      const firstCount = failedJsChunks.length;
+      const response = await page.goto(base + "/dtp", { waitUntil: "networkidle", timeout: 45000 });
+      assert.ok(response?.ok(), "Cannot reload after a chunk error");
+      await page.locator("main").first().waitFor({ state: "visible", timeout: 15000 });
+      await page.waitForTimeout(500);
+      assert.equal(failedJsChunks.length, firstCount, "Missing JS chunk persists after a full reload: " + JSON.stringify(failedJsChunks.slice(-4)));
+      return { missingChunksOnOldNavigation: firstCount, recovered: true };
     });
     await check(size.name + ": no analytics requests without consent", async () => {
       assert.equal(await page.evaluate(() => localStorage.getItem("zm_analytics_consent")), "denied");
