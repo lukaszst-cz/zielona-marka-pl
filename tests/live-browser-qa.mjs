@@ -162,7 +162,7 @@ try {
         return metrics;
       });
     }
-    if (["desktop", "mobile"].includes(size.name)) {
+    if (["desktop", "mobile", "compact"].includes(size.name)) {
       await check(size.name + ": Blog shares public layout with Offer", async () => {
         const blogResponse = await page.goto(base + "/poradnik", { waitUntil: "networkidle", timeout: 45000 });
         assert.ok(blogResponse?.ok(), "Blog did not load");
@@ -204,6 +204,8 @@ try {
           "Blog and Offer hero container widths differ: " + blog.heroWidth + " vs " + offerWidth);
         return { blogCards: blog.cards, columns: blog.columns, sharedHeroWidth: Math.round(blog.heroWidth) };
       });
+    }
+    if (["desktop", "mobile"].includes(size.name)) {
       await check(size.name + ": ZM Studio layout previews", async () => {
         await page.goto(base + "/projektuj-strone", { waitUntil: "networkidle", timeout: 45000 });
         const preview = page.locator(".zm-creator-preview-frame");
