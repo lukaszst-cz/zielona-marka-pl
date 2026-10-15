@@ -28,3 +28,14 @@ test("fern story styles are responsive and respect reduced motion", async () => 
   assert.ok(styles.includes("@media (prefers-reduced-motion:reduce)"));
   assert.ok(!/https?:\/\//.test(styles), "Do not add external image requests");
 });
+
+test("rotated homepage fern ornaments must not protrude outside page bounds", async () => {
+  const nature = await read("app/home-nature-finish.css");
+  const cinema = await read("app/home-cinema-polish.css");
+  assert.doesNotMatch(nature, /\.zm-home-offers::after\s*\{[^}]*right:\s*-/s);
+  assert.doesNotMatch(nature, /\.zmh-contact::before\s*\{[^}]*left:\s*-/s);
+  assert.doesNotMatch(cinema, /\.zmh-cinema::before\s*\{[^}]*right:\s*-/s);
+  assert.match(nature, /right:36px;top:-65px/);
+  assert.match(nature, /left:48px;width:130px/);
+  assert.match(cinema, /right:40px;top:24px/);
+});
