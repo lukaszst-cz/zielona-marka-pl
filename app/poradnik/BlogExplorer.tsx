@@ -6,7 +6,18 @@ import { blogArticles, blogCategories, categoryName } from "./blog-data";
 import type { BlogCategory } from "./blog-data";
 
 function clean(value: string) {
-  return value.toLocaleLowerCase("pl-PL").normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+  return value.toLocaleLowerCase("pl-PL").replace(/ł/g, "l").normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+}
+
+function matchesSearch(text: string, search: string) {
+  const content = clean(text);
+  const terms = clean(search).split(/[\s,.;:!?/]+/).filter(Boolean);
+  // A simple suffix tolerance handles common Polish queries such as
+  // "gazetka" → "gazetki" and "koszt strony" → "koszt strona".
+  return terms.every((term) =>
+    content.includes(term) ||
+    (term.length >= 5 && /[aeiy]$/.test(term) && content.includes(term.slice(0, -1)))
+  );
 }
 
 function publishedLabel(date: string) {
@@ -17,10 +28,9 @@ export default function BlogExplorer() {
   const [category, setCategory] = useState<"all" | BlogCategory>("all");
   const [search, setSearch] = useState("");
   const articles = useMemo(() => {
-    const query = clean(search);
     return blogArticles.filter((article) =>
       (category === "all" || article.category === category) &&
-      (!query || clean([article.title, article.summary, categoryName(article.category)].join(" ")).includes(query))
+      matchesSearch([article.title, article.summary, categoryName(article.category)].join(" "), search)
     );
   }, [category, search]);
 
