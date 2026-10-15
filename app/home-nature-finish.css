@@ -31,7 +31,9 @@ html body .zm-v5 .zmh-assembly.zmh-media-ready{
   position:relative;isolation:isolate;
   margin-top:0!important;
   border-top:0!important;
-  background:transparent!important;
+  background:
+    linear-gradient(180deg,rgba(9,41,30,.98) 0%,rgba(6,35,25,.85) 20%,rgba(9,47,31,.83) 64%,rgba(8,40,29,.93) 100%),
+    url('/zielona-marka-hero-paprocie.webp') center 48% / cover no-repeat!important;
   -webkit-mask-image:none!important;mask-image:none!important;
 }
 html body .zm-v5 .zmh-assembly::before{
