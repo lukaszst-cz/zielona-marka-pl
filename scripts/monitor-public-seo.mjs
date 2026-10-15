@@ -1,0 +1,54 @@
+import { writeFile, mkdir } from "node:fs/promises";
+
+const base = "https://zielona-marka.pl";
+const routes = ["/", "/oferta", "/dtp", "/strony-internetowe", "/strony-internetowe/warszawa", "/kontakt"];
+const failures = [];
+const report = { checkedAt: new Date().toISOString(), base, routes: [], sitemap: {}, robots: {} };
+async function request(path) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 18000);
+  try {
+    const response = await fetch(base + path, { signal: controller.signal, headers: { "User-Agent": "ZielonaMarka-TechnicalSeoQA/1.0" }, redirect: "follow" });
+    return { response, body: await response.text() };
+  } finally { clearTimeout(timeout); }
+}
+function fail(message) { failures.push(message); console.error("FAIL: " + message); }
+function canonical(html) {
+  const tag = html.match(/<link\b[^>]*\brel=["']canonical["'][^>]*>/i)?.[0]
+    ?? html.match(/<link\b[^>]*\bhref=["'][^"']+["'][^>]*\brel=["']canonical["'][^>]*>/i)?.[0];
+  return tag?.match(/\bhref=["']([^"']+)["']/i)?.[1] ?? null;
+}
+try {
+  const { response, body } = await request("/robots.txt");
+  report.robots = { status: response.status, sitemapDeclared: /sitemap:\s*https:\/\/zielona-marka\.pl\/sitemap\.xml/i.test(body), disallowRoot: /^disallow:\s*\/\s*$/im.test(body) };
+  if (!response.ok || !report.robots.sitemapDeclared || report.robots.disallowRoot) fail("robots.txt missing, incorrect sitemap declaration, or root crawling blocked");
+} catch (error) { fail("robots.txt request failed: " + error.message); }
+let sitemapUrls = [];
+try {
+  const { response, body } = await request("/sitemap.xml");
+  sitemapUrls = [...body.matchAll(/<loc>\s*(.*?)\s*<\/loc>/gi)].map(m => m[1].replace(/&amp;/g, "&"));
+  report.sitemap = { status: response.status, count: sitemapUrls.length, foreignHosts: sitemapUrls.filter(u => { try { return new URL(u).origin !== base; } catch { return true; } }) };
+  if (!response.ok || !sitemapUrls.length || report.sitemap.foreignHosts.length) fail("sitemap is unavailable, empty or contains foreign/invalid URL origins");
+} catch (error) { fail("sitemap.xml request failed: " + error.message); }
+for (const route of routes) {
+  try {
+    const { response, body } = await request(route);
+    const expected = base + (route === "/" ? "/" : route);
+    const actual = canonical(body);
+    const noindex = /<meta\b[^>]*name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(body)
+      || /<meta\b[^>]*content=["'][^"']*noindex[^"']*["'][^>]*name=["']robots["']/i.test(body)
+      || /\bnoindex\b/i.test(response.headers.get("x-robots-tag") ?? "");
+    const foundInSitemap = sitemapUrls.some(url => url.replace(/\/$/, "") === expected.replace(/\/$/, ""));
+    const item = { path: route, status: response.status, finalUrl: response.url, canonical: actual, noindex, foundInSitemap };
+    report.routes.push(item);
+    if (!response.ok || !response.headers.get("content-type")?.includes("text/html")) fail(route + " is not an HTTP 2xx HTML response");
+    if (noindex) fail(route + " is marked noindex");
+    if (!actual || new URL(actual, base).href.replace(/\/$/, "") !== expected.replace(/\/$/, "")) fail(route + " canonical missing or not self-referencing: " + actual);
+    if (!foundInSitemap) fail(route + " absent from sitemap");
+  } catch (error) { fail(route + " inspection failed: " + error.message); }
+}
+report.failures = failures;
+await mkdir("seo-monitor-artifacts", { recursive: true });
+await writeFile("seo-monitor-artifacts/report.json", JSON.stringify(report, null, 2) + "\n");
+console.log(JSON.stringify({ routesChecked: report.routes.length, sitemapURLs: sitemapUrls.length, failures }, null, 2));
+if (failures.length) process.exitCode = 1;
