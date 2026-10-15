@@ -67,11 +67,11 @@ for (const route of routes) {
 }
 // Check every URL declared for indexing, not only the fixed priority sample.
 // Bound parallelism keeps the production crawl gentle and CI predictable.
-const monitored = new Set(report.routes.map(entry => entry.path.replace(/\\/$/, "") || "/"));
+const monitored = new Set(report.routes.map(entry => entry.path.replace(/[/]$/, "") || "/"));
 const additional = [...new Set(sitemapUrls)].filter(url => {
   try {
     const parsed = new URL(url);
-    return parsed.origin === base && !monitored.has(parsed.pathname.replace(/\\/$/, "") || "/");
+    return parsed.origin === base && !monitored.has(parsed.pathname.replace(/[/]$/, "") || "/");
   } catch { return false; }
 });
 report.additionalSitemapPages = [];
@@ -92,7 +92,7 @@ else {
         report.additionalSitemapPages.push({ url, status: response.status, canonical: actual, noindex });
         if (!response.ok || !response.headers.get("content-type")?.includes("text/html")) fail(url + " listed in sitemap but does not return HTML 2xx");
         if (noindex) fail(url + " listed in sitemap but marked noindex");
-        if (!actual || new URL(actual, base).href.replace(/\\/$/, "") !== url.replace(/\\/$/, "")) fail(url + " sitemap canonical mismatch: " + actual);
+        if (!actual || new URL(actual, base).href.replace(/[/]$/, "") !== url.replace(/[/]$/, "")) fail(url + " sitemap canonical mismatch: " + actual);
       } catch (error) { fail(url + " sitemap page inspection failed: " + error.message); }
     }
   }));
