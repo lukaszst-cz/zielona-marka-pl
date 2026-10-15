@@ -90,7 +90,7 @@ function SlideArtwork({ kind }: { kind: Artwork }) {
   return (
     <div className="zm-offer-art zm-offer-art--concept" aria-hidden="true">
       <div className="zm-offer-browser">
-        <div className="zm-offer-browser-nav"><b><span>✳</span> TWOJA FIRMA</b><span>Oferta　Realizacje　Kontakt</span><i>Porozmawiajmy ↗</i></div>
+        <div className="zm-offer-browser-nav"><b><span>✳</span> TWOJA FIRMA</b><span>Oferta · Realizacje · Kontakt</span><i>Porozmawiajmy ↗</i></div>
         <div className="zm-offer-browser-page">
           <div><small>PRZYKŁADOWA KONCEPCJA WWW</small><strong>Dobry pomysł.<br />Nowe możliwości.</strong><span>Strona, którą chce się poznawać.</span><i>Zobacz ofertę ↗</i></div>
           <div className="zm-offer-browser-photo" />
