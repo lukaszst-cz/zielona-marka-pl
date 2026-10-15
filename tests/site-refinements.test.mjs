@@ -110,6 +110,9 @@ test("v1.0.1 defers non-critical home media and caches hashed assets",async()=>{
   assert.match(refinements,/\.zmh-assembly\.zmh-media-ready\s*\{[^}]*background:\s*[^}]*stream-water-bottom\.webp/);
   assert.match(refinements,/\.zmh-scene-transition\s*\{[^}]*margin-top:\s*calc\(46px - var\(--zmh-dissolve-height\)\)/);
   assert.match(refinements,/\.zmh-scene-transition span\{display:none!important\}/);
+  assert.equal((refinements.match(/Subtle forest-to-stream dissolve/g) || []).length, 1, "Keep only one canonical transition block");
+  assert.doesNotMatch(refinements, /Approved visual treatment: no visible divider/, "Remove later CSS that overrides the dissolve");
+  assert.ok(refinements.lastIndexOf("Subtle forest-to-stream dissolve") > refinements.lastIndexOf("Mobile controls and secondary calls to action"), "Transition styles must follow legacy mobile overrides");
 });
 test("small mobile links and consent controls have finger-sized targets",async()=>{
   const css=await readFile(new URL("../app/site-refinements.css",import.meta.url),"utf8");
