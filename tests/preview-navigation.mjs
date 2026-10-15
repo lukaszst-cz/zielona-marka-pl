@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { mkdirSync, writeFileSync } from "node:fs";
 
 const { chromium } = await import(process.env.BROWSER_QA_PLAYWRIGHT_ENTRY || "playwright");
-const base = (process.env.BROWSER_QA_URL || "http://127.0.0.1:8788").replace(/\\/$/, "");
+const base = (process.env.BROWSER_QA_URL || "http://127.0.0.1:8788").replace(/\/$/, "");
 const paths = [
   "/", "/oferta", "/dtp", "/opieka-nad-strona", "/poradnik",
   "/poradnik/ile-kosztuje-projekt-gazetki",
