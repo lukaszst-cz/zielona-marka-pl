@@ -1,6 +1,6 @@
 /* The offer mega-menu uses restrained glass surfaces over the shared forest. */
 .zm-header .zm-nav-desktop .zm-offer-menu > .zm-mega-menu {
-  background: linear-gradient(135deg, rgba(3, 24, 16, .79), rgba(5, 30, 21, .66));
+  background: linear-gradient(135deg, rgba(3, 24, 16, .86), rgba(5, 30, 21, .73));
   border: 1px solid rgba(217, 239, 196, .37);
   border-radius: 12px;
   -webkit-backdrop-filter: blur(17px) saturate(112%);
@@ -13,7 +13,7 @@
 }
 
 .zm-header .zm-mega-group {
-  background: linear-gradient(140deg, rgba(226, 248, 220, .105), rgba(132, 174, 149, .055));
+  background: linear-gradient(140deg, rgba(226, 248, 220, .175), rgba(132, 174, 149, .125));
   border: 1px solid rgba(228, 244, 220, .26);
   border-radius: 9px;
   -webkit-backdrop-filter: blur(11px) saturate(110%);
@@ -23,7 +23,7 @@
 }
 
 .zm-header .zm-mega-group:is(:hover, :focus-within) {
-  background: linear-gradient(140deg, rgba(226, 248, 220, .16), rgba(132, 174, 149, .09));
+  background: linear-gradient(140deg, rgba(226, 248, 220, .23), rgba(132, 174, 149, .16));
   border-color: rgba(231, 247, 221, .46);
   box-shadow: inset 0 1px rgba(255, 255, 255, .09), 0 9px 23px rgba(0, 15, 9, .16);
 }
