@@ -423,7 +423,7 @@ test("główne strony ofertowe korzystają z jednolitego hero i kontenera", asyn
     "/oferta", "/dtp", "/kontakt", "/modernizacja-strony",
     "/opieka-nad-strona", "/maly-crm-dla-firm", "/praktyczne-narzedzia",
     "/projektuj-strone", "/bezplatna-koncepcja-strony", "/standard-dtp",
-    "/standard-jakosci", "/strony-internetowe", "/realizacje"
+    "/standard-jakosci", "/strony-internetowe", "/strony-internetowe/warszawa", "/realizacje"
   ]) {
     const response = await render(path);
     assert.equal(response.status, 200, path);
