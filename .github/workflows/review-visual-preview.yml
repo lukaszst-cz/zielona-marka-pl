@@ -54,6 +54,9 @@ jobs:
           BROWSER_QA_URL=http://127.0.0.1:8788 \
           BROWSER_QA_PLAYWRIGHT_ENTRY=/tmp/zm-review-browser/node_modules/playwright/index.mjs \
             node tests/accessibility-preview.mjs
+          BROWSER_QA_URL=http://127.0.0.1:8788 \
+          BROWSER_QA_PLAYWRIGHT_ENTRY=/tmp/zm-review-browser/node_modules/playwright/index.mjs \
+            node tests/preview-navigation.mjs
       - name: Upload previews and browser report
         if: always()
         uses: actions/upload-artifact@v4
