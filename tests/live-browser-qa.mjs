@@ -220,6 +220,7 @@ try {
         await form.locator('input[name="name"]').fill("Przykładowa osoba QA");
         await form.locator('input[name="email"]').fill("not-an-email");
         await form.locator('textarea[name="message"]').fill("Proszę o informację o stworzeniu strony firmowej.");
+        await form.locator('select[name="projectType"]').selectOption({ label: "Strona WWW szyta na miarę" });
         await form.locator('input[name="consent"]').check();
         await form.locator('button[type="submit"]').click();
         assert.equal(intercepted.length, 0, "Invalid email must not reach the mock endpoint");
