@@ -64,6 +64,9 @@ jobs:
           name: zm-review-visual-preview
           path: |
             browser-qa-artifacts/report.json
+            browser-qa-artifacts/desktop-home.png
+            browser-qa-artifacts/mobile-home.png
+            browser-qa-artifacts/compact-home.png
             browser-qa-artifacts/desktop-blog.png
             browser-qa-artifacts/desktop-offer.png
             browser-qa-artifacts/mobile-blog.png
