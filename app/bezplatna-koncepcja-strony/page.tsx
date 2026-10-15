@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import Link from "../SafeLink";
 import { QuickWhatsApp, SiteFooter, SiteHeader } from "../SiteChrome";
 import ConceptRequestForm from "./ConceptRequestForm";
+import { ConceptHeroPreview, ConceptTilePreview } from "./ConceptPreviews";
 import "./koncepcja.css";
+import "./concept-gallery.css";
 
 export const metadata: Metadata = {
   title: "Bezpłatna koncepcja strony, logo lub gazetki",
@@ -44,14 +46,8 @@ export default function FreeConceptPage() {
             <div className="hero-actions zm-concept-actions"><a className="button" href="#zgloszenie">Zamów bezpłatną koncepcję <span aria-hidden="true">↗</span></a><Link href="/projektuj-strone#zm-konfigurator" className="text-link">Samodzielnie stwórz podgląd WWW ↗</Link></div>
             <p className="zm-concept-calm">Jedna propozycja poglądowa · Bez podawania budżetu · Bez zobowiązań</p>
           </div>
-          <div className="zm-concept-visual" aria-label="Graficzna ilustracja propozycji odświeżenia wyglądu strony">
-            <div className="zm-concept-browser">
-              <div className="zm-concept-browser-top"><span>● ● ●</span><b>PRZYKŁADOWY KIERUNEK</b></div>
-              <div className="zm-concept-browser-content">
-                <div className="zm-concept-browser-nav"><span>✳ TWOJA FIRMA</span><small>Oferta &nbsp; O firmie &nbsp; Kontakt</small></div>
-                <div className="zm-concept-browser-content-main"><small>PROJEKT KONCEPCYJNY</small><strong>Twoja oferta.<br /><i>Nowe spojrzenie.</i></strong><span>Poznawaj pomysły, zanim zdecydujesz.</span><b>Sprawdź możliwości ↗</b></div>
-              </div>
-            </div>
+          <div className="zm-concept-visual">
+            <ConceptHeroPreview />
             <div className="zm-concept-visual-tag"><b>01 /</b> Jeden czytelny pomysł <span>— przygotowany dla Twojej firmy</span></div>
           </div>
         </div>
@@ -66,11 +62,11 @@ export default function FreeConceptPage() {
         <div className="zm-concept-section-head"><p>WYBIERZ MATERIAŁ</p><h2 id="koncept-rodzaje">Od strony WWW po <em>materiały sprzedażowe.</em></h2>
           <p>Każda propozycja dotyczy jednego wybranego materiału. Nie musisz od razu zamawiać pełnego projektu.</p></div>
         <div className="zm-concept-service-grid">
-          <article><span>01 / WWW</span><h3>Nowy wygląd obecnej strony</h3><p>Poglądowy projekt pierwszego ekranu lub wybranej sekcji istniejącej strony z czytelniejszą ofertą i kontaktem.</p><a href="#zgloszenie">Zgłoś obecną stronę ↗</a></article>
-          <article><span>02 / WWW</span><h3>Strona dla nowej firmy</h3><p>Wstępny kierunek wizualny dla firmy bez witryny. Możesz też samodzielnie zobaczyć podgląd w ZM Studio.</p><Link href="/projektuj-strone#zm-konfigurator">Uruchom podgląd WWW ↗</Link></article>
-          <article><span>03 / IDENTYFIKACJA</span><h3>Koncepcja logo</h3><p>Jeden kierunek znaku lub odświeżenia obecnego logo, dopasowany do charakteru marki.</p><Link href="/bezplatna-koncepcja-strony?typ=logo#zgloszenie">Poproś o pomysł na logo ↗</Link></article>
-          <article><span>04 / REKLAMA</span><h3>Gazetka reklamowa</h3><p>Poglądowy układ okładki lub strony gazetki prezentującej usługi, aktualności i ofertę firmy.</p><Link href="/bezplatna-koncepcja-strony?typ=promo#zgloszenie">Zgłoś gazetkę reklamową ↗</Link></article>
-          <article><span>05 / SPRZEDAŻ</span><h3>Gazetka sprzedażowa</h3><p>Przykładowy układ produktów, promocji, cen i wezwań do zakupu, z myślą o czytelności oferty.</p><Link href="/bezplatna-koncepcja-strony?typ=sales#zgloszenie">Zgłoś gazetkę sprzedażową ↗</Link></article>
+          <article><span>01 / WWW</span><h3>Nowy wygląd obecnej strony</h3><ConceptTilePreview kind="existing" /><p>Poglądowy projekt pierwszego ekranu lub wybranej sekcji istniejącej strony z czytelniejszą ofertą i kontaktem.</p><Link href="/bezplatna-koncepcja-strony?typ=existing#zgloszenie">Zgłoś obecną stronę ↗</Link></article>
+          <article><span>02 / WWW</span><h3>Strona dla nowej firmy</h3><ConceptTilePreview kind="new" /><p>Wstępny kierunek wizualny dla firmy bez witryny. Możesz też samodzielnie zobaczyć podgląd w ZM Studio.</p><Link href="/bezplatna-koncepcja-strony?typ=new#zgloszenie">Poproś o indywidualną koncepcję ↗</Link><Link href="/projektuj-strone#zm-konfigurator" className="zc-studio-link">Lub uruchom ZM Studio ↗</Link></article>
+          <article><span>03 / IDENTYFIKACJA</span><h3>Koncepcja logo</h3><ConceptTilePreview kind="logo" /><p>Jeden kierunek znaku lub odświeżenia obecnego logo, dopasowany do charakteru marki.</p><Link href="/bezplatna-koncepcja-strony?typ=logo#zgloszenie">Poproś o pomysł na logo ↗</Link></article>
+          <article><span>04 / REKLAMA</span><h3>Gazetka reklamowa</h3><ConceptTilePreview kind="promo" /><p>Poglądowy układ okładki lub strony gazetki prezentującej usługi, aktualności i ofertę firmy.</p><Link href="/bezplatna-koncepcja-strony?typ=promo#zgloszenie">Zgłoś gazetkę reklamową ↗</Link></article>
+          <article><span>05 / SPRZEDAŻ</span><h3>Gazetka sprzedażowa</h3><ConceptTilePreview kind="sales" /><p>Przykładowy układ produktów, promocji, cen i wezwań do zakupu, z myślą o czytelności oferty.</p><Link href="/bezplatna-koncepcja-strony?typ=sales#zgloszenie">Zgłoś gazetkę sprzedażową ↗</Link></article>
         </div>
         <p className="zm-concept-services-foot">Podgląd WWW w ZM Studio działa samodzielnie. Pozostałe pomysły wymagają przesłania briefu i potwierdzenia przyjęcia zgłoszenia.</p>
       </section>
