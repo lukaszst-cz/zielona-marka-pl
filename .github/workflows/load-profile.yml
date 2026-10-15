@@ -1,0 +1,42 @@
+name: Website loading profile
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "tests/load-footprint.mjs"
+      - ".github/workflows/load-profile.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  profile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install isolated browser
+        run: |
+          mkdir -p /tmp/zm-browser-profile
+          npm --prefix /tmp/zm-browser-profile install --no-save --package-lock=false --no-audit --no-fund playwright@1.56.1
+          /tmp/zm-browser-profile/node_modules/.bin/playwright install --with-deps chromium
+      - name: Confirm script syntax
+        run: node --check tests/load-footprint.mjs
+      - name: Profile live public pages, no real forms or analytics
+        run: node tests/load-footprint.mjs
+        env:
+          BROWSER_QA_URL: https://zielona-marka.pl
+          BROWSER_QA_PLAYWRIGHT_ENTRY: /tmp/zm-browser-profile/node_modules/playwright/index.mjs
+      - name: Upload loading report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: zielona-marka-loading-report
+          path: browser-qa-artifacts/load-footprint.json
+          retention-days: 14
+          if-no-files-found: warn
