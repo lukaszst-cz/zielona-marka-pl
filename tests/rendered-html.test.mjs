@@ -355,15 +355,15 @@ test("standardy QA mają wspólny wygląd serwisu, nawigację oraz pobieralne do
     assert.match(html, /href="\/standardy-jakosci"/, path + ": nawigacja jakości");
     assert.match(html, /ISO/i, path + ": wzmianka o normach");
     assert.match(html, /Nie (?:deklarujemy|oznacza|stanowi)|nie jest.*certyfikat/i, path + ": brak deklaracji certyfikacji");
-    assert.match(html, /\/downloads\/zielona-marka-standard-dtp-prepress-qa\.pdf/, path + ": PDF DTP");
-    assert.match(html, /\/downloads\/zielona-marka-standard-jakosci-www-dtp-crm\.pdf/, path + ": PDF QA");
+    assert.match(html, /\/downloads\/zielona-marka-standard-dtp-prepress-qa-v3-1\.pdf/, path + ": PDF DTP");
+    assert.match(html, /\/downloads\/zielona-marka-standard-jakosci-www-dtp-crm-v3-1\.pdf/, path + ": PDF QA");
   }
   const homepage = await render("/");
   const homeMarkup = await homepage.text();
   assert.match(homeMarkup, /href="\/standardy-jakosci"/, "strona główna odsyła do standardów");
   assert.match(homeMarkup, /Jakość i ISO/, "jakość jest w menu głównym");
 
-  for (const file of ["zielona-marka-standard-dtp-prepress-qa.pdf", "zielona-marka-standard-jakosci-www-dtp-crm.pdf"]) {
+  for (const file of ["zielona-marka-standard-dtp-prepress-qa.pdf", "zielona-marka-standard-jakosci-www-dtp-crm.pdf", "zielona-marka-standard-dtp-prepress-qa-v3-1.pdf", "zielona-marka-standard-jakosci-www-dtp-crm-v3-1.pdf"]) {
     const response = await fetch(new URL("/downloads/" + file, testBaseUrl));
     assert.equal(response.status, 200, file + ": jest udostępniony");
     assert.match(response.headers.get("content-type") || "", /application\/(?:pdf|octet-stream)/i, file + ": poprawna reprezentacja binarna");

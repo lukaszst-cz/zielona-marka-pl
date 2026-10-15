@@ -35,3 +35,10 @@ To repozytorium GitHub jest **publiczne**. Nie zapisujemy tutaj rzeczywistych um
 - Etap 3: po zebraniu dowodów przeprowadzić audyt wewnętrzny, przegląd zarządzania i osobną analizę ewentualnej certyfikacji.
 
 **Podstawa odniesień:** https://www.iso.org/standard/9001 i https://www.iso.org/standard/78176.html — wyłącznie opis i ramy zastosowania, bez kopiowania chronionej normy.
+
+
+## Wydanie dokumentacji 3.1 (15.10.2026)
+
+Publiczne PDF-y /downloads/zielona-marka-standard-jakosci-www-dtp-crm-v3-1.pdf (13 stron) i /downloads/zielona-marka-standard-dtp-prepress-qa-v3-1.pdf (18 stron) zawierają trzy nowe strony dokumentacji operacyjnej, po których następuje komplet zachowanych stron wydania 3.0. Wewnętrzne strony pierwotnego materiału nadal opisane jako 3.0 ze względów wersjonowania. Oryginalne pliki v3.0 pozostają dostępne jako archiwum. Formalna certyfikacja ISO nie została przeprowadzona.
+
+Raporty z rzeczywistych zleceń należy tworzyć w systemie prywatnym z datą i dowodami, a nie wpisywać do tego publicznego repozytorium.

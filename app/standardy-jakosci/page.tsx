@@ -38,7 +38,7 @@ export default function QualityHubPage() {
     <section className="section shell qa-section" id="dokumenty">
       <div className="section-head"><div><span className="section-no">BEZPŁATNE MATERIAŁY / PDF</span><h2>Dokumenty, które możesz pobrać.</h2></div><p>Aktualne firmowe wersje procedur do przeczytania, zapisania lub wydrukowania. Bez podawania danych i bez formularza kontaktowego.</p></div>
       <QaDocumentCards />
-      <p className="qa-note-p">Wydanie 3.0 — opisuje zasady i zakres możliwych kontroli. Nie zastępuje wyniku technicznego badania konkretnego projektu.</p>
+      <p className="qa-note-p">Wydanie 3.1 (z zachowaną treścią wydania 3.0) — opisuje zasady i zakres możliwych kontroli. Nie zastępuje wyniku technicznego badania konkretnego projektu.</p>
     </section>
 
     <section className="section shell qa-section" id="zakres">
@@ -57,7 +57,7 @@ export default function QualityHubPage() {
         <article className="qa-card"><span className="qa-kicker">POLIGRAFIA</span><h3>ISO 15930, 12647 i inne</h3><p>Standardy określające wybrane aspekty plików PDF/X, druku, proofingu i oceny barwy — zależnie od technologii.</p></article>
       </div>
       <div className="qa-standards-note"><strong>Stan faktyczny:</strong> Zielona Marka ma własne procedury zapewniania jakości, inspirowane odpowiednimi normami. Nie oznacza to certyfikacji ISO 9001, zewnętrznego audytu, akredytacji ani pełnej zgodności z każdą przywołaną normą. Certyfikowane wdrożenie jest osobnym przedsięwzięciem.</div>
-      <p className="qa-note-p">Od października 2026 rozwijamy wewnętrzny system zapisów jakości: raporty dla konkretnych wersji projektów, rejestr niezgodności, decyzje o odbiorze oraz okresowe przeglądy. Etap wdrażania nie oznacza zakończonego audytu zgodności. Publiczne PDF-y pozostają w wydaniu 3.0 do zatwierdzenia kolejnej wersji.</p>
+      <p className="qa-note-p">Od października 2026 rozwijamy wewnętrzny system zapisów jakości: raporty dla konkretnych wersji projektów, rejestr niezgodności, decyzje o odbiorze oraz okresowe przeglądy. Etap wdrażania nie oznacza zakończonego audytu zgodności. Publiczne PDF-y wydania 3.1 zawierają rozdziały operacyjne oraz zachowane strony wydania 3.0. Nadal nie stanowią certyfikatu ISO.</p>
       <details className="qa-faq"><summary>Czy Zielona Marka posiada certyfikat ISO 9001?</summary><p>Nie. Publicznie prezentujemy własną metodykę pracy i kontrolę jakości, a nie certyfikację ISO.</p></details>
       <details className="qa-faq"><summary>Czy każdy projekt przechodzi wszystkie testy?</summary><p>Nie. Zakres kontroli określają funkcje, technologie, specyfikacja drukarni i uzgodnione ryzyka. Wynik konkretnych testów wymaga faktycznej weryfikacji.</p></details>
       <details className="qa-faq"><summary>Czy raport przykładowy jest potwierdzeniem wykonania testów?</summary><p>Nie. Pokazuje formę dokumentacji. Raport konkretnej realizacji powstaje na podstawie rzeczywistych wyników i dostępnych dowodów.</p></details>

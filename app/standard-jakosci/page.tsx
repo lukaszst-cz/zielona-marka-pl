@@ -35,11 +35,11 @@ export default function QualityStandardPage() {
       <h1 id="qa-main-heading">Dobry projekt powstaje w <em>dobrze prowadzonym procesie.</em></h1>
       <p>QA (ang. Quality Assurance) to zapewnianie jakości. W praktyce ustalamy wymagania, sprawdzamy działanie strony lub systemu, poprawiamy wykryte błędy i potwierdzamy wynik przed przekazaniem projektu. Zobacz kolejne etapy i pobierz opis procedur.</p>
       <div className="hero-actions qa-hero-actions">
-        <a className="button" href="/downloads/zielona-marka-standard-jakosci-www-dtp-crm.pdf" download>Pobierz standard jakości · PDF <span aria-hidden="true">↓</span></a>
+        <a className="button" href="/downloads/zielona-marka-standard-jakosci-www-dtp-crm-v3-1.pdf" download>Pobierz standard jakości · PDF <span aria-hidden="true">↓</span></a>
         <a className="text-link" href="#etapy">Poznaj 8 etapów <span aria-hidden="true">↓</span></a>
         <QualityPrintButton />
       </div>
-      <p className="qa-hero-detail">Dokument ZM-QMS-001, wydanie 3.0, 10 stron. Własny standard pracy; nie jest to certyfikat ISO.</p>
+      <p className="qa-hero-detail">Dokument ZM-QMS-001, wydanie 3.1, 13 stron (w tym zachowany materiał 3.0). Własny standard pracy; nie jest to certyfikat ISO.</p>
     </section>
     <QaLocalNav active="/standard-jakosci" />
 
