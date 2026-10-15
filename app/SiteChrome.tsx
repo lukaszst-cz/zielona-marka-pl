@@ -15,6 +15,7 @@ export const offerGroups = [
       ["ZM Studio – stwórz przykład", "/projektuj-strone"],
       ["Kalkulator kosztów", "/oferta#kalkulator-pelnego-kosztu"],
       ["Modernizacja strony", "/modernizacja-strony"],
+      ["Bezpłatna koncepcja wyglądu", "/bezplatna-koncepcja-strony"],
       ["Opieka, domena i hosting", "/opieka-nad-strona"],
       ["Standard jakości WWW i CRM", "/standard-jakosci"],
     ],
