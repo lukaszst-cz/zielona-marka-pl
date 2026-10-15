@@ -889,6 +889,9 @@ test("versioned asset monitor extracts safe first-party paths and rejects HTML f
   const script = await readFile(new URL("../scripts/monitor-public-assets.mjs", import.meta.url), "utf8");
   assert.match(script, /asset-monitor-artifacts\/report\.json/);
   assert.match(script, /versionedAssetsFound/);
+  assert.ok(script.includes("asset-monitor-artifacts/asset-history.json"), "Historical asset manifest must be persisted");
+  assert.ok(script.includes("report.historicalMissing"), "Historical chunk availability must be reported");
+  assert.ok(script.includes("!references.has(path)"), "Historical probe must exclude assets still referenced by current HTML");
   assert.match(script, /const queue = allAssets\.slice\(0, maxAssets\)/);
   assert.doesNotMatch(script, /\.slice\(0, 20\)/, "Monitoring must not omit later chunks");
 });

@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { referencedAssets, isUnusableAssetResponse } from "./public-asset-utils.mjs";
 
 const origin = "https://zielona-marka.pl";
@@ -9,6 +9,8 @@ const report = {
   origin,
   pages: [],
   assets: [],
+  previousAssets: [],
+  historicalMissing: [],
   failures,
   note: "Checks HTML-referenced asset paths, not traffic analytics or real-user Core Web Vitals.",
 };
@@ -72,12 +74,60 @@ await Promise.all(Array.from({ length: Math.min(3, queue.length) }, async () => 
 }));
 
 report.assets.sort((a, b) => a.path.localeCompare(b.path));
+
+// Diagnose older, content-hashed assets referenced by tabs opened before the
+// current deployment. Their disappearance is reported separately, not treated
+// as proof that the current site's HTTP response is broken.
+let previousPaths = [];
+try {
+  const saved = JSON.parse(await readFile("asset-monitor-artifacts/asset-history.json", "utf8"));
+  if (Array.isArray(saved.assets)) {
+    previousPaths = saved.assets.filter(path =>
+      typeof path === "string" &&
+      /^\/(?:_next\/static\/|assets\/|static\/)/.test(path) &&
+      /\.(?:m?js|css)$/.test(path)
+    );
+  }
+} catch (error) {
+  if (error?.code !== "ENOENT") {
+    report.historicalMissing.push({ issue: "previous asset manifest unreadable", detail: String(error.message).slice(0, 150) });
+  }
+}
+const historical = [...new Set(previousPaths)].filter(path => !references.has(path)).slice(0, 80);
+const historicalQueue = [...historical];
+await Promise.all(Array.from({ length: Math.min(3, historicalQueue.length) }, async () => {
+  while (historicalQueue.length) {
+    const path = historicalQueue.shift();
+    if (!path) return;
+    try {
+      const response = await request(path);
+      const row = { path, ...response };
+      report.previousAssets.push(row);
+      if (isUnusableAssetResponse(path, response.status, response.contentType)) {
+        report.historicalMissing.push(row);
+      }
+    } catch (error) {
+      const row = { path, error: String(error.message).slice(0, 150) };
+      report.previousAssets.push(row);
+      report.historicalMissing.push(row);
+    }
+  }
+}));
+report.previousAssets.sort((a, b) => a.path.localeCompare(b.path));
+await mkdir("asset-monitor-artifacts", { recursive: true });
+await writeFile("asset-monitor-artifacts/asset-history.json", JSON.stringify({
+  createdAt: report.checkedAt,
+  assets: allAssets.slice(0, maxAssets).filter(path => /\.(?:m?js|css)$/.test(path)),
+}, null, 2) + "\n");
+
 await mkdir("asset-monitor-artifacts", { recursive: true });
 await writeFile("asset-monitor-artifacts/report.json", JSON.stringify(report, null, 2) + "\n");
 console.log(JSON.stringify({
   pagesChecked: report.pages.length,
   versionedAssetsFound: allAssets.length,
   assetsChecked: report.assets.length,
+  historicalAssetsChecked: report.previousAssets.length,
+  historicalMissingCount: report.historicalMissing.length,
   failures,
 }, null, 2));
 if (failures.length) process.exitCode = 1;

@@ -29,8 +29,21 @@ jobs:
       - uses: actions/setup-node@v7
         with:
           node-version: 22
+      - name: Restore asset manifest from earlier run
+        uses: actions/cache/restore@v4
+        with:
+          path: asset-monitor-artifacts/asset-history.json
+          key: asset-history-${{ github.run_id }}
+          restore-keys: |
+            asset-history-
       - name: Check production HTML and its versioned JS/CSS assets
         run: node scripts/monitor-public-assets.mjs
+      - name: Preserve asset manifest for comparison with next deployment
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: asset-monitor-artifacts/asset-history.json
+          key: asset-history-${{ github.run_id }}
       - name: Preserve diagnostic results
         if: always()
         uses: actions/upload-artifact@v4
