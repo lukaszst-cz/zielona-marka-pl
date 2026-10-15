@@ -16,7 +16,7 @@ OLD = "Zielonej Marki"
 NEW = "Zielona Marka"
 
 def git_sha(data):
- return sha1(f"blob {len(data)}\\0".encode("ascii")+data).hexdigest()
+ return sha1(f"blob {len(data)}".encode("ascii")+bytes([0])+data).hexdigest()
 
 def sample_background(page, rect):
  pix = page.get_pixmap(matrix=fitz.Matrix(1,1), colorspace=fitz.csRGB, alpha=False)
