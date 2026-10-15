@@ -287,7 +287,7 @@ try {
       });
     }
     if (["desktop", "mobile"].includes(size.name)) {
-      await check(size.name + ": ZM Studio layout previews", async () {
+      await check(size.name + ": ZM Studio layout previews", async () => {
         await page.goto(base + "/projektuj-strone", { waitUntil: "networkidle", timeout: 45000 });
         const preview = page.locator(".zm-creator-preview-frame");
         const layoutVariants = [
