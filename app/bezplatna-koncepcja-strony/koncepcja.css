@@ -148,7 +148,7 @@
 .zm-public.zm-concept .zm-concept-request{scroll-margin-top:70px;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr)}
 .zm-concept-form{min-width:0}
 .zm-concept-form label{font-size:15px;line-height:1.45}
-.zm-concept-form input:not([type="radio"]):not([type="checkbox"]),.zm-concept-form select,.zm-concept-form textarea{font:400 16px/1.45 inherit;min-width:0}
+.zm-concept-form input:not([type="radio"]):not([type="checkbox"]),.zm-concept-form select,.zm-concept-form textarea{font-size:16px;font-family:inherit;line-height:1.45;min-width:0}
 .zm-concept-choice{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .zm-concept-choice legend{font-size:15px;line-height:1.5}
 .zm-concept-choice label{min-width:0;font-size:14px;line-height:1.5}
