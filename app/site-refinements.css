@@ -51,15 +51,46 @@ html body .zm-header .brand-wordmark small{font:500 7px/1.5 Arial,sans-serif;let
 @media(max-width:700px){html body .zm-header .brand-signature{width:210px;gap:9px}html body .zm-header .brand-apple{width:60px;height:63px;flex-basis:60px}html body .zm-header .brand-wordmark b{font-size:19px}html body .zm-header .brand-wordmark small{font-size:6px}html body .zm-v5 .zmh-media-controls,html body:has(.cookie-banner) .zm-v5 .zmh-media-controls{left:auto;right:18px;top:112px;bottom:auto}.zm-demo-bar{flex-wrap:wrap;background:#03180c66}.zm-backoffice{background-attachment:scroll!important}}
 @media(max-width:620px){html body .zm-v5 .zmh-assembly-board{height:auto;display:grid;gap:16px;transform:none}html body .zm-v5 .zmh-assembly-board>div:not(.zmh-assembly-lines){position:relative;inset:auto;width:100%;transform:none!important;padding:18px;background:rgba(5,28,18,.34)!important}html body .zm-v5 .zmh-assembly-lines{display:none}html body .zm-v5 .zmh-assembly-note{position:static;display:block;margin-top:2px}html body .zm-v5 .zmh-assembly-board strong{margin:10px 0}}
 
-/* A deliberate seam between the opening screen and the process screen. */
+/* Subtle forest-to-stream dissolve: no decorative dividing line.
+   The overlay starts inside the last part of the film, keeping the next
+   section in its original document position and preserving hero text. */
 html body .zm-v5 .zmh-opening{min-height:max(880px,100svh)!important}
-html body .zm-v5 .zmh-living-forest video{-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 calc(100% - 54px),transparent 100%)!important;mask-image:linear-gradient(to bottom,#000 0%,#000 calc(100% - 54px),transparent 100%)!important}
-html body .zm-v5 .zmh-scene-transition{position:relative;z-index:3;height:46px;overflow:hidden;background:linear-gradient(180deg,rgba(6,28,19,0),rgba(6,28,19,.76) 66%,#061c13 100%)}
-html body .zm-v5 .zmh-scene-transition:before{content:'';position:absolute;inset:-12px 0;background:linear-gradient(90deg,transparent 4%,rgba(173,220,151,.08) 28%,rgba(215,241,199,.14) 50%,rgba(173,220,151,.08) 72%,transparent 96%);filter:blur(9px);pointer-events:none}
-html body .zm-v5 .zmh-scene-transition span{position:absolute;z-index:1;left:8%;bottom:7px;width:84%;height:1px;background:linear-gradient(90deg,transparent,rgba(199,230,181,.22) 28%,rgba(211,238,195,.34) 50%,rgba(199,230,181,.22) 72%,transparent);box-shadow:none}
-html body .zm-v5 .zmh-scene-transition span:after{display:none}
-html body .zm-v5 .zmh-assembly{margin-top:0!important;padding-top:88px!important;z-index:2;-webkit-mask-image:none!important;mask-image:none!important;pointer-events:auto!important;background:linear-gradient(180deg,rgba(6,28,19,.93),rgba(6,28,19,.54) 45%,rgba(6,28,19,.7))!important}
-html body .zm-v5 .zmh-assembly.zmh-media-ready{background:linear-gradient(180deg,rgba(6,28,19,.93),rgba(6,28,19,.54) 45%,rgba(6,28,19,.7)),url('/brand-review-v5/stream-water-bottom.webp') center top/cover no-repeat!important}
+html body .zm-v5 .zmh-living-forest video{
+  -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 calc(100% - 180px),transparent 100%)!important;
+  mask-image:linear-gradient(to bottom,#000 0%,#000 calc(100% - 180px),transparent 100%)!important;
+}
+html body .zm-v5 .zmh-living-forest:after{
+  content:'';position:absolute;z-index:2;inset:auto 0 0;
+  height:clamp(190px,22vw,270px);pointer-events:none;
+  background:linear-gradient(to bottom,rgba(6,28,19,0),rgba(6,28,19,.12) 32%,rgba(6,28,19,.48) 69%,#061c13 100%)!important;
+}
+html body .zm-v5 .zmh-scene-transition{
+  --zmh-dissolve-height:clamp(155px,18vw,235px);
+  position:relative;z-index:3;pointer-events:none;
+  height:var(--zmh-dissolve-height);
+  margin-top:calc(46px - var(--zmh-dissolve-height));
+  overflow:hidden;
+  background:linear-gradient(to bottom,rgba(6,28,19,0) 0%,rgba(6,28,19,.1) 18%,rgba(6,28,19,.31) 43%,rgba(6,28,19,.71) 75%,#061c13 100%);
+}
+html body .zm-v5 .zmh-scene-transition:before,
+html body .zm-v5 .zmh-scene-transition span{display:none!important}
+html body .zm-v5 .zmh-assembly{
+  margin-top:0!important;padding-top:88px!important;z-index:2;
+  border-top:0!important;
+  -webkit-mask-image:none!important;mask-image:none!important;
+  pointer-events:auto!important;
+  background:linear-gradient(to bottom,#061c13 0%,rgba(6,28,19,.82) 20%,rgba(6,28,19,.5) 50%,rgba(6,28,19,.7))!important;
+}
+html body .zm-v5 .zmh-assembly.zmh-media-ready{
+  background:linear-gradient(to bottom,#061c13 0%,rgba(6,28,19,.82) 20%,rgba(6,28,19,.5) 50%,rgba(6,28,19,.7)),url('/brand-review-v5/stream-water-bottom.webp') center top/cover no-repeat!important;
+}
+@media(max-width:700px){
+  html body .zm-v5 .zmh-living-forest video{
+    -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 calc(100% - 140px),transparent 100%)!important;
+    mask-image:linear-gradient(to bottom,#000 0%,#000 calc(100% - 140px),transparent 100%)!important;
+  }
+  html body .zm-v5 .zmh-living-forest:after{height:180px}
+}
 
 /* Mobile controls and secondary calls to action keep a reliable finger-sized target. */
 @media(max-width:900px){
