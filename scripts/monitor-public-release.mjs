@@ -21,7 +21,7 @@ export function missingPageMarkers(html, markers) {
 export function missingUiStyles(css) {
   // Unlike general file availability checks, these tokens identify the
   // actual Oct 2026 shared layout changes in the served CSS bundle.
-  return ["--zm-ui-card", ".care-plans", ".zm-dtp-prices", ".local-related nav a", ".zm-home-slide[hidden]", ".zm-home-carousel-controls", ".zm-offer-browser", ".zmh-contact-preview-message", ".zv5-desktop", ".zv5-preview-stage", ".zm-public.zm-concept .page-hero.zm-concept-hero"].filter(
+  return ["--zm-ui-card", ".care-plans", ".zm-dtp-prices", ".local-related nav a", ".zm-home-slide[hidden]", ".zm-home-carousel-controls", ".zm-offer-browser", ".zmh-contact-preview-message", ".zv5-desktop", ".zv5-preview-stage", ".zm-public.zm-concept .page-hero.zm-concept-hero", ".zmh-assembly-board--premium", ".zmh-preview-site-copy", "fern-frond.svg", ".zmh-cinema .zmh-website", ".zmh-cinema .zmh-flow-item"].filter(
     (marker) => !css.includes(marker),
   );
 }
