@@ -314,6 +314,34 @@ test("old chatbot address has one direct destination",async()=>{
 });
 
 
+test("public quality manuals are discoverable and have clean canonical titles",async()=>{
+  const sitemap=await(await fetchPage("/sitemap.xml")).text();
+  const manuals=[
+    ["/standard-jakosci","Standard jakości – jak realizujemy projekty"],
+    ["/standard-dtp","Standard kontroli jakości DTP i Prepress"],
+  ];
+  for(const [path,title] of manuals){
+    const absolute="https://zielona-marka.pl"+path;
+    assert.ok(sitemap.includes("<loc>"+absolute+"</loc>"),path+" missing from sitemap");
+    const response=await fetchPage(path);
+    assert.equal(response.status,200,path);
+    const html=await response.text();
+    assert.match(html,new RegExp('rel="canonical" href="'+absolute+'"'),path);
+    assert.ok(html.includes("<title>"+title+" | Zielona Marka</title>"),path+" canonical title");
+    assert.doesNotMatch(html,/<meta name="robots" content="[^"]*noindex/i,path);
+    assert.doesNotMatch(html,/Zielona Marka \| Zielona Marka<\/title>/,path);
+  }
+});
+
+test("forest hero ambient sound is opt-in and stops when tab is hidden",async()=>{
+  const hero=await readFile(new URL("../app/ForestHero.tsx",import.meta.url),"utf8");
+  assert.match(hero,/onClick=\{toggleSound\}/);
+  assert.match(hero,/document\.addEventListener\('visibilitychange',syncSound\)/);
+  assert.match(hero,/document\.hidden\)\{sound\.pause\(\);return;\}/);
+  assert.doesNotMatch(hero,/const resume=\(\)=>startSound\(\)/);
+  assert.doesNotMatch(hero,/useEffect\(\(\)=>\{\s*if\(userMuted\.current\)return;\s*startSound\(\)/);
+});
+
 test("SEO release guard keeps sitemap and robots aligned",async()=>{
   const sitemapResponse=await fetchPage("/sitemap.xml");
   assert.equal(sitemapResponse.status,200);
