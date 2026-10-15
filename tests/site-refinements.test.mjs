@@ -919,3 +919,21 @@ test("versioned asset monitor extracts safe first-party paths and rejects HTML f
   assert.match(script, /const queue = allAssets\.slice\(0, maxAssets\)/);
   assert.doesNotMatch(script, /\.slice\(0, 20\)/, "Monitoring must not omit later chunks");
 });
+
+
+test("home scrolled layout restores photography and shares public-page section rhythm", async () => {
+  const home = await readFile(new URL("../app/OrganicHome.tsx", import.meta.url), "utf8");
+  const css = await readFile(new URL("../app/home-scroll-editorial.css", import.meta.url), "utf8");
+  assert.match(home, /import "\.\/home-scroll-editorial\.css"/);
+  assert.ok(home.indexOf('import "./home-scroll-editorial.css"') >
+    home.indexOf('import "./home-layout-repair.css"'), "Load final homepage rules after earlier repair");
+  assert.match(css, /\.zmh-assembly\.zmh-media-ready/);
+  assert.match(css, /\.zmh-quick-brief/);
+  assert.match(css, /\.zmh-cinema-chapters \.zmh-story/);
+  assert.match(css, /\.zmh-lower-forest/);
+  assert.match(css, /forest-continuous\.webp/);
+  assert.match(css, /zielona-marka-hero-paprocie\.webp/);
+  assert.match(css, /@media\(max-width:620px\)/);
+  assert.doesNotMatch(css, /\.zmh-opening\s*\{/,
+    "Keep the first hero unchanged; do not override its video or navigation");
+});
