@@ -1,4 +1,5 @@
 import { writeFile, mkdir } from "node:fs/promises";
+import { hasNoindex } from "./seo-robots.mjs";
 
 const base = "https://zielona-marka.pl";
 const routes = [
@@ -49,9 +50,7 @@ for (const route of routes) {
     const { response, body } = await request(route);
     const expected = base + (route === "/" ? "/" : route);
     const actual = canonical(body);
-    const noindex = /<meta\b[^>]*name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(body)
-      || /<meta\b[^>]*content=["'][^"']*noindex[^"']*["'][^>]*name=["']robots["']/i.test(body)
-      || /\bnoindex\b/i.test(response.headers.get("x-robots-tag") ?? "");
+    const noindex = hasNoindex(body, response.headers.get("x-robots-tag") ?? "");
     const foundInSitemap = sitemapUrls.some(url => url.replace(/\/$/, "") === expected.replace(/\/$/, ""));
     const item = { path: route, status: response.status, finalUrl: response.url, canonical: actual, noindex, foundInSitemap };
     report.routes.push(item);
@@ -86,9 +85,7 @@ else {
       try {
         const { response, body } = await request(new URL(url).pathname);
         const actual = canonical(body);
-        const noindex = /<meta\\b[^>]*name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(body)
-          || /<meta\\b[^>]*content=["'][^"']*noindex[^"']*["'][^>]*name=["']robots["']/i.test(body)
-          || /\\bnoindex\\b/i.test(response.headers.get("x-robots-tag") ?? "");
+        const noindex = hasNoindex(body, response.headers.get("x-robots-tag") ?? "");
         report.additionalSitemapPages.push({ url, status: response.status, canonical: actual, noindex });
         if (!response.ok || !response.headers.get("content-type")?.includes("text/html")) fail(url + " listed in sitemap but does not return HTML 2xx");
         if (noindex) fail(url + " listed in sitemap but marked noindex");
