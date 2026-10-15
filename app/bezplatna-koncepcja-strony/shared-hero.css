@@ -1,0 +1,47 @@
+/* Align the free-concept first screen with the light shared page-hero used on /oferta. */
+.zm-public.zm-concept{background:#f4f1e8;color:#13281f}
+.zm-public.zm-concept .page-hero.zm-concept-hero{width:min(1180px,calc(100% - 48px));max-width:1180px;margin-inline:auto;padding:clamp(86px,9vw,132px) 0 clamp(70px,7vw,105px);background:transparent;color:#13281f;border-bottom:1px solid rgba(19,40,31,.18);overflow:visible;isolation:auto}
+.zm-public.zm-concept .page-hero.zm-concept-hero::before,.zm-public.zm-concept .page-hero.zm-concept-hero::after{display:none;content:none}
+.zm-public.zm-concept .zm-concept-hero-grid{max-width:none;grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr);gap:clamp(35px,4.6vw,70px);align-items:center}
+.zm-public.zm-concept .page-hero h1{color:#13281f;font:400 clamp(47px,5.15vw,74px)/1.04 Georgia,'Times New Roman',serif;letter-spacing:-.055em;max-width:670px;margin:24px 0 27px}
+.zm-public.zm-concept .page-hero h1 em{color:#367551;font-style:italic}
+.zm-public.zm-concept .page-hero .eyebrow{color:#376c4a;font-size:11px;letter-spacing:.15em}
+.zm-public.zm-concept .page-hero .eyebrow i{background:#427858}
+.zm-public.zm-concept .page-hero .zm-concept-lead{color:#4b5c53;font-size:clamp(16px,1.4vw,18px);line-height:1.72}
+.zm-public.zm-concept .page-hero .zm-concept-lead strong{color:#1c4630}
+.zm-public.zm-concept .hero-actions .button{color:#fff;background:#132f22;border-radius:4px;min-height:54px;align-items:center}
+.zm-public.zm-concept .hero-actions .button:hover{background:#285a3e}
+.zm-public.zm-concept .hero-actions .button span{color:#d8f04a}
+.zm-public.zm-concept .hero-actions .text-link{color:#255b3d;border-bottom:1px solid #6f9678;text-decoration:none}
+.zm-public.zm-concept .page-hero .zm-concept-calm{color:#5a7262;font-size:12px;line-height:1.6}
+.zm-public.zm-concept .zm-concept-visual{width:100%;min-width:0;padding:0 0 10px}
+.zm-public.zm-concept .zc-hero-stage{background:linear-gradient(145deg,#e8f0e3,#dce7d8 66%,#cfded0);border:1px solid #c9d8ca;border-radius:8px;padding:28px 44px 45px 24px;min-height:0}
+.zm-public.zm-concept .zc-hero-browser{width:calc(100% - 18px);background:#f7f6ee;border:1px solid #c2cfc1;box-shadow:0 18px 37px #17372630;transform:none;border-radius:9px}
+.zm-public.zm-concept .zc-hero-mobile{right:8px;bottom:9px;transform:none;box-shadow:0 13px 27px #17372655}
+.zm-public.zm-concept .zc-hero-caption{bottom:6px;left:8px;box-shadow:0 5px 16px #17372626}
+.zm-public.zm-concept .zm-concept-visual-tag{color:#4f6957;margin:13px 0 0 3px;padding:0;display:flex;flex-wrap:wrap;gap:4px}
+.zm-public.zm-concept .zm-concept-visual-tag b{color:#2b7550}
+.zm-public.zm-concept .zm-concept-visual-tag span{color:#617567}
+.zm-public.zm-concept .zm-concept-service-grid article{border-radius:5px}
+.zm-public.zm-concept .zm-concept-form{border-radius:6px}
+@media(max-width:950px){
+.zm-public.zm-concept .zm-concept-hero-grid{grid-template-columns:1fr;gap:34px}
+.zm-public.zm-concept .zm-concept-visual{max-width:600px;margin:0}
+.zm-public.zm-concept .page-hero h1{max-width:760px}
+}
+@media(max-width:640px){
+.zm-public.zm-concept .page-hero.zm-concept-hero{width:calc(100% - 32px);padding:64px 0 67px}
+.zm-public.zm-concept .page-hero h1{font-size:clamp(39px,10.5vw,55px);margin:21px 0 23px}
+.zm-public.zm-concept .hero-actions{align-items:stretch;gap:15px}
+.zm-public.zm-concept .hero-actions .button{width:100%;gap:8px}
+.zm-public.zm-concept .zc-hero-stage{padding:17px 30px 35px 12px}
+.zm-public.zm-concept .zc-hero-browser{width:calc(100% - 9px)}
+.zm-public.zm-concept .zc-hero-mobile{right:3px;bottom:6px}
+.zm-public.zm-concept .zm-concept-visual-tag{font-size:11px}
+}
+@media(max-width:360px){
+.zm-public.zm-concept .zc-hero-stage{padding-right:24px}
+.zm-public.zm-concept .zc-hero-mobile{width:28%;min-width:82px}
+.zm-public.zm-concept .zc-hero-caption span{font-size:8px}
+}
+@media(prefers-reduced-motion:reduce){.zm-public.zm-concept .zc-hero-browser,.zm-public.zm-concept .zc-hero-mobile{transform:none}}
