@@ -336,7 +336,7 @@ try {
           assert.ok(appearance.horizontalOverflow <= 8, slug + ": horizontal overflow");
           assert.ok(appearance.heroWidth > 260, slug + ": unexpected article column width");
           if ([2, 4, 5].includes(index)) {
-            const channels = (appearance.legacyBandBackground?.match(/[\\d.]+/g) || []).map(Number);
+            const channels = (appearance.legacyBandBackground?.match(/[0-9.]+/g) || []).map(Number);
             assert.ok(channels.length >= 3, slug + ": missing legacy band background");
             const luminance = (channels[0] * .2126 + channels[1] * .7152 + channels[2] * .0722) / 255;
             assert.ok(luminance < .2, slug + ": unreadable light lime band " + appearance.legacyBandBackground);
@@ -389,7 +389,7 @@ try {
     }
     if (size.name === "desktop") {
       await check("Desktop: Oferta opens and closes with Escape", async () => {
-        await page.goto(base + "/", { waitUntil: "domcontentloaded" });
+        await page.goto(base + "/", { waitUntil: "networkidle" });
         const menu = page.locator(".zm-offer-menu");
         await menu.locator("summary").click();
         assert.equal(await menu.evaluate(el => el.open), true);
