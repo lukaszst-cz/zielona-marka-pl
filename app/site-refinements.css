@@ -380,3 +380,15 @@ html body .zm-v5 .zmh-assembly.zmh-media-ready{
   }
   html body .zm-v5 .zmh-living-forest:after{height:180px}
 }
+
+/* On desktop the process cards were centered inside an 850px panel, leaving
+   a long empty strip after the hero. Start the story sooner without moving
+   any foreground content over the interactive opening controls. */
+@media (min-width:901px) {
+  html body .zm-v5 .zmh-assembly {
+    min-height:680px!important;
+    align-items:start!important;
+    padding-top:clamp(112px,11vw,156px)!important;
+    padding-bottom:90px!important;
+  }
+}
