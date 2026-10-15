@@ -1,0 +1,70 @@
+/* Scrolled homepage sections share the same fern, glass and editorial design
+   as public service pages. The first-screen river, hero and header are untouched. */
+html body .zm-v5 {
+  --home-surface:rgba(8,34,25,.88);
+  --home-surface-soft:rgba(12,49,34,.76);
+  --home-stroke:rgba(201,232,182,.35);
+  --home-radius:19px;
+}
+html body .zm-v5 .zmh-assembly,
+html body .zm-v5 .zmh-assembly.zmh-media-ready {
+  background:linear-gradient(110deg,rgba(4,25,18,.95),rgba(5,33,23,.76) 54%,rgba(5,28,20,.84)),
+    url('/brand-review-v3/forest-continuous.webp') center 54% / cover no-repeat!important;
+  border-bottom:1px solid var(--home-stroke);
+}
+html body .zm-v5 .zmh-assembly::before {
+  background:radial-gradient(ellipse at 75% 44%,rgba(171,232,117,.14),transparent 62%)!important;
+}
+html body .zm-v5 .zmh-assembly::after {
+  background:linear-gradient(to bottom,rgba(4,24,18,.02),rgba(4,25,19,.36))!important;
+}
+html body .zm-v5 .zm-home-offers {
+  border-block:1px solid rgba(194,227,176,.19);
+  background:radial-gradient(ellipse at 85% 8%,rgba(126,187,105,.09),transparent 51%),
+    linear-gradient(130deg,rgba(6,30,22,.9),rgba(8,40,27,.6) 63%,rgba(5,29,21,.9));
+}
+html body .zm-v5 .zm-home-carousel {border-color:var(--home-stroke);border-radius:var(--home-radius)}
+/* Give the contact brief a real card, like /oferta, rather than green void. */
+html body .zm-v5 .zmh-quick-brief {
+  box-sizing:border-box;display:grid;
+  grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);
+  align-items:center;gap:clamp(24px,4vw,56px);
+  margin-block:clamp(38px,5vw,68px);padding:clamp(26px,4.2vw,54px);
+  border:1px solid var(--home-stroke);border-radius:var(--home-radius);
+  background:linear-gradient(110deg,rgba(5,31,22,.94),rgba(10,46,31,.86)),
+    url('/zielona-marka-przejscie-las.webp') center / cover no-repeat;
+  box-shadow:0 22px 66px rgba(1,16,10,.22);
+}
+html body .zm-v5 .zmh-quick-brief>*{min-width:0}
+html body .zm-v5 .zmh-quick-brief-copy>h2{line-height:1.11;text-wrap:balance}
+html body .zm-v5 .zmh-form-surface{margin-top:0;padding-top:0;border-top:0}
+/* Cinematic scroll stays interactive but gains distinguishable editorial chapters. */
+html body .zm-v5 .zmh-cinema {
+  box-sizing:border-box;position:relative;isolation:isolate;overflow:visible;
+  margin-block:clamp(45px,5vw,80px);padding:clamp(22px,3vw,43px);
+  border:1px solid rgba(211,234,196,.27);border-radius:24px;
+  background:linear-gradient(125deg,rgba(4,24,18,.91),rgba(5,32,23,.81) 55%,rgba(4,27,21,.93)),
+    url('/zielona-marka-hero-paprocie.webp') 50% 40% / cover no-repeat;
+  box-shadow:0 24px 75px rgba(0,12,7,.2);
+}
+html body .zm-v5 .zmh-cinema .zmh-motion-intro {
+  border:1px solid rgba(205,233,186,.27);border-radius:12px;
+  background:rgba(5,28,20,.83);margin-bottom:clamp(14px,2vw,25px);
+}
+html body .zm-v5 .zmh-cinema-chapters .zmh-story {
+  box-sizing:border-box;overflow:hidden;margin-bottom:16px;
+  padding-inline:clamp(18px,2.5vw,32px);
+  border:1px solid rgba(205,230,187,.32);border-radius:16px;
+  background:linear-gradient(135deg,var(--home-surface-soft),var(--home-surface))!important;
+}
+html body .zm-v5 .zmh-cinema-chapters .zmh-split{min-width:0}
+html body .zm-v5 .zmh-cinema .zmh-cinema-screen {
+  border-color:var(--home-stroke);border-radius:16px;
+  background:linear-gradient(140deg,rgba(11,43,31,.87),rgba(3,25,19,.86));
+}
+html body .zm-v5 .zmh-cinema .zmh-copy>p:not(.zmh-chapter){color:#e5efe1}
+html body .zm-v5.zmh-cinema-enhanced .zmh-cinema-chapters .zmh-split{
+  min-height:min(68vh,640px);padding-block:clamp(48px,6vw,78px);
+}
+html body .zm-v5 .zmh-cinema .zmh-motion-intro,
+html body .zm-v5 .zmh-cinema .zmh-cinema-stage{min-width:0}
