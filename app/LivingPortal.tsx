@@ -5,12 +5,9 @@ import { useEffect, useRef, useState } from "react";
 /** A bounded, scroll-led reveal. Content and contact remain usable without JS. */
 export default function LivingPortal({ contact = false }: { contact?: boolean }) {
   const root = useRef<HTMLDivElement>(null);
-  const video = useRef<HTMLVideoElement>(null);
-  const [paused, setPaused] = useState(false);
   const [reduced, setReduced] = useState(false);
   useEffect(() => {
     const el = root.current;
-    const clip = video.current;
     if (!el) return;
     const media = matchMedia("(prefers-reduced-motion: reduce)");
     let visible = false;
@@ -22,30 +19,19 @@ export default function LivingPortal({ contact = false }: { contact?: boolean })
       el.style.setProperty("--gather", String(media.matches ? 1 : progress));
     };
     const schedule = () => { if (visible && !frame) frame = requestAnimationFrame(update); };
-    const playback = () => {
-      setReduced(media.matches);
-      update();
-      if (!clip) return;
-      if (!visible || document.hidden || media.matches || paused) { clip.pause(); return; }
-      if ((navigator as Navigator & {connection?:{saveData?:boolean}}).connection?.saveData) return;
-      if (!clip.src) clip.src = matchMedia("(max-width: 700px)").matches
-        ? "/brand-review-v5/fern-moss-stream-mobile-20260929.mp4"
-        : "/brand-review-v5/fern-moss-stream-20260919.mp4";
-      clip.play().catch(() => {});
-    };
+    const reflectPreference = () => { setReduced(media.matches); update(); };
     const observer = new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting;
       if (visible) el.classList.add("zmh-media-ready");
-      playback();
+      reflectPreference();
     });
     observer.observe(el);
-    media.addEventListener("change", playback);
-    document.addEventListener("visibilitychange", playback);
-    addEventListener("scroll", schedule, { passive: true });
+    media.addEventListener("change", reflectPreference);
+        addEventListener("scroll", schedule, { passive: true });
     addEventListener("resize", schedule, { passive: true });
-    playback();
-    return () => { observer.disconnect(); cancelAnimationFrame(frame); media.removeEventListener("change", playback); document.removeEventListener("visibilitychange", playback); removeEventListener("scroll", schedule); removeEventListener("resize", schedule); clip?.pause(); };
-  }, [paused]);
+    reflectPreference();
+    return () => { observer.disconnect(); cancelAnimationFrame(frame); media.removeEventListener("change", reflectPreference); removeEventListener("scroll", schedule); removeEventListener("resize", schedule); };
+  }, []);
 
   return <div ref={root} id={contact ? undefined : "opowiesc"} className={contact ? "zmh-water-portal" : "zmh-assembly"} onPointerMove={event => {
     if (event.pointerType !== "mouse" || reduced) return;
@@ -53,9 +39,16 @@ export default function LivingPortal({ contact = false }: { contact?: boolean })
     event.currentTarget.style.setProperty("--tilt", `${((event.clientX - rect.left) / rect.width - .5) * 5}deg`);
   }} onPointerLeave={event => event.currentTarget.style.setProperty("--tilt", "0deg")}>
     {contact ? <>
-      <div className="zmh-water-orbit" aria-hidden="true"><div className="zmh-water-drop"><video ref={video} muted loop playsInline preload="none" /><span /></div><i /><i /></div>
-      <p>Dobry pomysł.<br /><em>Niech płynie dalej.</em></p>
-      <button type="button" disabled={reduced} aria-pressed={paused || reduced} onClick={() => setPaused(value => !value)}>{reduced ? "Spokojny widok" : paused ? "Ożyw wodę ↗" : "Zatrzymaj wodę Ⅱ"}</button>
+      <div className="zmh-contact-preview" aria-hidden="true">
+        <span className="zmh-contact-preview-caption">PRZYKŁADOWA ROZMOWA / ZIELONA MARKA</span>
+        <div className="zmh-contact-preview-message">
+          <span>NOWE ZAPYTANIE <i>✓</i></span>
+          <strong>Chcę pokazać swoją firmę z dobrej strony.</strong>
+          <small>Opisz pomysł. Resztę wspólnie ustalimy.</small>
+        </div>
+        <div className="zmh-contact-preview-flow"><span>01 / Rozmowa</span><i>→</i><span>02 / Koncepcja</span><i>→</i><span>03 / Działanie</span></div>
+      </div>
+      <p>Dobry pomysł.<br /><em>Zacznijmy od rozmowy.</em></p>
     </> : <>
       <div className="zmh-assembly-heading"><span>Z CHAOSU DO PORZĄDKU</span><h2>Wszystko zaczyna<br />się <em>łączyć.</em></h2><p>Strona. Zapytanie. Kolejny krok.<br />Przewiń i zobacz, jak tworzą całość.</p></div>
       <div className="zmh-assembly-board" aria-label="Ilustracja połączenia strony, zapytania i obsługi klienta">
