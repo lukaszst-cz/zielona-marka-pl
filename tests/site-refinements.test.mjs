@@ -728,3 +728,11 @@ test("quote configuration is transferred without personal details in URLs",async
   assert.match(contact,/ref=\{messageRef\}/);
 });
 
+
+test("browser QA installs Playwright in an isolated npm prefix",async()=>{
+  const workflow=await readFile(new URL("../.github/workflows/live-browser-qa.yml",import.meta.url),"utf8");
+  assert.match(workflow,/npm install --prefix "\$RUNNER_TEMP\/zm-playwright"/);
+  assert.match(workflow,/ln -s "\$RUNNER_TEMP\/zm-playwright\/node_modules\/playwright" node_modules\/playwright/);
+  assert.doesNotMatch(workflow,/npm install --no-save --package-lock=false playwright/);
+});
+
