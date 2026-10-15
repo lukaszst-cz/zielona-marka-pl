@@ -8,6 +8,10 @@ on:
       - ".github/workflows/release-parity.yml"
       - "app/ui-consistency-202610.css"
       - "app/opieka-nad-strona/page.tsx"
+      - "app/OrganicHome.tsx"
+      - "app/HomeOffersCarousel.tsx"
+      - "app/home-carousel.css"
+      - "app/site-refinements.css"
   workflow_dispatch:
   schedule:
     - cron: "17 */3 * * *"

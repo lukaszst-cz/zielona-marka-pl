@@ -10,7 +10,7 @@ test("checks exact public UI release markers instead of just HTTP 200", () => {
 });
 
 test("requires current shared UI rules in public CSS", () => {
-  assert.equal(missingUiStyles("--zm-ui-card .care-plans .zm-dtp-prices .local-related nav a").length, 0);
+  assert.equal(missingUiStyles("--zm-ui-card .care-plans .zm-dtp-prices .local-related nav a .zm-home-slide[hidden] .zm-home-carousel-controls .zm-offer-browser .zmh-contact-preview-message").length, 0);
   assert.ok(missingUiStyles("body { background: green }").includes("--zm-ui-card"));
 });
 
@@ -18,7 +18,7 @@ test("fully simulated latest release passes without touching production", async 
   const htmlByRoute = new Map(releasePages.map(({ path, markers }) => [path,
     '<html><head><link rel="stylesheet" href="/_next/static/a234.css"></head><body>' + markers.join(" ") + "</body></html>",
   ]));
-  const css = "--zm-ui-card:rgba(5,30,19,.32);.care-plans{}.zm-dtp-prices{}.local-related nav a{}";
+  const css = "--zm-ui-card:rgba(5,30,19,.32);.care-plans{}.zm-dtp-prices{}.local-related nav a{}.zm-home-slide[hidden]{display:none}.zm-home-carousel-controls{}.zm-offer-browser{}.zmh-contact-preview-message{}";
   const request = async (url) => {
     const path = new URL(url).pathname;
     if (path === "/api/inquiries") return new Response("Uzupełnij firmę, rodzaj projektu i opis (10–4000 znaków).", { status: 400 });
@@ -30,6 +30,15 @@ test("fully simulated latest release passes without touching production", async 
   assert.deepEqual(report.conceptFormProbe, { status: 400, currentHandler: true });
   assert.deepEqual(report.failures, []);
   assert.equal(report.pages.length, releasePages.length);
+});
+
+test("homepage marker regression triggers an alert even if the server is up", async () => {
+  const home = releasePages.find(({ path }) => path === "/");
+  assert.ok(home, "Homepage must be monitored");
+  assert.ok(home.markers.includes("zm-home-carousel"));
+  assert.ok(home.markers.includes("Pokaż slajd 3: Bezpłatna koncepcja"));
+  const html = home.markers.filter(marker => marker !== "Pokaż slajd 3: Bezpłatna koncepcja").join(" ");
+  assert.deepEqual(missingPageMarkers(html, home.markers), ["Pokaż slajd 3: Bezpłatna koncepcja"]);
 });
 
 test("outdated production correctly fails even with all HTTP 200 responses", async () => {
