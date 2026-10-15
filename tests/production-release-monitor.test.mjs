@@ -10,7 +10,7 @@ test("checks exact public UI release markers instead of just HTTP 200", () => {
 });
 
 test("requires current shared UI rules in public CSS", () => {
-  assert.equal(missingUiStyles("--zm-ui-card .care-plans .zm-dtp-prices .local-related nav a .zm-home-slide[hidden] .zm-home-carousel-controls .zm-offer-browser .zmh-contact-preview-message").length, 0);
+  assert.equal(missingUiStyles("--zm-ui-card .care-plans .zm-dtp-prices .local-related nav a .zm-home-slide[hidden] .zm-home-carousel-controls .zm-offer-browser .zmh-contact-preview-message .zc-hero-mobile .zc-sample-sales-items").length, 0);
   assert.ok(missingUiStyles("body { background: green }").includes("--zm-ui-card"));
 });
 
@@ -18,7 +18,7 @@ test("fully simulated latest release passes without touching production", async 
   const htmlByRoute = new Map(releasePages.map(({ path, markers }) => [path,
     '<html><head><link rel="stylesheet" href="/_next/static/a234.css"></head><body>' + markers.join(" ") + "</body></html>",
   ]));
-  const css = "--zm-ui-card:rgba(5,30,19,.32);.care-plans{}.zm-dtp-prices{}.local-related nav a{}.zm-home-slide[hidden]{display:none}.zm-home-carousel-controls{}.zm-offer-browser{}.zmh-contact-preview-message{}";
+  const css = "--zm-ui-card:rgba(5,30,19,.32);.care-plans{}.zm-dtp-prices{}.local-related nav a{}.zm-home-slide[hidden]{display:none}.zm-home-carousel-controls{}.zm-offer-browser{}.zmh-contact-preview-message{}.zc-hero-mobile{}.zc-sample-sales-items{}";
   const request = async (url) => {
     const path = new URL(url).pathname;
     if (path === "/api/inquiries") return new Response("Uzupełnij firmę, rodzaj projektu i opis (10–4000 znaków).", { status: 400 });
@@ -30,6 +30,16 @@ test("fully simulated latest release passes without touching production", async 
   assert.deepEqual(report.conceptFormProbe, { status: 400, currentHandler: true });
   assert.deepEqual(report.failures, []);
   assert.equal(report.pages.length, releasePages.length);
+});
+
+test("the release monitor detects the new free-concept UI on production", () => {
+  const concept = releasePages.find(({ path }) => path === "/bezplatna-koncepcja-strony");
+  assert.ok(concept);
+  assert.ok(concept.markers.includes("zc-hero-stage"));
+  assert.ok(concept.markers.includes("zc-sample-sales-items"));
+  assert.ok(concept.markers.includes("Poproś o indywidualną koncepcję"));
+  assert.ok(missingUiStyles("body{}").includes(".zc-hero-mobile"));
+  assert.deepEqual(missingPageMarkers(concept.markers.filter(marker => marker !== "zc-hero-stage").join(" "), concept.markers), ["zc-hero-stage"]);
 });
 
 test("homepage marker regression triggers an alert even if the server is up", async () => {
