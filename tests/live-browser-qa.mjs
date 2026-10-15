@@ -16,6 +16,9 @@ const routes = [
   ["/modernizacja-strony", "modernization"],
   ["/usprawnienia-firmy", "improvements"],
   ["/projektuj-strone", "studio"],
+  ["/standardy-jakosci", "quality-hub"],
+  ["/standard-jakosci", "quality-process"],
+  ["/standard-dtp", "quality-prepress"],
 ];
 async function check(name, fn) {
   try {
@@ -301,6 +304,27 @@ try {
         assert.equal(await menu.evaluate(el => el.open), false);
       });
     }
+    await check(size.name + ": quality standards pages, links and layout", async () => {
+      const response = await page.goto(base + "/standardy-jakosci", { waitUntil: "domcontentloaded", timeout: 45000 });
+      assert.ok(response?.ok(), "The quality standards hub is not reachable");
+      await page.locator("main.zm-public.qa-page").waitFor({ state: "visible", timeout: 12000 });
+      assert.ok(await page.getByRole("heading", { name: /Jakość, którą można/i }).count());
+      const pdfLinks = page.locator('a[href^="/downloads/"][href$=".pdf"]');
+      assert.ok(await pdfLinks.count() >= 2, "Both public PDF downloads must be listed");
+      const nav = page.locator(".qa-local-nav");
+      assert.ok(await nav.getByRole("link", { name: /Standard WWW/i }).count());
+      assert.ok(await nav.getByRole("link", { name: /Standard DTP/i }).count());
+      const noOverflow = await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 2);
+      assert.ok(noOverflow, "Quality hub has horizontal overflow at " + size.width + "px");
+      if (size.name === "desktop") {
+        assert.ok(await page.locator(".zm-nav-desktop").getByRole("link", { name: "Jakość i ISO" }).count());
+      } else {
+        const mobile = page.locator(".zm-mobile-menu");
+        await mobile.locator("summary").click();
+        assert.ok(await mobile.getByRole("link", { name: "Jakość i normy" }).count());
+        await page.keyboard.press("Escape");
+      }
+    });
     await check(size.name + ": contact brief submits to mock endpoint only", async () => {
       const intercepted = [];
       const pattern = "**/api/inquiries";
@@ -309,8 +333,17 @@ try {
         await route.fulfill({ status: 201, contentType: "application/json", body: JSON.stringify({ ok: true }) });
       });
       try {
-        await page.goto(base + "/kontakt", { waitUntil: "networkidle", timeout: 45000 });
+        const contactResponse = await page.goto(base + "/kontakt", { waitUntil: "domcontentloaded", timeout: 45000 });
+        assert.ok(contactResponse?.ok(), "Contact page did not load");
         const form = page.locator('form[data-analytics-form="brief"]');
+        try {
+          await form.waitFor({ state: "visible", timeout: 12000 });
+        } catch {
+          // Retry a transient stale response once; persistent failures remain test failures.
+          const reload = await page.reload({ waitUntil: "domcontentloaded", timeout: 45000 });
+          assert.ok(reload?.ok(), "Contact page reload did not succeed");
+          await form.waitFor({ state: "visible", timeout: 12000 });
+        }
         await form.locator('input[name="name"]').fill("Przykładowa osoba QA");
         await form.locator('input[name="email"]').fill("not-an-email");
         await form.locator('textarea[name="message"]').fill("Proszę o informację o stworzeniu strony firmowej.");
