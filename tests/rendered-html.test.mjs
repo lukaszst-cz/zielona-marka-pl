@@ -327,6 +327,7 @@ test("Cennik i nawigacja zachowują czytelność najważniejszych informacji", a
   assert.match(home, /icon-facebook\.png/);
   assert.match(home, /icon-instagram\.png/);
   assert.match(home, /icon-github-zielona-marka\.svg/);
+  assert.match(home, /class="zm-contact-dock"/);
 
   const offer = await (await render("/oferta")).text();
   assert.match(offer, /Ile naprawdę kosztuje strona: projekt, hosting i jej utrzymanie\?/);
