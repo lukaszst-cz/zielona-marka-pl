@@ -7,7 +7,7 @@ export default function Error({ reset }: { reset: () => void }) {
       <section className="page-hero shell" role="alert">
         <span className="eyebrow">CHWILOWY PROBLEM</span>
         <h1>Nie udało się wyświetlić strony. <em>Spróbujmy ponownie.</em></h1>
-        <p>W trakcie aktualizacji niektóre pliki strony mogą wymagać ponownego wczytania. Nie musisz zaczynać od nowa — odśwież widok albo przejdź do oferty.</p>
+        <p>Podczas aktualizacji niektóre pliki strony mogą wymagać ponownego wczytania. Odśwież widok lub spróbuj ponownie. Pamiętaj, że odświeżenie może usunąć niewysłane dane formularza.</p>
         <div className="hero-actions">
           <button type="button" className="button" onClick={() => window.location.reload()}>Odśwież stronę ↻</button>
           <button type="button" className="text-link" onClick={reset}>Spróbuj ponownie</button>
