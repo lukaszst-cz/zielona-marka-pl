@@ -1,6 +1,6 @@
 /* The offer mega-menu uses restrained glass surfaces over the shared forest. */
 .zm-header .zm-nav-desktop .zm-offer-menu > .zm-mega-menu {
-  background: linear-gradient(135deg, rgba(3, 24, 16, .72), rgba(5, 30, 21, .59));
+  background: linear-gradient(135deg, rgba(3, 24, 16, .79), rgba(5, 30, 21, .66));
   border: 1px solid rgba(217, 239, 196, .37);
   border-radius: 12px;
   -webkit-backdrop-filter: blur(17px) saturate(112%);
