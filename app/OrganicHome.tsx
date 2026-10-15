@@ -64,8 +64,8 @@ export function OrganicHome() {
       <div className="zmh-wrap" style={{padding:"20px 0 42px"}}><Link href="/standard-jakosci" className="zmh-text-link">Poznaj pełny standard jakości Zielonej Marki ↗</Link></div>
       <section className="zmh-story zmh-grow" aria-labelledby="rozwoj-title"><div className="zmh-wrap zmh-split"><div className="zmh-copy"><p className="zmh-chapter">PO PUBLIKACJI / OPIEKA NAD STRONĄ</p><h2 id="rozwoj-title">Rozwój w rytmie<br />Twojej firmy.</h2><p>Nowa usługa, pomysł na sprzedaż, wygodniejszy sposób obsługi. Stronę można rozbudować, gdy pojawi się taka potrzeba. Dalszą opiekę i nowe funkcje ustalamy osobno, w zakresie dopasowanym do Twojej firmy.</p></div><div className="zmh-growth-words"><Link href="/opieka-nad-strona">Opieka ↗</Link><Link href="/usprawnienia-firmy#automatyzacje">Usprawnienia ↗</Link><Link href="/opieka-nad-strona#rozwoj">Rozwój ↗</Link></div></div></section>
       <section className="zmh-contact zmh-wrap" id="kontakt" aria-labelledby="kontakt-title"><LivingPortal contact /><div><p className="zmh-eyebrow">ZACZNIJMY OD ROZMOWY</p><h2 id="kontakt-title">Zróbmy miejsce<br />na <em>dobrą zmianę.</em></h2><p>Opowiedz, czym zajmuje się Twoja firma i co chcesz ułatwić sobie lub klientom. Wystarczy kilka zdań. Pomogę Ci wybrać kierunek i ustalić, od czego warto zacząć.</p><a className="zmh-pill" href="tel:+48450458466">Porozmawiajmy ↗</a><a className="zmh-phone" href="tel:+48450458466">+48 450 458 466</a><a className="zmh-text-link" href="#krotki-brief">Wolisz napisać? Wróć do krótkiego briefu ↑</a></div></section>
+      <QuickWhatsApp />
       <SiteFooter />
     </div>
-    <QuickWhatsApp />
   </main>;
 }
