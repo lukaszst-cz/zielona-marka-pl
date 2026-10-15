@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import Link from "../SafeLink";
 import { trackAnalyticsEvent } from "../CookieConsent";
 
@@ -16,6 +16,10 @@ const modeLabels: Record<Mode, string> = {
 
 export default function ConceptRequestForm() {
   const [mode, setMode] = useState<Mode>("existing");
+  useEffect(() => {
+    const requested = new URLSearchParams(window.location.search).get("typ");
+    if (requested && Object.prototype.hasOwnProperty.call(modeLabels, requested)) setMode(requested as Mode);
+  }, []);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
