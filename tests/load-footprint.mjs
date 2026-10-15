@@ -73,6 +73,9 @@ try {
         });
         const largest = [...timings.resources].sort((a, b) => b.transferredBytes - a.transferredBytes).slice(0, 12);
         const transferred = timings.resources.reduce((sum, item) => sum + item.transferredBytes, 0);
+        const budgetBytes = Number(process.env.BROWSER_QA_TRANSFER_BUDGET_BYTES || 1500000);
+        assert.ok(transferred <= budgetBytes,
+          viewport.name + " " + route + " exceeds same-origin cold-load transfer budget: " + transferred + " / " + budgetBytes + " bytes");
         const byType = Object.groupBy(timings.resources, item => item.type);
         const types = Object.fromEntries(Object.entries(byType).map(([name, items]) =>
           [name, { count: items.length, transferredBytes: items.reduce((sum, item) => sum + item.transferredBytes, 0) }]));
