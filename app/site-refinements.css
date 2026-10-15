@@ -354,7 +354,7 @@ html body .zm-v5 .zmh-living-forest:after{
   background:linear-gradient(to bottom,rgba(6,28,19,0),rgba(6,28,19,.12) 32%,rgba(6,28,19,.48) 69%,#061c13 100%)!important;
 }
 html body .zm-v5 .zmh-scene-transition{
-  --zmh-dissolve-height:clamp(155px,18vw,235px);
+  --zmh-dissolve-height:clamp(280px,31vw,440px);
   position:relative;z-index:3;pointer-events:none;
   height:var(--zmh-dissolve-height);
   margin-top:calc(46px - var(--zmh-dissolve-height));
