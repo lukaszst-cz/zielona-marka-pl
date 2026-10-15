@@ -788,14 +788,14 @@ test("blog hub uses one public layout, matching the offer and DTP", async () => 
     assert.equal((html.match(/class="zm-footer"/g) || []).length, 1, name + " should have one shared footer");
   }
   assert.match(blog, /class="zm-public guide-page zm-blog-page"/);
-  assert.doesNotMatch(blog, /class="[^"]*\\bguide-hub\\b/);
+  assert.doesNotMatch(blog, /class="[^"]*\bguide-hub\b/);
   assert.match(blog, /AUTOR PORADNIKÓW/);
   assert.match(blog, /Łukasz Staniewicz/);
-  assert.match(blog, /lukasz-kontakt-naturalny-20260919\\.webp/);
+  assert.match(blog, /lukasz-kontakt-naturalny-20260919\.webp/);
   const css = await readFile(new URL("../app/blog-layout-unification.css", import.meta.url), "utf8");
-  assert.match(css, /\\.guide-library > \\.zm-blog-results/);
-  assert.match(css, /grid-template-columns: repeat\\(2, minmax\\(0, 1fr\\)\\)/);
-  assert.match(css, /@media \\(max-width: 800px\\)/);
+  assert.match(css, /\.guide-library > \.zm-blog-results/);
+  assert.match(css, /grid-template-columns: repeat\(2, minmax\(0, 1fr\)\)/);
+  assert.match(css, /@media \(max-width: 800px\)/);
   const layout = await readFile(new URL("../app/layout.tsx", import.meta.url), "utf8");
   assert.ok(layout.indexOf('import "./blog-layout-unification.css"') > layout.indexOf('import "./qa-integrated.css"'), "Blog overrides must follow other shared styles");
 });
