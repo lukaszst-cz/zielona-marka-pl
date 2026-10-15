@@ -141,6 +141,9 @@ html body .zm-v5 .zmh-contact .zmh-water-portal{min-width:0}
 
 /* Public-page parity: forest hero followed by the same light sage editorial
    canvas seen on /oferta. Dark presentation modules stand out as true cards. */
+/* The legacy forest-end pseudo-element painted a dark horizontal band over
+   the new light section transition. The source gradient now handles that seam. */
+html body .zm-v5 .zmh-forest::after{display:none!important}
 html body .zm-v5 .zmh-scroll-content{
   position:relative;
   padding-block:35px 50px;
