@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "../SafeLink";
-import { GuideBreadcrumbs } from "../GuideElements";
+import { GuideBreadcrumbs, GuideFaq } from "../GuideElements";
 import { QuickWhatsApp, SiteFooter, SiteHeader } from "../SiteChrome";
 import BlogExplorer from "./BlogExplorer";
 import { blogArticles } from "./blog-data";
@@ -18,6 +18,13 @@ export const metadata: Metadata = {
   },
   twitter: { card: "summary_large_image", images: ["/og-poradniki-zielona-marka.png" ] },
 };
+
+const blogFaq = [
+  ["Od którego artykułu najlepiej zacząć?", "Wybierz temat związany z najbliższym zadaniem firmy: nową stroną, usprawnieniem kontaktu, widocznością w Google albo przygotowaniem materiałów do druku. Możesz też skorzystać z wyszukiwarki i filtrów."],
+  ["Czy porady przydadzą się, jeśli mam już stronę?", "Tak. Część tekstów dotyczy poprawiania istniejącej witryny, jej kosztów utrzymania, treści, formularzy i widoczności lokalnej."],
+  ["Czy artykuły zastępują audyt i indywidualną wycenę?", "Nie. Pokazują zasady i możliwe rozwiązania. Dobór zakresu i kosztów do konkretnej firmy wymaga poznania jej potrzeb i sprawdzenia obecnej sytuacji."],
+  ["Kto przygotowuje poradniki?", "Autorem jest Łukasz Staniewicz z Zielonej Marki. Na stronie każdego artykułu znajdziesz informację o autorze i dacie aktualizacji."],
+] as const;
 
 export default function GuidesPage() {
   const collection = {
@@ -70,6 +77,7 @@ export default function GuidesPage() {
         <Link href="/maly-crm-dla-firm"><span>03 / OBSŁUGA KLIENTÓW</span><h3>Uporządkuj zapytania</h3><p>Formularze, statusy i terminy kontaktu z klientami.</p><b>Zobacz rozwiązanie ↗</b></Link>
       </div>
     </section>
+    <GuideFaq items={blogFaq} />
     <section className="section guide-cta"><div className="shell"><span className="section-no">NIE ZNALAZŁEŚ ODPOWIEDZI?</span>
       <h2>Opisz swoją firmę albo podeślij stronę do oceny.</h2>
       <p>Wskażę pierwszy sensowny krok — bez presji i zobowiązania do współpracy.</p>
