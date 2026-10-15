@@ -1,0 +1,34 @@
+name: Public technical SEO monitor
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "15 5 * * *"
+  pull_request:
+    branches: [main]
+    paths:
+      - "scripts/monitor-public-seo.mjs"
+      - ".github/workflows/seo-monitor.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  technical-seo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Inspect live crawlability, canonical URLs and sitemap
+        run: node scripts/monitor-public-seo.mjs
+      - name: Preserve diagnostic report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: technical-seo-report
+          path: seo-monitor-artifacts/report.json
+          retention-days: 14
+          if-no-files-found: warn
