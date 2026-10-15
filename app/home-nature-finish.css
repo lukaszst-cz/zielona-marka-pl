@@ -64,7 +64,6 @@ html body .zm-v5 .zmh-assembly-board--premium{
   width:100%;min-height:450px;height:clamp(450px,37vw,535px);
   position:relative;isolation:isolate;
   perspective:none!important;transform:none!important;
-  --gather:1;
 }
 html body .zm-v5 .zmh-assembly-board--premium::before{
   content:"";position:absolute;inset:8% -2% 7%;
