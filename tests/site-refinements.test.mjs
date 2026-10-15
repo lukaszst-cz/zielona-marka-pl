@@ -764,3 +764,15 @@ test("public Chromium QA also runs nightly without new commits", async () => {
   assert.ok(workflow.includes("github.event_name == 'schedule'"));
   assert.ok(workflow.includes("retention-days: 7"));
 });
+
+test("GA4 disable flag matches the consent-gated measurement ID", async () => {
+  const [layout, consent] = await Promise.all([
+    readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/CookieConsent.tsx", import.meta.url), "utf8"),
+  ]);
+  assert.match(consent, /const MEASUREMENT_ID = "G-CYFQ326JRF"/);
+  assert.match(layout, /ga-disable-G-CYFQ326JRF.*=true/);
+  assert.match(consent, /`ga-disable-\$\{MEASUREMENT_ID\}`\] = false/);
+  assert.match(consent, /`ga-disable-\$\{MEASUREMENT_ID\}`\] = true/);
+  assert.ok(consent.includes("localStorage.getItem(STORAGE_KEY) !== \"accepted\""));
+});

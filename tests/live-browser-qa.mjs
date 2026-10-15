@@ -250,6 +250,31 @@ try {
       assert.equal(await page.evaluate(() => localStorage.getItem("zm_analytics_consent")), "denied");
       assert.deepEqual(analyticsRequestsWithoutConsent, [], "Google analytics loaded before consent");
     });
+    if (size.name === "desktop") {
+      await check("Desktop: GA4 opt-in and revocation toggle the correct disable flag", async () => {
+        const mockTagCalls = [];
+        const tagUrl = /^https:\/\/www\.googletagmanager\.com\/gtag\/js(?:\?.*)?$/;
+        await page.route(tagUrl, async route => {
+          mockTagCalls.push(route.request().url());
+          await route.fulfill({ status: 200, contentType: "application/javascript", body: "/* QA mock: no tracking */" });
+        });
+        try {
+          await page.goto(base + "/kontakt", { waitUntil: "networkidle", timeout: 45000 });
+          assert.equal(await page.evaluate(() => window["ga-disable-G-CYFQ326JRF"]), true);
+          await page.locator(".cookie-settings-link").first().click();
+          await page.locator(".cookie-accept").click();
+          await page.waitForFunction(() => window["ga-disable-G-CYFQ326JRF"] === false);
+          assert.equal(await page.evaluate(() => localStorage.getItem("zm_analytics_consent")), "accepted");
+          assert.equal(mockTagCalls.length, 1, "GA script must be requested only once after opt-in");
+          await page.locator(".cookie-settings-link").first().click();
+          await page.locator(".cookie-decline").click();
+          assert.equal(await page.evaluate(() => window["ga-disable-G-CYFQ326JRF"]), true);
+          assert.equal(await page.evaluate(() => localStorage.getItem("zm_analytics_consent")), "denied");
+        } finally {
+          await page.unroute(tagUrl);
+        }
+      });
+    }
     await context.close();
   }
 } finally {
