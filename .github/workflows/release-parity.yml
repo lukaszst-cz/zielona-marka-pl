@@ -1,0 +1,36 @@
+name: Verify production release parity
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/monitor-public-release.mjs"
+      - ".github/workflows/release-parity.yml"
+      - "app/ui-consistency-202610.css"
+      - "app/opieka-nad-strona/page.tsx"
+  workflow_dispatch:
+  schedule:
+    - cron: "17 */3 * * *"
+
+permissions:
+  contents: read
+
+jobs:
+  production-parity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - name: Check public content and shared styling against merged releases
+        run: node scripts/monitor-public-release.mjs
+      - name: Preserve public parity report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-release-parity-report
+          path: release-monitor-artifacts/report.json
+          retention-days: 14
+          if-no-files-found: warn
