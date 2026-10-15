@@ -4,7 +4,8 @@ const base = "https://zielona-marka.pl";
 const routes = [
   "/", "/oferta", "/dtp", "/opieka-nad-strona", "/projektuj-strone",
   "/bezplatna-koncepcja-strony", "/modernizacja-strony",
-  "/strony-internetowe", "/strony-internetowe/warszawa", "/strony-internetowe-marki",
+  "/strony-internetowe", "/strony-internetowe-marki",
+  ...["zabki", "zielonka", "kobylka", "wolomin", "radzymin", "targowek", "bialoleka", "warszawa"].map(city => `/strony-internetowe/${city}`),
   "/usprawnienia-firmy", "/kontakt", "/jak-pracuje",
   "/poradnik", "/poradnik/ile-kosztuje-strona-dla-malej-firmy",
   "/poradnik/jak-przygotowac-pdf-do-druku",
