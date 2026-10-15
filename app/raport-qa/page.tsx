@@ -8,6 +8,19 @@ export const metadata: Metadata = {
   title: "Przykładowy raport kontroli jakości",
   description: "Zobacz przykład raportu sprawdzania jakości strony przed publikacją: funkcje, formularze, wyświetlanie i wyniki testów.",
   alternates: { canonical: "/raport-qa" },
+  openGraph: {
+    type: "website",
+    url: "/raport-qa",
+    title: "Przykładowy raport kontroli jakości strony | Zielona Marka",
+    description: "Zobacz, jak sprawdzamy stronę internetową przed publikacją: widoki mobilne, formularze, szybkość, SEO i listę wyników kontroli.",
+    images: ["/og.jpg"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Przykładowy raport kontroli jakości strony | Zielona Marka",
+    description: "Zobacz, jak sprawdzamy stronę internetową przed publikacją: widoki mobilne, formularze, szybkość, SEO i listę wyników kontroli.",
+    images: ["/og.jpg"],
+  },
 };
 
 const checks = [

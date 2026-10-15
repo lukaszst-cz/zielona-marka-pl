@@ -801,3 +801,30 @@ test("blog hub uses one public layout, matching the offer and DTP", async () => 
   const layout = await readFile(new URL("../app/layout.tsx", import.meta.url), "utf8");
   assert.ok(layout.indexOf('import "./blog-layout-unification.css"') > layout.indexOf('import "./qa-integrated.css"'), "Blog overrides must follow other shared styles");
 });
+
+
+test("key public routes use their own social preview metadata", async () => {
+  const pages = [
+    ["/jak-pracuje", "Jak wygląda współpraca nad stroną | Zielona Marka"],
+    ["/raport-qa", "Przykładowy raport kontroli jakości strony | Zielona Marka"],
+    ["/realizacje", "Realizacje i demonstracje stron WWW | Zielona Marka"],
+  ];
+  const attr = (tag, name) => tag?.match(new RegExp(name + '="([^"]*)"', "i"))?.[1];
+  const titles = new Set();
+  for (const [route, expectedTitle] of pages) {
+    const response = await fetchPage(route);
+    assert.ok(response.ok, route + " must be available");
+    const html = await response.text();
+    const metas = [...html.matchAll(/<meta\b[^>]*>/gi)].map(match => match[0]);
+    const metaFor = (name, value) => metas.find(tag => attr(tag, name) === value);
+    const ogTitle = attr(metaFor("property", "og:title"), "content");
+    const twitterTitle = attr(metaFor("name", "twitter:title"), "content");
+    const ogUrl = attr(metaFor("property", "og:url"), "content");
+    assert.equal(ogTitle, expectedTitle, route + " Open Graph preview title");
+    assert.equal(twitterTitle, expectedTitle, route + " Twitter preview title");
+    assert.equal(ogUrl, "https://zielona-marka.pl" + route, route + " Open Graph URL");
+    assert.ok(attr(metaFor("property", "og:description"), "content")?.length > 70, route + " Open Graph summary missing");
+    titles.add(ogTitle);
+  }
+  assert.equal(titles.size, pages.length, "Social previews must not all inherit the generic homepage title");
+});

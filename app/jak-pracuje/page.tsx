@@ -10,6 +10,19 @@ export const metadata: Metadata = {
   title: "Jak wygląda współpraca nad stroną",
   description: "Jasny proces od briefu do publikacji strony: projekt, poprawki, kontrola jakości, przygotowanie do Google i opieka.",
   alternates: { canonical: "/jak-pracuje" },
+  openGraph: {
+    type: "website",
+    url: "/jak-pracuje",
+    title: "Jak wygląda współpraca nad stroną | Zielona Marka",
+    description: "Od pierwszego briefu, przez projekt i kontrolę jakości, po publikację strony. Sprawdź jasne zasady współpracy z Zieloną Marką.",
+    images: ["/og.jpg"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Jak wygląda współpraca nad stroną | Zielona Marka",
+    description: "Od pierwszego briefu, przez projekt i kontrolę jakości, po publikację strony. Sprawdź jasne zasady współpracy z Zieloną Marką.",
+    images: ["/og.jpg"],
+  },
 };
 
 const faq = [
