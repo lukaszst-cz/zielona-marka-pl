@@ -211,9 +211,13 @@ try {
         await page.goto(base + "/kontakt", { waitUntil: "networkidle", timeout: 45000 });
         const form = page.locator('form[data-analytics-form="brief"]');
         await form.locator('input[name="name"]').fill("Przykładowa osoba QA");
-        await form.locator('input[name="email"]').fill("test@example.com");
+        await form.locator('input[name="email"]').fill("not-an-email");
         await form.locator('textarea[name="message"]').fill("Proszę o informację o stworzeniu strony firmowej.");
         await form.locator('input[name="consent"]').check();
+        await form.locator('button[type="submit"]').click();
+        assert.equal(intercepted.length, 0, "Invalid email must not reach the mock endpoint");
+        assert.equal(await form.locator('input[name="email"]').evaluate(el => el.validity.typeMismatch), true);
+        await form.locator('input[name="email"]').fill("test@example.com");
         await form.locator('button[type="submit"]').click();
         await page.getByText("Dziękuję, wiadomość została wysłana.").waitFor({ state: "visible", timeout: 15000 });
         assert.equal(intercepted.length, 1, "Expected one intercepted POST; no real request should be sent");
