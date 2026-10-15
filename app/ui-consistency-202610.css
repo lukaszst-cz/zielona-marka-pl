@@ -112,7 +112,9 @@ html body .zm-public .local-related nav a{
   color:#f0f8e9!important;box-shadow:none;
   transition:background-color .2s ease,border-color .2s ease!important;
 }
-html body .zm-public .local-related nav a span{color:#cbfa9f!important}
+html body .zm-public .local-related nav a > span:last-child{color:#cbfa9f!important}
+html body .zm-public .local-related nav a > span:first-child:not(:last-child){color:#f0f8e9!important}
+html body .zm-public .local-related nav a small{display:block;font:400 14px/1.55 Arial,Helvetica,sans-serif;color:#d7e9d2!important;margin-top:5px}
 @media(hover:hover){
   html body .zm-public .local-related nav a:hover,
   html body .zm-public .local-related nav a:focus-visible{background:var(--zm-ui-card-hover)!important;border-color:var(--zm-ui-border-hover)!important}
