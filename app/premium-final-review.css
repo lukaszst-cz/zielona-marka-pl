@@ -80,8 +80,12 @@
   .zm-header .zm-mobile-menu > summary { min-height: 48px; display: inline-flex; align-items: center; }
 }
 @media (max-width: 660px) {
+  .zm-public .hero-actions,
+  .zm-v5 .zmh-actions { align-items: stretch; }
   .zm-public .hero-actions > a,
-  .zm-v5 .zmh-actions > a { flex: 1 1 230px; }
+  .zm-v5 .zmh-actions > a { flex: 0 1 auto; width: 100%; min-height: 46px; }
+  .zm-public .hero-actions > a.text-link,
+  .zm-v5 .zmh-actions > a.zmh-quiet { width: fit-content; max-width: 100%; justify-content: flex-start; }
   .zm-public .extra-grid article > span:not(.section-no) { font-size: 23px !important; }
   .zm-public.guide-page .guide-author { min-width: 0; }
   .zm-public.guide-page .guide-author > div { min-width: 0; overflow-wrap: anywhere; }
