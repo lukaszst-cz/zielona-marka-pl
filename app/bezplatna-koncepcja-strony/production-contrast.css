@@ -1,0 +1,227 @@
+/* Production readability repair: free-concept uses the same forest and high-contrast
+   visual language as /oferta. Loaded last, scoped to this one page only. */
+body .zm-public.zm-concept{
+  color:#eff6e8;
+  background:#061d12;
+  background-image:linear-gradient(180deg,rgba(1,19,10,.72),rgba(2,22,12,.86) 25%,rgba(2,21,13,.96) 70%),url("/brand-review-v3/forest-continuous.webp");
+  background-position:center top;
+  background-size:auto,100% auto;
+  background-repeat:no-repeat;
+}
+body .zm-public.zm-concept .page-hero.zm-concept-hero{
+  color:#f6f8ee;
+  border-bottom:1px solid rgba(213,238,204,.23);
+  padding-top:clamp(80px,7.5vw,122px);
+  padding-bottom:clamp(80px,7vw,112px);
+}
+body .zm-public.zm-concept .page-hero h1{color:#f7fbef!important}
+body .zm-public.zm-concept .page-hero h1 em{color:#b0f36c!important;font-style:normal}
+body .zm-public.zm-concept .page-hero .eyebrow{color:#b0f36c!important;font-weight:800}
+body .zm-public.zm-concept .page-hero .eyebrow i{background:#b0f36c}
+body .zm-public.zm-concept .page-hero .zm-concept-lead{
+  color:#e0ede1!important;
+  font-size:clamp(16px,1.45vw,19px);
+  line-height:1.7;
+}
+body .zm-public.zm-concept .page-hero .zm-concept-lead strong{color:#fff!important}
+body .zm-public.zm-concept .page-hero .zm-concept-calm{
+  color:#d3e5cf!important;
+  border-color:rgba(210,237,209,.25);
+  font-size:13px;
+}
+body .zm-public.zm-concept .hero-actions .button{
+  background:#b0f36c!important;color:#082112!important;
+  box-shadow:0 9px 25px #0003;
+  border-radius:26px;
+  font-weight:800;
+}
+body .zm-public.zm-concept .hero-actions .button:hover{background:#c4fa8e!important}
+body .zm-public.zm-concept .hero-actions .text-link{
+  color:#dcf2ce!important;border-color:#b0f36c!important;
+}
+body .zm-public.zm-concept .zm-concept-benefits{
+  position:relative;
+  background:linear-gradient(155deg,rgba(3,27,15,.89),rgba(8,41,26,.92));
+  padding-block:clamp(66px,6vw,92px);
+}
+body .zm-public.zm-concept .zm-concept-benefits h2{
+  color:#f6fbef!important;
+}
+body .zm-public.zm-concept .zm-concept-benefits .zm-concept-section-head>p:first-child{
+  color:#b0f36c!important;
+}
+body .zm-public.zm-concept .zm-concept-benefit-grid{
+  gap:14px;border:0;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+}
+body .zm-public.zm-concept .zm-concept-benefit-grid article{
+  border:1px solid rgba(190,230,174,.26)!important;
+  background:rgba(15,56,36,.78)!important;
+  border-radius:8px;
+  box-shadow:0 14px 38px #001b1233;
+  color:#f6f8ef!important;
+  min-height:245px;
+}
+body .zm-public.zm-concept .zm-concept-benefit-grid article>span{color:#b0f36c!important}
+body .zm-public.zm-concept .zm-concept-benefit-grid article h3{
+  color:#fff!important;font-size:clamp(20px,2vw,25px);
+}
+body .zm-public.zm-concept .zm-concept-benefit-grid article p{
+  color:#d6e6d5!important;font-size:15px;line-height:1.68;
+}
+body .zm-public.zm-concept .zm-concept-gallery{
+  color:#17382a!important;
+  background:#f0f3e9!important;
+  padding-block:clamp(75px,7vw,110px);
+}
+body .zm-public.zm-concept .zm-concept-gallery .zv5-gallery-intro h2{
+  color:#17382a!important;
+}
+body .zm-public.zm-concept .zm-concept-gallery .zv5-gallery-intro h2 em{
+  color:#397952!important;
+}
+body .zm-public.zm-concept .zm-concept-gallery .zv5-gallery-intro>p,
+body .zm-public.zm-concept .zm-concept-gallery .zv5-preview-bottom p,
+body .zm-public.zm-concept .zm-concept-gallery .zv5-preview-clarity,
+body .zm-public.zm-concept .zm-concept-gallery .zv5-gallery-foot{
+  color:#52695a!important;
+}
+body .zm-public.zm-concept .zm-concept-gallery .zv5-tab{
+  color:#183d2d!important;
+}
+body .zm-public.zm-concept .zm-concept-gallery .zv5-tab small{
+  color:#4c7258!important;
+}
+body .zm-public.zm-concept .zm-concept-gallery .zv5-tab b,
+body .zm-public.zm-concept .zm-concept-gallery .zv5-preview-bottom h3{
+  color:#193d2e!important;
+}
+body .zm-public.zm-concept .zm-concept-gallery .zv5-preview-cta{
+  color:#fff!important;background:#165038;
+  border-radius:5px;
+}
+body .zm-public.zm-concept .zm-concept-gallery .zv5-gallery-foot a{
+  color:#165638!important;
+}
+body .zm-public.zm-concept .zm-concept-gallery .zv5-demo-old strong,
+body .zm-public.zm-concept .zm-concept-gallery .zv5-demo-new strong,
+body .zm-public.zm-concept .zm-concept-gallery .zv5-demo-brand strong{
+  color:#213e30!important;
+}
+body .zm-public.zm-concept .zm-concept-scope{
+  background:linear-gradient(120deg,#082b1a,#103f29)!important;
+  color:#f5f8ed!important;
+}
+body .zm-public.zm-concept .zm-concept-scope h2,
+body .zm-public.zm-concept .zm-concept-scope h3{
+  color:#f6fbef!important;
+}
+body .zm-public.zm-concept .zm-concept-scope h2 em{color:#b0f36c!important}
+body .zm-public.zm-concept .zm-concept-scope .zm-concept-kicker{
+  color:#b0f36c!important;
+}
+body .zm-public.zm-concept .zm-concept-scope-grid>div>p:not(.zm-concept-kicker),
+body .zm-public.zm-concept .zm-concept-scope ol li p{
+  color:#d9e7d6!important;
+}
+body .zm-public.zm-concept .zm-concept-scope ol li>span,
+body .zm-public.zm-concept .zm-concept-scope-grid>div>a{
+  color:#b0f36c!important;
+}
+body .zm-public.zm-concept .zm-concept-request{
+  color:#f6f9ef!important;
+  padding-block:clamp(78px,8vw,110px);
+}
+body .zm-public.zm-concept .zm-concept-request h2{
+  color:#f6fbef!important;
+}
+body .zm-public.zm-concept .zm-concept-request h2 em{
+  color:#b0f36c!important;
+}
+body .zm-public.zm-concept .zm-concept-request-intro .zm-concept-kicker{
+  color:#b0f36c!important;
+}
+body .zm-public.zm-concept .zm-concept-request-intro>p:not(.zm-concept-kicker){
+  color:#dce9d8!important;line-height:1.8;
+}
+body .zm-public.zm-concept .zm-concept-request-note{
+  border-left-color:#b0f36c;background:#dbe9d9!important;
+  color:#143b29!important;
+}
+body .zm-public.zm-concept .zm-concept-request-note strong{color:#123525!important}
+body .zm-public.zm-concept .zm-concept-request-note span{color:#335c44!important}
+body .zm-public.zm-concept .zm-concept-form{
+  background:#fff!important;color:#173728!important;
+  border:1px solid #cfdfd0;border-radius:8px;
+  box-shadow:0 20px 60px #001b1440;
+}
+body .zm-public.zm-concept .zm-concept-form :is(label,legend,strong,b){
+  color:#173728!important;
+}
+body .zm-public.zm-concept .zm-concept-form :is(input:not([type="radio"]):not([type="checkbox"]),textarea,select){
+  background:#f7faf5!important;
+  color:#173728!important;
+  border:1px solid #adbfaf!important;
+  box-shadow:none!important;
+}
+body .zm-public.zm-concept .zm-concept-form :is(input,textarea)::placeholder{
+  color:#5d7866!important;opacity:1;
+}
+body .zm-public.zm-concept .zm-concept-form .zm-concept-choice label{
+  background:#f1f6f0!important;color:#173728!important;
+  border-color:#cbdacc!important;
+}
+body .zm-public.zm-concept .zm-concept-form .zm-concept-form-foot,
+body .zm-public.zm-concept .zm-concept-form .zm-concept-consent{
+  color:#456350!important;
+}
+body .zm-public.zm-concept .zm-concept-form button[type="submit"]{
+  background:#b0f36c!important;color:#082112!important;
+  border:0;border-radius:26px;
+  font-weight:800;
+}
+body .zm-public.zm-concept .zm-concept-faq{color:#f2f8ee!important}
+body .zm-public.zm-concept .zm-concept-faq h2{
+  color:#fff!important;
+}
+body .zm-public.zm-concept .zm-concept-faq .zm-concept-section-head>p:first-child{
+  color:#b0f36c!important;
+}
+body .zm-public.zm-concept .zm-concept-faq summary,
+body .zm-public.zm-concept .zm-concept-faq details p{
+  color:#e1eedf!important;
+}
+body .zm-public.zm-concept .zm-concept-faq details{
+  border-color:rgba(207,235,199,.25)!important;
+}
+body .zm-public.zm-concept .zm-concept-faq .zm-concept-disclaimer{
+  color:#c2d9c4!important;
+}
+@media(max-width:950px){
+ body .zm-public.zm-concept .zm-concept-benefit-grid{
+   grid-template-columns:1fr;
+ }
+ body .zm-public.zm-concept .zm-concept-benefit-grid article{
+   min-height:0;
+ }
+ body .zm-public.zm-concept{
+   background-size:auto,auto 980px;
+ }
+}
+@media(max-width:640px){
+ body .zm-public.zm-concept .zm-concept-benefits{
+   padding-block:64px;
+ }
+ body .zm-public.zm-concept .zm-concept-benefit-grid{
+   gap:10px;
+ }
+ body .zm-public.zm-concept .zm-concept-benefit-grid article{
+   padding:24px!important;
+ }
+ body .zm-public.zm-concept .zm-concept-gallery{
+   padding-block:64px;
+ }
+ body .zm-public.zm-concept .zm-concept-form{
+   padding:22px;
+ }
+}
