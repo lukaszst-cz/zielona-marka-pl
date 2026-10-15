@@ -18,7 +18,9 @@ export default function ConceptRequestForm() {
   const [mode, setMode] = useState<Mode>("existing");
   useEffect(() => {
     const requested = new URLSearchParams(window.location.search).get("typ");
-    if (requested && Object.prototype.hasOwnProperty.call(modeLabels, requested)) setMode(requested as Mode);
+    if (requested && Object.prototype.hasOwnProperty.call(modeLabels, requested)) {
+      window.requestAnimationFrame(() => setMode(requested as Mode));
+    }
   }, []);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
