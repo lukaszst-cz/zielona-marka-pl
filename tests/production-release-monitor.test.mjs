@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {
-  missingPageMarkers, missingUiStyles, monitorRelease, releasePages,
+  missingPageMarkers, missingUiStyles, monitorRelease, probeScriptAsset, releasePages,
 } from "../scripts/monitor-public-release.mjs";
 
 test("checks exact public UI release markers instead of just HTTP 200", () => {
@@ -16,13 +16,14 @@ test("requires current shared UI rules in public CSS", () => {
 
 test("fully simulated latest release passes without touching production", async () => {
   const htmlByRoute = new Map(releasePages.map(({ path, markers }) => [path,
-    '<html><head><link rel="stylesheet" href="/_next/static/a234.css"></head><body>' + markers.join(" ") + "</body></html>",
+    '<html><head><link rel="stylesheet" href="/_next/static/a234.css"><script src="/_next/static/chunks/ready.js"></script></head><body>' + markers.join(" ") + "</body></html>",
   ]));
   const css = "--zm-ui-card:rgba(5,30,19,.32);.care-plans{}.zm-dtp-prices{}.local-related nav a{}.zm-home-slide[hidden]{display:none}.zm-home-carousel-controls{}.zm-offer-browser{}.zmh-contact-preview-message{}.zmh-assembly-board--premium{}.zmh-preview-site-copy{}.fern-frond.svg{}.zv5-desktop{}.zv5-preview-stage{}.zm-public.zm-concept .page-hero.zm-concept-hero{}.zmh-cinema .zmh-website{}.zmh-cinema .zmh-flow-item{}";
   const request = async (url) => {
     const path = new URL(url).pathname;
     if (path === "/api/inquiries") return new Response("Uzupełnij firmę, rodzaj projektu i opis (10–4000 znaków).", { status: 400 });
     if (path.endsWith(".css")) return new Response(css, { status: 200, headers: { "content-type": "text/css" } });
+    if (path.endsWith(".js")) return new Response("export {}", { status: 200, headers: { "content-type": "application/javascript" } });
     return new Response(htmlByRoute.get(path) ?? "", { status: htmlByRoute.has(path) ? 200 : 404, headers: { "content-type": "text/html" } });
   };
   const report = await monitorRelease({ request });
@@ -30,6 +31,8 @@ test("fully simulated latest release passes without touching production", async 
   assert.deepEqual(report.conceptFormProbe, { status: 400, currentHandler: true });
   assert.deepEqual(report.failures, []);
   assert.equal(report.pages.length, releasePages.length);
+  assert.deepEqual(report.missingScripts, []);
+  assert.equal(report.scriptAssets.length, 1);
 });
 
 test("the release monitor detects the new free-concept UI on production", () => {
@@ -62,4 +65,26 @@ test("outdated production correctly fails even with all HTTP 200 responses", asy
   assert.equal(report.isCurrent, false);
   assert.ok(report.failures.some((f) => f.includes("care-plan-benefit")));
   assert.ok(report.failures.some((f) => f.includes("Production CSS is missing")));
+});
+
+test("stale hashed JS chunks are detected even when HTML is HTTP 200", async () => {
+  const missing = await probeScriptAsset("/_next/static/chunks/old-hash.js", {
+    origin: "https://zielona-marka.pl", retryDelayMs: 0,
+    request: async () => new Response("Not Found", { status: 404, headers: { "content-type": "text/html" } }),
+  });
+  assert.equal(missing.ok, false);
+  assert.equal(missing.status, 404);
+  assert.equal(missing.attempts, 2);
+  const spaFallback = await probeScriptAsset("/_next/static/chunks/fallback.js", {
+    origin: "https://zielona-marka.pl", retryDelayMs: 0,
+    request: async () => new Response("<html>Not JS</html>", { status: 200, headers: { "content-type": "text/html" } }),
+  });
+  assert.equal(spaFallback.ok, false, "HTML fallback cannot count as an available JavaScript bundle");
+  const valid = await probeScriptAsset("/_next/static/chunks/current.js", {
+    origin: "https://zielona-marka.pl", retryDelayMs: 0,
+    request: async () => new Response("export const ready=true", {
+      status: 200, headers: { "content-type": "application/javascript" },
+    }),
+  });
+  assert.equal(valid.ok, true);
 });
