@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "../SafeLink";
 import QualityPrintButton from "../QualityPrintButton";
+import { QaLocalNav, QaDocumentCards } from "../QaStandardsNavigation";
 import { SiteHeader, SiteFooter, QuickWhatsApp } from "../SiteChrome";
 
 export const metadata: Metadata = {
@@ -24,27 +25,54 @@ const checks=[
  {n:"11",title:"Proof i akceptacja",items:["Ocena wizualna w uzgodnionym zakresie","Soft proof z właściwym profilem i stanowiskiem","Hard-copy proof, gdy jest wymagany przez projekt","Akceptacja uprawnionej osoby i rejestr odstępstw"]},
  {n:"12",title:"Wydanie produkcyjne",items:["Kontrola gotowego PDF po eksporcie","Numer wersji, nazwa pliku i komplet materiałów","Przekazanie wymagań dodatkowych drukarni","Archiwizacja pliku, raportu i potwierdzeń"]},
 ];
-export default function DtpStandardPage(){return <><SiteHeader/><main className="zm-manual">
-<section className="zm-manual__hero"><div className="zm-manual__inner"><span className="zm-manual__label">ZM-DTP-QA-001 / DTP • PREPRESS • DRUK</span>
-<h1>Przed drukiem <em>liczy się każdy szczegół.</em></h1>
-<p>Przed oddaniem materiału do produkcji sprawdzamy treść, geometrię, jakość obrazów, kolorystykę, PDF i wymagania konkretnej drukarni. Poniżej pokazujemy 12 obszarów kontroli jakości.</p>
-<div className="zm-manual__actions"><a href="/downloads/zielona-marka-standard-dtp-prepress-qa.pdf" download>Pobierz standard DTP (PDF, 15 stron) ↓</a><a href="#lista">Zobacz checklistę ↓</a><QualityPrintButton/></div>
-</div></section>
-<div className="zm-manual__content">
-<section className="zm-manual__section" id="lista"><h2>12 obszarów QA przed produkcją</h2><p className="zm-manual__intro">Nie wszystkie kontrole dotyczą każdego materiału. O ich zastosowaniu decydują produkt, technologia druku, sposób wykończenia i zaakceptowana specyfikacja. Parametrów technicznych nie ustalamy w oderwaniu od wymagań drukarni.</p>
-<div className="zm-manual__grid">{checks.map(item=><article className="zm-manual__tile" key={item.n}><span>QA / {item.n}</span><h3>{item.title}</h3><ul>{item.items.map(i=><li key={i}>{i}</li>)}</ul></article>)}</div>
-</section>
-<section className="zm-manual__section"><h2>Co dzieje się, gdy wykryjemy błąd?</h2>
-<div className="zm-manual__rules"><div className="zm-manual__rule"><strong>PASS</strong><p>Kontrola zakończona pozytywnie; zapisujemy wynik.</p></div><div className="zm-manual__rule"><strong>REWORK</strong><p>Poprawiamy plik i powtarzamy odpowiednią kontrolę.</p></div><div className="zm-manual__rule"><strong>HOLD</strong><p>Wstrzymujemy wydanie do uzyskania specyfikacji lub decyzji.</p></div></div>
-<p className="zm-manual__intro">W raporcie konkretnego zlecenia podajemy numer wersji, zakres, wynik preflight, wykryte niezgodności, sposób ich usunięcia i datę akceptacji. Ta publiczna lista pokazuje metodę, a nie potwierdza przebadania dowolnego pliku.</p></section>
-<section className="zm-manual__section"><h2>Normy wykorzystywane jako punkty odniesienia</h2>
-<div className="zm-manual__grid zm-manual__grid--2">
-<article className="zm-manual__tile"><span>PDF/X</span><h3>ISO 15930-7:2010</h3><p>Wymiana danych drukarskich w formacie PDF/X-4 i PDF/X-4p.</p></article>
-<article className="zm-manual__tile"><span>OFFSET / PROOF</span><h3>ISO 12647-2 i 12647-7</h3><p>Parametry druku offsetowego oraz wymagania dla cyfrowych proofów hard-copy.</p></article>
-<article className="zm-manual__tile"><span>BARWA / OŚWIETLENIE</span><h3>ISO 13655:2017 i ISO 3664:2025</h3><p>Pomiary barwometryczne i właściwe warunki oglądania odbitek. ISO 3664:2025 nie normuje soft proofu.</p></article>
-<article className="zm-manual__tile"><span>OPAKOWANIA I ETYKIETY</span><h3>ISO 19593-1:2026</h3><p>Opis danych technologicznych w PDF, m.in. linii cięcia, bieli i lakieru.</p></article>
-</div>
-<div className="zm-manual__notice" style={{marginTop:22}}><strong>Informacja o standardzie:</strong> lista kontrolna jest własnym opracowaniem Zielonej Marki, inspirowanym odpowiednimi normami. Nie stanowi certyfikatu ISO, akredytacji ani zapewnienia zgodności każdej realizacji z wszystkimi wymienionymi normami.</div>
-</section>
-<div className="zm-manual__ending"><h2>Masz plik do sprawdzenia?</h2><p>Przygotujemy preflight lub kompletny plik produkcyjny, zgodnie z wymaganiami Twojej drukarni.</p><Link href="/kontakt?pakiet=DTP%20i%20przygotowanie%20do%20druku">Zapytaj o kontrolę DTP ↗</Link></div>
-</div></main><QuickWhatsApp/><SiteFooter/></>}
+export default function DtpStandardPage() {
+  return <><SiteHeader /><main className="zm-public qa-page">
+    <section className="page-hero shell qa-hero" aria-labelledby="qa-dtp-heading">
+      <nav className="qa-crumbs" aria-label="Ścieżka nawigacji"><Link href="/">Strona główna</Link><span aria-hidden="true">/</span><Link href="/standardy-jakosci">Jakość i normy</Link><span aria-hidden="true">/</span><span>DTP / Prepress</span></nav>
+      <span className="eyebrow">STANDARDY ZIELONEJ MARKI / ZM-DTP-QA-001</span>
+      <h1 id="qa-dtp-heading">Przed drukiem <em>liczy się każdy szczegół.</em></h1>
+      <p>Kontrola obejmuje nie tylko spady i rozdzielczość. Sprawdzamy też treść, typografię, obrazy, profile barwne, separacje, PDF i wymagania konkretnej drukarni.</p>
+      <div className="hero-actions qa-hero-actions">
+        <a className="button" href="/downloads/zielona-marka-standard-dtp-prepress-qa.pdf" download>Pobierz checklistę DTP · PDF <span aria-hidden="true">↓</span></a>
+        <a className="text-link" href="#lista">Zobacz 12 obszarów kontroli <span aria-hidden="true">↓</span></a>
+        <QualityPrintButton />
+      </div>
+      <p className="qa-hero-detail">Dokument ZM-DTP-QA-001, wydanie 3.0, 15 stron i 73 kryteria. Własny standard kontroli przedprodukcyjnej; nie jest certyfikatem ISO.</p>
+    </section>
+    <QaLocalNav active="/standard-dtp" />
+
+    <section className="section shell qa-section" id="dokumenty">
+      <div className="section-head"><div><span className="section-no">DOKUMENTACJA / DTP I WWW</span><h2>Pobierz standard do wykorzystania przy zleceniu.</h2></div><p>Materiały pozwalają ustalić, co będzie sprawdzane i w jaki sposób dokumentujemy wyniki. PDF-y są bezpłatne i dostępne bez formularza.</p></div>
+      <QaDocumentCards />
+    </section>
+
+    <section className="section shell qa-section" id="lista">
+      <div className="section-head"><div><span className="section-no">PREPRESS / 12 OBSZARÓW</span><h2>Co dokładnie sprawdzamy przed produkcją?</h2></div><p>Dobór kryteriów zależy od podłoża, technologii, uszlachetnień, sposobu introligatorni i zaakceptowanej specyfikacji drukarni.</p></div>
+      <div className="qa-cards qa-cards--three">{checks.map(item => <article className="qa-card" key={item.n}><span className="qa-kicker">QA / {item.n}</span><h3>{item.title}</h3><ul>{item.items.map(text => <li key={text}>{text}</li>)}</ul></article>)}</div>
+    </section>
+
+    <section className="section shell qa-section" id="odbior">
+      <div className="section-head"><div><span className="section-no">ODSTĘPSTWA / WYNIK KONTROLI</span><h2>Co robimy, gdy znajdziemy błąd?</h2></div><p>Nie kończymy na samym wykryciu problemu. Istotne błędy poprawiamy, powtarzamy kontrolę i zapisujemy status konkretnej wersji pliku.</p></div>
+      <div className="qa-statuses">
+        <div><strong>PASS</strong><p>Przeprowadzono test, wynik spełnia kryterium i został udokumentowany.</p></div>
+        <div><strong>REWORK</strong><p>Plik wymaga korekty oraz ponownego sprawdzenia.</p></div>
+        <div><strong>HOLD</strong><p>Wydanie wstrzymane do wyjaśnienia problemu lub otrzymania wymaganych danych.</p></div>
+      </div>
+      <p className="qa-note-p">Raport konkretnego zlecenia powinien zawierać wersję pliku, zakres kontroli, wynik preflight, odstępstwa i decyzję o wydaniu. Publiczna lista nie jest dowodem, że dowolny plik klienta przeszedł kontrolę.</p>
+    </section>
+
+    <section className="section shell qa-section" id="normy-iso">
+      <div className="section-head"><div><span className="section-no">NORMY I TECHNOLOGIE DRUKU</span><h2>Punkty odniesienia ISO w prepress.</h2></div><p>Normy nie zastępują specyfikacji zakładu produkcyjnego. Wybieramy te, które rzeczywiście dotyczą danego materiału i procesu.</p></div>
+      <div className="qa-cards">
+        <article className="qa-card"><span className="qa-kicker">PDF/X</span><h3>ISO 15930-7</h3><p>Zasady przekazywania danych w formatach PDF/X-4 i PDF/X-4p.</p></article>
+        <article className="qa-card"><span className="qa-kicker">OFFSET / PROOF</span><h3>ISO 12647-2 i 12647-7</h3><p>Parametry procesów drukarskich i określone wymagania dla cyfrowych proofów.</p></article>
+        <article className="qa-card"><span className="qa-kicker">BARWA / WARUNKI OCENY</span><h3>ISO 13655 oraz ISO 3664</h3><p>Pomiary barwy i warunki wizualnej oceny odbitek w przewidzianych zastosowaniach.</p></article>
+        <article className="qa-card"><span className="qa-kicker">OPAKOWANIA / ETYKIETY</span><h3>ISO 19593-1</h3><p>Struktura danych technologicznych PDF, np. dla wykrojników, bieli i lakierów.</p></article>
+      </div>
+      <div className="qa-standards-note"><strong>Bez mylenia pojęć:</strong> powyższe normy są technicznymi punktami odniesienia dla naszych procedur. Zielona Marka nie deklaruje certyfikacji ISO, akredytacji ani sprawdzenia każdej realizacji według wszystkich przywołanych standardów.</div>
+      <div className="qa-link-stack"><Link href="/standardy-jakosci#iso">Jak opisujemy korzystanie z norm ISO ↗</Link><Link href="/standard-jakosci">Zasady QA dla WWW i CRM ↗</Link></div>
+    </section>
+
+    <section className="section shell qa-section"><div className="qa-ending"><span className="section-no">DTP / WYDAJEMY PLIK PO KONTROLI</span><h2>Potrzebujesz projektu lub preflightu?</h2><p>Przygotujemy zakres kontroli i plik produkcyjny według specyfikacji Twojej drukarni.</p><div className="hero-actions"><Link className="button" href="/kontakt?pakiet=DTP%20i%20przygotowanie%20do%20druku">Zapytaj o kontrolę DTP <span aria-hidden="true">↗</span></Link><Link className="text-link" href="/dtp">Zobacz ofertę DTP <span aria-hidden="true">↗</span></Link></div></div></section>
+  </main><QuickWhatsApp /><SiteFooter /></>;
+}
