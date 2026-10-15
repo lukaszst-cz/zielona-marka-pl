@@ -88,12 +88,14 @@ try {
         assert.equal(await page.locator(".zm-demo-layout-editorial").count(), 1);
       });
       await check("Desktop: DTP wizard changes steps and quote is displayed", async () => {
-        await page.goto(base + "/dtp", { waitUntil: "domcontentloaded" });
+        await page.goto(base + "/dtp", { waitUntil: "networkidle" });
         const steps = page.locator(".zm-dtp-stepper button");
         assert.equal(await steps.count(), 4);
         await steps.nth(1).click();
+        await page.locator("#dtp-text-files").waitFor({ state: "visible", timeout: 10000 });
         assert.ok((await page.locator(".zm-total-fields").innerText()).includes("KROK 2 Z 4"));
         await steps.nth(3).click();
+        await page.locator(".zm-dtp-line-items").waitFor({ state: "visible", timeout: 10000 });
         assert.ok((await page.locator(".zm-total-fields").innerText()).includes("KROK 4 Z 4"));
         assert.ok((await page.locator(".zm-dtp-summary").innerText()).includes("zł"));
       });
@@ -110,15 +112,23 @@ try {
         const price = text => Number(text.replace(/[^\d]/g, ""));
         assert.equal(price(next) - price(first), 90);
       });
-      await check("Desktop: Blog search filters articles without page reload", async () => {
-        await page.goto(base + "/poradnik", { waitUntil: "domcontentloaded" });
+      await check("Desktop: Blog search finds inflections and multiple terms", async () => {
+        await page.goto(base + "/poradnik", { waitUntil: "networkidle" });
         const cards = page.locator(".zm-blog-results > a");
         const before = await cards.count();
         assert.ok(before >= 4);
-        await page.locator("#zm-blog-search").fill("gazetka");
-        await page.waitForTimeout(250);
-        const after = await cards.count();
-        assert.ok(after > 0 && after < before, "Search did not narrow entries");
+        const search = page.locator("#zm-blog-search");
+        await search.fill("gazetka");
+        await page.waitForFunction((total) => {
+          const current = document.querySelectorAll(".zm-blog-results > a").length;
+          return current > 0 && current < total;
+        }, before, { timeout: 10000 });
+        assert.ok((await cards.first().innerText()).toLocaleLowerCase("pl-PL").includes("gazetk"));
+        await search.fill("koszt strony");
+        await page.waitForFunction(() =>
+          [...document.querySelectorAll(".zm-blog-results > a")].some(card =>
+            card.textContent?.toLocaleLowerCase("pl-PL").includes("stron")), null, { timeout: 10000 });
+        assert.ok((await cards.count()) > 0, "Multiword query returned no articles");
       });
       await check("Desktop: web quote transfers privately into contact message; no submission", async () => {
         await page.goto(base + "/oferta", { waitUntil: "domcontentloaded" });
