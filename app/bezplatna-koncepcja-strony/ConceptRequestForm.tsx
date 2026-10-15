@@ -21,6 +21,14 @@ export default function ConceptRequestForm() {
     if (requested && Object.prototype.hasOwnProperty.call(modeLabels, requested)) {
       window.requestAnimationFrame(() => setMode(requested as Mode));
     }
+    const selectMode = (event: Event) => {
+      const selected = (event as CustomEvent<string>).detail;
+      if (Object.prototype.hasOwnProperty.call(modeLabels, selected)) {
+        setMode(selected as Mode);
+      }
+    };
+    window.addEventListener("zm-concept-mode", selectMode);
+    return () => window.removeEventListener("zm-concept-mode", selectMode);
   }, []);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
