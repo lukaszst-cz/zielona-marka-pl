@@ -344,3 +344,31 @@ test("Cennik i nawigacja zachowują czytelność najważniejszych informacji", a
   const article = await (await render("/poradnik/ile-kosztuje-projekt-gazetki")).text();
   assert.match(article, /Łukasz Staniewicz/);
 });
+
+test("standardy QA mają wspólny wygląd serwisu, nawigację oraz pobieralne dokumenty", async () => {
+  const pages = ["/standardy-jakosci", "/standard-jakosci", "/standard-dtp"];
+  for (const path of pages) {
+    const response = await render(path);
+    assert.equal(response.status, 200, path);
+    const html = await response.text();
+    assert.match(html, /class="zm-public qa-page"/, path + ": firmowy układ podstrony");
+    assert.match(html, /href="\/standardy-jakosci"/, path + ": nawigacja jakości");
+    assert.match(html, /ISO/i, path + ": wzmianka o normach");
+    assert.match(html, /Nie (?:deklarujemy|oznacza|stanowi)|nie jest.*certyfikat/i, path + ": brak deklaracji certyfikacji");
+    assert.match(html, /\/downloads\/zielona-marka-standard-dtp-prepress-qa\.pdf/, path + ": PDF DTP");
+    assert.match(html, /\/downloads\/zielona-marka-standard-jakosci-www-dtp-crm\.pdf/, path + ": PDF QA");
+  }
+  const homepage = await render("/");
+  const homeMarkup = await homepage.text();
+  assert.match(homeMarkup, /href="\/standardy-jakosci"/, "strona główna odsyła do standardów");
+  assert.match(homeMarkup, /Jakość i ISO/, "jakość jest w menu głównym");
+
+  for (const file of ["zielona-marka-standard-dtp-prepress-qa.pdf", "zielona-marka-standard-jakosci-www-dtp-crm.pdf"]) {
+    const response = await fetch(new URL("/downloads/" + file, testBaseUrl));
+    assert.equal(response.status, 200, file + ": jest udostępniony");
+    assert.match(response.headers.get("content-type") || "", /application\/pdf/i, file + ": typ MIME");
+    const bytes = new Uint8Array(await response.arrayBuffer());
+    assert.ok(bytes.length > 10000, file + ": pełen plik");
+    assert.equal(new TextDecoder().decode(bytes.slice(0, 4)), "%PDF", file + ": nagłówek PDF");
+  }
+});
