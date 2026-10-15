@@ -107,7 +107,7 @@ test("v1.0.1 defers non-critical home media and caches hashed assets",async()=>{
   assert.match(hero,/zmh-living-forest\$\{ready\?' is-media-ready'/);
   assert.match(homeCss,/\.zmh-living-forest\.is-media-ready:before\{background-image:url\('\/brand-review-v5\/user-stream-tree-optimized\.webp'\)/);
   assert.match(portal,/if \(visible\) el\.classList\.add\("zmh-media-ready"\)/);
-  assert.match(refinements,/\.zmh-assembly::before\{[^}]*stream-water-bottom\.webp/, "Second photograph must be a separately blended layer");
+  assert.doesNotMatch(refinements,/stream-water-bottom\.webp/, "No water photograph below the first screen");
   assert.match(refinements,/\.zmh-assembly\.zmh-media-ready\{background:transparent!important\}/, "The second scene should not swap backgrounds when it becomes visible");
   assert.match(refinements,/\.zmh-scene-transition\{[^}]*height:0!important;margin:0!important;background:none!important/, "No opaque separator or spacing at the scene boundary");
   assert.doesNotMatch(refinements,/--zmh-dissolve-height/, "Remove the former oversized dark transition");
@@ -117,8 +117,27 @@ test("v1.0.1 defers non-critical home media and caches hashed assets",async()=>{
   assert.match(refinements,/\.zmh-opening \.zmh-living-forest\{[^}]*mask-image:linear-gradient\(to bottom,[^}]*transparent 100%\)/, "Fade the entire first media layer onto the shared photo");
   assert.ok(refinements.lastIndexOf("The opening and story share the same forest background") > refinements.lastIndexOf("Mobile controls and secondary calls to action"), "Transition styles must follow legacy mobile overrides");
   assert.match(refinements,/\.zmh-opening::after\{content:none!important\}/, "Remove the overlay that darkened the middle of the first scene");
-  assert.match(refinements,/\.zmh-assembly::before\{[^}]*mask-image:linear-gradient\(to bottom,transparent 0%/, "Reveal the next photograph gradually");
+  assert.match(refinements,/\.zmh-assembly::before\{[^}]*background:radial-gradient\(/, "The first scrolling scene uses abstract botanical lighting");
 });
+test("homepage free offers are real slides and the stream ends with the hero",async()=>{
+  const [page,source,slides,styles]=await Promise.all([
+    (await fetchPage("/")).text(),
+    readFile(new URL("../app/OrganicHome.tsx",import.meta.url),"utf8"),
+    readFile(new URL("../app/HomeOffersCarousel.tsx",import.meta.url),"utf8"),
+    readFile(new URL("../app/home-carousel.css",import.meta.url),"utf8"),
+  ]);
+  assert.match(source,/HomeOffersCarousel/);
+  assert.doesNotMatch(source,/zmh-concept-feature/, "Legacy static concept card should no longer be rendered");
+  assert.match(page,/Zobacz swoją firmę/);
+  assert.match(page,/Zamów bezpłatną koncepcję/);
+  for(const name of ["Mini audyt","Mapa Szans","Bezpłatna koncepcja"]) assert.ok(slides.includes(name),name);
+  for(const i of [1,2,3]) assert.match(page,new RegExp("Pokaż slajd " + i));
+  assert.match(slides,/aria-pressed=\{index === active\}/);
+  assert.match(styles,/\.zm-home-slide\[hidden\]\{display:none!important\}/);
+  assert.equal((styles.match(/stream-water-bottom\.webp/g)||[]).length,1,"The water fallback image belongs only to the opening");
+  assert.match(styles,/\.zmh-assembly::before\{[^}]*background:radial-gradient/);
+});
+
 test("small mobile links and consent controls have finger-sized targets",async()=>{
   const css=await readFile(new URL("../app/site-refinements.css",import.meta.url),"utf8");
   assert.match(css,/offer-page-packages article>a,\.extra-grid article>a,\.site-footer \.footer-grid a\{display:inline-flex;align-items:center;min-height:44px/);

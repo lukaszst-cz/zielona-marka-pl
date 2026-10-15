@@ -364,17 +364,17 @@ html body .zm-v5 .zmh-assembly{
   background:transparent!important;
 }
 html body .zm-v5 .zmh-assembly.zmh-media-ready{background:transparent!important}
-/* The second photograph fades in separately, while the same forest stays
-   visible beneath it. This also avoids an image swap on intersection. */
+/* After the opening stream fades out, only abstract botanical light remains.
+   No stream photograph is rendered beneath the following homepage sections. */
 html body .zm-v5 .zmh-assembly::before{
   content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
-  background:url('/brand-review-v5/stream-water-bottom.webp') center top/cover no-repeat;
-  -webkit-mask-image:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.15) 16%,rgba(0,0,0,.55) 34%,#000 64%);
-  mask-image:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.15) 16%,rgba(0,0,0,.55) 34%,#000 64%);
+  background:radial-gradient(ellipse at 72% 40%,rgba(126,193,100,.16),transparent 58%),
+             linear-gradient(to bottom,transparent,rgba(14,57,37,.45));
+  -webkit-mask-image:none;mask-image:none;
 }
 html body .zm-v5 .zmh-assembly::after{
   content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
-  background:linear-gradient(to bottom,transparent 0%,rgba(6,28,19,.08) 42%,rgba(6,28,19,.24) 100%);
+  background:linear-gradient(to bottom,transparent,rgba(6,28,19,.15));
 }
 html body .zm-v5 .zmh-assembly>*{position:relative;z-index:1}
 @media(max-width:700px){
@@ -382,10 +382,6 @@ html body .zm-v5 .zmh-assembly>*{position:relative;z-index:1}
   html body .zm-v5 .zmh-opening .zmh-living-forest{
     -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 71%,rgba(0,0,0,.7) 84%,transparent 100%);
     mask-image:linear-gradient(to bottom,#000 0%,#000 71%,rgba(0,0,0,.7) 84%,transparent 100%);
-  }
-  html body .zm-v5 .zmh-assembly::before{
-    -webkit-mask-image:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.2) 22%,#000 65%);
-    mask-image:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.2) 22%,#000 65%);
   }
 }
 
