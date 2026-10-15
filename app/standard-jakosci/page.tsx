@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "../SafeLink";
 import QualityPrintButton from "../QualityPrintButton";
+import { QaLocalNav, QaDocumentCards } from "../QaStandardsNavigation";
 import { SiteHeader, SiteFooter, QuickWhatsApp } from "../SiteChrome";
 
 export const metadata: Metadata = {
@@ -26,24 +27,58 @@ const tracks=[
  {num:"03 / PREPRESS",title:"Grafika i DTP",items:["Treść, typografia, fonty i obrazy","Spady, PDF/X, ICC i separacje","Overprint, lakier, wykrojniki i falcowanie","Proofing, akceptacja i plik produkcyjny"],href:"/standard-dtp",cta:"Pełny standard DTP"},
  {num:"04 / SYSTEMY",title:"CRM i automatyzacje",items:["Mapa procesów i wymagań","Role, uprawnienia, integralność danych","Integracje, scenariusze błędów i kopie zapasowe","Testy odbiorowe i przekazanie dostępu"],href:"/maly-crm-dla-firm",cta:"Poznaj CRM"},
 ];
-export default function QualityStandardPage(){return <><SiteHeader/><main className="zm-manual">
-<section className="zm-manual__hero"><div className="zm-manual__inner"><span className="zm-manual__label">ZM-QMS-001 / STANDARD JAKOŚCI ZIELONEJ MARKI</span>
-<h1>Dobry projekt powstaje w <em>dobrze prowadzonym procesie.</em></h1>
-<p>Sprawdź, co dzieje się od pierwszego zapytania do odbioru. Każda realizacja ma określony zakres, etapy i właściwe dla niej punkty kontroli.</p>
-<div className="zm-manual__actions"><a href="/downloads/zielona-marka-standard-jakosci-www-dtp-crm.pdf" download>Pobierz standard jakości (PDF, 10 stron) ↓</a><a href="#etapy">Zobacz osiem etapów ↓</a><QualityPrintButton/></div>
-</div></section>
-<div className="zm-manual__content">
-<section className="zm-manual__section" id="etapy"><h2>Osiem etapów. Jedna zasada jakości.</h2>
-<p className="zm-manual__intro">Nie pomijamy kontroli dlatego, że projekt jest mały. Dostosowujemy liczbę testów do rodzaju zamówienia i poziomu ryzyka.</p>
-<div className="zm-manual__steps">{steps.map(([n,t,d])=><div className="zm-manual__step" key={n}><b>{n}</b><h3>{t}</h3><p>{d}</p></div>)}</div>
-</section>
-<section className="zm-manual__section"><h2>Co dokładnie podlega kontroli?</h2><p className="zm-manual__intro">Podstawowa lista kontrolna jest wspólna organizacyjnie; testy techniczne zależą od produktu.</p>
-<div className="zm-manual__grid zm-manual__grid--2">{tracks.map(track=><article className="zm-manual__tile" key={track.num}><span>{track.num}</span><h3>{track.title}</h3><ul>{track.items.map(item=><li key={item}>{item}</li>)}</ul><p style={{marginTop:18}}><Link href={track.href}>{track.cta} ↗</Link></p></article>)}</div></section>
-<section className="zm-manual__section"><h2>Kontrola nie kończy się na deklaracji.</h2>
-<div className="zm-manual__rules"><div className="zm-manual__rule"><strong>PASS</strong><p>Kontrola przeprowadzona, wymaganie spełnione i potwierdzone wynikiem.</p></div><div className="zm-manual__rule"><strong>REWORK</strong><p>Wystąpiła niezgodność; poprawiamy ją i powtarzamy odpowiedni test.</p></div><div className="zm-manual__rule"><strong>HOLD</strong><p>Wstrzymujemy etap, jeżeli brak decyzji lub ryzyko nie pozwala bezpiecznie kontynuować.</p></div></div>
-<p className="zm-manual__intro" style={{marginTop:20}}>Klient otrzymuje zakres, możliwość akceptacji i — gdy jest to przewidziane w uzgodnieniach — raport zawierający rzeczywiście wykonane testy, a nie automatycznie zaznaczone wyniki.</p></section>
-<section className="zm-manual__section"><h2>Jak odnosimy się do ISO?</h2>
-<div className="zm-manual__notice"><strong>Transparentnie:</strong> to własne procedury Zielonej Marki, opracowane z wykorzystaniem zasad zarządzania jakością znanych z ISO 9001:2026 oraz odpowiednich norm dla oprogramowania i poligrafii. Nie oznacza to uzyskania certyfikatu ISO 9001, zewnętrznego audytu ani akredytacji. Nie używamy logo ISO.</div>
-<p className="zm-manual__intro">Wykorzystywane punkty odniesienia obejmują ISO 9001:2026 (zarządzanie procesem), ISO/IEC 25010:2023 (model jakości produktu ICT) i — w pracach graficznych — odpowiednie części ISO 15930 i ISO 12647. Zastosowanie zawsze zależy od zakresu i technologii projektu.</p></section>
-<div className="zm-manual__ending"><h2>Chcesz zobaczyć standard w praktyce?</h2><p>Zacznij od opisu potrzeb swojej firmy. Przygotujemy zakres, a następnie omówimy punkty kontroli i sposób odbioru.</p><Link href="/kontakt">Porozmawiajmy o projekcie ↗</Link></div>
-</div></main><QuickWhatsApp/><SiteFooter/></>}
+export default function QualityStandardPage() {
+  return <><SiteHeader /><main className="zm-public qa-page">
+    <section className="page-hero shell qa-hero" aria-labelledby="qa-main-heading">
+      <nav className="qa-crumbs" aria-label="Ścieżka nawigacji"><Link href="/">Strona główna</Link><span aria-hidden="true">/</span><Link href="/standardy-jakosci">Jakość i normy</Link><span aria-hidden="true">/</span><span>Standard projektów</span></nav>
+      <span className="eyebrow">STANDARDY ZIELONEJ MARKI / ZM-QMS-001</span>
+      <h1 id="qa-main-heading">Dobry projekt powstaje w <em>dobrze prowadzonym procesie.</em></h1>
+      <p>Od pierwszego zapytania po odbiór — jasno określamy zakres, odpowiedzialność i punkty kontroli. Przejrzyj zasady, sprawdź zakres testów i pobierz dokumentację.</p>
+      <div className="hero-actions qa-hero-actions">
+        <a className="button" href="/downloads/zielona-marka-standard-jakosci-www-dtp-crm.pdf" download>Pobierz standard jakości · PDF <span aria-hidden="true">↓</span></a>
+        <a className="text-link" href="#etapy">Poznaj 8 etapów <span aria-hidden="true">↓</span></a>
+        <QualityPrintButton />
+      </div>
+      <p className="qa-hero-detail">Dokument ZM-QMS-001, wydanie 3.0, 10 stron. Własny standard pracy; nie jest to certyfikat ISO.</p>
+    </section>
+    <QaLocalNav active="/standard-jakosci" />
+
+    <section className="section shell qa-section" id="dokumenty" aria-labelledby="qa-files-heading">
+      <div className="section-head"><div><span className="section-no">DOKUMENTACJA DO POBRANIA</span><h2 id="qa-files-heading">Zasady zapisane, nie tylko opisane.</h2></div><p>Dwa aktualne dokumenty firmowe obejmują proces tworzenia stron i systemów oraz osobną kontrolę materiałów przygotowywanych do druku.</p></div>
+      <QaDocumentCards />
+    </section>
+
+    <section className="section shell qa-section" id="etapy">
+      <div className="section-head"><div><span className="section-no">OD ZAPYTANIA DO OPIEKI</span><h2>Osiem etapów. Jedna zasada jakości.</h2></div><p>Zakres kontroli wynika z rodzaju produktu i ryzyk projektu. Małe realizacje również przechodzą adekwatne sprawdzenia.</p></div>
+      <div className="qa-timeline">{steps.map(([n, title, description]) => <div className="qa-step" key={n}><span>{n}</span><div><h3>{title}</h3><p>{description}</p></div></div>)}</div>
+    </section>
+
+    <section className="section shell qa-section" id="kontrola">
+      <div className="section-head"><div><span className="section-no">ZAKRES TESTÓW</span><h2>Co sprawdzamy w poszczególnych realizacjach?</h2></div><p>Testy techniczne są różne dla strony firmowej, sklepu, DTP i CRM. Nie przedstawiamy jednej listy jako obowiązkowej dla wszystkich produktów.</p></div>
+      <div className="qa-cards">{tracks.map(track => <article className="qa-card" key={track.num}><span className="qa-kicker">{track.num}</span><h3>{track.title}</h3><ul>{track.items.map(item => <li key={item}>{item}</li>)}</ul><Link className="text-link" href={track.href}>{track.cta} <span aria-hidden="true">↗</span></Link></article>)}</div>
+    </section>
+
+    <section className="section shell qa-section" id="wyniki">
+      <div className="section-head"><div><span className="section-no">KONTROLA I DECYZJA</span><h2>Wynik QA musi mieć uzasadnienie.</h2></div><p>Sama checklista nie jest dowodem kontroli. Wyniki konkretnego projektu wymagają sprawdzenia i zapisania informacji o teście.</p></div>
+      <div className="qa-statuses">
+        <div><strong>PASS — sprawdzone</strong><p>Wymaganie spełnione, a wynik kontroli potwierdzony w dokumentacji.</p></div>
+        <div><strong>REWORK — poprawa</strong><p>Zidentyfikowana niezgodność wymaga poprawki i powtórzenia testu.</p></div>
+        <div><strong>HOLD — wstrzymanie</strong><p>Etap zatrzymujemy, jeżeli brakuje specyfikacji, akceptacji lub bezpieczeństwa wykonania.</p></div>
+      </div>
+      <p className="qa-note-p">Początkowy status punktu to „NIE SPRAWDZONO”. „N/D” oznacza brak zastosowania danego kryterium i wymaga uzasadnienia.</p>
+      <p><Link className="text-link" href="/raport-qa">Zobacz przykładową strukturę raportu QA <span aria-hidden="true">↗</span></Link></p>
+    </section>
+
+    <section className="section shell qa-section" id="normy-iso">
+      <div className="section-head"><div><span className="section-no">JAKOŚĆ I STANDARDY TECHNICZNE</span><h2>Jak korzystamy z norm ISO?</h2></div><p>Odnosimy procedury do właściwych norm i dobrych praktyk. Rzeczywiste wymagania zależą od technologii, zakresu i ustaleń projektu.</p></div>
+      <div className="qa-cards qa-cards--three">
+        <article className="qa-card"><span className="qa-kicker">ZARZĄDZANIE</span><h3>ISO 9001</h3><p>Uporządkowanie procesu, identyfikowanie ryzyka, dokumentowanie odbioru i doskonalenie pracy.</p></article>
+        <article className="qa-card"><span className="qa-kicker">PRODUKT CYFROWY</span><h3>ISO/IEC 25010</h3><p>Model cech jakości produktu cyfrowego, pomocny przy projektowaniu zakresu kontroli systemu.</p></article>
+        <article className="qa-card"><span className="qa-kicker">POLIGRAFIA</span><h3>ISO 15930 i 12647</h3><p>Odpowiednie standardy wymiany plików produkcyjnych i kontroli procesów drukarskich, stosownie do wymagań drukarni.</p></article>
+      </div>
+      <div className="qa-standards-note"><strong>Ważne rozróżnienie:</strong> Zielona Marka korzysta z własnych procedur inspirowanych zasadami tych norm. Nie deklarujemy certyfikacji ISO 9001, akredytacji ani zewnętrznego audytu. Nie każdy punkt norm ma zastosowanie do każdej realizacji.</div>
+      <div className="qa-link-stack"><Link href="/standardy-jakosci#iso">Wyjaśnienie ISO i zakres stosowania ↗</Link><Link href="/standard-dtp">Normy techniczne DTP ↗</Link></div>
+    </section>
+    <section className="section shell qa-section"><div className="qa-ending"><span className="section-no">POROZMAWIAJMY O JAKOŚCI</span><h2>Wiesz, co będzie sprawdzane.</h2><p>Przed realizacją ustalamy zakres, wymagania i sposób odbioru — odpowiednio do potrzeb Twojej firmy.</p><div className="hero-actions"><Link className="button" href="/kontakt">Opowiedz o projekcie <span aria-hidden="true">↗</span></Link><Link className="text-link" href="/standardy-jakosci">Zobacz centrum jakości <span aria-hidden="true">↗</span></Link></div></div></section>
+  </main><QuickWhatsApp /><SiteFooter /></>;
+}

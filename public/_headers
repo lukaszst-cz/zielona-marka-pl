@@ -12,3 +12,8 @@
 
 /demo/*
   X-Robots-Tag: noindex, nofollow
+
+/downloads/*.pdf
+  Content-Type: application/pdf
+  Content-Disposition: inline
+  Cache-Control: public, max-age=3600
