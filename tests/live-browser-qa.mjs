@@ -237,6 +237,48 @@ try {
       });
     }
     if (["desktop", "mobile", "compact"].includes(size.name)) {
+      await check(size.name + ": Homepage scroll sections retain premium editorial layout", async () => {
+        const response = await page.goto(base + "/", { waitUntil: "domcontentloaded", timeout: 45000 });
+        assert.ok(response?.ok(), "Home did not load");
+        const info = await page.evaluate(() => {
+          const style = (selector) => {
+            const el = document.querySelector(selector);
+            if (!el) return null;
+            const rect = el.getBoundingClientRect();
+            const computed = getComputedStyle(el);
+            return { background: computed.backgroundImage, border: computed.borderTopWidth,
+              radius: parseFloat(computed.borderTopLeftRadius), width: rect.width,
+              overflow: computed.overflow, display: computed.display };
+          };
+          return {
+            opening: style(".zmh-opening"),
+            assembly: style(".zmh-assembly"),
+            brief: style(".zmh-quick-brief"),
+            cinema: style(".zmh-cinema"),
+            portfolio: style(".zmh-portfolio"),
+            process: style(".zmh-process"),
+            contact: style(".zmh-contact"),
+            chapters: document.querySelectorAll(".zmh-cinema-chapters .zmh-story").length,
+            videoCount: document.querySelectorAll(".zmh-opening video").length,
+            scrollWidth: document.documentElement.scrollWidth,
+            viewport: window.innerWidth,
+          };
+        });
+        for (const key of ["assembly", "brief", "cinema", "portfolio", "process", "contact"]) {
+          assert.ok(info[key], "Missing homepage section " + key);
+          assert.ok(info[key].radius >= 12, key + " has no differentiated editorial card");
+          assert.ok(info[key].width <= info.viewport + 2, key + " exceeds viewport");
+        }
+        for (const key of ["assembly", "brief", "cinema"]) {
+          assert.ok(info[key].background.includes(".webp"), key + " reverted to flat green-only background");
+        }
+        assert.equal(info.chapters, 5, "Homepage story chapters disappeared");
+        assert.equal(info.videoCount, 1, "Original river hero video must remain");
+        assert.ok(info.scrollWidth <= info.viewport + 8, "Homepage horizontal overflow");
+        return { sections: 6, chapters: info.chapters, photoBackdrops: 3 };
+      });
+    }
+    if (["desktop", "mobile", "compact"].includes(size.name)) {
       await check(size.name + ": Blog shares public layout with Offer", async () => {
         const blogResponse = await page.goto(base + "/poradnik", { waitUntil: "networkidle", timeout: 45000 });
         assert.ok(blogResponse?.ok(), "Blog did not load");
