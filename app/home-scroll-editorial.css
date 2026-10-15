@@ -138,3 +138,74 @@ html body .zm-v5 .zmh-contact .zmh-water-portal{min-width:0}
   }
   html body .zm-v5 .zmh-cinema .zmh-motion-intro button{min-height:44px}
 }
+
+/* Public-page parity: forest hero followed by the same light sage editorial
+   canvas seen on /oferta. Dark presentation modules stand out as true cards. */
+html body .zm-v5 .zmh-scroll-content{
+  position:relative;
+  padding-block:35px 50px;
+  color:#153c2b;
+  background:
+    linear-gradient(to bottom,#071e17 0px,#b6c7b8 78px,transparent 115px),
+    linear-gradient(115deg,#bbc9bd,#afc0b2 70%,#c5d1c4)!important;
+}
+html body .zm-v5 .zmh-scroll-content .zm-home-offers{
+  background:transparent!important;
+  border-block:0;
+}
+html body .zm-v5 .zmh-scroll-content .zm-home-offers-intro h2,
+html body .zm-v5 .zmh-scroll-content .zm-home-offers-intro>p{
+  color:#133b2a!important;
+}
+html body .zm-v5 .zmh-scroll-content .zm-home-offers-intro h2 em{
+  color:#276744!important;
+}
+html body .zm-v5 .zmh-scroll-content .zm-home-offers-intro .zmh-eyebrow{
+  color:#245c3d!important;
+}
+html body .zm-v5 .zmh-scroll-content .zmh-quick-brief{
+  color:#f5f8ef;
+}
+html body .zm-v5 .zmh-scroll-content .zmh-quick-brief .zmh-eyebrow{
+  color:#b4f28c;
+}
+html body .zm-v5 .zmh-scroll-content .zmh-cinema{
+  border-color:transparent;
+  border-radius:0;
+  box-shadow:none;
+  background:transparent;
+}
+html body .zm-v5 .zmh-scroll-content .zmh-cinema-chapters .zmh-story{
+  color:#f5f8ef;
+}
+html body .zm-v5 .zmh-lower-forest{
+  color:#153c2b;
+  padding-top:18px;
+  background:linear-gradient(120deg,#b7c7b9,#afc0b3 70%,#c1cec2)!important;
+}
+html body .zm-v5 .zmh-lower-forest :is(
+  .zmh-portfolio,.zmh-process,.zmh-story.zmh-grow,.zmh-contact
+){
+  color:#f3f8ee;
+}
+html body .zm-v5 .zm-process-standard--home{
+  box-sizing:border-box;
+  width:min(1190px,calc(100% - clamp(36px,6vw,104px)));
+  margin:clamp(28px,4vw,56px) auto;
+  padding:clamp(26px,4vw,52px)!important;
+  border:1px solid var(--home-stroke);
+  border-radius:var(--home-radius);
+  background:linear-gradient(140deg,rgba(5,34,24,.95),rgba(8,53,35,.88)),
+    url('/zielona-marka-hero-paprocie.webp') center / cover no-repeat!important;
+}
+html body .zm-v5 .zm-process-standard--home .zm-process-standard__wrap{
+  width:100%;max-width:none;padding-top:0;border-top:0;
+}
+html body .zm-v5 .zmh-quality-resources{color:#153c2b}
+html body .zm-v5 .zmh-quality-resources a{color:#174932}
+@media(max-width:620px){
+  html body .zm-v5 .zmh-scroll-content{padding-block:34px 32px}
+  html body .zm-v5 .zm-process-standard--home{
+    margin-block:22px;padding:24px 19px!important;border-radius:16px;
+  }
+}
