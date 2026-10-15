@@ -12,7 +12,6 @@ import "./full-site-builder.css";
 import "./navigation-refresh.css";
 import "./premium-polish.css";
 import "./process-standard.css";
-import "./quality-manual.css";
 import "./premium-clarity.css";
 import "./premium-final-review.css";
 import "./qa-integrated.css";
