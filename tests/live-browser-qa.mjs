@@ -132,6 +132,14 @@ try {
         assert.equal(contactDockState.exists, true, route + " contact dock missing");
         assert.notEqual(contactDockState.assistant, "fixed", route + " assistant obstructs reading");
         assert.notEqual(contactDockState.whatsapp, "fixed", route + " WhatsApp obstructs reading");
+        const oversizedCtas = await page.evaluate(() => [...document.querySelectorAll(".hero-actions > a")]
+          .filter(link => {
+            const rect = link.getBoundingClientRect();
+            const css = getComputedStyle(link);
+            return rect.height > 105 && css.display !== "none" && css.visibility !== "hidden";
+          })
+          .map(link => ({ label: link.textContent?.trim().slice(0, 55), height: Math.round(link.getBoundingClientRect().height) })));
+        assert.deepEqual(oversizedCtas, [], route + " CTA grows beyond expected mobile height");
 
         if (metrics.width > metrics.viewport + 8) {
           result.warnings.push({ viewport: size.name, route, overflowPx: metrics.width - metrics.viewport });
