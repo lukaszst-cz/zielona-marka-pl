@@ -7,6 +7,8 @@ export const metadata: Metadata = {
  title: "Standard jakości – jak realizujemy projekty",
  description: "Zobacz osiem etapów realizacji stron WWW, sklepów, grafiki i systemów oraz zasady kontroli jakości Zielonej Marki. Własne procedury inspirowane normami ISO.",
  alternates: {canonical:"/standard-jakosci"},
+  openGraph: { type: "website", url: "/standard-jakosci", title: "Standard jakości projektów WWW i systemów | Zielona Marka", description: "Zobacz osiem etapów realizacji stron WWW, sklepów, grafiki i systemów oraz zasady kontroli jakości Zielonej Marki. Własne procedury inspirowane normami ISO.", images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Standard jakości projektów Zielonej Marki – etapy realizacji i kontroli" }] },
+  twitter: { card: "summary_large_image", title: "Standard jakości projektów WWW i systemów | Zielona Marka", description: "Zobacz osiem etapów realizacji stron WWW, sklepów, grafiki i systemów oraz zasady kontroli jakości Zielonej Marki. Własne procedury inspirowane normami ISO.", images: ["/og.jpg"] },
 };
 const steps=[
  ["01","Zapytanie i kwalifikacja","Poznajemy firmę, cel projektu, termin i wstępny zakres."],
