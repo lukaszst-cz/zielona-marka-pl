@@ -122,6 +122,11 @@ try {
         }, before, { timeout: 8000 });
         const after = await cards.count();
         assert.ok(after > 0 && after < before, "Search did not narrow entries: " + before + " to " + after);
+        await page.locator("#zm-blog-search").fill("koszt strony");
+        await page.waitForFunction(() =>
+          [...document.querySelectorAll(".zm-blog-results > a")].some(card =>
+            card.textContent?.toLocaleLowerCase("pl-PL").includes("strona")), null, { timeout: 8000 });
+        assert.ok((await cards.count()) > 0, "Multiword query returned no articles");
       });
       await check("Desktop: web quote transfers privately into contact message; no submission", async () => {
         await page.goto(base + "/oferta", { waitUntil: "domcontentloaded" });
