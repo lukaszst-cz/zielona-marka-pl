@@ -746,3 +746,13 @@ test("consent-gated analytics stays protected in browser QA", async () => {
   assert.ok(scriptDirective.includes("www.googletagmanager.com"));
   assert.ok(!scriptDirective.includes("static.cloudflareinsights.com"));
 });
+
+test("failed client navigation has a usable recovery screen and asset health guard", async () => {
+  const fallback = await readFile(new URL("../app/error.tsx", import.meta.url), "utf8");
+  assert.ok(fallback.includes("window.location.reload()"));
+  assert.ok(fallback.includes("onClick={reset}"));
+  assert.ok(fallback.includes("kontakt@zielona-marka.pl"));
+  const browserQA = await readFile(new URL("../tests/live-browser-qa.mjs", import.meta.url), "utf8");
+  assert.ok(browserQA.includes("failedJsChunks"));
+  assert.ok(browserQA.includes("JS asset failures recover after a fresh navigation"));
+});
