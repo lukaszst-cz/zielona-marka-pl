@@ -7,7 +7,7 @@ const { chromium } = await import(process.env.BROWSER_QA_PLAYWRIGHT_ENTRY || "pl
 const base = (process.env.BROWSER_QA_URL || "https://zielona-marka.pl").replace(/\/$/, "");
 const dir = "browser-qa-artifacts";
 mkdirSync(dir, { recursive: true });
-const result = { base, checkedAt: new Date().toISOString(), checks: [], screenshots: [], warnings: [] };
+const result = { base, checkedAt: new Date().toISOString(), checks: [], screenshots: [], warnings: [], privacyProtections: { blockedCloudflareAnalytics: 0 } };
 const routes = [
   ["/", "home"], ["/oferta", "offer"], ["/dtp", "dtp"],
   ["/opieka-nad-strona", "care"], ["/poradnik", "blog"],
@@ -41,13 +41,25 @@ try {
       try { localStorage.setItem("zm_analytics_consent", "denied"); } catch { /* Storage may be blocked by privacy controls. */ }
     });
     const page = await context.newPage();
+    const analyticsRequestsWithoutConsent = [];
+    page.on("request", request => {
+      const address = new URL(request.url());
+      if ((address.hostname === "www.googletagmanager.com" && address.pathname.startsWith("/gtag/js"))
+        || ["www.google-analytics.com", "region1.google-analytics.com"].includes(address.hostname)) {
+        analyticsRequestsWithoutConsent.push(address.origin + address.pathname);
+      }
+    });
     page.on("pageerror", error => {
       if (result.warnings.length < 50) result.warnings.push({ viewport: size.name, javascript: String(error.message).slice(0, 320) });
     });
     page.on("console", msg => {
-      if (msg.type() === "error" && result.warnings.length < 50) {
-        result.warnings.push({ viewport: size.name, consoleError: msg.text().slice(0, 320) });
+      if (msg.type() !== "error") return;
+      const message = msg.text();
+      if (message.includes("Refused to load the script") && message.includes("static.cloudflareinsights.com/beacon.min.js") && message.includes("Content Security Policy")) {
+        result.privacyProtections.blockedCloudflareAnalytics += 1;
+        return;
       }
+      if (result.warnings.length < 50) result.warnings.push({ viewport: size.name, consoleError: message.slice(0, 320) });
     });
     for (const [route, key] of routes) {
       await check(size.name + " " + route + " renders and captures", async () => {
@@ -188,6 +200,10 @@ try {
         assert.equal(await menu.evaluate(el => el.open), false);
       });
     }
+    await check(size.name + ": no analytics requests without consent", async () => {
+      assert.equal(await page.evaluate(() => localStorage.getItem("zm_analytics_consent")), "denied");
+      assert.deepEqual(analyticsRequestsWithoutConsent, [], "Google analytics loaded before consent");
+    });
     await context.close();
   }
 } finally {
@@ -195,5 +211,5 @@ try {
   writeFileSync(dir + "/report.json", JSON.stringify(result, null, 2));
 }
 const failed = result.checks.filter(item => item.status === "fail");
-process.stdout.write("Browser QA: " + (result.checks.length - failed.length) + "/" + result.checks.length + " checks passed; " + result.warnings.length + " warnings.\n");
+process.stdout.write("Browser QA: " + (result.checks.length - failed.length) + "/" + result.checks.length + " checks passed; " + result.warnings.length + " unexpected warnings; " + result.privacyProtections.blockedCloudflareAnalytics + " privacy beacons blocked by CSP.\n");
 if (failed.length) process.exitCode = 1;

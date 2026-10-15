@@ -734,3 +734,15 @@ test("DTP wizard keeps step controls inactive until React handlers are ready",as
   assert.match(code,/data-ready=\{hydrated \? "true" : "false"\}/);
   assert.match(code,/stepNames\.map\(\(name, index\) => <button type="button" key=\{name\} disabled=\{!hydrated\}/);
 });
+
+test("consent-gated analytics stays protected in browser QA", async () => {
+  const qa = await readFile(new URL("../tests/live-browser-qa.mjs", import.meta.url), "utf8");
+  assert.ok(qa.includes("analyticsRequestsWithoutConsent"));
+  assert.ok(qa.includes("no analytics requests without consent"));
+  assert.ok(qa.includes("privacyProtections.blockedCloudflareAnalytics"));
+  const response = await fetchPage("/");
+  const csp = response.headers.get("content-security-policy") || "";
+  const scriptDirective = csp.split(";").find(item => item.trim().startsWith("script-src ")) || "";
+  assert.ok(scriptDirective.includes("www.googletagmanager.com"));
+  assert.ok(!scriptDirective.includes("static.cloudflareinsights.com"));
+});
