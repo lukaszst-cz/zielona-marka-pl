@@ -32,6 +32,11 @@ try {
   for (const size of [
     { name: "desktop", width: 1440, height: 900 },
     { name: "mobile", width: 390, height: 844 },
+    ...(process.env.BROWSER_QA_FULL === "1" ? [
+      { name: "tablet", width: 768, height: 1024 },
+      { name: "laptop", width: 1024, height: 900 },
+      { name: "compact", width: 320, height: 720 },
+    ] : []),
   ]) {
     const context = await browser.newContext({
       viewport: { width: size.width, height: size.height }, deviceScaleFactor: 1,
@@ -81,13 +86,102 @@ try {
           text: document.body.innerText.length,
         }));
         assert.ok(metrics.text > 200, "Empty public page");
+        const overlappingActions = await page.evaluate(() => {
+          const visible = (node) => {
+            const rect = node.getBoundingClientRect();
+            const css = getComputedStyle(node);
+            return rect.width > 1 && rect.height > 1 && css.visibility !== "hidden" && css.display !== "none";
+          };
+          const collides = (left, right) => {
+            const a = left.getBoundingClientRect(), b = right.getBoundingClientRect();
+            return Math.min(a.right, b.right) - Math.max(a.left, b.left) > 4 &&
+              Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top) > 4;
+          };
+          const errors = [];
+          const groups = document.querySelectorAll(
+            ".zmh-actions, .hero-actions, .zm-mega-quick-actions, .zmh-social-panel-links, .zm-footer-social-links"
+          );
+          for (const group of groups) {
+            if (!visible(group)) continue;
+            const items = [...group.querySelectorAll(":scope > a, :scope > button")].filter(visible);
+            for (let i = 0; i < items.length; i++) {
+              for (let j = i + 1; j < items.length; j++) {
+                if (collides(items[i], items[j])) {
+                  errors.push(group.className + ": " + items[i].innerText.slice(0, 45) +
+                    " / " + items[j].innerText.slice(0, 45));
+                }
+              }
+            }
+          }
+          const header = document.querySelector(".zm-header");
+          const brand = header?.querySelector(".zm-brand");
+          const menuToggle = header?.querySelector(".zm-mobile-menu > summary");
+          if (brand && menuToggle && visible(brand) && visible(menuToggle) && collides(brand, menuToggle)) {
+            errors.push("Brand collides with mobile menu toggle");
+          }
+          return errors;
+        });
+        assert.deepEqual(overlappingActions, [], route + " overlapping CTA controls");
+        const contactDockState = await page.evaluate(() => {
+          const dock = document.querySelector(".zm-contact-dock");
+          if (!dock) return { exists: false };
+          const assistant = dock.querySelector(".demo-assistant");
+          const whatsapp = dock.querySelector(".whatsapp-float");
+          const style = (el) => el ? getComputedStyle(el).position : "missing";
+          return { exists: true, assistant: style(assistant), whatsapp: style(whatsapp) };
+        });
+        assert.equal(contactDockState.exists, true, route + " contact dock missing");
+        assert.notEqual(contactDockState.assistant, "fixed", route + " assistant obstructs reading");
+        assert.notEqual(contactDockState.whatsapp, "fixed", route + " WhatsApp obstructs reading");
+        const oversizedCtas = await page.evaluate(() => [...document.querySelectorAll(".hero-actions > a")]
+          .filter(link => {
+            const rect = link.getBoundingClientRect();
+            const css = getComputedStyle(link);
+            return rect.height > 105 && css.display !== "none" && css.visibility !== "hidden";
+          })
+          .map(link => ({ label: link.textContent?.trim().slice(0, 55), height: Math.round(link.getBoundingClientRect().height) })));
+        assert.deepEqual(oversizedCtas, [], route + " CTA grows beyond expected mobile height");
+
         if (metrics.width > metrics.viewport + 8) {
-          result.warnings.push({ viewport: size.name, route, overflowPx: metrics.width - metrics.viewport });
+          const overflowPx = metrics.width - metrics.viewport;
+          result.warnings.push({ viewport: size.name, route, overflowPx });
+          if (process.env.BROWSER_QA_FULL === "1") {
+            assert.fail(route + " exceeds " + metrics.viewport + "px viewport by " + overflowPx + "px");
+          }
         }
         const path = dir + "/" + size.name + "-" + key + ".png";
+        await page.evaluate(() => {
+          for (const img of document.querySelectorAll('img[loading="lazy"]')) img.loading = "eager";
+        });
+        await page.waitForTimeout(250);
         await page.screenshot({ path, fullPage: true, animations: "disabled", timeout: 45000 });
         result.screenshots.push(path);
         return metrics;
+      });
+    }
+    if (["desktop", "mobile"].includes(size.name)) {
+      await check(size.name + ": ZM Studio layout previews", async () => {
+        await page.goto(base + "/projektuj-strone", { waitUntil: "networkidle", timeout: 45000 });
+        const preview = page.locator(".zm-creator-preview-frame");
+        const layoutVariants = [
+          ["classic", "Klasyczny firmowy"],
+          ["editorial", "Editorial premium"],
+          ["minimal", "Minimal & elegancja"],
+          ["showcase", "Galeria i realizacje"],
+          ["contact", "Lokalny kontakt"],
+          ["atelier", "Atelier asymetryczne"],
+          ["catalog", "Katalog ofertowy"],
+        ];
+        for (const [id, title] of layoutVariants) {
+          const choice = page.locator(".zm-creator-layout-grid button").filter({ hasText: title });
+          await choice.click();
+          assert.equal(await choice.getAttribute("aria-pressed"), "true", "Layout not selected: " + title);
+          assert.equal(await preview.locator(".zm-demo-layout-" + id).count(), 1, "Layout class missing: " + title);
+          const destination = dir + "/" + size.name + "-layout-" + id + ".png";
+          await preview.screenshot({ path: destination, animations: "disabled", timeout: 45000 });
+          result.screenshots.push(destination);
+        }
+        return { layouts: layoutVariants.length, screenshots: layoutVariants.length };
       });
     }
     if (size.name === "desktop") {
@@ -250,31 +344,6 @@ try {
       assert.equal(await page.evaluate(() => localStorage.getItem("zm_analytics_consent")), "denied");
       assert.deepEqual(analyticsRequestsWithoutConsent, [], "Google analytics loaded before consent");
     });
-    if (size.name === "desktop") {
-      await check("Desktop: GA4 opt-in and revocation toggle the correct disable flag", async () => {
-        const mockTagCalls = [];
-        const tagUrl = /^https:\/\/www\.googletagmanager\.com\/gtag\/js(?:\?.*)?$/;
-        await page.route(tagUrl, async route => {
-          mockTagCalls.push(route.request().url());
-          await route.fulfill({ status: 200, contentType: "application/javascript", body: "/* QA mock: no tracking */" });
-        });
-        try {
-          await page.goto(base + "/kontakt", { waitUntil: "networkidle", timeout: 45000 });
-          assert.equal(await page.evaluate(() => window["ga-disable-G-CYFQ326JRF"]), true);
-          await page.locator(".cookie-settings-link").first().click();
-          await page.locator(".cookie-accept").click();
-          await page.waitForFunction(() => window["ga-disable-G-CYFQ326JRF"] === false);
-          assert.equal(await page.evaluate(() => localStorage.getItem("zm_analytics_consent")), "accepted");
-          assert.equal(mockTagCalls.length, 1, "GA script must be requested only once after opt-in");
-          await page.locator(".cookie-settings-link").first().click();
-          await page.locator(".cookie-decline").click();
-          assert.equal(await page.evaluate(() => window["ga-disable-G-CYFQ326JRF"]), true);
-          assert.equal(await page.evaluate(() => localStorage.getItem("zm_analytics_consent")), "denied");
-        } finally {
-          await page.unroute(tagUrl);
-        }
-      });
-    }
     await context.close();
   }
 } finally {

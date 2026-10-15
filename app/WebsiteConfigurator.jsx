@@ -57,6 +57,9 @@ const siteLayouts = [
   { id: "minimal", label: "Minimal & elegancja", description: "Wyśrodkowane komunikaty, dużo oddechu i staranna siatka.", mark: "▭" },
   { id: "showcase", label: "Galeria i realizacje", description: "Mocniejsza część wizualna, niestandardowa kompozycja oraz oferta w kaflach.", mark: "◫" },
   { id: "contact", label: "Lokalny kontakt", description: "Telefon i szybkie zapytanie na pierwszym planie, oferta od razu pod nagłówkiem.", mark: "▦" },
+
+  { id: "atelier", label: "Atelier asymetryczne", description: "Duży panel graficzny, zwarta oferta i naprzemienne sekcje dla marki kreatywnej.", mark: "◩" },
+  { id: "catalog", label: "Katalog ofertowy", description: "Szybki przegląd usług, katalog kart i spokojna, praktyczna ścieżka do kontaktu.", mark: "▧" },
 ];
 const plans = [
   { id: "mini", label: "ZM Mini — 3 sekcje, bez formularza", amount: 899 },
