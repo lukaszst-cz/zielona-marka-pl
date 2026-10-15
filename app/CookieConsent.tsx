@@ -19,6 +19,7 @@ function analyticsReady() {
 }
 
 function grantAnalyticsConsent() {
+  (window as unknown as Record<string, boolean>)[`ga-disable-${MEASUREMENT_ID}`] = false;
   (window as AnalyticsWindow).gtag?.("consent", "update", { analytics_storage: "granted" });
 }
 
@@ -104,6 +105,7 @@ export default function CookieConsent() {
     setOpen(false);
     if (next === "accepted") loadAnalytics();
     else {
+      (window as unknown as Record<string, boolean>)[`ga-disable-${MEASUREMENT_ID}`] = true;
       (window as AnalyticsWindow).gtag?.("consent", "update", { analytics_storage: "denied" });
       removeAnalyticsCookies();
     }
