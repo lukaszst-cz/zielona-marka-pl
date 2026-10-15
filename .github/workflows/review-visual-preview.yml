@@ -24,6 +24,10 @@ jobs:
         run: npm ci
       - name: Build production preview locally
         run: npm run build
+      - name: Validate Cloudflare bundle without deploying
+        run: |
+          node scripts/prepare-vinext-wrangler-config.mjs
+          npx --no-install wrangler deploy --config dist/server/wrangler.json --no-bundle --dry-run
       - name: Install isolated Playwright runtime
         run: |
           mkdir -p /tmp/zm-review-browser
