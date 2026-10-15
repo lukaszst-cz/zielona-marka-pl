@@ -8,6 +8,7 @@ const paths = [
   "/poradnik/ile-kosztuje-projekt-gazetki",
   "/poradnik/ile-kosztuje-strona-dla-malej-firmy",
   "/modernizacja-strony", "/usprawnienia-firmy", "/projektuj-strone",
+  "/demo/routeflow/index.html", "/demo/routeflow/portal/index.html?role=manager",
 ];
 const report = { base, checkedAt: new Date().toISOString(), pages: [], targets: [], failures: [] };
 const browser = await chromium.launch({ headless: true, args: ["--no-sandbox"] });
