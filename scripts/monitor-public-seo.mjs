@@ -1,7 +1,15 @@
 import { writeFile, mkdir } from "node:fs/promises";
 
 const base = "https://zielona-marka.pl";
-const routes = ["/", "/oferta", "/dtp", "/strony-internetowe", "/strony-internetowe/warszawa", "/kontakt", "/jak-pracuje", "/raport-qa", "/standard-jakosci"];
+const routes = [
+  "/", "/oferta", "/dtp", "/opieka-nad-strona", "/projektuj-strone",
+  "/bezplatna-koncepcja-strony", "/modernizacja-strony",
+  "/strony-internetowe", "/strony-internetowe/warszawa", "/strony-internetowe-marki",
+  "/usprawnienia-firmy", "/kontakt", "/jak-pracuje",
+  "/poradnik", "/poradnik/ile-kosztuje-strona-dla-malej-firmy",
+  "/poradnik/jak-przygotowac-pdf-do-druku",
+  "/raport-qa", "/standardy-jakosci", "/standard-jakosci", "/standard-dtp",
+];
 const expectedLinks = {
   "/": ["/jak-pracuje"],
   "/jak-pracuje": ["/kontakt", "/raport-qa", "/standard-jakosci"],
