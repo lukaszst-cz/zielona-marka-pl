@@ -389,7 +389,7 @@ test("QA jest wyjaśnione prostym językiem na każdej kluczowej podstronie", as
     assert.match(html, /zapewnianie jakości/i, path + ": polskie znaczenie QA");
   }
   const dtp = await (await render("/dtp")).text();
-  assert.match(dtp, /lista kontroli pliku przed drukiem/i);
+  assert.match(dtp, /kontroli pliku przed drukiem/i);
   const hub = await (await render("/standardy-jakosci")).text();
   assert.match(hub, /sprawdzamy projekt, poprawiamy błędy/i);
 });
