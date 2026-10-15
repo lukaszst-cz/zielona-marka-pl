@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "./SafeLink";
-import { Fragment } from "react";
 import HomeContactForm from "./HomeContactForm";
 import ForestHero from "./ForestHero";
 import LivingPortal from "./LivingPortal";
@@ -10,6 +9,7 @@ import ProcessStandard from "./ProcessStandard";
 import { QuickWhatsApp, SiteHeader, SiteFooter } from "./SiteChrome";
 import "./home-v5.css";
 import "./home-carousel.css";
+import "./home-calm-story.css";
 import "./home-layout-repair.css";
 import "./home-scroll-editorial.css";
 import "./home-nature-finish.css";
@@ -19,16 +19,56 @@ function WebsiteVisual() {
 }
 
 function FormVisual() {
-  return <div className="zmh-visual zmh-form-visual"><div className="zmh-sample-form zmh-glass" aria-label="Ilustracja formularza dla firmy klienta"><p className="zmh-caption">PRZYKŁADOWY FORMULARZ USŁUGOWY</p><h3>Zapytaj o usługę</h3><div><span>Usługa</span><span>Wybierz usługę ⌄</span></div><div><span>Termin</span><span>Preferowany termin ▦</span></div><div><span>Opis</span><span>Opisz krótko sprawę…</span></div><span className="zmh-sample-button">Wyślij zapytanie →</span></div></div>;
+  return <div className="zmh-visual zmh-calm-form-scene">
+    <div className="zmh-calm-form zmh-glass" aria-label="Przykładowy, nieaktywny podgląd formularza zapytania">
+      <div className="zmh-calm-form-top"><span><i aria-hidden="true" /> NATURA STUDIO / DEMONSTRACJA</span><span>01 / ZAPYTANIE</span></div>
+      <div className="zmh-calm-form-body">
+        <div className="zmh-calm-form-intro"><small>PROSTA DROGA DO KONTAKTU</small><h3>Opowiedz, czego potrzebujesz.</h3><p>Kilka jasnych pytań. Bez zbędnego dopytywania.</p><span className="zmh-calm-form-time">Więcej czasu na rozmowę.</span></div>
+        <div className="zmh-calm-form-fields" aria-hidden="true">
+          <div><small>RODZAJ USŁUGI</small><span>Wybierz dogodną usługę <i>⌄</i></span></div>
+          <div><small>TERMIN</small><span>Ustalmy odpowiedni dzień <i>▦</i></span></div>
+          <div><small>WIADOMOŚĆ</small><span>Krótko opisz swoją potrzebę…</span></div>
+          <strong>Prześlij zapytanie <span>↗</span></strong>
+        </div>
+      </div>
+      <div className="zmh-calm-form-foot"><span>Przejrzysta oferta</span><i aria-hidden="true" /><span>Jeden spokojny krok dalej</span></div>
+    </div>
+    <p className="zmh-caption zmh-bottom-caption">Poglądowa prezentacja formularza — bez przesyłania danych.</p>
+  </div>;
 }
 
 function CommerceVisual() {
-  return <div className="zmh-visual"><div className="zmh-commerce zmh-glass"><div className="zmh-voucher"><small>NATURA STUDIO</small><strong>Chwila<br />dla Ciebie.</strong><span>VOUCHER PODARUNKOWY</span></div><div className="zmh-commerce-copy"><p className="zmh-caption">PRZYKŁADOWY ZAKUP</p><h3>Pomysł<br />na prezent.</h3><p>Produkt → Koszyk → Płatność</p><small>Demonstracja zakupu vouchera.</small></div></div></div>;
+  return <div className="zmh-visual zmh-calm-commerce-scene">
+    <div className="zmh-commerce zmh-glass">
+      <div className="zmh-voucher"><small>NATURA STUDIO / KONCEPCJA</small><strong>Podaruj<br />chwilę spokoju.</strong><span>VOUCHER PODARUNKOWY</span></div>
+      <div className="zmh-commerce-copy"><p className="zmh-caption">PRZYKŁADOWY SKLEP</p><h3>Małe przyjemności.<br />Prosta droga do zakupu.</h3><p>Wybór → Koszyk → Płatność</p><small>Poglądowy przykład zakupu vouchera, bez prawdziwej transakcji.</small></div>
+    </div>
+  </div>;
 }
 
 function FlowVisual({ aftercare = false }: { aftercare?: boolean }) {
-  const items = aftercare ? [["✓", "Zakończenie"], ["☏", "Kontakt po usłudze"], ["▦", "Kolejny krok"]] : [["✉", "Nowe zapytanie"], ["▤", "Wycena"], ["✓", "Realizacja"]];
-  return <div className="zmh-visual"><div className="zmh-flow zmh-glass">{items.map(([icon, label], index) => <Fragment key={label}>{index > 0 && <i aria-hidden="true">→</i>}<div className={index === 0 ? "zmh-active zmh-flow-item" : "zmh-flow-item"}><span aria-hidden="true">{icon}</span><b>{label}</b></div></Fragment>)}</div><p className="zmh-caption zmh-bottom-caption">{aftercare ? "Przykład opieki nad klientem po realizacji." : "Przykładowy przebieg obsługi w systemie."}</p></div>;
+  const steps = aftercare
+    ? [
+      { number: "01", title: "Usługa zakończona", hint: "Wiemy, co zrobiono", state: "Gotowe" },
+      { number: "02", title: "Dobra rozmowa", hint: "Naturalny kontakt po wizycie", state: "Kontakt" },
+      { number: "03", title: "Kolejny termin", hint: "Bez szukania ustaleń", state: "Plan" },
+    ]
+    : [
+      { number: "01", title: "Nowe zapytanie", hint: "Wszystkie informacje razem", state: "Odebrane" },
+      { number: "02", title: "Spokojna wycena", hint: "Jasny następny krok", state: "W toku" },
+      { number: "03", title: "Realizacja", hint: "Termin i status pod ręką", state: "Plan" },
+    ];
+  return <div className="zmh-visual zmh-calm-flow-scene">
+    <div className="zmh-calm-flow zmh-glass">
+      <div className="zmh-calm-flow-top"><span><i aria-hidden="true" /> TWOJA FIRMA / DEMONSTRACJA</span><span>{aftercare ? "RELACJE" : "UPORZĄDKOWANA OBSŁUGA"}</span></div>
+      <div className="zmh-calm-flow-body">
+        <div className="zmh-calm-flow-message"><small>{aftercare ? "PO WYKONANEJ USŁUDZE" : "JEDNO MIEJSCE NA USTALENIA"}</small><h3>{aftercare ? <>Relacje, które<br />warto pielęgnować.</> : <>Więcej porządku.<br />Więcej oddechu.</>}</h3><p>{aftercare ? "Dobrze wracać do klientów z troską — we właściwym momencie." : "Sprawy układają się w czytelną kolejność. Nic nie musi krążyć w głowie."}</p><span className="zmh-calm-flow-promise">Czas na to, co ważne.</span></div>
+        <ol className="zmh-calm-flow-steps">{steps.map((item, index) => <li key={item.number} className={index === 0 ? "is-first" : ""}><span className="zmh-calm-step-number">{item.number}</span><div><strong>{item.title}</strong><small>{item.hint}</small></div><span className="zmh-calm-step-state">{item.state}</span></li>)}</ol>
+      </div>
+      <div className="zmh-calm-flow-bottom"><span>Wszystko na swoim miejscu</span><span>✳ Spokojny rytm pracy</span></div>
+    </div>
+    <p className="zmh-caption zmh-bottom-caption">{aftercare ? "Przykładowy scenariusz opieki po wykonanej usłudze." : "Demonstracja przebiegu zapytania w systemie CRM."}</p>
+  </div>;
 }
 
 export function OrganicHome() {
