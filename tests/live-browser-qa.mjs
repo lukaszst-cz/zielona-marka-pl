@@ -101,7 +101,7 @@ try {
           try {
             await page.waitForFunction((value) =>
               [...document.querySelectorAll(".zm-dtp-wizard-grid .zm-total-fields .section-no")]
-                .some(el => el.textContent?.replace(/\\s+/g, " ").includes(value)),
+                .some(el => el.textContent?.replace(/\s+/g, " ").includes(value)),
               expected, { timeout: 6500 });
           } catch {
             const debug = await page.evaluate(() => {
