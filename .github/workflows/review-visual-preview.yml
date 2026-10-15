@@ -2,7 +2,7 @@ name: Review branch visual QA
 
 on:
   push:
-    branches: [review/premium-clarity-a-b-c-20261015, release/blog-unification-20261015]
+    branches: [review/premium-clarity-a-b-c-20261015, release/blog-unification-20261015, fix/guide-articles-contrast-site-layout-20261015]
   workflow_dispatch:
 
 permissions:
@@ -64,6 +64,12 @@ jobs:
           name: zm-review-visual-preview
           path: |
             browser-qa-artifacts/report.json
+            browser-qa-artifacts/desktop-guide-ile-kosztuje-projekt-gazetki.png
+            browser-qa-artifacts/desktop-guide-ile-kosztuje-strona-dla-malej-firmy.png
+            browser-qa-artifacts/desktop-guide-jak-przygotowac-pdf-do-druku.png
+            browser-qa-artifacts/mobile-guide-ile-kosztuje-projekt-gazetki.png
+            browser-qa-artifacts/mobile-guide-ile-kosztuje-strona-dla-malej-firmy.png
+            browser-qa-artifacts/mobile-guide-jak-przygotowac-pdf-do-druku.png
             browser-qa-artifacts/desktop-blog.png
             browser-qa-artifacts/desktop-offer.png
             browser-qa-artifacts/mobile-blog.png
