@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "../SafeLink";
 import { GuideBreadcrumbs } from "../GuideElements";
 import { QuickWhatsApp, SiteFooter, SiteHeader } from "../SiteChrome";
@@ -37,7 +38,7 @@ export default function GuidesPage() {
       })),
     },
   };
-  return <><SiteHeader /><main className="zm-public guide-page guide-hub zm-blog-page">
+  return <><SiteHeader /><main className="zm-public guide-page zm-blog-page">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collection) }} />
     <section className="page-hero shell">
       <GuideBreadcrumbs />
@@ -48,6 +49,14 @@ export default function GuidesPage() {
         <a className="button" href="#artykuly">Zobacz artykuły <span aria-hidden="true">↗</span></a>
         <Link className="text-link" href="/dtp">Oferta DTP <span aria-hidden="true">↗</span></Link>
       </div>
+      <aside className="zm-blog-byline" aria-label="Autor artykułów">
+        <Image src="/lukasz-kontakt-naturalny-20260919.webp" alt="" width={60} height={60} unoptimized />
+        <div>
+          <small>AUTOR PORADNIKÓW</small>
+          <strong>Łukasz Staniewicz</strong>
+          <Link href="/jak-pracuje">Poznaj autora i sposób pracy ↗</Link>
+        </div>
+      </aside>
     </section>
     <section className="section shell" id="artykuly"><BlogExplorer /></section>
     <section className="section shell zm-blog-service-links">
