@@ -256,6 +256,11 @@ try {
         assert.equal(blog.cardBackgroundImage, "none", "Blog still uses an isolated photographic card theme");
         assert.ok(blog.cardMinHeight <= 350, "Blog cards still force the oversized former layout");
         assert.ok(blog.documentWidth <= blog.viewportWidth + 8, "Blog overflows the viewport");
+        const firstBlogCard = page.locator(".zm-blog-results > a").first();
+        const beforeHover = await firstBlogCard.evaluate(el => getComputedStyle(el).backgroundColor);
+        await firstBlogCard.hover();
+        const afterHover = await firstBlogCard.evaluate(el => getComputedStyle(el).backgroundColor);
+        assert.equal(afterHover, beforeHover, "Blog cards must not become more matte on hover");
 
         const offerResponse = await page.goto(base + "/oferta", { waitUntil: "domcontentloaded", timeout: 45000 });
         assert.ok(offerResponse?.ok(), "Offer did not load");
@@ -338,6 +343,13 @@ try {
           }
           if (appearance.faqInsetLeft !== null) {
             assert.ok(appearance.faqInsetLeft >= 20, slug + ": FAQ text touches left frame");
+          }
+          if (index === 0) {
+            const guideCard = page.locator(".guide-reasons li").first();
+            const cardBefore = await guideCard.evaluate(el => getComputedStyle(el).backgroundColor);
+            await guideCard.hover();
+            const cardAfter = await guideCard.evaluate(el => getComputedStyle(el).backgroundColor);
+            assert.equal(cardAfter, cardBefore, slug + ": guide card still gets a matte overlay on hover");
           }
           pages.push(slug);
           if ([2, 3, 4].includes(index)) {
