@@ -331,7 +331,12 @@ html body .zm-v5 .zmh-free-start-note{margin:18px 0 0;color:#adc0a7;font-size:10
 /* Subtle forest-to-stream dissolve: no decorative dividing line.
    The overlay starts inside the last part of the film, keeping the next
    section in its original document position and preserving hero text. */
-html body .zm-v5 .zmh-opening{min-height:max(880px,100svh)!important}
+html body .zm-v5 .zmh-opening{
+  min-height:max(880px,100svh)!important;
+  /* The forest continues behind the opening, so fade its parent background
+     as well as the child video to avoid an abrupt green image boundary. */
+  background:linear-gradient(to bottom,transparent 0%,rgba(6,28,19,.07) 49%,rgba(6,28,19,.48) 73%,rgba(6,28,19,.86) 89%,#061c13 100%)!important;
+}
 html body .zm-v5 .zmh-opening:after{
   content:'';position:absolute;z-index:3;left:0;right:0;bottom:0;
   height:clamp(240px,24vw,350px);pointer-events:none;
