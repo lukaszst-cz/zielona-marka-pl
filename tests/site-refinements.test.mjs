@@ -92,7 +92,8 @@ test("homepage menu stays above the hero and mobile devices use the lighter film
   assert.match(hero,/userIntent\.current/);
   assert.match(hero,/scrollY>48/);
   assert.doesNotMatch(hero,/setTimeout\([^)]*3000/);
-  assert.match(portal,/fern-moss-stream-mobile-20260929\.mp4/);
+  assert.doesNotMatch(portal,/fern-moss-stream-mobile-20260929\.mp4/, "Stream video is only loaded in ForestHero");
+  assert.match(portal,/zmh-contact-preview/, "Final CTA shows a contact preview rather than water");
   assert.ok(mobileFilm.size<600_000,`mobile film is ${mobileFilm.size} bytes`);
 });
 test("v1.0.1 defers non-critical home media and caches hashed assets",async()=>{
@@ -133,6 +134,10 @@ test("homepage free offers are real slides and the stream ends with the hero",as
   for(const name of ["Mini audyt","Mapa Szans","Bezpłatna koncepcja"]) assert.ok(slides.includes(name),name);
   for(const i of [1,2,3]) assert.match(page,new RegExp("Pokaż slajd " + i));
   assert.match(slides,/aria-pressed=\{index === active\}/);
+  assert.match(slides,/onTouchStart=/);
+  assert.match(slides,/onTouchEnd=/);
+  assert.match(slides,/Math\.abs\(deltaX\) > Math\.abs\(deltaY\) \* 1\.3/);
+  assert.match(page,/zmh-contact-preview/);
   assert.match(styles,/\.zm-home-slide\[hidden\]\{display:none!important\}/);
   assert.equal((styles.match(/stream-water-bottom\.webp/g)||[]).length,1,"The water fallback image belongs only to the opening");
   assert.match(styles,/\.zmh-assembly::before\{[^}]*background:radial-gradient/);
