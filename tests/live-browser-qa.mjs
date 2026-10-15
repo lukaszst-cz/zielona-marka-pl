@@ -7,7 +7,7 @@ const { chromium } = await import(process.env.BROWSER_QA_PLAYWRIGHT_ENTRY || "pl
 const base = (process.env.BROWSER_QA_URL || "https://zielona-marka.pl").replace(/\/$/, "");
 const dir = "browser-qa-artifacts";
 mkdirSync(dir, { recursive: true });
-const result = { base, checkedAt: new Date().toISOString(), checks: [], screenshots: [], warnings: [] };
+const result = { base, checkedAt: new Date().toISOString(), checks: [], screenshots: [], warnings: [], privacyProtections: { blockedCloudflareAnalytics: 0 } };
 const routes = [
   ["/", "home"], ["/oferta", "offer"], ["/dtp", "dtp"],
   ["/opieka-nad-strona", "care"], ["/poradnik", "blog"],
@@ -45,9 +45,13 @@ try {
       if (result.warnings.length < 50) result.warnings.push({ viewport: size.name, javascript: String(error.message).slice(0, 320) });
     });
     page.on("console", msg => {
-      if (msg.type() === "error" && result.warnings.length < 50) {
-        result.warnings.push({ viewport: size.name, consoleError: msg.text().slice(0, 320) });
+      if (msg.type() !== "error") return;
+      const message = msg.text();
+      if (message.includes("Refused to load the script") && message.includes("static.cloudflareinsights.com/beacon.min.js") && message.includes("Content Security Policy")) {
+        result.privacyProtections.blockedCloudflareAnalytics += 1;
+        return;
       }
+      if (result.warnings.length < 50) result.warnings.push({ viewport: size.name, consoleError: message.slice(0, 320) });
     });
     for (const [route, key] of routes) {
       await check(size.name + " " + route + " renders and captures", async () => {
