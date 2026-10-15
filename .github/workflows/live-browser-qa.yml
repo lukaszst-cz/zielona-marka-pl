@@ -25,16 +25,16 @@ jobs:
         with:
           node-version: 22
           cache: npm
-      - name: Install project dependencies
-        run: npm ci
       - name: Install isolated Chromium test runtime
         run: |
-          npm install --no-save --package-lock=false playwright@1.56.1
-          npx playwright install --with-deps chromium
+          mkdir -p /tmp/zm-browser-qa
+          npm --prefix /tmp/zm-browser-qa install --no-save --package-lock=false --no-audit --no-fund playwright@1.56.1
+          /tmp/zm-browser-qa/node_modules/.bin/playwright install --with-deps chromium
       - name: Browser interactions and responsive screenshots
         run: node tests/live-browser-qa.mjs
         env:
           BROWSER_QA_URL: https://zielona-marka.pl
+          BROWSER_QA_PLAYWRIGHT_ENTRY: /tmp/zm-browser-qa/node_modules/playwright/index.mjs
       - name: Save screenshots and structured QA report
         if: always()
         uses: actions/upload-artifact@v4

@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { mkdirSync, writeFileSync } from "node:fs";
-import { chromium } from "playwright";
+// The QA runtime is installed separately from the production app dependencies.
+const { chromium } = await import(process.env.BROWSER_QA_PLAYWRIGHT_ENTRY || "playwright");
 
 /* Production smoke checks — never POST or submit a real inquiry. */
 const base = (process.env.BROWSER_QA_URL || "https://zielona-marka.pl").replace(/\/$/, "");
