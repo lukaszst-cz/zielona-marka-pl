@@ -231,7 +231,63 @@ try {
       });
     }
     if (["desktop", "mobile"].includes(size.name)) {
-      await check(size.name + ": ZM Studio layout previews", async () => {
+      await check(size.name + ": all eight blog articles share readable public layouts", async () => {
+        const articleSlugs = [
+          "co-powinna-miec-strona-firmy-uslugowej",
+          "dlaczego-strona-firmy-nie-przynosi-zapytan",
+          "ile-kosztuje-projekt-gazetki",
+          "ile-kosztuje-strona-dla-malej-firmy",
+          "jak-przygotowac-pdf-do-druku",
+          "jak-uporzadkowac-zapytania-klientow",
+          "strona-internetowa-dla-salonu-beauty-co-powinna-zawierac",
+          "strona-internetowa-dla-warsztatu-co-powinna-zawierac",
+        ];
+        const pages = [];
+        for (const [index, slug] of articleSlugs.entries()) {
+          const response = await page.goto(base + "/poradnik/" + slug, { waitUntil: "domcontentloaded", timeout: 45000 });
+          assert.ok(response?.ok(), slug + ": article HTTP error");
+          const appearance = await page.evaluate(() => {
+            const main = document.querySelector("main.zm-public.guide-page:not(.zm-blog-page)");
+            const hero = main?.querySelector(":scope > article > .page-hero.shell");
+            const title = hero?.querySelector("h1");
+            const sections = main ? [...main.querySelectorAll("section, aside, .zm-guide-highlights > div")] : [];
+            const tooLight = [];
+            for (const section of sections) {
+              const styles = getComputedStyle(section);
+              const match = styles.backgroundColor.match(/rgba?\(([^)]+)\)/);
+              if (!match) continue;
+              const channels = match[1].split(/[\s,\/]+/).filter(Boolean).map(Number);
+              const alpha = channels.length > 3 ? channels[3] : 1;
+              const luminance = (channels[0] * .2126 + channels[1] * .7152 + channels[2] * .0722) / 255;
+              if (alpha >= .8 && luminance >= .6) {
+                tooLight.push({ tag: section.tagName, className: section.className, background: styles.backgroundColor });
+              }
+            }
+            return {
+              heroWidth: hero?.getBoundingClientRect().width || 0,
+              hasTitle: !!title?.textContent?.trim(),
+              backgroundImage: main ? getComputedStyle(main).backgroundImage : "",
+              horizontalOverflow: document.documentElement.scrollWidth - window.innerWidth,
+              lightSections: tooLight.slice(0, 8),
+            };
+          });
+          assert.equal(appearance.hasTitle, true, slug + ": missing article header");
+          assert.ok(appearance.backgroundImage.includes("forest-continuous.webp"), slug + ": lost the shared forest backdrop");
+          assert.deepEqual(appearance.lightSections, [], slug + ": light sections behind white text");
+          assert.ok(appearance.horizontalOverflow <= 8, slug + ": horizontal overflow");
+          assert.ok(appearance.heroWidth > 260, slug + ": unexpected article column width");
+          pages.push(slug);
+          if ([2, 3, 4].includes(index)) {
+            const filename = dir + "/" + size.name + "-guide-" + slug + ".png";
+            await page.screenshot({ path: filename, fullPage: true, animations: "disabled", timeout: 45000 });
+            result.screenshots.push(filename);
+          }
+        }
+        return { articles: pages.length, verified: pages };
+      });
+    }
+    if (["desktop", "mobile"].includes(size.name)) {
+      await check(size.name + ": ZM Studio layout previews", async () {
         await page.goto(base + "/projektuj-strone", { waitUntil: "networkidle", timeout: 45000 });
         const preview = page.locator(".zm-creator-preview-frame");
         const layoutVariants = [
