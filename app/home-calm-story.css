@@ -1,0 +1,220 @@
+/* Calm scroll stories for Zielona Marka. Uses the existing fern artwork and no extra film or external dependency. */
+.zm-v5 .zmh-cinema-screen {
+  overflow: hidden;
+  border-color: rgba(186,219,173,.36);
+  background: linear-gradient(145deg,rgba(13,45,32,.94),rgba(4,25,17,.93));
+}
+.zm-v5 .zmh-cinema-screen::after {
+  content:"";
+  pointer-events:none;
+  position:absolute;
+  z-index:-1;
+  right:-70px;
+  top:19%;
+  width:265px;
+  height:380px;
+  background:url("/brand-review-v6/fern-frond.svg") center/contain no-repeat;
+  opacity:.12;
+  transform:rotate(-11deg);
+}
+.zm-v5 .zmh-cinema-status {
+  position:relative;
+  z-index:2;
+  border:0;
+  border-bottom:1px solid rgba(201,225,196,.28);
+  border-radius:0;
+  background:transparent;
+  padding:8px 0 15px;
+  color:#ecf5e8;
+}
+.zm-v5 .zmh-cinema-shots {min-height:310px;isolation:isolate}
+.zm-v5 .zmh-cine-shot {
+  padding:18px 0;
+  transform:translateY(19px) scale(.993);
+  transition:opacity .85s ease, transform 1.1s cubic-bezier(.2,.68,.2,1), visibility .85s;
+}
+.zm-v5 .zmh-cine-shot.zmh-is-current {transform:translateY(calc(var(--scene-drift,0) * -4px)) scale(1)}
+.zm-v5 .zmh-cinema-rail {background:rgba(213,238,210,.25)}
+.zm-v5 .zmh-cinema-rail>span {background:linear-gradient(90deg,#74a477,#d5f3b2)}
+.zm-v5 .zmh-cine-shot .zmh-website {
+  border-radius:18px;
+  border:1px solid rgba(231,246,221,.52);
+  box-shadow:0 26px 60px rgba(0,12,8,.35);
+  overflow:hidden;
+}
+.zm-v5 .zmh-cine-shot .zmh-website .zmh-mini-nav {background:#e9f0df;color:#1d3b2a}
+.zm-v5 .zmh-cine-shot .zmh-website .zmh-site-interior {min-height:290px}
+.zm-v5 .zmh-cine-shot .zmh-site-interior h3 {font-size:clamp(30px,3.2vw,45px)}
+.zm-v5 .zmh-cine-shot .zmh-caption {background:transparent;color:#dfeadc}
+.zm-v5 .zmh-calm-form-scene,.zm-v5 .zmh-calm-flow-scene {position:relative;min-width:0}
+.zm-v5 .zmh-calm-form-scene::before,.zm-v5 .zmh-calm-flow-scene::before {
+  content:"";position:absolute;inset:-24px -10px auto auto;
+  width:145px;height:200px;pointer-events:none;z-index:1;
+  opacity:.30;
+  background:url("/brand-review-v6/fern-frond.svg") center/contain no-repeat;
+  transform:rotate(17deg);
+}
+.zm-v5 .zmh-calm-form,.zm-v5 .zmh-calm-flow {
+  position:relative;
+  overflow:hidden;
+  width:100%;
+  max-width:650px;
+  margin-inline:auto;
+  border:1px solid rgba(240,248,232,.7);
+  border-radius:21px;
+  background:#eaf0e5;
+  color:#163629;
+  box-shadow:0 30px 75px rgba(0,14,8,.35),0 4px 13px rgba(0,21,8,.2);
+}
+.zm-v5 .zmh-calm-form-top,.zm-v5 .zmh-calm-flow-top {
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:15px 20px;
+  background:rgba(255,255,255,.67);
+  border-bottom:1px solid rgba(38,80,49,.12);
+  font:700 9px/1.45 Arial,Helvetica,sans-serif;
+  letter-spacing:.08em;
+  color:#47705c;
+}
+.zm-v5 .zmh-calm-form-top>span:first-child,.zm-v5 .zmh-calm-flow-top>span:first-child {display:flex;align-items:center;gap:8px}
+.zm-v5 .zmh-calm-form-top i,.zm-v5 .zmh-calm-flow-top i {
+  display:inline-block;width:9px;height:9px;flex:none;
+  border-radius:50%;background:#7eaa70;box-shadow:0 0 0 3px rgba(126,170,112,.12);
+}
+.zm-v5 .zmh-calm-form-body {
+  position:relative;display:grid;grid-template-columns:.94fr 1fr;
+  gap:25px;padding:28px 22px 27px;
+  background:radial-gradient(ellipse at 5% 87%,rgba(169,208,161,.33),transparent 64%),linear-gradient(135deg,#f1f5ea,#e4ede2);
+}
+.zm-v5 .zmh-calm-form-body::before,.zm-v5 .zmh-calm-flow-body::before {
+  content:"";position:absolute;bottom:-55px;left:-34px;width:180px;height:255px;
+  background:url("/brand-review-v6/fern-frond.svg") center/contain no-repeat;
+  opacity:.18;transform:rotate(-20deg);pointer-events:none;
+}
+.zm-v5 .zmh-calm-form-body>* ,.zm-v5 .zmh-calm-flow-body>* {position:relative;z-index:1;min-width:0}
+.zm-v5 .zmh-calm-form-intro {
+  display:flex;flex-direction:column;align-items:flex-start;justify-content:center;
+}
+.zm-v5 .zmh-calm-form-intro>small,.zm-v5 .zmh-calm-flow-message>small {
+  font:700 9px/1.5 Arial,Helvetica,sans-serif;letter-spacing:.12em;color:#4d8154;
+}
+.zm-v5 .zmh-calm-form-intro h3,.zm-v5 .zmh-calm-flow-message h3 {
+  font:400 clamp(25px,2.5vw,37px)/1.07 Georgia,"Times New Roman",serif;
+  letter-spacing:-.045em;color:#193e2d;margin:15px 0 11px;
+}
+.zm-v5 .zmh-calm-form-intro p,.zm-v5 .zmh-calm-flow-message p {
+  color:#526d5b;font:13px/1.65 Arial,Helvetica,sans-serif;margin:0 0 20px;
+}
+.zm-v5 .zmh-calm-form-time,.zm-v5 .zmh-calm-flow-promise {
+  display:inline-block;padding-top:14px;border-top:1px solid rgba(54,110,70,.26);
+  color:#326543;font:italic 18px/1.15 Georgia,serif;
+}
+.zm-v5 .zmh-calm-form-fields {
+  display:grid;gap:9px;padding:17px 16px;
+  background:rgba(255,255,255,.88);
+  border:1px solid rgba(118,161,127,.25);
+  border-radius:12px;
+  box-shadow:0 12px 30px rgba(21,68,38,.1);
+}
+.zm-v5 .zmh-calm-form-fields>div {display:grid;gap:5px;min-width:0}
+.zm-v5 .zmh-calm-form-fields small {font:700 9px Arial,sans-serif;letter-spacing:.08em;color:#54755b}
+.zm-v5 .zmh-calm-form-fields>div>span {
+  display:flex;justify-content:space-between;gap:6px;align-items:center;
+  border:1px solid #d1decf;border-radius:7px;
+  padding:10px 11px;color:#526557;
+  font:11px/1.35 Arial,sans-serif;
+}
+.zm-v5 .zmh-calm-form-fields i {font-style:normal;color:#38694b}
+.zm-v5 .zmh-calm-form-fields>strong {
+  display:flex;justify-content:space-between;gap:8px;
+  border-radius:25px;margin-top:3px;padding:11px 14px;
+  background:#1c5637;color:#f4f9ed;font:700 11px/1.3 Arial,sans-serif;
+}
+.zm-v5 .zmh-calm-form-foot,.zm-v5 .zmh-calm-flow-bottom {
+  display:flex;justify-content:space-between;align-items:center;gap:12px;
+  padding:12px 22px;background:#dbe7d9;color:#496d57;
+  font:11px/1.35 Arial,Helvetica,sans-serif;
+}
+.zm-v5 .zmh-calm-form-foot i {height:1px;flex:1;background:linear-gradient(90deg,#a1cba0,#c7daca)}
+.zm-v5 .zmh-calm-flow-body {
+  position:relative;display:grid;grid-template-columns:.85fr 1.15fr;
+  gap:16px;padding:27px 20px;
+  background:radial-gradient(ellipse at 18% 75%,rgba(168,209,155,.4),transparent 55%),linear-gradient(135deg,#edf3e7,#e4ece0);
+}
+.zm-v5 .zmh-calm-flow-message {display:flex;flex-direction:column;align-items:flex-start;justify-content:center}
+.zm-v5 .zmh-calm-flow-message h3 {font-size:clamp(24px,2.45vw,34px)}
+.zm-v5 .zmh-calm-flow-steps {
+  position:relative;display:grid;gap:6px;
+  align-content:center;margin:0;padding:0;list-style:none;
+}
+.zm-v5 .zmh-calm-flow-steps::before {
+  content:"";position:absolute;left:16px;top:25px;bottom:25px;width:2px;
+  background:linear-gradient(#6b9d79,#c9ddba);
+}
+.zm-v5 .zmh-calm-flow-steps>li {
+  position:relative;display:flex;align-items:center;gap:10px;
+  min-height:66px;padding:11px 10px;
+  background:rgba(255,255,255,.75);
+  border:1px solid rgba(80,133,91,.16);
+  border-radius:10px;box-shadow:0 3px 13px rgba(42,87,46,.04);
+}
+.zm-v5 .zmh-calm-step-number {
+  position:relative;z-index:1;display:grid;place-items:center;flex:none;
+  width:34px;height:34px;border-radius:50%;background:#e4f0dc;
+  border:1px solid #9fbfa0;color:#386a46;
+  font:700 11px Arial,sans-serif;
+}
+.zm-v5 .zmh-calm-flow-steps>li.is-first .zmh-calm-step-number {background:#215c3e;color:#f4faee;border-color:#215c3e}
+.zm-v5 .zmh-calm-flow-steps li>div {display:grid;gap:5px;min-width:0;flex:1}
+.zm-v5 .zmh-calm-flow-steps strong {font:700 12px/1.25 Arial,sans-serif;color:#234a35}
+.zm-v5 .zmh-calm-flow-steps li>div>small {font:10px/1.35 Arial,sans-serif;color:#66816a}
+.zm-v5 .zmh-calm-step-state {
+  font:700 9px Arial,sans-serif;color:#46724f;
+  border-radius:20px;background:#e2f0df;padding:6px 8px;
+}
+.zm-v5 .zmh-calm-flow-bottom>span:last-child {font-family:Georgia,serif;font-style:italic;font-size:13px}
+.zm-v5 .zmh-bottom-caption {margin-top:12px;text-align:center;color:#e6f1db}
+.zm-v5 .zmh-commerce {
+  border-radius:20px;padding:23px;gap:24px;
+  border-color:rgba(244,252,226,.55);
+  background:radial-gradient(ellipse at 10% 98%,rgba(126,169,113,.4),transparent 63%),linear-gradient(130deg,#173e2b,#0c2b1f);
+}
+.zm-v5 .zmh-voucher {
+  position:relative;border-radius:10px;
+  background:linear-gradient(145deg,rgba(20,64,37,.45),rgba(18,44,30,.78)),url("/brand-review-v6/fern-frond.svg") 96% 12%/140px auto no-repeat,#1e5a39;
+  box-shadow:0 18px 32px rgba(0,14,7,.34);transform:rotate(-2deg);
+}
+.zm-v5 .zmh-commerce-copy h3 {font:400 clamp(25px,2.4vw,34px)/1.12 Georgia,serif;color:#f1f7ea}
+.zm-v5 .zmh-commerce-copy small {line-height:1.65}
+.zm-v5 .zmh-assembly-board--premium .zmh-assembly-lines svg {
+  overflow:visible;filter:drop-shadow(0 0 7px rgba(169,229,149,.17));
+}
+@media (max-width:1030px) and (min-width:701px) {
+  .zm-v5 .zmh-calm-flow-body,.zm-v5 .zmh-calm-form-body {gap:12px;padding:19px 14px}
+  .zm-v5 .zmh-calm-flow-steps>li {padding:8px;gap:6px}
+  .zm-v5 .zmh-calm-flow-steps li>div>small {font-size:9px}
+  .zm-v5 .zmh-calm-step-state {display:none}
+  .zm-v5 .zmh-calm-form-intro h3,.zm-v5 .zmh-calm-flow-message h3 {font-size:25px}
+}
+@media (max-width:700px) {
+  .zm-v5 .zmh-calm-form-scene::before,.zm-v5 .zmh-calm-flow-scene::before {width:88px;height:120px;right:0;top:-10px;opacity:.18}
+  .zm-v5 .zmh-calm-form,.zm-v5 .zmh-calm-flow {border-radius:16px}
+  .zm-v5 .zmh-calm-form-top,.zm-v5 .zmh-calm-flow-top {font-size:8px;padding:12px}
+  .zm-v5 .zmh-calm-form-body,.zm-v5 .zmh-calm-flow-body {grid-template-columns:1fr;padding:17px 14px;gap:18px}
+  .zm-v5 .zmh-calm-form-intro h3,.zm-v5 .zmh-calm-flow-message h3 {font-size:29px}
+  .zm-v5 .zmh-calm-form-intro p,.zm-v5 .zmh-calm-flow-message p {font-size:13px;margin-bottom:12px}
+  .zm-v5 .zmh-calm-form-time,.zm-v5 .zmh-calm-flow-promise {font-size:16px;padding-top:9px}
+  .zm-v5 .zmh-calm-flow-steps>li {min-height:59px}
+  .zm-v5 .zmh-calm-form-foot,.zm-v5 .zmh-calm-flow-bottom {padding:11px 13px;font-size:10px}
+  .zm-v5 .zmh-commerce {gap:14px;padding:17px}
+}
+@media (max-width:395px) {
+  .zm-v5 .zmh-calm-step-state {display:none}
+  .zm-v5 .zmh-calm-form-top>span:last-child,.zm-v5 .zmh-calm-flow-top>span:last-child {display:none}
+  .zm-v5 .zmh-commerce {grid-template-columns:1fr}
+  .zm-v5 .zmh-voucher {min-height:200px}
+}
+@media (prefers-reduced-motion:reduce) {
+  .zm-v5 .zmh-cine-shot {transition:none;transform:none!important}
+  .zm-v5 .zmh-cine-shot.zmh-is-current {transform:none!important}
+  .zm-v5 .zmh-calm-form,.zm-v5 .zmh-calm-flow,.zm-v5 .zmh-commerce {animation:none!important}
+}
