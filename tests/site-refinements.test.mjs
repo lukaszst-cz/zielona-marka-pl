@@ -790,6 +790,8 @@ test("blog hub uses one public layout, matching the offer and DTP", async () => 
   assert.match(blog, /class="zm-public guide-page zm-blog-page"/);
   assert.doesNotMatch(blog, /class="[^"]*\bguide-hub\b/);
   assert.match(blog, /AUTOR PORADNIKÓW/);
+  assert.match(blog, /Od którego artykułu najlepiej zacząć/);
+  assert.match(blog, /Czy artykuły zastępują audyt/);
   assert.match(blog, /Łukasz Staniewicz/);
   assert.match(blog, /lukasz-kontakt-naturalny-20260919\.webp/);
   const css = await readFile(new URL("../app/blog-layout-unification.css", import.meta.url), "utf8");
