@@ -203,3 +203,17 @@ html body .zm-footer .zm-footer-brand p{font-size:16px!important;line-height:1.6
   html body .zm-v5 .zmh-cinema-status{font-size:12px!important}
   html body .zm-v5 .zmh-flow b{font-size:14px!important}
 }
+
+
+/* Two deliberate lines in the company mark, including the mobile header. */
+html body :is(.zm-header,.zm-footer) .brand-wordmark small{display:flex!important;flex-direction:column;align-items:flex-start;gap:2px;font-size:11px!important;line-height:1.28!important;letter-spacing:.005em!important}
+html body :is(.zm-header,.zm-footer) .brand-wordmark small span{display:block;white-space:nowrap}
+html body .zm-header .brand-signature{width:312px}
+@media(max-width:630px){
+ html body .zm-header .brand-signature{width:257px;max-width:100%}
+ html body :is(.zm-header,.zm-footer) .brand-wordmark small{font-size:10px!important;line-height:1.25!important;letter-spacing:0!important}
+}
+@media(max-width:370px){
+ html body .zm-header .brand-signature{width:250px}
+ html body :is(.zm-header,.zm-footer) .brand-wordmark small{font-size:9px!important}
+}
