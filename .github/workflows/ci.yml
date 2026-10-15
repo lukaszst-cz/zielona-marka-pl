@@ -28,6 +28,8 @@ jobs:
       - name: Full dependency audit report
         run: npm audit --json || true
       - run: npm run lint
+      - name: Validate QMS process templates
+        run: node scripts/verify-qms.mjs
       - run: npm test
       - name: Dependency update report
         continue-on-error: true
