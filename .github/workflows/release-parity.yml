@@ -11,6 +11,10 @@ on:
       - "app/OrganicHome.tsx"
       - "app/HomeOffersCarousel.tsx"
       - "app/home-carousel.css"
+      - "app/home-layout-repair.css"
+      - "app/home-nature-finish.css"
+      - "app/LivingPortal.tsx"
+      - "public/brand-review-v6/fern-frond.svg"
       - "app/site-refinements.css"
   workflow_dispatch:
   schedule:
