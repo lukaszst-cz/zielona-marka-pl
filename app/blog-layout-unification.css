@@ -173,3 +173,208 @@
     transition: none;
   }
 }
+
+/* Final alignment with the Offer/Services visual system.
+   The older .guide-page rule painted a solid background over the forest.
+   Keep the public backdrop uninterrupted on the Blog hub AND article pages. */
+.zm-public.guide-page {
+  background: linear-gradient(90deg, rgba(3, 23, 14, .86), rgba(3, 23, 14, .61)),
+    url('/brand-review-v3/forest-continuous.webp') center top / cover fixed;
+  color: #f5f8f1;
+  overflow-x: clip;
+}
+.zm-public.guide-page::before { content: none; }
+
+/* An article is the page's semantic wrapper, not a styled card. */
+.zm-public.guide-page > article {
+  display: block;
+  position: relative;
+  margin: 0;
+  padding: 0 !important;
+  background: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+}
+
+/* Content follows the same centered shell and section rhythm as Oferta. */
+.zm-public.guide-page .page-hero.shell,
+.zm-public.guide-page .section.shell {
+  box-sizing: border-box;
+}
+.zm-public.zm-blog-page > .page-hero.shell {
+  padding-block: clamp(68px, 6.5vw, 88px);
+  border-bottom: 1px solid rgba(218, 238, 205, .28);
+}
+.zm-public.zm-blog-page > .section.shell {
+  padding-block: clamp(60px, 6.5vw, 80px);
+}
+.zm-public.zm-blog-page :is(.page-hero,.section-head) h1,
+.zm-public.zm-blog-page :is(.page-hero,.section-head) h2 {
+  text-wrap: balance;
+}
+.zm-public.zm-blog-page .page-hero > p {
+  max-width: 830px;
+}
+
+/* Compact authorship is an integrated part of the hero, not another block. */
+.zm-public.zm-blog-page .zm-blog-byline {
+  width: fit-content;
+  max-width: 100%;
+  margin-top: 30px;
+  padding: 17px 22px 17px 0;
+  border-top: 1px solid rgba(218, 238, 205, .3);
+}
+.zm-public.zm-blog-page .zm-blog-byline img {
+  border-color: rgba(212, 244, 191, .62);
+}
+
+/* Glass surfaces allow the shared photograph to remain visible between and
+   through cards, matching the site's new navigation and homepage. */
+.zm-public.zm-blog-page .zm-blog-tools {
+  margin: 26px 0 30px;
+  padding: 22px 0 24px;
+  border-top: 1px solid rgba(218, 238, 205, .29);
+  border-bottom: 1px solid rgba(218, 238, 205, .29);
+}
+.zm-public.zm-blog-page .zm-blog-search input {
+  border-color: rgba(212, 235, 196, .5) !important;
+  background: rgba(6, 29, 20, .52) !important;
+  border-radius: 8px;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.zm-public.zm-blog-page .zm-blog-filters button {
+  border: 1px solid rgba(212, 235, 196, .42);
+  background: rgba(6, 29, 20, .42);
+  color: #eaf6e4;
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+}
+.zm-public.zm-blog-page .zm-blog-filters button:not(.selected):is(:hover,:focus-visible) {
+  background: rgba(38, 76, 53, .7);
+  border-color: rgba(224, 251, 203, .7);
+}
+.zm-public.zm-blog-page .zm-blog-filters button.selected {
+  background: #b0f36c;
+  border-color: #b0f36c;
+  color: #102513;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+.zm-public.zm-blog-page .guide-library > .zm-blog-results {
+  gap: clamp(14px, 1.6vw, 22px);
+}
+.zm-public.zm-blog-page .guide-library .zm-blog-results > a {
+  min-height: 330px;
+  padding: clamp(24px, 3vw, 34px);
+  background: rgba(7, 28, 22, .36);
+  border: 1px solid rgba(218, 238, 205, .33);
+  border-radius: 9px;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 10px 28px rgba(0, 16, 10, .18);
+}
+.zm-public.zm-blog-page .guide-library .zm-blog-results > a:is(:hover,:focus-visible) {
+  background: rgba(21, 53, 41, .56);
+  border-color: rgba(196, 245, 157, .72);
+  box-shadow: 0 14px 34px rgba(0, 15, 9, .29);
+  transform: translateY(-2px);
+}
+.zm-public.zm-blog-page .guide-library .zm-blog-results > a h2 {
+  margin: 20px 0 15px;
+  font-size: clamp(25px, 2.5vw, 33px) !important;
+  line-height: 1.2 !important;
+}
+.zm-public.zm-blog-page .guide-library .zm-blog-results > a p {
+  font-size: 16px !important;
+  line-height: 1.7 !important;
+}
+.zm-public.zm-blog-page .guide-library .zm-blog-results > a > span,
+.zm-public.zm-blog-page .guide-library .guide-card-meta b {
+  color: #c6fb95;
+}
+.zm-public.zm-blog-page .guide-card-meta {
+  margin-top: auto;
+  border-top: 1px solid rgba(218, 238, 205, .24);
+}
+.zm-public.zm-blog-page .zm-blog-empty {
+  background: rgba(7, 28, 22, .5);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.zm-public.zm-blog-page .zm-blog-service-links {
+  border-top: 1px solid rgba(218, 238, 205, .26);
+}
+.zm-public.zm-blog-page .zm-blog-service-grid > a {
+  background: rgba(7, 28, 22, .34);
+  border: 1px solid rgba(218, 238, 205, .32);
+  border-radius: 9px;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 10px 28px rgba(0, 16, 10, .13);
+}
+.zm-public.zm-blog-page .zm-blog-service-grid > a:is(:hover,:focus-visible) {
+  background: rgba(21, 53, 41, .57);
+  border-color: rgba(196, 245, 157, .72);
+}
+
+/* FAQ and the closing CTA should no longer look like two opaque sections
+   pasted onto an otherwise continuous forest-backed page. */
+.zm-public.zm-blog-page > .guide-faq,
+.zm-public.zm-blog-page > .guide-cta {
+  background: transparent !important;
+  background-image: none !important;
+}
+.zm-public.zm-blog-page > .guide-faq {
+  border-block: 1px solid rgba(218, 238, 205, .25);
+}
+.zm-public.zm-blog-page > .guide-cta {
+  border-top: 1px solid rgba(218, 238, 205, .28);
+  border-bottom: 0;
+}
+.zm-public.zm-blog-page .guide-faq details {
+  border-bottom-color: rgba(218, 238, 205, .27);
+}
+@media (max-width: 800px) {
+  .zm-public.zm-blog-page .guide-library .zm-blog-results > a { min-height: 0; }
+}
+@media (max-width: 600px) {
+  .zm-public.guide-page { background-attachment: scroll; }
+  .zm-public.guide-page .shell { width: min(1180px, calc(100% - 28px)); }
+  .zm-public.zm-blog-page > .page-hero.shell,
+  .zm-public.zm-blog-page > .section.shell { padding-block: 55px; }
+  .zm-public.zm-blog-page .guide-library .zm-blog-results > a {
+    min-height: 0;
+    padding: 23px 21px;
+  }
+  .zm-public.zm-blog-page .zm-blog-service-grid > a { padding: 23px 21px; }
+  .zm-public.zm-blog-page .zm-blog-byline { padding-right: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .zm-public.zm-blog-page .guide-library .zm-blog-results > a:is(:hover,:focus-visible) {
+    transform: none;
+  }
+}
+
+/* Article content inherits the same open forest continuity. */
+.zm-public.guide-page > article :is(.guide-intro,.guide-reasons,.guide-check,.guide-faq,.guide-cta) {
+  background: transparent !important;
+  background-image: none !important;
+}
+.zm-public.guide-page > article .guide-reasons li,
+.zm-public.guide-page > article .guide-author {
+  background: rgba(7, 28, 22, .43) !important;
+  border-color: rgba(218, 238, 205, .34) !important;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.zm-public.guide-page > article .guide-reasons li:is(:hover,:focus-within) {
+  background: rgba(21, 53, 41, .56) !important;
+}
+.zm-public.guide-page .guide-cta {
+  border-block-color: rgba(218, 238, 205, .29);
+}

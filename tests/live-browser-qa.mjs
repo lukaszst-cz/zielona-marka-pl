@@ -182,6 +182,8 @@ try {
           return {
             hasHero: !!hero,
             heroWidth: hero?.getBoundingClientRect().width ?? 0,
+            backgroundImage: main ? getComputedStyle(main).backgroundImage : "",
+            overlayContent: main ? getComputedStyle(main, "::before").content : "",
             headerCount: document.querySelectorAll(".zm-header").length,
             footerCount: document.querySelectorAll(".zm-footer").length,
             cards: cards.length,
@@ -194,6 +196,8 @@ try {
           };
         });
         assert.equal(blog.hasHero, true, "Blog missing shared hero");
+        assert.ok(blog.backgroundImage.includes("forest-continuous.webp"), "Blog lost the shared forest backdrop");
+        assert.ok(["none", "normal"].includes(blog.overlayContent), "Blog still has a separate full-page dark overlay");
         assert.equal(blog.headerCount, 1, "Blog missing shared header");
         assert.equal(blog.footerCount, 1, "Blog missing shared footer");
         assert.equal(blog.author, true, "Blog author byline missing");
@@ -208,7 +212,22 @@ try {
         const offerWidth = await page.locator("main.zm-public > .page-hero.shell").evaluate(el => el.getBoundingClientRect().width);
         assert.ok(Math.abs(offerWidth - blog.heroWidth) < 3,
           "Blog and Offer hero container widths differ: " + blog.heroWidth + " vs " + offerWidth);
-        return { blogCards: blog.cards, columns: blog.columns, sharedHeroWidth: Math.round(blog.heroWidth) };
+        const articleResponse = await page.goto(base + "/poradnik/ile-kosztuje-strona-dla-malej-firmy", { waitUntil: "domcontentloaded", timeout: 45000 });
+        assert.ok(articleResponse?.ok(), "Guide article did not load");
+        const articlePage = await page.evaluate(() => {
+          const main = document.querySelector("main.zm-public.guide-page");
+          const wrapper = main?.querySelector(":scope > article");
+          const style = wrapper ? getComputedStyle(wrapper) : null;
+          return {
+            backgroundImage: main ? getComputedStyle(main).backgroundImage : "",
+            paddingLeft: style ? parseFloat(style.paddingLeft) : -1,
+            wrapperBackgroundColor: style?.backgroundColor ?? "",
+          };
+        });
+        assert.ok(articlePage.backgroundImage.includes("forest-continuous.webp"), "Guide article lost the shared forest backdrop");
+        assert.equal(articlePage.paddingLeft, 0, "Semantic article wrapper still has card padding");
+        assert.equal(articlePage.wrapperBackgroundColor, "rgba(0, 0, 0, 0)", "Semantic article wrapper still has a solid card background");
+        return { blogCards: blog.cards, columns: blog.columns, sharedHeroWidth: Math.round(blog.heroWidth), guideLayout: "forest" };
       });
     }
     if (["desktop", "mobile"].includes(size.name)) {
