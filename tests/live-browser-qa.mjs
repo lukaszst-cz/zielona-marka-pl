@@ -256,7 +256,7 @@ try {
               const styles = getComputedStyle(section);
               const match = styles.backgroundColor.match(/rgba?\(([^)]+)\)/);
               if (!match) continue;
-              const channels = match[1].split(/[\s,\/]+/).filter(Boolean).map(Number);
+              const channels = (match[1].match(/[\d.]+/g) || []).map(Number);
               const alpha = channels.length > 3 ? channels[3] : 1;
               const luminance = (channels[0] * .2126 + channels[1] * .7152 + channels[2] * .0722) / 255;
               if (alpha >= .8 && luminance >= .6) {
