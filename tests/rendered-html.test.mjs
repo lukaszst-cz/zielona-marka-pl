@@ -257,7 +257,7 @@ test("Company services and readable footer are consistent across current pages",
     const end = page.indexOf("</footer>", start);
     assert.ok(start >= 0 && end > start, route + ": footer missing");
     const footer = page.slice(start, end + 9);
-    assert.match(footer, /Strony internetowe, DTP i systemy dla firm/, route);
+    assert.match(footer, /Strony i sklepy WWW, systemy CRM i DTP dla firm/, route);
     assert.ok(footer.includes("icon-github-zielona-marka.svg"), route + ": GitHub icon missing");
   }
   const style = await readFile(new URL("../app/premium-polish.css", import.meta.url), "utf8");
