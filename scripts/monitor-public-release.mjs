@@ -103,7 +103,7 @@ export async function monitorRelease({
   if (scriptsToCheck.length === 0) failures.push("No public versioned JavaScript assets found in rendered HTML.");
   for (let i = 0; i < scriptsToCheck.length; i += 8) {
     scriptAssets.push(...await Promise.all(scriptsToCheck.slice(i, i + 8).map(path =>
-      probeScriptAsset(path, { origin, request })));
+      probeScriptAsset(path, { origin, request }))));
   }
   const missingScripts = scriptAssets.filter(asset => !asset.ok);
   if (missingScripts.length) failures.push("Public HTML references unavailable JavaScript assets: " +
