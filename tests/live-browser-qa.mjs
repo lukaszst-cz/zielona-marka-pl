@@ -37,7 +37,7 @@ try {
       reducedMotion: "reduce", locale: "pl-PL",
     });
     await context.addInitScript(() => {
-      try { localStorage.setItem("zm_analytics_consent", "denied"); } catch {}
+      try { localStorage.setItem("zm_analytics_consent", "denied"); } catch { /* Storage may be blocked by privacy controls. */ }
     });
     const page = await context.newPage();
     page.on("pageerror", error => {
