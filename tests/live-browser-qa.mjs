@@ -44,6 +44,11 @@ try {
     page.on("pageerror", error => {
       if (result.warnings.length < 50) result.warnings.push({ viewport: size.name, javascript: String(error.message).slice(0, 320) });
     });
+    page.on("console", msg => {
+      if (msg.type() === "error" && result.warnings.length < 50) {
+        result.warnings.push({ viewport: size.name, consoleError: msg.text().slice(0, 320) });
+      }
+    });
     for (const [route, key] of routes) {
       await check(size.name + " " + route + " renders and captures", async () => {
         const response = await page.goto(base + route, { waitUntil: "domcontentloaded", timeout: 45000 });
@@ -91,10 +96,35 @@ try {
         await page.goto(base + "/dtp", { waitUntil: "networkidle", timeout: 45000 });
         const steps = page.locator(".zm-dtp-stepper button");
         assert.equal(await steps.count(), 4);
+        const waitForWizardStep = async (expected) => {
+          try {
+            await page.waitForFunction((value) =>
+              [...document.querySelectorAll(".zm-dtp-wizard-grid .zm-total-fields .section-no")]
+                .some(el => el.textContent?.replace(/\\s+/g, " ").includes(value)),
+              expected, { timeout: 6500 });
+          } catch {
+            const debug = await page.evaluate(() => {
+              const buttons = [...document.querySelectorAll(".zm-dtp-stepper button")];
+              return {
+                displayedStep: [...document.querySelectorAll(".zm-dtp-wizard-grid .zm-total-fields .section-no")].map(el => el.textContent?.trim()),
+                fieldCount: document.querySelectorAll(".zm-total-fields").length,
+                buttons: buttons.map(el => ({
+                  text: el.textContent?.trim(),
+                  active: el.getAttribute("aria-current"),
+                  className: el.className,
+                  reactHandlers: Object.keys(el).filter(k => k.startsWith("__reactProps$")).length,
+                })),
+              };
+            });
+            result.warnings.push({ route: "/dtp", issue: "Wizard step transition", expected, debug });
+            await page.screenshot({ path: dir + "/dtp-step-transition-debug.png", fullPage: false });
+            throw new Error("DTP step did not reach " + expected + "; DOM diagnostic: " + JSON.stringify(debug));
+          }
+        };
         await steps.nth(1).click();
-        await page.waitForFunction(() => document.querySelector(".zm-total-fields")?.textContent?.includes("KROK 2 Z 4"), null, { timeout: 8000 });
+        await waitForWizardStep("KROK 2 Z 4");
         await steps.nth(3).click();
-        await page.waitForFunction(() => document.querySelector(".zm-total-fields")?.textContent?.includes("KROK 4 Z 4"), null, { timeout: 8000 });
+        await waitForWizardStep("KROK 4 Z 4");
         assert.ok((await page.locator(".zm-dtp-summary").innerText()).includes("zł"));
       });
       await check("Desktop: previously owned domain updates first-year price", async () => {
