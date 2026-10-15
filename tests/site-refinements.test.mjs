@@ -940,3 +940,34 @@ test("home scrolled layout restores photography and shares public-page section r
   assert.doesNotMatch(css, /\.zmh-opening\s*\{/,
     "Keep the first hero unchanged; do not override its video or navigation");
 });
+
+test("organic homepage keeps the original content and confines the stream to the opening",async()=>{
+  const [home,portal,theme,fern,page]=await Promise.all([
+    readFile(new URL("../app/OrganicHome.tsx",import.meta.url),"utf8"),
+    readFile(new URL("../app/LivingPortal.tsx",import.meta.url),"utf8"),
+    readFile(new URL("../app/home-nature-finish.css",import.meta.url),"utf8"),
+    readFile(new URL("../public/brand-review-v6/fern-frond.svg",import.meta.url),"utf8"),
+    (await fetchPage("/")).text(),
+  ]);
+  assert.match(home,/import "\.\/home-nature-finish\.css"/);
+  for(const item of ["HomeOffersCarousel","HomeContactForm","HomeStoryMotion","<SiteFooter","<ForestHero"]){
+    assert.ok(home.includes(item),item+" must remain available");
+  }
+  assert.match(portal,/zmh-assembly-board--premium/);
+  assert.match(portal,/zmh-preview-website/);
+  assert.match(portal,/zmh-preview-statuses/);
+  assert.match(portal,/Wszystko zaczyna/);
+  assert.match(portal,/PRZYKŁADOWY PROCES DLA TWOJEJ FIRMY/);
+  assert.match(page,/PRZYKŁADOWY PROCES DLA TWOJEJ FIRMY/);
+  assert.match(page,/KONTAKT PO USŁUDZE/);
+  assert.match(theme,/\.zmh-opening \.zmh-living-forest\{/);
+  assert.match(theme,/\.zmh-assembly::before\{/);
+  assert.doesNotMatch(theme,/background:[^;]*stream-water-bottom\.webp/s, "Don't repeat the water photography in lower sections");
+  assert.match(theme,/fern-frond\.svg/);
+  assert.match(fern,/<svg [^>]*viewBox="0 0 330 470"/);
+  assert.match(theme,/prefers-reduced-motion:reduce/);
+  assert.match(theme,/animation-timeline:view\(\)/);
+  assert.match(theme,/\.zmh-cinema-screen/);
+  assert.match(theme,/\.zm-home-slide:not\(\[hidden\]\)/);
+});
+
