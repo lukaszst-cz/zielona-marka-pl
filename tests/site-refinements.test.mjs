@@ -107,7 +107,9 @@ test("v1.0.1 defers non-critical home media and caches hashed assets",async()=>{
   assert.match(hero,/zmh-living-forest\$\{ready\?' is-media-ready'/);
   assert.match(homeCss,/\.zmh-living-forest\.is-media-ready:before\{background-image:url\('\/brand-review-v5\/user-stream-tree-optimized\.webp'\)/);
   assert.match(portal,/if \(visible\) el\.classList\.add\("zmh-media-ready"\)/);
-  assert.match(refinements,/\.zmh-assembly\.zmh-media-ready\{background:[^}]*stream-water-bottom\.webp/);
+  assert.match(refinements,/\.zmh-assembly\.zmh-media-ready\s*\{[^}]*background:\s*[^}]*stream-water-bottom\.webp/);
+  assert.match(refinements,/\.zmh-scene-transition\s*\{[^}]*margin-top:\s*calc\(46px - var\(--zmh-dissolve-height\)\)/);
+  assert.match(refinements,/\.zmh-scene-transition span\{display:none!important\}/);
 });
 test("small mobile links and consent controls have finger-sized targets",async()=>{
   const css=await readFile(new URL("../app/site-refinements.css",import.meta.url),"utf8");
