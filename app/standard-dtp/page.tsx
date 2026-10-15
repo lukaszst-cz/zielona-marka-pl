@@ -33,7 +33,7 @@ export default function DtpStandardPage() {
       <h1 id="qa-dtp-heading">Przed drukiem <em>liczy się każdy szczegół.</em></h1>
       <p>QA (ang. Quality Assurance) oznacza zapewnianie jakości — czyli zaplanowane sprawdzenie materiału przed oddaniem do drukarni. W praktyce weryfikujemy treść, wymiary, zdjęcia, kolory i poprawność pliku PDF, aby wychwycić błędy przed drukiem.</p>
       <div className="hero-actions qa-hero-actions">
-        <a className="button" href="/downloads/zielona-marka-standard-dtp-prepress-qa-v3-1.pdf" download>Pobierz checklistę DTP · PDF <span aria-hidden="true">↓</span></a>
+        <a className="button" href="/downloads/zielona-marka-standard-dtp-prepress-qa-v3-1-korekta.pdf" download>Pobierz checklistę DTP · PDF <span aria-hidden="true">↓</span></a>
         <a className="text-link" href="#lista">Zobacz 12 obszarów kontroli <span aria-hidden="true">↓</span></a>
         <QualityPrintButton />
       </div>

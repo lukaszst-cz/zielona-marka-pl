@@ -37,3 +37,16 @@ test("nazwa marki pozostaje nieodmienna na każdej podstronie i w publicznych pl
   assert.ok(scanned > 100, "Brand audit unexpectedly skipped source files");
   assert.deepEqual(bad, [], "Odmienione formy Zielona Marka są niedozwolone");
 });
+
+test("public standard buttons download newly corrected branded PDF editions", async () => {
+  const downloads = [
+    ["app/standard-jakosci/page.tsx", "zielona-marka-standard-jakosci-www-dtp-crm-v3-1-korekta.pdf"],
+    ["app/standard-dtp/page.tsx", "zielona-marka-standard-dtp-prepress-qa-v3-1-korekta.pdf"],
+  ];
+  for (const [page, pdf] of downloads) {
+    const source = await readFile(path.join(root, page), "utf8");
+    assert.ok(source.includes('href="/downloads/' + pdf + '"'), "Outdated download link in " + page);
+    const bytes = await readFile(path.join(root, "public", "downloads", pdf));
+    assert.ok(bytes.length > 100000 && bytes.subarray(0, 4).toString("ascii") === "%PDF", "Invalid corrected PDF: " + pdf);
+  }
+});
