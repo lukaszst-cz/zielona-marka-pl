@@ -848,3 +848,18 @@ test("inquiry email notification failures remain observable after CRM save", asy
   assert.match(route, /Inquiry notification not configured; saved lead remains in CRM/);
   assert.ok(!route.includes(".catch(() => undefined)"), "Do not swallow notification failures without a log");
 });
+
+
+test("SEO monitor recognizes index blocking on all sitemap URLs", async () => {
+  const { hasNoindex } = await import("../scripts/seo-robots.mjs");
+  assert.equal(hasNoindex('<html><meta name="robots" content="index,follow"></html>'), false);
+  assert.equal(hasNoindex('<meta name="robots" content="noindex, nofollow">'), true);
+  assert.equal(hasNoindex('<meta content="nofollow, noindex" name="robots">'), true);
+  assert.equal(hasNoindex('<meta name="googlebot" content="noindex">'), true);
+  assert.equal(hasNoindex('<meta name="robots" content="noindex">', ""), true);
+  assert.equal(hasNoindex('<meta name="description" content="How to remove noindex from your site">'), false);
+  assert.equal(hasNoindex("<h1>How to fix noindex</h1>", "noindex, nofollow"), true);
+  assert.equal(hasNoindex("<h1>How to fix noindex</h1>", ""), false);
+  const monitor = await readFile(new URL("../scripts/monitor-public-seo.mjs", import.meta.url), "utf8");
+  assert.equal((monitor.match(/hasNoindex\\(body, response\\.headers/g) ?? []).length, 2, "Priority pages and additional sitemap pages must use identical detection");
+});
