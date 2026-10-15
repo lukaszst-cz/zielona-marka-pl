@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 
 const benefits = [
   ["01", "Zobacz konkretny pomysł", "Jedna indywidualna wizualizacja pozwoli Ci zobaczyć wybrany kierunek, zanim zdecydujesz się na projekt."],
-  ["02", "Poznaj możliwe korzyści", "Wskażę trzy rzeczy, które nowy układ może ułatwić Twoim klientom: znalezienie oferty, kontakt lub zakup."],
+  ["02", "Poznaj możliwe korzyści", "Krótko wyjaśnię, jak wybrany kierunek może poprawić rozpoznawalność, czytelność oferty lub zachęcić do kontaktu i zakupu."],
   ["03", "Zdecyduj bez presji", "Sam wybierzesz, czy chcesz rozmawiać o dalszych pracach. Nie musisz od razu podawać budżetu."]
 ] as const;
 
