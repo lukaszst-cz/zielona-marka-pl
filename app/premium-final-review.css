@@ -104,7 +104,7 @@
 .layout-icon-atelier i:nth-child(2) { grid-column:1;grid-row:1; }
 .layout-icon-atelier i:nth-child(3) { grid-column:1;grid-row:2; }
 .layout-icon-atelier i:last-child { display:none; }
-.layout-icon-catalog { grid-template-columns:1fr;grid-template-rows:repeat(4,5px); }
+.layout-icon-catalog { grid-template-columns:1fr;grid-template-rows:repeat(4,3px); }
 .layout-icon-catalog i { grid-column:1!important;grid-row:auto!important;width:100%;display:block!important; }
 .zm-demo-layout-atelier .zm-demo-nav { background:var(--demo-panel); }
 .zm-demo-layout-atelier .zm-demo-hero { grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);min-height:510px;background:var(--demo-panel); }
