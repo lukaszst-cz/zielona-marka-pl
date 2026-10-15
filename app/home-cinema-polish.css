@@ -1,0 +1,225 @@
+/* Zielona Marka — a calmer, sharper treatment of the five existing
+   educational visual chapters. No content, product claims or CTAs replaced. */
+html body .zm-v5 .zmh-cinema{
+  position:relative;
+  isolation:isolate;
+}
+html body .zm-v5 .zmh-cinema::before{
+  content:"";
+  pointer-events:none;
+  position:absolute;
+  right:-27px;top:38px;width:clamp(90px,14vw,200px);
+  height:clamp(160px,24vw,300px);
+  background:url('/brand-review-v6/fern-frond.svg') center/contain no-repeat;
+  opacity:.13;
+  transform:scaleX(-1) rotate(-12deg);
+  z-index:0;
+}
+html body .zm-v5 .zmh-cinema>.zmh-cinema-chapters,
+html body .zm-v5 .zmh-cinema>.zmh-cinema-stage,
+html body .zm-v5 .zmh-cinema>.zmh-motion-intro{
+  position:relative;z-index:1;
+}
+html body .zm-v5 .zmh-cinema :is(.zmh-website,.zmh-sample-form,.zmh-commerce,.zmh-flow){
+  box-sizing:border-box;
+  overflow:hidden;
+  border-radius:17px;
+  border:1px solid rgba(226,247,211,.36);
+  background:linear-gradient(125deg,rgba(16,61,39,.89),rgba(5,35,25,.95));
+  box-shadow:0 23px 56px rgba(0,17,9,.26),inset 0 1px rgba(234,249,222,.12);
+}
+html body .zm-v5 .zmh-cinema .zmh-website{
+  max-width:100%;
+  transform:none;
+}
+html body .zm-v5 .zmh-cinema .zmh-mini-nav{
+  display:flex;align-items:center;gap:10px;
+  padding:13px 17px;
+  background:#f0f5e9;color:#234a35;
+  border-bottom:1px solid #cbdcc4;
+  font-size:11px;
+}
+html body .zm-v5 .zmh-cinema .zmh-mini-nav b{
+  font:500 14px/1.4 Georgia,serif;
+  letter-spacing:-.02em;
+}
+html body .zm-v5 .zmh-cinema .zmh-mini-nav span{
+  margin-left:auto;font-size:9px;color:#55735c;
+}
+html body .zm-v5 .zmh-cinema .zmh-site-interior{
+  min-height:250px;
+  padding:clamp(24px,3vw,37px);
+  background:
+    linear-gradient(90deg,rgba(4,31,20,.97),rgba(4,31,20,.61) 55%,rgba(4,31,20,.08)),
+    url('/concept-natura.jpg') center/cover no-repeat;
+}
+html body .zm-v5 .zmh-cinema .zmh-site-interior h3{
+  font:400 clamp(30px,3.35vw,47px)/1.07 Georgia,serif;
+  letter-spacing:-.05em;
+  text-wrap:balance;
+}
+html body .zm-v5 .zmh-cinema .zmh-site-interior p{
+  font:13px/1.65 Arial,sans-serif;
+  color:#e7f2e2;
+}
+html body .zm-v5 .zmh-cinema .zmh-sample-button{
+  border-radius:24px;
+  font:700 11px/1.3 Arial,sans-serif;
+  padding:11px 17px;
+  color:#14371f;
+  background:#b1f16f;
+}
+html body .zm-v5 .zmh-cinema .zmh-sample-form{
+  width:min(100%,415px);
+  max-width:100%;
+  margin-inline:auto;
+  transform:none;
+  padding:clamp(19px,3vw,33px);
+  background:linear-gradient(135deg,rgba(239,246,233,.98),rgba(217,233,210,.98));
+  color:#173e2b;
+  border-color:rgba(239,249,229,.8);
+}
+html body .zm-v5 .zmh-cinema .zmh-sample-form .zmh-caption{
+  color:#376d47;font:700 10px/1.6 Arial,sans-serif;letter-spacing:.08em;
+}
+html body .zm-v5 .zmh-cinema .zmh-sample-form h3{
+  color:#143d2a;font:400 clamp(27px,3vw,36px)/1.15 Georgia,serif;
+}
+html body .zm-v5 .zmh-cinema .zmh-sample-form>div{
+  display:grid;grid-template-columns:58px minmax(0,1fr);
+  gap:13px;align-items:center;
+  color:#3d6249;
+  font:600 12px/1.3 Arial,sans-serif;
+}
+html body .zm-v5 .zmh-cinema .zmh-sample-form>div>span:last-child{
+  min-width:0;
+  background:rgba(255,255,255,.78);
+  color:#56735d;
+  border:1px solid #bdd4b5;
+  border-radius:9px;
+  padding:12px 13px;
+}
+html body .zm-v5 .zmh-cinema .zmh-sample-form .zmh-sample-button{
+  margin-top:20px;
+  margin-left:71px;
+  text-align:center;
+}
+html body .zm-v5 .zmh-cinema .zmh-commerce{
+  min-height:275px;
+  gap:clamp(12px,2vw,26px);
+  padding:clamp(17px,2.7vw,27px);
+}
+html body .zm-v5 .zmh-cinema .zmh-voucher{
+  min-width:0;min-height:230px;
+  border-radius:13px;
+  transform:rotate(-1deg);
+  background:
+    radial-gradient(ellipse at 90% 12%,rgba(192,238,142,.22),transparent 51%),
+    linear-gradient(140deg,#1d5837,#0a2e22);
+  border-color:rgba(213,245,197,.45);
+  box-shadow:0 17px 34px rgba(0,16,8,.27);
+}
+html body .zm-v5 .zmh-cinema .zmh-voucher strong{
+  font:400 clamp(23px,2.5vw,35px)/1.07 Georgia,serif;
+  letter-spacing:-.035em;
+}
+html body .zm-v5 .zmh-cinema .zmh-commerce-copy h3{
+  font:400 clamp(25px,2.85vw,36px)/1.09 Georgia,serif;
+  letter-spacing:-.04em;
+}
+html body .zm-v5 .zmh-cinema .zmh-commerce-copy p{
+  font:600 12px/1.55 Arial,sans-serif;color:#d7f0ca;
+}
+html body .zm-v5 .zmh-cinema .zmh-flow{
+  box-sizing:border-box;
+  min-height:205px;display:flex;
+  align-items:stretch;gap:9px;
+  padding:clamp(15px,2.5vw,23px);
+  background:linear-gradient(135deg,rgba(8,47,32,.96),rgba(8,37,28,.98));
+}
+html body .zm-v5 .zmh-cinema .zmh-flow-item{
+  border:1px solid rgba(211,242,197,.3);
+  border-radius:13px;
+  display:flex;align-items:center;justify-content:center;
+  padding:14px 9px;gap:10px;
+  background:rgba(227,247,216,.065);
+}
+html body .zm-v5 .zmh-cinema .zmh-flow-item.zmh-active{
+  background:rgba(176,243,108,.09);
+  border-color:rgba(190,248,151,.57);
+}
+html body .zm-v5 .zmh-cinema .zmh-flow-item>span{
+  width:47px;height:47px;min-width:47px;
+  border-radius:12px;
+  border:1px solid rgba(207,240,181,.42);
+  display:grid;place-items:center;
+  font:400 21px Arial,sans-serif;
+  color:#c7f5aa;
+  background:rgba(9,58,37,.65);
+  box-shadow:none;
+}
+html body .zm-v5 .zmh-cinema .zmh-flow-item>b{
+  min-height:0;
+  font:600 12px/1.3 Arial,sans-serif;
+  color:#e3f4df;
+}
+html body .zm-v5 .zmh-cinema .zmh-flow>i{
+  align-self:center;margin:0;flex:0 0 auto;
+  color:#b2ed9a;font:400 18px Arial,sans-serif;
+}
+html body .zm-v5 .zmh-cinema .zmh-cine-shot{
+  will-change:auto;
+  transition:opacity .42s ease,transform .48s cubic-bezier(.22,.7,.2,1),visibility .42s;
+}
+html body .zm-v5 .zmh-cinema .zmh-cine-shot.zmh-is-current{
+  transform:translate3d(0,0,0) scale(1);
+}
+@media(max-width:900px){
+  html body .zm-v5 .zmh-cinema::before{
+    right:-15px;top:24px;width:130px;height:225px;opacity:.10;
+  }
+  html body .zm-v5 .zmh-cinema .zmh-flow{
+    min-height:165px;
+  }
+}
+@media(max-width:620px){
+  html body .zm-v5 .zmh-cinema .zmh-mini-nav{
+    padding:11px 12px;
+  }
+  html body .zm-v5 .zmh-cinema .zmh-site-interior{
+    min-height:215px;padding:22px 17px;
+  }
+  html body .zm-v5 .zmh-cinema .zmh-sample-form{
+    padding:20px 14px;
+  }
+  html body .zm-v5 .zmh-cinema .zmh-sample-form>div{
+    grid-template-columns:54px minmax(0,1fr);gap:8px;
+  }
+  html body .zm-v5 .zmh-cinema .zmh-sample-form .zmh-sample-button{
+    margin-left:62px;
+  }
+  html body .zm-v5 .zmh-cinema .zmh-commerce{
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    gap:12px;padding:15px;
+  }
+  html body .zm-v5 .zmh-cinema .zmh-voucher{
+    min-height:185px;padding:14px 12px;
+  }
+  html body .zm-v5 .zmh-cinema .zmh-voucher strong{font-size:23px}
+  html body .zm-v5 .zmh-cinema .zmh-commerce-copy h3{font-size:23px}
+  html body .zm-v5 .zmh-cinema .zmh-flow{
+    flex-wrap:nowrap;gap:4px;padding:11px 7px;min-height:152px;
+  }
+  html body .zm-v5 .zmh-cinema .zmh-flow-item{padding:9px 5px;gap:7px}
+  html body .zm-v5 .zmh-cinema .zmh-flow-item>span{
+    width:37px;min-width:37px;height:37px;font-size:18px;
+  }
+  html body .zm-v5 .zmh-cinema .zmh-flow-item>b{font-size:10px}
+  html body .zm-v5 .zmh-cinema .zmh-flow>i{font-size:12px}
+}
+@media(prefers-reduced-motion:reduce){
+  html body .zm-v5 .zmh-cinema .zmh-cine-shot,
+  html body .zm-v5 .zmh-cinema :is(.zmh-website,.zmh-sample-form,.zmh-voucher){
+    transition:none!important;transform:none!important;
+  }
+}
