@@ -809,13 +809,13 @@ test("key public routes use their own social preview metadata", async () => {
     ["/raport-qa", "Przykładowy raport kontroli jakości strony | Zielona Marka"],
     ["/realizacje", "Realizacje i demonstracje stron WWW | Zielona Marka"],
   ];
-  const attr = (tag, name) => tag?.match(new RegExp(name + '=["\\']([^"\\']*)["\\']', "i"))?.[1];
+  const attr = (tag, name) => tag?.match(new RegExp(name + '="([^"]*)"', "i"))?.[1];
   const titles = new Set();
   for (const [route, expectedTitle] of pages) {
     const response = await fetchPage(route);
     assert.ok(response.ok, route + " must be available");
     const html = await response.text();
-    const metas = [...html.matchAll(/<meta\\b[^>]*>/gi)].map(match => match[0]);
+    const metas = [...html.matchAll(/<meta\b[^>]*>/gi)].map(match => match[0]);
     const metaFor = (name, value) => metas.find(tag => attr(tag, name) === value);
     const ogTitle = attr(metaFor("property", "og:title"), "content");
     const twitterTitle = attr(metaFor("name", "twitter:title"), "content");
