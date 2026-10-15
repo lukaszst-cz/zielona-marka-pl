@@ -724,5 +724,8 @@ try {
   writeFileSync(dir + "/report.json", JSON.stringify(result, null, 2));
 }
 const failed = result.checks.filter(item => item.status === "fail");
-process.stdout.write("Browser QA: " + (result.checks.length - failed.length) + "/" + result.checks.length + " checks passed; " + result.warnings.length + " unexpected warnings; " + result.privacyProtections.blockedCloudflareAnalytics + " privacy beacons blocked by CSP.\n");
+process.stdout.write("Browser QA: " + (result.checks.length - failed.length) + "/" + result.checks.length + " checks passed; " + result.warnings.length + " unexpected warnings; " + result.assetFailures.length + " failed first-party assets; " + result.privacyProtections.blockedCloudflareAnalytics + " privacy beacons blocked by CSP.\n");
+if (result.assetFailures.length) {
+  process.stdout.write("Failed first-party assets: " + JSON.stringify(result.assetFailures.slice(0, 15)) + "\n");
+}
 if (failed.length) process.exitCode = 1;
