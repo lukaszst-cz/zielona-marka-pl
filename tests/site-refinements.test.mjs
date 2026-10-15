@@ -107,7 +107,15 @@ test("v1.0.1 defers non-critical home media and caches hashed assets",async()=>{
   assert.match(hero,/zmh-living-forest\$\{ready\?' is-media-ready'/);
   assert.match(homeCss,/\.zmh-living-forest\.is-media-ready:before\{background-image:url\('\/brand-review-v5\/user-stream-tree-optimized\.webp'\)/);
   assert.match(portal,/if \(visible\) el\.classList\.add\("zmh-media-ready"\)/);
-  assert.match(refinements,/\.zmh-assembly\.zmh-media-ready\{background:[^}]*stream-water-bottom\.webp/);
+  assert.match(refinements,/\.zmh-assembly\.zmh-media-ready\s*\{[^}]*background:\s*[^}]*stream-water-bottom\.webp/);
+  assert.match(refinements,/\.zmh-scene-transition\s*\{[^}]*margin-top:\s*calc\(46px - var\(--zmh-dissolve-height\)\)/);
+  assert.match(refinements, /--zmh-dissolve-height:clamp\(280px,31vw,440px\)/, "Transition must start high enough to blend the photographic edge");
+  assert.match(refinements,/\.zmh-scene-transition span\{display:none!important\}/);
+  assert.equal((refinements.match(/Subtle forest-to-stream dissolve/g) || []).length, 1, "Keep only one canonical transition block");
+  assert.doesNotMatch(refinements, /Approved visual treatment: no visible divider/, "Remove later CSS that overrides the dissolve");
+  assert.match(refinements, /\.zmh-opening \.zmh-living-forest\{[^}]*mask-image:linear-gradient\(to bottom,[^}]*transparent 77%\)/, "Fade the fallback photo too, not just the video");
+  assert.ok(refinements.lastIndexOf("Subtle forest-to-stream dissolve") > refinements.lastIndexOf("Mobile controls and secondary calls to action"), "Transition styles must follow legacy mobile overrides");
+  assert.match(refinements, /\.zmh-opening::before\{[^}]*background:linear-gradient\(to bottom,[^}]*#061c13 73%\)/, "Entire hero must blend into dark forest before the hard edge");
 });
 test("small mobile links and consent controls have finger-sized targets",async()=>{
   const css=await readFile(new URL("../app/site-refinements.css",import.meta.url),"utf8");

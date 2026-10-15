@@ -168,6 +168,20 @@ try {
         return metrics;
       });
     }
+    if (["desktop", "laptop"].includes(size.name)) {
+      await check(size.name + ": Opening to process section spacing", async () => {
+        await page.goto(base + "/", { waitUntil: "domcontentloaded", timeout: 45000 });
+        const gap = await page.evaluate(() => {
+          const opening = document.querySelector(".zmh-opening");
+          const heading = document.querySelector(".zmh-assembly-heading");
+          if (!opening || !heading) return null;
+          return Math.round(heading.getBoundingClientRect().top - opening.getBoundingClientRect().bottom);
+        });
+        assert.ok(Number.isFinite(gap), "Homepage opening or process heading missing");
+        assert.ok(gap >= -10 && gap <= 300, "Oversized blank seam between the opening and process section: " + gap + "px");
+        return { distancePx: gap };
+      });
+    }
     if (["desktop", "mobile", "compact"].includes(size.name)) {
       await check(size.name + ": Blog shares public layout with Offer", async () => {
         const blogResponse = await page.goto(base + "/poradnik", { waitUntil: "networkidle", timeout: 45000 });
