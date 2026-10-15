@@ -5,6 +5,9 @@ on:
     workflows: ["Verify project"]
     types: [completed]
   workflow_dispatch:
+  schedule:
+    # 04:30 UTC = 06:30 Warsaw in summer, 05:30 in winter.
+    - cron: "30 4 * * *"
 
 permissions:
   contents: read
@@ -13,6 +16,7 @@ jobs:
   browser-qa:
     if: >-
       ${{ github.event_name == 'workflow_dispatch' ||
+          github.event_name == 'schedule' ||
           (github.event.workflow_run.head_branch == 'main' &&
            github.event.workflow_run.conclusion == 'success') }}
     runs-on: ubuntu-latest
@@ -41,5 +45,5 @@ jobs:
         with:
           name: zielona-marka-browser-qa
           path: browser-qa-artifacts/
-          retention-days: 14
+          retention-days: 7
           if-no-files-found: warn
