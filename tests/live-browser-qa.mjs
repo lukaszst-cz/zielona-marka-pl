@@ -222,6 +222,49 @@ try {
       assert.ok(await form.locator('input[name="consent"]').isVisible(), "Consent field hidden");
       return { projectChoices: 5, selectedMode: "logo", fbclid: true };
     });
+    await check(size.name + ": Free concept page has readable contrast", async () => {
+      await page.goto(base + "/bezplatna-koncepcja-strony?fbclid=qa-contrast", {
+        waitUntil: "networkidle", timeout: 45000,
+      });
+      const colors = await page.evaluate(() => {
+        const get = selector => {
+          const element = document.querySelector(selector);
+          if (!element) return null;
+          const style = getComputedStyle(element);
+          return { color: style.color, background: style.backgroundColor };
+        };
+        return {
+          heroTitle: get(".zm-concept-hero h1"),
+          heroLead: get(".zm-concept-hero .zm-concept-lead"),
+          benefitTitle: get(".zm-concept-benefits h2"),
+          benefitBody: get(".zm-concept-benefit-grid article p"),
+          galleryTitle: get(".zm-concept-gallery .zv5-gallery-intro h2"),
+          galleryLead: get(".zm-concept-gallery .zv5-gallery-intro>p"),
+          scopeTitle: get(".zm-concept-scope h2"),
+          requestTitle: get(".zm-concept-request h2"),
+          formField: get("form.zm-concept-form select"),
+          faqTitle: get(".zm-concept-faq h2"),
+        };
+      });
+      const brightness = color => {
+        const nums = (color?.match(/[0-9.]+/g) ?? []).slice(0, 3).map(Number);
+        if (nums.length !== 3) return -1;
+        return Math.round(.2126 * nums[0] + .7152 * nums[1] + .0722 * nums[2]);
+      };
+      for (const field of ["heroTitle", "heroLead", "benefitTitle", "benefitBody", "scopeTitle", "requestTitle", "faqTitle"]) {
+        assert.ok(colors[field], field + " is missing");
+        assert.ok(brightness(colors[field].color) >= 185,
+          field + " must be legible against the forest background, got " + colors[field].color);
+      }
+      for (const field of ["galleryTitle", "galleryLead", "formField"]) {
+        assert.ok(colors[field], field + " is missing");
+        assert.ok(brightness(colors[field].color) <= 135,
+          field + " must use dark text on its light background, got " + colors[field].color);
+      }
+      assert.ok(brightness(colors.formField.background) >= 210,
+        "Form field background should be light, got " + colors.formField.background);
+      return colors;
+    });
     if (["desktop", "laptop"].includes(size.name)) {
       await check(size.name + ": Opening to process section spacing", async () => {
         await page.goto(base + "/", { waitUntil: "domcontentloaded", timeout: 45000 });
