@@ -393,3 +393,42 @@ test("QA jest wyjaśnione prostym językiem na każdej kluczowej podstronie", as
   const hub = await (await render("/standardy-jakosci")).text();
   assert.match(hub, /sprawdzamy projekt, poprawiamy błędy/i);
 });
+
+
+test("bezpłatne koncepcje mają wspólny układ oraz pięć jasnych wariantów", async () => {
+  const response = await render("/bezplatna-koncepcja-strony");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /class="zm-public zm-concept"/);
+  assert.match(html, /class="page-hero shell zm-concept-hero"/);
+  for (const variant of [
+    "Nowy wygląd obecnej strony",
+    "Strona dla nowej firmy",
+    "Koncepcja logo",
+    "Gazetka reklamowa",
+    "Gazetka sprzedażowa",
+  ]) assert.ok(html.includes(variant), variant);
+  assert.match(html, /id="zgloszenie"/);
+  assert.match(html, /href="\/projektuj-strone#zm-konfigurator"/);
+  const toolsResponse = await render("/praktyczne-narzedzia");
+  assert.equal(toolsResponse.status, 200);
+  assert.match(await toolsResponse.text(), /Zobacz nowy wygląd swojej strony, logo albo gazetki/);
+  const dtpResponse = await render("/dtp");
+  assert.equal(dtpResponse.status, 200);
+  assert.match(await dtpResponse.text(), /Zobacz bezpłatną koncepcję gazetki/);
+});
+
+test("główne strony ofertowe korzystają z jednolitego hero i kontenera", async () => {
+  for (const path of [
+    "/oferta", "/dtp", "/kontakt", "/modernizacja-strony",
+    "/opieka-nad-strona", "/maly-crm-dla-firm", "/praktyczne-narzedzia",
+    "/projektuj-strone", "/bezplatna-koncepcja-strony", "/standard-dtp",
+    "/standard-jakosci", "/strony-internetowe", "/strony-internetowe/warszawa", "/realizacje"
+  ]) {
+    const response = await render(path);
+    assert.equal(response.status, 200, path);
+    const html = await response.text();
+    assert.match(html, /class="zm-public(?:\s|")/, path);
+    assert.match(html, /class="page-hero shell(?:\s|")/, path);
+  }
+});

@@ -15,7 +15,7 @@ export const offerGroups = [
       ["ZM Studio – stwórz przykład", "/projektuj-strone"],
       ["Kalkulator kosztów", "/oferta#kalkulator-pelnego-kosztu"],
       ["Modernizacja strony", "/modernizacja-strony"],
-      ["Bezpłatna koncepcja wyglądu", "/bezplatna-koncepcja-strony"],
+      ["Bezpłatna koncepcja", "/bezplatna-koncepcja-strony"],
       ["Opieka, domena i hosting", "/opieka-nad-strona"],
       ["Standard jakości WWW i CRM", "/standard-jakosci"],
     ],
@@ -24,6 +24,7 @@ export const offerGroups = [
     title: "Materiały i identyfikacja", description: "Projekty przygotowane do druku",
     links: [
       ["DTP, gazetki i katalogi", "/dtp"],
+      ["Bezpłatny pomysł na logo i gazetkę", "/bezplatna-koncepcja-strony"],
       ["Standard kontroli DTP", "/standard-dtp"],
     ],
   },
