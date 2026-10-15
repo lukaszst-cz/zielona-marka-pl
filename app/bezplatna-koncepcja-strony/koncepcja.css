@@ -90,3 +90,90 @@
 @media(max-width:760px){.zm-concept-shell{width:calc(100% - 36px)}.zm-concept-hero{padding:60px 0}.zm-concept-hero-grid,.zm-concept-scope-grid,.zm-concept-request{grid-template-columns:1fr}.zm-concept-hero-grid{gap:20px}.zm-concept-visual{max-width:480px;margin:auto;width:100%}.zm-concept-visual-tag{font-size:10px}.zm-concept-benefits,.zm-concept-scope,.zm-concept-request{padding-top:68px;padding-bottom:70px}.zm-concept-benefit-grid{grid-template-columns:1fr}.zm-concept-benefit-grid article{min-height:auto;padding:24px}.zm-concept-benefit-grid h3{margin-top:20px}.zm-concept-request{gap:26px}.zm-concept-form{padding:23px}.zm-concept-faq{padding-bottom:70px}.zm-concept-faq summary{font-size:15px}}
 @media(max-width:430px){.zm-concept h1{font-size:42px}.zm-concept-visual{padding-left:0;padding-right:0}.zm-concept-browser-content{min-height:260px;padding:17px}.zm-concept-browser-content-main{padding-top:25px}.zm-concept-browser-nav small{display:none}.zm-concept-form-grid{grid-template-columns:1fr}.zm-concept-visual-tag span{display:none}.zm-concept-primary{width:100%}.zm-concept-faq summary{font-size:14px}}
 @media(prefers-reduced-motion:reduce){.zm-concept-primary:hover{transform:none}.zm-concept *{scroll-behavior:auto!important}}
+
+
+/* Shared design-system alignment: same page hero, type, gutters and rhythm as public offer pages. */
+.zm-public.zm-concept{background:#eef2e7;color:var(--ink);font-family:inherit}
+.zm-public.zm-concept .page-hero.zm-concept-hero{
+  width:100%;max-width:none;
+  padding:clamp(74px,8vw,112px) max(24px,calc((100vw - 1180px)/2)) clamp(84px,9vw,122px);
+  background:#082c20;
+  color:#f3f6e9;
+}
+.zm-public.zm-concept .page-hero.zm-concept-hero::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,#082c20 9%,rgba(8,44,32,.87) 56%,rgba(8,44,32,.52)),url('/zielona-marka-hero-paprocie.webp') right 55%/auto 140% no-repeat;
+  z-index:-1;
+}
+.zm-public.zm-concept .page-hero.zm-concept-hero::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:64px;
+  background:linear-gradient(0deg,#eef2e7,transparent);pointer-events:none;z-index:-1;
+}
+.zm-concept .zm-concept-hero-grid{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);align-items:center;gap:clamp(24px,5vw,65px);max-width:1180px;margin:auto}
+.zm-public.zm-concept .page-hero h1{
+  color:#f3f6e9;font-family:Georgia,'Times New Roman',serif;font-weight:400;
+  font-size:clamp(42px,5.5vw,78px);max-width:720px;line-height:1.04;margin:22px 0 25px;
+}
+.zm-public.zm-concept .page-hero h1 em{color:#d9ef9a}
+.zm-public.zm-concept .page-hero .eyebrow{color:#d9ef9a;font-size:12px}
+.zm-public.zm-concept .page-hero .zm-concept-lead{color:#e4eee2;font-size:clamp(16px,1.4vw,19px);line-height:1.74;max-width:620px}
+.zm-public.zm-concept .page-hero .zm-concept-lead strong{color:#fff}
+.zm-public.zm-concept .hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:16px 22px;margin:28px 0 16px}
+.zm-public.zm-concept .hero-actions .button{background:#d9ef9a;color:#092d20;border-radius:4px}
+.zm-public.zm-concept .hero-actions .text-link{color:#e6f2d6;border-color:#cbdcba}
+.zm-public.zm-concept .page-hero .zm-concept-calm{color:#c9dfcb;font-size:13px;line-height:1.65}
+.zm-concept .zm-concept-browser{transform:none}
+.zm-concept .zm-concept-visual{min-width:0}
+.zm-concept .zm-concept-browser-content-main strong{font-weight:400}
+.zm-public.zm-concept .section{padding-block:clamp(68px,7vw,100px)}
+.zm-public.zm-concept .section h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(36px,4.2vw,60px);font-weight:400;letter-spacing:-.04em;line-height:1.1}
+.zm-public.zm-concept .section h3{font-family:inherit}
+.zm-public.zm-concept .section:not(.dark-section) em{color:#286e4b}
+.zm-public.zm-concept .zm-concept-section-head>p:first-child{color:#286e4b;font-size:12px;letter-spacing:.15em;font-weight:800}
+.zm-public.zm-concept .zm-concept-section-head>p:last-child:not(:first-child){font-size:17px;color:#4e695a;max-width:710px;line-height:1.7}
+.zm-public.zm-concept .zm-concept-benefit-grid article{padding:clamp(23px,3vw,32px);min-height:228px}
+.zm-public.zm-concept .zm-concept-benefit-grid p,
+.zm-public.zm-concept .zm-concept-request-intro>p:not(.zm-concept-kicker){font-size:16px;line-height:1.7;color:#425c4d}
+.zm-public.zm-concept .zm-concept-scope{background:#103628;color:#f2f7ec}
+.zm-public.zm-concept .zm-concept-scope em{color:#d9ef9a}
+.zm-public.zm-concept .zm-concept-scope p{color:#e3eee0}
+.zm-public.zm-concept .zm-concept-services{padding-top:clamp(30px,5vw,65px)}
+.zm-concept-service-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:35px}
+.zm-concept-service-grid article{min-width:0;background:#fff;border:1px solid #c6d4c7;border-radius:10px;padding:28px;display:flex;flex-direction:column;align-items:flex-start;gap:13px}
+.zm-concept-service-grid article>span{font-size:12px;font-weight:800;letter-spacing:.12em;color:#286e4b}
+.zm-concept-service-grid article h3{font-size:clamp(20px,2vw,25px);line-height:1.3;margin:0;color:#143e2b}
+.zm-concept-service-grid article p{font-size:15px;line-height:1.7;color:#4c6656;margin:0}
+.zm-concept-service-grid article a{margin-top:auto;padding-top:12px;font-size:14px;font-weight:800;color:#17573b;text-decoration:underline;text-underline-offset:5px}
+.zm-concept-services-foot{margin:20px 0 0;font-size:14px;line-height:1.7;color:#4c6656}
+.zm-public.zm-concept .zm-concept-request{scroll-margin-top:70px;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr)}
+.zm-concept-form{min-width:0}
+.zm-concept-form label{font-size:15px;line-height:1.45}
+.zm-concept-form input:not([type="radio"]):not([type="checkbox"]),.zm-concept-form select,.zm-concept-form textarea{font:400 16px/1.45 inherit;min-width:0}
+.zm-concept-choice{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.zm-concept-choice legend{font-size:15px;line-height:1.5}
+.zm-concept-choice label{min-width:0;font-size:14px;line-height:1.5}
+.zm-concept-form .zm-concept-choice label>span{font-size:14px;font-weight:700;color:#18382b;line-height:1.5}
+.zm-concept-form .zm-concept-consent,
+.zm-concept-form .zm-concept-consent span{font-size:13px;line-height:1.6;color:#415e4e}
+.zm-concept-form .zm-concept-form-foot{font-size:13px;line-height:1.6;color:#425d4b}
+.zm-concept-form button{border-radius:4px;font-size:15px}
+.zm-concept .zm-concept-faq summary{font-size:18px}
+.zm-concept .zm-concept-faq details p{font-size:16px;line-height:1.7}
+.zm-concept .zm-concept-disclaimer{font-size:13px;line-height:1.75}
+@media(max-width:950px){
+ .zm-concept-service-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .zm-concept .zm-concept-hero-grid{grid-template-columns:1fr}
+ .zm-concept .zm-concept-visual{max-width:560px;width:100%;margin:0}
+ .zm-public.zm-concept .zm-concept-request{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+ .zm-public.zm-concept .page-hero.zm-concept-hero{padding:65px 18px 90px}
+ .zm-public.zm-concept .page-hero h1{font-size:clamp(40px,10vw,57px)}
+ .zm-concept-service-grid{grid-template-columns:1fr}
+ .zm-concept-service-grid article{padding:23px}
+ .zm-concept-choice{grid-template-columns:1fr}
+ .zm-concept .zm-concept-hero-grid{gap:22px}
+ .zm-public.zm-concept .hero-actions{align-items:stretch}
+ .zm-public.zm-concept .hero-actions .button{width:100%}
+ .zm-concept-form-grid{grid-template-columns:1fr}
+}
