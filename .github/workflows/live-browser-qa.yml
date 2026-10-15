@@ -29,8 +29,10 @@ jobs:
         run: npm ci
       - name: Install isolated Chromium test runtime
         run: |
-          npm install --no-save --package-lock=false playwright@1.56.1
-          npx playwright install --with-deps chromium
+          mkdir -p "$RUNNER_TEMP/zm-playwright"
+          npm install --prefix "$RUNNER_TEMP/zm-playwright" --no-save --no-package-lock playwright@1.56.1
+          ln -s "$RUNNER_TEMP/zm-playwright/node_modules/playwright" node_modules/playwright
+          "$RUNNER_TEMP/zm-playwright/node_modules/.bin/playwright" install --with-deps chromium
       - name: Browser interactions and responsive screenshots
         run: node tests/live-browser-qa.mjs
         env:
