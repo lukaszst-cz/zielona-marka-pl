@@ -205,15 +205,22 @@ html body .zm-footer .zm-footer-brand p{font-size:16px!important;line-height:1.6
 }
 
 
-/* Two deliberate lines in the company mark, including the mobile header. */
-html body :is(.zm-header,.zm-footer) .brand-wordmark small{display:flex!important;flex-direction:column;align-items:flex-start;gap:2px;font-size:11px!important;line-height:1.28!important;letter-spacing:.005em!important}
+/* Exact two-row lockup: service disciplines / DLA FIRM.
+   Give the first row enough space; never let the slogan collide with Menu. */
+html body :is(.zm-header,.zm-footer) .brand-wordmark small{display:flex!important;flex-direction:column;align-items:flex-start;gap:2px;font:700 10.5px/1.25 Arial,sans-serif!important;letter-spacing:-.02em!important;color:#e3f0dc!important}
 html body :is(.zm-header,.zm-footer) .brand-wordmark small span{display:block;white-space:nowrap}
-html body .zm-header .brand-signature{width:312px}
+html body :is(.zm-header,.zm-footer) .brand-wordmark small span:last-child{color:#cafa9e;letter-spacing:.08em}
+html body .zm-header .brand-signature{width:345px}
+html body .zm-footer .brand-signature{width:325px}
 @media(max-width:630px){
- html body .zm-header .brand-signature{width:257px;max-width:100%}
- html body :is(.zm-header,.zm-footer) .brand-wordmark small{font-size:10px!important;line-height:1.25!important;letter-spacing:0!important}
+ html body .zm-header .brand-signature{width:280px;max-width:calc(100vw - 96px)}
+ html body .zm-header .brand-apple{width:55px;height:62px}
+ html body .zm-header .brand-wordmark b{font-size:20px!important}
+ html body :is(.zm-header,.zm-footer) .brand-wordmark small{font-size:9.7px!important;line-height:1.3!important;letter-spacing:-.035em!important}
 }
 @media(max-width:370px){
- html body .zm-header .brand-signature{width:250px}
- html body :is(.zm-header,.zm-footer) .brand-wordmark small{font-size:9px!important}
+ html body .zm-header .brand-signature{width:255px;max-width:calc(100vw - 68px)}
+ html body .zm-header .brand-apple{width:48px;height:55px}
+ html body .zm-header .brand-wordmark b{font-size:18px!important}
+ html body :is(.zm-header,.zm-footer) .brand-wordmark small{font-size:9px!important;letter-spacing:-.05em!important}
 }
