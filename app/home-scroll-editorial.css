@@ -85,6 +85,15 @@ html body .zm-v5 .zmh-contact {
   background:linear-gradient(135deg,rgba(5,29,22,.9),rgba(10,45,31,.78))!important;
   box-shadow:0 18px 58px rgba(0,14,8,.14);
 }
+/* Growing-with-you is full-bleed in the legacy stylesheet; constrain its
+   content to the same 1190px editorial column as other service sections. */
+html body .zm-v5 .zmh-story.zmh-grow{
+  width:min(1190px,calc(100% - clamp(36px,6vw,104px)));
+  margin-inline:auto;
+}
+html body .zm-v5 .zmh-story.zmh-grow>.zmh-wrap{
+  width:100%;max-width:none;
+}
 html body .zm-v5 .zmh-process{text-align:center}
 html body .zm-v5 .zmh-portfolio .zmh-project,
 html body .zm-v5 .zmh-care-steps>li,
