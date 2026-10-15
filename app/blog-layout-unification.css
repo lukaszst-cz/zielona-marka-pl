@@ -1,0 +1,15 @@
+/* Shared public-page rhythm for the blog hub. Scoped to avoid altering demos. */
+.zm-public.zm-blog-page { overflow-x: clip; }
+.zm-public.zm-blog-page :is(.page-hero,.section) { box-sizing: border-box; }
+.zm-public.zm-blog-page :is(.page-hero,.section) > * { min-width: 0; }
+.zm-public.zm-blog-page .page-hero h1,
+.zm-public.zm-blog-page .page-hero p { overflow-wrap: break-word; }
+.zm-public.zm-blog-page .zm-blog-service-grid > a { transition: border-color .2s ease, background-color .2s ease; }
+.zm-public.zm-blog-page .zm-blog-service-grid > a:hover { border-color: #b0f36c; background-color: #103a28; }
+@media (max-width: 600px) {
+  .zm-public.zm-blog-page .zm-blog-service-grid > a { padding: 22px 20px; min-height: 0; }
+  .zm-public.zm-blog-page .zm-blog-service-grid > a h3 { margin-top: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .zm-public.zm-blog-page .zm-blog-service-grid > a { transition: none; }
+}
