@@ -68,9 +68,9 @@ export default function FreeConceptPage() {
         <div className="zm-concept-service-grid">
           <article><span>01 / WWW</span><h3>Nowy wygląd obecnej strony</h3><p>Poglądowy projekt pierwszego ekranu lub wybranej sekcji istniejącej strony z czytelniejszą ofertą i kontaktem.</p><a href="#zgloszenie">Zgłoś obecną stronę ↗</a></article>
           <article><span>02 / WWW</span><h3>Strona dla nowej firmy</h3><p>Wstępny kierunek wizualny dla firmy bez witryny. Możesz też samodzielnie zobaczyć podgląd w ZM Studio.</p><Link href="/projektuj-strone#zm-konfigurator">Uruchom podgląd WWW ↗</Link></article>
-          <article><span>03 / IDENTYFIKACJA</span><h3>Koncepcja logo</h3><p>Jeden kierunek znaku lub odświeżenia obecnego logo, dopasowany do charakteru marki.</p><a href="#zgloszenie">Poproś o pomysł na logo ↗</a></article>
-          <article><span>04 / REKLAMA</span><h3>Gazetka reklamowa</h3><p>Poglądowy układ okładki lub strony gazetki prezentującej usługi, aktualności i ofertę firmy.</p><a href="#zgloszenie">Zgłoś gazetkę reklamową ↗</a></article>
-          <article><span>05 / SPRZEDAŻ</span><h3>Gazetka sprzedażowa</h3><p>Przykładowy układ produktów, promocji, cen i wezwań do zakupu, z myślą o czytelności oferty.</p><a href="#zgloszenie">Zgłoś gazetkę sprzedażową ↗</a></article>
+          <article><span>03 / IDENTYFIKACJA</span><h3>Koncepcja logo</h3><p>Jeden kierunek znaku lub odświeżenia obecnego logo, dopasowany do charakteru marki.</p><Link href="/bezplatna-koncepcja-strony?typ=logo#zgloszenie">Poproś o pomysł na logo ↗</Link></article>
+          <article><span>04 / REKLAMA</span><h3>Gazetka reklamowa</h3><p>Poglądowy układ okładki lub strony gazetki prezentującej usługi, aktualności i ofertę firmy.</p><Link href="/bezplatna-koncepcja-strony?typ=promo#zgloszenie">Zgłoś gazetkę reklamową ↗</Link></article>
+          <article><span>05 / SPRZEDAŻ</span><h3>Gazetka sprzedażowa</h3><p>Przykładowy układ produktów, promocji, cen i wezwań do zakupu, z myślą o czytelności oferty.</p><Link href="/bezplatna-koncepcja-strony?typ=sales#zgloszenie">Zgłoś gazetkę sprzedażową ↗</Link></article>
         </div>
         <p className="zm-concept-services-foot">Podgląd WWW w ZM Studio działa samodzielnie. Pozostałe pomysły wymagają przesłania briefu i potwierdzenia przyjęcia zgłoszenia.</p>
       </section>
