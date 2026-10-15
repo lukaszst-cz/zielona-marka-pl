@@ -45,13 +45,15 @@ for (const path of pages) {
 }
 
 const allAssets = [...references].sort();
-const picked = [
-  ...allAssets.filter(path => /\.(?:m?js)$/.test(path)).slice(0, 20),
-  ...allAssets.filter(path => /\.css$/.test(path)).slice(0, 8),
-  ...allAssets.filter(path => !/\.(?:m?js|css)$/.test(path)).slice(0, 4),
-];
-if (picked.length === 0) failures.push("No versioned assets found in any page HTML; parser or output format changed.");
-const queue = [...new Set(picked)];
+// Check every referenced asset, including rare chunks which would be missed
+// by a sample. A cap prevents a broken HTML response from creating an
+// unexpectedly large number of public requests.
+const maxAssets = 100;
+if (allAssets.length > maxAssets) {
+  failures.push("Referenced asset count " + allAssets.length + " exceeds safety cap " + maxAssets);
+}
+if (allAssets.length === 0) failures.push("No versioned assets found in any page HTML; parser or output format changed.");
+const queue = allAssets.slice(0, maxAssets);
 await Promise.all(Array.from({ length: Math.min(3, queue.length) }, async () => {
   while (queue.length) {
     const path = queue.shift();
