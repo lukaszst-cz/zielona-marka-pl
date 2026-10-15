@@ -1,7 +1,7 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { resolve } from "node:path";
-import { referencedAssets } from "./public-asset-utils.mjs";
+import { referencedAssets, isUnusableAssetResponse } from "./public-asset-utils.mjs";
 
 /* Public contract: these HTML markers must be returned by the server.
    Client-rendered assembly parts are verified in browser QA after hydration. */
@@ -26,6 +26,30 @@ export function missingUiStyles(css) {
   );
 }
 
+/* Recheck a missing immutable script once: deployments may shift between edges.
+   A persistent 404 is a potential client-side hydration failure, even on HTTP 200 pages. */
+export async function probeScriptAsset(path, { origin, request, retryDelayMs = 1200 }) {
+  let result = { path, ok: false, status: null, contentType: "", cfCache: null };
+  for (let attempt = 1; attempt <= 2; attempt++) {
+    try {
+      const response = await request(new URL(path, origin), {
+        headers: { "cache-control": "no-cache", "User-Agent": "ZielonaMarkaReleaseParity/1.0" },
+        signal: AbortSignal.timeout(12000),
+      });
+      const contentType = response.headers?.get?.("content-type") ?? "";
+      result = { path, ok: !isUnusableAssetResponse(path, response.status, contentType),
+        status: response.status, contentType,
+        cfCache: response.headers?.get?.("cf-cache-status") ?? null, attempts: attempt };
+      await response.body?.cancel?.();
+      if (result.ok) return result;
+    } catch (error) {
+      result = { path, ok: false, status: null, error: String(error.message).slice(0, 140), attempts: attempt };
+    }
+    if (attempt === 1 && retryDelayMs > 0) await new Promise(resolve => setTimeout(resolve, retryDelayMs));
+  }
+  return result;
+}
+
 export async function monitorRelease({
   origin = "https://zielona-marka.pl",
   request = fetch,
@@ -33,6 +57,7 @@ export async function monitorRelease({
   const pages = [];
   const failures = [];
   const cssPaths = new Set();
+  const jsPaths = new Set();
   for (const { path, markers } of releasePages) {
     try {
       const url = new URL(path, origin);
@@ -43,10 +68,14 @@ export async function monitorRelease({
       });
       const html = await response.text();
       const missing = missingPageMarkers(html, markers);
-      pages.push({ path, status: response.status, missing, cssAssets: referencedAssets(html, origin).filter((v) => v.endsWith(".css")).length });
+      const assets = referencedAssets(html, origin);
+      pages.push({ path, status: response.status, missing,
+        cssAssets: assets.filter(v => v.endsWith(".css")).length,
+        jsAssets: assets.filter(v => /\.m?js$/.test(v)).length });
       if (response.status !== 200) failures.push(path + ": status " + response.status);
       if (missing.length) failures.push(path + ": missing HTML markers: " + missing.join(", "));
-      for (const asset of referencedAssets(html, origin).filter((v) => v.endsWith(".css"))) cssPaths.add(asset);
+      for (const asset of assets.filter(v => v.endsWith(".css"))) cssPaths.add(asset);
+      for (const asset of assets.filter(v => /\.m?js$/.test(v))) jsPaths.add(asset);
     } catch (err) {
       failures.push(path + ": " + String(err.message).slice(0, 180));
     }
@@ -68,6 +97,18 @@ export async function monitorRelease({
   }
   const missingCss = missingUiStyles(combinedCss);
   if (missingCss.length) failures.push("Production CSS is missing current UI rules: " + missingCss.join(", "));
+
+  const scriptAssets = [];
+  const scriptsToCheck = [...jsPaths].slice(0, 120);
+  if (scriptsToCheck.length === 0) failures.push("No public versioned JavaScript assets found in rendered HTML.");
+  for (let i = 0; i < scriptsToCheck.length; i += 8) {
+    scriptAssets.push(...await Promise.all(scriptsToCheck.slice(i, i + 8).map(path =>
+      probeScriptAsset(path, { origin, request }))));
+  }
+  const missingScripts = scriptAssets.filter(asset => !asset.ok);
+  if (missingScripts.length) failures.push("Public HTML references unavailable JavaScript assets: " +
+    missingScripts.slice(0, 8).map(asset => asset.path + " (HTTP " + (asset.status ?? "unknown") + ")").join(", "));
+  if (jsPaths.size > scriptsToCheck.length) failures.push("JavaScript asset check truncated before all referenced scripts.");
 
   // Safe negative probe: invalid type must be rejected before D1/email writes.
   // A distinctive validation response proves the latest form handler is deployed.
@@ -103,7 +144,7 @@ export async function monitorRelease({
     failures.push("Free concept form probe failed: " + String(err.message).slice(0, 180));
   }
   return {
-    checkedAt: new Date().toISOString(), origin, pages, cssFiles,
+    checkedAt: new Date().toISOString(), origin, pages, cssFiles, scriptAssets, missingScripts,
     expectedChanges: "PR #88 (free concepts), PR #89 (UI and care plans), PR #95 (homepage offer slides), PR #102 (free concept previews and request paths), PR #105 (shared light hero layout), V5 agreed showcase integration",
     missingCss, conceptFormProbe, failures, isCurrent: failures.length === 0,
     note: "This checks public release parity; successful GitHub CI alone cannot prove Cloudflare deployment.",
@@ -118,6 +159,8 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1
     isCurrent: report.isCurrent,
     pagesChecked: report.pages.length,
     cssAssetsChecked: report.cssFiles.length,
+    jsAssetsChecked: report.scriptAssets.length,
+    missingJsAssets: report.missingScripts.length,
     failures: report.failures,
   }, null, 2));
   if (!report.isCurrent) process.exitCode = 1;
