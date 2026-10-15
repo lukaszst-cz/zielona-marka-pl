@@ -15,7 +15,10 @@ function plain(value: unknown) {
 async function notifyOwner(data: { name: string; email: string; company: string; message: string }) {
   const { env } = await import("cloudflare:workers");
   const runtime = env as unknown as NotificationEnv;
-  if (!runtime.RESEND_API_KEY || !runtime.INQUIRY_NOTIFICATION_TO || !runtime.INQUIRY_NOTIFICATION_FROM) return;
+  if (!runtime.RESEND_API_KEY || !runtime.INQUIRY_NOTIFICATION_TO || !runtime.INQUIRY_NOTIFICATION_FROM) {
+    console.warn("Inquiry notification not configured; saved lead remains in CRM.");
+    return;
+  }
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: { Authorization: `Bearer ${runtime.RESEND_API_KEY}`, "Content-Type": "application/json" },
@@ -103,7 +106,9 @@ export async function POST(request: Request) {
     }
 
     await db.insert(inquiries).values({ name, email, company, budget, message, status: "Nowe", createdAt: new Date().toISOString() });
-    await notifyOwner({ name, email, company, message }).catch(() => undefined);
+    await notifyOwner({ name, email, company, message }).catch(() => {
+      console.error("Inquiry saved in CRM, but email notification delivery failed.");
+    });
 
     return wantsJson
       ? Response.json({ ok: true }, { status: 201, headers: { "Cache-Control": "no-store" } })
