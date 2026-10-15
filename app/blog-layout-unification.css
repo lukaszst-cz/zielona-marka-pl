@@ -359,3 +359,22 @@
     transform: none;
   }
 }
+
+/* Article content inherits the same open forest continuity. */
+.zm-public.guide-page > article :is(.guide-intro,.guide-reasons,.guide-check,.guide-faq,.guide-cta) {
+  background: transparent !important;
+  background-image: none !important;
+}
+.zm-public.guide-page > article .guide-reasons li,
+.zm-public.guide-page > article .guide-author {
+  background: rgba(7, 28, 22, .43) !important;
+  border-color: rgba(218, 238, 205, .34) !important;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.zm-public.guide-page > article .guide-reasons li:is(:hover,:focus-within) {
+  background: rgba(21, 53, 41, .56) !important;
+}
+.zm-public.guide-page .guide-cta {
+  border-block-color: rgba(218, 238, 205, .29);
+}
