@@ -2,7 +2,7 @@ name: Review branch visual QA
 
 on:
   push:
-    branches: [review/premium-clarity-a-b-c-20261015, release/blog-unification-20261015, release/forest-seam-final-20261015]
+    branches: [review/premium-clarity-a-b-c-20261015, release/blog-unification-20261015, release/forest-seam-final-20261015, fix/free-concept-production-contrast-20261015]
   workflow_dispatch:
 
 permissions:
@@ -65,6 +65,8 @@ jobs:
           path: |
             browser-qa-artifacts/report.json
             browser-qa-artifacts/desktop-home.png
+            browser-qa-artifacts/desktop-free-concept.png
+            browser-qa-artifacts/mobile-free-concept.png
             browser-qa-artifacts/mobile-home.png
             browser-qa-artifacts/compact-home.png
             browser-qa-artifacts/desktop-blog.png
