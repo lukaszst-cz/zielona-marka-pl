@@ -3,7 +3,24 @@ import Link from "../SafeLink";
 import { QuickWhatsApp, SiteFooter, SiteHeader } from "../SiteChrome";
 import { projects } from "../site-data";
 
-export const metadata: Metadata = { title: "Realizacje demonstracyjne", description: "Różne układy dla różnych branż: strony, formularze, sprzedaż online i systemy dla firm.", alternates: { canonical: "/realizacje" } };
+export const metadata: Metadata = {
+  title: "Realizacje demonstracyjne",
+  description: "Różne układy dla różnych branż: strony, formularze, sprzedaż online i systemy dla firm.",
+  alternates: { canonical: "/realizacje" },
+  openGraph: {
+    type: "website",
+    url: "/realizacje",
+    title: "Realizacje i demonstracje stron WWW | Zielona Marka",
+    description: "Zobacz różne układy stron firmowych, formularzy i rozwiązań dla branż. Przykładowe projekty pokazują kierunek, nie gotowe realizacje klientów.",
+    images: ["/og.jpg"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Realizacje i demonstracje stron WWW | Zielona Marka",
+    description: "Zobacz różne układy stron firmowych, formularzy i rozwiązań dla branż. Przykładowe projekty pokazują kierunek, nie gotowe realizacje klientów.",
+    images: ["/og.jpg"],
+  },
+};
 
 const conceptPageByName: Record<string, string> = {
   "Natura Studio": "/realizacje/natura-studio",
