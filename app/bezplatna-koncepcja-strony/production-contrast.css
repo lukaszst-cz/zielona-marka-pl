@@ -225,3 +225,18 @@ body .zm-public.zm-concept .zm-concept-faq .zm-concept-disclaimer{
    padding:22px;
  }
 }
+
+/* Replace schematic CSS fronds inside the example with genuine botanical imagery. */
+body .zm-public.zm-concept .zv5-site-visual{
+  background:linear-gradient(145deg,rgba(14,55,28,.12),rgba(6,44,22,.38)),url("/concept-natura.jpg") center/cover no-repeat!important;
+}
+body .zm-public.zm-concept .zv5-phone-photo{
+  background:linear-gradient(160deg,rgba(6,44,24,.06),rgba(8,43,25,.32)),url("/concept-natura.jpg") center/cover no-repeat!important;
+}
+body .zm-public.zm-concept .zv5-site-visual .zv5-fern,
+body .zm-public.zm-concept .zv5-phone-photo .zv5-fern,
+body .zm-public.zm-concept .zv5-rings{display:none!important}
+body .zm-public.zm-concept .zv5-desktop,
+body .zm-public.zm-concept .zv5-phone{
+  box-shadow:0 18px 45px rgba(0,13,6,.42);
+}
