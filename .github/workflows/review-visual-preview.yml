@@ -31,7 +31,7 @@ jobs:
       - name: Install isolated Playwright runtime
         run: |
           mkdir -p /tmp/zm-review-browser
-          npm --prefix /tmp/zm-review-browser install --no-save --package-lock=false --no-audit --no-fund playwright@1.56.1
+          npm --prefix /tmp/zm-review-browser install --no-save --package-lock=false --no-audit --no-fund playwright@1.56.1 axe-core@4.10.3
           /tmp/zm-review-browser/node_modules/.bin/playwright install --with-deps chromium
       - name: Run browser QA against local build without publication
         shell: bash
@@ -51,6 +51,9 @@ jobs:
           BROWSER_QA_FULL=1 \
           BROWSER_QA_PLAYWRIGHT_ENTRY=/tmp/zm-review-browser/node_modules/playwright/index.mjs \
             node tests/live-browser-qa.mjs
+          BROWSER_QA_URL=http://127.0.0.1:8788 \
+          BROWSER_QA_PLAYWRIGHT_ENTRY=/tmp/zm-review-browser/node_modules/playwright/index.mjs \
+            node tests/accessibility-preview.mjs
       - name: Upload previews and browser report
         if: always()
         uses: actions/upload-artifact@v4
