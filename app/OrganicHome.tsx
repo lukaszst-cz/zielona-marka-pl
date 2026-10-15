@@ -11,6 +11,7 @@ import { QuickWhatsApp, SiteHeader, SiteFooter } from "./SiteChrome";
 import "./home-v5.css";
 import "./home-carousel.css";
 import "./home-layout-repair.css";
+import "./home-scroll-editorial.css";
 
 function WebsiteVisual() {
   return <div className="zmh-visual"><p className="zmh-caption">Przykładowa strona dla branży beauty · demonstracja</p><div className="zmh-website zmh-glass"><div className="zmh-mini-nav"><b>✳ Natura Studio</b><span>O nas  Oferta  Kontakt</span></div><div className="zmh-site-interior"><span>CHWILA DLA SIEBIE</span><h3>Spokojniej.<br />Bliżej siebie.</h3><p>Pielęgnacja. Relaks. Naturalne piękno.</p><span className="zmh-sample-button">Poznaj zabiegi ↗</span></div></div></div>;
@@ -39,6 +40,7 @@ export function OrganicHome() {
         <div className="zmh-hero-foot"><span className="zmh-aside-note">TWÓJ POMYSŁ.<br />WSPÓLNY KIERUNEK.</span><p>Dobry grunt<br />dla Twoich<br />pomysłów.</p></div>
       </section>
       </div><div className="zmh-scene-transition" aria-hidden="true"><span /></div><LivingPortal />
+      <div className="zmh-scroll-content">
       <HomeOffersCarousel />
       <nav className="zmh-social-panel zmh-wrap" aria-label="Zielona Marka w mediach społecznościowych"><div><strong>Bądźmy w kontakcie</strong><span>Zobacz aktualności i projekty marki Zielona Marka również poza stroną.</span></div><div className="zmh-social-panel-links"><a href="https://www.facebook.com/zielonamarka" target="_blank" rel="noopener noreferrer"><Image src="/podpis-email/icon-facebook.png" width={27} height={27} alt="" unoptimized />Facebook ↗</a><a href="https://www.instagram.com/zielona.marka.pl/" target="_blank" rel="noopener noreferrer"><Image src="/podpis-email/icon-instagram.png" width={27} height={27} alt="" unoptimized />Instagram ↗</a><a href="https://www.google.com/maps/search/?api=1&amp;query=Zielona%20Marka%20strony%20WWW%20Warszawa" target="_blank" rel="noopener noreferrer"><Image src="/podpis-email/icon-google.png" width={27} height={27} alt="" unoptimized />Znajdź w Google ↗</a><a href="https://github.com/lukaszst-cz" target="_blank" rel="noopener noreferrer"><Image src="/icon-github-zielona-marka.svg" width={27} height={27} alt="" unoptimized />GitHub ↗</a></div></nav>
       <section className="zmh-quick-brief zmh-wrap" id="krotki-brief" aria-labelledby="krotki-brief-title"><div className="zmh-quick-brief-copy"><p className="zmh-eyebrow">KRÓTKI BRIEF · OKOŁO 1 MINUTY</p><h2 id="krotki-brief-title">Masz już kierunek?<br /><em>Opisz go w kilku zdaniach.</em></h2><p>Nie musisz znać nazw funkcji ani gotowego rozwiązania. Napisz, czym zajmuje się firma i co chcesz ułatwić klientom lub sobie.</p><ul><li>odpowiadam najpóźniej w następnym dniu roboczym</li><li>bez zobowiązań i bez publikacji przed akceptacją</li></ul></div><div className="zmh-form-surface"><HomeContactForm /></div></section>
@@ -51,6 +53,7 @@ export function OrganicHome() {
           <section className="zmh-story zmh-relationships" aria-labelledby="relacje-title"><div className="zmh-wrap zmh-split"><div className="zmh-copy"><p className="zmh-chapter">05 / KONTAKT PO USŁUDZE</p><h2 id="relacje-title">Dobre relacje<br />warto pielęgnować.</h2><p>Po wykonanej usłudze zostaje miejsce na pytanie, czy wszystko w porządku, prośbę o opinię albo przypomnienie o kolejnym terminie. Pomagam zaplanować taki kontakt i połączyć go z obsługą zleceń.</p></div><FlowVisual aftercare /></div></section>
         </div>
         <HomeStoryMotion />
+      </div>
       </div>
     </div>
     <div className="zmh-lower-forest">

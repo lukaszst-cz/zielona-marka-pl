@@ -2,7 +2,7 @@ name: Review branch visual QA
 
 on:
   push:
-    branches: [review/premium-clarity-a-b-c-20261015, release/blog-unification-20261015, release/forest-seam-final-20261015]
+    branches: [review/premium-clarity-a-b-c-20261015, release/blog-unification-20261015, release/forest-seam-final-20261015, fix/home-scroll-editorial-layout-20261015]
   workflow_dispatch:
 
 permissions:
