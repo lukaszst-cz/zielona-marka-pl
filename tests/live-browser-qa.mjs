@@ -89,10 +89,30 @@ try {
           text: document.body.innerText.length,
         }));
         if (metrics.text <= 200) {
-          // DOMContentLoaded can precede client-side content rendering; wait briefly,
-          // but keep the failure if the page remains empty.
-          await page.waitForFunction(() => document.body.innerText.length > 200, null, { timeout: 10000 });
+          // A transient edge response or a streamed document can be temporarily
+          // empty. Retry once, then report the actual page state on failure.
+          await page.waitForFunction(() => document.body.innerText.length > 200, null, { timeout: 6000 }).catch(() => {});
           metrics.text = await page.evaluate(() => document.body.innerText.length);
+          if (metrics.text <= 200) {
+            const secondResponse = await page.reload({ waitUntil: "domcontentloaded", timeout: 45000 });
+            assert.ok(secondResponse?.ok(), route + " retry returned HTTP " + secondResponse?.status());
+            await page.locator("main").first().waitFor({ state: "visible", timeout: 15000 });
+            await page.waitForFunction(() => document.body.innerText.length > 200, null, { timeout: 6000 }).catch(() => {});
+            const retried = await page.evaluate(() => ({
+              width: document.documentElement.scrollWidth,
+              viewport: innerWidth,
+              title: document.title,
+              text: document.body.innerText.length,
+              mainText: document.querySelector("main")?.innerText?.slice(0, 120) ?? "",
+            }));
+            metrics.width = retried.width;
+            metrics.viewport = retried.viewport;
+            metrics.title = retried.title;
+            metrics.text = retried.text;
+            assert.ok(metrics.text > 200,
+              route + " empty after one navigation retry; status=" + secondResponse.status() +
+              "; title=" + retried.title + "; main=" + JSON.stringify(retried.mainText));
+          }
         }
         assert.ok(metrics.text > 200, "Empty public page after content readiness wait");
         const overlappingActions = await page.evaluate(() => {
