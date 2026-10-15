@@ -1,7 +1,12 @@
 import { writeFile, mkdir } from "node:fs/promises";
 
 const base = "https://zielona-marka.pl";
-const routes = ["/", "/oferta", "/dtp", "/strony-internetowe", "/strony-internetowe/warszawa", "/kontakt"];
+const routes = ["/", "/oferta", "/dtp", "/strony-internetowe", "/strony-internetowe/warszawa", "/kontakt", "/jak-pracuje", "/raport-qa", "/standard-jakosci"];
+const expectedLinks = {
+  "/": ["/jak-pracuje"],
+  "/jak-pracuje": ["/kontakt", "/raport-qa", "/standard-jakosci"],
+};
+
 const failures = [];
 const report = { checkedAt: new Date().toISOString(), base, routes: [], sitemap: {}, robots: {} };
 async function request(path) {
@@ -45,6 +50,10 @@ for (const route of routes) {
     if (noindex) fail(route + " is marked noindex");
     if (!actual || new URL(actual, base).href.replace(/\/$/, "") !== expected.replace(/\/$/, "")) fail(route + " canonical missing or not self-referencing: " + actual);
     if (!foundInSitemap) fail(route + " absent from sitemap");
+    for (const link of expectedLinks[route] ?? []) {
+      const present = body.includes('href="' + link + '"') || body.includes("href='" + link + "'");
+      if (!present) fail(route + " missing important navigation link to " + link);
+    }
   } catch (error) { fail(route + " inspection failed: " + error.message); }
 }
 report.failures = failures;
