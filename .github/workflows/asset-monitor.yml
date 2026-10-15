@@ -1,0 +1,41 @@
+name: Public versioned-asset monitor
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/monitor-public-assets.mjs"
+      - "scripts/public-asset-utils.mjs"
+      - ".github/workflows/asset-monitor.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "scripts/monitor-public-assets.mjs"
+      - "scripts/public-asset-utils.mjs"
+      - ".github/workflows/asset-monitor.yml"
+  workflow_dispatch:
+  schedule:
+    - cron: "25 5,17 * * *"
+
+permissions:
+  contents: read
+
+jobs:
+  public-assets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - name: Check production HTML and its versioned JS/CSS assets
+        run: node scripts/monitor-public-assets.mjs
+      - name: Preserve diagnostic results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-assets-report
+          path: asset-monitor-artifacts/report.json
+          retention-days: 14
+          if-no-files-found: warn
