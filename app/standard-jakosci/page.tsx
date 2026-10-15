@@ -4,7 +4,7 @@ import QualityPrintButton from "../QualityPrintButton";
 import { SiteHeader, SiteFooter, QuickWhatsApp } from "../SiteChrome";
 
 export const metadata: Metadata = {
- title: "Standard jakości – jak realizujemy projekty | Zielona Marka",
+ title: "Standard jakości – jak realizujemy projekty",
  description: "Zobacz osiem etapów realizacji stron WWW, sklepów, grafiki i systemów oraz zasady kontroli jakości Zielonej Marki. Własne procedury inspirowane normami ISO.",
  alternates: {canonical:"/standard-jakosci"},
 };
