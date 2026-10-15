@@ -13,6 +13,8 @@ on:
       - "app/home-carousel.css"
       - "app/home-layout-repair.css"
       - "app/home-nature-finish.css"
+      - "app/home-cinema-polish.css"
+      - "app/HomeStoryMotion.tsx"
       - "app/LivingPortal.tsx"
       - "public/brand-review-v6/fern-frond.svg"
       - "app/site-refinements.css"

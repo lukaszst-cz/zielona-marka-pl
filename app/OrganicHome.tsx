@@ -13,6 +13,7 @@ import "./home-carousel.css";
 import "./home-layout-repair.css";
 import "./home-scroll-editorial.css";
 import "./home-nature-finish.css";
+import "./home-cinema-polish.css";
 
 function WebsiteVisual() {
   return <div className="zmh-visual"><p className="zmh-caption">Przykładowa strona dla branży beauty · demonstracja</p><div className="zmh-website zmh-glass"><div className="zmh-mini-nav"><b>✳ Natura Studio</b><span>O nas  Oferta  Kontakt</span></div><div className="zmh-site-interior"><span>CHWILA DLA SIEBIE</span><h3>Spokojniej.<br />Bliżej siebie.</h3><p>Pielęgnacja. Relaks. Naturalne piękno.</p><span className="zmh-sample-button">Poznaj zabiegi ↗</span></div></div></div>;
