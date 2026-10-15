@@ -137,9 +137,38 @@ try {
           result.warnings.push({ viewport: size.name, route, overflowPx: metrics.width - metrics.viewport });
         }
         const path = dir + "/" + size.name + "-" + key + ".png";
+        await page.evaluate(() => {
+          for (const img of document.querySelectorAll('img[loading="lazy"]')) img.loading = "eager";
+        });
+        await page.waitForTimeout(250);
         await page.screenshot({ path, fullPage: true, animations: "disabled", timeout: 45000 });
         result.screenshots.push(path);
         return metrics;
+      });
+    }
+    if (["desktop", "mobile"].includes(size.name)) {
+      await check(size.name + ": ZM Studio layout previews", async () => {
+        await page.goto(base + "/projektuj-strone", { waitUntil: "networkidle", timeout: 45000 });
+        const preview = page.locator(".zm-creator-preview-frame");
+        const layoutVariants = [
+          ["classic", "Klasyczny firmowy"],
+          ["editorial", "Editorial premium"],
+          ["minimal", "Minimal & elegancja"],
+          ["showcase", "Galeria i realizacje"],
+          ["contact", "Lokalny kontakt"],
+          ["atelier", "Atelier asymetryczne"],
+          ["catalog", "Katalog ofertowy"],
+        ];
+        for (const [id, title] of layoutVariants) {
+          const choice = page.locator(".zm-creator-layout-grid button").filter({ hasText: title });
+          await choice.click();
+          assert.equal(await choice.getAttribute("aria-pressed"), "true", "Layout not selected: " + title);
+          assert.equal(await preview.locator(".zm-demo-layout-" + id).count(), 1, "Layout class missing: " + title);
+          const destination = dir + "/" + size.name + "-layout-" + id + ".png";
+          await preview.screenshot({ path: destination, animations: "disabled", timeout: 45000 });
+          result.screenshots.push(destination);
+        }
+        return { layouts: layoutVariants.length, screenshots: layoutVariants.length };
       });
     }
     if (size.name === "desktop") {
