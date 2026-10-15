@@ -1,0 +1,244 @@
+/* Homepage layout parity with /oferta. Scoped to the landing page only. */
+html body .zm-v5 .zmh-wrap {
+  width: min(1190px, calc(100% - clamp(36px, 6vw, 104px)));
+  max-width: 1190px;
+  margin-inline: auto;
+}
+
+/* Keep the stream in the opening scene; the following process illustration
+   must have its own room instead of being cropped by the section boundary. */
+html body .zm-v5 .zmh-assembly {
+  grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
+  align-items: center !important;
+  gap: clamp(24px, 5vw, 66px);
+  min-height: 0 !important;
+  padding-top: clamp(76px, 8vw, 112px) !important;
+  padding-bottom: clamp(72px, 8vw, 112px) !important;
+  overflow: visible;
+  border-bottom: 1px solid rgba(190, 227, 171, .22);
+}
+html body .zm-v5 .zmh-assembly-heading {
+  min-width: 0;
+  max-width: 520px;
+}
+html body .zm-v5 .zmh-assembly-heading > span {
+  color: #b9ed9b;
+  font: 700 13px/1.55 Arial, Helvetica, sans-serif;
+  letter-spacing: .09em;
+}
+html body .zm-v5 .zmh-assembly-heading h2 {
+  margin: 16px 0 22px;
+  color: #f5f8f1;
+  font: 600 clamp(39px, 4.1vw, 61px)/1.1 Arial, Helvetica, sans-serif;
+  letter-spacing: -.045em;
+  text-wrap: balance;
+}
+html body .zm-v5 .zmh-assembly-heading h2 em {
+  color: #b0f36c;
+  font: inherit;
+}
+html body .zm-v5 .zmh-assembly-heading p {
+  max-width: 440px;
+  color: #e2eedc;
+  font: 400 17px/1.7 Arial, Helvetica, sans-serif;
+}
+html body .zm-v5 .zmh-assembly-board {
+  width: 100%;
+  max-width: 100%;
+  height: clamp(455px, 35vw, 530px);
+  min-width: 0;
+  perspective: none;
+  transform: none;
+}
+html body .zm-v5 .zmh-assembly-board > div:not(.zmh-assembly-lines) {
+  box-sizing: border-box;
+  border-radius: 17px;
+  padding: clamp(16px, 2vw, 24px);
+}
+html body .zm-v5 .zmh-piece-web {
+  width: 67%;
+  top: 0;
+  left: 0;
+  transform: translate(calc((1 - var(--gather, 1)) * -20px), calc((1 - var(--gather, 1)) * 14px)) rotate(calc((1 - var(--gather, 1)) * -3deg));
+}
+html body .zm-v5 .zmh-piece-inquiry {
+  width: 63%;
+  right: 0;
+  top: 38%;
+  transform: translate(calc((1 - var(--gather, 1)) * 16px), calc((1 - var(--gather, 1)) * -12px)) rotate(calc((1 - var(--gather, 1)) * 3deg));
+}
+html body .zm-v5 .zmh-piece-order {
+  width: 83%;
+  right: 0;
+  bottom: 56px;
+  transform: translate(calc((1 - var(--gather, 1)) * 12px), calc((1 - var(--gather, 1)) * 10px)) rotate(calc((1 - var(--gather, 1)) * -2deg));
+}
+html body .zm-v5 .zmh-assembly-note {
+  left: 0;
+  bottom: 8px;
+  right: 0;
+  color: #d7e9ce;
+  font-size: 12px !important;
+  line-height: 1.5;
+  letter-spacing: .06em;
+}
+
+/* The free starting points directly follow the narrative, as on /oferta. */
+html body .zm-v5 .zm-home-offers {
+  padding-top: clamp(60px, 6vw, 90px);
+  padding-bottom: clamp(22px, 3vw, 45px);
+}
+html body .zm-v5 .zm-home-offers-intro {
+  grid-template-columns: minmax(0, 1.18fr) minmax(0, .82fr);
+  align-items: end;
+  gap: clamp(22px, 4vw, 56px);
+  margin-bottom: clamp(24px, 3vw, 38px);
+}
+html body .zm-v5 .zm-home-offers-intro .zmh-eyebrow {
+  font-size: 13px;
+  letter-spacing: .09em;
+}
+html body .zm-v5 .zm-home-offers-intro h2 {
+  font: 600 clamp(38px, 4.1vw, 58px)/1.11 Arial, Helvetica, sans-serif;
+  letter-spacing: -.043em;
+  text-wrap: balance;
+}
+html body .zm-v5 .zm-home-offers-intro > p {
+  max-width: 460px;
+  font: 400 17px/1.7 Arial, Helvetica, sans-serif;
+}
+html body .zm-v5 .zm-home-carousel {
+  border: 1px solid rgba(211, 239, 194, .35);
+  border-radius: 18px;
+  box-shadow: 0 17px 48px rgba(0, 14, 9, .18);
+}
+html body .zm-v5 .zm-home-slide {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(22px, 3.6vw, 52px);
+  min-height: 0;
+  padding: clamp(32px, 4vw, 55px) clamp(25px, 4.5vw, 60px) 25px;
+}
+html body .zm-v5 .zm-home-slide h3 {
+  margin: 20px 0 18px;
+  font: 500 clamp(33px, 3.65vw, 49px)/1.12 Arial, Helvetica, sans-serif;
+  letter-spacing: -.045em;
+}
+html body .zm-v5 .zm-home-slide-copy > p {
+  font: 400 16px/1.7 Arial, Helvetica, sans-serif;
+}
+html body .zm-v5 .zm-home-slide-benefits,
+html body .zm-v5 .zm-home-slide-links a {
+  font-size: 13px;
+  line-height: 1.6;
+}
+html body .zm-v5 .zm-home-slide-kicker {
+  font-size: 12px;
+}
+html body .zm-v5 .zm-home-carousel-footer {
+  margin-inline: clamp(25px, 4.5vw, 60px);
+  margin-bottom: 26px;
+}
+html body .zm-v5 .zm-home-carousel-footer > p {
+  font-size: 13px;
+  line-height: 1.65;
+  max-width: 900px;
+}
+
+/* Secondary channels below the primary invitation, not between animation
+   and the offer. The container follows the same card rhythm as /oferta. */
+html body .zm-v5 .zmh-social-panel {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: minmax(220px, .85fr) minmax(0, 1.15fr);
+  gap: 22px;
+  align-items: center;
+  margin-block: 24px clamp(50px, 6vw, 82px);
+  padding: clamp(20px, 2.4vw, 30px);
+  border-radius: 16px;
+}
+html body .zm-v5 .zmh-social-panel > div:first-child {
+  max-width: 410px;
+}
+html body .zm-v5 .zmh-social-panel-links {
+  justify-content: flex-end;
+}
+html body .zm-v5 .zmh-social-panel-links a {
+  border-radius: 8px;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  html body .zm-v5 .zmh-assembly {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+    padding-inline: max(24px, calc((100% - 1190px) / 2));
+    padding-top: 66px !important;
+    padding-bottom: 72px !important;
+  }
+  html body .zm-v5 .zmh-assembly-heading { max-width: 720px; }
+  html body .zm-v5 .zmh-assembly-board {
+    width: min(100%, 610px);
+    height: 490px;
+    margin-inline: auto;
+  }
+  html body .zm-v5 .zm-home-offers-intro {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  html body .zm-v5 .zm-home-offers-intro > p { max-width: 700px; }
+  html body .zm-v5 .zm-home-slide {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 34px 30px 22px;
+  }
+  html body .zm-v5 .zm-offer-art { height: 350px; width: min(100%, 590px); justify-self: center; }
+  html body .zm-v5 .zmh-social-panel { grid-template-columns: 1fr; }
+  html body .zm-v5 .zmh-social-panel-links { justify-content: flex-start; }
+}
+@media (max-width: 620px) {
+  html body .zm-v5 .zmh-wrap { width: calc(100% - 36px); }
+  html body .zm-v5 .zmh-assembly {
+    padding: 48px 18px 58px !important;
+    gap: 25px;
+  }
+  html body .zm-v5 .zmh-assembly-heading h2 {
+    font-size: clamp(34px, 9vw, 46px);
+  }
+  html body .zm-v5 .zmh-assembly-heading p { font-size: 16px; }
+  html body .zm-v5 .zmh-assembly-board { height: 425px; }
+  html body .zm-v5 .zmh-piece-web { width: 78%; }
+  html body .zm-v5 .zmh-piece-inquiry { width: 72%; top: 39%; }
+  html body .zm-v5 .zmh-piece-order { width: 89%; bottom: 47px; }
+  html body .zm-v5 .zmh-assembly-board strong { font-size: 21px; }
+  html body .zm-v5 .zmh-assembly-board b { font-size: 15px; }
+  html body .zm-v5 .zmh-piece-photo { height: 90px; }
+  html body .zm-v5 .zmh-assembly-note { font-size: 10px !important; bottom: 0; }
+  html body .zm-v5 .zm-home-offers { padding-top: 54px; }
+  html body .zm-v5 .zm-home-offers-intro h2 { font-size: clamp(34px, 8.6vw, 45px); }
+  html body .zm-v5 .zm-home-offers-intro > p { font-size: 16px; }
+  html body .zm-v5 .zm-home-slide { padding: 27px 19px 16px; }
+  html body .zm-v5 .zm-home-slide h3 { font-size: clamp(30px, 8vw, 39px); }
+  html body .zm-v5 .zm-home-slide-copy > p { font-size: 15px; }
+  html body .zm-v5 .zm-offer-art { height: 255px; }
+  html body .zm-v5 .zm-home-carousel-footer { margin: 0 19px 20px; }
+  html body .zm-v5 .zmh-social-panel { padding: 20px; margin-bottom: 56px; }
+  html body .zm-v5 .zmh-social-panel-links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+  }
+  html body .zm-v5 .zmh-social-panel-links a {
+    white-space: normal;
+    justify-content: center;
+    font-size: 13px;
+    padding: 10px 8px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html body .zm-v5 .zmh-assembly-board,
+  html body .zm-v5 .zmh-assembly-board > div:not(.zmh-assembly-lines) {
+    transform: none !important;
+    transition: none !important;
+  }
+}
