@@ -72,8 +72,8 @@ export default function QualityStandardPage() {
     <section className="section shell qa-section" id="normy-iso">
       <div className="section-head"><div><span className="section-no">JAKOŚĆ I STANDARDY TECHNICZNE</span><h2>Jak korzystamy z norm ISO?</h2></div><p>Odnosimy procedury do właściwych norm i dobrych praktyk. Rzeczywiste wymagania zależą od technologii, zakresu i ustaleń projektu.</p></div>
       <div className="qa-cards qa-cards--three">
-        <article className="qa-card"><span className="qa-kicker">ZARZĄDZANIE</span><h3>ISO 9001</h3><p>Uporządkowanie procesu, identyfikowanie ryzyka, dokumentowanie odbioru i doskonalenie pracy.</p></article>
-        <article className="qa-card"><span className="qa-kicker">PRODUKT CYFROWY</span><h3>ISO/IEC 25010</h3><p>Model cech jakości produktu cyfrowego, pomocny przy projektowaniu zakresu kontroli systemu.</p></article>
+        <article className="qa-card"><span className="qa-kicker">ZARZĄDZANIE</span><h3>ISO 9001:2026</h3><p>Uporządkowanie procesu, identyfikowanie ryzyka, dokumentowanie odbioru i doskonalenie pracy.</p></article>
+        <article className="qa-card"><span className="qa-kicker">PRODUKT CYFROWY</span><h3>ISO/IEC 25010:2023</h3><p>Model cech jakości produktu cyfrowego, pomocny przy projektowaniu zakresu kontroli systemu.</p></article>
         <article className="qa-card"><span className="qa-kicker">POLIGRAFIA</span><h3>ISO 15930 i 12647</h3><p>Odpowiednie standardy wymiany plików produkcyjnych i kontroli procesów drukarskich, stosownie do wymagań drukarni.</p></article>
       </div>
       <div className="qa-standards-note"><strong>Ważne rozróżnienie:</strong> Zielona Marka korzysta z własnych procedur inspirowanych zasadami tych norm. Nie deklarujemy certyfikacji ISO 9001, akredytacji ani zewnętrznego audytu. Nie każdy punkt norm ma zastosowanie do każdej realizacji.</div>
