@@ -158,3 +158,20 @@ html body .zm-v5 .zmh-form-surface select[name="budget"] {
     padding-inline: 22px !important;
   }
 }
+
+/* The outer semantic <article> is not a card. The shared .zm-public article:hover
+   rule previously painted a matte overlay over the ENTIRE guide page. */
+html body main.zm-public.guide-page:not(.zm-blog-page) > article,
+html body main.zm-public.guide-page:not(.zm-blog-page) > article:is(:hover,:focus-within) {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  filter: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
