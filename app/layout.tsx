@@ -19,6 +19,7 @@ import "./blog-layout-unification.css";
 import "./navigation-glass.css";
 import "./guide-article-layout.css";
 import "./blog-contrast-polish.css";
+import "./ui-consistency-202610.css";
 import PolishTypography from "./PolishTypography";
 import CookieConsent from "./CookieConsent";
 import SiteTracking from "./SiteTracking";

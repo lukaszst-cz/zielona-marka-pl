@@ -1,0 +1,289 @@
+/* Public pages: one consistent card, CTA and pricing language.
+   This stylesheet loads after all previous visual adjustments. */
+:root{
+  --zm-ui-card:rgba(5,30,19,.32);
+  --zm-ui-card-hover:rgba(4,25,17,.68);
+  --zm-ui-panel:rgba(11,49,34,.46);
+  --zm-ui-panel-strong:rgba(9,43,30,.75);
+  --zm-ui-border:rgba(185,226,169,.43);
+  --zm-ui-border-hover:rgba(207,249,173,.75);
+  --zm-ui-cream:#f0f8e9;
+  --zm-ui-accent:#b6fa79;
+}
+.zm-public :is(.section,.contact-section) :is(article,a,button,input,select,textarea){min-width:0}
+.zm-public :is(.section,.contact-section) :is(a,button):focus-visible{outline:3px solid #b5f982;outline-offset:4px}
+
+/* A true centred CTA, regardless of where its arrow lives. */
+html body .zm-public a.button,
+html body .zm-public button.button,
+html body .zm-public .contact-form button[type="submit"],
+html body .zm-public :is(.zm-total-results,.zm-creator-quote,.zm-dtp-actions) .button{
+  display:inline-flex;align-items:center;justify-content:center;
+  position:relative;min-height:52px;padding:13px 48px;
+  line-height:1.4;text-align:center;gap:10px;
+  border-radius:999px;white-space:normal;overflow-wrap:anywhere;
+  transition:background-color .2s ease,border-color .2s ease,box-shadow .2s ease;
+}
+html body .zm-public a.button > span,
+html body .zm-public button.button > span,
+html body .zm-public .contact-form button[type="submit"] > span{
+  position:absolute;right:17px;top:50%;transform:translateY(-50%);
+  display:inline-flex;align-items:center;justify-content:center;
+  line-height:1;min-width:18px;margin:0;
+}
+html body .zm-public :is(.contact-form,.zm-total-results,.zm-creator-quote,.zm-dtp-actions) .button{width:100%}
+html body .zm-public .contact-form button[type="submit"]{background:#b6fa79;color:#0a2d20;font-weight:800;cursor:pointer}
+@media(hover:hover){
+  html body .zm-public :is(a.button,button.button,.contact-form button[type="submit"]):hover{
+    background:#d5ffac;color:#09291d;box-shadow:0 8px 24px rgba(2,17,10,.2);
+  }
+}
+@media(max-width:480px){html body .zm-public a.button,html body .zm-public button.button,html body .zm-public .contact-form button[type="submit"]{padding-inline:36px}}
+
+/* Cards: quiet by default, darker only after hover or keyboard focus. */
+html body .zm-public :is(.extra-grid article,.external-cost-grid article,.local-benefit-grid article,
+  .crm-module-grid article,.crm-assurance-grid article,.problem-grid article,
+  .improvements-page .situation-grid article,.improvements-page .tool-grid article,
+  .assistant-rules-grid article){
+  background:var(--zm-ui-card)!important;
+  border:1px solid var(--zm-ui-border)!important;
+  color:var(--zm-ui-cream);
+  border-radius:9px;
+  box-shadow:none!important;
+  transition:background-color .22s ease,border-color .22s ease,box-shadow .22s ease!important;
+}
+@media(hover:hover){
+  html body .zm-public :is(.extra-grid article,.external-cost-grid article,.local-benefit-grid article,
+    .crm-module-grid article,.crm-assurance-grid article,.problem-grid article,
+    .improvements-page .situation-grid article,.improvements-page .tool-grid article,
+    .assistant-rules-grid article):hover{
+    background:var(--zm-ui-card-hover)!important;border-color:var(--zm-ui-border-hover)!important;
+    box-shadow:0 12px 29px rgba(0,12,5,.15)!important;transform:none!important;
+  }
+}
+html body .zm-public :is(.extra-grid article,.external-cost-grid article,.local-benefit-grid article,
+  .crm-module-grid article,.crm-assurance-grid article,.problem-grid article,
+  .improvements-page .situation-grid article,.improvements-page .tool-grid article,
+  .assistant-rules-grid article):focus-within{
+  background:var(--zm-ui-card-hover)!important;border-color:var(--zm-ui-border-hover)!important;
+}
+html body .zm-public :is(.extra-grid,.external-cost-grid,.local-benefit-grid,.crm-module-grid,.crm-assurance-grid,
+  .situation-grid,.tool-grid,.problem-grid) > article{min-width:0;overflow-wrap:anywhere}
+html body .zm-public .extra-grid article{min-height:0;padding:clamp(23px,2.4vw,32px)!important}
+html body .zm-public .extra-grid article h3{margin:9px 0 12px!important}
+html body .zm-public .extra-grid article>span:not(.section-no):not(.zm-care-price){
+  font-size:clamp(19px,1.8vw,25px)!important;line-height:1.24;
+  letter-spacing:-.025em;margin-bottom:12px;color:#d7ffab!important;
+  text-shadow:none!important;
+}
+
+/* Numbers: no fake shadow/duplicate layer; compact, legible, close to title. */
+html body .zm-public .tool-grid article>span,
+html body .zm-public .situation-grid article>b,
+html body .zm-public .crm-module-grid article>span,
+html body .zm-public .crm-assurance-grid article>span,
+html body .zm-public .external-cost-grid article>span,
+html body .zm-public .local-benefit-grid article>b,
+html body .zm-public .problem-grid article>span,
+html body .zm-public .symptom-grid article>b{
+  display:block;width:max-content;min-width:0;
+  margin:0 0 14px!important;
+  font:800 clamp(23px,2.4vw,31px)/1.1 Arial,Helvetica,sans-serif!important;
+  letter-spacing:-.045em!important;color:#dbffb0!important;
+  text-shadow:none!important;filter:none!important;
+}
+html body .zm-public .tool-grid article>span::before,
+html body .zm-public .tool-grid article>span::after{content:none!important;display:none!important}
+html body .zm-public .crm-module-grid article h3,
+html body .zm-public .situation-grid article h3,
+html body .zm-public .tool-grid article h3,
+html body .zm-public .problem-grid article h3{margin:0 0 13px!important;line-height:1.3}
+html body .zm-public .crm-module-grid article,
+html body .zm-public .tool-grid article,
+html body .zm-public .situation-grid article{padding:clamp(22px,2.3vw,30px)!important}
+
+/* Local-city tiles, both the city hub and related-city lists. */
+html body .zm-public .local-related nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;border:0;background:none}
+html body .zm-public .local-related nav a{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  min-height:74px;padding:19px 23px;
+  background:var(--zm-ui-card)!important;border:1px solid var(--zm-ui-border)!important;border-radius:8px;
+  font:400 clamp(18px,1.8vw,23px)/1.35 Georgia,serif!important;
+  color:#f0f8e9!important;box-shadow:none;
+  transition:background-color .2s ease,border-color .2s ease!important;
+}
+html body .zm-public .local-related nav a > span:last-child{color:#cbfa9f!important}
+html body .zm-public .local-related nav a > span:first-child:not(:last-child){color:#f0f8e9!important}
+html body .zm-public .local-related nav a small{display:block;font:400 14px/1.55 Arial,Helvetica,sans-serif;color:#d7e9d2!important;margin-top:5px}
+@media(hover:hover){
+  html body .zm-public .local-related nav a:hover,
+  html body .zm-public .local-related nav a:focus-visible{background:var(--zm-ui-card-hover)!important;border-color:var(--zm-ui-border-hover)!important}
+}
+html body .zm-public :is(.local-industry-grid>a,.local-benefit-grid article){box-shadow:none!important}
+
+/* DTP offer cards: same translucency and border as all other offer cards. */
+html body .zm-public .zm-dtp-prices>article{
+  min-height:0;background:rgba(8,41,27,.47)!important;
+  border:1px solid var(--zm-ui-border)!important;border-radius:9px!important;
+  padding:clamp(24px,2.6vw,34px)!important;box-shadow:none!important;
+  transition:background-color .2s,border-color .2s!important;
+}
+@media(hover:hover){
+  html body .zm-public .zm-dtp-prices>article:hover{background:rgba(5,34,22,.70)!important;border-color:var(--zm-ui-border-hover)!important}
+}
+html body .zm-public .zm-dtp-prices>article h3{margin:13px 0 9px!important}
+html body .zm-public .zm-dtp-prices>article>strong{
+  font:700 clamp(25px,2.4vw,34px)/1.15 Arial,Helvetica,sans-serif!important;
+  color:#d6ffad!important;letter-spacing:-.03em;margin:7px 0 15px!important;
+}
+html body .zm-public .zm-dtp-prices>article .zm-price-kicker{font-size:13px!important;margin:8px 0 3px}
+html body .zm-public .zm-dtp-prices>article .zm-price-exclusion{font-size:13px!important}
+
+/* DTP wizard + total budget + WWW configurator: translucent outer shell, clear dark result. */
+html body .zm-public :is(.zm-total-fields,.zm-creator-config,.zm-dtp-wizard-grid>.zm-total-fields){
+  background:var(--zm-ui-panel)!important;border:1px solid var(--zm-ui-border)!important;
+  border-radius:9px!important;box-shadow:none!important;
+}
+html body .zm-public :is(.zm-total-results,.zm-creator-quote){
+  background:var(--zm-ui-panel-strong)!important;border:1px solid var(--zm-ui-border)!important;
+  border-radius:9px!important;box-shadow:none!important;
+}
+html body .zm-public .zm-creator-layout-grid button{
+  background:rgba(5,31,21,.35)!important;border:1px solid var(--zm-ui-border)!important;
+  color:#ecf8e5;border-radius:7px;transition:background .2s,border-color .2s;
+}
+html body .zm-public .zm-creator-layout-grid button.selected,
+html body .zm-public .zm-creator-layout-grid button[aria-pressed="true"]{
+  background:rgba(23,76,46,.83)!important;border-color:#c4ff89!important;
+  box-shadow:inset 0 0 0 1px rgba(196,255,137,.35);
+}
+@media(hover:hover){
+  html body .zm-public .zm-creator-layout-grid button:hover{background:rgba(6,28,18,.77)!important;border-color:var(--zm-ui-border-hover)!important}
+}
+html body .zm-public :is(.zm-total-results,.zm-creator-quote,.zm-dtp-summary) :is(.zm-cost-total,.zm-creator-quote-main strong){
+  font-size:clamp(26px,2.8vw,36px)!important;line-height:1.16!important;
+  letter-spacing:-.035em;color:#d8ffae!important;
+}
+html body .zm-public .zm-total-results .zm-cost-next strong{font-size:clamp(23px,2.3vw,30px)!important}
+html body .zm-public .zm-dtp-stepper{gap:10px}
+html body .zm-public .zm-dtp-stepper button{
+  display:flex;align-items:center;justify-content:flex-start;gap:9px;
+  min-height:49px;padding:11px 15px!important;
+  background:rgba(11,48,33,.46);border:1px solid var(--zm-ui-border);
+  color:#eaf6e1;font-size:14px!important;line-height:1.4;border-radius:7px;
+}
+html body .zm-public .zm-dtp-stepper button span{
+  flex:none;font:700 19px/1.1 Georgia,serif!important;letter-spacing:0;margin:0
+}
+html body .zm-public .zm-dtp-stepper button[aria-current="step"],
+html body .zm-public .zm-dtp-stepper button.active{background:#d3f5a8!important;color:#0c3021!important;border-color:#d3f5a8!important}
+html body .zm-public .zm-dtp-stepper button[aria-current="step"] span,
+html body .zm-public .zm-dtp-stepper button.active span{color:#0c3021!important}
+
+/* Care packages should read as a comparison of benefits, not tiny columns. */
+html body .zm-public .care-plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+html body .zm-public .care-plans .care-plan-card{
+  padding:clamp(25px,2.7vw,38px)!important;display:flex;flex-direction:column;gap:0;
+  min-height:0;
+}
+html body .zm-public .care-plan-card h3{font-size:clamp(24px,2.35vw,31px)!important}
+html body .zm-public .care-plan-card .zm-care-price{
+  margin:13px 0 20px!important;font-size:clamp(30px,3vw,41px)!important;line-height:1.15!important;
+}
+html body .zm-public .care-plan-card .zm-care-price small{font-size:14px!important;margin-top:6px!important}
+html body .zm-public .care-plan-card :is(.care-plan-benefit,.care-plan-difference){
+  padding:14px 16px;margin:12px 0!important;line-height:1.65!important;
+  border-left:2px solid #b4ef86;
+  background:rgba(7,31,20,.53);font-size:15px!important;color:#e7f6db!important;
+}
+html body .zm-public .care-plan-card :is(.care-plan-benefit,.care-plan-difference) strong{
+  display:block;color:#daffb2;margin-bottom:5px;font-size:15px;
+}
+html body .zm-public .care-plan-card ul{margin:6px 0 12px}
+html body .zm-public .care-plan-card li{margin-bottom:10px;font-size:15px!important;line-height:1.6!important}
+html body .zm-public .care-plan-card>a{margin-top:auto;min-height:48px;display:inline-flex;align-items:center}
+html body .zm-public .care-plans-disclaimer{max-width:860px;font-size:14px;line-height:1.65;color:#e5f1db;margin:24px 0 0}
+
+/* Marketing section accidentally inherited fullscreen size from the separate transport demo app. */
+html body .zm-public.improvements-page>.transport-demo{
+  min-height:0!important;height:auto!important;
+  padding-block:clamp(62px,6vw,95px)!important;
+}
+html body .zm-public.improvements-page>.transport-demo .transport-demo-grid{
+  min-height:0!important;align-items:center;gap:clamp(24px,5vw,75px)
+}
+
+@media(max-width:1000px){
+ html body .zm-public .care-plans{grid-template-columns:repeat(2,minmax(0,1fr))}
+ html body .zm-public .care-plans .care-plan-card:last-child{grid-column:1/-1}
+}
+@media(max-width:750px){
+ html body .zm-public .care-plans,
+ html body .zm-public .local-related nav{grid-template-columns:1fr}
+ html body .zm-public .care-plans .care-plan-card:last-child{grid-column:auto}
+ html body .zm-public :is(.zm-dtp-wizard-grid,.zm-total-builder,.zm-creator-top){min-width:0}
+ html body .zm-public .zm-dtp-stepper{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:440px){
+ html body .zm-public .zm-dtp-stepper{grid-template-columns:1fr}
+ html body .zm-public .care-plans .care-plan-card{padding:24px!important}
+}
+@media(prefers-reduced-motion:reduce){
+ html body .zm-public :is(a.button,button.button,.local-related nav a,.zm-dtp-prices>article,.zm-creator-layout-grid button){transition:none!important}
+}
+
+
+/* On the About page, panels remain light until actively hovered or focused. */
+html body .zm-public :is(.about-proof-list,.technology-grid,.timeline) article{
+  background:var(--zm-ui-card)!important;border:1px solid var(--zm-ui-border)!important;
+  border-radius:8px;color:#f0f8e9;box-shadow:none!important;
+  transition:background-color .22s ease,border-color .22s ease!important;
+}
+@media(hover:hover){
+  html body .zm-public :is(.about-proof-list,.technology-grid,.timeline) article:hover{
+    background:var(--zm-ui-card-hover)!important;
+    border-color:var(--zm-ui-border-hover)!important;
+    box-shadow:none!important;transform:none!important;
+  }
+}
+html body .zm-public :is(.about-proof-list,.technology-grid,.timeline) article:focus-within{
+  background:var(--zm-ui-card-hover)!important;border-color:var(--zm-ui-border-hover)!important;
+}
+html body .zm-public :is(.about-proof-list,.timeline) article>span{
+  display:block;font:800 clamp(23px,2.4vw,31px)/1.1 Arial,Helvetica,sans-serif!important;
+  color:#daffaf!important;margin:0 0 14px!important;letter-spacing:-.04em!important;
+  text-shadow:none!important;
+}
+html body .zm-public :is(.about-proof-list,.timeline) article h3{margin:0 0 13px!important}
+
+/* Prices are numbers inside cost containers, not the containers themselves. */
+html body .zm-public :is(.zm-total-results,.zm-dtp-summary) .zm-cost-total strong{
+  display:block;font:700 clamp(26px,2.9vw,37px)/1.14 Arial,Helvetica,sans-serif!important;
+  color:#d8ffad!important;letter-spacing:-.025em;
+}
+html body .zm-public :is(.zm-total-results,.zm-dtp-summary) .zm-cost-next strong{
+  font:700 clamp(22px,2.2vw,29px)/1.18 Arial,Helvetica,sans-serif!important;
+  color:#eef8e6!important;
+}
+html body .zm-public .zm-creator-quote-main strong{font-size:clamp(26px,2.8vw,37px)!important}
+html body .zm-public .zm-cost-total>span,
+html body .zm-public .zm-cost-next>span{font-size:14px!important;line-height:1.5}
+html body .zm-public .zm-total-results :is(.zm-cost-total,.zm-cost-next){
+  min-width:0;gap:12px;overflow-wrap:anywhere;
+}
+/* Some commercial pages place the page-level class on the same <main>. */
+html body .zm-public.improvements-page :is(.situation-grid,.tool-grid) article{
+  background:var(--zm-ui-card)!important;border:1px solid var(--zm-ui-border)!important;
+  box-shadow:none!important;
+}
+@media(hover:hover){
+  html body .zm-public.improvements-page :is(.situation-grid,.tool-grid) article:hover{
+    background:var(--zm-ui-card-hover)!important;border-color:var(--zm-ui-border-hover)!important;
+    transform:none!important;
+  }
+}
+
+
+html body .zm-public :is(.about-proof-list,.technology-grid,.timeline) article :is(h3,p){color:#e9f6e5!important;line-height:1.65}
+html body .zm-public :is(.about-proof-list,.technology-grid,.timeline) article h3{line-height:1.26}
+html body .zm-public :is(.about-proof-list,.technology-grid,.timeline) article>b{color:#d7ffab!important}

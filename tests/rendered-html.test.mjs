@@ -432,3 +432,35 @@ test("główne strony ofertowe korzystają z jednolitego hero i kontenera", asyn
     assert.match(html, /class="page-hero shell(?:\s|")/, path);
   }
 });
+
+
+test("warianty opieki czytelnie pokazują różnice pomiędzy pakietami", async () => {
+  const response = await render("/opieka-nad-strona");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /care-plans/);
+  assert.match(html, /Co zyskujesz\?/);
+  assert.match(html, /Za wyższą cenę:/);
+  for (const price of ["79 zł", "249 zł", "490 zł"]) {
+    assert.ok(html.includes(price), price);
+  }
+  assert.match(html, /dwukrotnie więcej czasu na zmiany/);
+});
+
+test("spójny styl CTA, miast, numeracji i paneli wyceny jest ładowany jako ostatni", async () => {
+  const layout = await readFile(new URL("../app/layout.tsx", import.meta.url), "utf8");
+  const stylesheet = await readFile(new URL("../app/ui-consistency-202610.css", import.meta.url), "utf8");
+  assert.match(layout, /import "\.\/ui-consistency-202610\.css";/);
+  for (const selector of [
+    ".local-related nav a",
+    ".zm-dtp-prices>article",
+    ".zm-dtp-stepper button",
+    ".zm-creator-layout-grid button",
+    ".zm-total-results",
+    ".care-plans",
+    ".tool-grid article>span",
+    ".transport-demo",
+    ".contact-form button",
+  ]) assert.ok(stylesheet.includes(selector), selector);
+  assert.match(stylesheet, /prefers-reduced-motion/);
+});
