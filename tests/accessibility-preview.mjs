@@ -46,3 +46,9 @@ try {
   writeFileSync("browser-qa-artifacts/accessibility-report.json", JSON.stringify(report, null, 2));
 }
 console.log("WCAG report: " + JSON.stringify(report.counts) + " across " + report.audits.length + " pages. Review JSON for details.");
+const affected = report.audits.flatMap(audit => audit.violations.map(v => ({
+  viewport: audit.viewport, route: audit.route, rule: v.rule,
+  impact: v.impact, affected: v.affected,
+})));
+assert.deepEqual(affected, [], "WCAG 2.1 AA violations: " + JSON.stringify(affected.slice(0, 12)));
+
