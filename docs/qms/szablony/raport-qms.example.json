@@ -1,0 +1,26 @@
+{
+  "project_id": "ZM-WWW-2026-10-15",
+  "product": "Wlasna witryna Zielona Marka",
+  "version": "06c0d1cfd83ebaf494f9b935a5c3799181ef0817",
+  "report_date": "2026-10-15",
+  "scope": "Pojedynczy, automatyczny test przegladarkowy wersji wskazanej w raporcie GitHub Actions. Nie jest to kompletny test UX, odbioru klienta ani zgodnosci ISO.",
+  "release_decision": "NIE USTALONO",
+  "tests": [
+    {
+      "id": "AUTO-WEB-001",
+      "criterion": "Automatyczna kontrola zestawu sciezek strony",
+      "status": "PASS",
+      "critical": false,
+      "method": "Przegladarka Chromium, workflow produkcyjny, 44/44 kontrole PASS",
+      "tester": "Automatyzacja GitHub Actions",
+      "performed_at": "2026-10-15",
+      "evidence": "https://github.com/lukaszst-cz/zielona-marka-pl/actions/runs/38710693844"
+    },
+    {
+      "id": "G2-WWW-001",
+      "criterion": "Calosciowy odbior i zatwierdzenie aktualnej wersji",
+      "status": "NIE SPRAWDZONO",
+      "critical": true
+    }
+  ]
+}
