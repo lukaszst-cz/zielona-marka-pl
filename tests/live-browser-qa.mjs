@@ -62,6 +62,42 @@ try {
           text: document.body.innerText.length,
         }));
         assert.ok(metrics.text > 200, "Empty public page");
+        const overlappingActions = await page.evaluate(() => {
+          const visible = (node) => {
+            const rect = node.getBoundingClientRect();
+            const css = getComputedStyle(node);
+            return rect.width > 1 && rect.height > 1 && css.visibility !== "hidden" && css.display !== "none";
+          };
+          const collides = (left, right) => {
+            const a = left.getBoundingClientRect(), b = right.getBoundingClientRect();
+            return Math.min(a.right, b.right) - Math.max(a.left, b.left) > 4 &&
+              Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top) > 4;
+          };
+          const errors = [];
+          const groups = document.querySelectorAll(
+            ".zmh-actions, .hero-actions, .zm-mega-quick-actions, .zmh-social-panel-links, .zm-footer-social-links"
+          );
+          for (const group of groups) {
+            if (!visible(group)) continue;
+            const items = [...group.querySelectorAll(":scope > a, :scope > button")].filter(visible);
+            for (let i = 0; i < items.length; i++) {
+              for (let j = i + 1; j < items.length; j++) {
+                if (collides(items[i], items[j])) {
+                  errors.push(group.className + ": " + items[i].innerText.slice(0, 45) +
+                    " / " + items[j].innerText.slice(0, 45));
+                }
+              }
+            }
+          }
+          const header = document.querySelector(".zm-header");
+          const brand = header?.querySelector(".zm-brand");
+          const menuToggle = header?.querySelector(".zm-mobile-menu > summary");
+          if (brand && menuToggle && visible(brand) && visible(menuToggle) && collides(brand, menuToggle)) {
+            errors.push("Brand collides with mobile menu toggle");
+          }
+          return errors;
+        });
+        assert.deepEqual(overlappingActions, [], route + " overlapping CTA controls");
         if (metrics.width > metrics.viewport + 8) {
           result.warnings.push({ viewport: size.name, route, overflowPx: metrics.width - metrics.viewport });
         }
