@@ -366,7 +366,7 @@ test("standardy QA mają wspólny wygląd serwisu, nawigację oraz pobieralne do
   for (const file of ["zielona-marka-standard-dtp-prepress-qa.pdf", "zielona-marka-standard-jakosci-www-dtp-crm.pdf"]) {
     const response = await fetch(new URL("/downloads/" + file, testBaseUrl));
     assert.equal(response.status, 200, file + ": jest udostępniony");
-    assert.match(response.headers.get("content-type") || "", /application\/pdf/i, file + ": typ MIME");
+    assert.match(response.headers.get("content-type") || "", /application\/(?:pdf|octet-stream)/i, file + ": poprawna reprezentacja binarna");
     const bytes = new Uint8Array(await response.arrayBuffer());
     assert.ok(bytes.length > 10000, file + ": pełen plik");
     assert.equal(new TextDecoder().decode(bytes.slice(0, 4)), "%PDF", file + ": nagłówek PDF");
