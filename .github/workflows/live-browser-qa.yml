@@ -39,6 +39,11 @@ jobs:
         env:
           BROWSER_QA_URL: https://zielona-marka.pl
           BROWSER_QA_PLAYWRIGHT_ENTRY: /tmp/zm-browser-qa/node_modules/playwright/index.mjs
+      - name: Measure page resources and lab loading metrics
+        run: node tests/load-footprint.mjs
+        env:
+          BROWSER_QA_URL: https://zielona-marka.pl
+          BROWSER_QA_PLAYWRIGHT_ENTRY: /tmp/zm-browser-qa/node_modules/playwright/index.mjs
       - name: Save screenshots and structured QA report
         if: always()
         uses: actions/upload-artifact@v4
