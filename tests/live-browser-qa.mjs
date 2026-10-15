@@ -7,7 +7,7 @@ const { chromium } = await import(process.env.BROWSER_QA_PLAYWRIGHT_ENTRY || "pl
 const base = (process.env.BROWSER_QA_URL || "https://zielona-marka.pl").replace(/\/$/, "");
 const dir = "browser-qa-artifacts";
 mkdirSync(dir, { recursive: true });
-const result = { base, checkedAt: new Date().toISOString(), checks: [], screenshots: [], warnings: [] };
+const result = { base, checkedAt: new Date().toISOString(), checks: [], screenshots: [], warnings: [], privacyProtections: { blockedCloudflareAnalytics: 0 } };
 const routes = [
   ["/", "home"], ["/oferta", "offer"], ["/dtp", "dtp"],
   ["/opieka-nad-strona", "care"], ["/poradnik", "blog"],
@@ -32,6 +32,10 @@ try {
   for (const size of [
     { name: "desktop", width: 1440, height: 900 },
     { name: "mobile", width: 390, height: 844 },
+    ...(process.env.BROWSER_QA_FULL === "1" ? [
+      { name: "tablet", width: 768, height: 1024 },
+      { name: "laptop", width: 1024, height: 900 },
+    ] : []),
   ]) {
     const context = await browser.newContext({
       viewport: { width: size.width, height: size.height }, deviceScaleFactor: 1,
@@ -41,13 +45,32 @@ try {
       try { localStorage.setItem("zm_analytics_consent", "denied"); } catch { /* Storage may be blocked by privacy controls. */ }
     });
     const page = await context.newPage();
+    const analyticsRequestsWithoutConsent = [];
+    const failedJsChunks = [];
+    page.on("response", response => {
+      const url = new URL(response.url());
+      if (url.pathname.startsWith("/_next/static/chunks/") && response.status() >= 400) {
+        failedJsChunks.push({ path: url.pathname, status: response.status() });
+      }
+    });
+    page.on("request", request => {
+      const address = new URL(request.url());
+      if ((address.hostname === "www.googletagmanager.com" && address.pathname.startsWith("/gtag/js"))
+        || ["www.google-analytics.com", "region1.google-analytics.com"].includes(address.hostname)) {
+        analyticsRequestsWithoutConsent.push(address.origin + address.pathname);
+      }
+    });
     page.on("pageerror", error => {
       if (result.warnings.length < 50) result.warnings.push({ viewport: size.name, javascript: String(error.message).slice(0, 320) });
     });
     page.on("console", msg => {
-      if (msg.type() === "error" && result.warnings.length < 50) {
-        result.warnings.push({ viewport: size.name, consoleError: msg.text().slice(0, 320) });
+      if (msg.type() !== "error") return;
+      const message = msg.text();
+      if (message.includes("Refused to load the script") && message.includes("static.cloudflareinsights.com/beacon.min.js") && message.includes("Content Security Policy")) {
+        result.privacyProtections.blockedCloudflareAnalytics += 1;
+        return;
       }
+      if (result.warnings.length < 50) result.warnings.push({ viewport: size.name, consoleError: message.slice(0, 320) });
     });
     for (const [route, key] of routes) {
       await check(size.name + " " + route + " renders and captures", async () => {
@@ -98,6 +121,18 @@ try {
           return errors;
         });
         assert.deepEqual(overlappingActions, [], route + " overlapping CTA controls");
+        const contactDockState = await page.evaluate(() => {
+          const dock = document.querySelector(".zm-contact-dock");
+          if (!dock) return { exists: false };
+          const assistant = dock.querySelector(".demo-assistant");
+          const whatsapp = dock.querySelector(".whatsapp-float");
+          const style = (el) => el ? getComputedStyle(el).position : "missing";
+          return { exists: true, assistant: style(assistant), whatsapp: style(whatsapp) };
+        });
+        assert.equal(contactDockState.exists, true, route + " contact dock missing");
+        assert.notEqual(contactDockState.assistant, "fixed", route + " assistant obstructs reading");
+        assert.notEqual(contactDockState.whatsapp, "fixed", route + " WhatsApp obstructs reading");
+
         if (metrics.width > metrics.viewport + 8) {
           result.warnings.push({ viewport: size.name, route, overflowPx: metrics.width - metrics.viewport });
         }
@@ -224,6 +259,49 @@ try {
         assert.equal(await menu.evaluate(el => el.open), false);
       });
     }
+    await check(size.name + ": contact brief submits to mock endpoint only", async () => {
+      const intercepted = [];
+      const pattern = "**/api/inquiries";
+      await page.route(pattern, async route => {
+        intercepted.push({ url: route.request().url(), method: route.request().method(), body: route.request().postDataJSON() });
+        await route.fulfill({ status: 201, contentType: "application/json", body: JSON.stringify({ ok: true }) });
+      });
+      try {
+        await page.goto(base + "/kontakt", { waitUntil: "networkidle", timeout: 45000 });
+        const form = page.locator('form[data-analytics-form="brief"]');
+        await form.locator('input[name="name"]').fill("Przykładowa osoba QA");
+        await form.locator('input[name="email"]').fill("not-an-email");
+        await form.locator('textarea[name="message"]').fill("Proszę o informację o stworzeniu strony firmowej.");
+        await form.locator('select[name="projectType"]').selectOption({ label: "Strona WWW szyta na miarę" });
+        await form.locator('input[name="consent"]').check();
+        await form.locator('button[type="submit"]').click();
+        assert.equal(intercepted.length, 0, "Invalid email must not reach the mock endpoint");
+        assert.equal(await form.locator('input[name="email"]').evaluate(el => el.validity.typeMismatch), true);
+        await form.locator('input[name="email"]').fill("test@example.com");
+        await form.locator('button[type="submit"]').click();
+        await page.getByText("Dziękuję, wiadomość została wysłana.").waitFor({ state: "visible", timeout: 15000 });
+        assert.equal(intercepted.length, 1, "Expected one intercepted POST; no real request should be sent");
+        assert.equal(intercepted[0].method, "POST");
+        assert.equal(intercepted[0].body.email, "test@example.com");
+        assert.equal(intercepted[0].body.consent, "yes");
+      } finally {
+        await page.unroute(pattern);
+      }
+    });
+    await check(size.name + ": JS asset failures recover after a fresh navigation", async () => {
+      if (!failedJsChunks.length) return { missingChunks: 0 };
+      const firstCount = failedJsChunks.length;
+      const response = await page.goto(base + "/dtp", { waitUntil: "networkidle", timeout: 45000 });
+      assert.ok(response?.ok(), "Cannot reload after a chunk error");
+      await page.locator("main").first().waitFor({ state: "visible", timeout: 15000 });
+      await page.waitForTimeout(500);
+      assert.equal(failedJsChunks.length, firstCount, "Missing JS chunk persists after a full reload: " + JSON.stringify(failedJsChunks.slice(-4)));
+      return { missingChunksOnOldNavigation: firstCount, recovered: true };
+    });
+    await check(size.name + ": no analytics requests without consent", async () => {
+      assert.equal(await page.evaluate(() => localStorage.getItem("zm_analytics_consent")), "denied");
+      assert.deepEqual(analyticsRequestsWithoutConsent, [], "Google analytics loaded before consent");
+    });
     await context.close();
   }
 } finally {
@@ -231,5 +309,5 @@ try {
   writeFileSync(dir + "/report.json", JSON.stringify(result, null, 2));
 }
 const failed = result.checks.filter(item => item.status === "fail");
-process.stdout.write("Browser QA: " + (result.checks.length - failed.length) + "/" + result.checks.length + " checks passed; " + result.warnings.length + " warnings.\n");
+process.stdout.write("Browser QA: " + (result.checks.length - failed.length) + "/" + result.checks.length + " checks passed; " + result.warnings.length + " unexpected warnings; " + result.privacyProtections.blockedCloudflareAnalytics + " privacy beacons blocked by CSP.\n");
 if (failed.length) process.exitCode = 1;
