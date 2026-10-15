@@ -1,0 +1,160 @@
+/* Contrast and pointer-state corrections for the public Blog and article pages.
+   This sheet is loaded last to supersede the older global light-section theme. */
+
+/* The three legacy "mini-shop" panels in guide articles must never inherit
+   the site's old lime background (#dceca4) under pale text. */
+html body main.zm-public.guide-page:not(.zm-blog-page) > article > section.mini-shop-section {
+  background: rgba(3, 26, 17, .81) !important;
+  background-image: none !important;
+  color: #f5f9f2 !important;
+  border-block: 1px solid rgba(219, 241, 207, .3) !important;
+}
+html body main.zm-public.guide-page:not(.zm-blog-page) > article
+  .mini-shop-section .shell.mini-shop-grid {
+  box-sizing: border-box;
+  padding-block: clamp(58px, 6vw, 78px);
+}
+html body main.zm-public.guide-page:not(.zm-blog-page) > article
+  .mini-shop-section :is(h2,h3,p,li,.section-no) {
+  color: #eff7eb !important;
+  opacity: 1 !important;
+}
+html body main.zm-public.guide-page:not(.zm-blog-page) > article
+  .mini-shop-section .section-no {
+  color: #cefa9f !important;
+}
+html body main.zm-public.guide-page:not(.zm-blog-page) > article
+  .mini-shop-section .mini-shop-grid > div:last-child {
+  background: rgba(7, 33, 23, .65) !important;
+  border: 1px solid rgba(219, 241, 207, .32) !important;
+  padding: clamp(26px, 3.2vw, 42px) !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+html body main.zm-public.guide-page:not(.zm-blog-page) > article
+  .mini-shop-section .check-list li {
+  background: transparent !important;
+  color: #e8f4e5 !important;
+  border-color: rgba(219, 241, 207, .22) !important;
+  padding-left: 0 !important;
+}
+html body main.zm-public.guide-page:not(.zm-blog-page) > article
+  .mini-shop-section .check-list li:is(:hover,:focus-within) {
+  background: transparent !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* The cards are readable without a moving "frosted/matte" layer.
+   Hover and focus may mark borders; they must not dim the background. */
+html body main.zm-public.zm-blog-page
+  :is(.guide-library .zm-blog-results > a,.zm-blog-service-grid > a) {
+  background: rgba(7, 28, 22, .53) !important;
+  background-image: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  transition: border-color .16s ease, box-shadow .16s ease !important;
+}
+html body main.zm-public.zm-blog-page
+  :is(.guide-library .zm-blog-results > a,.zm-blog-service-grid > a):is(:hover,:focus-visible,:focus-within) {
+  background: rgba(7, 28, 22, .53) !important;
+  background-image: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  filter: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+html body main.zm-public.guide-page:not(.zm-blog-page) > article
+  :is(.guide-reasons li,.local-benefit-grid article,.about-proof-list article,
+      .cost-packages article,.zm-guide-highlights > div,
+      .faq-list details,.guide-faq details,.guide-author,
+      .mini-shop-grid > div:last-child),
+html body main.zm-public.guide-page:not(.zm-blog-page) > .seo-related
+  .seo-related-grid > a {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  filter: none !important;
+}
+html body main.zm-public.guide-page:not(.zm-blog-page) > article
+  :is(.guide-reasons li,.local-benefit-grid article,.about-proof-list article,.cost-packages article):is(:hover,:focus-within) {
+  background: rgba(7, 28, 22, .42) !important;
+  background-image: none !important;
+  filter: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+html body main.zm-public.guide-page:not(.zm-blog-page) > .seo-related
+  .seo-related-grid > a:is(:hover,:focus-within,:focus-visible) {
+  background: rgba(7, 28, 22, .42) !important;
+  background-image: none !important;
+  filter: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+html body main.zm-public.guide-page:not(.zm-blog-page) > article
+  :is(.faq-list details,.guide-faq details):is(:hover,:focus-within) {
+  background: rgba(7, 28, 22, .42) !important;
+  background-image: none !important;
+  filter: none !important;
+  transform: none !important;
+}
+
+/* FAQ frames had inherited padding:0 from an older global style. */
+html body main.zm-public.guide-page:not(.zm-blog-page) > article
+  .faq-page .faq-list details,
+html body main.zm-public.guide-page
+  .guide-faq details,
+html body main.zm-public.zm-blog-page
+  .guide-faq details {
+  box-sizing: border-box;
+  padding: 0 clamp(24px, 3vw, 34px) !important;
+}
+html body main.zm-public.guide-page:not(.zm-blog-page) > article
+  .faq-page .faq-list details > p,
+html body main.zm-public.guide-page .guide-faq details > p {
+  padding: 4px 0 22px !important;
+  margin: 0 0 12px !important;
+}
+html body main.zm-public.guide-page:not(.zm-blog-page)
+  :is(.faq-list,.guide-faq) summary {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* The smallest budget label/optional captions in the contact forms
+   now follow the rest of the site's comfortable reading scale. */
+html body .zm-public .contact-form label:has(select[name="budget"]),
+html body .zm-v5 .zmh-form-surface label:has(select[name="budget"]) {
+  font-size: 17px !important;
+  line-height: 1.55 !important;
+}
+html body .zm-public .contact-form label:has(select[name="budget"]) > span,
+html body .zm-v5 .zmh-form-surface label:has(select[name="budget"]) > span {
+  font-size: 16px !important;
+  line-height: 1.55 !important;
+}
+html body .zm-public .contact-form select[name="budget"],
+html body .zm-v5 .zmh-form-surface select[name="budget"] {
+  font-size: 17px !important;
+  line-height: 1.5 !important;
+  min-height: 52px;
+}
+
+@media (max-width: 600px) {
+  html body main.zm-public.guide-page:not(.zm-blog-page) > article
+    .mini-shop-section .shell.mini-shop-grid {
+    width: min(1180px, calc(100% - 28px));
+    padding-block: 52px;
+  }
+  html body main.zm-public.guide-page:not(.zm-blog-page) > article
+    .mini-shop-section .mini-shop-grid > div:last-child {
+    padding: 24px !important;
+  }
+  html body main.zm-public.guide-page:not(.zm-blog-page) > article
+    .faq-page .faq-list details,
+  html body main.zm-public.guide-page .guide-faq details,
+  html body main.zm-public.zm-blog-page .guide-faq details {
+    padding-inline: 22px !important;
+  }
+}

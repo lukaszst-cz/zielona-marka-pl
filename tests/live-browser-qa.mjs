@@ -256,6 +256,11 @@ try {
         assert.equal(blog.cardBackgroundImage, "none", "Blog still uses an isolated photographic card theme");
         assert.ok(blog.cardMinHeight <= 350, "Blog cards still force the oversized former layout");
         assert.ok(blog.documentWidth <= blog.viewportWidth + 8, "Blog overflows the viewport");
+        const firstBlogCard = page.locator(".zm-blog-results > a").first();
+        const beforeHover = await firstBlogCard.evaluate(el => getComputedStyle(el).backgroundColor);
+        await firstBlogCard.hover();
+        const afterHover = await firstBlogCard.evaluate(el => getComputedStyle(el).backgroundColor);
+        assert.equal(afterHover, beforeHover, "Blog cards must not become more matte on hover");
 
         const offerResponse = await page.goto(base + "/oferta", { waitUntil: "domcontentloaded", timeout: 45000 });
         assert.ok(offerResponse?.ok(), "Offer did not load");
@@ -300,6 +305,8 @@ try {
             const main = document.querySelector("main.zm-public.guide-page:not(.zm-blog-page)");
             const hero = main?.querySelector(":scope > article > .page-hero.shell");
             const title = hero?.querySelector("h1");
+            const legacyBand = main?.querySelector(":scope > article > section.mini-shop-section");
+            const faqFrame = main?.querySelector(".faq-list details, .guide-faq details");
             const sections = main ? [...main.querySelectorAll("section, aside, .zm-guide-highlights > div")] : [];
             const tooLight = [];
             for (const section of sections) {
@@ -319,6 +326,8 @@ try {
               backgroundImage: main ? getComputedStyle(main).backgroundImage : "",
               horizontalOverflow: document.documentElement.scrollWidth - window.innerWidth,
               lightSections: tooLight.slice(0, 8),
+              legacyBandBackground: legacyBand ? getComputedStyle(legacyBand).backgroundColor : null,
+              faqInsetLeft: faqFrame ? parseFloat(getComputedStyle(faqFrame).paddingLeft) : null,
             };
           });
           assert.equal(appearance.hasTitle, true, slug + ": missing article header");
@@ -326,6 +335,22 @@ try {
           assert.deepEqual(appearance.lightSections, [], slug + ": light sections behind white text");
           assert.ok(appearance.horizontalOverflow <= 8, slug + ": horizontal overflow");
           assert.ok(appearance.heroWidth > 260, slug + ": unexpected article column width");
+          if ([2, 4, 5].includes(index)) {
+            const channels = (appearance.legacyBandBackground?.match(/[\\d.]+/g) || []).map(Number);
+            assert.ok(channels.length >= 3, slug + ": missing legacy band background");
+            const luminance = (channels[0] * .2126 + channels[1] * .7152 + channels[2] * .0722) / 255;
+            assert.ok(luminance < .2, slug + ": unreadable light lime band " + appearance.legacyBandBackground);
+          }
+          if (appearance.faqInsetLeft !== null) {
+            assert.ok(appearance.faqInsetLeft >= 20, slug + ": FAQ text touches left frame");
+          }
+          if (index === 0) {
+            const guideCard = page.locator(".guide-reasons li").first();
+            const cardBefore = await guideCard.evaluate(el => getComputedStyle(el).backgroundColor);
+            await guideCard.hover();
+            const cardAfter = await guideCard.evaluate(el => getComputedStyle(el).backgroundColor);
+            assert.equal(cardAfter, cardBefore, slug + ": guide card still gets a matte overlay on hover");
+          }
           pages.push(slug);
           if ([2, 3, 4].includes(index)) {
             const filename = dir + "/" + size.name + "-guide-" + slug + ".png";
@@ -333,6 +358,7 @@ try {
             result.screenshots.push(filename);
           }
         }
+        assert.equal(pages.length, 8, "Not all eight article routes were checked");
         return { articles: pages.length, verified: pages };
       });
     }
