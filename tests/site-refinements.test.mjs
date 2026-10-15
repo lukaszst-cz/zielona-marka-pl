@@ -756,3 +756,11 @@ test("failed client navigation has a usable recovery screen and asset health gua
   assert.ok(browserQA.includes("failedJsChunks"));
   assert.ok(browserQA.includes("JS asset failures recover after a fresh navigation"));
 });
+
+test("public Chromium QA also runs nightly without new commits", async () => {
+  const workflow = await readFile(new URL("../.github/workflows/live-browser-qa.yml", import.meta.url), "utf8");
+  assert.ok(workflow.includes("schedule:"));
+  assert.ok(workflow.includes('cron: "30 4 * * *"'));
+  assert.ok(workflow.includes("github.event_name == 'schedule'"));
+  assert.ok(workflow.includes("retention-days: 7"));
+});
