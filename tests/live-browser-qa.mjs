@@ -58,7 +58,7 @@ try {
         failedJsChunks.push({ path: url.pathname, status });
       }
       if (url.origin === new URL(base).origin && status >= 400 &&
-          /\\.(?:js|css|svg|webp|png|jpe?g|woff2?|mp4|ico)$/i.test(url.pathname)) {
+          /\.(?:js|css|svg|webp|png|jpe?g|woff2?|mp4|ico)$/i.test(url.pathname)) {
         const assetFailure = {
           viewport: size.name,
           route: new URL(page.url()).pathname,
