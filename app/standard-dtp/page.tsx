@@ -4,7 +4,7 @@ import QualityPrintButton from "../QualityPrintButton";
 import { SiteHeader, SiteFooter, QuickWhatsApp } from "../SiteChrome";
 
 export const metadata: Metadata = {
- title: "Standard kontroli jakości DTP i Prepress | Zielona Marka",
+ title: "Standard kontroli jakości DTP i Prepress",
  description: "Szczegółowa lista kontroli przed drukiem: PDF/X, spady, TrimBox, BleedBox, ICC, CMYK, overprint, obrazy, proofy, kody i introligatornia.",
  alternates:{canonical:"/standard-dtp"},
 };
