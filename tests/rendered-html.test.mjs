@@ -307,3 +307,15 @@ test("All public author presentations use the complete name", async () => {
     assert.match(html, /Łukasz Staniewicz/, route + ": incomplete public name");
   }
 });
+
+test("Brand services appear in two deliberately separated lines on all public pages", async () => {
+  for (const route of ["/", "/oferta", "/dtp", "/poradnik", "/projektuj-strone"]) {
+    const response = await render(route);
+    assert.equal(response.status, 200, route);
+    const html = await response.text();
+    assert.match(html, /<small><span>STRONY I SKLEPY WWW<\/span><span>SYSTEMY CRM · DTP DLA FIRM<\/span><\/small>/, route);
+    assert.match(html, /Strony i sklepy WWW, systemy CRM i DTP dla firm\./, route);
+  }
+  const styles = await readFile(new URL("../app/premium-polish.css", import.meta.url), "utf8");
+  assert.match(styles, /brand-wordmark small span\{display:block;white-space:nowrap\}/);
+});
