@@ -7,7 +7,7 @@ const read = file => readFile(new URL("../" + file, import.meta.url), "utf8");
 test("homepage scroll chapters use calm, purposeful examples instead of schematic icon circles", async () => {
   const home = await read("app/OrganicHome.tsx");
   assert.ok(home.includes('import "./home-calm-story.css"'));
-  assert.ok(home.includes('className="zmh-calm-form"'), "The inquiry chapter needs the upgraded illustration");
+  assert.ok(home.includes('className="zmh-calm-form zmh-glass"'), "The inquiry chapter needs the upgraded illustration");
   assert.ok(home.includes('className="zmh-calm-flow zmh-glass"'), "CRM and aftercare need a unified timeline");
   assert.ok(home.includes('className="zmh-calm-flow-steps"'), "Keep the stages legible");
   assert.ok(home.includes('zmh-calm-flow-promise'), "Describe why an orderly workflow saves time");
