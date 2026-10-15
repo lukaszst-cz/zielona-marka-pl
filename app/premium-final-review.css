@@ -161,3 +161,46 @@
 .zm-public .zm-creator-preview-frame.mobile .zm-demo-layout-catalog .zm-demo-services article { grid-template-columns:38px minmax(0,1fr);gap:10px;padding:16px!important; }
 .zm-creator-preview-frame.mobile .zm-demo-layout-catalog .zm-demo-services article>span { grid-column:1;grid-row:1/4;align-self:start; }
 .zm-creator-preview-frame.mobile .zm-demo-layout-catalog .zm-demo-services article :is(h4,p,b) { grid-column:2; }
+
+/* Kontakt w naturalnym przepływie: nie zasłania tekstu ani przycisków podczas przewijania. */
+.zm-contact-dock {
+  width:100%; box-sizing:border-box;
+  display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-end;
+  gap:14px; padding:25px max(24px,calc((100% - 1180px)/2));
+  background:#09271b; border-top:1px solid #b2d39140;
+}
+.zm-contact-dock .demo-assistant,
+.zm-contact-dock .whatsapp-float {
+  position:relative!important;right:auto!important;bottom:auto!important;
+  margin:0!important;z-index:2;max-width:100%;
+}
+.zm-contact-dock .demo-assistant-trigger {
+  display:flex!important;align-items:center;justify-content:center;
+  gap:10px;min-width:232px;min-height:52px;padding:8px 18px!important;
+  font-family:Arial,sans-serif!important;
+}
+.zm-contact-dock .demo-assistant-trigger>span { flex:none;grid-row:auto; }
+.zm-contact-dock .demo-assistant-trigger b {
+  display:inline!important;font-size:15px!important;text-align:left;
+}
+.zm-contact-dock .demo-assistant-trigger small {display:none!important;}
+.zm-contact-dock .whatsapp-float {
+  display:flex!important;align-items:center;justify-content:center;gap:10px;
+  min-width:232px;min-height:52px;padding:9px 17px!important;
+}
+.zm-contact-dock .whatsapp-float b {
+  display:inline!important;font-size:15px!important;
+}
+.zm-contact-dock .whatsapp-float small {display:none!important;}
+.zm-contact-dock .whatsapp-float i {display:inline!important;}
+.contact-form-visible .zm-contact-dock .whatsapp-float,
+.contact-form-visible .zm-contact-dock .demo-assistant:not(.is-open) .demo-assistant-trigger {
+  display:flex!important;
+}
+.zm-contact-dock .demo-assistant-panel {z-index:80;}
+@media(max-width:700px){
+  .zm-contact-dock{padding:25px 20px;justify-content:center;flex-direction:column;align-items:stretch;gap:11px;}
+  .zm-contact-dock .demo-assistant,.zm-contact-dock .whatsapp-float{width:100%;min-width:0!important;}
+  .zm-contact-dock .demo-assistant-trigger{width:100%;min-width:0;justify-content:center;}
+  .zm-contact-dock .whatsapp-float{justify-content:center;}
+}
