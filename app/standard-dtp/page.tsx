@@ -7,6 +7,8 @@ export const metadata: Metadata = {
  title: "Standard kontroli jakości DTP i Prepress",
  description: "Szczegółowa lista kontroli przed drukiem: PDF/X, spady, TrimBox, BleedBox, ICC, CMYK, overprint, obrazy, proofy, kody i introligatornia.",
  alternates:{canonical:"/standard-dtp"},
+  openGraph: { type: "website", url: "/standard-dtp", title: "Standard kontroli jakości DTP i prepress | Zielona Marka", description: "Szczegółowa lista kontroli przed drukiem: PDF/X, spady, TrimBox, BleedBox, ICC, CMYK, overprint, obrazy, proofy, kody i introligatornia.", images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Standard DTP Zielonej Marki – przygotowanie plików do druku" }] },
+  twitter: { card: "summary_large_image", title: "Standard kontroli jakości DTP i prepress | Zielona Marka", description: "Szczegółowa lista kontroli przed drukiem: PDF/X, spady, TrimBox, BleedBox, ICC, CMYK, overprint, obrazy, proofy, kody i introligatornia.", images: ["/og.jpg"] },
 };
 const checks=[
  {n:"01",title:"Brief i wymagania drukarni",items:["Format netto i otwarty, nakład, materiał i gramatura","Technologia druku, termin, liczba wersji i języków","Specyfikacja przekazana przez wybraną drukarnię","Falcowanie, oprawa, uszlachetnienia i warunki odbioru"]},

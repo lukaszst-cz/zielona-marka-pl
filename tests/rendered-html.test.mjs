@@ -114,6 +114,8 @@ test("key service pages and new guides share their own Open Graph metadata", asy
     ["/asystent-zapytan", "Asystent zapytań"],
     ["/maly-crm-dla-firm", "Mały CRM"],
     ["/usprawnienia-firmy", "Automatyzacje i CRM"],
+    ["/standard-jakosci", "Standard jakości projektów WWW"],
+    ["/standard-dtp", "Standard kontroli jakości DTP"],
   ];
   for (const [path, titlePart] of pages) {
     const response = await render(path);
