@@ -19,8 +19,13 @@ export default function ForestHero(){
  useEffect(()=>{
   const sound=audio.current;
   if(!sound)return;
-  if(!soundOn||paused||reduced||!inView){sound.pause();return;}
-  sound.play().catch(()=>setSoundOn(false));
+  const syncSound=()=>{
+   if(!soundOn||paused||reduced||!inView||document.hidden){sound.pause();return;}
+   sound.play().catch(()=>setSoundOn(false));
+  };
+  syncSound();
+  document.addEventListener('visibilitychange',syncSound);
+  return()=>document.removeEventListener('visibilitychange',syncSound);
  },[soundOn,paused,reduced,inView]);
  const startSound=useCallback(()=>{
   if(userMuted.current)return;
@@ -34,14 +39,7 @@ export default function ForestHero(){
   }
   audio.current.play().then(()=>{if(attempt===soundAttempt.current)setSoundOn(true)}).catch(()=>{if(attempt===soundAttempt.current)setSoundOn(false)});
  },[]);
- useEffect(()=>{
-  if(userMuted.current)return;
-  startSound();
-  const resume=()=>startSound();
-  addEventListener('pointerdown',resume,{once:true,passive:true});
-  addEventListener('keydown',resume,{once:true});
-  return()=>{removeEventListener('pointerdown',resume);removeEventListener('keydown',resume)};
- },[startSound]);
+
  const toggleSound=()=>{
   if(soundOn){soundAttempt.current++;userMuted.current=true;try{localStorage.setItem('zm-stream-muted','true')}catch{/* Storage may be unavailable. */}setSoundOn(false);return;}
   userMuted.current=false;try{localStorage.setItem('zm-stream-muted','false')}catch{/* Storage may be unavailable. */}startSound();
