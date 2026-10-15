@@ -41,6 +41,14 @@ try {
       try { localStorage.setItem("zm_analytics_consent", "denied"); } catch { /* Storage may be blocked by privacy controls. */ }
     });
     const page = await context.newPage();
+    const analyticsRequestsWithoutConsent = [];
+    page.on("request", request => {
+      const address = new URL(request.url());
+      if ((address.hostname === "www.googletagmanager.com" && address.pathname.startsWith("/gtag/js"))
+        || ["www.google-analytics.com", "region1.google-analytics.com"].includes(address.hostname)) {
+        analyticsRequestsWithoutConsent.push(address.origin + address.pathname);
+      }
+    });
     page.on("pageerror", error => {
       if (result.warnings.length < 50) result.warnings.push({ viewport: size.name, javascript: String(error.message).slice(0, 320) });
     });
@@ -192,6 +200,10 @@ try {
         assert.equal(await menu.evaluate(el => el.open), false);
       });
     }
+    await check(size.name + ": no analytics requests without consent", async () => {
+      assert.equal(await page.evaluate(() => localStorage.getItem("zm_analytics_consent")), "denied");
+      assert.deepEqual(analyticsRequestsWithoutConsent, [], "Google analytics loaded before consent");
+    });
     await context.close();
   }
 } finally {
@@ -199,5 +211,5 @@ try {
   writeFileSync(dir + "/report.json", JSON.stringify(result, null, 2));
 }
 const failed = result.checks.filter(item => item.status === "fail");
-process.stdout.write("Browser QA: " + (result.checks.length - failed.length) + "/" + result.checks.length + " checks passed; " + result.warnings.length + " warnings.\n");
+process.stdout.write("Browser QA: " + (result.checks.length - failed.length) + "/" + result.checks.length + " checks passed; " + result.warnings.length + " unexpected warnings; " + result.privacyProtections.blockedCloudflareAnalytics + " privacy beacons blocked by CSP.\n");
 if (failed.length) process.exitCode = 1;
