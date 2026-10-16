@@ -1,0 +1,33 @@
+/* Zielona Marka UI foundation, shared without changing established layouts.
+   Components opt in to these tokens and primitives. */
+:root{
+  --zm-ds-forest:#163b2a;
+  --zm-ds-forest-deep:#0f2c20;
+  --zm-ds-forest-soft:#28583e;
+  --zm-ds-ink:#1b3427;
+  --zm-ds-muted:#52695a;
+  --zm-ds-paper:#f5f4ed;
+  --zm-ds-card:#fffefa;
+  --zm-ds-sage:#e8eee4;
+  --zm-ds-leaf:#b9d49c;
+  --zm-ds-border:#ced9cb;
+  --zm-ds-shadow:0 15px 38px rgba(25,54,35,.10);
+  --zm-ds-content:1180px;
+  --zm-ds-radius:12px;
+  --zm-ds-space:clamp(68px,7vw,104px);
+}
+.zm-public{
+  --zm-surface-paper:var(--zm-ds-paper);
+  --zm-surface-card:var(--zm-ds-card);
+  --zm-text-primary:var(--zm-ds-ink);
+  --zm-text-secondary:var(--zm-ds-muted);
+  --zm-space-section:var(--zm-ds-space);
+}
+.zm-ui-container{width:min(var(--zm-ds-content),calc(100% - 48px));margin-inline:auto;min-width:0}
+.zm-ui-section{padding-block:var(--zm-ds-space)}
+.zm-ui-card{background:var(--zm-ds-card);color:var(--zm-ds-ink);border:1px solid var(--zm-ds-border);border-radius:var(--zm-ds-radius)}
+.zm-ui-kicker{font-size:12px;font-weight:750;letter-spacing:.11em;text-transform:uppercase}
+.zm-ui-description{font-size:clamp(16px,1.5vw,18px);line-height:1.7;max-width:65ch}
+.zm-ui-action{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:50px;padding:13px 22px;border-radius:7px;font-weight:700;text-align:center}
+.zm-ui-action:focus-visible{outline:3px solid #82b969;outline-offset:4px}
+@media(max-width:680px){.zm-ui-container{width:calc(100% - 32px)}}
