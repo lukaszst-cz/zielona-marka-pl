@@ -13,20 +13,20 @@ import "./concept-botanical-preview.css";
 
 export const metadata: Metadata = {
   title: "Bezpłatna koncepcja strony, logo lub gazetki",
-  description: "Zobacz pomysł na nowy wygląd strony, logo lub gazetki swojej firmy. Jedna poglądowa koncepcja — bez opłaty i obowiązku dalszej współpracy.",
+  description: "Zobacz pomysł na nowy wygląd strony, logo lub gazetki swojej firmy. Jedna poglądowa koncepcja, bez opłaty i obowiązku dalszej współpracy.",
   alternates: { canonical: "/bezplatna-koncepcja-strony" },
   openGraph: {
     type: "website",
     url: "/bezplatna-koncepcja-strony",
     title: "Bezpłatna koncepcja wizualna | Zielona Marka",
     description: "Pokaż swoją firmę i zobacz, jak może wyglądać jej nowa odsłona. Jedna bezpłatna koncepcja strony, logo lub gazetki.",
-    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Zielona Marka — strony internetowe i rozwiązania dla firm" }]
+    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Zielona Marka: strony internetowe i rozwiązania dla firm" }]
   }
 };
 
 const benefits = [
   ["01", "Zobacz konkretny pomysł", "Zamiast wyobrażać sobie zmianę, zobaczysz ją na przykładzie dopasowanym do Twojej firmy."],
-  ["02", "Poznaj możliwe korzyści", "Do wizualizacji dodam krótkie uzasadnienie — co warto podkreślić, uprościć albo pokazać klientowi od razu."],
+  ["02", "Poznaj możliwe korzyści", "Do wizualizacji dodam krótkie uzasadnienie, co warto podkreślić, uprościć albo pokazać klientowi od razu."],
   ["03", "Zdecyduj bez presji", "Obejrzysz propozycję i sam zdecydujesz, czy chcesz ją rozwijać. O budżecie możemy porozmawiać później."]
 ] as const;
 
@@ -47,7 +47,7 @@ export default function FreeConceptPage() {
           <div>
             <span className="eyebrow"><i />BEZPŁATNA KONCEPCJA WIZUALNA</span>
             <h1 id="koncept-title">Zanim zamówisz,<br/><em>zobacz, co</em><br/>jest możliwe.</h1>
-            <p className="zm-concept-lead">Masz stronę, która nie pokazuje już, jak dobra jest Twoja firma? A może logo lub gazetka potrzebują świeżego spojrzenia? Opowiedz mi o działalności — przygotuję <strong>jedną poglądową koncepcję wizualną.</strong> Bez opłaty i zobowiązania do dalszych prac.</p>
+            <p className="zm-concept-lead">Masz stronę, która nie pokazuje już, jak dobra jest Twoja firma? A może logo lub gazetka potrzebują świeżego spojrzenia? Opowiedz mi o działalności, przygotuję <strong>jedną poglądową koncepcję wizualną.</strong> Bez opłaty i zobowiązania do dalszych prac.</p>
             <div className="hero-actions zm-concept-actions"><a className="button" href="#zgloszenie">Chcę zobaczyć koncepcję <span aria-hidden="true">↗</span></a><a href="#mozliwosci" className="text-link">Zobacz przykłady ↓</a></div>
             <p className="zm-concept-calm">01 Indywidualnie · 02 Bez budżetu na start · 03 Bez zobowiązań</p>
           </div>
@@ -70,7 +70,7 @@ export default function FreeConceptPage() {
       </section>
 
       <section className="section shell zm-concept-request" id="zgloszenie" aria-labelledby="koncept-form">
-        <div className="zm-concept-request-intro"><p className="zm-concept-kicker">KRÓTKI BRIEF · OKOŁO 1 MINUTY</p><h2 id="koncept-form">Opowiedz mi o firmie.<br /><em>Pokażę Ci pomysł.</em></h2><p>Wybierz stronę, logo albo gazetkę i napisz kilka słów o działalności. Jeśli masz obecne materiały, dodaj link. Nie musisz podawać budżetu ani zapisywać się na newsletter — odpowiem, czy mogę przygotować koncepcję i w jakim terminie.</p><div className="zm-concept-request-note"><strong>Co obejmuje bezpłatna propozycja?</strong><span>Jeden poglądowy kierunek wybranego materiału • krótkie uzasadnienie • rekomendacja dalszych działań</span></div></div>
+        <div className="zm-concept-request-intro"><p className="zm-concept-kicker">KRÓTKI BRIEF · OKOŁO 1 MINUTY</p><h2 id="koncept-form">Opowiedz mi o firmie.<br /><em>Pokażę Ci pomysł.</em></h2><p>Wybierz stronę, logo albo gazetkę i napisz kilka słów o działalności. Jeśli masz obecne materiały, dodaj link. Nie musisz podawać budżetu ani zapisywać się na newsletter, odpowiem, czy mogę przygotować koncepcję i w jakim terminie.</p><div className="zm-concept-request-note"><strong>Co obejmuje bezpłatna propozycja?</strong><span>Jeden poglądowy kierunek wybranego materiału • krótkie uzasadnienie • rekomendacja dalszych działań</span></div></div>
         <ConceptRequestForm />
       </section>
 

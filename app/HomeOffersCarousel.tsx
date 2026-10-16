@@ -9,7 +9,7 @@ const slides = [
     name: "Mini audyt",
     title: "Zobacz, co dziś",
     accent: "utrudnia klientom kontakt.",
-    description: "Pokaż mi obecną stronę. Wskażę jedną rzecz, która może utrudniać klientom kontakt — i zaproponuję, jak ją poprawić.",
+    description: "Pokaż mi obecną stronę. Wskażę jedną rzecz, która może utrudniać klientom kontakt i zaproponuję, jak ją poprawić.",
     action: "Odbierz bezpłatny mini audyt",
     href: "/modernizacja-strony#miniaudyt",
     benefits: "Jedna konkretna rekomendacja · Bez zobowiązań",
@@ -24,7 +24,7 @@ const slides = [
     name: "Mapa Szans",
     title: "Od pierwszego wejścia",
     accent: "do dobrej rozmowy.",
-    description: "Bezpłatna Mapa Szans — przyjrzymy się drodze klienta od oferty, przez formularz, aż po odpowiedź na wiadomość. Otrzymasz czytelny plan pierwszych usprawnień.",
+    description: "Bezpłatna Mapa Szans. przyjrzymy się drodze klienta od oferty, przez formularz, aż po odpowiedź na wiadomość. Otrzymasz czytelny plan pierwszych usprawnień.",
     action: "Odbierz bezpłatną Mapę Szans",
     href: "/kontakt",
     benefits: "Strona · Zapytanie · Kolejny krok",
@@ -115,7 +115,7 @@ export default function HomeOffersCarousel() {
           <p className="zmh-eyebrow">DOBRY POCZĄTEK / BEZPŁATNIE</p>
           <h2 id="free-start-title">Zobacz możliwości <em>dla swojej firmy.</em></h2>
         </div>
-        <p>Nie musisz od razu zamawiać strony. Możesz zacząć od mini audytu, Mapy Szans albo indywidualnej koncepcji wyglądu — i ocenić, co pasuje do Twojej firmy.</p>
+        <p>Nie musisz od razu zamawiać strony. Możesz zacząć od mini audytu, Mapy Szans albo indywidualnej koncepcji wyglądu i ocenić, co pasuje do Twojej firmy.</p>
       </header>
       <div className="zm-home-carousel" role="region" aria-roledescription="karuzela" aria-label="Trzy bezpłatne propozycje dla firmy"
         onTouchStart={event => {
