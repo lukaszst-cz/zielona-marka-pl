@@ -545,7 +545,7 @@ try {
         ["01 / 03", "Mini audyt", "/modernizacja-strony#miniaudyt"],
       ];
       const active = async () => {
-        const visible = slides.filter({ visible: true });
+        const visible = carousel.locator(".zm-home-slide:visible");
         assert.equal(await visible.count(), 1, "Exactly one offer slide must be visible");
         return visible;
       };
