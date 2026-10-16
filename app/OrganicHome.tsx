@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "./SafeLink";
+import { Fragment } from "react";
 import HomeContactForm from "./HomeContactForm";
 import ForestHero from "./ForestHero";
 import LivingPortal from "./LivingPortal";
@@ -8,68 +9,23 @@ import HomeOffersCarousel from "./HomeOffersCarousel";
 import ProcessStandard from "./ProcessStandard";
 import { QuickWhatsApp, SiteHeader, SiteFooter } from "./SiteChrome";
 import "./home-v5.css";
-import "./home-carousel.css";
-import "./home-calm-story.css";
-import "./home-layout-repair.css";
-import "./home-scroll-editorial.css";
-import "./home-nature-finish.css";
-import "./home-cinema-polish.css";
+import "./home-offers-restored.css";
 
 function WebsiteVisual() {
   return <div className="zmh-visual"><p className="zmh-caption">Przykładowa strona dla branży beauty · demonstracja</p><div className="zmh-website zmh-glass"><div className="zmh-mini-nav"><b>✳ Natura Studio</b><span>O nas  Oferta  Kontakt</span></div><div className="zmh-site-interior"><span>CHWILA DLA SIEBIE</span><h3>Spokojniej.<br />Bliżej siebie.</h3><p>Pielęgnacja. Relaks. Naturalne piękno.</p><span className="zmh-sample-button">Poznaj zabiegi ↗</span></div></div></div>;
 }
 
 function FormVisual() {
-  return <div className="zmh-visual zmh-calm-form-scene">
-    <div className="zmh-calm-form zmh-glass" aria-label="Przykładowy, nieaktywny podgląd formularza zapytania">
-      <div className="zmh-calm-form-top"><span><i aria-hidden="true" /> NATURA STUDIO / DEMONSTRACJA</span><span>01 / ZAPYTANIE</span></div>
-      <div className="zmh-calm-form-body">
-        <div className="zmh-calm-form-intro"><small>PROSTA DROGA DO KONTAKTU</small><h3>Opowiedz, czego potrzebujesz.</h3><p>Kilka jasnych pytań. Bez zbędnego dopytywania.</p><span className="zmh-calm-form-time">Więcej czasu na rozmowę.</span></div>
-        <div className="zmh-calm-form-fields" aria-hidden="true">
-          <div><small>RODZAJ USŁUGI</small><span>Wybierz dogodną usługę <i>⌄</i></span></div>
-          <div><small>TERMIN</small><span>Ustalmy odpowiedni dzień <i>▦</i></span></div>
-          <div><small>WIADOMOŚĆ</small><span>Krótko opisz swoją potrzebę…</span></div>
-          <strong>Prześlij zapytanie <span>↗</span></strong>
-        </div>
-      </div>
-      <div className="zmh-calm-form-foot"><span>Przejrzysta oferta</span><i aria-hidden="true" /><span>Jeden spokojny krok dalej</span></div>
-    </div>
-    <p className="zmh-caption zmh-bottom-caption">Poglądowa prezentacja formularza — bez przesyłania danych.</p>
-  </div>;
+  return <div className="zmh-visual zmh-form-visual"><div className="zmh-sample-form zmh-glass" aria-label="Ilustracja formularza dla firmy klienta"><p className="zmh-caption">PRZYKŁADOWY FORMULARZ USŁUGOWY</p><h3>Zapytaj o usługę</h3><div><span>Usługa</span><span>Wybierz usługę ⌄</span></div><div><span>Termin</span><span>Preferowany termin ▦</span></div><div><span>Opis</span><span>Opisz krótko sprawę…</span></div><span className="zmh-sample-button">Wyślij zapytanie →</span></div></div>;
 }
 
 function CommerceVisual() {
-  return <div className="zmh-visual zmh-calm-commerce-scene">
-    <div className="zmh-commerce zmh-glass">
-      <div className="zmh-voucher"><small>NATURA STUDIO / KONCEPCJA</small><strong>Podaruj<br />chwilę spokoju.</strong><span>VOUCHER PODARUNKOWY</span></div>
-      <div className="zmh-commerce-copy"><p className="zmh-caption">PRZYKŁADOWY SKLEP</p><h3>Małe przyjemności.<br />Prosta droga do zakupu.</h3><p>Wybór → Koszyk → Płatność</p><small>Poglądowy przykład zakupu vouchera, bez prawdziwej transakcji.</small></div>
-    </div>
-  </div>;
+  return <div className="zmh-visual"><div className="zmh-commerce zmh-glass"><div className="zmh-voucher"><small>NATURA STUDIO</small><strong>Chwila<br />dla Ciebie.</strong><span>VOUCHER PODARUNKOWY</span></div><div className="zmh-commerce-copy"><p className="zmh-caption">PRZYKŁADOWY ZAKUP</p><h3>Pomysł<br />na prezent.</h3><p>Produkt → Koszyk → Płatność</p><small>Demonstracja zakupu vouchera.</small></div></div></div>;
 }
 
 function FlowVisual({ aftercare = false }: { aftercare?: boolean }) {
-  const steps = aftercare
-    ? [
-      { number: "01", title: "Usługa zakończona", hint: "Wiemy, co zrobiono", state: "Gotowe" },
-      { number: "02", title: "Dobra rozmowa", hint: "Naturalny kontakt po wizycie", state: "Kontakt" },
-      { number: "03", title: "Kolejny termin", hint: "Bez szukania ustaleń", state: "Plan" },
-    ]
-    : [
-      { number: "01", title: "Nowe zapytanie", hint: "Wszystkie informacje razem", state: "Odebrane" },
-      { number: "02", title: "Spokojna wycena", hint: "Jasny następny krok", state: "W toku" },
-      { number: "03", title: "Realizacja", hint: "Termin i status pod ręką", state: "Plan" },
-    ];
-  return <div className="zmh-visual zmh-calm-flow-scene">
-    <div className="zmh-calm-flow zmh-glass">
-      <div className="zmh-calm-flow-top"><span><i aria-hidden="true" /> TWOJA FIRMA / DEMONSTRACJA</span><span>{aftercare ? "RELACJE" : "UPORZĄDKOWANA OBSŁUGA"}</span></div>
-      <div className="zmh-calm-flow-body">
-        <div className="zmh-calm-flow-message"><small>{aftercare ? "PO WYKONANEJ USŁUDZE" : "JEDNO MIEJSCE NA USTALENIA"}</small><h3>{aftercare ? <>Relacje, które<br />warto pielęgnować.</> : <>Więcej porządku.<br />Więcej oddechu.</>}</h3><p>{aftercare ? "Dobrze wracać do klientów z troską — we właściwym momencie." : "Sprawy układają się w czytelną kolejność. Nic nie musi krążyć w głowie."}</p><span className="zmh-calm-flow-promise">Czas na to, co ważne.</span></div>
-        <ol className="zmh-calm-flow-steps">{steps.map((item, index) => <li key={item.number} className={index === 0 ? "is-first" : ""}><span className="zmh-calm-step-number">{item.number}</span><div><strong>{item.title}</strong><small>{item.hint}</small></div><span className="zmh-calm-step-state">{item.state}</span></li>)}</ol>
-      </div>
-      <div className="zmh-calm-flow-bottom"><span>Wszystko na swoim miejscu</span><span>✳ Spokojny rytm pracy</span></div>
-    </div>
-    <p className="zmh-caption zmh-bottom-caption">{aftercare ? "Przykładowy scenariusz opieki po wykonanej usłudze." : "Demonstracja przebiegu zapytania w systemie CRM."}</p>
-  </div>;
+  const items = aftercare ? [["✓", "Zakończenie"], ["☏", "Kontakt po usłudze"], ["▦", "Kolejny krok"]] : [["✉", "Nowe zapytanie"], ["▤", "Wycena"], ["✓", "Realizacja"]];
+  return <div className="zmh-visual"><div className="zmh-flow zmh-glass">{items.map(([icon, label], index) => <Fragment key={label}>{index > 0 && <i aria-hidden="true">→</i>}<div className={index === 0 ? "zmh-active zmh-flow-item" : "zmh-flow-item"}><span aria-hidden="true">{icon}</span><b>{label}</b></div></Fragment>)}</div><p className="zmh-caption zmh-bottom-caption">{aftercare ? "Przykład opieki nad klientem po realizacji." : "Przykładowy przebieg obsługi w systemie."}</p></div>;
 }
 
 export function OrganicHome() {
@@ -82,9 +38,17 @@ export function OrganicHome() {
         <div className="zmh-hero-foot"><span className="zmh-aside-note">TWÓJ POMYSŁ.<br />WSPÓLNY KIERUNEK.</span><p>Dobry grunt<br />dla Twoich<br />pomysłów.</p></div>
       </section>
       </div><div className="zmh-scene-transition" aria-hidden="true"><span /></div><LivingPortal />
-      <div className="zmh-scroll-content">
       <HomeOffersCarousel />
       <nav className="zmh-social-panel zmh-wrap" aria-label="Zielona Marka w mediach społecznościowych"><div><strong>Bądźmy w kontakcie</strong><span>Zobacz aktualności i projekty marki Zielona Marka również poza stroną.</span></div><div className="zmh-social-panel-links"><a href="https://www.facebook.com/zielonamarka" target="_blank" rel="noopener noreferrer"><Image src="/podpis-email/icon-facebook.png" width={27} height={27} alt="" unoptimized />Facebook ↗</a><a href="https://www.instagram.com/zielona.marka.pl/" target="_blank" rel="noopener noreferrer"><Image src="/podpis-email/icon-instagram.png" width={27} height={27} alt="" unoptimized />Instagram ↗</a><a href="https://www.google.com/maps/search/?api=1&amp;query=Zielona%20Marka%20strony%20WWW%20Warszawa" target="_blank" rel="noopener noreferrer"><Image src="/podpis-email/icon-google.png" width={27} height={27} alt="" unoptimized />Znajdź w Google ↗</a><a href="https://github.com/lukaszst-cz" target="_blank" rel="noopener noreferrer"><Image src="/icon-github-zielona-marka.svg" width={27} height={27} alt="" unoptimized />GitHub ↗</a></div></nav>
+      <section className="zmh-free-start zmh-wrap" aria-labelledby="free-start-title">
+        <header><div><p className="zmh-eyebrow">DOSTAŃ KONKRET, ZANIM COKOLWIEK ZAMÓWISZ</p><h2 id="free-start-title">Zobacz pierwszą szansę<br />dla swojej firmy. <em>Bezpłatnie.</em></h2></div><p>Wybierz to, czego teraz potrzebujesz: krótką diagnozę, pomysł na proces lub indywidualną koncepcję wyglądu strony. Bez rozmowy o budżecie i bez zobowiązań.</p></header>
+        <div className="zmh-free-start-grid">
+          <article><span>01 / MASZ JUŻ STRONĘ</span><h3>Zobacz, co dziś odbiera Ci zapytania.</h3><p>Bezpłatnie wskażę jedną najważniejszą przeszkodę w wersji mobilnej, ofercie, kontakcie lub widoczności i pokażę zmianę, od której warto zacząć.</p><ul><li>wiesz, co poprawić najpierw</li><li>dostajesz konkretną rekomendację</li><li>nie wydajesz pieniędzy na przypadkowe zmiany</li></ul><div><Link className="zmh-pill" href="/modernizacja-strony#miniaudyt">Odbierz bezpłatny mini audyt <span>↗</span></Link><Link className="zmh-text-link" href="/demo/mini-audyt-zielona-marka">Zobacz przykład</Link><Link className="zmh-text-link" href="/poradnik/dlaczego-strona-firmy-nie-przynosi-zapytan">Przeczytaj poradnik</Link></div></article>
+          <article className="recommended"><span>02 / POTRZEBUJESZ KIERUNKU</span><h3>Zobacz, jak prowadzić klienta do kontaktu.</h3><p>Bezpłatna Mapa Szans pokaże prostą drogę od wejścia na stronę, przez dobre pytania w formularzu, aż do sprawnej obsługi zapytania.</p><ul><li>widzisz, czego potrzebuje klient</li><li>wiesz, jakie informacje warto zebrać</li><li>dostajesz plan pierwszego procesu</li></ul><div><Link className="zmh-pill" href="/kontakt">Odbierz bezpłatną Mapę Szans <span>↗</span></Link><Link className="zmh-text-link" href="/demo/mapa-szans-zielona-marka">Zobacz przykład</Link></div></article>
+        </div>
+        <article className="zmh-concept-feature"><div><span className="zmh-chapter">03 / CHCESZ ZOBACZYĆ NOWY WYGLĄD?</span><h3>Zobacz swoją firmę <em>w nowej odsłonie.</em></h3><p>Przygotuję bezpłatny, poglądowy projekt jednego widoku strony oraz wskażę trzy możliwe korzyści. Możesz zgłosić istniejącą witrynę lub firmę, która dopiero zaczyna.</p><div className="zmh-concept-feature-actions"><Link className="zmh-pill" href="/bezplatna-koncepcja-strony">Zamów bezpłatną koncepcję <span aria-hidden="true">↗</span></Link><span>Jedna propozycja · Bez podawania budżetu</span></div></div><div className="zmh-concept-feature-art" aria-hidden="true"><div className="zmh-concept-paper"><small>WIZUALIZACJA / PRZYKŁAD</small><strong>Nowe spojrzenie<br/>na Twoją ofertę.</strong><i>✳</i><span>od pierwszego wrażenia do kontaktu →</span></div></div></article>
+        <p className="zmh-free-start-note">Każdy bezpłatny materiał dotyczy jednej firmy i służy wyborowi pierwszego kroku. Bez zobowiązania do dalszej współpracy. Mini audyt nie zastępuje pełnego audytu, Mapa Szans strategii, a koncepcja wizualna kompletnego projektu do wdrożenia.</p>
+      </section>
       <section className="zmh-quick-brief zmh-wrap" id="krotki-brief" aria-labelledby="krotki-brief-title"><div className="zmh-quick-brief-copy"><p className="zmh-eyebrow">KRÓTKI BRIEF · OKOŁO 1 MINUTY</p><h2 id="krotki-brief-title">Masz już kierunek?<br /><em>Opisz go w kilku zdaniach.</em></h2><p>Nie musisz znać nazw funkcji ani gotowego rozwiązania. Napisz, czym zajmuje się firma i co chcesz ułatwić klientom lub sobie.</p><ul><li>odpowiadam najpóźniej w następnym dniu roboczym</li><li>bez zobowiązań i bez publikacji przed akceptacją</li></ul></div><div className="zmh-form-surface"><HomeContactForm /></div></section>
       <div className="zmh-cinema zmh-wrap">
         <div className="zmh-cinema-chapters">
@@ -95,7 +59,6 @@ export function OrganicHome() {
           <section className="zmh-story zmh-relationships" aria-labelledby="relacje-title"><div className="zmh-wrap zmh-split"><div className="zmh-copy"><p className="zmh-chapter">05 / KONTAKT PO USŁUDZE</p><h2 id="relacje-title">Dobre relacje<br />warto pielęgnować.</h2><p>Po wykonanej usłudze zostaje miejsce na pytanie, czy wszystko w porządku, prośbę o opinię albo przypomnienie o kolejnym terminie. Pomagam zaplanować taki kontakt i połączyć go z obsługą zleceń.</p></div><FlowVisual aftercare /></div></section>
         </div>
         <HomeStoryMotion />
-      </div>
       </div>
     </div>
     <div className="zmh-lower-forest">
