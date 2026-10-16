@@ -100,7 +100,7 @@ export default function ConceptRequestForm() {
     return <div className="zm-concept-success" role="status" aria-live="polite">
       <span aria-hidden="true">✓</span>
       <h3>Dziękuję za zgłoszenie.</h3>
-      <p>Otrzymałem Twoją prośbę o bezpłatny kierunek wizualny. Odezwę się na podany adres, by potwierdzić możliwość i zakres przygotowania materiału.</p>
+      <p>Dziękuję za wiadomość. Sprawdzę, czy mogę przygotować koncepcję dla Twojej firmy, i odpiszę na podany adres e-mail z dalszymi informacjami.</p>
       <Link href="/realizacje">W międzyczasie zobacz przykładowe projekty ↗</Link>
     </div>;
   }
@@ -108,7 +108,7 @@ export default function ConceptRequestForm() {
   return <form className="zm-concept-form" data-analytics-form="bezplatna_koncepcja" method="post" action="/api/inquiries" onSubmit={submit}>
     <input className="zm-concept-trap" type="text" name="website_check" autoComplete="off" tabIndex={-1} aria-hidden="true" />
     <fieldset className="zm-concept-choice">
-      <legend>Co chcesz zobaczyć? Wybierz jeden rodzaj projektu.</legend>
+      <legend>Co mam dla Ciebie przygotować? Wybierz jeden rodzaj materiału.</legend>
       {(Object.keys(modeLabels) as Mode[]).map((choice) => (
         <label key={choice}>
           <input type="radio" name="mode" value={choice} checked={mode === choice} onChange={() => setMode(choice)} />
@@ -138,7 +138,7 @@ export default function ConceptRequestForm() {
         <option>Nie wiem — proszę o sugestię</option>
       </select>
     </label>
-    <label>Opisz firmę i pomysł na wybrany materiał
+    <label>Opowiedz o firmie i o tym, co chcesz zmienić
       <textarea name="details" required minLength={10} maxLength={4000} rows={4} placeholder="Czym zajmuje się firma? Jakie usługi, produkty, kolory lub promocje warto uwzględnić? Co chcesz zmienić względem obecnych materiałów?" />
     </label>
     <label className="zm-concept-consent">
@@ -146,7 +146,7 @@ export default function ConceptRequestForm() {
       <span>Zapoznałem/-am się z <Link href="/polityka-prywatnosci">polityką prywatności</Link> i proszę o e-mailową odpowiedź dotyczącą tego zgłoszenia. Zgłoszenie nie oznacza zgody na inne wiadomości marketingowe.</span>
     </label>
     <button type="submit" disabled={submitting}>{submitting ? "Przesyłam zgłoszenie…" : "Zamów bezpłatną koncepcję ↗"}</button>
-    <p className="zm-concept-form-foot">Bez podawania budżetu i bez zobowiązania do zakupu. To prośba o jedną poglądową propozycję, nie automatyczne zamówienie kompletnego projektu ani plików do druku.</p>
+    <p className="zm-concept-form-foot">Nie pytam o budżet na tym etapie. Formularz służy do zgłoszenia jednej bezpłatnej, poglądowej koncepcji — nie zamawia pełnego projektu ani gotowych plików do druku.</p>
     {error && <p className="zm-concept-error" role="alert">{error}</p>}
   </form>;
 }
