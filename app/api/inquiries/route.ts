@@ -74,7 +74,7 @@ export async function POST(request: Request) {
     const company = plain(payload.company);
     const budget = plain(payload.budget);
     let message = plain(payload.message);
-    const additionalFields = [payload.phone, payload.website, payload.projectType, payload.timeline, payload.goal, payload.sales].map(plain);
+    const additionalFields = [payload.phone, payload.website, payload.projectType, payload.timeline, payload.goal, payload.purpose, payload.sales].map(plain);
 
     if (!wantsJson) {
       // Accept the landing page's native form submission if client JS fails.
@@ -108,7 +108,7 @@ export async function POST(request: Request) {
         ["Obecna strona", plain(payload.website)],
         ["Usługa lub obszar", plain(payload.projectType)],
         ["Termin", plain(payload.timeline)],
-        ["Cel", plain(payload.goal)],
+        ["Cel", plain(payload.goal) || plain(payload.purpose)],
         ["Sprzedaż lub płatności", plain(payload.sales)],
         ["Budżet", budget],
       ].filter(([, value]) => value).map(([label, value]) => `${label}: ${value}`);
