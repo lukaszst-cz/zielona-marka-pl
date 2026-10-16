@@ -22,7 +22,7 @@ export const blogArticles: BlogArticle[] = [
   {
     href: "/poradnik/ile-kosztuje-projekt-gazetki",
     title: "Ile kosztuje projekt gazetki reklamowej?",
-    summary: "Skład, zdjęcia, produkty, pliki do druku i oszczędności przy cyklicznych wydaniach. Sprawdź, co naprawdę wpływa na cenę.",
+    summary: "Dlaczego dwie gazetki o tej samej liczbie stron mogą kosztować inaczej? Wyjaśniam wpływ zdjęć, materiałów i kolejnych wydań.",
     category: "dtp",
     publishedAt: "2026-10-14T18:00:00+02:00",
     minutes: 7,
@@ -31,7 +31,7 @@ export const blogArticles: BlogArticle[] = [
   {
     href: "/poradnik/jak-przygotowac-pdf-do-druku",
     title: "Jak przygotować PDF do drukarni? Spady, CMYK i PDF/X",
-    summary: "Praktyczna kontrola formatu, marginesów, czcionek, zdjęć oraz profili ICC przed przekazaniem projektu do drukarni.",
+    summary: "Zanim wyślesz plik do drukarni, sprawdź spady, czcionki, zdjęcia i kolory — oto lista rzeczy, które łatwo przeoczyć.",
     category: "dtp",
     publishedAt: "2026-10-14T17:00:00+02:00",
     minutes: 6,
@@ -39,7 +39,7 @@ export const blogArticles: BlogArticle[] = [
   {
     href: "/poradnik/jak-uporzadkowac-zapytania-klientow",
     title: "Jak nie gubić zapytań od klientów?",
-    summary: "Prosty proces od formularza kontaktowego przez status sprawy po przypomnienie o odpowiedzi. Bez wdrażania ciężkiego systemu.",
+    summary: "Wiadomość w skrzynce, telefon i kartka na biurku? Zobacz, jak pilnować odpowiedzi bez dużego programu.",
     category: "procesy",
     publishedAt: "2026-10-14T16:00:00+02:00",
     minutes: 6,
@@ -47,7 +47,7 @@ export const blogArticles: BlogArticle[] = [
   {
     href: "/poradnik/co-powinna-miec-strona-firmy-uslugowej",
     title: "Co powinna mieć strona firmy usługowej?",
-    summary: "Zakres usług, obszar działania, realizacje, proces wyceny, formularz i lokalne SEO.",
+    summary: "Co klient powinien zobaczyć najpierw? Oferta, lokalizacja, przykłady pracy i łatwy kontakt — w dobrej kolejności.",
     category: "www",
     publishedAt: "2026-10-07T20:20:00+02:00",
     minutes: 9,
@@ -55,7 +55,7 @@ export const blogArticles: BlogArticle[] = [
   {
     href: "/poradnik/strona-internetowa-dla-salonu-beauty-co-powinna-zawierac",
     title: "Co powinna zawierać strona salonu beauty?",
-    summary: "Oferta, cennik, rezerwacje, lokalna widoczność oraz vouchery i produkty.",
+    summary: "Zabiegi, ceny, rezerwacje i vouchery — co pomaga klientce lub klientowi spokojnie wybrać wizytę?",
     category: "www",
     publishedAt: "2026-10-07T20:15:00+02:00",
     minutes: 9,
@@ -63,7 +63,7 @@ export const blogArticles: BlogArticle[] = [
   {
     href: "/poradnik/strona-internetowa-dla-warsztatu-co-powinna-zawierac",
     title: "Co powinna zawierać strona warsztatu?",
-    summary: "Usługi, szybki telefon, lokalizacja, formularz, zdjęcia, opinie i pozycjonowanie lokalne.",
+    summary: "Kierowca szuka terminu i telefonu, nie skomplikowanego menu. Sprawdź, czego potrzebuje strona warsztatu.",
     category: "www",
     publishedAt: "2026-10-07T19:40:00+02:00",
     minutes: 9,
@@ -71,7 +71,7 @@ export const blogArticles: BlogArticle[] = [
   {
     href: "/poradnik/ile-kosztuje-strona-dla-malej-firmy",
     title: "Ile kosztuje strona internetowa dla małej firmy?",
-    summary: "Prosta wizytówka, pełna strona firmowa oraz koszty domeny, hostingu i późniejszej opieki.",
+    summary: "Cena projektu to nie wszystko. Porównuję prostą wizytówkę i pełną stronę — razem z kosztem utrzymania.",
     category: "www",
     publishedAt: "2026-09-30T08:00:00+02:00",
     minutes: 8,
@@ -79,7 +79,7 @@ export const blogArticles: BlogArticle[] = [
   {
     href: "/poradnik/dlaczego-strona-firmy-nie-przynosi-zapytan",
     title: "Dlaczego strona firmy nie przynosi zapytań?",
-    summary: "Siedem najczęstszych przeszkód i kolejność poprawek przed inwestycją w reklamę.",
+    summary: "Masz odwiedziny, ale mało wiadomości? Oto siedem miejsc, w których klient może zrezygnować z kontaktu.",
     category: "seo",
     publishedAt: "2026-09-30T08:00:00+02:00",
     minutes: 7,
