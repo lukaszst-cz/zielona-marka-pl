@@ -78,28 +78,34 @@ test("one consolidated UI controls the free concept while sharing site tokens", 
   assert.ok(!styles.includes(String.fromCharCode(0x2014)));
 });
 
-test("free-concept keeps the shared light page skin while botanical image stays inside preview", async () => {
+test("free-concept matches the public forest identity while demo imagery stays inside previews", async () => {
   const page = await read("app/bezplatna-koncepcja-strony/page.tsx");
   const botanical = await read("app/bezplatna-koncepcja-strony/concept-botanical-preview.css");
+  const theme = await read("app/bezplatna-koncepcja-strony/concept-unified-ui.css");
   assert.ok(page.includes('import "./concept-botanical-preview.css"'));
-  assert.ok(!page.includes('import "./production-contrast.css"'), "Full-page forest override must not be loaded");
+  assert.ok(!page.includes('import "./production-contrast.css"'), "Keep a single final route stylesheet");
+  assert.ok(theme.includes('url("/brand-review-v3/forest-continuous.webp")'), "Use the existing public forest image");
+  assert.ok(theme.includes("--zc-fern:#b0f36c"), "Use the site's fern accent color");
+  assert.ok(theme.includes(".zm-concept-benefit-grid article"), "Cards need branded styling");
+  assert.ok(theme.includes(".zm-concept-gallery .zv5-preview-bottom h3"), "Demo headings need legible contrast");
   assert.ok(botanical.includes(".zv5-site-visual"));
   assert.ok(botanical.includes('url("/concept-natura.jpg")'));
   assert.ok(!botanical.includes(".page-hero"));
-  assert.ok(!botanical.includes("body .zm-public.zm-concept{"));
   assert.ok(page.includes("<ConceptRequestForm />"), "Inquiry form must remain present");
 });
 
-test("global forest theme never overrides the concept's light UI", async () => {
+test("concept forest styling is scoped and keeps form contrast independent of global overrides", async () => {
   const globalForest = await read("app/fern-public.css");
   const concept = await read("app/bezplatna-koncepcja-strony/concept-unified-ui.css");
   const scoped = ".zm-public:where(:not(.zm-concept))";
-  assert.ok(globalForest.includes(scoped + " :is(p,li,dd)"), "Global light text must not affect concept prose");
-  assert.ok(globalForest.includes(scoped + " :is(h1,h2,h3,h4)"), "Global headings must not affect concept");
-  assert.ok(globalForest.includes(scoped + " :is(input,textarea,select)"), "Dark global fields must not override concept form");
-  assert.ok(globalForest.includes(scoped + " :is(.button,button[type=submit])"), "Global button colors must not override concept");
-  assert.ok(concept.includes("var(--zm-ds-paper)"));
-  assert.ok(concept.includes("var(--zm-ds-forest-deep)"));
+  assert.ok(globalForest.includes(scoped + " :is(p,li,dd)"), "Site-wide typography must remain scoped");
+  assert.ok(globalForest.includes(scoped + " :is(h1,h2,h3,h4)"), "Site-wide headings must remain scoped");
+  assert.ok(globalForest.includes(scoped + " :is(input,textarea,select)"), "Form styling must stay route-local");
+  assert.ok(globalForest.includes(scoped + " :is(.button,button[type=submit])"), "Button styling must stay route-local");
+  assert.ok(concept.includes("var(--zm-ds-paper)"), "Keep shared design tokens available");
+  assert.ok(concept.includes("var(--zm-ds-forest-deep)"), "Keep shared forest tokens available");
+  assert.ok(concept.includes("--zc-forest-panel:rgba(8,40,27,.88)"));
+  assert.ok(concept.includes(".zm-concept-form :is(input:not([type=\\"radio\\"]):not([type=\\"checkbox\\"]),textarea,select)") || concept.includes(".zm-concept-form :is(input:not([type=\\"radio\\"]):not([type=\\"checkbox\\"]),textarea,select)"), "Ensure form readability");
 });
 
 test("gallery and inquiry form share the chosen material without a second click", async () => {
