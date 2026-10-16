@@ -182,6 +182,7 @@ export default async function RootLayout({
   return (
     <html lang={language}>
       <head>
+        <script src="/chunk-recovery.js" defer />
         <script
           dangerouslySetInnerHTML={{
             __html: "window['ga-disable-G-B3QJ910M2Q']=true;window['ga-disable-G-CYFQ326JRF']=true;",
