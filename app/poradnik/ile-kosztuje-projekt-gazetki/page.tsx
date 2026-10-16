@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Ile kosztuje projekt gazetki reklamowej? Skład i aktualizacje",
   description: "Od czego zależy cena projektu gazetki reklamowej? Liczba stron, produkty, zdjęcia, teksty, pliki do druku i rabaty za kolejne wydania. Sprawdź kalkulator DTP.",
   alternates: { canonical: "/poradnik/ile-kosztuje-projekt-gazetki" },
-  openGraph: { type: "article", url: "/poradnik/ile-kosztuje-projekt-gazetki", title: "Ile kosztuje projekt gazetki reklamowej? Skład i aktualizacje | Zielona Marka", description: "Od czego zależy cena projektu gazetki reklamowej? Liczba stron, produkty, zdjęcia, teksty, pliki do druku i rabaty za kolejne wydania. Sprawdź kalkulator DTP.", images: [{ url: "/og-poradniki-zielona-marka.png", width: 1200, height: 630, alt: "Blog Zielona Marka – poradniki dla firm" }], publishedTime: "2026-10-14", modifiedTime: "2026-10-14" },
+  openGraph: { type: "article", url: "/poradnik/ile-kosztuje-projekt-gazetki", title: "Ile kosztuje projekt gazetki reklamowej? Skład i aktualizacje | Zielona Marka", description: "Od czego zależy cena projektu gazetki reklamowej? Liczba stron, produkty, zdjęcia, teksty, pliki do druku i rabaty za kolejne wydania. Sprawdź kalkulator DTP.", images: [{ url: "/og-poradniki-zielona-marka.png", width: 1200, height: 630, alt: "Blog Zielona Marka — poradniki dla firm" }], publishedTime: "2026-10-14", modifiedTime: "2026-10-14" },
   twitter: { card: "summary_large_image", title: "Ile kosztuje projekt gazetki reklamowej? Skład i aktualizacje | Zielona Marka", description: "Od czego zależy cena projektu gazetki reklamowej? Liczba stron, produkty, zdjęcia, teksty, pliki do druku i rabaty za kolejne wydania. Sprawdź kalkulator DTP.", images: ["/og-poradniki-zielona-marka.png"] },
 };
 
@@ -46,13 +46,13 @@ export default function PriceGuideDtp() {
     <article>
       <header className="page-hero shell"><GuideBreadcrumbs current="Ile kosztuje projekt gazetki reklamowej?" /><span className="eyebrow"><i/>PORADNIK DTP / CENNIK</span>
         <h1>Ile kosztuje projekt gazetki reklamowej <em>i jak obniżyć cenę kolejnych wydań?</em></h1>
-        <p>Przy składzie gazetki największe znaczenie ma nie tylko liczba stron. Liczy się również gotowość danych produktowych, liczba zdjęć do obróbki, dostępność makiety, terminy oraz zakres zmian w kolejnych wydaniach.</p>
+        <p>Dwie gazetki po osiem stron mogą wymagać zupełnie innego nakładu pracy. O cenie decydują nie tylko strony, ale też gotowe materiały, jakość zdjęć, liczba produktów, terminy i poprawki.</p>
         <div className="hero-actions"><Link className="button" href="/dtp#kalkulator-dtp">Oblicz koszt gazetki ↗</Link><Link className="text-link" href="/dtp">Cała oferta DTP ↗</Link></div>
       </header>
       <aside className="shell zm-guide-highlights" aria-label="Najważniejsze informacje z artykułu">
         <div><span>01 / W PIGUŁCE</span><h2>Co wpływa na koszt?</h2><p>Liczba stron, produkty, zdjęcia, stan materiałów i liczba rund poprawek.</p></div>
         <div><span>02 / W PIGUŁCE</span><h2>Czego nie obejmuje?</h2><p>Sam projekt nie zawiera kosztu druku, papieru, dostawy ani licencji.</p></div>
-        <div><span>03 / W PIGUŁCE</span><h2>Jak obniżyć koszt?</h2><p>Stała makieta i uporządkowane dane pozwalają ograniczać pracę nad kolejnymi wydaniami.</p></div>
+        <div><span>03 / W PIGUŁCE</span><h2>Jak obniżyć koszt?</h2><p>Przy kolejnych wydaniach najwięcej oszczędzasz wtedy, gdy masz stałą makietę, kompletne zdjęcia i aktualny arkusz produktów.</p></div>
       </aside>
       <section className="section shell guide-intro"><div><span className="section-no">JAK POWSTAJE WYCENA</span><h2>Ta sama liczba stron może oznaczać zupełnie inną ilość pracy.</h2></div>
         <p>Ośmiostronicowa gazetka z gotowym szablonem, uporządkowanym arkuszem Excel i przygotowanymi zdjęciami wymaga mniej pracy niż ośmiostronicowy projekt z niekompletnymi cenami, zdjęciami różnej jakości i bez określonego układu. Różnice dotyczą przygotowania, składu, weryfikacji i poprawek.</p></section>

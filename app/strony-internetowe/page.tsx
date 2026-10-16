@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "Strony internetowe Warszawa i okolice",
   description: "Strony WWW dla firm z Warszawy, Targówka, Białołęki, Marek, Ząbek, Zielonki, Kobyłki, Wołomina i Radzymina. Lokalna widoczność, formularze i wygodny kontakt.",
   alternates: { canonical: "/strony-internetowe" },
-  openGraph: { type: "website", url: "/strony-internetowe", title: "Strony internetowe Warszawa i okolice | Zielona Marka", description: "Strony WWW dla firm z Warszawy, Targówka, Białołęki, Marek, Ząbek, Zielonki, Kobyłki, Wołomina i Radzymina. Lokalna widoczność, formularze i wygodny kontakt.", images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Zielona Marka – strony WWW i narzędzia dla firm" }] },
+  openGraph: { type: "website", url: "/strony-internetowe", title: "Strony internetowe Warszawa i okolice | Zielona Marka", description: "Strony WWW dla firm z Warszawy, Targówka, Białołęki, Marek, Ząbek, Zielonki, Kobyłki, Wołomina i Radzymina. Lokalna widoczność, formularze i wygodny kontakt.", images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Zielona Marka — strony WWW i narzędzia dla firm" }] },
   twitter: { card: "summary_large_image", title: "Strony internetowe Warszawa i okolice | Zielona Marka", description: "Strony WWW dla firm z Warszawy, Targówka, Białołęki, Marek, Ząbek, Zielonki, Kobyłki, Wołomina i Radzymina. Lokalna widoczność, formularze i wygodny kontakt.", images: ["/og.jpg"] },
 };
 
@@ -28,7 +28,7 @@ const structuredData = [
   {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "Strony internetowe dla firm – Warszawa i okolice",
+    name: "Strony internetowe dla firm — Warszawa i okolice",
     url: "https://zielona-marka.pl/strony-internetowe",
     description: "Lokalne strony internetowe dla firm usługowych z Warszawy i okolic.",
     mainEntity: {
@@ -56,16 +56,16 @@ export default function LocalWebsitesHubPage() {
     <section className="page-hero shell">
       <span className="eyebrow"><i />WARSZAWA I OKOLICE · STRONY DLA FIRM</span>
       <h1>Strony internetowe dla lokalnych firm, które mają prowadzić do <em>konkretnego kontaktu.</em></h1>
-      <p>Projektuję strony WWW dla firm usługowych z Warszawy i miejscowości po wschodniej stronie miasta. Łączę czytelną ofertę, lokalny zasięg, formularz i podstawy techniczne potrzebne do widoczności w Google.</p>
+      <p>Projektuję strony dla firm z Warszawy i okolic. Pokazuję usługi, obszar działania i wygodny kontakt — tak, żeby klient już po chwili wiedział, czy trafił pod właściwy adres.</p>
       <div className="hero-actions"><Link className="button" href="/kontakt">Porozmawiajmy o stronie <span>↗</span></Link><a className="text-link" href="#lokalizacje">Wybierz lokalizację <span>↓</span></a></div>
     </section>
 
     <section className="section shell local-city-value">
       <div><span className="section-no">LOKALNE SEO ZACZYNA SIĘ OD JASNEJ OFERTY</span><h2>Klient powinien szybko wiedzieć, czy działasz w jego okolicy.</h2></div>
-      <div><p>Nie chodzi o dopisywanie nazwy miasta do przypadkowej strony. Każda lokalna podstrona opisuje rzeczywisty kontekst: zasięg dojazdu, sposób pierwszej wyceny, dane potrzebne przed rozmową i typowe potrzeby klientów z danego obszaru.</p><p>Strona główna, Profil Firmy Google, dane kontaktowe i lokalne podstrony powinny opowiadać tę samą historię. To pomaga wyszukiwarce zrozumieć obszar działania, a klientowi szybciej podjąć decyzję.</p></div>
+      <div><p>Sama nazwa miasta w nagłówku nie wystarczy. Liczy się to, co klient chce wiedzieć: dokąd dojeżdżasz, jak zamówić wycenę i co przygotować przed rozmową.</p><p>Strona główna, Profil Firmy Google, dane kontaktowe i lokalne podstrony powinny opowiadać tę samą historię. To pomaga wyszukiwarce zrozumieć obszar działania, a klientowi szybciej podjąć decyzję.</p></div>
     </section>
 
-    <section className="section shell"><div className="section-head"><div><span className="section-no">DLA MIKROFIRM</span><h2>Prosta wizytówka internetowa od 899 zł netto — 3 sekcje i materiały klienta.</h2></div><p>Na początek może wystarczyć jedna przejrzysta strona z ofertą i kontaktem. Domena, hosting i opcjonalna opieka są rozliczane osobno.</p></div><Link className="button" href="/oferta#kalkulator-pelnego-kosztu">Sprawdź pełny koszt strony <span>↗</span></Link></section>
+    <section className="section shell"><div className="section-head"><div><span className="section-no">DLA MIKROFIRM</span><h2>Prosta wizytówka internetowa od 899 zł netto — 3 sekcje i materiały klienta.</h2></div><p>Czasem wystarczy jedna starannie przygotowana strona — z usługami i łatwym kontaktem. Domenę, hosting i opcjonalną opiekę rozliczamy oddzielnie.</p></div><Link className="button" href="/oferta#kalkulator-pelnego-kosztu">Sprawdź pełny koszt strony <span>↗</span></Link></section>
     <section className="section shell local-related" id="lokalizacje">
       <div><span className="section-no">OBSZAR DZIAŁANIA</span><h2>Wybierz miasto lub dzielnicę.</h2></div>
       <nav aria-label="Lokalizacje obsługiwane przez markę Zielona Marka">{areas.map(([name, href, copy]) => <Link key={href} href={href}><span><b>{name}</b><small>{copy}</small></span><span>↗</span></Link>)}</nav>
@@ -82,6 +82,6 @@ export default function LocalWebsitesHubPage() {
     </section>
 
     <ProcessStandard variant="web" />
-    <section className="section contact-section"><div className="shell contact-grid"><div><span className="section-no">KRÓTKA ROZMOWA</span><h2>Powiedz, gdzie działasz i czego potrzebują Twoi klienci.</h2><p>Na tej podstawie ustalimy, czy wystarczy jedna mocna strona, czy warto wydzielić osobne usługi lub lokalizacje.</p></div><ContactForm audit /></div></section>
+    <section className="section contact-section"><div className="shell contact-grid"><div><span className="section-no">KRÓTKA ROZMOWA</span><h2>Powiedz, gdzie działasz i czego potrzebują Twoi klienci.</h2><p>Opowiedz mi, gdzie pracujesz i z czym zgłaszają się klienci. Wtedy ocenimy, czy lepsza będzie jedna strona, czy osobne opisy usług i lokalizacji.</p></div><ContactForm audit /></div></section>
   </main><QuickWhatsApp /><SiteFooter /></>;
 }

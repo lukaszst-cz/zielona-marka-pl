@@ -38,9 +38,9 @@ export default function BlogExplorer() {
     <div className="section-head">
       <div>
         <span className="section-no">BLOG / ARTYKUŁY I WIEDZA</span>
-        <h2>Wybierz temat ważny dla Twojej firmy.</h2>
+        <h2>Znajdź odpowiedź na pytanie, które masz dziś.</h2>
       </div>
-      <p>Praktyczne wskazówki o stronach WWW, widoczności lokalnej, DTP i codziennej pracy z klientami.</p>
+      <p>O stronach internetowych, Google, druku i obsłudze klientów — z przykładami zamiast samych ogólników.</p>
     </div>
 
     <div className="zm-blog-tools">

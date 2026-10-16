@@ -81,7 +81,7 @@ export default function BeautyWebsiteGuidePage() {
         <GuideBreadcrumbs current="Strona internetowa salonu beauty" />
         <span className="eyebrow"><i />PORADNIK DLA SALONU BEAUTY</span>
         <h1>Co powinna zawierać strona internetowa <em>salonu beauty?</em></h1>
-        <p>Dobra strona salonu nie ma konkurować z Instagramem ani kalendarzem rezerwacji. Powinna połączyć markę, ofertę, ceny, efekty, przygotowanie do wizyty i prostą drogę do rezerwacji w jednym miejscu.</p>
+        <p>Instagram inspiruje, a system rezerwacji pozwala wybrać termin. Własna strona salonu łączy te światy — pokazuje ofertę, ceny, zdjęcia i wszystko, co warto wiedzieć przed wizytą.</p>
         <div className="hero-actions"><a className="button" href="#lista">Zobacz 9 elementów <span>↓</span></a><Link className="text-link" href="/strony-dla-beauty">Zobacz ofertę dla beauty <span>↗</span></Link></div>
       </header>
 
@@ -92,7 +92,7 @@ export default function BeautyWebsiteGuidePage() {
 
       <section className="section guide-reasons" id="lista">
         <div className="shell">
-          <div className="section-head"><div><span className="section-no">9 ELEMENTÓW STRONY SALONU BEAUTY</span><h2>Wygląd ma wspierać wybór, a nie zasłaniać informacje.</h2></div><p>Estetyka jest ważna, ale powinna prowadzić klienta do konkretu: co robicie, ile to kosztuje, jakie są efekty i jak zarezerwować wizytę.</p></div>
+          <div className="section-head"><div><span className="section-no">9 ELEMENTÓW STRONY SALONU BEAUTY</span><h2>Wygląd ma wspierać wybór, a nie zasłaniać informacje.</h2></div><p>Piękne zdjęcia przyciągają uwagę. Dobrze opisana usługa, cena i widoczna rezerwacja pomagają zamienić zainteresowanie w umówioną wizytę.</p></div>
           <ol>{elements.map(([number, title, text]) => <li key={number}><b>{number}</b><div><h3>{title}</h3><p>{text}</p></div></li>)}</ol>
         </div>
       </section>

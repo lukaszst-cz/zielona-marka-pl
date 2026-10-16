@@ -7,8 +7,8 @@ import BlogExplorer from "./BlogExplorer";
 import { blogArticles } from "./blog-data";
 
 export const metadata: Metadata = {
-  title: "Blog – strony WWW, SEO, DTP i porady dla firm",
-  description: "Blog Zielona Marka: praktyczne artykuły o stronach internetowych, kosztach utrzymania, lokalnym SEO, projektowaniu gazetek, DTP i organizacji zapytań klientów.",
+  title: "Blog — strony WWW, SEO, DTP i porady dla firm",
+  description: "Poradniki o stronach WWW, kosztach, Google i DTP — dla osób, które prowadzą firmę i chcą podejmować lepsze decyzje.",
   alternates: { canonical: "/poradnik", types: { "application/rss+xml": "/poradnik/rss.xml" } },
   openGraph: {
     title: "Blog | Zielona Marka",
@@ -51,7 +51,7 @@ export default function GuidesPage() {
       <GuideBreadcrumbs />
       <span className="eyebrow"><i /> BLOG / ZIELONA MARKA</span>
       <h1>Blog Zielona Marka. <em>Wiedza przydatna w Twojej firmie.</em></h1>
-      <p>Strony WWW, widoczność w Google, projektowanie materiałów do druku i proste sposoby usprawniania pracy. Sprawdzone rozwiązania wyjaśnione zrozumiałym językiem.</p>
+      <p>Ile kosztuje strona? Co warto pokazać klientowi na pierwszym ekranie? Jak przygotować plik do drukarni? Piszę o tym bez żargonu — z przykładami, które możesz odnieść do swojej firmy.</p>
       <div className="hero-actions">
         <a className="button" href="#artykuly">Zobacz artykuły <span aria-hidden="true">↗</span></a>
         <Link className="text-link" href="/dtp">Oferta DTP <span aria-hidden="true">↗</span></Link>
@@ -69,7 +69,7 @@ export default function GuidesPage() {
     <section className="section shell zm-blog-service-links">
       <div className="section-head">
         <div><span className="section-no">OD INFORMACJI DO DZIAŁANIA</span><h2>Możemy też zająć się tym za Ciebie.</h2></div>
-        <p>Gdy artykuł wyjaśni problem, możesz przejść bezpośrednio do właściwej usługi marki Zielona Marka.</p>
+        <p>Jeśli wiesz już, co warto poprawić, możesz przejść do usługi albo po prostu do mnie napisać.</p>
       </div>
       <div className="zm-blog-service-grid">
         <Link href="/oferta#kalkulator-pelnego-kosztu"><span>01 / STRONY WWW</span><h3>Wyceń stronę internetową</h3><p>Sprawdź koszty wykonania, domeny, serwera i opieki.</p><b>Sprawdź kalkulator ↗</b></Link>
@@ -80,7 +80,7 @@ export default function GuidesPage() {
     <GuideFaq items={blogFaq} />
     <section className="section guide-cta"><div className="shell"><span className="section-no">NIE ZNALAZŁEŚ ODPOWIEDZI?</span>
       <h2>Opisz swoją firmę albo podeślij stronę do oceny.</h2>
-      <p>Wskażę pierwszy sensowny krok — bez presji i zobowiązania do współpracy.</p>
+      <p>Napisz, z czym się mierzysz. Odpowiem, od czego warto zacząć — bez obowiązku zamawiania usługi.</p>
       <Link className="button" href="/modernizacja-strony#miniaudyt">Poproś o mini ocenę <span>↗</span></Link>
     </div></section>
   </main><QuickWhatsApp /><SiteFooter /></>;

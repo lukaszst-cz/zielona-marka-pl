@@ -80,7 +80,7 @@ export default function WorkshopWebsiteGuidePage() {
         <GuideBreadcrumbs current="Strona internetowa dla warsztatu" />
         <span className="eyebrow"><i />PORADNIK DLA WARSZTATU I DETAILINGU</span>
         <h1>Co powinna zawierać strona internetowa <em>warsztatu?</em></h1>
-        <p>Dobra strona warsztatu nie musi być rozbudowanym portalem. Powinna szybko odpowiedzieć na pytania kierowcy: czy wykonujesz potrzebną usługę, gdzie jesteś, jak się skontaktować i jakie informacje podać, żeby rozmowa zaczęła się od konkretów.</p>
+        <p>Kierowca z usterką nie ma czasu przekopywać się przez rozbudowane menu. Chce sprawdzić, czy zajmujesz się jego problemem, gdzie jest warsztat i jak szybko się skontaktować.</p>
         <div className="hero-actions"><a className="button" href="#lista">Zobacz 8 elementów <span>↓</span></a><Link className="text-link" href="/strony-dla-warsztatow">Zobacz ofertę dla warsztatów <span>↗</span></Link></div>
       </header>
 
@@ -91,7 +91,7 @@ export default function WorkshopWebsiteGuidePage() {
 
       <section className="section guide-reasons" id="lista">
         <div className="shell">
-          <div className="section-head"><div><span className="section-no">8 ELEMENTÓW DOBREJ STRONY WARSZTATU</span><h2>Każdy element powinien odpowiadać na konkretne pytanie klienta.</h2></div><p>Nie wszystko musi być osobną podstroną. Ważniejsze jest to, żeby informacje były kompletne, aktualne i łatwe do znalezienia na telefonie.</p></div>
+          <div className="section-head"><div><span className="section-no">8 ELEMENTÓW DOBREJ STRONY WARSZTATU</span><h2>Każdy element powinien odpowiadać na konkretne pytanie klienta.</h2></div><p>Nie potrzebujesz osobnej zakładki dla każdej drobnej usługi. Ważniejsze, żeby kierowca mógł szybko znaleźć zakres prac, adres i telefon — zwłaszcza na smartfonie.</p></div>
           <ol>{elements.map(([number, title, text]) => <li key={number}><b>{number}</b><div><h3>{title}</h3><p>{text}</p></div></li>)}</ol>
         </div>
       </section>

@@ -24,7 +24,7 @@ test("lokalne strony używają właściwego przypadku nazwy miasta", async () =>
     const response = await render(`/strony-internetowe/${slug}`);
     assert.equal(response.status, 200, slug);
     const html = (await response.text()).replaceAll("<!-- -->", "");
-    assert.match(html, new RegExp(`firmie z ${genitive}`), slug);
+    assert.match(html, new RegExp(`firmy z ${genitive}`), slug);
     assert.match(html, new RegExp(`firm z ${genitive}`), slug);
     assert.match(html, new RegExp(`działających w ${locative}`), slug);
     assert.doesNotMatch(html, new RegExp(`firmie z ${locative}`), slug);

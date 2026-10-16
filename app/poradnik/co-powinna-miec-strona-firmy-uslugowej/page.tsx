@@ -81,7 +81,7 @@ export default function ServiceBusinessGuidePage() {
         <GuideBreadcrumbs current="Strona firmy usługowej" />
         <span className="eyebrow"><i />PORADNIK DLA FIRMY USŁUGOWEJ</span>
         <h1>Co powinna zawierać strona internetowa <em>firmy usługowej?</em></h1>
-        <p>Dobra strona wykonawcy nie musi opowiadać całej historii firmy. Powinna szybko pokazać zakres prac, obszar działania, dowody wykonanych realizacji oraz sposób, w jaki klient może przekazać dane potrzebne do pierwszej wyceny.</p>
+        <p>Kiedy klient szuka wykonawcy, zwykle chce wiedzieć cztery rzeczy: co robisz, gdzie dojeżdżasz, jak wyglądają Twoje prace i jak poprosić o wycenę. Dobra strona odpowiada na te pytania bez długiego szukania.</p>
         <div className="hero-actions"><a className="button" href="#lista">Zobacz 9 elementów <span>↓</span></a><Link className="text-link" href="/strony-dla-firm-uslugowych">Zobacz ofertę dla firm usługowych <span>↗</span></Link></div>
       </header>
 
@@ -92,7 +92,7 @@ export default function ServiceBusinessGuidePage() {
 
       <section className="section guide-reasons" id="lista">
         <div className="shell">
-          <div className="section-head"><div><span className="section-no">9 ELEMENTÓW STRONY FIRMY USŁUGOWEJ</span><h2>Każdy element powinien skracać drogę do dobrej wyceny.</h2></div><p>Najlepsza struktura zależy od procesu firmy. Inaczej pracuje hydraulik, inaczej ekipa remontowa, a jeszcze inaczej serwis klimatyzacji — ale podstawowe pytania klienta są podobne.</p></div>
+          <div className="section-head"><div><span className="section-no">9 ELEMENTÓW STRONY FIRMY USŁUGOWEJ</span><h2>Każdy element powinien skracać drogę do dobrej wyceny.</h2></div><p>Hydraulik, ekipa remontowa i serwis klimatyzacji pracują inaczej — dlatego ich strony nie powinny być identyczne. Każda musi jednak ułatwiać klientowi ocenę usługi i kontakt.</p></div>
           <ol>{elements.map(([number, title, text]) => <li key={number}><b>{number}</b><div><h3>{title}</h3><p>{text}</p></div></li>)}</ol>
         </div>
       </section>

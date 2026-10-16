@@ -34,8 +34,8 @@ export default function WorkflowPreview({ variant }: { variant: Variant }) {
     <div className="shell workflow-preview-grid">
       <div>
         <span className="section-no">INTERAKTYWNA ŚCIEŻKA OBSŁUGI</span>
-        <h2>Po zgłoszeniu firma nadal wie, co zrobić.</h2>
-        <p>Kliknij etap, aby zobaczyć przykład informacji i następnego kroku. To demonstracja sposobu działania, nie działający system klienta.</p>
+        <h2>Po zgłoszeniu wiadomo, kto robi następny krok.</h2>
+        <p>Wybierz etap i zobacz, jakie informacje może otrzymać firma. To przykład działania, nie system uruchomiony u klienta.</p>
       </div>
       <div className="workflow-preview-card">
         <div className="workflow-preview-tabs" role="tablist" aria-label="Etapy obsługi zgłoszenia">
