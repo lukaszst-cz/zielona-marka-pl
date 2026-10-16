@@ -8,7 +8,7 @@ export const metadata: Metadata = {
  title: "Standard kontroli jakości DTP i Prepress",
  description: "Szczegółowa lista kontroli przed drukiem: PDF/X, spady, TrimBox, BleedBox, ICC, CMYK, overprint, obrazy, proofy, kody i introligatornia.",
  alternates:{canonical:"/standard-dtp"},
-  openGraph: { type: "website", url: "/standard-dtp", title: "Standard kontroli jakości DTP i prepress | Zielona Marka", description: "Szczegółowa lista kontroli przed drukiem: PDF/X, spady, TrimBox, BleedBox, ICC, CMYK, overprint, obrazy, proofy, kody i introligatornia.", images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Standard DTP marki Zielona Marka – przygotowanie plików do druku" }] },
+  openGraph: { type: "website", url: "/standard-dtp", title: "Standard kontroli jakości DTP i prepress | Zielona Marka", description: "Szczegółowa lista kontroli przed drukiem: PDF/X, spady, TrimBox, BleedBox, ICC, CMYK, overprint, obrazy, proofy, kody i introligatornia.", images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Standard DTP marki Zielona Marka — przygotowanie plików do druku" }] },
   twitter: { card: "summary_large_image", title: "Standard kontroli jakości DTP i prepress | Zielona Marka", description: "Szczegółowa lista kontroli przed drukiem: PDF/X, spady, TrimBox, BleedBox, ICC, CMYK, overprint, obrazy, proofy, kody i introligatornia.", images: ["/og.jpg"] },
 };
 const checks=[
@@ -31,7 +31,7 @@ export default function DtpStandardPage() {
       <nav className="qa-crumbs" aria-label="Ścieżka nawigacji"><Link href="/">Strona główna</Link><span aria-hidden="true">/</span><Link href="/standardy-jakosci">Jakość i normy</Link><span aria-hidden="true">/</span><span>DTP / Prepress</span></nav>
       <span className="eyebrow">STANDARDY / ZIELONA MARKA / ZM-DTP-QA-001</span>
       <h1 id="qa-dtp-heading">Przed drukiem <em>liczy się każdy szczegół.</em></h1>
-      <p>QA (ang. Quality Assurance) oznacza zapewnianie jakości — czyli zaplanowane sprawdzenie materiału przed oddaniem do drukarni. W praktyce weryfikujemy treść, wymiary, zdjęcia, kolory i poprawność pliku PDF, aby wychwycić błędy przed drukiem.</p>
+      <p>Dobry projekt na ekranie to dopiero połowa pracy. Przed przekazaniem do drukarni sprawdzam format, spady, zdjęcia, kolory i plik PDF. To właśnie QA — kontrola, która pomaga wychwycić problemy przed rozpoczęciem druku.</p>
       <div className="hero-actions qa-hero-actions">
         <a className="button" href="/downloads/zielona-marka-standard-dtp-prepress-qa-v3-1-korekta.pdf" download>Pobierz checklistę DTP · PDF <span aria-hidden="true">↓</span></a>
         <a className="text-link" href="#lista">Zobacz 12 obszarów kontroli <span aria-hidden="true">↓</span></a>
@@ -52,7 +52,7 @@ export default function DtpStandardPage() {
     </section>
 
     <section className="section shell qa-section" id="odbior">
-      <div className="section-head"><div><span className="section-no">ODSTĘPSTWA / WYNIK KONTROLI</span><h2>Co robimy, gdy znajdziemy błąd?</h2></div><p>Nie kończymy na samym wykryciu problemu. Istotne błędy poprawiamy, powtarzamy kontrolę i zapisujemy status konkretnej wersji pliku.</p></div>
+      <div className="section-head"><div><span className="section-no">ODSTĘPSTWA / WYNIK KONTROLI</span><h2>Co robimy, gdy znajdziemy błąd?</h2></div><p>Znaleziony błąd trzeba poprawić, a plik sprawdzić ponownie. Zapisuję wynik dla konkretnej wersji — żeby było jasne, co zostało zatwierdzone.</p></div>
       <div className="qa-statuses">
         <div><strong>PASS</strong><p>Przeprowadzono test, wynik spełnia kryterium i został udokumentowany.</p></div>
         <div><strong>REWORK</strong><p>Plik wymaga korekty oraz ponownego sprawdzenia.</p></div>
@@ -73,6 +73,6 @@ export default function DtpStandardPage() {
       <div className="qa-link-stack"><Link href="/standardy-jakosci#iso">Jak opisujemy korzystanie z norm ISO ↗</Link><Link href="/standard-jakosci">Zasady sprawdzania stron i CRM ↗</Link></div>
     </section>
 
-    <section className="section shell qa-section"><div className="qa-ending"><span className="section-no">DTP / WYDAJEMY PLIK PO KONTROLI</span><h2>Potrzebujesz projektu lub preflightu?</h2><p>Przygotujemy zakres kontroli i plik produkcyjny według specyfikacji Twojej drukarni.</p><div className="hero-actions"><Link className="button" href="/kontakt?pakiet=DTP%20i%20przygotowanie%20do%20druku">Zapytaj o kontrolę DTP <span aria-hidden="true">↗</span></Link><Link className="text-link" href="/dtp">Zobacz ofertę DTP <span aria-hidden="true">↗</span></Link></div></div></section>
+    <section className="section shell qa-section"><div className="qa-ending"><span className="section-no">DTP / WYDAJEMY PLIK PO KONTROLI</span><h2>Masz projekt do sprawdzenia przed drukiem?</h2><p>Przygotujemy zakres kontroli i plik produkcyjny według specyfikacji Twojej drukarni.</p><div className="hero-actions"><Link className="button" href="/kontakt?pakiet=DTP%20i%20przygotowanie%20do%20druku">Zapytaj o kontrolę DTP <span aria-hidden="true">↗</span></Link><Link className="text-link" href="/dtp">Zobacz ofertę DTP <span aria-hidden="true">↗</span></Link></div></div></section>
   </main><QuickWhatsApp /><SiteFooter /></>;
 }
