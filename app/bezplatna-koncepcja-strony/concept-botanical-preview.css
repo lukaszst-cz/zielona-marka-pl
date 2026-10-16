@@ -1,0 +1,12 @@
+/* Botanical imagery stays inside the illustrative website preview, not on the page background. */
+.zm-public.zm-concept .zv5-site-visual{
+ background:linear-gradient(145deg,rgba(14,55,28,.10),rgba(6,44,22,.35)),url("/concept-natura.jpg") center/cover no-repeat;
+}
+.zm-public.zm-concept .zv5-phone-photo{
+ background:linear-gradient(160deg,rgba(6,44,24,.06),rgba(8,43,25,.29)),url("/concept-natura.jpg") center/cover no-repeat;
+}
+.zm-public.zm-concept .zv5-site-visual .zv5-fern,
+.zm-public.zm-concept .zv5-phone-photo .zv5-fern,
+.zm-public.zm-concept .zv5-rings{display:none}
+.zm-public.zm-concept .zv5-desktop,
+.zm-public.zm-concept .zv5-phone{box-shadow:0 18px 42px rgba(16,55,34,.23)}
