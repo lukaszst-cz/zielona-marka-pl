@@ -921,80 +921,51 @@ test("versioned asset monitor extracts safe first-party paths and rejects HTML f
 });
 
 
-test("home scrolled layout restores photography and shares public-page section rhythm", async () => {
-  const home = await readFile(new URL("../app/OrganicHome.tsx", import.meta.url), "utf8");
-  const css = await readFile(new URL("../app/home-scroll-editorial.css", import.meta.url), "utf8");
-  assert.match(home, /import "\.\/home-scroll-editorial\.css"/);
-  assert.match(home, /className="zmh-scroll-content"/);
-  assert.match(css, /\.zmh-scroll-content/);
-  assert.match(css, /\.zm-home-offers-intro h2/);
-  assert.ok(home.indexOf('import "./home-scroll-editorial.css"') >
-    home.indexOf('import "./home-layout-repair.css"'), "Load final homepage rules after earlier repair");
-  assert.match(css, /\.zmh-assembly\.zmh-media-ready/);
-  assert.match(css, /\.zmh-quick-brief/);
-  assert.match(css, /\.zmh-cinema-chapters \.zmh-story/);
-  assert.match(css, /\.zmh-lower-forest/);
-  assert.match(css, /forest-continuous\.webp/);
-  assert.match(css, /zielona-marka-hero-paprocie\.webp/);
-  assert.match(css, /@media\(max-width:620px\)/);
-  assert.doesNotMatch(css, /\.zmh-opening\s*\{/,
-    "Keep the first hero unchanged; do not override its video or navigation");
-});
 
-test("organic homepage keeps the original content and confines the stream to the opening",async()=>{
-  const [home,portal,theme,fern,page]=await Promise.all([
-    readFile(new URL("../app/OrganicHome.tsx",import.meta.url),"utf8"),
-    readFile(new URL("../app/LivingPortal.tsx",import.meta.url),"utf8"),
-    readFile(new URL("../app/home-nature-finish.css",import.meta.url),"utf8"),
-    readFile(new URL("../public/brand-review-v6/fern-frond.svg",import.meta.url),"utf8"),
-    (await fetchPage("/")).text(),
+test("homepage restores the accepted afternoon layout without later experimental CSS", async () => {
+  const [home, portal, carousel, originalStyles] = await Promise.all([
+    readFile(new URL("../app/OrganicHome.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/LivingPortal.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/home-offers-restored.css", import.meta.url), "utf8"),
+    readFile(new URL("../app/home-v5.css", import.meta.url), "utf8"),
   ]);
-  assert.match(home,/import "\.\/home-nature-finish\.css"/);
-  for(const item of ["HomeOffersCarousel","HomeContactForm","HomeStoryMotion","<SiteFooter","<ForestHero"]){
-    assert.ok(home.includes(item),item+" must remain available");
+  assert.match(home, /import "\.\/home-v5\.css"/);
+  assert.match(home, /import "\.\/home-offers-restored\.css"/);
+  for (const experimental of ["home-scroll-editorial.css", "home-nature-finish.css",
+    "home-calm-story.css", "home-layout-repair.css", "home-cinema-polish.css"]) {
+    assert.ok(!home.includes(experimental), experimental + " must not control the restored homepage");
   }
-  assert.match(portal,/zmh-assembly-board--premium/);
-  assert.match(portal,/zmh-preview-website/);
-  assert.match(portal,/zmh-preview-statuses/);
-  assert.match(portal,/Wszystko zaczyna/);
-  assert.match(portal,/PRZYKŁADOWY PROCES DLA TWOJEJ FIRMY/);
-  assert.match(page,/PRZYKŁADOWY PROCES DLA TWOJEJ FIRMY/);
-  assert.match(page,/KONTAKT PO USŁUDZE/);
-  assert.match(theme,/\.zmh-opening \.zmh-living-forest\{/);
-  assert.match(theme,/\.zmh-assembly::before\{/);
-  assert.doesNotMatch(theme,/background:[^;]*stream-water-bottom\.webp/s, "Don't repeat the water photography in lower sections");
-  assert.match(theme,/fern-frond\.svg/);
-  assert.match(fern,/<svg [^>]*viewBox="0 0 330 470"/);
-  assert.match(theme,/prefers-reduced-motion:reduce/);
-  assert.match(theme,/animation-timeline:view\(\)/);
-  assert.match(theme,/\.zmh-cinema-screen/);
-  assert.match(theme,/\.zm-home-slide:not\(\[hidden\]\)/);
+  assert.doesNotMatch(home, /className="zmh-scroll-content"/);
+  for (const required of ["HomeOffersCarousel", "HomeContactForm", "HomeStoryMotion", "<ForestHero", "<SiteFooter"]) {
+    assert.ok(home.includes(required), "Homepage feature missing: " + required);
+  }
+  assert.ok(home.indexOf("<LivingPortal />") < home.indexOf("<HomeOffersCarousel />"));
+  assert.ok(home.indexOf("<HomeOffersCarousel />") < home.indexOf('className="zmh-social-panel'));
+  assert.match(portal, /className="zmh-assembly-board"/);
+  assert.match(portal, /className="zmh-piece zmh-piece-web"/);
+  assert.doesNotMatch(portal, /zmh-assembly-board--premium/);
+  assert.match(portal, /zmh-contact-preview/);
+  assert.doesNotMatch(portal, /<video/);
+  assert.match(originalStyles, /forest-continuous\.webp/);
+  assert.match(carousel, /\.zm-home-slide\[hidden\]/);
+  assert.doesNotMatch(carousel, /html body \.zm-v5 \.zmh-forest/);
 });
 
-
-
-test("cinematic homepage keeps five helpful visuals without heavy pointer effects", async () => {
+test("restored homepage keeps basic scroll and mobile behavior", async () => {
   const [home, story, css, html] = await Promise.all([
     readFile(new URL("../app/OrganicHome.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/HomeStoryMotion.tsx", import.meta.url), "utf8"),
-    readFile(new URL("../app/home-cinema-polish.css", import.meta.url), "utf8"),
+    readFile(new URL("../app/home-offers-restored.css", import.meta.url), "utf8"),
     (await fetchPage("/")).text(),
   ]);
-  assert.match(home, /import "\.\/home-cinema-polish\.css";/);
-  assert.match(home, /<HomeStoryMotion \/>/);
-  assert.match(home, /<HomeContactForm \/>/);
   assert.match(home, /<HomeOffersCarousel \/>/);
+  assert.match(home, /<HomeContactForm \/>/);
+  assert.match(home, /<HomeStoryMotion \/>/);
   assert.match(html, /zmh-cinema/);
+  assert.match(html, /zmh-assembly-board/);
   assert.match(story, /document\.createDocumentFragment\(\)/);
   assert.match(story, /visual\.cloneNode\(true\)/);
   assert.doesNotMatch(story, /innerHTML\s*=/);
-  assert.doesNotMatch(story, /addEventListener\("pointermove"/);
-  assert.match(story, /!document\.hidden/);
-  assert.match(story, /String\(stages\.length\)\.padStart\(2, "0"\)/);
-  assert.match(css, /\.zmh-cinema \.zmh-website/);
-  assert.match(css, /\.zmh-cinema \.zmh-flow-item/);
-  assert.match(css, /\.zmh-cinema \.zmh-sample-form/);
-  assert.match(css, /\.zmh-cinema \.zmh-voucher/);
-  assert.match(css, /fern-frond\.svg/);
+  assert.match(css, /@media\(max-width:520px\)/);
   assert.match(css, /prefers-reduced-motion:reduce/);
 });
