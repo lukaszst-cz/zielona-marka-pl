@@ -470,7 +470,7 @@ html body .zm-public.zm-concept .zv5-preview-cta{
 
 
 
-/* Forest brand alignment — same visual language as other public pages. */
+/* Forest brand alignment: same visual language as other public pages. */
 html body .zm-public.zm-concept{
   --zc-forest:#041a11;
   --zc-forest-panel:rgba(8,40,27,.88);
@@ -737,7 +737,7 @@ html body .zm-public.zm-concept :is(a,button,input,textarea,select,summary):focu
 }
 
 
-/* The preview is a deliberate light example inside the dark site, not a dark page section. */
+/* Light preview remains legible inside the site's dark visual system. */
 html body .zm-public.zm-concept .zm-concept-gallery .zv5-preview-bottom h3,
 html body .zm-public.zm-concept .zm-concept-gallery .zv5-preview-bottom p{
   color:#183828!important;
