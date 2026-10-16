@@ -9,13 +9,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: "/projekty-flow",
-    title: "Projekty Flow, procesy i demonstracje | Zielona Marka",
+    title: "Projekty Flow: procesy i demonstracje | Zielona Marka",
     description: "PrintFlow, TransportFlow i WorkshopFlow: przykładowe procesy, panele, kontrola jakości i dostępna dokumentacja projektów.",
     images: ["/og.jpg"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Projekty Flow, procesy i demonstracje | Zielona Marka",
+    title: "Projekty Flow: procesy i demonstracje | Zielona Marka",
     description: "PrintFlow, TransportFlow i WorkshopFlow: przykładowe procesy, panele, kontrola jakości i dostępna dokumentacja projektów.",
     images: ["/og.jpg"],
   },

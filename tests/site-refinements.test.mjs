@@ -843,7 +843,7 @@ test("key public routes use their own social preview metadata", async () => {
     ["/raport-qa", "Przykładowy raport kontroli jakości strony | Zielona Marka"],
     ["/realizacje", "Realizacje i demonstracje stron WWW | Zielona Marka"],
     ["/przyklady-zaplecza", "Przykłady paneli i zaplecza dla firm | Zielona Marka"],
-    ["/projekty-flow", "Projekty Flow — procesy i demonstracje | Zielona Marka"],
+    ["/projekty-flow", "Projekty Flow: procesy i demonstracje | Zielona Marka"],
   ];
   const attr = (tag, name) => tag?.match(new RegExp(name + '="([^"]*)"', "i"))?.[1];
   const titles = new Set();
