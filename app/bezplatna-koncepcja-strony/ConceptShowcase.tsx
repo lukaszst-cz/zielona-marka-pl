@@ -30,7 +30,7 @@ export default function ConceptShowcase() {
   }
   return <section className="section zm-concept-gallery" id="mozliwosci" aria-labelledby="zm-concept-gallery-heading">
     <div className="shell">
-      <div className="zv5-gallery-intro"><div><span className="zv5-kicker">CO MOŻEMY ZAPROPONOWAĆ</span><h2 id="zm-concept-gallery-heading">Pięć kierunków.<br/><em>Jedna bezpłatna propozycja.</em></h2></div><p>Wybierz materiał, który chcesz poprawić. Zobacz demonstrację, a następnie wyślij krótki opis swojej firmy.</p></div>
+      <div className="zv5-gallery-intro"><div><span className="zv5-kicker">CO MOŻEMY ZAPROPONOWAĆ</span><h2 id="zm-concept-gallery-heading">Pięć kierunków.<br/><em>Jedna bezpłatna propozycja.</em></h2></div><p>Zobacz pięć różnych przykładów — od strony WWW po gazetkę. Wybierz kierunek najbliższy Twojej firmie i napisz, co chcesz zmienić.</p></div>
       <div className="zv5-gallery-layout">
         <div className="zv5-tabs" role="tablist" aria-label="Wybierz rodzaj koncepcji">
           {concepts.map((item,index)=><button type="button" key={item.mode} role="tab" id={`zv5-tab-${item.mode}`} aria-selected={selected===item.mode} aria-controls="zv5-preview-panel" className={selected===item.mode?"zv5-tab is-active":"zv5-tab"} onClick={()=>setSelected(item.mode)}><span>0{index+1}</span><b>{item.title}</b><small>{item.note}</small><i aria-hidden="true">↗</i></button>)}
@@ -39,7 +39,7 @@ export default function ConceptShowcase() {
           <div className="zv5-preview-top"><span>PRZYKŁADOWY KIERUNEK WIZUALNY</span><strong>0{concepts.indexOf(current)+1} / 05</strong></div>
           <div className="zv5-preview-stage"><Illustration mode={selected}/></div>
           <div className="zv5-preview-bottom"><div><h3>{current.title}</h3><p>{current.description}</p></div><a href="#zgloszenie" className="zv5-preview-cta" onClick={requestSelected}>Wybierz ten kierunek ↗</a></div>
-          <p className="zv5-preview-clarity">Wizualizacja przykładowa, nie realizacja klienta. Koncepcja nie obejmuje gotowych plików do druku ani kodu strony.</p>
+          <p className="zv5-preview-clarity">To przykłady możliwości, nie realizacje dla klientów. Bezpłatna koncepcja nie zawiera gotowych plików produkcyjnych ani kodu strony.</p>
         </div>
       </div>
       <p className="zv5-gallery-foot">Chcesz samodzielnie stworzyć podgląd WWW? <Link href="/projektuj-strone#zm-konfigurator">Przejdź do ZM Studio ↗</Link></p>
