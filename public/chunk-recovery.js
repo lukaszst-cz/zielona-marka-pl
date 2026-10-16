@@ -14,7 +14,11 @@
   function recover(event) {
     var message = messageOf(event);
     if (!/(?:Failed to fetch dynamically imported module|Importing a module script failed|Loading chunk .* failed)/i.test(message)) return;
-    if (!/\/_next\/static\/[^\s?#]+\.m?js(?:\b|\?)/i.test(message)) return;
+    var chunk = message.match(/(?:https?:\\/\\/[^/\\s?#]+)?\\/_next\\/static\\/[^\\s?#)"']+\\.m?js\\b/i);
+    if (!chunk) return;
+    try {
+      if (new URL(chunk[0], window.location.href).origin !== window.location.origin) return;
+    } catch (_) { return; }
     var now = Date.now();
     try {
       var previous = Number(sessionStorage.getItem(key)) || 0;
