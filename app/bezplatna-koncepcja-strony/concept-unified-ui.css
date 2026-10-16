@@ -735,3 +735,17 @@ html body .zm-public.zm-concept :is(a,button,input,textarea,select,summary):focu
 @media(prefers-reduced-motion:reduce){
   html body .zm-public.zm-concept :is(.zv5-tab,.zv5-desktop,.zv5-phone){transition:none;transform:none}
 }
+
+
+/* The preview is a deliberate light example inside the dark site, not a dark page section. */
+html body .zm-public.zm-concept .zm-concept-gallery .zv5-preview-bottom h3,
+html body .zm-public.zm-concept .zm-concept-gallery .zv5-preview-bottom p{
+  color:#183828!important;
+}
+html body .zm-public.zm-concept .zm-concept-gallery .zv5-preview-top,
+html body .zm-public.zm-concept .zm-concept-gallery .zv5-preview-clarity{
+  color:#536c5b!important;
+}
+html body .zm-public.zm-concept .zm-concept-gallery .zv5-preview-top strong{
+  color:#236544!important;
+}
