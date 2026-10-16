@@ -67,3 +67,16 @@ test("the first screen still uses the shared light page hero", async () => {
   assert.ok(styles.includes("background:transparent"));
   assert.ok(styles.includes("@media(max-width:640px)"));
 });
+
+
+test("free-concept keeps the shared light page skin while botanical image stays inside preview", async () => {
+  const page = await read("app/bezplatna-koncepcja-strony/page.tsx");
+  const botanical = await read("app/bezplatna-koncepcja-strony/concept-botanical-preview.css");
+  assert.ok(page.includes('import "./concept-botanical-preview.css"'));
+  assert.ok(!page.includes('import "./production-contrast.css"'), "Full-page forest override must not be loaded");
+  assert.ok(botanical.includes(".zv5-site-visual"));
+  assert.ok(botanical.includes('url("/concept-natura.jpg")'));
+  assert.ok(!botanical.includes(".page-hero"));
+  assert.ok(!botanical.includes("body .zm-public.zm-concept{"));
+  assert.ok(page.includes("<ConceptRequestForm />"), "Inquiry form must remain present");
+});
