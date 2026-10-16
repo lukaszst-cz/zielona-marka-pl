@@ -9,13 +9,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: "/projekty-flow",
-    title: "Projekty Flow — procesy i demonstracje | Zielona Marka",
+    title: "Projekty Flow, procesy i demonstracje | Zielona Marka",
     description: "PrintFlow, TransportFlow i WorkshopFlow: przykładowe procesy, panele, kontrola jakości i dostępna dokumentacja projektów.",
     images: ["/og.jpg"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Projekty Flow — procesy i demonstracje | Zielona Marka",
+    title: "Projekty Flow, procesy i demonstracje | Zielona Marka",
     description: "PrintFlow, TransportFlow i WorkshopFlow: przykładowe procesy, panele, kontrola jakości i dostępna dokumentacja projektów.",
     images: ["/og.jpg"],
   },
@@ -29,7 +29,7 @@ const flowProjects = [
 
 export default function FlowProjectsPage() {
   return <><SiteHeader /><main className="zm-public flow-projects-page">
-    <section className="page-hero shell"><span className="eyebrow"><i />PROJEKTY FLOW</span><h1>Nie pojedyncze ekrany. <em>Cały przepływ pracy.</em></h1><p>Tutaj nie chodzi o pojedynczy ekran. Zobacz, jak informacja może przejść przez całą firmę — od pierwszego zgłoszenia po wykonanie i rozliczenie pracy.</p><a className="button" href="#projekty">Zobacz projekty <span>↓</span></a></section>
+    <section className="page-hero shell"><span className="eyebrow"><i />PROJEKTY FLOW</span><h1>Nie pojedyncze ekrany. <em>Cały przepływ pracy.</em></h1><p>Tutaj nie chodzi o pojedynczy ekran. Zobacz, jak informacja może przejść przez całą firmę: od pierwszego zgłoszenia po wykonanie i rozliczenie pracy.</p><a className="button" href="#projekty">Zobacz projekty <span>↓</span></a></section>
     <section id="projekty" className="section shell"><div className="project-list">{flowProjects.map((project, index) => <article className="project-case" key={project.name}><div className="project-case-image" style={{ backgroundImage: `linear-gradient(115deg,rgba(10,31,22,.68),rgba(10,31,22,.10)),url(${project.image})` }}><span>{project.label}</span><b>{String(index + 1).padStart(2, "0")}</b></div><div><small>{project.label}</small><h2>{project.name}</h2><p>{project.description}</p><p className="flow-free-note">{project.freeAccess}</p><div className="project-case-links"><a className="button" href={project.primaryUrl} target={project.primaryUrl.startsWith("http") ? "_blank" : undefined} rel="noreferrer">{project.primaryLabel} <span>↗</span></a>{"repositoryUrl" in project && project.repositoryUrl && <a className="text-link" href={project.repositoryUrl} target="_blank" rel="noreferrer">Kod na GitHubie <span>↗</span></a>}</div></div></article>)}</div></section>
     <section className="section operations-section"><div className="shell operations-grid"><div><span className="section-no">MODUŁY KONTROLNE</span><h2>Osobne zaplecze dla produkcji i transportu.</h2><p>Publiczne demonstracje PrintFlow Control Center oraz TransportFlow Control Center skupiają się na kontroli procesu. To aplikacje Python i SQLite z danymi demonstracyjnymi, przeznaczone do uruchomienia lokalnego.</p></div><div><a href="https://github.com/lukaszst-cz/printflow-control-center" target="_blank" rel="noreferrer">PrintFlow Control Center ↗</a><a href="https://github.com/lukaszst-cz/transportflow-control-center" target="_blank" rel="noreferrer">TransportFlow Control Center ↗</a></div></div></section>
     <section className="section shell next-project"><span className="section-no">PODOBNY PROCES</span><h2>Najpierw mapa pracy, potem narzędzie.</h2><p>Jeśli jedna sprawa krąży między telefonem, Excelem a pocztą, zacznijmy od narysowania jej drogi. Dopiero potem wybierzemy narzędzie.</p><Link className="button" href="/kontakt">Opisz swój proces <span>↗</span></Link></section>
