@@ -16,17 +16,17 @@ export default function QualityHubPage() {
       <nav className="qa-crumbs" aria-label="Ścieżka nawigacji"><Link href="/">Strona główna</Link><span aria-hidden="true">/</span><span>Jakość i normy</span></nav>
       <span className="eyebrow">ZIELONA MARKA / ZASADY PRACY I KONTROLI</span>
       <h1>Jakość, którą można <em>sprawdzić, a nie tylko obiecać.</em></h1>
-      <p>QA (od angielskiego Quality Assurance) oznacza zapewnianie jakości. Mówiąc prosto: ustalamy, co powinno działać, sprawdzamy projekt, poprawiamy błędy i zapisujemy wyniki. Tak pracujemy przy stronach WWW, sklepach, systemach CRM i materiałach do druku.</p>
+      <p>Wiem, jak frustrujące są poprawki robione już po publikacji. Dlatego przed oddaniem projektu ustalam kryteria, sprawdzam działanie i zapisuję wyniki. Dotyczy to stron, sklepów, CRM i materiałów do druku — w zakresie odpowiednim do zlecenia.</p>
       <div className="hero-actions qa-hero-actions">
         <a className="button" href="#dokumenty">Pobierz standardy pracy <span aria-hidden="true">↓</span></a>
         <a className="text-link" href="#iso">Jak odnosimy się do ISO? <span aria-hidden="true">↓</span></a>
       </div>
-      <p className="qa-hero-detail">To własne standardy marki Zielona Marka inspirowane dobrymi praktykami i wybranymi normami technicznymi, a nie komunikat o certyfikacji.</p>
+      <p className="qa-hero-detail">To wewnętrzne zasady pracy Zielona Marka, opracowane z uwzględnieniem dobrych praktyk i norm technicznych. Nie oznaczają certyfikacji ISO.</p>
     </section>
     <QaLocalNav active="/standardy-jakosci" />
 
     <section className="section shell qa-section" id="proces">
-      <div className="section-head"><div><span className="section-no">OD POCZĄTKU DO ODBIORU</span><h2>Klient wie, co się dzieje z projektem.</h2></div><p>Zapewnianie jakości nie polega tylko na końcowym teście. Już na początku ustalamy wymagania, sposób sprawdzenia projektu i warunki jego odbioru.</p></div>
+      <div className="section-head"><div><span className="section-no">OD POCZĄTKU DO ODBIORU</span><h2>Klient wie, co się dzieje z projektem.</h2></div><p>Kontrola jakości zaczyna się przy pierwszych ustaleniach, nie tuż przed publikacją. Dzięki temu obie strony wiedzą, po czym poznamy, że praca jest gotowa.</p></div>
       <div className="qa-cards qa-cards--three">
         <article className="qa-card"><span className="qa-kicker">01 / USTALENIA</span><h3>Wymagania i zakres</h3><p>Dokumentujemy cel, materiały, wymagania techniczne i sposób akceptacji, zanim rozpoczniemy produkcję.</p></article>
         <article className="qa-card"><span className="qa-kicker">02 / REALIZACJA</span><h3>Kontrole właściwe dla produktu</h3><p>Inne testy wykonuje się dla formularza strony, inne dla sklepu i systemu, a jeszcze inne dla pliku drukarskiego.</p></article>
