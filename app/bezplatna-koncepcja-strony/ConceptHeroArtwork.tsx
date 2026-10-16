@@ -11,7 +11,7 @@ export default function ConceptHeroArtwork() {
           <div className="zv5-site-copy"><small>PRZESTRZEŃ, W KTÓREJ ODDYCHASZ</small><strong>Żyj trochę<br/><em>wolniej.</em></strong><span>Naturalnie piękne wnętrza. Więcej spokoju każdego dnia.</span><b>Poznaj nas ↗</b></div>
           <div className="zv5-site-visual"><span className="zv5-rings"/><Fern className="zv5-fern-one"/><Fern className="zv5-fern-two"/><small>natural spaces</small></div>
         </div>
-        <div className="zv5-site-bottom"><span>EST. 2026</span><span>01 / 04 — HISTORIA MARKI</span></div>
+        <div className="zv5-site-bottom"><span>EST. 2026</span><span>01 / 04. HISTORIA MARKI</span></div>
       </div>
     </div>
     <div className="zv5-phone">
@@ -21,6 +21,6 @@ export default function ConceptHeroArtwork() {
       <div className="zv5-phone-body"><small>ZIELONE MIEJSCE</small><b>Twoja chwila spokoju.</b><span>Odkryj możliwości ↗</span></div>
     </div>
     <div className="zv5-hero-note"><span aria-hidden="true">✳</span><div><b>Nowy kierunek</b><small>Jedna przemyślana propozycja</small></div></div>
-    <p className="zv5-example-label">PRZYKŁAD KONCEPCYJNY — NIE REALIZACJA KLIENTA</p>
+    <p className="zv5-example-label">PRZYKŁAD KONCEPCYJNY. NIE REALIZACJA KLIENTA</p>
   </div>;
 }

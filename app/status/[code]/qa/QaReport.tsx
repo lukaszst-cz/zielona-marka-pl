@@ -16,7 +16,7 @@ export default function QaReport({ project, checks }: { project: { title: string
       <article>
         <header>
           <Image src="/logo-zielona-marka-transparent-v1.webp" width={82} height={82} alt="Zielona Marka" unoptimized />
-          <div><small>RAPORT ODBIOROWY</small><h1>Raport kontroli jakości</h1><p>QA (ang. Quality Assurance) — zapewnianie jakości. Poniżej znajdziesz wyniki sprawdzenia projektu.</p><p>{project.title}</p></div>
+          <div><small>RAPORT ODBIOROWY</small><h1>Raport kontroli jakości</h1><p>QA (ang. Quality Assurance), zapewnianie jakości. Poniżej znajdziesz wyniki sprawdzenia projektu.</p><p>{project.title}</p></div>
           <b>{complete}/{checks.length}</b>
         </header>
         <section className="qa-report-summary">
