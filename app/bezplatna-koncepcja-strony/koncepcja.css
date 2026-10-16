@@ -177,3 +177,9 @@
  .zm-public.zm-concept .hero-actions .button{width:100%}
  .zm-concept-form-grid{grid-template-columns:1fr}
 }
+
+/* Keep editable controls legible over the light form surface despite legacy global rules. */
+body .zm-public.zm-concept .zm-concept-form :is(input:not([type="radio"]):not([type="checkbox"]), textarea, select){
+  background:#f9fbf7!important;
+  color:#183729!important;
+}
