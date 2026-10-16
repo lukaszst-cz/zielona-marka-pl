@@ -59,15 +59,24 @@ test("native concept submission retains the selected goal when JavaScript is una
   assert.match(endpoint, /payload\.goal, payload\.purpose, payload\.sales/);
 });
 
-test("the first screen still uses the shared light page hero", async () => {
+test("one consolidated UI controls the free concept while sharing site tokens", async () => {
   const page = await read("app/bezplatna-koncepcja-strony/page.tsx");
-  const styles = await read("app/bezplatna-koncepcja-strony/shared-hero.css");
-  assert.ok(page.includes('import "./shared-hero.css"'));
-  assert.ok(styles.includes("width:min(1180px,calc(100% - 48px))"));
-  assert.ok(styles.includes("background:transparent"));
-  assert.ok(styles.includes("@media(max-width:640px)"));
+  const styles = await read("app/bezplatna-koncepcja-strony/concept-unified-ui.css");
+  const tokens = await read("app/site-design-system.css");
+  const layout = await read("app/layout.tsx");
+  assert.ok(page.includes('import "./concept-unified-ui.css"'));
+  assert.ok(layout.includes('import "./site-design-system.css"'));
+  assert.ok(!page.includes('import "./shared-hero.css"'), "Superseded hero CSS must not load");
+  assert.ok(!page.includes('import "./concept-gallery.css"'), "Superseded gallery CSS must not load");
+  assert.ok(!page.includes('import "./production-contrast.css"'), "Forest overlay must not load");
+  assert.ok(styles.includes("var(--zm-ds-paper)"));
+  assert.ok(styles.includes("var(--zm-ds-forest-deep)"));
+  assert.ok(styles.includes(".zm-concept-form"));
+  assert.ok(styles.includes(".zv5-gallery-layout"));
+  assert.ok(styles.includes("@media(max-width:690px)"));
+  assert.ok(tokens.includes("--zm-ds-content:1180px"));
+  assert.ok(!styles.includes(String.fromCharCode(0x2014)));
 });
-
 
 test("free-concept keeps the shared light page skin while botanical image stays inside preview", async () => {
   const page = await read("app/bezplatna-koncepcja-strony/page.tsx");
