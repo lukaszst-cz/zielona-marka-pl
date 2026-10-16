@@ -22,11 +22,11 @@ export const metadata: Metadata = {
 
 const elements = [
   ["01", "Zakres usług napisany po ludzku", "Klient powinien szybko sprawdzić, czy wykonujesz dokładnie tę usługę, której potrzebuje. Zamiast jednego ogólnego hasła „mechanika pojazdowa” pokaż najważniejsze kategorie: diagnostyka, hamulce, zawieszenie, klimatyzacja, serwis olejowy, wulkanizacja, detailing albo inne realne specjalizacje warsztatu."],
-  ["02", "Telefon widoczny od pierwszego ekranu", "W motoryzacji część spraw jest pilna. Klikalny numer telefonu powinien być łatwy do znalezienia na telefonie, bez szukania go w stopce. Formularz nie ma zastępować rozmowy — ma pomóc tam, gdzie do oceny potrzebne są dodatkowe informacje."],
+  ["02", "Telefon widoczny od pierwszego ekranu", "W motoryzacji część spraw jest pilna. Klikalny numer telefonu powinien być łatwy do znalezienia na telefonie, bez szukania go w stopce. Formularz nie ma zastępować rozmowy, ma pomóc tam, gdzie do oceny potrzebne są dodatkowe informacje."],
   ["03", "Lokalizacja, dojazd i godziny", "Adres, mapa, godziny pracy oraz informacja o zasadach przyjęcia auta ograniczają pytania, na które strona może odpowiedzieć od razu. Jeżeli warsztat obsługuje kilka miejscowości albo oferuje usługę z dojazdem, warto podać rzeczywisty zasięg."],
   ["04", "Formularz, który zbiera właściwe dane", "Dobry formularz może zapytać o markę i model auta, rodzaj problemu lub usługę, preferowany termin oraz dane kontaktowe. Przy wycenach przydają się również zdjęcia. Dzięki temu pierwsza odpowiedź może być konkretniejsza niż „proszę zadzwonić”."],
   ["05", "Orientacyjne zasady ceny", "Nie każdą naprawę da się wycenić przed diagnozą. Mimo to warto wyjaśnić, które usługi mają stałą cenę lub widełki, a które wymagają oględzin. Jasne zasady są lepsze niż obietnica ceny, której później nie da się utrzymać."],
-  ["06", "Prawdziwe zdjęcia i dowody pracy", "Zdjęcia warsztatu, stanowisk, sprzętu i wykonanych prac pomagają klientowi ocenić, czy firma wygląda wiarygodnie. Opinie powinny pochodzić z prawdziwego źródła — najlepiej prowadzić do Profilu Firmy Google zamiast tworzyć anonimowe cytaty bez możliwości weryfikacji."],
+  ["06", "Prawdziwe zdjęcia i dowody pracy", "Zdjęcia warsztatu, stanowisk, sprzętu i wykonanych prac pomagają klientowi ocenić, czy firma wygląda wiarygodnie. Opinie powinny pochodzić z prawdziwego źródła, najlepiej prowadzić do Profilu Firmy Google zamiast tworzyć anonimowe cytaty bez możliwości weryfikacji."],
   ["07", "Wersja mobilna bez przeszkód", "Kierowca często trafia na stronę z telefonu. Numer, adres, usługi i przycisk kontaktu muszą działać wygodnie na małym ekranie. Formularz powinien być krótki i nie wymagać informacji, których klient nie ma przy sobie."],
   ["08", "Lokalna widoczność połączona z Profilem Firmy Google", "Strona i Profil Firmy Google pełnią różne role. Profil pomaga znaleźć firmę w wynikach lokalnych i mapach, a strona daje miejsce na pełny zakres usług, zasady kontaktu, zdjęcia, formularz i szczegółowe odpowiedzi. Dane firmy powinny być spójne w obu miejscach."],
 ] as const;
@@ -91,7 +91,7 @@ export default function WorkshopWebsiteGuidePage() {
 
       <section className="section guide-reasons" id="lista">
         <div className="shell">
-          <div className="section-head"><div><span className="section-no">8 ELEMENTÓW DOBREJ STRONY WARSZTATU</span><h2>Każdy element powinien odpowiadać na konkretne pytanie klienta.</h2></div><p>Nie potrzebujesz osobnej zakładki dla każdej drobnej usługi. Ważniejsze, żeby kierowca mógł szybko znaleźć zakres prac, adres i telefon — zwłaszcza na smartfonie.</p></div>
+          <div className="section-head"><div><span className="section-no">8 ELEMENTÓW DOBREJ STRONY WARSZTATU</span><h2>Każdy element powinien odpowiadać na konkretne pytanie klienta.</h2></div><p>Nie potrzebujesz osobnej zakładki dla każdej drobnej usługi. Ważniejsze, żeby kierowca mógł szybko znaleźć zakres prac, adres i telefon, zwłaszcza na smartfonie.</p></div>
           <ol>{elements.map(([number, title, text]) => <li key={number}><b>{number}</b><div><h3>{title}</h3><p>{text}</p></div></li>)}</ol>
         </div>
       </section>

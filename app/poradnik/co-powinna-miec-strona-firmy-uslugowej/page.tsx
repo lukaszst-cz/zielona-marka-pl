@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "article",
     title: "Co powinna mieć strona firmy usługowej?",
-    description: "Zakres usług, realizacje, wycena, formularz, obszar działania i lokalna widoczność — bez zbędnych elementów.",
+    description: "Zakres usług, realizacje, wycena, formularz, obszar działania i lokalna widoczność, bez zbędnych elementów.",
     url: "/poradnik/co-powinna-miec-strona-firmy-uslugowej",
     publishedTime: "2026-10-07",
     modifiedTime: "2026-10-07",
@@ -92,7 +92,7 @@ export default function ServiceBusinessGuidePage() {
 
       <section className="section guide-reasons" id="lista">
         <div className="shell">
-          <div className="section-head"><div><span className="section-no">9 ELEMENTÓW STRONY FIRMY USŁUGOWEJ</span><h2>Każdy element powinien skracać drogę do dobrej wyceny.</h2></div><p>Hydraulik, ekipa remontowa i serwis klimatyzacji pracują inaczej — dlatego ich strony nie powinny być identyczne. Każda musi jednak ułatwiać klientowi ocenę usługi i kontakt.</p></div>
+          <div className="section-head"><div><span className="section-no">9 ELEMENTÓW STRONY FIRMY USŁUGOWEJ</span><h2>Każdy element powinien skracać drogę do dobrej wyceny.</h2></div><p>Hydraulik, ekipa remontowa i serwis klimatyzacji pracują inaczej, dlatego ich strony nie powinny być identyczne. Każda musi jednak ułatwiać klientowi ocenę usługi i kontakt.</p></div>
           <ol>{elements.map(([number, title, text]) => <li key={number}><b>{number}</b><div><h3>{title}</h3><p>{text}</p></div></li>)}</ol>
         </div>
       </section>

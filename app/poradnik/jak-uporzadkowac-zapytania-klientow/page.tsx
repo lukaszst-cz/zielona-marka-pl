@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Jak uporządkować zapytania klientów bez rozbudowanego CRM?",
   description: "Prosty proces obsługi klientów: formularz, status zapytania, właściciel sprawy, termin odpowiedzi i przypomnienie. Praktyczny poradnik dla małej firmy.",
   alternates: { canonical: "/poradnik/jak-uporzadkowac-zapytania-klientow" },
-  openGraph: { type: "article", url: "/poradnik/jak-uporzadkowac-zapytania-klientow", title: "Jak uporządkować zapytania klientów bez rozbudowanego CRM? | Zielona Marka", description: "Prosty proces obsługi klientów: formularz, status zapytania, właściciel sprawy, termin odpowiedzi i przypomnienie. Praktyczny poradnik dla małej firmy.", images: [{ url: "/og-poradniki-zielona-marka.png", width: 1200, height: 630, alt: "Blog Zielona Marka — poradniki dla firm" }], publishedTime: "2026-10-14", modifiedTime: "2026-10-14" },
+  openGraph: { type: "article", url: "/poradnik/jak-uporzadkowac-zapytania-klientow", title: "Jak uporządkować zapytania klientów bez rozbudowanego CRM? | Zielona Marka", description: "Prosty proces obsługi klientów: formularz, status zapytania, właściciel sprawy, termin odpowiedzi i przypomnienie. Praktyczny poradnik dla małej firmy.", images: [{ url: "/og-poradniki-zielona-marka.png", width: 1200, height: 630, alt: "Blog Zielona Marka: poradniki dla firm" }], publishedTime: "2026-10-14", modifiedTime: "2026-10-14" },
   twitter: { card: "summary_large_image", title: "Jak uporządkować zapytania klientów bez rozbudowanego CRM? | Zielona Marka", description: "Prosty proces obsługi klientów: formularz, status zapytania, właściciel sprawy, termin odpowiedzi i przypomnienie. Praktyczny poradnik dla małej firmy.", images: ["/og-poradniki-zielona-marka.png"] },
 };
 
@@ -52,7 +52,7 @@ export default function ClientInquiriesGuide() {
     <article>
       <header className="page-hero shell"><GuideBreadcrumbs current="Jak uporządkować zapytania klientów?" /><span className="eyebrow"><i />PORADNIK DLA FIRM · 14.10.2026 · 6 MIN</span>
         <h1>Zapytania klientów nie powinny ginąć <em>między skrzynką a telefonem.</em></h1>
-        <p>Klient pisze w poniedziałek, we wtorek dzwoni, a w środę ktoś z zespołu ma przesłać wycenę. Kto o tym pamięta? Wystarczy prosty rejestr spraw — nie trzeba od razu kupować dużego CRM.</p>
+        <p>Klient pisze w poniedziałek, we wtorek dzwoni, a w środę ktoś z zespołu ma przesłać wycenę. Kto o tym pamięta? Wystarczy prosty rejestr spraw; nie trzeba od razu kupować dużego CRM.</p>
         <div className="hero-actions"><Link className="button" href="/maly-crm-dla-firm">Zobacz mały CRM ↗</Link><Link className="text-link" href="/poradnik">Wróć do bloga ↗</Link></div>
       </header>
       <section className="section shell"><div className="section-head"><div><span className="section-no">PROSTY PROCES SPRZEDAŻOWY</span><h2>Pięć kroków, które mogą uporządkować pracę.</h2></div><p>Na początek zapisuj tylko to, co pomaga odpowiedzieć: czego klient potrzebuje, kto zajmuje się sprawą i kiedy należy wrócić z informacją.</p></div>
