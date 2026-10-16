@@ -78,28 +78,37 @@ test("one consolidated UI controls the free concept while sharing site tokens", 
   assert.ok(!styles.includes(String.fromCharCode(0x2014)));
 });
 
-test("free-concept keeps the shared light page skin while botanical image stays inside preview", async () => {
+test("free concept inherits the same dark forest identity as public subpages", async () => {
   const page = await read("app/bezplatna-koncepcja-strony/page.tsx");
+  const forest = await read("app/fern-public.css");
+  const theme = await read("app/bezplatna-koncepcja-strony/concept-brand.css");
   const botanical = await read("app/bezplatna-koncepcja-strony/concept-botanical-preview.css");
-  assert.ok(page.includes('import "./concept-botanical-preview.css"'));
-  assert.ok(!page.includes('import "./production-contrast.css"'), "Full-page forest override must not be loaded");
-  assert.ok(botanical.includes(".zv5-site-visual"));
-  assert.ok(botanical.includes('url("/concept-natura.jpg")'));
-  assert.ok(!botanical.includes(".page-hero"));
-  assert.ok(!botanical.includes("body .zm-public.zm-concept{"));
-  assert.ok(page.includes("<ConceptRequestForm />"), "Inquiry form must remain present");
+  assert.ok(page.includes('import "./concept-brand.css"'), "Forest brand stylesheet must be imported");
+  assert.ok(page.indexOf('import "./concept-brand.css"') > page.indexOf('import "./concept-unified-ui.css"'), "Shared brand styling must load last");
+  assert.ok(!page.includes('import "./production-contrast.css"'), "Do not restore conflicting old overlays");
+  assert.ok(theme.includes('url("/brand-review-v3/forest-continuous.webp")'), "Forest background must match sibling pages");
+  assert.ok(forest.includes("url('/brand-review-v3/forest-continuous.webp')"), "Global forest image must exist");
+  assert.ok(theme.includes("--concept-leaf:#b0f36c"), "Use the shared fern accent");
+  assert.ok(theme.includes("font-family:Arial,Helvetica,sans-serif"), "Use shared typography");
+  assert.ok(theme.includes(".zm-concept-benefit-grid article"), "Benefits must use shared cards");
+  assert.ok(theme.includes(".zm-concept-form"), "Form surface must match public pages");
+  assert.ok(theme.includes(".zv5-preview-panel"), "Preview frame must match public cards");
+  assert.ok(botanical.includes('url("/concept-natura.jpg")'), "Sample image remains scoped to fictional preview");
+  assert.ok(!theme.includes("\u2014"), "Avoid em dashes in theme source");
 });
 
-test("global forest theme never overrides the concept's light UI", async () => {
-  const globalForest = await read("app/fern-public.css");
-  const concept = await read("app/bezplatna-koncepcja-strony/concept-unified-ui.css");
-  const scoped = ".zm-public:where(:not(.zm-concept))";
-  assert.ok(globalForest.includes(scoped + " :is(p,li,dd)"), "Global light text must not affect concept prose");
-  assert.ok(globalForest.includes(scoped + " :is(h1,h2,h3,h4)"), "Global headings must not affect concept");
-  assert.ok(globalForest.includes(scoped + " :is(input,textarea,select)"), "Dark global fields must not override concept form");
-  assert.ok(globalForest.includes(scoped + " :is(.button,button[type=submit])"), "Global button colors must not override concept");
-  assert.ok(concept.includes("var(--zm-ds-paper)"));
-  assert.ok(concept.includes("var(--zm-ds-forest-deep)"));
+test("forest page preserves readable copy, mockups and responsive layouts", async () => {
+  const page = await read("app/bezplatna-koncepcja-strony/page.tsx");
+  const base = await read("app/bezplatna-koncepcja-strony/concept-unified-ui.css");
+  const theme = await read("app/bezplatna-koncepcja-strony/concept-brand.css");
+  assert.ok(page.includes("<ConceptRequestForm />"), "Do not remove functional lead form");
+  assert.ok(page.includes("<ConceptShowcase />"), "Do not remove examples");
+  assert.ok(base.includes("scroll-snap-type:x mandatory"), "Keep mobile scrollable concept options");
+  assert.ok(theme.includes("color:var(--concept-muted)"), "Provide light copy on dark background");
+  assert.ok(theme.includes("background:#031a11"), "Input fields must remain dark");
+  assert.ok(theme.includes(".zv5-preview-bottom h3"), "Dark preview footer needs light headings");
+  assert.ok(theme.includes("@media(max-width:690px)"), "Mobile design must be maintained");
+  assert.ok(theme.includes("prefers-reduced-motion:reduce"), "Respect reduced motion");
 });
 
 test("gallery and inquiry form share the chosen material without a second click", async () => {
@@ -119,13 +128,25 @@ test("gallery and inquiry form share the chosen material without a second click"
   assert.ok(css.includes(".zm-concept-form-grid"));
 });
 
-test("concept hero and gallery must retain light skin instead of dark forest overlay", async () => {
-  const css = await read("app/bezplatna-koncepcja-strony/concept-unified-ui.css");
+test("forest identity is explicit and not replaced by the legacy light skin", async () => {
+  const theme = await read("app/bezplatna-koncepcja-strony/concept-brand.css");
   const page = await read("app/bezplatna-koncepcja-strony/page.tsx");
-  assert.match(css, /\.zm-public\.zm-concept\s*\.page-hero h1\s*\{[^}]*color:var\(--zm-ds-ink\)/);
-  assert.match(css, /\.zm-public\.zm-concept\s*\.page-hero\.zm-concept-hero\s*\{[^}]*background:transparent/);
-  assert.match(css, /\.zm-public\.zm-concept\s*\.zm-concept-gallery\s*\{[^}]*background:var\(--zm-ds-sage\)/);
-  assert.ok(!css.includes("--zc-forest-panel"), "Do not re-add opaque forest panels over pale site content");
-  assert.ok(!css.includes("url('/brand-review-v3/forest-continuous.webp')"), "Do not cover the concept with a full-page forest");
-  assert.ok(!page.includes('import "./production-contrast.css"'));
+  const cssFiles = [
+    'import "./koncepcja.css"',
+    'import "./concept-v5-hero.css"',
+    'import "./concept-v5-showcase.css"',
+    'import "./concept-unified-ui.css"',
+    'import "./concept-brand.css"',
+  ];
+  let previous = -1;
+  for (const file of cssFiles) {
+    const index = page.indexOf(file);
+    assert.ok(index > previous, "Styles must load in predictable order: " + file);
+    previous = index;
+  }
+  assert.ok(theme.includes("background:linear-gradient(90deg"), "Forest photo overlay should remain the site background");
+  assert.ok(theme.includes("color:var(--concept-ink)"), "Use high-contrast light type");
+  assert.ok(theme.includes(".zv5-gallery-intro h2 em"), "Highlight gallery headings consistently");
+  assert.ok(theme.includes(".zm-concept-faq summary"), "FAQ should match shared typography");
+  assert.ok(theme.includes(".zv5-preview-cta"), "Gallery CTA must match other buttons");
 });

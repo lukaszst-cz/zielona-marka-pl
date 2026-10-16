@@ -1,0 +1,347 @@
+/*
+ * The free-concept page uses the same forest language as other public
+ * subpages. Layout remains in concept-unified-ui.css; this file is the
+ * sole final authority for the page's surface, ink and interactive colors.
+ * Sample designs inside the artwork deliberately retain their own palette.
+ */
+html body .zm-public.zm-concept{
+  --concept-forest:#03170e;
+  --concept-panel:#08281b;
+  --concept-border:rgba(176,243,108,.27);
+  --concept-ink:#f5f8f1;
+  --concept-muted:#dce8d5;
+  --concept-leaf:#b0f36c;
+  --ink:var(--concept-ink);
+  --green:var(--concept-leaf);
+  --lime:var(--concept-leaf);
+  --cream:#08281b;
+  --line:rgba(197,222,186,.2);
+  color:var(--concept-ink);
+  background:linear-gradient(90deg,rgba(3,23,14,.96),rgba(3,23,14,.79)),
+    url("/brand-review-v3/forest-continuous.webp") center top/cover;
+  background-color:#03170e;
+  min-height:70vh;
+  font-family:Arial,Helvetica,sans-serif;
+}
+html body .zm-public.zm-concept :is(.shell,.zm-ui-container){
+  width:min(1180px,calc(100% - 48px));
+  margin-inline:auto;
+}
+html body .zm-public.zm-concept :is(h1,h2,h3){
+  font-family:Arial,Helvetica,sans-serif;
+  font-style:normal;
+  font-weight:600;
+  color:var(--concept-ink);
+  letter-spacing:-.035em;
+  line-height:1.15;
+  text-wrap:balance;
+}
+html body .zm-public.zm-concept :is(h1,h2) em{
+  color:var(--concept-leaf);
+  font-style:normal;
+}
+html body .zm-public.zm-concept .page-hero.zm-concept-hero{
+  background:transparent;
+  color:var(--concept-ink);
+  border-bottom:1px solid var(--concept-border);
+  padding-block:80px;
+}
+html body .zm-public.zm-concept .page-hero h1{
+  color:var(--concept-ink);
+  font:600 clamp(38px,5.3vw,74px)/1.08 Arial,Helvetica,sans-serif;
+  max-width:13ch;
+  letter-spacing:-.035em;
+  margin:25px 0;
+}
+html body .zm-public.zm-concept .page-hero h1 em{color:var(--concept-leaf)}
+html body .zm-public.zm-concept .page-hero :is(.eyebrow,.zm-concept-lead,.zm-concept-calm){
+  color:var(--concept-muted);
+}
+html body .zm-public.zm-concept .page-hero .eyebrow{
+  color:var(--concept-leaf);
+  font-size:12px;
+  letter-spacing:.13em;
+}
+html body .zm-public.zm-concept .page-hero .eyebrow i{background:var(--concept-leaf)}
+html body .zm-public.zm-concept .page-hero .zm-concept-lead{
+  color:var(--concept-muted);
+  font-size:16px;
+  line-height:1.7;
+}
+html body .zm-public.zm-concept .page-hero .zm-concept-lead strong{color:#fff}
+html body .zm-public.zm-concept .page-hero .zm-concept-calm{
+  color:var(--concept-muted);
+  border-color:var(--concept-border);
+}
+html body .zm-public.zm-concept .hero-actions .button,
+html body .zm-public.zm-concept .zm-concept-form button[type="submit"]{
+  background:var(--concept-leaf);
+  border:1px solid var(--concept-leaf);
+  color:#102513;
+  border-radius:30px;
+  font-weight:700;
+  box-shadow:none;
+}
+html body .zm-public.zm-concept .hero-actions .button:hover,
+html body .zm-public.zm-concept .zm-concept-form button[type="submit"]:hover{
+  background:#c8fa90;
+  color:#102513;
+}
+html body .zm-public.zm-concept .hero-actions .button span{color:#102513}
+html body .zm-public.zm-concept .hero-actions .text-link{
+  color:#c1f590;
+  border-color:rgba(193,245,144,.55);
+}
+html body .zm-public.zm-concept .section{
+  padding-block:80px;
+}
+html body .zm-public.zm-concept .section:not(.dark-section){
+  color:var(--concept-ink);
+}
+html body .zm-public.zm-concept .section:not(.dark-section) :is(h2,h3){
+  color:var(--concept-ink);
+}
+html body .zm-public.zm-concept .section h2{
+  font:600 clamp(29px,3.4vw,46px)/1.15 Arial,Helvetica,sans-serif;
+}
+html body .zm-public.zm-concept .section h3{
+  font:600 clamp(20px,2.2vw,24px)/1.2 Arial,Helvetica,sans-serif;
+}
+html body .zm-public.zm-concept .section:not(.dark-section) p{
+  color:var(--concept-muted);
+  line-height:1.7;
+}
+html body .zm-public.zm-concept .section:not(.dark-section) em{
+  color:var(--concept-leaf);
+  font-style:normal;
+}
+html body .zm-public.zm-concept :is(.zm-concept-section-head>p:first-child,.zm-concept-kicker,.zv5-kicker),
+html body .zm-public.zm-concept .section:not(.dark-section) :is(.zm-concept-section-head>p:first-child,.zm-concept-kicker,.zv5-kicker){
+  color:var(--concept-leaf);
+  font-size:12px;
+  letter-spacing:.13em;
+}
+html body .zm-public.zm-concept .zm-concept-benefits,
+html body .zm-public.zm-concept .zm-concept-faq{
+  background:transparent;
+}
+html body .zm-public.zm-concept .zm-concept-benefit-grid article{
+  min-width:0;
+  min-height:0;
+  padding:26px;
+  background:rgba(8,40,27,.92);
+  border:1px solid var(--concept-border);
+  border-radius:8px;
+  color:var(--concept-ink);
+  box-shadow:none;
+}
+html body .zm-public.zm-concept .zm-concept-benefit-grid article>span{
+  color:var(--concept-leaf);
+}
+html body .zm-public.zm-concept .zm-concept-benefit-grid article :is(h3,p){
+  color:var(--concept-ink);
+}
+html body .zm-public.zm-concept .zm-concept-benefit-grid article p{
+  color:var(--concept-muted);
+}
+html body .zm-public.zm-concept .zm-concept-gallery{
+  background:rgba(4,30,19,.6);
+  color:var(--concept-ink);
+  border-block:1px solid var(--concept-border);
+}
+html body .zm-public.zm-concept .zv5-gallery-intro h2{color:var(--concept-ink)}
+html body .zm-public.zm-concept .zv5-gallery-intro h2 em{color:var(--concept-leaf)}
+html body .zm-public.zm-concept .zm-concept-gallery .zv5-gallery-intro>p{
+  color:var(--concept-muted)!important;
+}
+html body .zm-public.zm-concept .zv5-tab,
+html body .zm-public.zm-concept .zv5-tabs .zv5-tab{
+  color:var(--concept-ink);
+  background:rgba(8,40,27,.93);
+  border:1px solid var(--concept-border);
+  border-radius:8px;
+  box-shadow:none;
+}
+html body .zm-public.zm-concept .zv5-tab b{
+  color:var(--concept-ink);
+  font:600 20px/1.23 Arial,Helvetica,sans-serif;
+}
+html body .zm-public.zm-concept .zv5-tab :is(span,small,i){color:#cdddc6}
+html body .zm-public.zm-concept .zv5-tab:hover,
+html body .zm-public.zm-concept .zv5-tab:focus-visible{
+  color:#fff;
+  background:#17432c;
+  border-color:#a5e581;
+}
+html body .zm-public.zm-concept .zv5-tab.is-active,
+html body .zm-public.zm-concept .zv5-tab[aria-selected="true"],
+html body .zm-public.zm-concept .zv5-tabs .zv5-tab.is-active{
+  color:#fff;
+  background:#17432c;
+  border:1px solid var(--concept-leaf);
+  box-shadow:inset 3px 0 0 var(--concept-leaf);
+}
+html body .zm-public.zm-concept .zv5-preview-panel{
+  background:rgba(8,40,27,.97);
+  color:var(--concept-ink);
+  border:1px solid var(--concept-border);
+  border-radius:8px;
+  box-shadow:none;
+}
+html body .zm-public.zm-concept .zv5-preview-top{
+  color:var(--concept-muted);
+  border-color:var(--concept-border);
+}
+html body .zm-public.zm-concept .zv5-preview-top strong{color:var(--concept-leaf)}
+html body .zm-public.zm-concept .zv5-preview-bottom h3{
+  color:var(--concept-ink);
+}
+html body .zm-public.zm-concept .zv5-preview-bottom p,
+html body .zm-public.zm-concept .zv5-preview-clarity,
+html body .zm-public.zm-concept .zv5-gallery-foot{
+  color:var(--concept-muted);
+}
+html body .zm-public.zm-concept .zv5-preview-cta{
+  border-radius:30px;
+  background:var(--concept-leaf);
+  color:#102513;
+  font-weight:700;
+}
+html body .zm-public.zm-concept .zv5-preview-cta:hover{
+  background:#c8fa90;
+  color:#102513;
+}
+html body .zm-public.zm-concept .zv5-gallery-foot a{color:var(--concept-leaf)}
+html body .zm-public.zm-concept .zm-concept-scope{
+  background:transparent;
+  color:var(--concept-ink);
+  border-block:1px solid var(--concept-border);
+}
+html body .zm-public.zm-concept .zm-concept-scope :is(h2,h3){color:var(--concept-ink)}
+html body .zm-public.zm-concept .zm-concept-scope h2 em,
+html body .zm-public.zm-concept .zm-concept-scope li>span,
+html body .zm-public.zm-concept .zm-concept-scope-grid>div>a{
+  color:var(--concept-leaf);
+}
+html body .zm-public.zm-concept .zm-concept-scope :is(p,li p){color:var(--concept-muted)}
+html body .zm-public.zm-concept .zm-concept-scope li{border-color:var(--concept-border)}
+html body .zm-public.zm-concept .zm-concept-request{
+  background:transparent;
+  color:var(--concept-ink);
+}
+html body .zm-public.zm-concept .zm-concept-request-intro>p:not(.zm-concept-kicker){
+  color:var(--concept-muted);
+}
+html body .zm-public.zm-concept .zm-concept-request-note{
+  background:rgba(8,40,27,.93);
+  border:1px solid var(--concept-border);
+  border-left:3px solid var(--concept-leaf);
+  border-radius:8px;
+  color:var(--concept-ink);
+}
+html body .zm-public.zm-concept .zm-concept-request-note :is(strong,span){color:var(--concept-muted)}
+html body .zm-public.zm-concept .zm-concept-request-note strong{color:#fff}
+html body .zm-public.zm-concept .zm-concept-form,
+html body .zm-public.zm-concept .zm-concept-success{
+  color:var(--concept-ink);
+  background:rgba(8,40,27,.97);
+  border:1px solid var(--concept-border);
+  border-radius:8px;
+  box-shadow:none;
+}
+html body .zm-public.zm-concept .zm-concept-form :is(label,legend,strong,b){
+  color:var(--concept-ink);
+}
+html body .zm-public.zm-concept .zm-concept-form :is(input:not([type="radio"]):not([type="checkbox"]),textarea,select){
+  color:var(--concept-ink);
+  background:#031a11;
+  border:1px solid #99b48e;
+  border-radius:4px;
+  min-height:48px;
+  font-size:16px;
+}
+html body .zm-public.zm-concept .zm-concept-form :is(input,textarea)::placeholder{
+  color:#c0d1ba;
+  opacity:1;
+}
+html body .zm-public.zm-concept .zm-concept-form :is(input[type="radio"],input[type="checkbox"]){
+  accent-color:var(--concept-leaf);
+}
+html body .zm-public.zm-concept .zm-concept-picked{
+  background:#103924;
+  color:var(--concept-ink);
+  border:1px solid var(--concept-border);
+}
+html body .zm-public.zm-concept .zm-concept-picked :is(span,strong,p){
+  color:var(--concept-muted);
+}
+html body .zm-public.zm-concept .zm-concept-picked strong{color:#fff}
+html body .zm-public.zm-concept .zm-concept-change>summary{
+  color:var(--concept-leaf);
+  border-color:var(--concept-border);
+}
+html body .zm-public.zm-concept .zm-concept-choice legend,
+html body .zm-public.zm-concept .zm-concept-fields-intro,
+html body .zm-public.zm-concept .zm-concept-form .zm-concept-form-foot,
+html body .zm-public.zm-concept .zm-concept-form .zm-concept-consent{
+  color:var(--concept-muted);
+}
+html body .zm-public.zm-concept .zm-concept-choice label{
+  background:#092b1c;
+  border:1px solid var(--concept-border);
+  color:var(--concept-ink);
+}
+html body .zm-public.zm-concept .zm-concept-choice label.is-selected{
+  background:#184a2f;
+  border-color:var(--concept-leaf);
+}
+html body .zm-public.zm-concept .zm-concept-consent a,
+html body .zm-public.zm-concept .zm-concept-success a{
+  color:var(--concept-leaf);
+}
+html body .zm-public.zm-concept .zm-concept-success :is(h3,p){color:var(--concept-ink)}
+html body .zm-public.zm-concept .zm-concept-faq-items,
+html body .zm-public.zm-concept .zm-concept-faq details{
+  border-color:var(--concept-border);
+}
+html body .zm-public.zm-concept .zm-concept-faq summary{color:var(--concept-ink)}
+html body .zm-public.zm-concept .zm-concept-faq details p,
+html body .zm-public.zm-concept .zm-concept-disclaimer{
+  color:var(--concept-muted);
+}
+html body .zm-public.zm-concept .zv5-example-label{
+  color:#d3e7d0!important;
+}
+html body .zm-public.zm-concept :is(a,button,input,select,textarea,summary):focus-visible{
+  outline:3px solid var(--concept-leaf);
+  outline-offset:3px;
+}
+@media(max-width:960px){
+  html body .zm-public.zm-concept .zm-concept-hero-grid{grid-template-columns:1fr}
+  html body .zm-public.zm-concept .zm-concept-visual{max-width:590px}
+}
+@media(max-width:690px){
+  html body .zm-public.zm-concept :is(.shell,.zm-ui-container){
+    width:calc(100% - 32px);
+  }
+  html body .zm-public.zm-concept .page-hero.zm-concept-hero,
+  html body .zm-public.zm-concept .section{
+    padding-block:55px;
+  }
+  html body .zm-public.zm-concept .page-hero h1{
+    font-size:clamp(38px,9vw,54px);
+    max-width:none;
+  }
+  html body .zm-public.zm-concept .zv5-tabs .zv5-tab{
+    background:rgba(8,40,27,.96);
+    border-color:var(--concept-border);
+  }
+  html body .zm-public.zm-concept .zv5-tabs .zv5-tab.is-active{
+    background:#17432c;
+    border-color:var(--concept-leaf);
+  }
+  html body .zm-public.zm-concept .zm-concept-form{padding:22px}
+}
+@media(prefers-reduced-motion:reduce){
+  html body .zm-public.zm-concept .zv5-tab{transition:none}
+}
