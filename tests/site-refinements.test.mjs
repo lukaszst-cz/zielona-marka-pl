@@ -351,7 +351,7 @@ test("old chatbot address has one direct destination",async()=>{
 test("public quality manuals are discoverable and have clean canonical titles",async()=>{
   const sitemap=await(await fetchPage("/sitemap.xml")).text();
   const manuals=[
-    ["/standard-jakosci","Standard jakości — jak realizujemy projekty"],
+    ["/standard-jakosci","Standard jakości: jak realizujemy projekty"],
     ["/standard-dtp","Standard kontroli jakości DTP i Prepress"],
   ];
   for(const [path,title] of manuals){

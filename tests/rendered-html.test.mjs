@@ -80,8 +80,8 @@ test("lokalne podstrony mają unikalną treść i działający kontakt", async (
 
 test("kluczowe statyczne podstrony mają własne metadata w head", async () => {
   const expected = [
-    ["/oferta", "Strony internetowe — cennik i koszt utrzymania", "Wizytówka od 899 zł netto", "https://zielona-marka.pl/oferta"],
-    ["/poradnik", "Blog — strony WWW, SEO, DTP i porady dla firm", "Blog Zielona Marka", "https://zielona-marka.pl/poradnik"],
+    ["/oferta", "Strony internetowe: cennik i koszt utrzymania", "Wizytówka od 899 zł netto", "https://zielona-marka.pl/oferta"],
+    ["/poradnik", "Blog: strony WWW, SEO, DTP i porady dla firm", "Blog Zielona Marka", "https://zielona-marka.pl/poradnik"],
     ["/dtp", "DTP, wizytówki, ulotki i przygotowanie do druku", "Projektowanie wizytówek", "https://zielona-marka.pl/dtp"],
     ["/opieka-nad-strona", "Opieka nad stroną, hosting i koszty utrzymania", "Ile kosztuje utrzymanie strony WWW?", "https://zielona-marka.pl/opieka-nad-strona"],
     ["/modernizacja-strony", "Modernizacja strony internetowej", "Ocena starej strony i plan modernizacji", "https://zielona-marka.pl/modernizacja-strony"],
@@ -100,7 +100,7 @@ test("kluczowe statyczne podstrony mają własne metadata w head", async () => {
 
 test("key service pages and new guides share their own Open Graph metadata", async () => {
   const pages = [
-    ["/oferta", "Strony internetowe — cennik"],
+    ["/oferta", "Strony internetowe: cennik"],
     ["/dtp", "DTP, wizytówki"],
     ["/projektuj-strone", "Kreator całej strony"],
     ["/kontakt", "Kontakt i wycena"],
