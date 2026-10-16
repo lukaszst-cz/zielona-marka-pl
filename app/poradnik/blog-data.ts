@@ -31,7 +31,7 @@ export const blogArticles: BlogArticle[] = [
   {
     href: "/poradnik/jak-przygotowac-pdf-do-druku",
     title: "Jak przygotować PDF do drukarni? Spady, CMYK i PDF/X",
-    summary: "Zanim wyślesz plik do drukarni, sprawdź spady, czcionki, zdjęcia i kolory — oto lista rzeczy, które łatwo przeoczyć.",
+    summary: "Zanim wyślesz plik do drukarni, sprawdź spady, czcionki, zdjęcia i kolory, oto lista rzeczy, które łatwo przeoczyć.",
     category: "dtp",
     publishedAt: "2026-10-14T17:00:00+02:00",
     minutes: 6,
@@ -47,7 +47,7 @@ export const blogArticles: BlogArticle[] = [
   {
     href: "/poradnik/co-powinna-miec-strona-firmy-uslugowej",
     title: "Co powinna mieć strona firmy usługowej?",
-    summary: "Co klient powinien zobaczyć najpierw? Oferta, lokalizacja, przykłady pracy i łatwy kontakt — w dobrej kolejności.",
+    summary: "Co klient powinien zobaczyć najpierw? Oferta, lokalizacja, przykłady pracy i łatwy kontakt, w dobrej kolejności.",
     category: "www",
     publishedAt: "2026-10-07T20:20:00+02:00",
     minutes: 9,
@@ -55,7 +55,7 @@ export const blogArticles: BlogArticle[] = [
   {
     href: "/poradnik/strona-internetowa-dla-salonu-beauty-co-powinna-zawierac",
     title: "Co powinna zawierać strona salonu beauty?",
-    summary: "Zabiegi, ceny, rezerwacje i vouchery — co pomaga klientce lub klientowi spokojnie wybrać wizytę?",
+    summary: "Zabiegi, ceny, rezerwacje i vouchery, co pomaga klientce lub klientowi spokojnie wybrać wizytę?",
     category: "www",
     publishedAt: "2026-10-07T20:15:00+02:00",
     minutes: 9,
@@ -71,7 +71,7 @@ export const blogArticles: BlogArticle[] = [
   {
     href: "/poradnik/ile-kosztuje-strona-dla-malej-firmy",
     title: "Ile kosztuje strona internetowa dla małej firmy?",
-    summary: "Cena projektu to nie wszystko. Porównuję prostą wizytówkę i pełną stronę — razem z kosztem utrzymania.",
+    summary: "Cena projektu to nie wszystko. Porównuję prostą wizytówkę i pełną stronę, razem z kosztem utrzymania.",
     category: "www",
     publishedAt: "2026-09-30T08:00:00+02:00",
     minutes: 8,

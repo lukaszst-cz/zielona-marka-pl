@@ -7,8 +7,8 @@ import BlogExplorer from "./BlogExplorer";
 import { blogArticles } from "./blog-data";
 
 export const metadata: Metadata = {
-  title: "Blog — strony WWW, SEO, DTP i porady dla firm",
-  description: "Poradniki o stronach WWW, kosztach, Google i DTP — dla osób, które prowadzą firmę i chcą podejmować lepsze decyzje.",
+  title: "Blog: strony WWW, SEO, DTP i porady dla firm",
+  description: "Poradniki o stronach WWW, kosztach, Google i DTP, dla osób, które prowadzą firmę i chcą podejmować lepsze decyzje.",
   alternates: { canonical: "/poradnik", types: { "application/rss+xml": "/poradnik/rss.xml" } },
   openGraph: {
     title: "Blog | Zielona Marka",
@@ -51,7 +51,7 @@ export default function GuidesPage() {
       <GuideBreadcrumbs />
       <span className="eyebrow"><i /> BLOG / ZIELONA MARKA</span>
       <h1>Blog Zielona Marka. <em>Wiedza przydatna w Twojej firmie.</em></h1>
-      <p>Ile kosztuje strona? Co warto pokazać klientowi na pierwszym ekranie? Jak przygotować plik do drukarni? Piszę o tym bez żargonu — z przykładami, które możesz odnieść do swojej firmy.</p>
+      <p>Ile kosztuje strona? Co warto pokazać klientowi na pierwszym ekranie? Jak przygotować plik do drukarni? Piszę o tym bez żargonu, z przykładami, które możesz odnieść do swojej firmy.</p>
       <div className="hero-actions">
         <a className="button" href="#artykuly">Zobacz artykuły <span aria-hidden="true">↗</span></a>
         <Link className="text-link" href="/dtp">Oferta DTP <span aria-hidden="true">↗</span></Link>
@@ -80,7 +80,7 @@ export default function GuidesPage() {
     <GuideFaq items={blogFaq} />
     <section className="section guide-cta"><div className="shell"><span className="section-no">NIE ZNALAZŁEŚ ODPOWIEDZI?</span>
       <h2>Opisz swoją firmę albo podeślij stronę do oceny.</h2>
-      <p>Napisz, z czym się mierzysz. Odpowiem, od czego warto zacząć — bez obowiązku zamawiania usługi.</p>
+      <p>Napisz, z czym się mierzysz. Odpowiem, od czego warto zacząć, bez obowiązku zamawiania usługi.</p>
       <Link className="button" href="/modernizacja-strony#miniaudyt">Poproś o mini ocenę <span>↗</span></Link>
     </div></section>
   </main><QuickWhatsApp /><SiteFooter /></>;
