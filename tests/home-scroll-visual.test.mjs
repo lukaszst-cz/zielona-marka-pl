@@ -4,27 +4,27 @@ import { readFile } from "node:fs/promises";
 
 const read = file => readFile(new URL("../" + file, import.meta.url), "utf8");
 
-test("homepage scroll chapters use calm, purposeful examples instead of schematic icon circles", async () => {
+test("restored afternoon chapters use their original five illustrations", async () => {
   const home = await read("app/OrganicHome.tsx");
-  assert.ok(home.includes('import "./home-calm-story.css"'));
-  assert.ok(home.includes('className="zmh-calm-form zmh-glass"'), "The inquiry chapter needs the upgraded illustration");
-  assert.ok(home.includes('className="zmh-calm-flow zmh-glass"'), "CRM and aftercare need a unified timeline");
-  assert.ok(home.includes('className="zmh-calm-flow-steps"'), "Keep the stages legible");
-  assert.ok(home.includes('zmh-calm-flow-promise'), "Describe why an orderly workflow saves time");
-  assert.ok(home.includes('DEMONSTRACJA'), "Visual examples must not pretend to be real CRM records");
-  assert.ok(home.includes("Poglądowa prezentacja formularza"), "Avoid misleading submit affordances");
-  assert.ok(!home.includes("zmh-flow-item"), "Remove obsolete decorative icon circles");
+  assert.ok(home.includes('import "./home-v5.css"'));
+  assert.ok(home.includes('className="zmh-sample-form zmh-glass"'), "Original form presentation must be restored");
+  assert.ok(home.includes('className="zmh-flow zmh-glass"'), "Restore the original CRM timeline");
+  assert.ok(home.includes('className="zmh-flow-item"'), "Original step illustrations must remain");
+  assert.ok(!home.includes('import "./home-calm-story.css"'), "Do not load the evening redesign");
+  assert.ok(!home.includes('zmh-calm-flow-steps'), "Do not render the evening workflow cards");
   assert.ok(home.includes("<HomeContactForm />"), "Preserve the real lead form");
-  assert.ok(home.includes("<ForestHero />"), "Preserve original stream and its controls");
-  assert.ok(home.includes("<HomeStoryMotion />"), "Preserve scroll-driven story");
+  assert.ok(home.includes("<ForestHero />"), "Preserve original river hero and controls");
+  assert.ok(home.includes("<HomeStoryMotion />"), "Preserve scroll-driven chapters");
 });
 
-test("fern story styles are responsive and respect reduced motion", async () => {
-  const styles = await read("app/home-calm-story.css");
-  assert.ok(styles.includes("/brand-review-v6/fern-frond.svg"), "Use original fern art, not generated logo replacements");
-  assert.ok(styles.includes(".zmh-calm-form-body"));
-  assert.ok(styles.includes(".zmh-calm-flow-steps"));
-  assert.ok(styles.includes("@media (max-width:700px)"));
-  assert.ok(styles.includes("@media (prefers-reduced-motion:reduce)"));
-  assert.ok(!/https?:\/\//.test(styles), "Do not add external image requests");
+test("free offers remain responsive without changing the original forest", async () => {
+  const home = await read("app/OrganicHome.tsx");
+  const styles = await read("app/home-offers-restored.css");
+  assert.ok(home.includes('import "./home-offers-restored.css"'));
+  assert.ok(home.includes("<HomeOffersCarousel />"));
+  assert.ok(styles.includes(".zm-home-slide[hidden]"), "Only active slide should display");
+  assert.ok(styles.includes("@media(max-width:520px)"), "Use compact mobile layout");
+  assert.ok(styles.includes("@media(prefers-reduced-motion:reduce)"), "Respect reduced motion");
+  assert.ok(!styles.includes("html body .zm-v5 .zmh-forest"), "No full page gradient override");
+  assert.ok(!/https?:\/\//.test(styles), "No external image dependencies");
 });
