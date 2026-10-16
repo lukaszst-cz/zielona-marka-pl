@@ -33,7 +33,7 @@ export default function QualityStandardPage() {
       <nav className="qa-crumbs" aria-label="Ścieżka nawigacji"><Link href="/">Strona główna</Link><span aria-hidden="true">/</span><Link href="/standardy-jakosci">Jakość i normy</Link><span aria-hidden="true">/</span><span>Standard projektów</span></nav>
       <span className="eyebrow">STANDARDY / ZIELONA MARKA / ZM-QMS-001</span>
       <h1 id="qa-main-heading">Dobry projekt powstaje w <em>dobrze prowadzonym procesie.</em></h1>
-      <p>Dobry projekt potrzebuje czegoś więcej niż ładnego podglądu. Przed przekazaniem sprawdzam ustalony zakres, działanie strony lub systemu i wykryte błędy. Tak rozumiem QA — zapewnianie jakości, które da się udokumentować.</p>
+      <p>QA (ang. Quality Assurance) to zapewnianie jakości. Dobry projekt potrzebuje czegoś więcej niż ładnego podglądu — przed przekazaniem sprawdzam uzgodnione funkcje, poprawiam błędy i zapisuję wynik kontroli.</p>
       <div className="hero-actions qa-hero-actions">
         <a className="button" href="/downloads/zielona-marka-standard-jakosci-www-dtp-crm-v3-1-korekta.pdf" download>Pobierz standard jakości · PDF <span aria-hidden="true">↓</span></a>
         <a className="text-link" href="#etapy">Poznaj 8 etapów <span aria-hidden="true">↓</span></a>
