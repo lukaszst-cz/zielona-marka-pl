@@ -292,74 +292,49 @@ try {
       });
     }
     if (["desktop", "mobile", "compact"].includes(size.name)) {
-      await check(size.name + ": Homepage scroll sections match public-page editorial hierarchy", async () => {
+      await check(size.name + ": Restored afternoon homepage layout", async () => {
         const response = await page.goto(base + "/", { waitUntil: "domcontentloaded", timeout: 45000 });
         assert.ok(response?.ok(), "Home did not load");
-        await page.locator(".zmh-assembly-board--premium .zmh-preview-website").first().waitFor({ state: "attached", timeout: 20000 });
+        await page.locator(".zmh-assembly-board .zmh-piece-web").first().waitFor({ state: "attached", timeout: 20000 });
         const info = await page.evaluate(() => {
-          const style = (selector) => {
-            const el = document.querySelector(selector);
-            if (!el) return null;
-            const rect = el.getBoundingClientRect();
-            const computed = getComputedStyle(el);
-            return {
-              background: computed.backgroundImage,
-              color: computed.color,
-              radius: parseFloat(computed.borderTopLeftRadius),
-              width: rect.width,
-            };
-          };
+          const assembly = document.querySelector(".zmh-assembly");
+          const board = document.querySelector(".zmh-assembly-board");
+          const hero = document.querySelector(".zmh-opening");
+          const carousel = document.querySelector(".zm-home-offers");
+          const social = document.querySelector(".zmh-social-panel");
+          const brief = document.querySelector(".zmh-quick-brief");
+          const cinema = document.querySelector(".zmh-cinema");
+          const contact = document.querySelector(".zmh-contact");
+          const rect = e => e?.getBoundingClientRect().width ?? 0;
           return {
-            opening: style(".zmh-opening"),
-            assembly: style(".zmh-assembly"),
-            magazine: style(".zmh-scroll-content"),
-            brief: style(".zmh-quick-brief"),
-            chapter: style(".zmh-cinema-chapters .zmh-story"),
-            lower: style(".zmh-lower-forest"),
-            portfolio: style(".zmh-portfolio"),
-            process: style(".zmh-process"),
-            standard: style(".zm-process-standard--home"),
-            contact: style(".zmh-contact"),
-            chapters: document.querySelectorAll(".zmh-cinema-chapters .zmh-story").length,
+            originalBoard: !!board?.querySelector(".zmh-piece-web .zmh-piece-photo")
+              && !!board?.querySelector(".zmh-piece-order"),
+            experimentalBoard: !!document.querySelector(".zmh-assembly-board--premium"),
+            experimentalMagazine: !!document.querySelector(".zmh-scroll-content"),
             videoCount: document.querySelectorAll(".zmh-opening video").length,
+            lowerStreamVideos: document.querySelectorAll(".zmh-assembly video,.zm-home-offers video,.zmh-contact video").length,
+            slideCount: document.querySelectorAll(".zm-home-slide").length,
+            chapterCount: document.querySelectorAll(".zmh-cinema-chapters > .zmh-story").length,
+            hasForm: !!document.querySelector(".zmh-quick-brief form"),
+            primaryOrder: !!(carousel && social && carousel.compareDocumentPosition(social) & Node.DOCUMENT_POSITION_FOLLOWING),
+            dimensions: [assembly, board, hero, carousel, social, brief, cinema, contact].map(rect),
+            viewport: innerWidth,
             scrollWidth: document.documentElement.scrollWidth,
-            viewport: window.innerWidth,
-            leafInsets: {
-              cinema: Number.parseFloat(getComputedStyle(document.querySelector(".zmh-cinema"), "::before").right),
-              offers: Number.parseFloat(getComputedStyle(document.querySelector(".zm-home-offers"), "::after").right),
-            },
-            assemblyMarkup: !!document.querySelector(".zmh-assembly-board--premium .zmh-preview-website")
-              && !!document.querySelector(".zmh-assembly-board--premium .zmh-preview-statuses"),
-            offenders: [...document.body.querySelectorAll("*")].map(el => {
-              const rect = el.getBoundingClientRect();
-              const overshoot = Math.max(rect.right - window.innerWidth, -rect.left, 0);
-              return { selector: el.tagName.toLowerCase() + (el.id ? "#" + el.id : "")
-                + (typeof el.className === "string" && el.className ? "." + el.className.trim().split(/\s+/).slice(0, 3).join(".") : ""),
-                left: Math.round(rect.left), right: Math.round(rect.right),
-                width: Math.round(rect.width), overshoot: Math.round(overshoot) };
-            }).filter(el => el.overshoot > 6).sort((a,b) => b.overshoot - a.overshoot).slice(0, 14),
           };
         });
-        for (const key of ["assembly", "magazine", "brief", "chapter", "lower", "portfolio", "process", "standard", "contact"]) {
-          assert.ok(info[key], "Missing homepage section " + key);
-          assert.ok(info[key].width <= info.viewport + 2, key + " exceeds viewport");
-        }
-        for (const key of ["brief", "chapter", "portfolio", "process", "standard", "contact"]) {
-          assert.ok(info[key].radius >= 12, key + " lacks a distinct card layout");
-        }
-        for (const key of ["assembly", "brief", "standard"]) {
-          assert.ok(info[key].background.includes(".webp"), key + " reverted to flat green-only background");
-        }
-        assert.equal(info.magazine.color, "rgb(21, 60, 43)", "Scrolled homepage lost its sage editorial canvas");
-        assert.equal(info.lower.color, "rgb(21, 60, 43)", "Lower homepage lost its sage editorial canvas");
-        assert.equal(info.chapters, 5, "Homepage story chapters disappeared");
-        assert.equal(info.videoCount, 1, "Original river hero video must remain");
-        assert.equal(info.assemblyMarkup, true, "Interactive process illustration missing after hydration");
-        assert.ok(info.leafInsets.cinema >= 0 && info.leafInsets.offers >= 0,
-          "Decorative ferns may not extend past section boundaries: " + JSON.stringify(info.leafInsets));
+        assert.equal(info.originalBoard, true, "Previous illustrated process board not restored");
+        assert.equal(info.experimentalBoard, false, "Recent premium preview still replaces the original board");
+        assert.equal(info.experimentalMagazine, false, "Experimental scroll magazine still active");
+        assert.equal(info.videoCount, 1, "Stream film must remain in opening");
+        assert.equal(info.lowerStreamVideos, 0, "Stream must not repeat below opening");
+        assert.equal(info.slideCount, 3, "Three free-offer slides must remain");
+        assert.equal(info.chapterCount, 5, "Five original story chapters must remain");
+        assert.equal(info.hasForm, true, "Contact form was removed");
+        assert.equal(info.primaryOrder, true, "Offer cards should appear before secondary social links");
+        assert.ok(info.dimensions.every(n => n > 0), "A homepage section is missing or hidden");
         assert.ok(info.scrollWidth <= info.viewport + 8,
-          "Homepage horizontal overflow: " + info.scrollWidth + " / " + info.viewport + "px; elements: " + JSON.stringify(info.offenders));
-        return { sageSections: 2, cards: 6, chapters: info.chapters, photoBackdrops: 3 };
+          "Horizontal overflow: " + info.scrollWidth + " / " + info.viewport);
+        return info;
       });
     }
     if (["desktop", "mobile", "compact"].includes(size.name)) {
