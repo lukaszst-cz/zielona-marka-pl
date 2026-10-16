@@ -101,3 +101,20 @@ test("global forest theme never overrides the concept's light UI", async () => {
   assert.ok(concept.includes("var(--zm-ds-paper)"));
   assert.ok(concept.includes("var(--zm-ds-forest-deep)"));
 });
+
+test("gallery and inquiry form share the chosen material without a second click", async () => {
+  const gallery = await read("app/bezplatna-koncepcja-strony/ConceptShowcase.tsx");
+  const form = await read("app/bezplatna-koncepcja-strony/ConceptRequestForm.tsx");
+  const css = await read("app/bezplatna-koncepcja-strony/concept-unified-ui.css");
+  assert.ok(gallery.includes("onClick={()=>selectMode(item.mode)}"));
+  assert.ok(gallery.includes("onKeyDown={onTabsKeyDown}"));
+  assert.ok(gallery.includes('event.key === "ArrowRight"'));
+  assert.ok(gallery.includes("new CustomEvent"));
+  assert.ok(form.includes('className="zm-concept-picked"'));
+  assert.ok(form.includes('className="zm-concept-change"'));
+  assert.ok(form.includes('name="mode"'));
+  assert.ok(form.includes('window.dispatchEvent(new CustomEvent("zm-concept-mode"'));
+  assert.ok(css.includes("scroll-snap-type:x mandatory"), "Mobile preview choices must be compact");
+  assert.ok(css.includes("flex:0 0 min(235px,76vw)"), "Mobile tab widths must prevent long vertical stacks");
+  assert.ok(css.includes(".zm-concept-form-grid"));
+});
