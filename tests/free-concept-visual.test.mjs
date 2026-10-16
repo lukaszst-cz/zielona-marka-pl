@@ -51,6 +51,14 @@ test("form receives gallery selection and keeps privacy safeguards", async () =>
   assert.ok(form.includes("nie oznacza zgody na inne wiadomości marketingowe"));
 });
 
+test("native concept submission retains the selected goal when JavaScript is unavailable", async () => {
+  const form = await read("app/bezplatna-koncepcja-strony/ConceptRequestForm.tsx");
+  const endpoint = await read("app/api/inquiries/route.ts");
+  assert.match(form, /name="purpose"/);
+  assert.match(endpoint, /\["Cel", plain\(payload\.goal\) \|\| plain\(payload\.purpose\)\]/);
+  assert.match(endpoint, /payload\.goal, payload\.purpose, payload\.sales/);
+});
+
 test("the first screen still uses the shared light page hero", async () => {
   const page = await read("app/bezplatna-koncepcja-strony/page.tsx");
   const styles = await read("app/bezplatna-koncepcja-strony/shared-hero.css");
