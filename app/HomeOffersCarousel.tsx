@@ -9,7 +9,7 @@ const slides = [
     name: "Mini audyt",
     title: "Zobacz, co dziś",
     accent: "utrudnia klientom kontakt.",
-    description: "Bezpłatnie wskażę jedną najważniejszą przeszkodę w wersji mobilnej, ofercie, kontakcie lub widoczności i pokażę zmianę, od której warto zacząć.",
+    description: "Pokaż mi obecną stronę. Wskażę jedną rzecz, która może utrudniać klientom kontakt — i zaproponuję, jak ją poprawić.",
     action: "Odbierz bezpłatny mini audyt",
     href: "/modernizacja-strony#miniaudyt",
     benefits: "Jedna konkretna rekomendacja · Bez zobowiązań",
@@ -24,7 +24,7 @@ const slides = [
     name: "Mapa Szans",
     title: "Od pierwszego wejścia",
     accent: "do dobrej rozmowy.",
-    description: "Bezpłatna Mapa Szans pokaże prostą drogę od wejścia na stronę, przez właściwe pytania w formularzu, aż do sprawnej obsługi zapytania.",
+    description: "Przyjrzymy się drodze klienta: co widzi na stronie, o co pytamy w formularzu i co dzieje się po wysłaniu wiadomości. Otrzymasz czytelny plan pierwszych usprawnień.",
     action: "Odbierz bezpłatną Mapę Szans",
     href: "/kontakt",
     benefits: "Strona · Zapytanie · Kolejny krok",
@@ -36,7 +36,7 @@ const slides = [
     name: "Bezpłatna koncepcja",
     title: "Zobacz swoją firmę",
     accent: "w nowej odsłonie.",
-    description: "Zamów bezpłatną, poglądową koncepcję nowej odsłony strony WWW, logo albo gazetki reklamowej lub sprzedażowej. Wybierasz jeden materiał i poznajesz możliwy kierunek zmian.",
+    description: "Zastanawiasz się, jak mogłaby wyglądać Twoja nowa strona, logo albo gazetka? Wybierz jeden materiał. Przygotuję poglądowy kierunek, który pomoże Ci podjąć decyzję.",
     action: "Zamów bezpłatną koncepcję",
     href: "/bezplatna-koncepcja-strony",
     benefits: "WWW · Logo · Gazetki · Bez zobowiązań",
@@ -115,7 +115,7 @@ export default function HomeOffersCarousel() {
           <p className="zmh-eyebrow">DOBRY POCZĄTEK / BEZPŁATNIE</p>
           <h2 id="free-start-title">Zobacz możliwości <em>dla swojej firmy.</em></h2>
         </div>
-        <p>Mini audyt, Mapa Szans lub indywidualna koncepcja wyglądu. Wybierz pierwszy krok, zobacz przykład i zdecyduj bez presji.</p>
+        <p>Nie musisz od razu zamawiać strony. Możesz zacząć od mini audytu, Mapy Szans albo indywidualnej koncepcji wyglądu — i ocenić, co pasuje do Twojej firmy.</p>
       </header>
       <div className="zm-home-carousel" role="region" aria-roledescription="karuzela" aria-label="Trzy bezpłatne propozycje dla firmy"
         onTouchStart={event => {
@@ -162,7 +162,7 @@ export default function HomeOffersCarousel() {
             </div>
             <button type="button" onClick={() => show(1)} aria-label="Następny slajd">→</button>
           </div>
-          <p>Każdy bezpłatny materiał dotyczy jednej firmy i służy wyborowi pierwszego kroku. Bez zobowiązania do dalszej współpracy. Mini audyt nie zastępuje pełnego audytu, Mapa Szans strategii, a koncepcja wizualna kompletnego projektu do wdrożenia.</p>
+          <p>Każda bezpłatna propozycja dotyczy jednej firmy. Nie zobowiązuje do zamówienia usług. Mini audyt nie jest pełnym audytem, Mapa Szans nie zastępuje strategii, a koncepcja wizualna nie jest gotowym projektem do wdrożenia.</p>
         </div>
       </div>
     </section>
