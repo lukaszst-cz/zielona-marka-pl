@@ -42,7 +42,7 @@ export default function LeadFlowDemo({ variant }: { variant: Variant }) {
   }
 
   return <div className="leadflow-demo">
-    <header><span>INTERAKTYWNE DEMO · NIC NIE WYSYŁAMY</span><h2>{c.title}</h2><p>Tak klient może przekazać dane potrzebne do odpowiedzi, wyceny lub rezerwacji.</p></header>
+    <header><span>INTERAKTYWNE DEMO · NIC NIE WYSYŁAMY</span><h2>{c.title}</h2><p>Tak może wyglądać zgłoszenie — klient podaje dane, których naprawdę potrzebujesz do odpowiedzi.</p></header>
     {variant === "beauty" && <div className="booksy-note"><b>REZERWACJA DOBRANA DO SALONU</b><span>Ten etap może otworzyć Booksy, inny system, formularz, telefon lub WhatsApp. Booksy nie jest obowiązkowe.</span></div>}
     {!summary ? <form onSubmit={submit}>
       <label>{c.serviceLabel}<select name="service" required defaultValue=""><option value="" disabled>Wybierz usługę</option>{c.services.map(service => <option key={service}>{service}</option>)}</select></label>
@@ -51,6 +51,6 @@ export default function LeadFlowDemo({ variant }: { variant: Variant }) {
       {variant !== "beauty" && <label>Zdjęcia <span>(w prawdziwym wdrożeniu)</span><input type="file" disabled /></label>}
       <label>Telefon lub e-mail<input name="contact" required placeholder="Jak firma ma odpowiedzieć?" /></label>
       <button className="button" type="submit">Zasymuluj zgłoszenie <span>↗</span></button>
-    </form> : <div className="leadflow-result"><span>GOTOWE ZGŁOSZENIE</span><h3>{summary.service}</h3><p>{summary.details}</p><dl><div><dt>Termin</dt><dd>{summary.date}</dd></div><div><dt>Kontakt</dt><dd>{summary.contact}</dd></div></dl><small>W prawdziwym wdrożeniu firma otrzymuje takie podsumowanie w panelu lub e-mailu.</small><button type="button" onClick={() => setSummary(null)}>← Spróbuj ponownie</button></div>}
+    </form> : <div className="leadflow-result"><span>GOTOWE ZGŁOSZENIE</span><h3>{summary.service}</h3><p>{summary.details}</p><dl><div><dt>Termin</dt><dd>{summary.date}</dd></div><div><dt>Kontakt</dt><dd>{summary.contact}</dd></div></dl><small>W prawdziwej wersji takie podsumowanie może trafić do panelu firmy lub na e-mail.</small><button type="button" onClick={() => setSummary(null)}>← Spróbuj ponownie</button></div>}
   </div>;
 }
