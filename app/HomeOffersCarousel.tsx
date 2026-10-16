@@ -24,7 +24,7 @@ const slides = [
     name: "Mapa Szans",
     title: "Od pierwszego wejścia",
     accent: "do dobrej rozmowy.",
-    description: "Przyjrzymy się drodze klienta: co widzi na stronie, o co pytamy w formularzu i co dzieje się po wysłaniu wiadomości. Otrzymasz czytelny plan pierwszych usprawnień.",
+    description: "Bezpłatna Mapa Szans — przyjrzymy się drodze klienta od oferty, przez formularz, aż po odpowiedź na wiadomość. Otrzymasz czytelny plan pierwszych usprawnień.",
     action: "Odbierz bezpłatną Mapę Szans",
     href: "/kontakt",
     benefits: "Strona · Zapytanie · Kolejny krok",
