@@ -13,15 +13,23 @@ on:
       - "scripts/monitor-public-assets.mjs"
       - "scripts/public-asset-utils.mjs"
       - ".github/workflows/asset-monitor.yml"
+  workflow_run:
+    workflows: ["Public website browser QA"]
+    types: [completed]
   workflow_dispatch:
   schedule:
-    - cron: "25 5,17 * * *"
+    # Short-lived deployment version skew can disappear between twice-daily checks.
+    - cron: "25 * * * *"
 
 permissions:
   contents: read
 
 jobs:
   public-assets:
+    if: >-
+      ${{ github.event_name != 'workflow_run' ||
+          (github.event.workflow_run.head_branch == 'main' &&
+           github.event.workflow_run.conclusion != 'skipped') }}
     runs-on: ubuntu-latest
     timeout-minutes: 6
     steps:
