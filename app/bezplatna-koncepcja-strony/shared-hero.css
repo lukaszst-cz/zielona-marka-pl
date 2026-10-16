@@ -7,7 +7,7 @@
 .zm-public.zm-concept .page-hero h1 em{color:#367551;font-style:italic}
 .zm-public.zm-concept .page-hero .eyebrow{color:#376c4a;font-size:11px;letter-spacing:.15em}
 .zm-public.zm-concept .page-hero .eyebrow i{background:#427858}
-.zm-public.zm-concept .page-hero .zm-concept-lead{color:#4b5c53;font-size:clamp(16px,1.4vw,18px);line-height:1.72}
+.zm-public.zm-concept .page-hero .zm-concept-lead{color:#4b5c53!important;font-size:clamp(16px,1.4vw,18px);line-height:1.72}
 .zm-public.zm-concept .page-hero .zm-concept-lead strong{color:#1c4630}
 .zm-public.zm-concept .hero-actions .button{color:#fff;background:#132f22;border-radius:4px;min-height:54px;align-items:center}
 .zm-public.zm-concept .hero-actions .button:hover{background:#285a3e}
