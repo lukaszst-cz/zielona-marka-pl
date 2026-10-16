@@ -40,7 +40,7 @@ export default function BlogExplorer() {
         <span className="section-no">BLOG / ARTYKUŁY I WIEDZA</span>
         <h2>Znajdź odpowiedź na pytanie, które masz dziś.</h2>
       </div>
-      <p>O stronach internetowych, Google, druku i obsłudze klientów — z przykładami zamiast samych ogólników.</p>
+      <p>O stronach internetowych, Google, druku i obsłudze klientów, z przykładami zamiast samych ogólników.</p>
     </div>
 
     <div className="zm-blog-tools">
