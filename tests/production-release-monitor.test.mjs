@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import {
   missingPageMarkers, missingUiStyles, monitorRelease, probeScriptAsset, releasePages,
 } from "../scripts/monitor-public-release.mjs";
+import { cloudflareBuildState, waitForCloudflareBuild } from "../scripts/wait-for-cloudflare-build.mjs";
 
 test("checks exact public UI release markers instead of just HTTP 200", () => {
   assert.deepEqual(missingPageMarkers("<main>Opieka Mini</main>", ["care-plans", "Opieka Mini"]), ["care-plans"]);
@@ -87,4 +88,39 @@ test("stale hashed JS chunks are detected even when HTML is HTTP 200", async () 
     }),
   });
   assert.equal(valid.ok, true);
+});
+
+
+test("Cloudflare build barrier waits for matching production check and ignores unrelated checks", () => {
+  assert.deepEqual(cloudflareBuildState([]),
+    { kind: "waiting", detail: "Cloudflare build check not registered yet" });
+  assert.equal(cloudflareBuildState([{ name: "test", status: "completed", conclusion: "success" }]).kind, "waiting");
+  assert.equal(cloudflareBuildState([{ name: "Workers Builds: zielona-marka", status: "queued" }]).kind, "waiting");
+  assert.equal(cloudflareBuildState([{ name: "Workers Builds: zielona-marka", status: "completed", conclusion: "success" }]).kind, "ready");
+  assert.equal(cloudflareBuildState([{ name: "Workers Builds: zielona-marka", status: "completed", conclusion: "failure" }]).kind, "failed");
+  assert.equal(cloudflareBuildState([
+    { name: "Workers Builds: zielona-marka", status: "completed", conclusion: "failure", started_at: "2026-10-16T01:00:00Z" },
+    { name: "Workers Builds: zielona-marka", status: "completed", conclusion: "success", started_at: "2026-10-16T02:00:00Z" },
+  ]).kind, "ready", "The latest production build must decide status");
+});
+
+test("Cloudflare build barrier waits, fails on build error and refuses a timeout", async () => {
+  let calls = 0;
+  let sleeps = 0;
+  const success = await waitForCloudflareBuild({
+    lookup: async () => (++calls === 1 ? [] : [{ name: "Workers Builds: zielona-marka", status: "completed", conclusion: "success" }]),
+    sleep: async () => { sleeps += 1; },
+    attempts: 3,
+    intervalMs: 0,
+  });
+  assert.equal(success.kind, "ready");
+  assert.equal(success.attempt, 2);
+  assert.equal(sleeps, 1);
+  await assert.rejects(waitForCloudflareBuild({
+    lookup: async () => [{ name: "Workers Builds: zielona-marka", status: "completed", conclusion: "failure" }],
+    attempts: 1,
+  }), /Cloudflare build completed with failure/);
+  await assert.rejects(waitForCloudflareBuild({
+    lookup: async () => [], sleep: async () => {}, attempts: 2, intervalMs: 0,
+  }), /Timed out waiting for Cloudflare production build/);
 });

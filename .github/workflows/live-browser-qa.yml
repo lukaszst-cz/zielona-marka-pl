@@ -11,6 +11,12 @@ on:
 
 permissions:
   contents: read
+  checks: read
+
+# A new successful main CI supersedes an old test of a potentially stale deployment.
+concurrency:
+  group: public-website-browser-qa
+  cancel-in-progress: true
 
 jobs:
   browser-qa:
@@ -29,6 +35,13 @@ jobs:
         with:
           node-version: 22
           cache: npm
+      - name: Wait for matching Cloudflare production build
+        if: github.event_name == 'workflow_run'
+        timeout-minutes: 10
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DEPLOYMENT_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: node scripts/wait-for-cloudflare-build.mjs
       - name: Install isolated Chromium test runtime
         run: |
           mkdir -p /tmp/zm-browser-qa
