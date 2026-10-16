@@ -11,7 +11,7 @@ async function getSources(folder) {
   const batches = await Promise.all(names.map(async entry => {
     const path = join(folder, entry.name);
     if (entry.isDirectory()) return getSources(path);
-    return /\.(tsx|ts|jsx|js)$/.test(entry.name) ? [path] : [];
+    return /\.(tsx|ts|jsx|js|css)$/.test(entry.name) ? [path] : [];
   }));
   return batches.flat();
 }
