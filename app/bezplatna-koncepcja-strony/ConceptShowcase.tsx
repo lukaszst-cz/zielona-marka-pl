@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState, type KeyboardEvent } from "react";
 import Link from "../SafeLink";
 
 type Mode = "existing" | "new" | "logo" | "promo" | "sales";
@@ -25,15 +25,45 @@ function Illustration({ mode }: { mode: Mode }) {
 export default function ConceptShowcase() {
   const [selected, setSelected] = useState<Mode>("existing");
   const current = concepts.find(item => item.mode === selected) ?? concepts[0];
+  useEffect(() => {
+    const requested = new URLSearchParams(window.location.search).get("typ");
+    if (requested && concepts.some(item => item.mode === requested)) {
+      window.requestAnimationFrame(() => setSelected(requested as Mode));
+    }
+    const handleMode = (event: Event) => {
+      const mode = (event as CustomEvent<Mode>).detail;
+      if (concepts.some(item => item.mode === mode)) setSelected(mode);
+    };
+    window.addEventListener("zm-concept-mode", handleMode);
+    return () => window.removeEventListener("zm-concept-mode", handleMode);
+  }, []);
+  function selectMode(mode: Mode) {
+    setSelected(mode);
+    window.dispatchEvent(new CustomEvent("zm-concept-mode", { detail: mode }));
+  }
   function requestSelected() {
-    window.dispatchEvent(new CustomEvent("zm-concept-mode", { detail: selected }));
+    selectMode(selected);
+  }
+  function onTabsKeyDown(event: KeyboardEvent<HTMLButtonElement>) {
+    const currentIndex = concepts.findIndex(item => item.mode === selected);
+    const nextIndex = event.key === "ArrowRight" || event.key === "ArrowDown"
+      ? (currentIndex + 1) % concepts.length
+      : event.key === "ArrowLeft" || event.key === "ArrowUp"
+        ? (currentIndex + concepts.length - 1) % concepts.length
+        : event.key === "Home" ? 0
+          : event.key === "End" ? concepts.length - 1 : -1;
+    if (nextIndex < 0) return;
+    event.preventDefault();
+    const nextMode = concepts[nextIndex].mode;
+    selectMode(nextMode);
+    document.getElementById(`zv5-tab-${nextMode}`)?.focus();
   }
   return <section className="section zm-concept-gallery" id="mozliwosci" aria-labelledby="zm-concept-gallery-heading">
     <div className="shell">
       <div className="zv5-gallery-intro"><div><span className="zv5-kicker">CO MOŻEMY ZAPROPONOWAĆ</span><h2 id="zm-concept-gallery-heading">Pięć kierunków.<br/><em>Jedna bezpłatna propozycja.</em></h2></div><p>Zobacz pięć różnych przykładów: od strony WWW po gazetkę. Wybierz kierunek najbliższy Twojej firmie i napisz, co chcesz zmienić.</p></div>
       <div className="zv5-gallery-layout">
         <div className="zv5-tabs" role="tablist" aria-label="Wybierz rodzaj koncepcji">
-          {concepts.map((item,index)=><button type="button" key={item.mode} role="tab" id={`zv5-tab-${item.mode}`} aria-selected={selected===item.mode} aria-controls="zv5-preview-panel" className={selected===item.mode?"zv5-tab is-active":"zv5-tab"} onClick={()=>setSelected(item.mode)}><span>0{index+1}</span><b>{item.title}</b><small>{item.note}</small><i aria-hidden="true">↗</i></button>)}
+          {concepts.map((item,index)=><button type="button" key={item.mode} role="tab" id={`zv5-tab-${item.mode}`} aria-selected={selected===item.mode} aria-controls="zv5-preview-panel" className={selected===item.mode?"zv5-tab is-active":"zv5-tab"} tabIndex={selected===item.mode?0:-1} onKeyDown={onTabsKeyDown} onClick={()=>selectMode(item.mode)}><span>0{index+1}</span><b>{item.title}</b><small>{item.note}</small><i aria-hidden="true">↗</i></button>)}
         </div>
         <div id="zv5-preview-panel" className="zv5-preview-panel" role="tabpanel" aria-labelledby={`zv5-tab-${selected}`} tabIndex={0}>
           <div className="zv5-preview-top"><span>PRZYKŁADOWY KIERUNEK WIZUALNY</span><strong>0{concepts.indexOf(current)+1} / 05</strong></div>

@@ -314,3 +314,156 @@ html body .zm-public.zm-concept button:focus-visible{outline:3px solid #9bc18e;o
   html body .zm-public.zm-concept .zv5-tab{transition:none}
   html body .zm-public.zm-concept :is(.zv5-desktop,.zv5-phone){transform:none}
 }
+
+
+/* Concept UX refinement: the live preview stays near the choice on phones. */
+html body .zm-public.zm-concept .zm-concept-picked{
+  display:grid;
+  gap:7px;
+  padding:20px 22px;
+  border:1px solid #bfd3be;
+  border-radius:10px;
+  background:#edf4ea;
+  color:var(--zm-ds-ink);
+}
+html body .zm-public.zm-concept .zm-concept-picked>span{
+  color:#457255;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.1em;
+}
+html body .zm-public.zm-concept .zm-concept-picked>strong{
+  color:#173c2a;
+  font-size:clamp(18px,1.9vw,22px);
+  line-height:1.3;
+}
+html body .zm-public.zm-concept .zm-concept-picked>p{
+  margin:0;
+  color:#4f6657;
+  font-size:13px;
+  line-height:1.6;
+}
+html body .zm-public.zm-concept .zm-concept-change{
+  min-width:0;
+  border:0;
+  margin:0 0 5px;
+}
+html body .zm-public.zm-concept .zm-concept-change>summary{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  list-style:none;
+  cursor:pointer;
+  padding:9px 0 13px;
+  font-size:14px;
+  font-weight:700;
+  color:#265a3c;
+  border-bottom:1px solid #dce5d9;
+}
+html body .zm-public.zm-concept .zm-concept-change>summary::-webkit-details-marker{display:none}
+html body .zm-public.zm-concept .zm-concept-change>summary>span{font-size:21px;line-height:1}
+html body .zm-public.zm-concept .zm-concept-change[open]>summary>span{transform:rotate(45deg)}
+html body .zm-public.zm-concept .zm-concept-choice{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:9px;
+  padding:17px 0 7px;
+  margin:0;
+  border:0;
+}
+html body .zm-public.zm-concept .zm-concept-choice legend{
+  padding:0 0 13px;
+  margin:0;
+  font-size:13px;
+  line-height:1.5;
+  color:#435e4d;
+}
+html body .zm-public.zm-concept .zm-concept-choice label{
+  width:100%;
+  min-width:0;
+  margin:0;
+  align-items:flex-start;
+  border:1px solid #ccdbcc;
+  border-radius:8px;
+  padding:12px;
+  background:#f7faf5;
+  color:#234331;
+  font-size:13px;
+}
+html body .zm-public.zm-concept .zm-concept-choice label.is-selected{
+  border-color:#72a17c;
+  background:#e5f0e1;
+}
+html body .zm-public.zm-concept .zm-concept-fields-intro{
+  margin:4px 0 0;
+  font-size:14px;
+  line-height:1.6;
+  color:#526b5a;
+}
+html body .zm-public.zm-concept .zm-concept-form .zm-concept-form-foot{
+  color:#4b6554;
+  font-size:13px;
+  line-height:1.65;
+}
+html body .zm-public.zm-concept .zm-concept-success{
+  border:1px solid #b7d6b4;
+  background:#e9f4e5;
+  color:#1c3b27;
+  border-radius:12px;
+  box-shadow:none;
+}
+html body .zm-public.zm-concept .zm-concept-success :is(h3,p){color:#1c3b27}
+html body .zm-public.zm-concept .zm-concept-success a{color:#256b42}
+html body .zm-public.zm-concept .zv5-demo-brand-nature{
+  background:linear-gradient(150deg,rgba(22,57,34,.08),rgba(12,38,25,.18)),url("/concept-natura.jpg") center/cover no-repeat;
+}
+html body .zm-public.zm-concept .zv5-demo-brand-nature i{display:none}
+html body .zm-public.zm-concept .zv5-preview-cta{
+  display:inline-flex;
+  min-height:46px;
+  align-items:center;
+  justify-content:center;
+  padding:10px 17px;
+  border-radius:7px;
+  text-decoration:none;
+}
+@media(max-width:690px){
+  html body .zm-public.zm-concept .zv5-tabs{
+    display:flex;
+    flex-direction:row;
+    overflow-x:auto;
+    overscroll-behavior-inline:contain;
+    scroll-snap-type:x mandatory;
+    scroll-padding-inline:14px;
+    gap:10px;
+    padding:4px 2px 13px;
+    margin-bottom:7px;
+    scrollbar-width:thin;
+  }
+  html body .zm-public.zm-concept .zv5-tabs .zv5-tab{
+    flex:0 0 min(235px,76vw);
+    width:auto;
+    min-width:0;
+    min-height:92px;
+    scroll-snap-align:start;
+    display:grid;
+    grid-template-columns:22px minmax(0,1fr) 15px;
+    padding:15px;
+    gap:7px;
+    align-content:start;
+    border:1px solid #c2d5c5;
+    border-radius:9px;
+    background:#f8faf5;
+  }
+  html body .zm-public.zm-concept .zv5-tab small{font-size:11px;line-height:1.4}
+  html body .zm-public.zm-concept .zv5-preview-panel{margin-top:0}
+  html body .zm-public.zm-concept .zm-concept-choice{grid-template-columns:1fr}
+  html body .zm-public.zm-concept .zm-concept-picked{padding:17px 18px}
+  html body .zm-public.zm-concept .zv5-preview-stage{height:clamp(210px,58vw,270px)}
+  html body .zm-public.zm-concept .zv5-preview-bottom{gap:13px}
+  html body .zm-public.zm-concept .zv5-preview-cta{width:100%;text-align:center}
+}
+@media(prefers-reduced-motion:reduce){
+  html body .zm-public.zm-concept .zv5-tabs{scroll-behavior:auto}
+}

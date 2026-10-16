@@ -225,14 +225,21 @@ try {
       const form = page.locator("form.zm-concept-form");
       await form.waitFor({ state: "visible", timeout: 15000 });
       assert.equal(await form.locator('input[name="mode"]').count(), 5, "Missing project choices");
-      await form.locator('input[name="mode"][value="logo"]').check();
+      await page.locator("#zv5-tab-logo").click();
       await page.waitForFunction(() => {
         const radio = document.querySelector('form.zm-concept-form input[name="mode"][value="logo"]');
         return radio?.checked === true;
       }, null, { timeout: 10000 });
+      assert.equal(await page.locator("#zv5-tab-logo").getAttribute("aria-selected"), "true");
+      assert.ok((await form.locator(".zm-concept-picked").innerText()).includes("logo"),
+        "Form summary must follow the gallery selection");
+      await form.locator(".zm-concept-change summary").click();
+      await form.locator('input[name="mode"][value="new"]').check();
+      await page.waitForFunction(() =>
+        document.querySelector("#zv5-tab-new")?.getAttribute("aria-selected") === "true");
       assert.ok(await form.locator('textarea[name="details"]').isVisible(), "Description field hidden");
       assert.ok(await form.locator('input[name="consent"]').isVisible(), "Consent field hidden");
-      return { projectChoices: 5, selectedMode: "logo", fbclid: true };
+      return { projectChoices: 5, synchronizedBothWays: true, fbclid: true };
     });
     await check(size.name + ": Free concept page has readable contrast", async () => {
       await page.goto(base + "/bezplatna-koncepcja-strony?fbclid=qa-contrast", {
