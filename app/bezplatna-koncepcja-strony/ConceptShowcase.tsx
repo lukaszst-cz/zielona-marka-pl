@@ -28,7 +28,7 @@ export default function ConceptShowcase() {
   useEffect(() => {
     const requested = new URLSearchParams(window.location.search).get("typ");
     if (requested && concepts.some(item => item.mode === requested)) {
-      setSelected(requested as Mode);
+      window.requestAnimationFrame(() => setSelected(requested as Mode));
     }
     const handleMode = (event: Event) => {
       const mode = (event as CustomEvent<Mode>).detail;
