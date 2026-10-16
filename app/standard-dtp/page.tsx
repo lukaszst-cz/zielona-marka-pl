@@ -8,7 +8,7 @@ export const metadata: Metadata = {
  title: "Standard kontroli jakości DTP i Prepress",
  description: "Szczegółowa lista kontroli przed drukiem: PDF/X, spady, TrimBox, BleedBox, ICC, CMYK, overprint, obrazy, proofy, kody i introligatornia.",
  alternates:{canonical:"/standard-dtp"},
-  openGraph: { type: "website", url: "/standard-dtp", title: "Standard kontroli jakości DTP i prepress | Zielona Marka", description: "Szczegółowa lista kontroli przed drukiem: PDF/X, spady, TrimBox, BleedBox, ICC, CMYK, overprint, obrazy, proofy, kody i introligatornia.", images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Standard DTP marki Zielona Marka — przygotowanie plików do druku" }] },
+  openGraph: { type: "website", url: "/standard-dtp", title: "Standard kontroli jakości DTP i prepress | Zielona Marka", description: "Szczegółowa lista kontroli przed drukiem: PDF/X, spady, TrimBox, BleedBox, ICC, CMYK, overprint, obrazy, proofy, kody i introligatornia.", images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Standard DTP marki Zielona Marka: przygotowanie plików do druku" }] },
   twitter: { card: "summary_large_image", title: "Standard kontroli jakości DTP i prepress | Zielona Marka", description: "Szczegółowa lista kontroli przed drukiem: PDF/X, spady, TrimBox, BleedBox, ICC, CMYK, overprint, obrazy, proofy, kody i introligatornia.", images: ["/og.jpg"] },
 };
 const checks=[
@@ -31,7 +31,7 @@ export default function DtpStandardPage() {
       <nav className="qa-crumbs" aria-label="Ścieżka nawigacji"><Link href="/">Strona główna</Link><span aria-hidden="true">/</span><Link href="/standardy-jakosci">Jakość i normy</Link><span aria-hidden="true">/</span><span>DTP / Prepress</span></nav>
       <span className="eyebrow">STANDARDY / ZIELONA MARKA / ZM-DTP-QA-001</span>
       <h1 id="qa-dtp-heading">Przed drukiem <em>liczy się każdy szczegół.</em></h1>
-      <p>QA (ang. Quality Assurance) oznacza zapewnianie jakości. W DTP to sprawdzenie formatu, spadów, zdjęć, kolorów i pliku PDF przed przekazaniem materiału do drukarni — żeby wykryć problemy, zanim trafią do druku.</p>
+      <p>QA (ang. Quality Assurance) oznacza zapewnianie jakości. W DTP to sprawdzenie formatu, spadów, zdjęć, kolorów i pliku PDF przed przekazaniem materiału do drukarni, żeby wykryć problemy, zanim trafią do druku.</p>
       <div className="hero-actions qa-hero-actions">
         <a className="button" href="/downloads/zielona-marka-standard-dtp-prepress-qa-v3-1-korekta.pdf" download>Pobierz checklistę DTP · PDF <span aria-hidden="true">↓</span></a>
         <a className="text-link" href="#lista">Zobacz 12 obszarów kontroli <span aria-hidden="true">↓</span></a>
@@ -52,7 +52,7 @@ export default function DtpStandardPage() {
     </section>
 
     <section className="section shell qa-section" id="odbior">
-      <div className="section-head"><div><span className="section-no">ODSTĘPSTWA / WYNIK KONTROLI</span><h2>Co robimy, gdy znajdziemy błąd?</h2></div><p>Znaleziony błąd trzeba poprawić, a plik sprawdzić ponownie. Zapisuję wynik dla konkretnej wersji — żeby było jasne, co zostało zatwierdzone.</p></div>
+      <div className="section-head"><div><span className="section-no">ODSTĘPSTWA / WYNIK KONTROLI</span><h2>Co robimy, gdy znajdziemy błąd?</h2></div><p>Znaleziony błąd trzeba poprawić, a plik sprawdzić ponownie. Zapisuję wynik dla konkretnej wersji, żeby było jasne, co zostało zatwierdzone.</p></div>
       <div className="qa-statuses">
         <div><strong>PASS</strong><p>Przeprowadzono test, wynik spełnia kryterium i został udokumentowany.</p></div>
         <div><strong>REWORK</strong><p>Plik wymaga korekty oraz ponownego sprawdzenia.</p></div>
