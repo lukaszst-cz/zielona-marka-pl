@@ -6,24 +6,24 @@ import { saveQuoteTransfer } from "./QuoteTransfer";
 import { websiteBudget } from "./website-budget.mjs";
 
 const siteOptions = [
-  { id: "mini", name: "ZM Mini – 3 sekcje, bez formularza", price: 899 },
-  { id: "start", name: "ZM Start – kompletna strona", price: 1449 },
-  { id: "leadflow", name: "ZM LeadFlow – strona z formularzem", price: 4490 },
-  { id: "flow", name: "ZM Flow – strona i automatyzacja", price: 6900 },
+  { id: "mini", name: "ZM Mini — 3 sekcje, bez formularza", price: 899 },
+  { id: "start", name: "ZM Start — kompletna strona", price: 1449 },
+  { id: "leadflow", name: "ZM LeadFlow — strona z formularzem", price: 4490 },
+  { id: "flow", name: "ZM Flow — strona i automatyzacja", price: 6900 },
 ] as const;
 
 const careOptions = [
-  { id: "none", name: "Bez opieki – rozliczenie na zgłoszenie", monthly: 0 },
-  { id: "mini", name: "Opieka Mini – monitoring strony statycznej", monthly: 79 },
-  { id: "standard", name: "Opieka Standard – kontrola i zmiany", monthly: 249 },
-  { id: "plus", name: "Opieka Plus – szersze wsparcie", monthly: 490 },
+  { id: "none", name: "Bez opieki — rozliczenie na zgłoszenie", monthly: 0 },
+  { id: "mini", name: "Opieka Mini — monitoring strony statycznej", monthly: 79 },
+  { id: "standard", name: "Opieka Standard — kontrola i zmiany", monthly: 249 },
+  { id: "plus", name: "Opieka Plus — szersze wsparcie", monthly: 490 },
 ] as const;
 
 const hostingOptions = [
   { id: "own", name: "Mam już hosting", first: 0, next: 0 },
-  { id: "static", name: "Statyczna witryna – wariant bezpłatny, jeśli wystarczy", first: 0, next: 0 },
-  { id: "basic", name: "Hosting podstawowy – budżet orientacyjny", first: 200, next: 300 },
-  { id: "wordpress", name: "Hosting WordPress – budżet orientacyjny", first: 350, next: 500 },
+  { id: "static", name: "Statyczna witryna — wariant bezpłatny, jeśli wystarczy", first: 0, next: 0 },
+  { id: "basic", name: "Hosting podstawowy — budżet orientacyjny", first: 200, next: 300 },
+  { id: "wordpress", name: "Hosting WordPress — budżet orientacyjny", first: 350, next: 500 },
 ] as const;
 
 const pln = (value: number) => new Intl.NumberFormat("pl-PL", { maximumFractionDigits: 0 }).format(value) + " zł";
@@ -77,13 +77,13 @@ export default function TotalCostCalculator() {
     <div className="zm-total-fields">
       <div className="zm-field"><label htmlFor="zm-cost-site">1. Wykonanie strony</label>
         <select id="zm-cost-site" value={site} onChange={(event) => setSite(event.target.value as typeof site)}>
-          {siteOptions.map((item) => <option value={item.id} key={item.id}>{item.name} – od {pln(item.price)} netto</option>)}
+          {siteOptions.map((item) => <option value={item.id} key={item.id}>{item.name} — od {pln(item.price)} netto</option>)}
         </select>
       </div>
       <div className="zm-field"><label htmlFor="zm-cost-domain">2. Domena</label>
         <select id="zm-cost-domain" value={domainType} onChange={(event) => setDomainType(event.target.value)}>
-          <option value="new">Nowa domena .pl – wprowadź szacunkowe opłaty</option>
-          <option value="own">Mam już domenę – podam cenę jej odnowienia</option>
+          <option value="new">Nowa domena .pl — podaj szacunkowe opłaty</option>
+          <option value="own">Mam już domenę — podam cenę odnowienia</option>
         </select>
       </div>
       <div className="zm-cost-pair">
@@ -96,21 +96,21 @@ export default function TotalCostCalculator() {
         </select>
         <small>Kwoty dostawcy są przykładowymi budżetami, nie ofertą konkretnego operatora. Hosting 0 zł może wymagać spełnienia warunków planu bezpłatnego. SSL często bywa bezpłatny.</small>
       </div>
-      {hosting === "own" && <div className="zm-cost-pair"><div className="zm-field"><label htmlFor="zm-host-own-first">Hosting na pierwszy rok, zł netto</label><input id="zm-host-own-first" type="number" min={0} max={100000} value={ownHostingFirst} onChange={(e) => setOwnHostingFirst(cap(Number(e.target.value)))} /></div><div className="zm-field"><label htmlFor="zm-host-own-next">Hosting – roczne odnowienie, zł netto</label><input id="zm-host-own-next" type="number" min={0} max={100000} value={ownHostingNext} onChange={(e) => setOwnHostingNext(cap(Number(e.target.value)))} /></div></div>}
+      {hosting === "own" && <div className="zm-cost-pair"><div className="zm-field"><label htmlFor="zm-host-own-first">Hosting na pierwszy rok, zł netto</label><input id="zm-host-own-first" type="number" min={0} max={100000} value={ownHostingFirst} onChange={(e) => setOwnHostingFirst(cap(Number(e.target.value)))} /></div><div className="zm-field"><label htmlFor="zm-host-own-next">Hosting — roczne odnowienie, zł netto</label><input id="zm-host-own-next" type="number" min={0} max={100000} value={ownHostingNext} onChange={(e) => setOwnHostingNext(cap(Number(e.target.value)))} /></div></div>}
       <div className="zm-field"><label htmlFor="zm-cost-care">4. Opcjonalna opieka</label>
         <select id="zm-cost-care" value={care} onChange={(event) => setCare(event.target.value as typeof care)}>
-          {careOptions.map((item) => <option value={item.id} key={item.id}>{item.name} – {pln(item.monthly)} netto/mies.</option>)}
+          {careOptions.map((item) => <option value={item.id} key={item.id}>{item.name} — {pln(item.monthly)} netto/mies.</option>)}
         </select>
         <small>Opieka Mini przeznaczona jest wyłącznie dla prostych stron statycznych. Dla WordPressa lub sklepu zakres ustalany jest osobno.</small>
       </div>
       <fieldset className="zm-cost-extras"><legend>5. Dodatki jednorazowe</legend>
-        <label><input type="checkbox" checked={copywriting} onChange={(e) => setCopywriting(e.target.checked)} /> Pomoc w tekstach – od 350 zł netto</label>
-        <label><input type="checkbox" checked={googleProfile} onChange={(e) => setGoogleProfile(e.target.checked)} /> Uporządkowanie Profilu Firmy Google – od 390 zł netto</label>
+        <label><input type="checkbox" checked={copywriting} onChange={(e) => setCopywriting(e.target.checked)} /> Pomoc w tekstach — od 350 zł netto</label>
+        <label><input type="checkbox" checked={googleProfile} onChange={(e) => setGoogleProfile(e.target.checked)} /> Uporządkowanie Profilu Firmy Google — od 390 zł netto</label>
       </fieldset>
     </div>
     <div className="zm-total-results" aria-live="polite">
       <span className="section-no">TWÓJ ORIENTACYJNY BUDŻET</span>
-      <h3>Pełny koszt, bez ukrywania odnowień.</h3>
+      <h3>Sprawdź koszt nie tylko na start, ale także na kolejne lata.</h3>
       <dl>
         <div><dt>Wykonanie + dodatki (jednorazowo)</dt><dd>{pln(result.production)}</dd></div>
         <div><dt>Domena + hosting w 1. roku (zewnętrzne)</dt><dd>{pln(result.providerYear1)}</dd></div>
