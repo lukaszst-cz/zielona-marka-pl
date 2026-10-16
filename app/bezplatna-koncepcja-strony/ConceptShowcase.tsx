@@ -44,7 +44,7 @@ export default function ConceptShowcase() {
   function requestSelected() {
     selectMode(selected);
   }
-  function onTabsKeyDown(event: KeyboardEvent<HTMLDivElement>) {
+  function onTabsKeyDown(event: KeyboardEvent<HTMLButtonElement>) {
     const currentIndex = concepts.findIndex(item => item.mode === selected);
     const nextIndex = event.key === "ArrowRight" || event.key === "ArrowDown"
       ? (currentIndex + 1) % concepts.length
@@ -62,8 +62,8 @@ export default function ConceptShowcase() {
     <div className="shell">
       <div className="zv5-gallery-intro"><div><span className="zv5-kicker">CO MOŻEMY ZAPROPONOWAĆ</span><h2 id="zm-concept-gallery-heading">Pięć kierunków.<br/><em>Jedna bezpłatna propozycja.</em></h2></div><p>Zobacz pięć różnych przykładów: od strony WWW po gazetkę. Wybierz kierunek najbliższy Twojej firmie i napisz, co chcesz zmienić.</p></div>
       <div className="zv5-gallery-layout">
-        <div className="zv5-tabs" role="tablist" aria-label="Wybierz rodzaj koncepcji" onKeyDown={onTabsKeyDown}>
-          {concepts.map((item,index)=><button type="button" key={item.mode} role="tab" id={`zv5-tab-${item.mode}`} aria-selected={selected===item.mode} aria-controls="zv5-preview-panel" className={selected===item.mode?"zv5-tab is-active":"zv5-tab"} tabIndex={selected===item.mode?0:-1} onClick={()=>selectMode(item.mode)}><span>0{index+1}</span><b>{item.title}</b><small>{item.note}</small><i aria-hidden="true">↗</i></button>)}
+        <div className="zv5-tabs" role="tablist" aria-label="Wybierz rodzaj koncepcji">
+          {concepts.map((item,index)=><button type="button" key={item.mode} role="tab" id={`zv5-tab-${item.mode}`} aria-selected={selected===item.mode} aria-controls="zv5-preview-panel" className={selected===item.mode?"zv5-tab is-active":"zv5-tab"} tabIndex={selected===item.mode?0:-1} onKeyDown={onTabsKeyDown} onClick={()=>selectMode(item.mode)}><span>0{index+1}</span><b>{item.title}</b><small>{item.note}</small><i aria-hidden="true">↗</i></button>)}
         </div>
         <div id="zv5-preview-panel" className="zv5-preview-panel" role="tabpanel" aria-labelledby={`zv5-tab-${selected}`} tabIndex={0}>
           <div className="zv5-preview-top"><span>PRZYKŁADOWY KIERUNEK WIZUALNY</span><strong>0{concepts.indexOf(current)+1} / 05</strong></div>
