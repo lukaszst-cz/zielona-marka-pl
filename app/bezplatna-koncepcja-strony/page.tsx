@@ -9,6 +9,7 @@ import "./concept-v5-hero.css";
 import "./concept-v5-showcase.css";
 import "./concept-botanical-preview.css";
 import "./concept-unified-ui.css";
+import "./concept-brand.css";
 
 export const metadata: Metadata = {
   title: "Bezpłatna koncepcja strony, logo lub gazetki",
