@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "Strony internetowe Warszawa i okolice",
   description: "Strony WWW dla firm z Warszawy, Targówka, Białołęki, Marek, Ząbek, Zielonki, Kobyłki, Wołomina i Radzymina. Lokalna widoczność, formularze i wygodny kontakt.",
   alternates: { canonical: "/strony-internetowe" },
-  openGraph: { type: "website", url: "/strony-internetowe", title: "Strony internetowe Warszawa i okolice | Zielona Marka", description: "Strony WWW dla firm z Warszawy, Targówka, Białołęki, Marek, Ząbek, Zielonki, Kobyłki, Wołomina i Radzymina. Lokalna widoczność, formularze i wygodny kontakt.", images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Zielona Marka — strony WWW i narzędzia dla firm" }] },
+  openGraph: { type: "website", url: "/strony-internetowe", title: "Strony internetowe Warszawa i okolice | Zielona Marka", description: "Strony WWW dla firm z Warszawy, Targówka, Białołęki, Marek, Ząbek, Zielonki, Kobyłki, Wołomina i Radzymina. Lokalna widoczność, formularze i wygodny kontakt.", images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Zielona Marka: strony WWW i narzędzia dla firm" }] },
   twitter: { card: "summary_large_image", title: "Strony internetowe Warszawa i okolice | Zielona Marka", description: "Strony WWW dla firm z Warszawy, Targówka, Białołęki, Marek, Ząbek, Zielonki, Kobyłki, Wołomina i Radzymina. Lokalna widoczność, formularze i wygodny kontakt.", images: ["/og.jpg"] },
 };
 
@@ -28,7 +28,7 @@ const structuredData = [
   {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "Strony internetowe dla firm — Warszawa i okolice",
+    name: "Strony internetowe dla firm. Warszawa i okolice",
     url: "https://zielona-marka.pl/strony-internetowe",
     description: "Lokalne strony internetowe dla firm usługowych z Warszawy i okolic.",
     mainEntity: {
@@ -56,7 +56,7 @@ export default function LocalWebsitesHubPage() {
     <section className="page-hero shell">
       <span className="eyebrow"><i />WARSZAWA I OKOLICE · STRONY DLA FIRM</span>
       <h1>Strony internetowe dla lokalnych firm, które mają prowadzić do <em>konkretnego kontaktu.</em></h1>
-      <p>Projektuję strony dla firm z Warszawy i okolic. Pokazuję usługi, obszar działania i wygodny kontakt — tak, żeby klient już po chwili wiedział, czy trafił pod właściwy adres.</p>
+      <p>Projektuję strony dla firm z Warszawy i okolic. Pokazuję usługi, obszar działania i wygodny kontakt, tak, żeby klient już po chwili wiedział, czy trafił pod właściwy adres.</p>
       <div className="hero-actions"><Link className="button" href="/kontakt">Porozmawiajmy o stronie <span>↗</span></Link><a className="text-link" href="#lokalizacje">Wybierz lokalizację <span>↓</span></a></div>
     </section>
 
@@ -65,7 +65,7 @@ export default function LocalWebsitesHubPage() {
       <div><p>Sama nazwa miasta w nagłówku nie wystarczy. Liczy się to, co klient chce wiedzieć: dokąd dojeżdżasz, jak zamówić wycenę i co przygotować przed rozmową.</p><p>Strona główna, Profil Firmy Google, dane kontaktowe i lokalne podstrony powinny opowiadać tę samą historię. To pomaga wyszukiwarce zrozumieć obszar działania, a klientowi szybciej podjąć decyzję.</p></div>
     </section>
 
-    <section className="section shell"><div className="section-head"><div><span className="section-no">DLA MIKROFIRM</span><h2>Prosta wizytówka internetowa od 899 zł netto — 3 sekcje i materiały klienta.</h2></div><p>Czasem wystarczy jedna starannie przygotowana strona — z usługami i łatwym kontaktem. Domenę, hosting i opcjonalną opiekę rozliczamy oddzielnie.</p></div><Link className="button" href="/oferta#kalkulator-pelnego-kosztu">Sprawdź pełny koszt strony <span>↗</span></Link></section>
+    <section className="section shell"><div className="section-head"><div><span className="section-no">DLA MIKROFIRM</span><h2>Prosta wizytówka internetowa od 899 zł netto, 3 sekcje i materiały klienta.</h2></div><p>Czasem wystarczy jedna starannie przygotowana strona, z usługami i łatwym kontaktem. Domenę, hosting i opcjonalną opiekę rozliczamy oddzielnie.</p></div><Link className="button" href="/oferta#kalkulator-pelnego-kosztu">Sprawdź pełny koszt strony <span>↗</span></Link></section>
     <section className="section shell local-related" id="lokalizacje">
       <div><span className="section-no">OBSZAR DZIAŁANIA</span><h2>Wybierz miasto lub dzielnicę.</h2></div>
       <nav aria-label="Lokalizacje obsługiwane przez markę Zielona Marka">{areas.map(([name, href, copy]) => <Link key={href} href={href}><span><b>{name}</b><small>{copy}</small></span><span>↗</span></Link>)}</nav>
