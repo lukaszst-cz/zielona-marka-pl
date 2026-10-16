@@ -47,7 +47,7 @@ export default function HomeContactForm() {
     }
   }
 
-  if (sent) return <div className="zmh-form-success" role="status"><b>Dziękuję, wiadomość dotarła.</b><p>Zapoznam się z Twoją sprawą i odezwę się w sprawie kolejnego kroku.</p></div>;
+  if (sent) return <div className="zmh-form-success" role="status"><b>Dziękuję, wiadomość dotarła.</b><p>Przeczytam wiadomość i odezwę się, żeby porozmawiać o kolejnym kroku.</p></div>;
 
   return <form data-analytics-form="homepage_v5" method="post" action="/api/inquiries" onSubmit={submit}>
     <input className="form-trap" name="website_check" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" />
@@ -55,7 +55,7 @@ export default function HomeContactForm() {
       <label>Imię<input required name="name" maxLength={120} autoComplete="name" placeholder="Jak masz na imię?" /></label>
       <label>E-mail<input required name="email" maxLength={254} type="email" autoComplete="email" placeholder="twoj@email.pl" /></label>
     </div>
-    <label>Co chcesz ułatwić w swojej firmie?<textarea required name="message" maxLength={8000} rows={5} placeholder="Np. chcę lepiej pokazać usługi, sprzedawać vouchery albo uporządkować zapytania." /></label>
+    <label>Co dziś chciałbyś usprawnić w firmie?<textarea required name="message" maxLength={8000} rows={5} placeholder="Np. klienci pytają o cenę, ale nie piszą, o jaką usługę chodzi. Chcę im to ułatwić." /></label>
     <details className="zmh-extra-fields"><summary>Dodaj szczegóły, jeśli chcesz <span aria-hidden="true">+</span></summary>
       <div className="zmh-field-grid">
         <label>Telefon <span>(opcjonalnie)</span><input name="phone" maxLength={40} type="tel" autoComplete="tel" /></label>
