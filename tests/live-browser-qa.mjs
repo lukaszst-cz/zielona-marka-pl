@@ -132,6 +132,18 @@ try {
           }
         }
         assert.ok(metrics.text > 200, "Empty public page after content readiness wait");
+        const visibleNameForms = await page.evaluate(() => {
+          const text = [document.body.innerText, document.title,
+            document.querySelector('meta[name="description"]')?.content || '',
+            document.querySelector('meta[property="og:title"]')?.content || '',
+            document.querySelector('meta[property="og:description"]')?.content || ''].join(' ');
+          return [...text.matchAll(/zielon[\p{L}]*\s+mark[\p{L}]*/giu)].map(match => match[0]);
+        });
+        assert.deepEqual(
+          visibleNameForms.filter(value => value !== "Zielona Marka" && value !== "ZIELONA MARKA"),
+          [],
+          route + " uses a declined or inconsistent Zielona Marka name"
+        );
         const overlappingActions = await page.evaluate(() => {
           const visible = (node) => {
             const rect = node.getBoundingClientRect();
