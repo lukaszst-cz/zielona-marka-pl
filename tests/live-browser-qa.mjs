@@ -564,7 +564,7 @@ try {
         assert.ok(await page.locator(".zm-demo-layout-editorial").count());
         await page.getByLabel("Zakres wykonania").selectOption("mini");
         assert.ok(await page.getByText(/ZM Mini: 3 sekcje na materiałach klienta/).isVisible());
-        await page.getByLabel("Kolorystyka — niezależna od układu").selectOption("stone");
+        await page.getByLabel("Kolorystyka, niezależna od układu").selectOption("stone");
         assert.equal(await page.locator(".zm-demo-layout-editorial").count(), 1);
       });
       await check("Desktop: DTP wizard changes steps and quote is displayed", async () => {
