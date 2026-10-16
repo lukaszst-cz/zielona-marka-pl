@@ -391,7 +391,7 @@ test("QA jest wyjaśnione prostym językiem na każdej kluczowej podstronie", as
   const dtp = await (await render("/dtp")).text();
   assert.match(dtp, /kontroli pliku przed drukiem/i);
   const hub = await (await render("/standardy-jakosci")).text();
-  assert.match(hub, /sprawdzamy projekt, poprawiamy błędy/i);
+  assert.match(hub, /ustalam kryteria kontroli, sprawdzam działanie i dokumentuję wynik/i);
 });
 
 
