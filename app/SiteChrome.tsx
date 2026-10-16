@@ -12,7 +12,7 @@ export const offerGroups = [
     title: "Strony internetowe", description: "Projekt, koszt i opieka",
     links: [
       ["Strony WWW i pakiety", "/oferta"],
-      ["ZM Studio — stwórz przykład", "/projektuj-strone"],
+      ["ZM Studio: stwórz przykład", "/projektuj-strone"],
       ["Kalkulator kosztów", "/oferta#kalkulator-pelnego-kosztu"],
       ["Modernizacja strony", "/modernizacja-strony"],
       ["Bezpłatna koncepcja", "/bezplatna-koncepcja-strony"],
@@ -65,7 +65,7 @@ export function SiteHeader({ english = false }: { english?: boolean }) {
         ? <Link href="/en#services">Services</Link>
         : <details className="zm-offer-menu"><summary>Oferta <span aria-hidden="true">⌄</span></summary>
             <div className="zm-mega-menu">
-              <div className="zm-mega-intro"><strong>Co możemy dla Ciebie zrobić?</strong><p>Zajrzyj do usług i przykładów — łatwiej będzie wybrać, od czego zacząć.</p><div className="zm-mega-quick-actions"><Link href="/projektuj-strone">Zaprojektuj własną stronę ↗</Link><Link href="/oferta">Porównaj pakiety i ceny ↗</Link><Link href="/dtp">Projekt do druku ↗</Link></div></div>
+              <div className="zm-mega-intro"><strong>Co możemy dla Ciebie zrobić?</strong><p>Zajrzyj do usług i przykładów, łatwiej będzie wybrać, od czego zacząć.</p><div className="zm-mega-quick-actions"><Link href="/projektuj-strone">Zaprojektuj własną stronę ↗</Link><Link href="/oferta">Porównaj pakiety i ceny ↗</Link><Link href="/dtp">Projekt do druku ↗</Link></div></div>
               <div className="zm-mega-groups">{offerGroups.map((group) => <section key={group.title} className="zm-mega-group" aria-label={group.title}>
                 <h2>{group.title}</h2><p>{group.description}</p>
                 {group.links.map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}
@@ -85,7 +85,7 @@ export function SiteHeader({ english = false }: { english?: boolean }) {
               {group.links.map(([label, href]) => <Link href={href} key={href}>{label}</Link>)}
             </section>)}
             <section className="zm-mobile-menu-group" aria-label="O Zielonej Marce"><h2>Więcej informacji</h2>
-              <Link href="/praktyczne-narzedzia">Narzędzia</Link><Link href="/projektuj-strone">ZM Studio — kreator strony</Link><Link href="/jak-pracuje">Współpraca</Link><Link href="/standardy-jakosci">Jakość i ISO</Link><Link href="/standard-dtp">Standard DTP</Link>
+              <Link href="/praktyczne-narzedzia">Narzędzia</Link><Link href="/projektuj-strone">ZM Studio: kreator strony</Link><Link href="/jak-pracuje">Współpraca</Link><Link href="/standardy-jakosci">Jakość i ISO</Link><Link href="/standard-dtp">Standard DTP</Link>
             </section>
           </>}
         <Link href="/status" rel="nofollow">{english ? "Client area (PL)" : "Strefa klienta"}</Link>
@@ -98,13 +98,13 @@ export function SiteHeader({ english = false }: { english?: boolean }) {
 
 export function SiteFooter({ english = false }: { english?: boolean }) {
   return <footer className="zm-footer"><div className="zm-footer-inner">
-    <div className="zm-footer-brand"><Link href={english ? "/en" : "/"}><BrandSignature /></Link><p>{english ? "Websites and systems for businesses." : "Strony WWW, sklepy, prostsza obsługa klientów i materiały do druku — w jednym, spójnym stylu."}<br />{english ? "Warsaw, Targówek and nearby. Remote work across Poland." : "Warszawa, Targówek i okolice. Zdalnie w całej Polsce."}</p></div>
+    <div className="zm-footer-brand"><Link href={english ? "/en" : "/"}><BrandSignature /></Link><p>{english ? "Websites and systems for businesses." : "Strony WWW, sklepy, prostsza obsługa klientów i materiały do druku, w jednym, spójnym stylu."}<br />{english ? "Warsaw, Targówek and nearby. Remote work across Poland." : "Warszawa, Targówek i okolice. Zdalnie w całej Polsce."}</p></div>
     <div><h2>{english ? "Explore" : "Poznaj ofertę"}</h2><Link href={english ? "/en#services" : "/oferta"}>{english ? "Services" : "Oferta"}</Link><Link href={english ? "/en#projects" : "/realizacje"}>{english ? "Projects" : "Projekty"}</Link><Link href={english ? "/en#process" : "/jak-pracuje"}>{english ? "Working together" : "Współpraca"}</Link>{!english && <><Link href="/dtp">DTP i materiały do druku</Link><Link href="/standardy-jakosci">Standardy jakości i ISO</Link></>}<Link href="/status" rel="nofollow">{english ? "Client area (PL)" : "Strefa klienta"}</Link></div>
-    <div><h2>{english ? "Resources" : "Centrum zasobów"}</h2>{english ? <><Link href="/poradnik">Blog (PL)</Link><Link href="/praktyczne-narzedzia">Free zone and tools (PL)</Link></> : <><Link href="/poradnik">Blog</Link><Link href="/praktyczne-narzedzia">Narzędzia i Strefa Free</Link><Link href="/projektuj-strone">ZM Studio — projekt i wycena</Link><Link href="/projekty-flow">Projekty Flow</Link></>}</div>
+    <div><h2>{english ? "Resources" : "Centrum zasobów"}</h2>{english ? <><Link href="/poradnik">Blog (PL)</Link><Link href="/praktyczne-narzedzia">Free zone and tools (PL)</Link></> : <><Link href="/poradnik">Blog</Link><Link href="/praktyczne-narzedzia">Narzędzia i Strefa Free</Link><Link href="/projektuj-strone">ZM Studio: projekt i wycena</Link><Link href="/projekty-flow">Projekty Flow</Link></>}</div>
     <div><h2>{english ? "Contact" : "Porozmawiajmy"}</h2><a href="tel:+48450458466">+48 450 458 466</a><a href="mailto:kontakt@zielona-marka.pl">kontakt@zielona-marka.pl</a><div className="zm-footer-social-links">
       <a href={socialLinks.facebook} target="_blank" rel="noopener noreferrer"><Image src="/podpis-email/icon-facebook.png" width={22} height={22} alt="" unoptimized />Facebook <span aria-hidden="true">↗</span></a>
       <a href={socialLinks.instagram} target="_blank" rel="noopener noreferrer"><Image src="/podpis-email/icon-instagram.png" width={22} height={22} alt="" unoptimized />Instagram <span aria-hidden="true">↗</span></a>
-      <Link href="/" aria-label="Zielona Marka — strona internetowa"><Image src="/podpis-email/icon-www.png" width={22} height={22} alt="" unoptimized />WWW</Link>
+      <Link href="/" aria-label="Zielona Marka: strona internetowa"><Image src="/podpis-email/icon-www.png" width={22} height={22} alt="" unoptimized />WWW</Link>
       <a href="https://www.google.com/maps/search/?api=1&amp;query=Zielona%20Marka%20strony%20WWW%20Warszawa" target="_blank" rel="noopener noreferrer" aria-label="Wyszukaj markę Zielona Marka w Mapach Google"><Image src="/podpis-email/icon-google.png" width={22} height={22} alt="" unoptimized />Mapy Google <span aria-hidden="true">↗</span></a>
       <a href={socialLinks.github} target="_blank" rel="noopener noreferrer"><Image src="/icon-github-zielona-marka.svg" width={22} height={22} alt="" unoptimized />GitHub <span aria-hidden="true">↗</span></a>
     </div></div>

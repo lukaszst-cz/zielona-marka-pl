@@ -37,18 +37,18 @@ const pages = [
   "app/realizacje/transportflow/page.tsx",
 ];
 
-test("editorial pages use em dash for spaced punctuation", async () => {
+test("editorial pages contain no em dash punctuation", async () => {
   for (const path of pages) {
     const source = await read(path);
-    assert.ok(!source.includes(" – "), path + ": use an em dash (—) for sentence breaks");
+    assert.ok(!source.includes(String.fromCharCode(0x2014)), path + ": remove long em dash characters");
   }
 });
 
-test("main marketing pages use an actual em dash in natural copy", async () => {
+test("main marketing pages avoid long em dashes", async () => {
   for (const path of ["app/OrganicHome.tsx", "app/HomeOffersCarousel.tsx",
     "app/bezplatna-koncepcja-strony/page.tsx", "app/oferta/page.tsx",
     "app/kontakt/page.tsx", "app/modernizacja-strony/page.tsx"]) {
-    assert.match(await read(path), / — /, path + " should contain a proper em dash");
+    assert.doesNotMatch(await read(path), /\u2014/, path + " should not contain an em dash");
   }
 });
 

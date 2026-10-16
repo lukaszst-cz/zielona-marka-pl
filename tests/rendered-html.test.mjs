@@ -80,8 +80,8 @@ test("lokalne podstrony mają unikalną treść i działający kontakt", async (
 
 test("kluczowe statyczne podstrony mają własne metadata w head", async () => {
   const expected = [
-    ["/oferta", "Strony internetowe — cennik i koszt utrzymania", "Wizytówka od 899 zł netto", "https://zielona-marka.pl/oferta"],
-    ["/poradnik", "Blog — strony WWW, SEO, DTP i porady dla firm", "Blog Zielona Marka", "https://zielona-marka.pl/poradnik"],
+    ["/oferta", "Strony internetowe: cennik i koszt utrzymania", "Wizytówka od 899 zł netto", "https://zielona-marka.pl/oferta"],
+    ["/poradnik", "Blog: strony WWW, SEO, DTP i porady dla firm", "Blog Zielona Marka", "https://zielona-marka.pl/poradnik"],
     ["/dtp", "DTP, wizytówki, ulotki i przygotowanie do druku", "Projektowanie wizytówek", "https://zielona-marka.pl/dtp"],
     ["/opieka-nad-strona", "Opieka nad stroną, hosting i koszty utrzymania", "Ile kosztuje utrzymanie strony WWW?", "https://zielona-marka.pl/opieka-nad-strona"],
     ["/modernizacja-strony", "Modernizacja strony internetowej", "Ocena starej strony i plan modernizacji", "https://zielona-marka.pl/modernizacja-strony"],
@@ -100,7 +100,7 @@ test("kluczowe statyczne podstrony mają własne metadata w head", async () => {
 
 test("key service pages and new guides share their own Open Graph metadata", async () => {
   const pages = [
-    ["/oferta", "Strony internetowe — cennik"],
+    ["/oferta", "Strony internetowe: cennik"],
     ["/dtp", "DTP, wizytówki"],
     ["/projektuj-strone", "Kreator całej strony"],
     ["/kontakt", "Kontakt i wycena"],
@@ -241,8 +241,8 @@ test("Website quote tools render accurate default prices, with alternate conditi
   // cover calculations for each branch.
   const offerSource = await readFile(new URL("../app/TotalCostCalculator.tsx", import.meta.url), "utf8");
   const studioSource = await readFile(new URL("../app/WebsiteConfigurator.jsx", import.meta.url), "utf8");
-  assert.match(offerSource, /Posiadana domena — odnowienie w pierwszym roku/);
-  assert.match(studioSource, /Domena posiadana — koszt odnowienia w pierwszym roku/);
+  assert.match(offerSource, /Posiadana domena, odnowienie w pierwszym roku/);
+  assert.match(studioSource, /Domena posiadana, koszt odnowienia w pierwszym roku/);
   assert.match(studioSource, /ZM Mini: 3 sekcje na materiałach klienta, bez formularza/);
   assert.match(studioSource, /wycena indywidualna/);
   assert.match(studioSource, /saveQuoteTransfer/);
@@ -257,7 +257,7 @@ test("Company services and readable footer are consistent across current pages",
     const end = page.indexOf("</footer>", start);
     assert.ok(start >= 0 && end > start, route + ": footer missing");
     const footer = page.slice(start, end + 9);
-    assert.match(footer, /Strony WWW, sklepy, prostsza obsługa klientów i materiały do druku — w jednym, spójnym stylu/, route);
+    assert.match(footer, /Strony WWW, sklepy, prostsza obsługa klientów i materiały do druku, w jednym, spójnym stylu/, route);
     assert.ok(footer.includes("icon-github-zielona-marka.svg"), route + ": GitHub icon missing");
   }
   const style = await readFile(new URL("../app/premium-polish.css", import.meta.url), "utf8");
@@ -314,7 +314,7 @@ test("Brand services appear in two deliberately separated lines on all public pa
     assert.equal(response.status, 200, route);
     const html = await response.text();
     assert.match(html, /<small><span>STRONY I SKLEPY WWW · SYSTEMY CRM · DTP<\/span><span>DLA FIRM<\/span><\/small>/, route);
-    assert.match(html, /Strony WWW, sklepy, prostsza obsługa klientów i materiały do druku — w jednym, spójnym stylu\./, route);
+    assert.match(html, /Strony WWW, sklepy, prostsza obsługa klientów i materiały do druku, w jednym, spójnym stylu\./, route);
   }
   const styles = await readFile(new URL("../app/premium-polish.css", import.meta.url), "utf8");
   assert.match(styles, /brand-wordmark small span\{display:block;white-space:nowrap\}/);

@@ -30,7 +30,7 @@ export default function ConceptShowcase() {
   }
   return <section className="section zm-concept-gallery" id="mozliwosci" aria-labelledby="zm-concept-gallery-heading">
     <div className="shell">
-      <div className="zv5-gallery-intro"><div><span className="zv5-kicker">CO MOŻEMY ZAPROPONOWAĆ</span><h2 id="zm-concept-gallery-heading">Pięć kierunków.<br/><em>Jedna bezpłatna propozycja.</em></h2></div><p>Zobacz pięć różnych przykładów — od strony WWW po gazetkę. Wybierz kierunek najbliższy Twojej firmie i napisz, co chcesz zmienić.</p></div>
+      <div className="zv5-gallery-intro"><div><span className="zv5-kicker">CO MOŻEMY ZAPROPONOWAĆ</span><h2 id="zm-concept-gallery-heading">Pięć kierunków.<br/><em>Jedna bezpłatna propozycja.</em></h2></div><p>Zobacz pięć różnych przykładów: od strony WWW po gazetkę. Wybierz kierunek najbliższy Twojej firmie i napisz, co chcesz zmienić.</p></div>
       <div className="zv5-gallery-layout">
         <div className="zv5-tabs" role="tablist" aria-label="Wybierz rodzaj koncepcji">
           {concepts.map((item,index)=><button type="button" key={item.mode} role="tab" id={`zv5-tab-${item.mode}`} aria-selected={selected===item.mode} aria-controls="zv5-preview-panel" className={selected===item.mode?"zv5-tab is-active":"zv5-tab"} onClick={()=>setSelected(item.mode)}><span>0{index+1}</span><b>{item.title}</b><small>{item.note}</small><i aria-hidden="true">↗</i></button>)}

@@ -10,7 +10,7 @@ const industries = [
     id: "services", label: "Firma usługowa", brand: "Solidna Usługa",
     kicker: "USŁUGI / WARSZAWA I OKOLICE",
     title: "Fachowa obsługa. Jasne zasady. Spokojna współpraca.",
-    lead: "Poznaj nasze usługi i dowiedz się, jak wygląda współpraca — od pierwszego kontaktu do realizacji.",
+    lead: "Poznaj nasze usługi i dowiedz się, jak wygląda współpraca: od pierwszego kontaktu do realizacji.",
     services: ["Usługa podstawowa", "Realizacja indywidualna", "Stała obsługa"],
     about: "Pokazujemy, czym się zajmujemy, jak pracujemy i jak można się z nami skontaktować. Bez zbędnych obietnic.",
     question: "Jak wygląda współpraca?", answer: "Najpierw poznajemy zakres, ustalamy termin i przygotowujemy propozycję.",
@@ -62,14 +62,14 @@ const siteLayouts = [
   { id: "catalog", label: "Katalog ofertowy", description: "Szybki przegląd usług, katalog kart i spokojna, praktyczna ścieżka do kontaktu.", mark: "▧" },
 ];
 const plans = [
-  { id: "mini", label: "ZM Mini — 3 sekcje, bez formularza", amount: 899 },
-  { id: "start", label: "ZM Start — kompletna strona", amount: 1449 },
-  { id: "leadflow", label: "ZM LeadFlow — strona i formularz", amount: 4490 },
-  { id: "flow", label: "ZM Flow — strona i automatyzacja", amount: 6900 },
+  { id: "mini", label: "ZM Mini, 3 sekcje, bez formularza", amount: 899 },
+  { id: "start", label: "ZM Start, kompletna strona", amount: 1449 },
+  { id: "leadflow", label: "ZM LeadFlow, strona i formularz", amount: 4490 },
+  { id: "flow", label: "ZM Flow, strona i automatyzacja", amount: 6900 },
 ];
 const careOptions = [
   { id: "none", label: "Bez abonamentu", amount: 0 },
-  { id: "mini", label: "Opieka Mini — strona statyczna", amount: 79 },
+  { id: "mini", label: "Opieka Mini, strona statyczna", amount: 79 },
   { id: "standard", label: "Opieka Standard", amount: 249 },
   { id: "plus", label: "Opieka Plus", amount: 490 },
 ];
@@ -129,7 +129,7 @@ export default function WebsiteConfigurator() {
       ...(extraPages > 0 ? ["Dodatkowe podstrony"] : []),
       ...(extras.includes("booking") ? ["Rezerwacje"] : []),
       ...(extras.includes("crm") ? ["Mały CRM"] : []),
-      ...(extras.includes("contact") && plan === "mini" ? ["Formularz kontaktowy — poza ceną ZM Mini"] : []),
+      ...(extras.includes("contact") && plan === "mini" ? ["Formularz kontaktowy, poza ceną ZM Mini"] : []),
     ];
     return { project, firstYear: costs.firstYear, renewal: costs.nextYear,
       threeYears: costs.threeYears, careYear: costs.careYear, providerFirst: costs.providerFirst, manualItems };
@@ -157,12 +157,12 @@ export default function WebsiteConfigurator() {
   const businessName = safeText(brand, 56) || concept.brand;
   const locationName = safeText(place, 65) || "Twoja okolica";
   const features = [
-    { id: "contact", label: "Formularz zapytań", hint: plan === "mini" ? "nie jest w cenie — wycena indywidualna" : "w cenie wybranego pakietu" },
+    { id: "contact", label: "Formularz zapytań", hint: plan === "mini" ? "nie jest w cenie, wycena indywidualna" : "w cenie wybranego pakietu" },
     { id: "booking", label: "Rezerwacje wizyt", hint: "osobna wycena" },
     { id: "crm", label: "Mały CRM", hint: "osobna wycena" },
   ];
   const summary = [
-    "KONFIGURACJA STRONY WWW — ZM STUDIO",
+    "KONFIGURACJA STRONY WWW. ZM STUDIO",
     "Branża: " + concept.label + "; nazwa: " + businessName + "; obszar: " + locationName,
     "Kolory: " + theme.label + "; układ: " + (siteLayouts.find(x => x.id === siteLayout)?.label ?? "Klasyczny firmowy") + "; pakiet: " + selectedPlan.label,
     "Sekcje na stronie głównej: " + sectionsForPreview.join(", "),
@@ -197,8 +197,8 @@ export default function WebsiteConfigurator() {
           <input value={place} onChange={(event) => setPlace(event.target.value.slice(0, 65))} maxLength={65} placeholder="Np. Warszawa i okolice" />
         </label>
         <fieldset className="zm-creator-layouts" aria-label="Wybierz układ i wygląd strony">
-          <legend>Układ gotowej strony — wybierz kompozycję</legend>
-          <p>Warianty różnią się proporcjami nagłówka, układem oferty, sekcji i ścieżką kontaktu — nie tylko kolorami.</p>
+          <legend>Układ gotowej strony, wybierz kompozycję</legend>
+          <p>Warianty różnią się proporcjami nagłówka, układem oferty, sekcji i ścieżką kontaktu; nie tylko kolorami.</p>
           <div className="zm-creator-layout-grid">
             {siteLayouts.map((item) => <button type="button" key={item.id}
               aria-pressed={siteLayout === item.id} className={siteLayout === item.id ? "selected" : ""}
@@ -210,14 +210,14 @@ export default function WebsiteConfigurator() {
           </div>
         </fieldset>
         <div className="zm-creator-pair">
-          <label>Kolorystyka — niezależna od układu
+          <label>Kolorystyka, niezależna od układu
             <select value={palette} onChange={(event) => setPalette(event.target.value)}>
               {palettes.map((x) => <option key={x.id} value={x.id}>{x.label}</option>)}
             </select>
           </label>
           <label>Zakres wykonania
             <select value={plan} onChange={(event) => changePlan(event.target.value)}>
-              {plans.map((x) => <option key={x.id} value={x.id}>{x.label} — od {pln(x.amount)}</option>)}
+              {plans.map((x) => <option key={x.id} value={x.id}>{x.label}: od {pln(x.amount)}</option>)}
             </select>
           </label>
         </div>
@@ -240,7 +240,7 @@ export default function WebsiteConfigurator() {
         <div className="zm-creator-pair">
           <label>Dodatkowe podstrony
             <select value={extraPages} onChange={(e) => setExtraPages(Number(e.target.value))}>
-              {[0, 1, 2, 3, 5].map((n) => <option key={n} value={n}>{n === 0 ? "Nie potrzebuję" : n + " podstr."} {n ? "— wycena indywidualna" : ""}</option>)}
+              {[0, 1, 2, 3, 5].map((n) => <option key={n} value={n}>{n === 0 ? "Nie potrzebuję" : n + " podstr."} {n ? " wycena indywidualna" : ""}</option>)}
             </select>
           </label>
           <div className="zm-creator-extra">
@@ -263,27 +263,27 @@ export default function WebsiteConfigurator() {
           </label>
         </div>
         <div className="zm-creator-pair">
-          {domain === "new" ? <label>Domena — pierwszy rok, zł netto
+          {domain === "new" ? <label>Domena, pierwszy rok, zł netto
             <input type="number" min="0" max="100000" value={domainFirst} onChange={(e) => setDomainFirst(priceCap(e.target.value))} />
-          </label> : <label>Domena posiadana — koszt odnowienia w pierwszym roku, jeśli przypada (0 zł, gdy jest opłacona)
+          </label> : <label>Domena posiadana, koszt odnowienia w pierwszym roku, jeśli przypada (0 zł, gdy jest opłacona)
             <input type="number" min="0" max="100000" value={ownDomainFirst} onChange={(e) => setOwnDomainFirst(priceCap(e.target.value))} />
           </label>}
-          <label>Domena — odnowienie roczne, zł netto
+          <label>Domena, odnowienie roczne, zł netto
             <input type="number" min="0" max="100000" value={domainRenew} onChange={(e) => setDomainRenew(priceCap(e.target.value))} />
           </label>
         </div>
         {host === "own" && <div className="zm-creator-pair">
-          <label>Twój hosting — 1. rok, zł
+          <label>Twój hosting, 1. rok, zł
             <input type="number" min="0" max="100000" value={ownHostFirst} onChange={(e) => setOwnHostFirst(priceCap(e.target.value))} />
           </label>
-          <label>Twój hosting — odnowienie, zł
+          <label>Twój hosting, odnowienie, zł
             <input type="number" min="0" max="100000" value={ownHostRenew} onChange={(e) => setOwnHostRenew(priceCap(e.target.value))} />
           </label>
         </div>}
         <label>Opieka po publikacji
           <select value={care} onChange={(e) => setCare(e.target.value)}>
             {careOptions.filter((item) => item.id !== "mini" || simple).map((x) =>
-              <option key={x.id} value={x.id}>{x.label} — {pln(x.amount)}/mies.</option>)}
+              <option key={x.id} value={x.id}>{x.label}, {pln(x.amount)}/mies.</option>)}
           </select>
         </label>
         <p className="zm-creator-note">Domena i hosting to orientacyjne koszty zewnętrzne. Jeśli masz opłaconą domenę na pierwszy rok, pozostaw koszt jej odnowienia na 0 zł. Jeżeli w tym czasie termin wygasa, wpisz kwotę odnowienia, by wycena była rzetelna. Konto i faktura powinny należeć do klienta. Opieka Mini dotyczy tylko prostych stron statycznych.</p>
@@ -310,7 +310,7 @@ export default function WebsiteConfigurator() {
       <div className="zm-creator-preview-heading">
         <div>
           <span className="section-no">04 / PEŁNY PODGLĄD STRONY</span>
-          <h3>Cała przykładowa strona — od menu po stopkę.</h3>
+          <h3>Cała przykładowa strona: od menu po stopkę.</h3>
           <p>Wybierz jeden z pięciu prawdziwie różnych układów, niezależnie od kolorystyki. Przewiń podgląd od menu po stopkę. To projekt demonstracyjny; dodatkowe podstrony wymagają osobnego ustalenia zakresu.</p>
         </div>
         <div className="zm-creator-preview-modes" role="group" aria-label="Szerokość podglądu strony">
@@ -370,7 +370,7 @@ export default function WebsiteConfigurator() {
                 <span>Imię i nazwisko</span><span>Adres e-mail</span><span>W czym możemy pomóc?</span>
                 <b>Wyślij zapytanie ↗</b>
               </div>}
-              {extras.includes("booking") && <div className="zm-demo-inline-feature">Kalendarz rezerwacji — funkcja do indywidualnej wyceny</div>}
+              {extras.includes("booking") && <div className="zm-demo-inline-feature">Kalendarz rezerwacji, funkcja do indywidualnej wyceny</div>}
               {extras.includes("crm") && <div className="zm-demo-inline-feature">CRM działałby na zapleczu, nie jako publiczny element strony</div>}
             </section>}
           </div>

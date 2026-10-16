@@ -135,7 +135,7 @@ export default function ConceptRequestForm() {
         <option>Odświeżenie lub stworzenie znaku marki</option>
         <option>Lepsza prezentacja produktów i promocji</option>
         <option>Czytelna gazetka z ofertą i cenami</option>
-        <option>Nie wiem — proszę o sugestię</option>
+        <option>Nie wiem, proszę o sugestię</option>
       </select>
     </label>
     <label>Opowiedz o firmie i o tym, co chcesz zmienić
@@ -146,7 +146,7 @@ export default function ConceptRequestForm() {
       <span>Zapoznałem/-am się z <Link href="/polityka-prywatnosci">polityką prywatności</Link> i proszę o e-mailową odpowiedź dotyczącą tego zgłoszenia. Zgłoszenie nie oznacza zgody na inne wiadomości marketingowe.</span>
     </label>
     <button type="submit" disabled={submitting}>{submitting ? "Przesyłam zgłoszenie…" : "Zamów bezpłatną koncepcję ↗"}</button>
-    <p className="zm-concept-form-foot">Nie pytam o budżet na tym etapie. Formularz służy do zgłoszenia jednej bezpłatnej, poglądowej koncepcji — nie zamawia pełnego projektu ani gotowych plików do druku.</p>
+    <p className="zm-concept-form-foot">Nie pytam o budżet na tym etapie. Formularz służy do zgłoszenia jednej bezpłatnej, poglądowej koncepcji; nie zamawia pełnego projektu ani gotowych plików do druku.</p>
     {error && <p className="zm-concept-error" role="alert">{error}</p>}
   </form>;
 }

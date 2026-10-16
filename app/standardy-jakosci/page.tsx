@@ -4,8 +4,8 @@ import { SiteHeader, SiteFooter, QuickWhatsApp } from "../SiteChrome";
 import { QaDocumentCards, QaLocalNav } from "../QaStandardsNavigation";
 
 export const metadata: Metadata = {
-  title: "Jakość i normy ISO — standardy pracy i dokumenty",
-  description: "Poznaj standardy kontroli jakości marki Zielona Marka, proces odbioru projektów, zakres sprawdzania stron WWW i plików do druku oraz pobierz firmowe PDF. Uczciwe odniesienia do norm ISO — bez deklaracji certyfikacji.",
+  title: "Jakość i normy ISO, standardy pracy i dokumenty",
+  description: "Poznaj standardy kontroli jakości marki Zielona Marka, proces odbioru projektów, zakres sprawdzania stron WWW i plików do druku oraz pobierz firmowe PDF. Uczciwe odniesienia do norm ISO, bez deklaracji certyfikacji.",
   alternates: { canonical: "/standardy-jakosci" },
   openGraph: { type: "website", url: "/standardy-jakosci", title: "Standardy jakości i normy ISO | Zielona Marka", description: "Jak sprawdzamy strony, sklepy, CRM i pliki do druku? Procedury sprawdzania jakości, punkty odniesienia ISO oraz dokumenty PDF do pobrania." },
 };
@@ -16,7 +16,7 @@ export default function QualityHubPage() {
       <nav className="qa-crumbs" aria-label="Ścieżka nawigacji"><Link href="/">Strona główna</Link><span aria-hidden="true">/</span><span>Jakość i normy</span></nav>
       <span className="eyebrow">ZIELONA MARKA / ZASADY PRACY I KONTROLI</span>
       <h1>Jakość, którą można <em>sprawdzić, a nie tylko obiecać.</em></h1>
-      <p>QA (ang. Quality Assurance) oznacza zapewnianie jakości. W praktyce — zanim oddam stronę, sklep, CRM lub plik do druku, ustalam kryteria kontroli, sprawdzam działanie i dokumentuję wynik. Zakres testów dobieram do zlecenia.</p>
+      <p>QA (ang. Quality Assurance) oznacza zapewnianie jakości. W praktyce, zanim oddam stronę, sklep, CRM lub plik do druku, ustalam kryteria kontroli, sprawdzam działanie i dokumentuję wynik. Zakres testów dobieram do zlecenia.</p>
       <div className="hero-actions qa-hero-actions">
         <a className="button" href="#dokumenty">Pobierz standardy pracy <span aria-hidden="true">↓</span></a>
         <a className="text-link" href="#iso">Jak odnosimy się do ISO? <span aria-hidden="true">↓</span></a>
@@ -38,7 +38,7 @@ export default function QualityHubPage() {
     <section className="section shell qa-section" id="dokumenty">
       <div className="section-head"><div><span className="section-no">BEZPŁATNE MATERIAŁY / PDF</span><h2>Dokumenty, które możesz pobrać.</h2></div><p>Aktualne firmowe wersje procedur do przeczytania, zapisania lub wydrukowania. Bez podawania danych i bez formularza kontaktowego.</p></div>
       <QaDocumentCards />
-      <p className="qa-note-p">Wydanie 3.1 (z zachowaną treścią wydania 3.0) — opisuje zasady i zakres możliwych kontroli. Nie zastępuje wyniku technicznego badania konkretnego projektu.</p>
+      <p className="qa-note-p">Wydanie 3.1 (z zachowaną treścią wydania 3.0), opisuje zasady i zakres możliwych kontroli. Nie zastępuje wyniku technicznego badania konkretnego projektu.</p>
     </section>
 
     <section className="section shell qa-section" id="zakres">
@@ -54,7 +54,7 @@ export default function QualityHubPage() {
       <div className="qa-cards qa-cards--three">
         <article className="qa-card"><span className="qa-kicker">PROCES</span><h3>ISO 9001:2026</h3><p>Podstawy podejścia procesowego, dokumentowania wymagań, reagowania na niezgodności i doskonalenia.</p></article>
         <article className="qa-card"><span className="qa-kicker">OPROGRAMOWANIE</span><h3>ISO/IEC 25010:2023</h3><p>Model jakości pomocny przy definiowaniu oczekiwań wobec produktu cyfrowego i jego testów.</p></article>
-        <article className="qa-card"><span className="qa-kicker">POLIGRAFIA</span><h3>ISO 15930, 12647 i inne</h3><p>Standardy określające wybrane aspekty plików PDF/X, druku, proofingu i oceny barwy — zależnie od technologii.</p></article>
+        <article className="qa-card"><span className="qa-kicker">POLIGRAFIA</span><h3>ISO 15930, 12647 i inne</h3><p>Standardy określające wybrane aspekty plików PDF/X, druku, proofingu i oceny barwy, zależnie od technologii.</p></article>
       </div>
       <div className="qa-standards-note"><strong>Stan faktyczny:</strong> Zielona Marka ma własne procedury zapewniania jakości, inspirowane odpowiednimi normami. Nie oznacza to certyfikacji ISO 9001, zewnętrznego audytu, akredytacji ani pełnej zgodności z każdą przywołaną normą. Certyfikowane wdrożenie jest osobnym przedsięwzięciem.</div>
       <p className="qa-note-p">Od października 2026 rozwijamy wewnętrzny system zapisów jakości: raporty dla konkretnych wersji projektów, rejestr niezgodności, decyzje o odbiorze oraz okresowe przeglądy. Etap wdrażania nie oznacza zakończonego audytu zgodności. Publiczne PDF-y wydania 3.1 zawierają rozdziały operacyjne oraz zachowane strony wydania 3.0. Nadal nie stanowią certyfikatu ISO.</p>

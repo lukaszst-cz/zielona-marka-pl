@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Jak przygotować PDF do druku? Spady, CMYK i PDF/X",
   description: "Praktyczna lista do kontroli plików PDF przed drukiem: format, spady, marginesy, fonty, rozdzielczość obrazów, ICC i PDF/X. Bez typowych błędów produkcyjnych.",
   alternates: { canonical: "/poradnik/jak-przygotowac-pdf-do-druku" },
-  openGraph: { type: "article", url: "/poradnik/jak-przygotowac-pdf-do-druku", title: "Jak przygotować PDF do druku? Spady, CMYK i PDF/X | Zielona Marka", description: "Praktyczna lista do kontroli plików PDF przed drukiem: format, spady, marginesy, fonty, rozdzielczość obrazów, ICC i PDF/X. Bez typowych błędów produkcyjnych.", images: [{ url: "/og-poradniki-zielona-marka.png", width: 1200, height: 630, alt: "Blog Zielona Marka — poradniki dla firm" }], publishedTime: "2026-10-14", modifiedTime: "2026-10-14" },
+  openGraph: { type: "article", url: "/poradnik/jak-przygotowac-pdf-do-druku", title: "Jak przygotować PDF do druku? Spady, CMYK i PDF/X | Zielona Marka", description: "Praktyczna lista do kontroli plików PDF przed drukiem: format, spady, marginesy, fonty, rozdzielczość obrazów, ICC i PDF/X. Bez typowych błędów produkcyjnych.", images: [{ url: "/og-poradniki-zielona-marka.png", width: 1200, height: 630, alt: "Blog Zielona Marka: poradniki dla firm" }], publishedTime: "2026-10-14", modifiedTime: "2026-10-14" },
   twitter: { card: "summary_large_image", title: "Jak przygotować PDF do druku? Spady, CMYK i PDF/X | Zielona Marka", description: "Praktyczna lista do kontroli plików PDF przed drukiem: format, spady, marginesy, fonty, rozdzielczość obrazów, ICC i PDF/X. Bez typowych błędów produkcyjnych.", images: ["/og-poradniki-zielona-marka.png"] },
 };
 
@@ -52,7 +52,7 @@ export default function GuidePrintPdf() {
     <article>
       <header className="page-hero shell"><GuideBreadcrumbs current="Jak przygotować PDF do druku?" /><span className="eyebrow"><i />PORADNIK DTP · 14.10.2026 · 6 MIN</span>
         <h1>Jak przygotować PDF do drukarni? <em>Spady, CMYK i PDF/X bez zgadywania.</em></h1>
-        <p>Projekt wygląda dobrze na monitorze? To jeszcze nie znaczy, że jest gotowy do druku. Przed wysyłką sprawdź siedem rzeczy — od spadów i formatu po kolory i czcionki.</p>
+        <p>Projekt wygląda dobrze na monitorze? To jeszcze nie znaczy, że jest gotowy do druku. Przed wysyłką sprawdź siedem rzeczy: od spadów i formatu po kolory i czcionki.</p>
         <div className="hero-actions"><Link className="button" href="/dtp">Sprawdź ofertę przygotowania do druku ↗</Link><Link className="text-link" href="/poradnik">Wróć do bloga ↗</Link></div>
       </header>
       <section className="section shell"><div className="section-head"><div><span className="section-no">LISTA KONTROLNA</span><h2>Siedem kontroli przed oddaniem pliku.</h2></div><p>Nie ma jednego ustawienia eksportu, które pasuje do każdej drukarni. Poproś o specyfikację, a dopiero potem przygotuj plik.</p></div>

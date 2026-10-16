@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Ile kosztuje projekt gazetki reklamowej? Skład i aktualizacje",
   description: "Od czego zależy cena projektu gazetki reklamowej? Liczba stron, produkty, zdjęcia, teksty, pliki do druku i rabaty za kolejne wydania. Sprawdź kalkulator DTP.",
   alternates: { canonical: "/poradnik/ile-kosztuje-projekt-gazetki" },
-  openGraph: { type: "article", url: "/poradnik/ile-kosztuje-projekt-gazetki", title: "Ile kosztuje projekt gazetki reklamowej? Skład i aktualizacje | Zielona Marka", description: "Od czego zależy cena projektu gazetki reklamowej? Liczba stron, produkty, zdjęcia, teksty, pliki do druku i rabaty za kolejne wydania. Sprawdź kalkulator DTP.", images: [{ url: "/og-poradniki-zielona-marka.png", width: 1200, height: 630, alt: "Blog Zielona Marka — poradniki dla firm" }], publishedTime: "2026-10-14", modifiedTime: "2026-10-14" },
+  openGraph: { type: "article", url: "/poradnik/ile-kosztuje-projekt-gazetki", title: "Ile kosztuje projekt gazetki reklamowej? Skład i aktualizacje | Zielona Marka", description: "Od czego zależy cena projektu gazetki reklamowej? Liczba stron, produkty, zdjęcia, teksty, pliki do druku i rabaty za kolejne wydania. Sprawdź kalkulator DTP.", images: [{ url: "/og-poradniki-zielona-marka.png", width: 1200, height: 630, alt: "Blog Zielona Marka: poradniki dla firm" }], publishedTime: "2026-10-14", modifiedTime: "2026-10-14" },
   twitter: { card: "summary_large_image", title: "Ile kosztuje projekt gazetki reklamowej? Skład i aktualizacje | Zielona Marka", description: "Od czego zależy cena projektu gazetki reklamowej? Liczba stron, produkty, zdjęcia, teksty, pliki do druku i rabaty za kolejne wydania. Sprawdź kalkulator DTP.", images: ["/og-poradniki-zielona-marka.png"] },
 };
 
@@ -84,7 +84,7 @@ export default function PriceGuideDtp() {
         <div className="faq-list">{faq.map(([q,a],i)=><details key={q} open={i===0}><summary><span>{String(i+1).padStart(2,"0")}</span>{q}<i>+</i></summary><p>{a}</p></details>)}</div>
       </section>
             <div className="shell zm-article-author-wrap"><GuideAuthor published="14 października 2026" updated="14 października 2026" /></div>
-      <section className="section guide-cta"><div className="shell"><span className="section-no">WYCENA Z PEŁNYM ZAKRESEM</span><h2>Wybierz liczbę stron, materiały i cykl wydań.</h2><p>Kalkulator pokaże pierwszy koszt, prognozę następnych wydań i sumę serii. Nie musisz znać wszystkich szczegółów — można je doprecyzować przed zleceniem.</p><Link className="button" href="/dtp#kalkulator-dtp">Otwórz konfigurator DTP ↗</Link></div></section>
+      <section className="section guide-cta"><div className="shell"><span className="section-no">WYCENA Z PEŁNYM ZAKRESEM</span><h2>Wybierz liczbę stron, materiały i cykl wydań.</h2><p>Kalkulator pokaże pierwszy koszt, prognozę następnych wydań i sumę serii. Nie musisz znać wszystkich szczegółów, można je doprecyzować przed zleceniem.</p><Link className="button" href="/dtp#kalkulator-dtp">Otwórz konfigurator DTP ↗</Link></div></section>
     </article>
   </main><QuickWhatsApp/><SiteFooter/></>;
 }

@@ -23,10 +23,10 @@ export const metadata: Metadata = {
 const elements = [
   ["01", "Oferta podzielona na konkretne zabiegi", "Klient powinien szybko znaleźć interesującą usługę bez przebijania się przez ogólny opis salonu. Warto grupować zabiegi logicznie: twarz, ciało, brwi i rzęsy, włosy, masaż albo inne rzeczywiste kategorie używane w danym miejscu."],
   ["02", "Cena albo jasna zasada wyceny", "Jeżeli zabieg ma stałą cenę, warto ją pokazać. Jeżeli koszt zależy od wariantu, czasu lub konsultacji, lepiej podać widełki i wyjaśnić, od czego zależą. Brak informacji o cenie często zmusza klienta do dodatkowej wiadomości tylko po to, żeby poznać podstawy."],
-  ["03", "Efekty i zdjęcia, które można zweryfikować", "W branży beauty zdjęcia są ważnym dowodem jakości. Najlepiej pokazywać prawdziwe wnętrze, zespół oraz efekty wykonanych usług za zgodą klientów. Galeria nie powinna zastępować opisu zabiegu — ma go uzupełniać."],
+  ["03", "Efekty i zdjęcia, które można zweryfikować", "W branży beauty zdjęcia są ważnym dowodem jakości. Najlepiej pokazywać prawdziwe wnętrze, zespół oraz efekty wykonanych usług za zgodą klientów. Galeria nie powinna zastępować opisu zabiegu, ma go uzupełniać."],
   ["04", "Prosta droga do rezerwacji", "Jeżeli salon korzysta z Booksy lub innego systemu, strona może prowadzić do istniejącego kalendarza zamiast budować drugi. Jeżeli nie ma systemu rezerwacji, można użyć telefonu, WhatsApp albo krótkiego formularza prośby o termin."],
   ["05", "Przygotowanie do wizyty i informacje po zabiegu", "Klient często chce wiedzieć, czy trzeba coś zrobić przed wizytą, ile potrwa zabieg i czego unikać później. Takie informacje zmniejszają liczbę powtarzalnych pytań i pomagają klientowi przygotować się do usługi."],
-  ["06", "Zespół i kwalifikacje bez przesady", "Przy usługach wymagających zaufania warto przedstawić osoby wykonujące zabiegi, ich specjalizacje i realne kwalifikacje. Nie trzeba tworzyć rozbudowanych życiorysów — ważniejsze są informacje, które pomagają wybrać właściwą osobę lub usługę."],
+  ["06", "Zespół i kwalifikacje bez przesady", "Przy usługach wymagających zaufania warto przedstawić osoby wykonujące zabiegi, ich specjalizacje i realne kwalifikacje. Nie trzeba tworzyć rozbudowanych życiorysów, ważniejsze są informacje, które pomagają wybrać właściwą osobę lub usługę."],
   ["07", "Adres, godziny i lokalna widoczność", "Salon działa lokalnie, dlatego adres, mapa, godziny, telefon i rzeczywisty obszar działania powinny być łatwo dostępne. Te same dane warto utrzymywać spójnie na stronie, w Profilu Firmy Google i w używanym systemie rezerwacji."],
   ["08", "Wersja mobilna i szybkie CTA", "Duża część klientów trafia na stronę z telefonu po przejściu z Google, Instagrama lub linku z profilu. Przycisk rezerwacji, telefon, cennik i oferta muszą być wygodne na małym ekranie."],
   ["09", "Vouchery i wybrane produkty jako osobna ścieżka", "Jeżeli salon sprzedaje vouchery, kosmetyki lub zestawy do pielęgnacji domowej, warto oddzielić tę ścieżkę od rezerwacji usług. Klient powinien od razu wiedzieć, co można kupić online, a co wymaga wizyty w salonie."],
@@ -81,7 +81,7 @@ export default function BeautyWebsiteGuidePage() {
         <GuideBreadcrumbs current="Strona internetowa salonu beauty" />
         <span className="eyebrow"><i />PORADNIK DLA SALONU BEAUTY</span>
         <h1>Co powinna zawierać strona internetowa <em>salonu beauty?</em></h1>
-        <p>Instagram inspiruje, a system rezerwacji pozwala wybrać termin. Własna strona salonu łączy te światy — pokazuje ofertę, ceny, zdjęcia i wszystko, co warto wiedzieć przed wizytą.</p>
+        <p>Instagram inspiruje, a system rezerwacji pozwala wybrać termin. Własna strona salonu łączy te światy, pokazuje ofertę, ceny, zdjęcia i wszystko, co warto wiedzieć przed wizytą.</p>
         <div className="hero-actions"><a className="button" href="#lista">Zobacz 9 elementów <span>↓</span></a><Link className="text-link" href="/strony-dla-beauty">Zobacz ofertę dla beauty <span>↗</span></Link></div>
       </header>
 

@@ -11,10 +11,10 @@ Piszemy jak jedna osoba, która zna swoją pracę i rozmawia bezpośrednio z wł
 - „Zielona Marka” zawsze w tej samej nieodmienionej formie. Unikaj odmiany nazwy oraz niepotwierdzonych certyfikatów.
 - Bezwzględnie oddziel demonstracje i propozycje poglądowe od ukończonych prac dla klientów.
 
-## Em dash i zapis
+## Zapis interpunkcji
 
-- W zdaniach na polskich stronach używamy pauzy **—** ze spacjami: „Najpierw porozmawiajmy — potem dobierzemy rozwiązanie”.
-- Nie zamieniamy na pauzę znaków w URL, nazwach plików, CSS, kodzie, nr dokumentów, datach ani łączników w wyrazach.
+- Nie używamy pauzy em dash (U+2014) w żadnych publikowanych tekstach. W zależności od składni stosujemy przecinek, dwukropek lub kropkę. Przykład: „Najpierw porozmawiajmy. Potem dobierzemy rozwiązanie”.
+- Nie zmieniamy znaków w adresach URL, nazwach plików, CSS, kodzie, datach ani łączników w wyrazach.
 - Zakresy liczbowe zachowują półpauzę bez spacji: „2–4 dni”, „3–5 tygodni”. Odejmowanie pozostaje operatorem matematycznym.
 - Zachowujemy widoczne obietnice i warunki handlowe bez dopisywania gwarancji.
 
