@@ -107,15 +107,27 @@ export default function ConceptRequestForm() {
 
   return <form className="zm-concept-form" data-analytics-form="bezplatna_koncepcja" method="post" action="/api/inquiries" onSubmit={submit}>
     <input className="zm-concept-trap" type="text" name="website_check" autoComplete="off" tabIndex={-1} aria-hidden="true" />
-    <fieldset className="zm-concept-choice">
-      <legend>Co mam dla Ciebie przygotować? Wybierz jeden rodzaj materiału.</legend>
-      {(Object.keys(modeLabels) as Mode[]).map((choice) => (
-        <label key={choice}>
-          <input type="radio" name="mode" value={choice} checked={mode === choice} onChange={() => setMode(choice)} />
-          <span>{modeLabels[choice]}</span>
-        </label>
-      ))}
-    </fieldset>
+    <div className="zm-concept-picked" aria-live="polite">
+      <span>WYBRANA KONCEPCJA</span>
+      <strong>{modeLabels[mode]}</strong>
+      <p>Jedna bezpłatna propozycja poglądowa, przygotowana po potwierdzeniu zgłoszenia.</p>
+    </div>
+    <details className="zm-concept-change">
+      <summary>Zmień rodzaj koncepcji <span aria-hidden="true">+</span></summary>
+      <fieldset className="zm-concept-choice">
+        <legend>Wybierz jeden rodzaj materiału</legend>
+        {(Object.keys(modeLabels) as Mode[]).map((choice) => (
+          <label key={choice} className={mode === choice ? "is-selected" : ""}>
+            <input type="radio" name="mode" value={choice} checked={mode === choice} onChange={() => {
+              setMode(choice);
+              window.dispatchEvent(new CustomEvent("zm-concept-mode", { detail: choice }));
+            }} />
+            <span>{modeLabels[choice]}</span>
+          </label>
+        ))}
+      </fieldset>
+    </details>
+    <p className="zm-concept-fields-intro">Kilka informacji, żebym mógł przygotować propozycję dla właściwej firmy.</p>
     <div className="zm-concept-form-grid">
       <label>Twoje imię <input name="name" required maxLength={120} autoComplete="given-name" placeholder="Jak masz na imię?" /></label>
       <label>E-mail do odpowiedzi <input name="email" required type="email" maxLength={254} autoComplete="email" placeholder="adres@firma.pl" /></label>
@@ -145,7 +157,7 @@ export default function ConceptRequestForm() {
       <input name="consent" type="checkbox" required value="yes" />
       <span>Zapoznałem/-am się z <Link href="/polityka-prywatnosci">polityką prywatności</Link> i proszę o e-mailową odpowiedź dotyczącą tego zgłoszenia. Zgłoszenie nie oznacza zgody na inne wiadomości marketingowe.</span>
     </label>
-    <button type="submit" disabled={submitting}>{submitting ? "Przesyłam zgłoszenie…" : "Zamów bezpłatną koncepcję ↗"}</button>
+    <button type="submit" disabled={submitting}>{submitting ? "Przesyłam zgłoszenie…" : "Wyślij prośbę o bezpłatną koncepcję ↗"}</button>
     <p className="zm-concept-form-foot">Nie pytam o budżet na tym etapie. Formularz służy do zgłoszenia jednej bezpłatnej, poglądowej koncepcji; nie zamawia pełnego projektu ani gotowych plików do druku.</p>
     {error && <p className="zm-concept-error" role="alert">{error}</p>}
   </form>;
