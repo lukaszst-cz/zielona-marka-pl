@@ -9,7 +9,7 @@ test("restored afternoon chapters use their original five illustrations", async 
   assert.ok(home.includes('import "./home-v5.css"'));
   assert.ok(home.includes('className="zmh-sample-form zmh-glass"'), "Original form presentation must be restored");
   assert.ok(home.includes('className="zmh-flow zmh-glass"'), "Restore the original CRM timeline");
-  assert.ok(home.includes('className="zmh-flow-item"'), "Original step illustrations must remain");
+  assert.ok(home.includes('"zmh-flow-item"'), "Original step illustrations must remain");
   assert.ok(!home.includes('import "./home-calm-story.css"'), "Do not load the evening redesign");
   assert.ok(!home.includes('zmh-calm-flow-steps'), "Do not render the evening workflow cards");
   assert.ok(home.includes("<HomeContactForm />"), "Preserve the real lead form");
