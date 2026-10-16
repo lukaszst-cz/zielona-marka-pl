@@ -16,7 +16,7 @@ export default function QualityHubPage() {
       <nav className="qa-crumbs" aria-label="Ścieżka nawigacji"><Link href="/">Strona główna</Link><span aria-hidden="true">/</span><span>Jakość i normy</span></nav>
       <span className="eyebrow">ZIELONA MARKA / ZASADY PRACY I KONTROLI</span>
       <h1>Jakość, którą można <em>sprawdzić, a nie tylko obiecać.</em></h1>
-      <p>Wiem, jak frustrujące są poprawki robione już po publikacji. Dlatego przed oddaniem projektu ustalam kryteria, sprawdzam działanie i zapisuję wyniki. Dotyczy to stron, sklepów, CRM i materiałów do druku — w zakresie odpowiednim do zlecenia.</p>
+      <p>QA (ang. Quality Assurance) oznacza zapewnianie jakości. W praktyce — zanim oddam stronę, sklep, CRM lub plik do druku, ustalam kryteria kontroli, sprawdzam działanie i dokumentuję wynik. Zakres testów dobieram do zlecenia.</p>
       <div className="hero-actions qa-hero-actions">
         <a className="button" href="#dokumenty">Pobierz standardy pracy <span aria-hidden="true">↓</span></a>
         <a className="text-link" href="#iso">Jak odnosimy się do ISO? <span aria-hidden="true">↓</span></a>
