@@ -531,6 +531,46 @@ try {
         return { layouts: layoutVariants.length, screenshots: layoutVariants.length };
       });
     }
+    await check(size.name + ": homepage carousel switches three offers without losing CTA", async () => {
+      const response = await page.goto(base + "/", { waitUntil: "domcontentloaded", timeout: 45000 });
+      assert.ok(response?.ok(), "Homepage unavailable");
+      const carousel = page.locator(".zm-home-carousel");
+      await carousel.waitFor({ state: "visible", timeout: 12000 });
+      const slides = carousel.locator(".zm-home-slide");
+      assert.equal(await slides.count(), 3, "Exactly three existing free offers must remain");
+      const status = carousel.locator(".zm-home-slide-counter");
+      const expected = [
+        ["03 / 03", "Bezpłatna koncepcja", "/bezplatna-koncepcja-strony"],
+        ["02 / 03", "Mapa Szans", "/kontakt"],
+        ["01 / 03", "Mini audyt", "/modernizacja-strony#miniaudyt"],
+      ];
+      const active = async () => {
+        const visible = carousel.locator(".zm-home-slide:visible");
+        assert.equal(await visible.count(), 1, "Exactly one offer slide must be visible");
+        return visible;
+      };
+      assert.equal((await status.textContent())?.trim(), "03 / 03");
+      for (const [number, name, href] of expected) {
+        const index = Number(number.slice(0, 2)) - 1;
+        await carousel.getByRole("button", { name: new RegExp("Pokaż slajd " + (index + 1) + ":") }).click();
+        assert.equal((await status.textContent())?.trim(), number);
+        const current = await active();
+        assert.equal(await current.getAttribute("aria-label"), name);
+        assert.ok(await current.locator('a[href="' + href + '"]').count(), "Preserve the correct service CTA");
+      }
+      await carousel.getByRole("button", { name: "Następny slajd" }).click();
+      assert.equal((await status.textContent())?.trim(), "02 / 03");
+      await carousel.getByRole("button", { name: "Poprzedni slajd" }).click();
+      assert.equal((await status.textContent())?.trim(), "01 / 03");
+      const layout = await page.evaluate(() => ({
+        overflow: document.documentElement.scrollWidth - innerWidth,
+        streamClips: document.querySelectorAll(".zmh-opening video").length,
+        lowerStreamVideos: document.querySelectorAll(".zmh-assembly video,.zm-home-offers video,.zmh-contact video").length,
+      }));
+      assert.ok(layout.overflow <= 2, "Homepage overflows horizontally after carousel interactions by " + layout.overflow + "px");
+      assert.equal(layout.lowerStreamVideos, 0, "Stream video should appear only in the opening");
+      return layout;
+    });
     if (size.name === "desktop") {
       await check("Desktop: Oferta opens and closes with Escape", async () => {
         await page.goto(base + "/", { waitUntil: "networkidle" });
