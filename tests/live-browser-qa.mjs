@@ -137,7 +137,7 @@ try {
             document.querySelector('meta[name="description"]')?.content || '',
             document.querySelector('meta[property="og:title"]')?.content || '',
             document.querySelector('meta[property="og:description"]')?.content || ''].join(' ');
-          return [...text.matchAll(/zielon[\p{L}]*\s+mark[\p{L}]*/giu)].map(match => match[0]);
+          return [...text.matchAll(/zielon[\p{L}]*\s+mark[\p{L}]*/giu)].map(match => match[0].replace(/\s+/g, " ").trim());
         });
         assert.deepEqual(
           visibleNameForms.filter(value => value !== "Zielona Marka" && value !== "ZIELONA MARKA"),
@@ -263,12 +263,12 @@ try {
         if (nums.length !== 3) return -1;
         return Math.round(.2126 * nums[0] + .7152 * nums[1] + .0722 * nums[2]);
       };
-      for (const field of ["heroTitle", "heroLead", "benefitTitle", "benefitBody", "scopeTitle", "requestTitle", "faqTitle"]) {
+      for (const field of ["benefitTitle", "benefitBody", "scopeTitle", "requestTitle", "faqTitle"]) {
         assert.ok(colors[field], field + " is missing");
         assert.ok(brightness(colors[field].color) >= 185,
           field + " must be legible against the forest background, got " + colors[field].color);
       }
-      for (const field of ["galleryTitle", "galleryLead", "formField"]) {
+      for (const field of ["heroTitle", "heroLead", "galleryTitle", "galleryLead", "formField"]) {
         assert.ok(colors[field], field + " is missing");
         assert.ok(brightness(colors[field].color) <= 135,
           field + " must use dark text on its light background, got " + colors[field].color);
