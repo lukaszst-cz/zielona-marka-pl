@@ -42,7 +42,7 @@ export default function LeadFlowDemo({ variant }: { variant: Variant }) {
   }
 
   return <div className="leadflow-demo">
-    <header><span>INTERAKTYWNE DEMO · NIC NIE WYSYŁAMY</span><h2>{c.title}</h2><p>Tak może wyglądać zgłoszenie — klient podaje dane, których naprawdę potrzebujesz do odpowiedzi.</p></header>
+    <header><span>INTERAKTYWNE DEMO · NIC NIE WYSYŁAMY</span><h2>{c.title}</h2><p>Tak może wyglądać zgłoszenie, klient podaje dane, których naprawdę potrzebujesz do odpowiedzi.</p></header>
     {variant === "beauty" && <div className="booksy-note"><b>REZERWACJA DOBRANA DO SALONU</b><span>Ten etap może otworzyć Booksy, inny system, formularz, telefon lub WhatsApp. Booksy nie jest obowiązkowe.</span></div>}
     {!summary ? <form onSubmit={submit}>
       <label>{c.serviceLabel}<select name="service" required defaultValue=""><option value="" disabled>Wybierz usługę</option>{c.services.map(service => <option key={service}>{service}</option>)}</select></label>

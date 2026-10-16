@@ -30,7 +30,7 @@ export default function ProcessStory() {
     return () => clearTimeout(timer);
   }, [playing, visible, active]);
   return <section ref={ref} className="process-cinema shell" id="proces">
-    <header><p className="organic-label">OD WIADOMOŚCI DO DZIAŁAJĄCEJ STRONY</p><h2>Tak powstaje<br /><em>Twoje miejsce w sieci.</em></h2><p>Zobacz, jak przebiega współpraca — od pierwszej rozmowy po gotową stronę.</p></header>
+    <header><p className="organic-label">OD WIADOMOŚCI DO DZIAŁAJĄCEJ STRONY</p><h2>Tak powstaje<br /><em>Twoje miejsce w sieci.</em></h2><p>Zobacz, jak przebiega współpraca: od pierwszej rozmowy po gotową stronę.</p></header>
     <div className="cinema-screen"><div key={active} className="cinema-scene"><span>{scenes[active][0]}</span><h3>{scenes[active][1]}</h3><p>{scenes[active][2]}</p><div className="cinema-preview" aria-hidden="true"><i /><i /><i /><strong>{scenes[active][3]}</strong></div></div>
     <div className="cinema-controls"><button type="button" onClick={() => { if (active === scenes.length - 1) setActive(0); setPlaying(!playing); }}>{playing ? "Wstrzymaj" : "Odtwórz opowieść · 27 s"}</button><span>{active + 1} / {scenes.length}</span></div>
     <div className="cinema-timeline" aria-label="Etapy procesu">{scenes.map((scene,index) => <button key={scene[0]} type="button" aria-pressed={active === index} aria-label={scene[0]} onClick={() => {setActive(index);setPlaying(false);}}><span>{scene[0]}</span></button>)}</div></div>
