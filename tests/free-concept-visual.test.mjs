@@ -89,3 +89,15 @@ test("free-concept keeps the shared light page skin while botanical image stays 
   assert.ok(!botanical.includes("body .zm-public.zm-concept{"));
   assert.ok(page.includes("<ConceptRequestForm />"), "Inquiry form must remain present");
 });
+
+test("global forest theme never overrides the concept's light UI", async () => {
+  const globalForest = await read("app/fern-public.css");
+  const concept = await read("app/bezplatna-koncepcja-strony/concept-unified-ui.css");
+  const scoped = ".zm-public:where(:not(.zm-concept))";
+  assert.ok(globalForest.includes(scoped + " :is(p,li,dd)"), "Global light text must not affect concept prose");
+  assert.ok(globalForest.includes(scoped + " :is(h1,h2,h3,h4)"), "Global headings must not affect concept");
+  assert.ok(globalForest.includes(scoped + " :is(input,textarea,select)"), "Dark global fields must not override concept form");
+  assert.ok(globalForest.includes(scoped + " :is(.button,button[type=submit])"), "Global button colors must not override concept");
+  assert.ok(concept.includes("var(--zm-ds-paper)"));
+  assert.ok(concept.includes("var(--zm-ds-forest-deep)"));
+});
