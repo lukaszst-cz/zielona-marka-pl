@@ -14,13 +14,13 @@ const content: Record<Variant, {
   home: {
     eyebrow: "STANDARD REALIZACJI / ZIELONA MARKA",
     title: "Dobra strona to także dobrze poprowadzony projekt.",
-    intro: "Wiesz, na jakim etapie jesteśmy, co akceptujesz i co zostanie sprawdzone przed startem.",
+    intro: "Od pierwszych ustaleń wiesz, co przygotowuję, kiedy zobaczysz projekt i co sprawdzę przed publikacją.",
     steps: [
       ["01", "Najpierw cel", "Ustalamy zakres, treści i najważniejszą drogę klienta do kontaktu."],
       ["02", "Potem realizacja", "Pokazuję projekt do akceptacji i przygotowuję uzgodnione funkcje."],
       ["03", "Na końcu kontrola", "Sprawdzam działanie, wygodę i gotowość strony do publikacji."],
     ],
-    note: "Ten sam uporządkowany proces stosuję także przy mniejszych stronach. Zakres testów odpowiada funkcjom zlecenia.",
+    note: "Nawet niewielka strona przechodzi kontrolę — oczywiście w zakresie uzgodnionych funkcji.",
     href: "/jak-pracuje", cta: "Poznaj cały proces",
   },
   offer: {
@@ -29,7 +29,7 @@ const content: Record<Variant, {
     intro: "Wizytówka, rozbudowana strona i sklep nie wymagają tej samej liczby funkcji, ale każdy projekt ma jasne warunki wykonania i odbioru.",
     steps: [
       ["01", "Ustalenie zakresu", "Przed startem określamy zawartość, funkcje, terminy i sposób akceptacji."],
-      ["02", "Sprawdzenie przed startem", "Testy obejmują elementy przewidziane w danym pakiecie - bez pozornych wyników."],
+      ["02", "Sprawdzenie przed startem", "Sprawdzam elementy przewidziane w pakiecie — zamiast dopisywać testy, których nie wykonano."],
       ["03", "Przekazanie", "Po odbiorze otrzymujesz uzgodnione dostępy i wskazówki do dalszego korzystania."],
     ],
     note: "Dodatkowe integracje, obsługa treści i opieka podlegają osobnym ustaleniom.",
@@ -50,7 +50,7 @@ const content: Record<Variant, {
   dtp: {
     eyebrow: "STANDARD DTP I PREPRESS",
     title: "Od projektu do pliku, który można bezpiecznie przekazać do druku.",
-    intro: "Kontrola materiałów graficznych różni się od testowania strony WWW - dlatego ma osobne kryteria odbioru.",
+    intro: "Plik do drukarni sprawdza się inaczej niż stronę WWW — dlatego stosuję osobne kryteria odbioru.",
     steps: [
       ["01", "Specyfikacja drukarni", "Sprawdzam format, liczbę stron, spady, marginesy i wymagania produkcyjne."],
       ["02", "Kontrola techniczna", "Weryfikuję obrazy, fonty, kolory i ustawienia PDF w zakresie zlecenia."],
