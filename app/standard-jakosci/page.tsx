@@ -5,10 +5,10 @@ import { QaLocalNav, QaDocumentCards } from "../QaStandardsNavigation";
 import { SiteHeader, SiteFooter, QuickWhatsApp } from "../SiteChrome";
 
 export const metadata: Metadata = {
- title: "Standard jakości – jak realizujemy projekty",
+ title: "Standard jakości — jak realizujemy projekty",
  description: "Zobacz osiem etapów realizacji stron WWW, sklepów, grafiki i systemów oraz zasady kontroli jakości marki Zielona Marka. Własne procedury inspirowane normami ISO.",
  alternates: {canonical:"/standard-jakosci"},
-  openGraph: { type: "website", url: "/standard-jakosci", title: "Standard jakości projektów WWW i systemów | Zielona Marka", description: "Zobacz osiem etapów realizacji stron WWW, sklepów, grafiki i systemów oraz zasady kontroli jakości marki Zielona Marka. Własne procedury inspirowane normami ISO.", images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Standard jakości projektów marki Zielona Marka – etapy realizacji i kontroli" }] },
+  openGraph: { type: "website", url: "/standard-jakosci", title: "Standard jakości projektów WWW i systemów | Zielona Marka", description: "Zobacz osiem etapów realizacji stron WWW, sklepów, grafiki i systemów oraz zasady kontroli jakości marki Zielona Marka. Własne procedury inspirowane normami ISO.", images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Standard jakości projektów marki Zielona Marka — etapy realizacji i kontroli" }] },
   twitter: { card: "summary_large_image", title: "Standard jakości projektów WWW i systemów | Zielona Marka", description: "Zobacz osiem etapów realizacji stron WWW, sklepów, grafiki i systemów oraz zasady kontroli jakości marki Zielona Marka. Własne procedury inspirowane normami ISO.", images: ["/og.jpg"] },
 };
 const steps=[
@@ -33,7 +33,7 @@ export default function QualityStandardPage() {
       <nav className="qa-crumbs" aria-label="Ścieżka nawigacji"><Link href="/">Strona główna</Link><span aria-hidden="true">/</span><Link href="/standardy-jakosci">Jakość i normy</Link><span aria-hidden="true">/</span><span>Standard projektów</span></nav>
       <span className="eyebrow">STANDARDY / ZIELONA MARKA / ZM-QMS-001</span>
       <h1 id="qa-main-heading">Dobry projekt powstaje w <em>dobrze prowadzonym procesie.</em></h1>
-      <p>QA (ang. Quality Assurance) to zapewnianie jakości. W praktyce ustalamy wymagania, sprawdzamy działanie strony lub systemu, poprawiamy wykryte błędy i potwierdzamy wynik przed przekazaniem projektu. Zobacz kolejne etapy i pobierz opis procedur.</p>
+      <p>Dobry projekt potrzebuje czegoś więcej niż ładnego podglądu. Przed przekazaniem sprawdzam ustalony zakres, działanie strony lub systemu i wykryte błędy. Tak rozumiem QA — zapewnianie jakości, które da się udokumentować.</p>
       <div className="hero-actions qa-hero-actions">
         <a className="button" href="/downloads/zielona-marka-standard-jakosci-www-dtp-crm-v3-1-korekta.pdf" download>Pobierz standard jakości · PDF <span aria-hidden="true">↓</span></a>
         <a className="text-link" href="#etapy">Poznaj 8 etapów <span aria-hidden="true">↓</span></a>
@@ -54,12 +54,12 @@ export default function QualityStandardPage() {
     </section>
 
     <section className="section shell qa-section" id="kontrola">
-      <div className="section-head"><div><span className="section-no">ZAKRES TESTÓW</span><h2>Co sprawdzamy w poszczególnych realizacjach?</h2></div><p>Testy techniczne są różne dla strony firmowej, sklepu, DTP i CRM. Nie przedstawiamy jednej listy jako obowiązkowej dla wszystkich produktów.</p></div>
+      <div className="section-head"><div><span className="section-no">ZAKRES TESTÓW</span><h2>Co sprawdzamy w poszczególnych realizacjach?</h2></div><p>Inaczej sprawdza się sklep, inaczej formularz, a inaczej gazetkę przed drukiem. Nie stosuję identycznej listy do każdego zlecenia.</p></div>
       <div className="qa-cards">{tracks.map(track => <article className="qa-card" key={track.num}><span className="qa-kicker">{track.num}</span><h3>{track.title}</h3><ul>{track.items.map(item => <li key={item}>{item}</li>)}</ul><Link className="text-link" href={track.href}>{track.cta} <span aria-hidden="true">↗</span></Link></article>)}</div>
     </section>
 
     <section className="section shell qa-section" id="wyniki">
-      <div className="section-head"><div><span className="section-no">KONTROLA I DECYZJA</span><h2>Wynik kontroli jakości musi mieć uzasadnienie.</h2></div><p>Sama checklista nie jest dowodem kontroli. Wyniki konkretnego projektu wymagają sprawdzenia i zapisania informacji o teście.</p></div>
+      <div className="section-head"><div><span className="section-no">KONTROLA I DECYZJA</span><h2>Wynik kontroli jakości musi mieć uzasadnienie.</h2></div><p>Lista punktów do sprawdzenia to dopiero początek. Liczy się wynik testu konkretnego projektu — z datą, zakresem i decyzją o ewentualnych poprawkach.</p></div>
       <div className="qa-statuses">
         <div><strong>PASS — sprawdzone</strong><p>Wymaganie spełnione, a wynik kontroli potwierdzony w dokumentacji.</p></div>
         <div><strong>REWORK — poprawa</strong><p>Zidentyfikowana niezgodność wymaga poprawki i powtórzenia testu.</p></div>
