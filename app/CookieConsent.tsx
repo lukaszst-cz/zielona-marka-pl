@@ -117,8 +117,8 @@ export default function CookieConsent() {
     <aside className="cookie-banner" aria-label="Ustawienia plików cookie">
       <div>
         <span>PRYWATNOŚĆ I POMIAR</span>
-        <b>Pomóż nam zrozumieć, jak działa strona.</b>
-        <p>Za Twoją zgodą używamy Google Analytics, aby anonimowo sprawdzać odwiedziny i wysłane zapytania. Nie używamy reklam ani profilowania.</p>
+        <b>Czy mogę mierzyć odwiedziny strony?</b>
+        <p>Jeśli wyrazisz zgodę, Google Analytics pomoże mi sprawdzać ruch na stronie i wysłane zapytania. Nie wykorzystuję tych danych do wyświetlania reklam ani profilowania.</p>
       </div>
       <div className="cookie-actions">
         <button type="button" className="cookie-decline" onClick={() => save("denied")}>Tylko niezbędne</button>
