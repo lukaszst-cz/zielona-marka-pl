@@ -239,11 +239,43 @@ try {
         waitUntil: "networkidle", timeout: 45000,
       });
       const colors = await page.evaluate(() => {
+        const parse = value => {
+          const values = (value?.match(/[0-9.]+/g) ?? []).map(Number);
+          return values.length >= 3 ? [values[0], values[1], values[2], values[3] ?? 1] : null;
+        };
+        const blend = (base, overlay) => overlay.map((channel, index) =>
+          index < 3 ? channel * overlay[3] + base[index] * (1 - overlay[3]) : 1);
+        const rgbBackground = element => {
+          let background = [255, 255, 255, 1];
+          const chain = [];
+          for (let node = element; node; node = node.parentElement) chain.unshift(node);
+          for (const node of chain) {
+            const rgba = parse(getComputedStyle(node).backgroundColor);
+            if (rgba) background = blend(background, rgba);
+          }
+          return background.slice(0, 3);
+        };
+        const channels = color => color.slice(0, 3).map(value => {
+          const v = value / 255;
+          return v <= .04045 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4;
+        });
+        const luminance = color => {
+          const [r, g, b] = channels(color);
+          return .2126 * r + .7152 * g + .0722 * b;
+        };
         const get = selector => {
           const element = document.querySelector(selector);
           if (!element) return null;
-          const style = getComputedStyle(element);
-          return { color: style.color, background: style.backgroundColor };
+          const foreground = parse(getComputedStyle(element).color);
+          if (!foreground) return null;
+          const background = rgbBackground(element);
+          const a = luminance(foreground);
+          const b = luminance(background);
+          return {
+            foreground: getComputedStyle(element).color,
+            background: background.map(Math.round).join(", "),
+            ratio: Number(((Math.max(a,b) + .05) / (Math.min(a,b) + .05)).toFixed(2)),
+          };
         };
         return {
           heroTitle: get(".zm-concept-hero h1"),
@@ -258,23 +290,13 @@ try {
           faqTitle: get(".zm-concept-faq h2"),
         };
       });
-      const brightness = color => {
-        const nums = (color?.match(/[0-9.]+/g) ?? []).slice(0, 3).map(Number);
-        if (nums.length !== 3) return -1;
-        return Math.round(.2126 * nums[0] + .7152 * nums[1] + .0722 * nums[2]);
-      };
-      for (const field of ["benefitTitle", "benefitBody", "scopeTitle", "requestTitle", "faqTitle"]) {
-        assert.ok(colors[field], field + " is missing");
-        assert.ok(brightness(colors[field].color) >= 185,
-          field + " must be legible against the forest background, got " + colors[field].color);
+      for (const [field, color] of Object.entries(colors)) {
+        assert.ok(color, field + " is missing");
+        const largeHeading = /Title$/.test(field);
+        assert.ok(color.ratio >= (largeHeading ? 3 : 4.5),
+          field + " has insufficient contrast " + color.ratio + ": "
+            + color.foreground + " against " + color.background);
       }
-      for (const field of ["heroTitle", "heroLead", "galleryTitle", "galleryLead", "formField"]) {
-        assert.ok(colors[field], field + " is missing");
-        assert.ok(brightness(colors[field].color) <= 135,
-          field + " must use dark text on its light background, got " + colors[field].color);
-      }
-      assert.ok(brightness(colors.formField.background) >= 210,
-        "Form field background should be light, got " + colors.formField.background);
       return colors;
     });
     if (["desktop", "laptop"].includes(size.name)) {
