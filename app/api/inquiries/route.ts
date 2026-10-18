@@ -2,13 +2,26 @@ import { and, count, eq, gte } from "drizzle-orm";
 import { inquiries } from "../../../db/schema";
 
 type Payload = Record<string, unknown>;
+type NativeEmail = {
+  send(message: {
+    to: string;
+    from: { email: string; name: string };
+    subject: string;
+    text: string;
+    replyTo: string;
+  }): Promise<{ messageId: string }>;
+};
+
 type NotificationEnv = {
+  // A native Cloudflare Email Service binding, restricted to the owner's inbox.
+  INQUIRY_EMAIL?: NativeEmail;
+  // Temporary fallback while the native binding and domain are being onboarded.
   RESEND_API_KEY?: string;
   INQUIRY_NOTIFICATION_FROM?: string;
 };
 
 const NOTIFICATION_TO = "kontakt@zielona-marka.pl";
-const DEFAULT_NOTIFICATION_FROM = "Zielona Marka <kontakt@zielona-marka.pl>";
+const DEFAULT_NOTIFICATION_FROM = "kontakt@zielona-marka.pl";
 
 function plain(value: unknown) {
   return String(value ?? "").trim();
@@ -17,14 +30,35 @@ function plain(value: unknown) {
 async function notifyOwner(data: { name: string; email: string; company: string; message: string }) {
   const { env } = await import("cloudflare:workers");
   const runtime = env as unknown as NotificationEnv;
-  const apiKey = runtime.RESEND_API_KEY?.trim();
-  if (!apiKey) {
-    throw new Error("RESEND_API_KEY is missing from the production Worker environment.");
+  const subject = `Nowe zapytanie ze strony: ${data.name}`;
+  const body = `Imię: ${data.name}\nE-mail: ${data.email}\nFirma: ${data.company || "nie podano"}\n\n${data.message}`;
+
+  // Prefer sending through Cloudflare itself rather than relying on a third-party
+  // API key. Do not send directly to visitors; consent covers a reply to an inquiry.
+  if (runtime.INQUIRY_EMAIL) {
+    try {
+      const sent = await runtime.INQUIRY_EMAIL.send({
+        to: NOTIFICATION_TO,
+        from: { email: DEFAULT_NOTIFICATION_FROM, name: "Zielona Marka" },
+        replyTo: data.email,
+        subject,
+        text: body,
+      });
+      console.info("Inquiry notification accepted by Cloudflare Email Service.", Boolean(sent.messageId));
+      return;
+    } catch (error) {
+      const errorCode = error && typeof error === "object" && "code" in error
+        ? String(error.code).slice(0, 70) : "unknown";
+      console.error("Cloudflare Email Service rejected inquiry notification; trying configured fallback.", errorCode);
+    }
   }
 
-  // The recipient is fixed in code so every public lead form notifies the same inbox.
-  // The sender must belong to a domain verified for sending in Resend.
-  const from = runtime.INQUIRY_NOTIFICATION_FROM?.trim() || DEFAULT_NOTIFICATION_FROM;
+  const apiKey = runtime.RESEND_API_KEY?.trim();
+  if (!apiKey) {
+    throw new Error("No working notification provider: configure INQUIRY_EMAIL or RESEND_API_KEY.");
+  }
+
+  const from = runtime.INQUIRY_NOTIFICATION_FROM?.trim() || `Zielona Marka <${DEFAULT_NOTIFICATION_FROM}>`;
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
@@ -32,20 +66,19 @@ async function notifyOwner(data: { name: string; email: string; company: string;
       from,
       to: [NOTIFICATION_TO],
       reply_to: data.email,
-      subject: `Nowe zapytanie ze strony: ${data.name}`,
-      text: `Imię: ${data.name}\nE-mail: ${data.email}\nFirma: ${data.company || "nie podano"}\n\n${data.message}`,
+      subject,
+      text: body,
     }),
   });
   if (!response.ok) {
-    // Log a provider error code, never client form fields or the secret API key.
     let providerCode = "unknown";
     try {
-      const body: unknown = await response.json();
-      if (body && typeof body === "object" && "name" in body) {
-        providerCode = String(body.name).slice(0, 80);
+      const responseBody: unknown = await response.json();
+      if (responseBody && typeof responseBody === "object" && "name" in responseBody) {
+        providerCode = String(responseBody.name).slice(0, 80);
       }
     } catch {
-      // Preserve the original HTTP failure when the provider sends a non-JSON body.
+      // A non-JSON rejection still has an HTTP status to investigate.
     }
     throw new Error(`Resend rejected inquiry notification (HTTP ${response.status}; ${providerCode}).`);
   }
