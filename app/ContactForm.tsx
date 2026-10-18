@@ -27,8 +27,8 @@ export default function ContactForm({ audit = false, initialPackage = "", initia
     const response = await fetch("/api/inquiries", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...values, message: `${audit ? "Miniocena strony\n" : ""}Usługa: ${values.projectType || "do ustalenia"}\nFirma: ${values.company || "do ustalenia"}\nAdres strony: ${values.website || "brak / nowa strona"}\nCel: ${values.goal || "do ustalenia"}\nSprzedaż lub płatności: ${values.sales || "nie dotyczy / do ustalenia"}\nBudżet: ${values.budget || "do ustalenia"}\n\n${values.message || ""}` }) });
 
     const outcome = response.ok ? await response.json().catch(() => null) : null;
-    if (response.ok && outcome?.notificationSent === false) { setError("Zgłoszenie zapisano w CRM, ale powiadomienie e-mail nie zostało wysłane. Sprawdź ustawienia poczty lub napisz na kontakt@zielona-marka.pl."); }
-    else if (response.ok) { trackAnalyticsEvent("generate_lead", { form_name: audit ? "miniocena" : "brief", page_path: window.location.pathname }); setSent(true); form.reset(); }
+    if (response.ok && outcome?.saved === true && outcome?.notificationSent === false) { setError("Zgłoszenie zapisano w CRM, ale powiadomienie e-mail nie zostało wysłane. Sprawdź ustawienia poczty lub napisz na kontakt@zielona-marka.pl."); }
+    else if (response.ok && outcome?.saved === true && outcome?.notificationSent === true) { trackAnalyticsEvent("generate_lead", { form_name: audit ? "miniocena" : "brief", page_path: window.location.pathname }); setSent(true); form.reset(); }
     else { trackAnalyticsEvent("form_submit_error", { form_name: audit ? "miniocena" : "brief", error_type: "server_response" }); setError("Nie udało się wysłać wiadomości. Napisz bezpośrednio na kontakt@zielona-marka.pl."); }
     } catch { trackAnalyticsEvent("form_submit_error", { form_name: audit ? "miniocena" : "brief", error_type: "connection" }); setError("Brak połączenia. Spróbuj ponownie lub zadzwoń: +48 450 458 466."); } finally { setSending(false); }
   }
