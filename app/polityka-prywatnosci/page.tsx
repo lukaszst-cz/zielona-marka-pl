@@ -48,12 +48,13 @@ export default function Privacy() {
         </p>
         <h2>4. Gdzie dane trafiają</h2>
         <p>
-          Bieżące formularze wysyłają podane dane przez szyfrowane połączenie
-          do usługi FormSubmit (formsubmit.co), która przekazuje je pocztą
-          na kontakt@zielona-marka.pl. Dostawca może przechowywać przesłane
-          zgłoszenia przez 30 dni. Starsze zgłoszenia nadal pozostają w prywatnym
-          Studio, w bazie Cloudflare D1. Dane nie są sprzedawane ani przekazywane
-          do systemów reklamowych.
+          Formularze na stronie przygotowują wiadomość w programie pocztowym
+          osoby wypełniającej zgłoszenie. Nadawca sam zatwierdza jej wysłanie
+          na kontakt@zielona-marka.pl. Dane przesyłane są przez usługę
+          pocztową wybraną przez nadawcę i trafiają do firmowej skrzynki e-mail.
+          Wcześniejsze zgłoszenia zapisane w bazie Cloudflare D1 pozostają
+          dostępne w prywatnym Studio. Aktualne formularze nie wysyłają danych
+          do FormSubmit i nie zapisują ich automatycznie w CRM.
         </p>
         <h2>5. Czas przechowywania</h2>
         <p>

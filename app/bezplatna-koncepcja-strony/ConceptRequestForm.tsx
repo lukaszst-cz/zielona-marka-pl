@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { ContactEmailHelp, startContactEmail, type ContactEmailDraft } from "../EmailContact";
 import Link from "../SafeLink";
 import { trackAnalyticsEvent } from "../CookieConsent";
 
@@ -16,6 +17,7 @@ const modeLabels: Record<Mode, string> = {
 
 export default function ConceptRequestForm() {
   const [mode, setMode] = useState<Mode>("existing");
+  const [draft, setDraft] = useState<ContactEmailDraft | null>(null);
   useEffect(() => {
     const requested = new URLSearchParams(window.location.search).get("typ");
     if (requested && Object.prototype.hasOwnProperty.call(modeLabels, requested)) {
@@ -30,11 +32,8 @@ export default function ConceptRequestForm() {
     window.addEventListener("zm-concept-mode", selectMode);
     return () => window.removeEventListener("zm-concept-mode", selectMode);
   }, []);
-  return <form className="zm-concept-form" data-analytics-form="bezplatna_koncepcja" method="post" action="https://formsubmit.co/kontakt@zielona-marka.pl" onSubmit={() => trackAnalyticsEvent("form_submit_attempt", { form_name: "bezplatna_koncepcja", page_path: window.location.pathname })}>
+  return <form className="zm-concept-form" data-analytics-form="bezplatna_koncepcja" method="post" action="mailto:kontakt@zielona-marka.pl" encType="text/plain" onSubmit={(event) => { trackAnalyticsEvent("form_submit_attempt", { form_name: "bezplatna_koncepcja", page_path: window.location.pathname }); startContactEmail(event, "Bezpłatna koncepcja wizualna", setDraft); }}>
     <input className="zm-concept-trap" type="text" name="_honey" autoComplete="off" tabIndex={-1} aria-hidden="true" />
-    <input type="hidden" name="_subject" value="Zielona Marka - Bezpłatna koncepcja wizualna" />
-    <input type="hidden" name="_next" value="https://zielona-marka.pl/kontakt?wyslano=1" />
-    <input type="hidden" name="_url" value="https://zielona-marka.pl/bezplatna-koncepcja-strony" />
     <input type="hidden" name="wybranyRodzajKoncepcji" value={modeLabels[mode]} />
     <div className="zm-concept-picked" aria-live="polite">
       <span>WYBRANA KONCEPCJA</span>
@@ -86,7 +85,9 @@ export default function ConceptRequestForm() {
       <input name="consent" type="checkbox" required value="yes" />
       <span>Zapoznałem/-am się z <Link href="/polityka-prywatnosci">polityką prywatności</Link> i proszę o e-mailową odpowiedź dotyczącą tego zgłoszenia. Zgłoszenie nie oznacza zgody na inne wiadomości marketingowe.</span>
     </label>
-    <button type="submit" >Wyślij prośbę o bezpłatną koncepcję ↗</button>
+    <button type="submit" >Przygotuj e-mail z prośbą ↗</button>
     <p className="zm-concept-form-foot">Nie pytam o budżet na tym etapie. Formularz służy do zgłoszenia jednej bezpłatnej, poglądowej koncepcji; nie zamawia pełnego projektu ani gotowych plików do druku.</p>
+    <p>Aby zgłoszenie trafiło do mnie, kliknij „Wyślij” w otwartym programie pocztowym.</p>
+    <ContactEmailHelp draft={draft} />
   </form>;
 }
