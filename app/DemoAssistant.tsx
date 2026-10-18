@@ -49,7 +49,10 @@ export default function DemoAssistant() {
         message: `Asystent zapytań demonstracyjny\nCel: ${goal}\nBranża: ${industry}\nTelefon: ${values.phone || "nie podano"}\n\n${values.message || "Prośba o kontakt."}`,
       }),
     });
-    if (response.ok) {
+    const outcome = response.ok ? await response.json().catch(() => null) : null;
+    if (response.ok && outcome?.notificationSent === false) {
+      setError("Zgłoszenie zapisano w CRM, ale powiadomienie e-mail nie zostało wysłane. Napisz na kontakt@zielona-marka.pl.");
+    } else if (response.ok) {
       setSent(true);
       form.reset();
     } else setError("Nie udało się zapisać zgłoszenia. Napisz na kontakt@zielona-marka.pl.");
