@@ -713,45 +713,33 @@ try {
         await page.keyboard.press("Escape");
       }
     });
-    await check(size.name + ": contact brief submits to mock endpoint only", async () => {
+    await check(size.name + ": contact brief posts natively to mocked mail service", async () => {
       const intercepted = [];
-      const pattern = "**/api/inquiries";
+      const pattern = "https://formsubmit.co/**";
       await page.route(pattern, async route => {
         const request = route.request();
-        intercepted.push({ url: request.url(), method: request.method(), body: request.postDataJSON() });
-        const isJson = (request.headers()["content-type"] || "").includes("application/json");
-        // Before hydration the native form posts encoded fields. Production
-        // responds with a 303 redirect; the mock must preserve this fallback.
-        if (isJson) {
-          await route.fulfill({ status: 201, contentType: "application/json", body: JSON.stringify({ ok: true }) });
-        } else {
-          await route.fulfill({ status: 303, headers: { location: base + "/kontakt?wyslano=1" }, body: "" });
-        }
+        const params = new URLSearchParams(request.postData() || "");
+        intercepted.push({ url: request.url(), method: request.method(), body: Object.fromEntries(params) });
+        await route.fulfill({ status: 303, headers: { location: base + "/kontakt?wyslano=1" }, body: "" });
       });
       try {
         const contactResponse = await page.goto(base + "/kontakt", { waitUntil: "domcontentloaded", timeout: 45000 });
         assert.ok(contactResponse?.ok(), "Contact page did not load");
         const form = page.locator('form[data-analytics-form="brief"]');
-        try {
-          await form.waitFor({ state: "visible", timeout: 12000 });
-        } catch {
-          // Retry a transient stale response once; persistent failures remain test failures.
-          const reload = await page.reload({ waitUntil: "domcontentloaded", timeout: 45000 });
-          assert.ok(reload?.ok(), "Contact page reload did not succeed");
-          await form.waitFor({ state: "visible", timeout: 12000 });
-        }
+        await form.waitFor({ state: "visible", timeout: 12000 });
+        assert.equal(await form.getAttribute("action"), "https://formsubmit.co/kontakt@zielona-marka.pl");
         await form.locator('input[name="name"]').fill("Przykładowa osoba QA");
         await form.locator('input[name="email"]').fill("not-an-email");
         await form.locator('textarea[name="message"]').fill("Proszę o informację o stworzeniu strony firmowej.");
         await form.locator('select[name="projectType"]').selectOption({ label: "Strona WWW szyta na miarę" });
         await form.locator('input[name="consent"]').check();
         await form.locator('button[type="submit"]').click();
-        assert.equal(intercepted.length, 0, "Invalid email must not reach the mock endpoint");
+        assert.equal(intercepted.length, 0, "Invalid email must not reach the external provider");
         assert.equal(await form.locator('input[name="email"]').evaluate(el => el.validity.typeMismatch), true);
         await form.locator('input[name="email"]').fill("test@example.com");
         await form.locator('button[type="submit"]').click();
-        await page.getByText(/Dziękuję, wiadomość (została wysłana|dotarła)\./).waitFor({ state: "visible", timeout: 15000 });
-        assert.equal(intercepted.length, 1, "Expected one intercepted POST; no real request should be sent");
+        await page.getByText(/Dziękuję za zgłoszenie\./).waitFor({ state: "visible", timeout: 15000 });
+        assert.equal(intercepted.length, 1, "Expected one mocked POST; no real message may be sent by QA");
         assert.equal(intercepted[0].method, "POST");
         assert.equal(intercepted[0].body.email, "test@example.com");
         assert.equal(intercepted[0].body.consent, "yes");

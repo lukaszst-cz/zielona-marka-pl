@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const contentSecurityPolicy = [
   "default-src 'self'",
   "base-uri 'self'",
-  "form-action 'self'",
+  "form-action 'self' https://formsubmit.co",
   "frame-ancestors 'self'",
   "object-src 'none'",
   "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com",

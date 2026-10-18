@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "../SafeLink";
 import { trackAnalyticsEvent } from "../CookieConsent";
 
@@ -30,83 +30,12 @@ export default function ConceptRequestForm() {
     window.addEventListener("zm-concept-mode", selectMode);
     return () => window.removeEventListener("zm-concept-mode", selectMode);
   }, []);
-  const [submitting, setSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState("");
-
-  async function submit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    if (submitting) return;
-    const form = event.currentTarget;
-    const values = Object.fromEntries(new FormData(form));
-    const company = String(values.company || "").trim();
-    const website = String(values.website || "").trim();
-    const purpose = String(values.purpose || "").trim();
-    const details = String(values.details || "").trim();
-
-    if (!details || !company) {
-      setError("Podaj nazwę firmy i krótki opis potrzeby.");
-      return;
-    }
-
-    setSubmitting(true);
-    setError("");
-    trackAnalyticsEvent("form_submit_attempt", { form_name: "bezplatna_koncepcja", page_path: window.location.pathname });
-
-    try {
-      const response = await fetch("/api/inquiries", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: values.name,
-          email: values.email,
-          company,
-          website,
-          projectType: `Bezpłatna koncepcja: ${modeLabels[mode]}`,
-          goal: purpose,
-          consent: values.consent,
-          website_check: values.website_check || "",
-          message: [
-            "ZGŁOSZENIE: BEZPŁATNA KONCEPCJA WIZUALNA",
-            "Źródło: /bezplatna-koncepcja-strony",
-            `Typ: ${modeLabels[mode]}`,
-            `Firma: ${company}`,
-            `Adres strony lub materiałów: ${website || "nie podano"}`,
-            `Najważniejszy cel: ${purpose || "do ustalenia"}`,
-            "",
-            details,
-            "",
-            "Odpowiedź na zamówioną koncepcję: e-mail z formularza. Nie zgłoszono zgody na odrębny marketing."
-          ].join("\n")
-        })
-      });
-
-      if (!response.ok) {
-        if (response.status === 429) throw new Error("Zbyt wiele zgłoszeń z tego adresu. Spróbuj ponownie za kilka minut.");
-        throw new Error("Nie udało się przesłać zgłoszenia. Spróbuj ponownie lub napisz na kontakt@zielona-marka.pl.");
-      }
-      trackAnalyticsEvent("generate_lead", { form_name: "bezplatna_koncepcja", page_path: window.location.pathname });
-      setSubmitted(true);
-      form.reset();
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "Nie udało się wysłać zgłoszenia.");
-      trackAnalyticsEvent("form_submit_error", { form_name: "bezplatna_koncepcja", error_type: "request_failed" });
-    } finally {
-      setSubmitting(false);
-    }
-  }
-
-  if (submitted) {
-    return <div className="zm-concept-success" role="status" aria-live="polite">
-      <span aria-hidden="true">✓</span>
-      <h3>Dziękuję za zgłoszenie.</h3>
-      <p>Dziękuję za wiadomość. Sprawdzę, czy mogę przygotować koncepcję dla Twojej firmy, i odpiszę na podany adres e-mail z dalszymi informacjami.</p>
-      <Link href="/realizacje">W międzyczasie zobacz przykładowe projekty ↗</Link>
-    </div>;
-  }
-
-  return <form className="zm-concept-form" data-analytics-form="bezplatna_koncepcja" method="post" action="/api/inquiries" onSubmit={submit}>
-    <input className="zm-concept-trap" type="text" name="website_check" autoComplete="off" tabIndex={-1} aria-hidden="true" />
+  return <form className="zm-concept-form" data-analytics-form="bezplatna_koncepcja" method="post" action="https://formsubmit.co/kontakt@zielona-marka.pl" onSubmit={() => trackAnalyticsEvent("form_submit_attempt", { form_name: "bezplatna_koncepcja", page_path: window.location.pathname })}>
+    <input className="zm-concept-trap" type="text" name="_honey" autoComplete="off" tabIndex={-1} aria-hidden="true" />
+    <input type="hidden" name="_subject" value="Zielona Marka - Bezpłatna koncepcja wizualna" />
+    <input type="hidden" name="_next" value="https://zielona-marka.pl/kontakt?wyslano=1" />
+    <input type="hidden" name="_url" value="https://zielona-marka.pl/bezplatna-koncepcja-strony" />
+    <input type="hidden" name="wybranyRodzajKoncepcji" value={modeLabels[mode]} />
     <div className="zm-concept-picked" aria-live="polite">
       <span>WYBRANA KONCEPCJA</span>
       <strong>{modeLabels[mode]}</strong>
@@ -157,8 +86,7 @@ export default function ConceptRequestForm() {
       <input name="consent" type="checkbox" required value="yes" />
       <span>Zapoznałem/-am się z <Link href="/polityka-prywatnosci">polityką prywatności</Link> i proszę o e-mailową odpowiedź dotyczącą tego zgłoszenia. Zgłoszenie nie oznacza zgody na inne wiadomości marketingowe.</span>
     </label>
-    <button type="submit" disabled={submitting}>{submitting ? "Przesyłam zgłoszenie…" : "Wyślij prośbę o bezpłatną koncepcję ↗"}</button>
+    <button type="submit" >Wyślij prośbę o bezpłatną koncepcję ↗</button>
     <p className="zm-concept-form-foot">Nie pytam o budżet na tym etapie. Formularz służy do zgłoszenia jednej bezpłatnej, poglądowej koncepcji; nie zamawia pełnego projektu ani gotowych plików do druku.</p>
-    {error && <p className="zm-concept-error" role="alert">{error}</p>}
   </form>;
 }

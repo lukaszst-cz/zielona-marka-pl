@@ -14,7 +14,7 @@ test("approved V4 page is integrated into the real shared layout", async () => {
   assert.ok(page.includes("Zanim zamówisz,"));
   assert.ok(page.includes("<ConceptHeroArtwork />"));
   assert.ok(page.includes("<ConceptShowcase />"));
-  assert.ok(page.includes("<ConceptRequestForm />"), "Keep live CRM form");
+  assert.ok(page.includes("<ConceptRequestForm />"), "Keep live contact form");
   assert.ok(art.includes("forma"));
   assert.ok(art.includes("zv5-phone"));
   assert.ok(gallery.includes('role="tablist"'));
@@ -46,17 +46,16 @@ test("form receives gallery selection and keeps privacy safeguards", async () =>
   for (const mode of ["existing", "new", "logo", "promo", "sales"]) {
     assert.match(form, new RegExp("^\\s*" + mode + ': "', "m"));
   }
-  assert.ok(form.includes('action="/api/inquiries"'));
+  assert.ok(form.includes('action="https://formsubmit.co/kontakt@zielona-marka.pl"'));
   assert.ok(form.includes('name="consent"'));
   assert.ok(form.includes("nie oznacza zgody na inne wiadomości marketingowe"));
 });
 
 test("native concept submission retains the selected goal when JavaScript is unavailable", async () => {
   const form = await read("app/bezplatna-koncepcja-strony/ConceptRequestForm.tsx");
-  const endpoint = await read("app/api/inquiries/route.ts");
   assert.match(form, /name="purpose"/);
-  assert.match(endpoint, /\["Cel", plain\(payload\.goal\) \|\| plain\(payload\.purpose\)\]/);
-  assert.match(endpoint, /payload\.goal, payload\.purpose, payload\.sales/);
+  assert.match(form, /name="wybranyRodzajKoncepcji"/);
+  assert.doesNotMatch(form, /fetch\(|\/api\/inquiries|preventDefault/);
 });
 
 test("one consolidated UI controls the free concept while sharing site tokens", async () => {
