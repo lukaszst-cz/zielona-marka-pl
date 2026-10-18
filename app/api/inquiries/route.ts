@@ -4,9 +4,11 @@ import { inquiries } from "../../../db/schema";
 type Payload = Record<string, unknown>;
 type NotificationEnv = {
   RESEND_API_KEY?: string;
-  INQUIRY_NOTIFICATION_TO?: string;
   INQUIRY_NOTIFICATION_FROM?: string;
 };
+
+const NOTIFICATION_TO = "kontakt@zielona-marka.pl";
+const DEFAULT_NOTIFICATION_FROM = "Zielona Marka <kontakt@zielona-marka.pl>";
 
 function plain(value: unknown) {
   return String(value ?? "").trim();
@@ -15,22 +17,38 @@ function plain(value: unknown) {
 async function notifyOwner(data: { name: string; email: string; company: string; message: string }) {
   const { env } = await import("cloudflare:workers");
   const runtime = env as unknown as NotificationEnv;
-  if (!runtime.RESEND_API_KEY || !runtime.INQUIRY_NOTIFICATION_TO || !runtime.INQUIRY_NOTIFICATION_FROM) {
-    console.warn("Inquiry notification not configured; saved lead remains in CRM.");
-    return;
+  const apiKey = runtime.RESEND_API_KEY?.trim();
+  if (!apiKey) {
+    throw new Error("RESEND_API_KEY is missing from the production Worker environment.");
   }
+
+  // The recipient is fixed in code so every public lead form notifies the same inbox.
+  // The sender must belong to a domain verified for sending in Resend.
+  const from = runtime.INQUIRY_NOTIFICATION_FROM?.trim() || DEFAULT_NOTIFICATION_FROM;
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
-    headers: { Authorization: `Bearer ${runtime.RESEND_API_KEY}`, "Content-Type": "application/json" },
+    headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
     body: JSON.stringify({
-      from: runtime.INQUIRY_NOTIFICATION_FROM,
-      to: [runtime.INQUIRY_NOTIFICATION_TO],
+      from,
+      to: [NOTIFICATION_TO],
       reply_to: data.email,
       subject: `Nowe zapytanie ze strony: ${data.name}`,
       text: `Imię: ${data.name}\nE-mail: ${data.email}\nFirma: ${data.company || "nie podano"}\n\n${data.message}`,
     }),
   });
-  if (!response.ok) throw new Error("Notification provider rejected the message.");
+  if (!response.ok) {
+    // Log a provider error code, never client form fields or the secret API key.
+    let providerCode = "unknown";
+    try {
+      const body: unknown = await response.json();
+      if (body && typeof body === "object" && "name" in body) {
+        providerCode = String(body.name).slice(0, 80);
+      }
+    } catch {
+      // Preserve the original HTTP failure when the provider sends a non-JSON body.
+    }
+    throw new Error(`Resend rejected inquiry notification (HTTP ${response.status}; ${providerCode}).`);
+  }
 }
 
 export async function POST(request: Request) {
@@ -131,13 +149,22 @@ export async function POST(request: Request) {
     }
 
     await db.insert(inquiries).values({ name, email, company, budget, message, status: "Nowe", createdAt: new Date().toISOString() });
-    await notifyOwner({ name, email, company, message }).catch(() => {
-      console.error("Inquiry saved in CRM, but email notification delivery failed.");
-    });
+
+    let notificationSent = false;
+    try {
+      await notifyOwner({ name, email, company, message });
+      // Resend accepted the message; actual inbox delivery is tracked by Resend.
+      notificationSent = true;
+    } catch (error) {
+      console.error("Inquiry saved in CRM, but email notification was not accepted:", error instanceof Error ? error.message : "unknown error");
+    }
 
     return wantsJson
-      ? Response.json({ ok: true }, { status: 201, headers: { "Cache-Control": "no-store" } })
-      : Response.redirect(new URL("/kontakt?wyslano=1", request.url), 303);
+      ? Response.json({ ok: true, saved: true, notificationSent }, {
+          status: notificationSent ? 201 : 202,
+          headers: { "Cache-Control": "no-store" },
+        })
+      : Response.redirect(new URL(notificationSent ? "/kontakt?wyslano=1" : "/kontakt?zapisano=1", request.url), 303);
   } catch {
     return reply("Nie udało się zapisać wiadomości. Napisz bezpośrednio na kontakt@zielona-marka.pl.", 500);
   }
