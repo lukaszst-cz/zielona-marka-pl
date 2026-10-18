@@ -713,39 +713,22 @@ try {
         await page.keyboard.press("Escape");
       }
     });
-    await check(size.name + ": contact brief posts natively to mocked mail service", async () => {
-      const intercepted = [];
-      const pattern = "https://formsubmit.co/**";
-      await page.route(pattern, async route => {
-        const request = route.request();
-        const params = new URLSearchParams(request.postData() || "");
-        intercepted.push({ url: request.url(), method: request.method(), body: Object.fromEntries(params) });
-        await route.fulfill({ status: 303, headers: { location: base + "/kontakt?wyslano=1" }, body: "" });
-      });
-      try {
-        const contactResponse = await page.goto(base + "/kontakt", { waitUntil: "domcontentloaded", timeout: 45000 });
-        assert.ok(contactResponse?.ok(), "Contact page did not load");
-        const form = page.locator('form[data-analytics-form="brief"]');
-        await form.waitFor({ state: "visible", timeout: 12000 });
-        assert.equal(await form.getAttribute("action"), "https://formsubmit.co/kontakt@zielona-marka.pl");
-        await form.locator('input[name="name"]').fill("Przykładowa osoba QA");
-        await form.locator('input[name="email"]').fill("not-an-email");
-        await form.locator('textarea[name="message"]').fill("Proszę o informację o stworzeniu strony firmowej.");
-        await form.locator('select[name="projectType"]').selectOption({ label: "Strona WWW szyta na miarę" });
-        await form.locator('input[name="consent"]').check();
-        await form.locator('button[type="submit"]').click();
-        assert.equal(intercepted.length, 0, "Invalid email must not reach the external provider");
-        assert.equal(await form.locator('input[name="email"]').evaluate(el => el.validity.typeMismatch), true);
-        await form.locator('input[name="email"]').fill("test@example.com");
-        await form.locator('button[type="submit"]').click();
-        await page.getByText(/Dziękuję za zgłoszenie\./).waitFor({ state: "visible", timeout: 15000 });
-        assert.equal(intercepted.length, 1, "Expected one mocked POST; no real message may be sent by QA");
-        assert.equal(intercepted[0].method, "POST");
-        assert.equal(intercepted[0].body.email, "test@example.com");
-        assert.equal(intercepted[0].body.consent, "yes");
-      } finally {
-        await page.unroute(pattern);
-      }
+    await check(size.name + ": contact brief uses an explicit email composer", async () => {
+      const response = await page.goto(base + "/kontakt", { waitUntil: "domcontentloaded", timeout: 45000 });
+      assert.ok(response?.ok(), "Contact page did not load");
+      const form = page.locator('form[data-analytics-form="brief"]');
+      await form.waitFor({ state: "visible", timeout: 12000 });
+      assert.equal(await form.getAttribute("action"), "mailto:kontakt@zielona-marka.pl");
+      assert.match(await form.innerText(), /program pocztowy/);
+      assert.ok(await form.getByRole("button", { name: /Przygotuj e-mail/ }).count());
+      await form.locator('input[name="name"]').fill("Przykładowa osoba QA");
+      await form.locator('input[name="email"]').fill("not-an-email");
+      await form.locator('textarea[name="message"]').fill("Proszę o informację o stworzeniu strony firmowej.");
+      await form.locator('select[name="projectType"]').selectOption({ label: "Strona WWW szyta na miarę" });
+      await form.locator('input[name="consent"]').check();
+      assert.equal(await form.locator('input[name="email"]').evaluate(el => el.validity.typeMismatch), true);
+      // Never send a valid form in CI. It would open a real mail client instead
+      // of contacting a mockable HTTP endpoint.
     });
     await check(size.name + ": JS asset failures recover after a fresh navigation", async () => {
       if (!failedJsChunks.length) return { missingChunks: 0 };
