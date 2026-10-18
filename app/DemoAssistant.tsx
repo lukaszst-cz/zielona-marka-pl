@@ -39,7 +39,7 @@ export default function DemoAssistant() {
         {goal && !industry && <div className="assistant-step"><div className="user-message">{goal}</div><p>W jakiej branży działasz?</p><div className="assistant-options">{industries.map(item => <button key={item} type="button" onClick={() => setIndustry(item)}>{item}</button>)}</div><button className="assistant-back" type="button" onClick={() => setGoal("")}>← Wróć</button></div>}
         {goal && industry && <div className="assistant-step"><div className="user-message">{industry}</div>
           {goal === "Ceny i terminy" && <div className="bot-message"><p><b>Orientacyjnie:</b> Mała, podstawowa strona ZM Start od 1 449 zł netto / od 72 godzin do 14 dni od otrzymania kompletu materiałów i ustalenia zakresu. LeadFlow od 4 490 zł netto / 10–14 dni roboczych, ZM Flow od 6 900 zł netto / 14–21 dni roboczych.</p><small>30% na start, 70% po odbiorze i kontroli jakości (QA), przed publikacją na serwerze klienta.</small></div>}
-          <p>Zostaw kontakt. Zgłoszenie zostanie przesłane e-mailem do Zielonej Marki.</p>
+          <p>Zostaw kontakt. Zgłoszenie zostanie przesłane e-mailem na adres marki Zielona Marka.</p>
           <form className="assistant-lead-form" method="post" action="https://formsubmit.co/kontakt@zielona-marka.pl">
             <input className="form-trap" name="_honey" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" />
             <input type="hidden" name="_subject" value="Zielona Marka - Asystent zapytań" />
