@@ -46,7 +46,7 @@ test("form receives gallery selection and keeps privacy safeguards", async () =>
   for (const mode of ["existing", "new", "logo", "promo", "sales"]) {
     assert.match(form, new RegExp("^\\s*" + mode + ': "', "m"));
   }
-  assert.ok(form.includes('action="https://formsubmit.co/kontakt@zielona-marka.pl"'));
+  assert.ok(form.includes('action="mailto:kontakt@zielona-marka.pl"'));
   assert.ok(form.includes('name="consent"'));
   assert.ok(form.includes("nie oznacza zgody na inne wiadomości marketingowe"));
 });
