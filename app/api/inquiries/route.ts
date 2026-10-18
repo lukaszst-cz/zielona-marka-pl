@@ -115,9 +115,8 @@ export async function POST(request: Request) {
 
     if (!payload || Array.isArray(payload) || typeof payload !== "object") return reply("Nieprawidłowe dane.", 400);
     if (payload.website_check) {
-      return wantsJson
-        ? Response.json({ ok: true }, { status: 201, headers: { "Cache-Control": "no-store" } })
-        : Response.redirect(new URL("/kontakt?wyslano=1", request.url), 303);
+      // Never tell a person that a lead was saved when the spam trap discarded it.
+      return reply("Nie udało się przyjąć zgłoszenia.", 400);
     }
 
     const name = plain(payload.name);
