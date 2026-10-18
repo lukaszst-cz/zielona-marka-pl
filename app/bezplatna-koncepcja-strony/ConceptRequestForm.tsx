@@ -85,6 +85,11 @@ export default function ConceptRequestForm() {
         if (response.status === 429) throw new Error("Zbyt wiele zgłoszeń z tego adresu. Spróbuj ponownie za kilka minut.");
         throw new Error("Nie udało się przesłać zgłoszenia. Spróbuj ponownie lub napisz na kontakt@zielona-marka.pl.");
       }
+      const outcome = await response.json().catch(() => null);
+      if (outcome?.notificationSent === false) {
+        setError("Zgłoszenie zostało zapisane w CRM, lecz powiadomienie e-mail nie zostało wysłane. Skontaktuj się także przez kontakt@zielona-marka.pl.");
+        return;
+      }
       trackAnalyticsEvent("generate_lead", { form_name: "bezplatna_koncepcja", page_path: window.location.pathname });
       setSubmitted(true);
       form.reset();
