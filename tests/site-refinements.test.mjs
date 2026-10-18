@@ -280,8 +280,8 @@ test("analytics covers guide journeys and form starts without collecting field v
   assert.doesNotMatch(tracking,/\.value/);
   const forms=(await readFile(new URL("../app/ContactForm.tsx",import.meta.url),"utf8"))+(await readFile(new URL("../app/HomeContactForm.tsx",import.meta.url),"utf8"));
   assert.match(forms,/form_submit_attempt/);
-  assert.match(forms,/https:\/\/formsubmit\.co\/kontakt@zielona-marka\.pl/);
-  assert.doesNotMatch(forms,/fetch\(|\/api\/inquiries/);
+  assert.match(forms,/mailto:kontakt@zielona-marka\.pl/);
+  assert.doesNotMatch(forms,/fetch\(|\/api\/inquiries|formsubmit\.co/);
   assert.doesNotMatch(forms,/email:\s*form\.|message:\s*form\.|name:\s*form\./);
 });
 
