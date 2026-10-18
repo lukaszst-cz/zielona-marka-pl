@@ -1,14 +1,11 @@
 "use client";
 
 import Link from "./SafeLink";
-import { FormEvent, useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { takeQuoteTransfer } from "./QuoteTransfer";
 import { trackAnalyticsEvent } from "./CookieConsent";
 
 export default function ContactForm({ audit = false, initialPackage = "", initialEstimate = "" }: { audit?: boolean; initialPackage?: string; initialEstimate?: string }) {
-  const [sent, setSent] = useState(false);
-  const [sending, setSending] = useState(false);
-  const [error, setError] = useState("");
   const messageRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
@@ -17,22 +14,11 @@ export default function ContactForm({ audit = false, initialPackage = "", initia
     const current = messageRef.current.value;
     messageRef.current.value = [current, summary].filter(Boolean).join("\n\n").slice(0, 8000);
   }, [initialPackage]);
-  async function submit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    trackAnalyticsEvent("form_submit_attempt", { form_name: audit ? "miniocena" : "brief", page_path: window.location.pathname });
-    setSending(true); setError("");
-    const form = event.currentTarget;
-    const values = Object.fromEntries(new FormData(form));
-    try {
-    const response = await fetch("/api/inquiries", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...values, message: `${audit ? "Miniocena strony\n" : ""}Usługa: ${values.projectType || "do ustalenia"}\nFirma: ${values.company || "do ustalenia"}\nAdres strony: ${values.website || "brak / nowa strona"}\nCel: ${values.goal || "do ustalenia"}\nSprzedaż lub płatności: ${values.sales || "nie dotyczy / do ustalenia"}\nBudżet: ${values.budget || "do ustalenia"}\n\n${values.message || ""}` }) });
-
-    if (response.ok) { trackAnalyticsEvent("generate_lead", { form_name: audit ? "miniocena" : "brief", page_path: window.location.pathname }); setSent(true); form.reset(); }
-    else { trackAnalyticsEvent("form_submit_error", { form_name: audit ? "miniocena" : "brief", error_type: "server_response" }); setError("Nie udało się wysłać wiadomości. Napisz bezpośrednio na kontakt@zielona-marka.pl."); }
-    } catch { trackAnalyticsEvent("form_submit_error", { form_name: audit ? "miniocena" : "brief", error_type: "connection" }); setError("Brak połączenia. Spróbuj ponownie lub zadzwoń: +48 450 458 466."); } finally { setSending(false); }
-  }
-  if (sent) return <div className="form-success" role="status"><b>Dziękuję, wiadomość została wysłana.</b><p>Przeczytam Twoją wiadomość i odezwę się, żeby ustalić, co możemy zrobić dalej.</p></div>;
-  return <form className="contact-form" data-analytics-form={audit ? "miniocena" : "brief"} method="post" action="/api/inquiries" onSubmit={submit}>
-    <input className="form-trap" name="website_check" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" />
+  return <form className="contact-form" data-analytics-form={audit ? "miniocena" : "brief"} method="post" action="https://formsubmit.co/kontakt@zielona-marka.pl" onSubmit={() => trackAnalyticsEvent("form_submit_attempt", { form_name: audit ? "miniocena" : "brief", page_path: window.location.pathname })}>
+    <input className="form-trap" name="_honey" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" />
+    <input type="hidden" name="_subject" value={audit ? "Zielona Marka - Miniocena strony" : "Zielona Marka - Kontakt i wycena"} />
+    <input type="hidden" name="_next" value="https://zielona-marka.pl/kontakt?wyslano=1" />
+    <input type="hidden" name="_url" value="https://zielona-marka.pl/kontakt" />
     <label>Imię<input required name="name" maxLength={120} placeholder="Jak masz na imię?" autoComplete="name" /></label>
     <label>E-mail<input required type="email" name="email" maxLength={254} placeholder="twoj@email.pl" autoComplete="email" /></label>
     <label>Firma <span>(opcjonalnie)</span><input name="company" maxLength={200} placeholder="Nazwa firmy" autoComplete="organization" /></label>
@@ -43,7 +29,6 @@ export default function ContactForm({ audit = false, initialPackage = "", initia
     <label>Orientacyjny budżet <span>(opcjonalnie)</span><select name="budget" defaultValue=""><option value="">Wolę najpierw poznać zakres</option><option>do 3 000 zł</option><option>3 000–6 000 zł</option><option>6 000–12 000 zł</option><option>powyżej 12 000 zł</option></select></label>
     <label className="form-wide">Co dziś nie działa albo jaki efekt chcesz osiągnąć?<textarea required name="message" ref={messageRef} maxLength={8000} rows={5} defaultValue={[initialPackage && "Wybrany pakiet: " + initialPackage, initialEstimate].filter(Boolean).join("\n\n")} placeholder="Np. mam obecną stronę, ale klienci rzadko piszą. Chcę lepiej pokazać usługi." /></label>
     <label className="form-consent form-wide"><input required type="checkbox" name="consent" value="yes" /> <span>Zapoznałem/-am się z <Link href="/polityka-prywatnosci">polityką prywatności</Link> i proszę o kontakt.</span></label>
-    <button className="button form-wide" disabled={sending} type="submit">{sending ? "Wysyłam…" : audit ? "Poproś o miniocenę" : "Wyślij brief"}<span>↗</span></button>
-    {error && <p role="alert" className="form-error form-wide">{error}</p>}
+    <button className="button form-wide" type="submit">{audit ? "Poproś o miniocenę" : "Wyślij brief"}<span>↗</span></button>
   </form>;
 }
