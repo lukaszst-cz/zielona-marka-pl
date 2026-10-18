@@ -37,8 +37,8 @@ export default function HomeContactForm() {
       });
       if (!response.ok) throw new Error("request failed");
       const outcome = await response.json().catch(() => null);
-      if (outcome?.notificationSent === false) {
-        setError("Zgłoszenie zapisano w CRM, ale powiadomienie e-mail nie dotarło do systemu wysyłkowego. Napisz bezpośrednio na kontakt@zielona-marka.pl.");
+      if (outcome?.saved !== true || outcome?.notificationSent !== true) {
+        setError(outcome?.saved === true ? "Zgłoszenie zapisano w CRM, ale powiadomienie e-mail nie dotarło do systemu wysyłkowego. Napisz na kontakt@zielona-marka.pl." : "Nie potwierdzono zapisu zgłoszenia ani wysłania e-maila. Napisz na kontakt@zielona-marka.pl.");
         return;
       }
       trackAnalyticsEvent("generate_lead", { form_name: "homepage_v5", page_path: window.location.pathname });
