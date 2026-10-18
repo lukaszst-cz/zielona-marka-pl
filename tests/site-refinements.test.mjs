@@ -883,7 +883,7 @@ test("inquiry email notification failures remain observable after CRM save", asy
     "../app/bezplatna-koncepcja-strony/ConceptRequestForm.tsx",
   ]) {
     const form = await readFile(new URL(path, import.meta.url), "utf8");
-    assert.match(form, /notificationSent === false/, path + " must display failure to notify");
+    assert.match(form, /notificationSent (?:=== false|!== true)/, path + " must display failure to notify");
   }
   const config = await readFile(new URL("../wrangler.jsonc", import.meta.url), "utf8");
   assert.match(config, /"name": "INQUIRY_EMAIL", "destination_address": "kontakt@zielona-marka.pl"/);
