@@ -20,6 +20,9 @@
   "assets": {
     "directory": "./dist/client"
   },
+  "send_email": [
+    { "name": "INQUIRY_EMAIL", "destination_address": "kontakt@zielona-marka.pl" }
+  ],
   "d1_databases": [
     {
       "binding": "DB",
