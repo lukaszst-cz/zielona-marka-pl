@@ -86,8 +86,8 @@ export default function ConceptRequestForm() {
         throw new Error("Nie udało się przesłać zgłoszenia. Spróbuj ponownie lub napisz na kontakt@zielona-marka.pl.");
       }
       const outcome = await response.json().catch(() => null);
-      if (outcome?.notificationSent === false) {
-        setError("Zgłoszenie zostało zapisane w CRM, lecz powiadomienie e-mail nie zostało wysłane. Skontaktuj się także przez kontakt@zielona-marka.pl.");
+      if (outcome?.saved !== true || outcome?.notificationSent !== true) {
+        setError(outcome?.saved === true ? "Zgłoszenie zapisano w CRM, ale powiadomienie e-mail nie zostało wysłane. Napisz także na kontakt@zielona-marka.pl." : "Nie mogę potwierdzić zapisu ani wysłania zgłoszenia. Napisz na kontakt@zielona-marka.pl.");
         return;
       }
       trackAnalyticsEvent("generate_lead", { form_name: "bezplatna_koncepcja", page_path: window.location.pathname });
