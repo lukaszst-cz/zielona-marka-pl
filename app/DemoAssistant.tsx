@@ -50,9 +50,9 @@ export default function DemoAssistant() {
       }),
     });
     const outcome = response.ok ? await response.json().catch(() => null) : null;
-    if (response.ok && outcome?.notificationSent === false) {
+    if (response.ok && outcome?.saved === true && outcome?.notificationSent === false) {
       setError("Zgłoszenie zapisano w CRM, ale powiadomienie e-mail nie zostało wysłane. Napisz na kontakt@zielona-marka.pl.");
-    } else if (response.ok) {
+    } else if (response.ok && outcome?.saved === true && outcome?.notificationSent === true) {
       setSent(true);
       form.reset();
     } else setError("Nie udało się zapisać zgłoszenia. Napisz na kontakt@zielona-marka.pl.");
