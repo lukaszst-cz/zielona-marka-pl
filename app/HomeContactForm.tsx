@@ -1,56 +1,14 @@
 "use client";
 
-import { FormEvent, useState } from "react";
 import Link from "./SafeLink";
 import { trackAnalyticsEvent } from "./CookieConsent";
 
 export default function HomeContactForm() {
-  const [sent, setSent] = useState(false);
-  const [sending, setSending] = useState(false);
-  const [error, setError] = useState("");
-
-  async function submit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const form = event.currentTarget;
-    const values = Object.fromEntries(new FormData(form));
-    trackAnalyticsEvent("form_submit_attempt", { form_name: "homepage_v5", page_path: window.location.pathname });
-    setSending(true);
-    setError("");
-    try {
-      const response = await fetch("/api/inquiries", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...values,
-          projectType: values.projectType || "do ustalenia",
-          message: [
-            values.message,
-            "",
-            `Telefon: ${values.phone || "nie podano"}`,
-            `Firma: ${values.company || "nie podano"}`,
-            `Obecna strona: ${values.website || "nie podano"}`,
-            `Obszar: ${values.projectType || "do ustalenia"}`,
-            `Termin: ${values.timeline || "do ustalenia"}`,
-            `Budżet: ${values.budget || "do ustalenia"}`,
-          ].join("\n"),
-        }),
-      });
-      if (!response.ok) throw new Error("request failed");
-      trackAnalyticsEvent("generate_lead", { form_name: "homepage_v5", page_path: window.location.pathname });
-      setSent(true);
-      form.reset();
-    } catch {
-      trackAnalyticsEvent("form_submit_error", { form_name: "homepage_v5", error_type: "request_failed" });
-      setError("Wiadomość nie została wysłana. Spróbuj ponownie albo zadzwoń: +48 450 458 466.");
-    } finally {
-      setSending(false);
-    }
-  }
-
-  if (sent) return <div className="zmh-form-success" role="status"><b>Dziękuję, wiadomość dotarła.</b><p>Przeczytam wiadomość i odezwę się, żeby porozmawiać o kolejnym kroku.</p></div>;
-
-  return <form data-analytics-form="homepage_v5" method="post" action="/api/inquiries" onSubmit={submit}>
-    <input className="form-trap" name="website_check" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" />
+  return <form data-analytics-form="homepage_v5" method="post" action="https://formsubmit.co/kontakt@zielona-marka.pl" onSubmit={() => trackAnalyticsEvent("form_submit_attempt", { form_name: "homepage_v5", page_path: window.location.pathname })}>
+    <input className="form-trap" name="_honey" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" />
+    <input type="hidden" name="_subject" value="Zielona Marka - Formularz ze strony głównej" />
+    <input type="hidden" name="_next" value="https://zielona-marka.pl/kontakt?wyslano=1" />
+    <input type="hidden" name="_url" value="https://zielona-marka.pl/" />
     <div className="zmh-field-grid">
       <label>Imię<input required name="name" maxLength={120} autoComplete="name" placeholder="Jak masz na imię?" /></label>
       <label>E-mail<input required name="email" maxLength={254} type="email" autoComplete="email" placeholder="twoj@email.pl" /></label>
@@ -67,7 +25,6 @@ export default function HomeContactForm() {
       </div>
     </details>
     <label className="zmh-privacy-check"><input required type="checkbox" name="consent" value="yes" /><span>Zapoznałem/-am się z <Link href="/polityka-prywatnosci">polityką prywatności</Link> i proszę o kontakt.</span></label>
-    <button className="zmh-pill" disabled={sending} type="submit">{sending ? "Wysyłam…" : "Wyślij wiadomość ↗"}</button>
-    {error && <p role="alert" className="zmh-form-error">{error}</p>}
+    <button className="zmh-pill" type="submit">Wyślij wiadomość ↗</button>
   </form>;
 }
