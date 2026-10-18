@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function Privacy() {
   return (
     <><SiteHeader /><main className="zm-public legal shell">
-      <span className="section-no">INFORMACJE PRAWNE · AKTUALIZACJA 08.10.2026</span>
+      <span className="section-no">INFORMACJE PRAWNE · AKTUALIZACJA 18.10.2026</span>
       <h1>Polityka prywatności</h1>
       <p className="legal-lead">
         Krótko i konkretnie: zbieramy tylko dane potrzebne do odpowiedzi na
@@ -48,13 +48,12 @@ export default function Privacy() {
         </p>
         <h2>4. Gdzie dane trafiają</h2>
         <p>
-          Dane z formularza są zapisywane w bazie danych używanej przez stronę,
-          działającą w infrastrukturze Cloudflare. Dostęp do Studio pracy ma
-          wyłącznie właściciel marki po zalogowaniu. Jeżeli włączone są
-          powiadomienia e-mail o nowych zapytaniach, dane potrzebne do takiego
-          powiadomienia mogą być przekazane do usługi Resend obsługującej wysyłkę
-          wiadomości. Dane nie są sprzedawane ani przekazywane do systemów
-          reklamowych.
+          Bieżące formularze wysyłają podane dane przez szyfrowane połączenie
+          do usługi FormSubmit (formsubmit.co), która przekazuje je pocztą
+          na kontakt@zielona-marka.pl. Dostawca może przechowywać przesłane
+          zgłoszenia przez 30 dni. Starsze zgłoszenia nadal pozostają w prywatnym
+          Studio, w bazie Cloudflare D1. Dane nie są sprzedawane ani przekazywane
+          do systemów reklamowych.
         </p>
         <h2>5. Czas przechowywania</h2>
         <p>
