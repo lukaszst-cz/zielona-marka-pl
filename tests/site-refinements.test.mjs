@@ -870,9 +870,25 @@ test("inquiry email notification failures remain observable after CRM save", asy
   const route = await readFile(new URL("../app/api/inquiries/route.ts", import.meta.url), "utf8");
   assert.ok(route.indexOf("await db.insert(inquiries)") >= 0);
   assert.ok(route.indexOf("await db.insert(inquiries)") < route.indexOf("await notifyOwner("), "Save the inquiry before sending optional email notification");
-  assert.match(route, /Inquiry saved in CRM, but email notification delivery failed/);
-  assert.match(route, /Inquiry notification not configured; saved lead remains in CRM/);
+  assert.match(route, /Inquiry saved in CRM, but email notification was not accepted/);
+  assert.match(route, /No working notification provider/);
+  assert.match(route, /const NOTIFICATION_TO = "kontakt@zielona-marka.pl"/);
+  assert.match(route, /runtime.INQUIRY_EMAIL.send/);
+  assert.match(route, /status: notificationSent \? 201 : 202/);
   assert.ok(!route.includes(".catch(() => undefined)"), "Do not swallow notification failures without a log");
+  for (const path of [
+    "../app/ContactForm.tsx",
+    "../app/HomeContactForm.tsx",
+    "../app/DemoAssistant.tsx",
+    "../app/bezplatna-koncepcja-strony/ConceptRequestForm.tsx",
+  ]) {
+    const form = await readFile(new URL(path, import.meta.url), "utf8");
+    assert.match(form, /notificationSent === false/, path + " must display failure to notify");
+  }
+  const config = await readFile(new URL("../wrangler.jsonc", import.meta.url), "utf8");
+  assert.match(config, /"name": "INQUIRY_EMAIL", "destination_address": "kontakt@zielona-marka.pl"/);
+  const prepare = await readFile(new URL("../scripts/prepare-vinext-wrangler-config.mjs", import.meta.url), "utf8");
+  assert.match(prepare, /config.send_email = sourceConfig.send_email/);
 });
 
 
