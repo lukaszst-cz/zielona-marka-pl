@@ -1,12 +1,14 @@
 "use client";
 
 import Link from "./SafeLink";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { ContactEmailHelp, startContactEmail, type ContactEmailDraft } from "./EmailContact";
 import { takeQuoteTransfer } from "./QuoteTransfer";
 import { trackAnalyticsEvent } from "./CookieConsent";
 
 export default function ContactForm({ audit = false, initialPackage = "", initialEstimate = "" }: { audit?: boolean; initialPackage?: string; initialEstimate?: string }) {
   const messageRef = useRef<HTMLTextAreaElement>(null);
+  const [draft, setDraft] = useState<ContactEmailDraft | null>(null);
 
   useEffect(() => {
     const summary = takeQuoteTransfer(initialPackage);
@@ -14,11 +16,8 @@ export default function ContactForm({ audit = false, initialPackage = "", initia
     const current = messageRef.current.value;
     messageRef.current.value = [current, summary].filter(Boolean).join("\n\n").slice(0, 8000);
   }, [initialPackage]);
-  return <form className="contact-form" data-analytics-form={audit ? "miniocena" : "brief"} method="post" action="https://formsubmit.co/kontakt@zielona-marka.pl" onSubmit={() => trackAnalyticsEvent("form_submit_attempt", { form_name: audit ? "miniocena" : "brief", page_path: window.location.pathname })}>
+  return <form className="contact-form" data-analytics-form={audit ? "miniocena" : "brief"} method="post" action="mailto:kontakt@zielona-marka.pl" encType="text/plain" onSubmit={(event) => { trackAnalyticsEvent("form_submit_attempt", { form_name: audit ? "miniocena" : "brief", page_path: window.location.pathname }); startContactEmail(event, audit ? "Miniocena strony" : "Kontakt i wycena", setDraft); }}>
     <input className="form-trap" name="_honey" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" />
-    <input type="hidden" name="_subject" value={audit ? "Zielona Marka - Miniocena strony" : "Zielona Marka - Kontakt i wycena"} />
-    <input type="hidden" name="_next" value="https://zielona-marka.pl/kontakt?wyslano=1" />
-    <input type="hidden" name="_url" value="https://zielona-marka.pl/kontakt" />
     <label>Imię<input required name="name" maxLength={120} placeholder="Jak masz na imię?" autoComplete="name" /></label>
     <label>E-mail<input required type="email" name="email" maxLength={254} placeholder="twoj@email.pl" autoComplete="email" /></label>
     <label>Firma <span>(opcjonalnie)</span><input name="company" maxLength={200} placeholder="Nazwa firmy" autoComplete="organization" /></label>
@@ -29,6 +28,8 @@ export default function ContactForm({ audit = false, initialPackage = "", initia
     <label>Orientacyjny budżet <span>(opcjonalnie)</span><select name="budget" defaultValue=""><option value="">Wolę najpierw poznać zakres</option><option>do 3 000 zł</option><option>3 000–6 000 zł</option><option>6 000–12 000 zł</option><option>powyżej 12 000 zł</option></select></label>
     <label className="form-wide">Co dziś nie działa albo jaki efekt chcesz osiągnąć?<textarea required name="message" ref={messageRef} maxLength={8000} rows={5} defaultValue={[initialPackage && "Wybrany pakiet: " + initialPackage, initialEstimate].filter(Boolean).join("\n\n")} placeholder="Np. mam obecną stronę, ale klienci rzadko piszą. Chcę lepiej pokazać usługi." /></label>
     <label className="form-consent form-wide"><input required type="checkbox" name="consent" value="yes" /> <span>Zapoznałem/-am się z <Link href="/polityka-prywatnosci">polityką prywatności</Link> i proszę o kontakt.</span></label>
-    <button className="button form-wide" type="submit">{audit ? "Poproś o miniocenę" : "Wyślij brief"}<span>↗</span></button>
+    <button className="button form-wide" type="submit">{audit ? "Przygotuj e-mail z minioceną" : "Przygotuj e-mail do wysłania"}<span>↗</span></button>
+    <p className="form-wide">Po kliknięciu otworzy się program pocztowy. Aby wysłać wiadomość, kliknij w nim „Wyślij”.</p>
+    <ContactEmailHelp draft={draft} />
   </form>;
 }
