@@ -307,62 +307,57 @@ try {
       return colors;
     });
     if (["desktop", "laptop"].includes(size.name)) {
-      await check(size.name + ": Opening to process section spacing", async () => {
-        await page.goto(base + "/", { waitUntil: "domcontentloaded", timeout: 45000 });
-        const gap = await page.evaluate(() => {
-          const opening = document.querySelector(".zmh-opening");
-          const heading = document.querySelector(".zmh-assembly-heading");
-          if (!opening || !heading) return null;
-          return Math.round(heading.getBoundingClientRect().top - opening.getBoundingClientRect().bottom);
-        });
-        assert.ok(Number.isFinite(gap), "Homepage opening or process heading missing");
-        assert.ok(gap >= -10 && gap <= 300, "Oversized blank seam between the opening and process section: " + gap + "px");
-        return { distancePx: gap };
+      await check(size.name + ": Homepage hero presents a usable contact action", async () => {
+        const response = await page.goto(base + "/", { waitUntil: "domcontentloaded", timeout: 45000 });
+        assert.ok(response?.ok(), "Homepage unavailable");
+        const hero = page.locator(".zmh-hero");
+        await hero.locator("#hero-title").waitFor({ state: "visible", timeout: 12000 });
+        assert.ok(await hero.locator('.zmh-actions a[href="/kontakt"]').isVisible(),
+          "Homepage hero must offer a clear contact route");
+        assert.ok(await hero.locator('a[href="/projektuj-strone"]').count(),
+          "Homepage hero must retain the project preview route");
       });
     }
     if (["desktop", "mobile", "compact"].includes(size.name)) {
-      await check(size.name + ": Restored afternoon homepage layout", async () => {
+      await check(size.name + ": Current homepage sections and contact flow", async () => {
         const response = await page.goto(base + "/", { waitUntil: "domcontentloaded", timeout: 45000 });
         assert.ok(response?.ok(), "Home did not load");
-        await page.locator(".zmh-assembly-board .zmh-piece-web").first().waitFor({ state: "attached", timeout: 20000 });
+        await page.locator(".zm-home-carousel").waitFor({ state: "visible", timeout: 20000 });
         const info = await page.evaluate(() => {
-          const assembly = document.querySelector(".zmh-assembly");
-          const board = document.querySelector(".zmh-assembly-board");
           const hero = document.querySelector(".zmh-opening");
-          const carousel = document.querySelector(".zm-home-offers");
+          const offers = document.querySelector(".zm-home-offers");
           const social = document.querySelector(".zmh-social-panel");
           const brief = document.querySelector(".zmh-quick-brief");
           const cinema = document.querySelector(".zmh-cinema");
           const contact = document.querySelector(".zmh-contact");
-          const rect = e => e?.getBoundingClientRect().width ?? 0;
+          const quality = document.querySelector(".zm-process-standard--home");
+          const follows = (first, second) => Boolean(first && second &&
+            (first.compareDocumentPosition(second) & Node.DOCUMENT_POSITION_FOLLOWING));
           return {
-            originalBoard: !!board?.querySelector(".zmh-piece-web .zmh-piece-photo")
-              && !!board?.querySelector(".zmh-piece-order"),
-            experimentalBoard: !!document.querySelector(".zmh-assembly-board--premium"),
-            experimentalMagazine: !!document.querySelector(".zmh-scroll-content"),
             videoCount: document.querySelectorAll(".zmh-opening video").length,
-            lowerStreamVideos: document.querySelectorAll(".zmh-assembly video,.zm-home-offers video,.zmh-contact video").length,
+            lowerStreamVideos: document.querySelectorAll(".zm-home-offers video,.zmh-contact video").length,
             slideCount: document.querySelectorAll(".zm-home-slide").length,
             chapterCount: document.querySelectorAll(".zmh-cinema-chapters > .zmh-story").length,
-            hasForm: !!document.querySelector(".zmh-quick-brief form"),
-            primaryOrder: !!(carousel && social && carousel.compareDocumentPosition(social) & Node.DOCUMENT_POSITION_FOLLOWING),
-            dimensions: [assembly, board, hero, carousel, social, brief, cinema, contact].map(rect),
+            hasForm: !!brief?.querySelector("form[data-analytics-form='homepage_v5']"),
+            hasQualitySection: !!quality,
+            sectionsInOrder: follows(hero, offers) && follows(offers, social) &&
+              follows(social, brief) && follows(brief, cinema) && follows(cinema, contact),
+            sectionsVisible: [hero, offers, social, brief, cinema, contact].every(el =>
+              el && el.getBoundingClientRect().width > 0),
             viewport: innerWidth,
             scrollWidth: document.documentElement.scrollWidth,
           };
         });
-        assert.equal(info.originalBoard, true, "Previous illustrated process board not restored");
-        assert.equal(info.experimentalBoard, false, "Recent premium preview still replaces the original board");
-        assert.equal(info.experimentalMagazine, false, "Experimental scroll magazine still active");
-        assert.equal(info.videoCount, 1, "Stream film must remain in opening");
-        assert.equal(info.lowerStreamVideos, 0, "Stream must not repeat below opening");
-        assert.equal(info.slideCount, 3, "Three free-offer slides must remain");
-        assert.equal(info.chapterCount, 5, "Five original story chapters must remain");
-        assert.equal(info.hasForm, true, "Contact form was removed");
-        assert.equal(info.primaryOrder, true, "Offer cards should appear before secondary social links");
-        assert.ok(info.dimensions.every(n => n > 0), "A homepage section is missing or hidden");
+        assert.equal(info.videoCount, 1, "Opening video must be present");
+        assert.equal(info.lowerStreamVideos, 0, "Do not duplicate the opening video below the hero");
+        assert.equal(info.slideCount, 3, "Keep all three free-offer slides");
+        assert.equal(info.chapterCount, 5, "Keep five explanatory chapters");
+        assert.equal(info.hasForm, true, "Quick brief form is missing");
+        assert.equal(info.hasQualitySection, true, "Quality process section is missing");
+        assert.equal(info.sectionsInOrder, true, "Homepage reading order changed");
+        assert.equal(info.sectionsVisible, true, "A main homepage section is hidden");
         assert.ok(info.scrollWidth <= info.viewport + 8,
-          "Horizontal overflow: " + info.scrollWidth + " / " + info.viewport);
+          "Homepage overflows horizontally: " + info.scrollWidth + " / " + info.viewport);
         return info;
       });
     }
@@ -579,7 +574,7 @@ try {
       await check("Desktop: Oferta opens and closes with Escape", async () => {
         await page.goto(base + "/", { waitUntil: "networkidle" });
         const menu = page.locator(".zm-offer-menu");
-        await menu.locator("summary").click();
+        await menu.locator(":scope > summary").click();
         assert.equal(await menu.evaluate(el => el.open), true);
         assert.equal(await menu.getByRole("link", { name: /Zaprojektuj własną stronę/ }).isVisible(), true);
         await page.keyboard.press("Escape");
@@ -685,7 +680,7 @@ try {
       await check("Mobile: menu is reachable and has the Studio shortcut", async () => {
         await page.goto(base + "/", { waitUntil: "domcontentloaded" });
         const menu = page.locator(".zm-mobile-menu");
-        await menu.locator("summary").click();
+        await menu.locator(":scope > summary").click();
         assert.equal(await menu.evaluate(el => el.open), true);
         assert.ok(await menu.getByRole("link", { name: /ZM Studio/ }).count());
         await page.keyboard.press("Escape");
@@ -708,7 +703,7 @@ try {
         assert.ok(await page.locator(".zm-nav-desktop").getByRole("link", { name: "Jakość i ISO" }).count());
       } else {
         const mobile = page.locator(".zm-mobile-menu");
-        await mobile.locator("summary").click();
+        await mobile.locator(":scope > summary").click();
         assert.ok(await mobile.getByRole("link", { name: "Jakość i normy" }).count());
         await page.keyboard.press("Escape");
       }

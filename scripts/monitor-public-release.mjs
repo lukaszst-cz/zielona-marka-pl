@@ -56,6 +56,7 @@ export async function monitorRelease({
 } = {}) {
   const pages = [];
   const failures = [];
+  let conceptFormHtml = "";
   const cssPaths = new Set();
   const jsPaths = new Set();
   for (const { path, markers } of releasePages) {
@@ -67,6 +68,7 @@ export async function monitorRelease({
         headers: { "cache-control": "no-cache", "User-Agent": "ZielonaMarkaReleaseParity/1.0" },
       });
       const html = await response.text();
+      if (path === "/bezplatna-koncepcja-strony") conceptFormHtml = html;
       const missing = missingPageMarkers(html, markers);
       const assets = referencedAssets(html, origin);
       pages.push({ path, status: response.status, missing,
@@ -110,38 +112,14 @@ export async function monitorRelease({
     missingScripts.slice(0, 8).map(asset => asset.path + " (HTTP " + (asset.status ?? "unknown") + ")").join(", "));
   if (jsPaths.size > scriptsToCheck.length) failures.push("JavaScript asset check truncated before all referenced scripts.");
 
-  // Safe negative probe: invalid type must be rejected before D1/email writes.
-  // A distinctive validation response proves the latest form handler is deployed.
-  let conceptFormProbe = { status: null, currentHandler: false };
-  try {
-    const payload = new URLSearchParams({
-      name: "QA",
-      email: "concept-probe@example.invalid",
-      company: "Kontrola formularza",
-      mode: "__invalid_probe__",
-      details: "Tylko test walidacji; nie zapisuj zgłoszenia.",
-      consent: "yes",
-    });
-    const response = await request(new URL("/api/inquiries", origin), {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        "Origin": new URL(origin).origin,
-        "Cache-Control": "no-store",
-      },
-      body: payload,
-      signal: AbortSignal.timeout(16000),
-    });
-    const body = await response.text();
-    conceptFormProbe = {
-      status: response.status,
-      currentHandler: response.status === 400 && body.includes("Uzupełnij firmę, rodzaj projektu i opis"),
-    };
-    if (!conceptFormProbe.currentHandler) {
-      failures.push("Free concept native form handler is not confirmed on production (HTTP " + response.status + ").");
-    }
-  } catch (err) {
-    failures.push("Free concept form probe failed: " + String(err.message).slice(0, 180));
+  // The current forms deliberately open the visitor's own email app.
+  // Check rendered HTML only: never submit a real inquiry from a release monitor.
+  const conceptFormProbe = {
+    transport: "mailto",
+    currentHandler: /<form\b(?=[^>]*\bclass="[^"]*\bzm-concept-form\b)(?=[^>]*\baction="mailto:kontakt@zielona-marka\.pl")[^>]*>/i.test(conceptFormHtml),
+  };
+  if (!conceptFormProbe.currentHandler) {
+    failures.push("Free concept mailto form is missing from the deployed page.");
   }
   return {
     checkedAt: new Date().toISOString(), origin, pages, cssFiles, scriptAssets, missingScripts,
