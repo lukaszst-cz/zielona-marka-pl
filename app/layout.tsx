@@ -99,12 +99,20 @@ export default async function RootLayout({
         "@type": "ProfessionalService",
     "@id": "https://zielona-marka.pl/#business",
     name: "Zielona Marka",
-    description: "Strony internetowe, formularze wyceny i proste systemy dla lokalnych firm usługowych.",
+    description: "Tworzymy nowoczesne i szybkie strony internetowe dla firm usługowych oraz wdrażamy automatyzacje biznesowe, proste systemy CRM, formularze wyceny i czatboty AI. Pomagamy lokalnym przedsiębiorcom zdobywać więcej klientów z sieci na terenie Marek, Warszawy, Nowego Dworu Mazowieckiego oraz całego województwa mazowieckiego.",
     url: "https://zielona-marka.pl",
     logo: "https://zielona-marka.pl/logo-zielona-marka-transparent-v1.webp",
     image: "https://zielona-marka.pl/og.jpg",
     email: "kontakt@zielona-marka.pl",
-    telephone: "+48 450 458 466",
+    telephone: "+48450458466",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Marki",
+      postalCode: "05-270",
+      addressRegion: "Mazowieckie",
+      addressCountry: "PL",
+    },
+    hasMap: "https://www.google.com/maps?cid=2599974986214970387",
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
@@ -137,6 +145,13 @@ export default async function RootLayout({
       "Sulejówek",
       "Halinów",
       "Dąbrówka",
+      "Nowy Dwór Mazowiecki",
+      "Łomianki",
+      "Otwock",
+      "Pruszków",
+      "Piaseczno",
+      "Grodzisk Mazowiecki",
+      { "@type": "AdministrativeArea", name: "Województwo mazowieckie" },
     ],
     priceRange: "od 899 PLN netto",
     serviceType: [
@@ -150,6 +165,16 @@ export default async function RootLayout({
       "Modernizacja stron internetowych",
       "Opieka nad stronami internetowymi",
       "DTP i przygotowanie plików do druku",
+    ],
+    makesOffer: [
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Tworzenie stron WWW dla firm usługowych" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Modernizacja i odświeżanie stron internetowych" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Formularze wyceny i zbierania zapytań online" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Wdrożenia prostego systemu CRM dla małych firm" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Automatyzacja procesów biznesowych i powiadomień" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Wirtualny asystent i chatboty AI na stronę WWW" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Optymalizacja wizytówek Google i lokalne SEO" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Gazetki promocyjne online i katalogi ofertowe PDF" } },
     ],
     founder: { "@id": "https://zielona-marka.pl/#lukasz-st-cz" },
       },
@@ -188,6 +213,10 @@ export default async function RootLayout({
             __html: "window['ga-disable-G-B3QJ910M2Q']=true;window['ga-disable-G-CYFQ326JRF']=true;",
           }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
@@ -196,10 +225,6 @@ export default async function RootLayout({
         <PolishTypography />
         <CookieConsent />
         <SiteTracking />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-        />
       </body>
     </html>
   );
