@@ -1,6 +1,8 @@
 import { and, count, eq, gte } from "drizzle-orm";
-import { sendSmtpInquiry } from "../../inquiry-smtp";
 import { inquiries } from "../../../db/schema";
+import { sendSmtpInquiry } from "../../inquiry-smtp";
+import { inquiryFormEnabled } from "../../inquiry-config.mjs";
+import { sendInquiryNotification } from "../../inquiry-notification.mjs";
 
 type Payload = Record<string, unknown>;
 type NotificationEnv = {
@@ -8,54 +10,34 @@ type NotificationEnv = {
   RESEND_API_KEY?: string;
   INQUIRY_NOTIFICATION_TO?: string;
   INQUIRY_NOTIFICATION_FROM?: string;
+  INQUIRY_FORM_ENABLED?: string;
+  DB?: unknown;
 };
 
 function plain(value: unknown) {
   return String(value ?? "").trim();
 }
 
-async function notifyOwner(data: { id?: number; name: string; email: string; company: string; message: string }) {
-  const { env } = await import("cloudflare:workers");
-  const runtime = env as unknown as NotificationEnv;
-  if (runtime.SMTP_PASSWORD) return sendSmtpInquiry(data, runtime);
-  if (!runtime.RESEND_API_KEY || !runtime.INQUIRY_NOTIFICATION_TO || !runtime.INQUIRY_NOTIFICATION_FROM) {
-    console.warn("Inquiry notification not configured; saved lead remains in CRM.");
-    throw new Error("Inquiry notification is not configured.");
-  }
-  const response = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: { Authorization: `Bearer ${runtime.RESEND_API_KEY}`, "Content-Type": "application/json" },
-    body: JSON.stringify({
-      from: runtime.INQUIRY_NOTIFICATION_FROM,
-      to: [runtime.INQUIRY_NOTIFICATION_TO],
-      reply_to: data.email,
-      subject: `Nowe zapytanie ze strony: ${data.name}`,
-      text: `Imię: ${data.name}\nE-mail: ${data.email}\nFirma: ${data.company || "nie podano"}\n\n${data.message}`,
-    }),
-  });
-  if (!response.ok) throw new Error("Notification provider rejected the message.");
-}
-
-/** Configuration presence only: never return values or read/write inquiry records. */
 export async function GET() {
-  const headers = { "Cache-Control": "no-store, max-age=0", "X-Robots-Tag": "noindex" };
   try {
     const { env } = await import("cloudflare:workers");
-    const runtime = env as unknown as NotificationEnv & { DB?: unknown; INQUIRY_FORM_ENABLED?: string };
+    const runtime = env as unknown as NotificationEnv;
     return Response.json({
+      enabled: inquiryFormEnabled(runtime),
       databaseConfigured: Boolean(runtime.DB),
       notificationConfigured: Boolean(runtime.SMTP_PASSWORD || (runtime.RESEND_API_KEY && runtime.INQUIRY_NOTIFICATION_FROM && runtime.INQUIRY_NOTIFICATION_TO)),
       smtpConfigured: Boolean(runtime.SMTP_PASSWORD),
       activationConfigured: runtime.INQUIRY_FORM_ENABLED === "1",
-    }, { headers });
+    }, { headers: { "Cache-Control": "no-store, max-age=0", "X-Robots-Tag": "noindex" } });
   } catch {
-    return Response.json({ databaseConfigured: false, notificationConfigured: false, activationConfigured: false }, { headers });
+    return Response.json({ enabled: false, databaseConfigured: false, notificationConfigured: false, activationConfigured: false }, { headers: { "Cache-Control": "no-store, max-age=0", "X-Robots-Tag": "noindex" } });
   }
 }
 
 export async function POST(request: Request) {
   const contentType = request.headers.get("content-type") ?? "";
-  const wantsJson = contentType.includes("application/json");
+  const wantsJson = contentType.includes("application/json") || (request.headers.get("accept") ?? "").includes("application/json");
+  const isJsonBody = contentType.includes("application/json");
   const reply = (message: string, status: number) => wantsJson
     ? Response.json({ error: message }, { status, headers: { "Cache-Control": "no-store" } })
     : new Response(message, { status, headers: { "Cache-Control": "no-store", "Content-Type": "text/plain; charset=utf-8" } });
@@ -71,7 +53,7 @@ export async function POST(request: Request) {
     if (declaredLength > 20000) return reply("Wiadomość jest zbyt długa.", 413);
 
     let payload: Payload;
-    if (wantsJson) {
+    if (isJsonBody) {
       const raw = await request.text();
       if (raw.length > 20000) return reply("Wiadomość jest zbyt długa.", 413);
       try { payload = JSON.parse(raw) as Payload; }
@@ -83,7 +65,7 @@ export async function POST(request: Request) {
     }
 
     if (!payload || Array.isArray(payload) || typeof payload !== "object") return reply("Nieprawidłowe dane.", 400);
-    if (payload.website_check) {
+    if (payload.website_check || payload._honey) {
       return wantsJson
         ? Response.json({ ok: true }, { status: 201, headers: { "Cache-Control": "no-store" } })
         : Response.redirect(new URL("/kontakt?wyslano=1", request.url), 303);
@@ -94,9 +76,9 @@ export async function POST(request: Request) {
     const company = plain(payload.company);
     const budget = plain(payload.budget);
     let message = plain(payload.message);
-    const additionalFields = [payload.phone, payload.website, payload.projectType, payload.timeline, payload.goal, payload.purpose, payload.sales].map(plain);
+    const additionalFields = [payload.phone, payload.website, payload.projectType, payload.timeline, payload.goal, payload.purpose, payload.sales, payload.cel, payload.branza].map(plain);
 
-    if (!wantsJson) {
+    if (!isJsonBody) {
       // Accept the landing page's native form submission if client JS fails.
       if (typeof payload.mode === "string" && typeof payload.details === "string") {
         const labels: Record<string, string> = {
@@ -109,7 +91,7 @@ export async function POST(request: Request) {
         const label = Object.prototype.hasOwnProperty.call(labels, payload.mode)
           ? labels[payload.mode] : undefined;
         const conceptDetails = plain(payload.details);
-        if (!label || !company || conceptDetails.length < 10 || conceptDetails.length > 4000) {
+        if (!label || conceptDetails.length < 10 || conceptDetails.length > 4000) {
           return reply("Uzupełnij firmę, rodzaj projektu i opis (10–4000 znaków).", 400);
         }
         message = [
@@ -124,6 +106,8 @@ export async function POST(request: Request) {
       }
       const details = [
         ["Telefon", plain(payload.phone)],
+        ["Cel asystenta", plain(payload.cel)],
+        ["Branża", plain(payload.branza)],
         ["Firma", company],
         ["Obecna strona", plain(payload.website)],
         ["Usługa lub obszar", plain(payload.projectType)],
@@ -140,30 +124,40 @@ export async function POST(request: Request) {
       return reply("Sprawdź pola formularza i zgodę na kontakt.", 400);
     }
 
+    const { env } = await import("cloudflare:workers");
+    const runtime = env as unknown as NotificationEnv;
+    if (!inquiryFormEnabled(runtime)) return reply("Wysyłka formularza nie jest jeszcze dostępna. Napisz na kontakt@zielona-marka.pl.", 503);
+    if (plain(payload.formTitle)) message = `Formularz: ${plain(payload.formTitle).slice(0,120)}\n\n${message}`;
+
     const { getDb } = await import("../../../db");
     const db = getDb();
     const cutoff = new Date(Date.now() - 10 * 60 * 1000).toISOString();
+    // A repeated request after a lost response must not create another identical lead.
+    const [duplicate] = await db.select({ id: inquiries.id }).from(inquiries)
+      .where(and(eq(inquiries.email, email), eq(inquiries.name, name), eq(inquiries.company, company), eq(inquiries.budget, budget), eq(inquiries.message, message), gte(inquiries.createdAt, cutoff))).limit(1);
     const [recent] = await db.select({ total: count() }).from(inquiries).where(and(eq(inquiries.email, email), gte(inquiries.createdAt, cutoff)));
-    if (Number(recent?.total ?? 0) >= 3) {
+    if (!duplicate && Number(recent?.total ?? 0) >= 3) {
       const response = reply("Zbyt wiele wiadomości w krótkim czasie. Spróbuj ponownie za kilka minut.", 429);
       response.headers.set("Retry-After", "600");
       return response;
     }
 
-    const [saved] = await db.insert(inquiries).values({ name, email, company, budget, message, status: "Nowe", createdAt: new Date().toISOString() }).returning({ id: inquiries.id });
-    if (!saved) throw new Error("Inquiry was not saved.");
+    const [inserted] = duplicate ? [duplicate] : await db.insert(inquiries)
+      .values({ name, email, company, budget, message, status: "Nowe", createdAt: new Date().toISOString() })
+      .returning({ id: inquiries.id });
+    if (!inserted) throw new Error("Inquiry was not saved.");
     try {
-      await notifyOwner({ id: saved.id, name, email, company, message });
+      if (runtime.SMTP_PASSWORD) await sendSmtpInquiry({ id: inserted.id, name, email, company, message, title: plain(payload.formTitle).replace(/[\r\n]/g, " ").slice(0, 120) }, runtime);
+      else await sendInquiryNotification({ id: inserted.id, name, email, company, message }, runtime);
     } catch {
-      console.error("Inquiry saved in CRM, but email notification delivery failed.", { inquiryId: saved.id });
-      const error = `Zgłoszenie nr ${saved.id} zapisano, ale nie udało się potwierdzić powiadomienia e-mail. Zadzwoń pod +48 450 458 466.`;
+      console.error("Inquiry saved; provider acknowledgement unavailable.", { inquiryId: inserted.id });
+      const error = `Zgłoszenie nr ${inserted.id} zostało zapisane. Nie udało się potwierdzić powiadomienia e-mail. Jeśli sprawa jest pilna, zadzwoń pod +48 450 458 466.`;
       return wantsJson
-        ? Response.json({ saved: true, reference: saved.id, error }, { status: 503, headers: { "Cache-Control": "no-store" } })
+        ? Response.json({ error, saved: true, reference: inserted.id }, {status:503,headers:{"Cache-Control":"no-store"}})
         : reply(error, 503);
     }
-
     return wantsJson
-      ? Response.json({ ok: true, reference: saved.id }, { status: 201, headers: { "Cache-Control": "no-store" } })
+      ? Response.json({ ok: true, reference: inserted.id }, { status: 201, headers: { "Cache-Control": "no-store" } })
       : Response.redirect(new URL("/kontakt?wyslano=1", request.url), 303);
   } catch {
     return reply("Nie udało się zapisać wiadomości. Napisz bezpośrednio na kontakt@zielona-marka.pl.", 500);

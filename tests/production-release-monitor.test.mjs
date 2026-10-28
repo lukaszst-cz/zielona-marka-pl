@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {
-  missingPageMarkers, missingUiStyles, monitorRelease, probeScriptAsset, releasePages,
+  missingPageMarkers, missingUiStyles, monitorRelease, probeScriptAsset, releasePages, probeInquiryReadiness,
 } from "../scripts/monitor-public-release.mjs";
 import { cloudflareBuildState, waitForCloudflareBuild } from "../scripts/wait-for-cloudflare-build.mjs";
 
@@ -20,8 +20,9 @@ test("fully simulated latest release passes without touching production", async 
     '<html><head><link rel="stylesheet" href="/_next/static/a234.css"><script src="/_next/static/chunks/ready.js"></script></head><body>' + markers.join(" ") + "</body></html>",
   ]));
   const css = "--zm-ui-card:rgba(5,30,19,.32);.care-plans{}.zm-dtp-prices{}.local-related nav a{}.inspiration-services{display:none}.inspiration-story{}.zm-generated-sample{}.zmh-contact-concepts{}.zmh-assembly-board{}.zmh-piece-concept{}.zmh-cinema{}.zmh-flow-item{}.zm-concept-lightbox{}.zv5-preview-stage{}.zm-public.zm-concept .page-hero.zm-concept-hero{}";
-  const request = async (url) => {
+  const request = async (url, options) => {
     const path = new URL(url).pathname;
+    if (path === "/api/inquiries" && options?.method !== "POST") return Response.json({enabled:true,databaseConfigured:true,notificationConfigured:true});
     if (path === "/api/inquiries") return new Response("Uzupełnij firmę, rodzaj projektu i opis (10–4000 znaków).", { status: 400 });
     if (path.endsWith(".css")) return new Response(css, { status: 200, headers: { "content-type": "text/css" } });
     if (path.endsWith(".js")) return new Response("export {}", { status: 200, headers: { "content-type": "application/javascript" } });
@@ -123,4 +124,17 @@ test("Cloudflare build barrier waits, fails on build error and refuses a timeout
   await assert.rejects(waitForCloudflareBuild({
     lookup: async () => [], sleep: async () => {}, attempts: 2, intervalMs: 0,
   }), /Timed out waiting for Cloudflare production build/);
+});
+
+
+test("inquiry health check detects missing activation, storage or mail without sending", async () => {
+  for (const missing of ["enabled", "databaseConfigured", "notificationConfigured"]) {
+    const result = await probeInquiryReadiness({ request: async (_url, options) => {
+      assert.equal(options.method, undefined, "Monitoring must only read configuration");
+      return Response.json({ enabled:true, databaseConfigured:true, notificationConfigured:true, [missing]:false });
+    }});
+    assert.equal(result.ready, false, missing);
+  }
+  assert.deepEqual(await probeInquiryReadiness({request:async()=>{throw Error("offline");}}),{status:null,ready:false});
+  assert.deepEqual(await probeInquiryReadiness({request:async()=>new Response("not JSON",{status:200})}),{status:null,ready:false});
 });

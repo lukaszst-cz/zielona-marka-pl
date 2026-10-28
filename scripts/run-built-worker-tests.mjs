@@ -7,6 +7,7 @@ const baseUrl = `http://${host}:${port}`;
 const npx = process.platform === "win32" ? "npx.cmd" : "npx";
 const logs = [];
 const galleryOnly = process.argv.includes("--gallery");
+const formsOnly = process.argv.includes("--forms");
 
 const wrangler = spawn(
   npx,
@@ -115,7 +116,7 @@ try {
       "--test",
       "--test-concurrency=1",
       "--test-force-exit",
-      ...(galleryOnly ? ["tests/concept-gallery-browser.mjs"] : ["tests/rendered-html.test.mjs",
+      ...(formsOnly ? ["tests/inquiry-transport-browser.mjs"] : galleryOnly ? ["tests/concept-gallery-browser.mjs"] : ["tests/rendered-html.test.mjs",
       "tests/site-refinements.test.mjs",
       "tests/local-city-grammar.test.mjs"]),
     ],

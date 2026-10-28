@@ -1,13 +1,14 @@
 "use client";
 
 import Link from "./SafeLink";
-import { useState } from "react";
-import { ContactEmailHelp, startContactEmail, type ContactEmailDraft } from "./EmailContact";
+import { ContactEmailHelp } from "./EmailContact";
+import { useInquirySubmission, InquirySubmissionStatus } from "./useInquirySubmission";
 import { trackAnalyticsEvent } from "./CookieConsent";
 
 export default function HomeContactForm() {
-  const [draft, setDraft] = useState<ContactEmailDraft | null>(null);
-  return <form data-analytics-form="homepage_v5" method="post" action="mailto:kontakt@zielona-marka.pl" encType="text/plain" onSubmit={(event) => { trackAnalyticsEvent("form_submit_attempt", { form_name: "homepage_v5", page_path: window.location.pathname }); startContactEmail(event, "Formularz ze strony głównej", setDraft); }}>
+  const submission = useInquirySubmission("Formularz ze strony głównej");
+  const { draft } = submission;
+  return <form data-analytics-form="homepage_v5" method="post" action={submission.action} encType={submission.encType} onSubmit={(event) => { trackAnalyticsEvent("form_submit_attempt", { form_name: "homepage_v5", page_path: window.location.pathname }); void submission.submit(event); }}>
     <input className="form-trap" name="_honey" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" />
     <div className="zmh-field-grid">
       <label>Imię<input required name="name" maxLength={120} autoComplete="name" placeholder="Jak masz na imię?" /></label>
@@ -25,8 +26,9 @@ export default function HomeContactForm() {
       </div>
     </details>
     <label className="zmh-privacy-check"><input required type="checkbox" name="consent" value="yes" /><span>Zapoznałem/-am się z <Link href="/polityka-prywatnosci">polityką prywatności</Link> i proszę o kontakt.</span></label>
-    <button className="zmh-pill" type="submit">Przygotuj e-mail ↗</button>
-    <p>Po kliknięciu otworzy się program pocztowy. Kliknij w nim „Wyślij”.</p>
+    <button className="zmh-pill" type="submit" disabled={submission.disabled}>{submission.enabled ? submission.label : "Przygotuj e-mail ↗"}</button>
+    {!submission.enabled && <p>Po kliknięciu otworzy się program pocztowy. Kliknij w nim „Wyślij”.</p>}
+    <InquirySubmissionStatus state={submission.state} />
     <ContactEmailHelp draft={draft} />
   </form>;
 }
