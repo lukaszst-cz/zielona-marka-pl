@@ -1,0 +1,25 @@
+.zm-concept .zm-generated-sample{margin:0;width:100%;min-width:0;background:#08281b;color:#f5f8f1;text-align:left}
+.zm-concept .zm-sample-options{display:flex;gap:8px;padding:12px;flex-wrap:wrap}
+.zm-concept .zm-sample-options button{border:1px solid #789981;border-radius:6px;padding:9px 15px;color:#f5f8f1;background:#123b2b;cursor:pointer;font:600 13px/1.4 Arial,sans-serif}
+.zm-concept .zm-sample-options button[aria-pressed="true"]{color:#08281b;background:#d2ed9b}
+.zm-concept .zm-sample-open{display:block;position:relative;background:#e7e6e0;color:#08281b}
+.zm-concept .zm-sample-open img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:contain}
+.zm-concept .zm-sample-open>span{position:absolute;bottom:12px;right:12px;background:#08281b;color:#fff;padding:8px 12px;border-radius:4px;font:600 12px/1.5 Arial,sans-serif}
+.zm-concept .zm-generated-sample figcaption{display:flex;flex-direction:column;gap:7px;padding:17px 20px;color:#dce8d5;font:13px/1.6 Arial,sans-serif}
+.zm-concept .zm-generated-sample figcaption strong{color:#f5f8f1;font-size:15px}
+.zm-concept .zm-generated-sample figcaption small{color:#cbdcc2}
+dialog.zm-concept-lightbox{position:fixed;inset:0;width:100vw;max-width:100vw;height:100dvh;max-height:100dvh;margin:0;padding:12px;border:0;background:#06170ff5;color:#fff;overflow:hidden}
+dialog.zm-concept-lightbox::backdrop{background:#000c}
+.zm-concept-lightbox-content{height:100%;display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:10px;font:14px/1.5 Arial,sans-serif}
+.zm-concept-lightbox header,.zm-concept-lightbox-controls{display:flex;gap:12px;align-items:center;justify-content:space-between}
+.zm-concept-lightbox header p{margin:0;color:#fff}
+.zm-concept-lightbox header small{display:block;color:#d2ed9b}
+.zm-concept-lightbox button{padding:10px 14px;border:1px solid #b0f36c;border-radius:6px;background:#123b2b;color:#fff;cursor:pointer;font:inherit;min-height:44px}
+.zm-concept-lightbox button:focus-visible,.zm-concept .zm-sample-options button:focus-visible,.zm-concept .zm-sample-open:focus-visible{outline:3px solid #b0f36c;outline-offset:3px}
+.zm-concept-lightbox-image{min-height:0;min-width:0;display:flex;align-items:center;justify-content:center;overflow:auto;overscroll-behavior:contain}
+.zm-concept-lightbox-image img{display:block;width:100%;height:100%;object-fit:contain}
+.zm-concept-lightbox-image.is-zoomed{display:block}
+.zm-concept-lightbox-image.is-zoomed img{width:1536px;max-width:none;height:auto;max-height:none;object-fit:initial}
+@media(max-width:540px){dialog.zm-concept-lightbox{padding:8px}.zm-concept-lightbox-controls{gap:5px}.zm-concept-lightbox button{padding:8px;font-size:12px}.zm-concept-lightbox header p{font-size:12px}}
+.zm-public.zm-concept .zm-generated-sample{max-width:100%}
+html body .zm-public.zm-concept .zv5-preview-stage{height:auto;display:block;overflow:visible}

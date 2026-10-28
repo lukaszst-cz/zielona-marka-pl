@@ -1,0 +1,87 @@
+{
+  "website": [
+    {
+      "file": "existing",
+      "title": "PION / modernizacja strony",
+      "alt": "Wygenerowana koncepcja: przestarzała strona ścianki wspinaczkowej PION i nowa odsłona z dużą fotografią"
+    },
+    {
+      "file": "garden",
+      "title": "FORMA / modernizacja strony",
+      "alt": "Koncepcja strony pracowni ogrodów przed i po modernizacji"
+    },
+    {
+      "file": "okruch-before-after",
+      "title": "OKRUCH / symulacja przed i po",
+      "alt": "Wygenerowane porównanie starej i nowej koncepcji strony piekarni OKRUCH"
+    }
+  ],
+  "new": [
+    {
+      "file": "styk",
+      "title": "STYK / strona nowej firmy",
+      "alt": "Koncepcja strony firmy elektrycznej STYK na laptopie i proporcjonalnym smartfonie"
+    },
+    {
+      "file": "glina",
+      "title": "GLINA / strona nowej firmy",
+      "alt": "Koncepcja pracowni ceramiki GLINA na laptopie i smartfonie"
+    },
+    {
+      "file": "trop",
+      "title": "TROP / strona nowej firmy",
+      "alt": "Koncepcja gabinetu weterynaryjnego TROP na laptopie i smartfonie"
+    }
+  ],
+  "logo": [
+    {
+      "file": "logo",
+      "title": "SZLAK / znak i zastosowania",
+      "alt": "Wygenerowana koncepcja marki SZLAK: znak, wersja odwrócona, metka i wizytówka"
+    },
+    {
+      "file": "florist",
+      "title": "ŁODYGA / znak i zastosowania",
+      "alt": "Koncepcja logo kwiaciarni ŁODYGA na papierze, wizytówce i opakowaniu"
+    },
+    {
+      "file": "palona",
+      "title": "PALONA / znak i zastosowania",
+      "alt": "Identyfikacja palarni kawy PALONA: znak, opakowanie, kubek i wizytówka"
+    }
+  ],
+  "promo": [
+    {
+      "file": "promo",
+      "title": "PELETON / gazetka reklamowa",
+      "alt": "Wygenerowana gazetka sklepu rowerowego: okładka, usługi i serwis"
+    },
+    {
+      "file": "music",
+      "title": "POGŁOS / gazetka kulturalna",
+      "alt": "Gazetka muzyczna POGŁOS: swobodna prezentacja okładki i środka"
+    },
+    {
+      "file": "dalej",
+      "title": "DALEJ / gazetka podróżnicza",
+      "alt": "Gazetka biura podróży DALEJ: stylizowana fotografia okładki i rozkładówki"
+    }
+  ],
+  "sales": [
+    {
+      "file": "sales",
+      "title": "DOBRY KOSZYK / gazetka sprzedażowa",
+      "alt": "Wygenerowana gazetka delikatesów: osobna okładka obok otwartej rozkładówki z produktami i przykładowymi cenami"
+    },
+    {
+      "file": "furniture",
+      "title": "MODUŁ / gazetka meblowa",
+      "alt": "Gazetka meblowa MODUŁ: okładka obok otwartej rozkładówki"
+    },
+    {
+      "file": "garden-catalogue",
+      "title": "ZIELONY SEZON / gazetka ogrodnicza",
+      "alt": "Gazetka ogrodnicza ZIELONY SEZON: produkty z cenami, okładka i otwarty środek"
+    }
+  ]
+}

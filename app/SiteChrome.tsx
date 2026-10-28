@@ -48,7 +48,7 @@ export const offerGroups = [
   },
 ] as const;
 
-export const offerNavigation = offerGroups.flatMap((group) => group.links);
+export const offerNavigation = offerGroups.flatMap<readonly [string, string]>((group) => group.links);
 
 function LanguageSwitch({ english }: { english: boolean }) {
   return <span className="zm-languages" role="group" aria-label={english ? "Language" : "Język strony"}>

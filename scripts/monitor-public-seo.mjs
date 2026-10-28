@@ -1,5 +1,5 @@
 import { writeFile, mkdir } from "node:fs/promises";
-import { hasNoindex } from "./seo-robots.mjs";
+import { hasNoindex, isRobotsPathBlocked } from "./seo-robots.mjs";
 
 const base = "https://zielona-marka.pl";
 const routes = [
@@ -33,9 +33,11 @@ function canonical(html) {
     ?? html.match(/<link\b[^>]*\bhref=["'][^"']+["'][^>]*\brel=["']canonical["'][^>]*>/i)?.[0];
   return tag?.match(/\bhref=["']([^"']+)["']/i)?.[1] ?? null;
 }
+let robotsText = "";
 try {
   const { response, body } = await request("/robots.txt");
-  report.robots = { status: response.status, sitemapDeclared: /sitemap:\s*https:\/\/zielona-marka\.pl\/sitemap\.xml/i.test(body), disallowRoot: /^disallow:\s*\/\s*$/im.test(body) };
+  robotsText = body;
+  report.robots = { status: response.status, sitemapDeclared: /sitemap:\s*https:\/\/zielona-marka\.pl\/sitemap\.xml/i.test(body), disallowRoot: isRobotsPathBlocked(body) };
   if (!response.ok || !report.robots.sitemapDeclared || report.robots.disallowRoot) fail("robots.txt missing, incorrect sitemap declaration, or root crawling blocked");
 } catch (error) { fail("robots.txt request failed: " + error.message); }
 let sitemapUrls = [];
@@ -46,6 +48,7 @@ try {
   if (!response.ok || !sitemapUrls.length || report.sitemap.foreignHosts.length) fail("sitemap is unavailable, empty or contains foreign/invalid URL origins");
 } catch (error) { fail("sitemap.xml request failed: " + error.message); }
 for (const route of routes) {
+  if (isRobotsPathBlocked(robotsText, route)) fail(route + " blocked for Googlebot by robots.txt");
   try {
     const { response, body } = await request(route);
     const expected = base + (route === "/" ? "/" : route);
@@ -84,6 +87,7 @@ else {
       if (!url) return;
       try {
         const { response, body } = await request(new URL(url).pathname);
+        if (isRobotsPathBlocked(robotsText, new URL(url).pathname)) fail(url + " blocked for Googlebot by robots.txt");
         const actual = canonical(body);
         const noindex = hasNoindex(body, response.headers.get("x-robots-tag") ?? "");
         report.additionalSitemapPages.push({ url, status: response.status, canonical: actual, noindex });
