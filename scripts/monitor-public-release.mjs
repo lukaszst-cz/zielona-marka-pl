@@ -6,8 +6,8 @@ import { referencedAssets, isUnusableAssetResponse } from "./public-asset-utils.
 /* Public contract: these HTML markers must be returned by the server.
    Client-rendered assembly parts are verified in browser QA after hydration. */
 export const releasePages = [
-  { path: "/", markers: ["zm-home-offers", "zm-home-carousel", "zm-home-slide-counter", "Pokaż slajd 1: Mini audyt", "Pokaż slajd 2: Mapa Szans", "Pokaż slajd 3: Bezpłatna koncepcja", "Zobacz swoją firmę", "zmh-contact-preview"] },
-  { path: "/bezplatna-koncepcja-strony", markers: ["Gazetka sprzedażowa", "Koncepcja logo", "zv5-hero-art", "zv5-tabs", "Zanim zamówisz,", "Żyj trochę", "Wybierz ten kierunek"] },
+  { path: "/", markers: ["inspiration-services", "inspiration-story", "zm-approved-concept-scene", "zmh-piece-concept", "zmh-contact-concepts", "Zobacz swoją firmę"] },
+  { path: "/bezplatna-koncepcja-strony", markers: ["Gazetka sprzedażowa", "Koncepcja logo", "zv5-hero-art", "zv5-tabs", "Twoja firma.", "existing-1280.webp", "Gdzie przesłać propozycję?"] },
   { path: "/opieka-nad-strona", markers: ["care-plans", "care-plan-benefit", "care-plan-difference", "Co zyskujesz?"] },
   { path: "/strony-internetowe", markers: ["Wybierz miasto lub dzielnicę."] },
   { path: "/dtp", markers: ["DTP"] },
@@ -21,7 +21,7 @@ export function missingPageMarkers(html, markers) {
 export function missingUiStyles(css) {
   // Unlike general file availability checks, these tokens identify the
   // actual Oct 2026 shared layout changes in the served CSS bundle.
-  return ["--zm-ui-card", ".care-plans", ".zm-dtp-prices", ".local-related nav a", ".zm-home-slide[hidden]", ".zm-home-carousel-controls", ".zm-offer-browser", ".zmh-contact-preview-message", ".zmh-assembly-board", ".zmh-piece-photo", ".zmh-cinema", ".zmh-flow-item", ".zv5-desktop", ".zv5-preview-stage", ".zm-public.zm-concept .page-hero.zm-concept-hero"].filter(
+  return ["--zm-ui-card", ".care-plans", ".zm-dtp-prices", ".local-related nav a", ".inspiration-services", ".inspiration-story", ".zm-generated-sample", ".zmh-contact-concepts", ".zmh-assembly-board", ".zmh-piece-concept", ".zmh-cinema", ".zmh-flow-item", ".zm-concept-lightbox", ".zv5-preview-stage", ".zm-public.zm-concept .page-hero.zm-concept-hero"].filter(
     (marker) => !css.includes(marker),
   );
 }

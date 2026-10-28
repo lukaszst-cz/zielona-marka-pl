@@ -65,6 +65,13 @@ try {
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 2);
     assert.equal(overflow, false, "Home must fit the viewport: " + JSON.stringify(await page.locator("body *").evaluateAll(els => els.filter(el => el.getBoundingClientRect().right > innerWidth + 2).map(el => ({tag:el.tagName,cls:el.className,width:el.getBoundingClientRect().width,right:el.getBoundingClientRect().right})).slice(0,15))));
     await page.screenshot({path: `browser-qa-artifacts/approved-home-${viewport.width}.png`, fullPage:true});
+    await page.goto(base + "/raport-qa", {waitUntil:"networkidle"});
+    const badge = page.locator('.zm-quality-mark--current');
+    assert.ok((await badge.innerText()).includes('STANDARD 3.1'));
+    const qaBounds = await badge.boundingBox();
+    assert.ok(qaBounds.width <= viewport.width, "QA mark must fit mobile");
+    assert.equal(await badge.evaluate(el => getComputedStyle(el).borderTopLeftRadius), "16px");
+    await badge.screenshot({path:`browser-qa-artifacts/qa-mark-${viewport.width}.png`});
     assert.deepEqual(errors, [], "Browser errors");
     console.log(`PASS: 15 original concepts, full-screen preview, zoom, arrows, Escape, focus at ${viewport.width}px`);
     await page.close();

@@ -1,0 +1,11 @@
+/* Current, reusable QA mark. This describes a process, not a test result. */
+html body .zm-quality-mark.zm-quality-mark--current{position:relative;isolation:isolate;display:flex;flex-direction:column;align-items:flex-start;gap:15px;width:100%;max-width:360px;min-height:0;margin:28px 0;padding:26px;border:1px solid #78998180;border-radius:16px;background:radial-gradient(ellipse at 100% 0,#b0f36c14,transparent 65%),#08281be8;box-shadow:inset 0 1px 0 #e1f4d51a,0 16px 40px #00100925;color:#f5f8f1;text-align:left;overflow:hidden}
+html body .zm-quality-mark.zm-quality-mark--current::before,html body .zm-quality-mark.zm-quality-mark--current::after{content:none}
+html body .zm-quality-mark--current>.zm-quality-mark__brand{display:flex;justify-content:space-between;gap:12px;width:100%;max-width:none;color:#cbdcc2;font:600 10px/1.5 Arial,sans-serif;letter-spacing:.08em}
+.zm-quality-mark__brand b{font:inherit;color:#b0f36c}
+html body .zm-quality-mark--current>svg{margin:0;color:#b0f36c;flex:none}
+html body .zm-quality-mark--current>strong{display:flex;align-items:center;gap:16px;color:#f5f8f1;font:600 38px/1 Arial,sans-serif;letter-spacing:-.03em}
+html body .zm-quality-mark--current>strong>span{max-width:160px;font:500 18px/1.25 Arial,sans-serif;letter-spacing:-.02em}
+html body .zm-quality-mark--current>small{max-width:none;margin:0;color:#b0f36c;font:500 12px/1.5 Arial,sans-serif!important;letter-spacing:0}
+html body .zm-quality-mark--current>p{margin:0!important;color:#cbdcc2;font:400 13px/1.6 Arial,sans-serif}
+@media(max-width:380px){html body .zm-quality-mark.zm-quality-mark--current{padding:20px}.zm-quality-mark__brand{flex-wrap:wrap}}
