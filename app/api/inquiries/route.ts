@@ -33,6 +33,22 @@ async function notifyOwner(data: { name: string; email: string; company: string;
   if (!response.ok) throw new Error("Notification provider rejected the message.");
 }
 
+/** Configuration presence only: never return values or read/write inquiry records. */
+export async function GET() {
+  const headers = { "Cache-Control": "no-store, max-age=0", "X-Robots-Tag": "noindex" };
+  try {
+    const { env } = await import("cloudflare:workers");
+    const runtime = env as unknown as NotificationEnv & { DB?: unknown; INQUIRY_FORM_ENABLED?: string };
+    return Response.json({
+      databaseConfigured: Boolean(runtime.DB),
+      notificationConfigured: Boolean(runtime.RESEND_API_KEY && runtime.INQUIRY_NOTIFICATION_FROM && runtime.INQUIRY_NOTIFICATION_TO),
+      activationConfigured: runtime.INQUIRY_FORM_ENABLED === "1",
+    }, { headers });
+  } catch {
+    return Response.json({ databaseConfigured: false, notificationConfigured: false, activationConfigured: false }, { headers });
+  }
+}
+
 export async function POST(request: Request) {
   const contentType = request.headers.get("content-type") ?? "";
   const wantsJson = contentType.includes("application/json");
