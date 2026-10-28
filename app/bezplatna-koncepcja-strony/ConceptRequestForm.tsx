@@ -55,31 +55,14 @@ export default function ConceptRequestForm() {
         ))}
       </fieldset>
     </details>
-    <p className="zm-concept-fields-intro">Kilka informacji, żebym mógł przygotować propozycję dla właściwej firmy.</p>
-    <div className="zm-concept-form-grid">
-      <label>Twoje imię <input name="name" required maxLength={120} autoComplete="given-name" placeholder="Jak masz na imię?" /></label>
-      <label>E-mail do odpowiedzi <input name="email" required type="email" maxLength={254} autoComplete="email" placeholder="adres@firma.pl" /></label>
-    </div>
-    <label>Nazwa firmy <input name="company" required maxLength={200} autoComplete="organization" placeholder="Jak nazywa się firma?" /></label>
-    {mode !== "new" && <label>{mode === "existing" ? "Adres obecnej strony" : "Link do obecnego logo lub materiałów"} (opcjonalnie)
-      <input type="url" name="website" maxLength={500} placeholder="https://twojastrona.pl" inputMode="url" />
-    </label>}
-
-    <label>Co jest najważniejszym celem projektu?
-      <select name="purpose" defaultValue="">
-        <option value="">Wybierz główny cel (opcjonalnie)</option>
-        <option>Lepsza prezentacja oferty</option>
-        <option>Więcej zapytań od klientów</option>
-        <option>Wygodniejsze zakupy online</option>
-        <option>Nowoczesny wizerunek firmy</option>
-        <option>Odświeżenie lub stworzenie znaku marki</option>
-        <option>Lepsza prezentacja produktów i promocji</option>
-        <option>Czytelna gazetka z ofertą i cenami</option>
-        <option>Nie wiem, proszę o sugestię</option>
-      </select>
+    <input type="hidden" name="name" value="Zgłoszenie koncepcji" />
+    <input type="hidden" name="purpose" value={modeLabels[mode]} />
+    <p className="zm-concept-fields-intro">Dwa pola i gotowe. Resztę ustalimy w odpowiedzi.</p>
+    <label>Gdzie przesłać propozycję?
+      <input name="email" required type="email" maxLength={254} autoComplete="email" placeholder="Twój adres e-mail" />
     </label>
-    <label>Opowiedz o firmie i o tym, co chcesz zmienić
-      <textarea name="details" required minLength={10} maxLength={4000} rows={4} placeholder="Czym zajmuje się firma? Jakie usługi, produkty, kolory lub promocje warto uwzględnić? Co chcesz zmienić względem obecnych materiałów?" />
+    <label>{mode === "existing" ? "Wklej adres swojej strony" : "Napisz, czym zajmuje się Twoja firma"}
+      <textarea name="details" required minLength={10} maxLength={4000} rows={3} placeholder={mode === "existing" ? "https://twojastrona.pl, możesz też dopisać, co chcesz zmienić" : "Np. kwiaciarnia w Markach, potrzebuję pomysłu na logo"} />
     </label>
     <label className="zm-concept-consent">
       <input name="consent" type="checkbox" required value="yes" />

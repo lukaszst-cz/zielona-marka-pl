@@ -23,3 +23,5 @@ dialog.zm-concept-lightbox::backdrop{background:#000c}
 @media(max-width:540px){dialog.zm-concept-lightbox{padding:8px}.zm-concept-lightbox-controls{gap:5px}.zm-concept-lightbox button{padding:8px;font-size:12px}.zm-concept-lightbox header p{font-size:12px}}
 .zm-public.zm-concept .zm-generated-sample{max-width:100%}
 html body .zm-public.zm-concept .zv5-preview-stage{height:auto;display:block;overflow:visible}
+html body main .zm-generated-sample .zm-concept-lightbox-image img{height:100%!important;aspect-ratio:auto;object-fit:contain}
+html body main .zm-generated-sample .zm-concept-lightbox-image.is-zoomed img{width:1536px;height:auto!important;max-width:none;max-height:none}

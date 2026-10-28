@@ -14,11 +14,11 @@ try {
     // This test never sends inquiries or changes production data.
     await page.route("**/api/**", route => route.abort());
     await page.goto(base + "/bezplatna-koncepcja-strony?fbclid=gallery-qa", { waitUntil: "networkidle" });
-    for (const [kind, options] of Object.entries(manifest)) {
+    if (!process.env.BROWSER_QA_HOME_ONLY) for (const [kind, options] of Object.entries(manifest)) {
       await page.locator(`#zv5-tab-${modes[kind]}`).click();
       for (const option of options) {
-        await page.locator(".zm-sample-options").getByRole("button", { name: option.title.split(" / ")[0], exact: true }).click();
-        const open = page.getByRole("link", { name: `Powiększ: ${option.title}`, exact: true });
+        await page.locator("#zv5-preview-panel .zm-sample-options").getByRole("button", { name: option.title.split(" / ")[0], exact: true }).click();
+        const open = page.locator("#zv5-preview-panel").getByRole("link", { name: `Powiększ: ${option.title}`, exact: true });
         await assert.doesNotReject(() => open.locator("img").evaluate(img => img.decode()));
         await open.click();
         const modal = page.getByRole("dialog", { name: "Pełny podgląd koncepcji" });
@@ -26,6 +26,8 @@ try {
         await modal.locator("img").evaluate(img => img.decode());
         const bounds = await modal.boundingBox();
         assert.ok(bounds.width >= viewport.width - 2 && bounds.height >= viewport.height - 2);
+        const imageBounds = await modal.locator("img").boundingBox();
+        assert.ok(imageBounds.height <= viewport.height && imageBounds.width <= viewport.width, "Fitted image must stay inside the screen");
         const controls = await modal.locator(".zm-concept-lightbox-controls").boundingBox();
         assert.ok(controls.height <= 80, "Global footer styles must not enlarge lightbox controls");
         assert.equal(await page.evaluate(() => document.body.style.overflow), "hidden");
@@ -42,6 +44,27 @@ try {
         assert.equal(await page.evaluate(() => document.activeElement?.className), "zm-sample-open");
       }
     }
+    const conceptField = await page.locator('.zm-concept-form input[name="email"]').evaluate(el => {const s=getComputedStyle(el);return {background:s.backgroundColor,color:s.color,radius:s.borderRadius,fontSize:s.fontSize};});
+    assert.equal(conceptField.background, "rgb(8, 40, 27)", "Concept fields must use the shared dark surface");
+    assert.equal(conceptField.fontSize, "16px");
+    await page.goto(base + "/", { waitUntil: "networkidle" });
+    const homeField = await page.locator('#krotki-brief input[name="email"]').evaluate(el => {const s=getComputedStyle(el);return {background:s.backgroundColor,color:s.color,radius:s.borderRadius,fontSize:s.fontSize};});
+    assert.deepEqual(conceptField, homeField, "Home and concept form fields must share computed styling");
+    assert.equal(await page.locator('.zmh-piece-photo').count(), 0, "Old stock photo must not reappear in the home story");
+    await page.locator('.zmh-piece-concept').evaluate(img => img.decode());
+    assert.equal(await page.locator('.zmh-contact-concepts .zm-generated-sample').count(), 1);
+    assert.equal(await page.locator('.zm-approved-concept-scene .zm-generated-sample').count(), 1);
+    assert.ok(await page.locator('.inspiration-services').count());
+    await page.locator('.zmh-contact-concepts .zm-sample-open').click();
+    const homeModal = page.getByRole('dialog', {name: 'Pełny podgląd koncepcji'});
+    await homeModal.waitFor({state:'visible'});
+    const homeBounds = await homeModal.boundingBox();
+    assert.ok(homeBounds.width >= viewport.width - 2 && homeBounds.height >= viewport.height - 2, "Home preview must also fill the screen");
+    await page.keyboard.press('Escape');
+
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 2);
+    assert.equal(overflow, false, "Home must fit the viewport: " + JSON.stringify(await page.locator("body *").evaluateAll(els => els.filter(el => el.getBoundingClientRect().right > innerWidth + 2).map(el => ({tag:el.tagName,cls:el.className,width:el.getBoundingClientRect().width,right:el.getBoundingClientRect().right})).slice(0,15))));
+    await page.screenshot({path: `browser-qa-artifacts/approved-home-${viewport.width}.png`, fullPage:true});
     assert.deepEqual(errors, [], "Browser errors");
     console.log(`PASS: 15 original concepts, full-screen preview, zoom, arrows, Escape, focus at ${viewport.width}px`);
     await page.close();

@@ -32,7 +32,7 @@ test("strona główna prowadzi przez pięć etapów od strony do relacji", async
   assert.match(html, /Bezpłatny mini audyt/i);
   assert.match(html, /Przeczytaj poradnik/i);
   assert.match(html, /Bezpłatna Mapa Szans/i);
-  assert.match(html, /demo\/mini-audyt-zielona-marka/i);
+  assert.match(html, /modernizacja-strony#miniaudyt/i);
   assert.match(html, /demo\/mapa-szans-zielona-marka/i);
   assert.match(html, /Przygotuj e-mail/i);
   assert.match(html, /Zróbmy miejsce/i);
@@ -205,7 +205,7 @@ test("Premium clarity and ZM Mini pricing are consistent in public website", asy
   const home = await (await render("/")).text();
   assert.match(home, /zmh-social-panel/);
   assert.match(home, /\/icon-github-zielona-marka\.svg/);
-  assert.match(home, /Zaprojektuj przykładową stronę/);
+  assert.match(home, /zaprojektuj przykładową stronę/i);
   const article = await (await render("/poradnik/jak-przygotowac-pdf-do-druku")).text();
   assert.match(article, /Łukasz Staniewicz/);
 });
