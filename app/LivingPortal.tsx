@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import ProjectPreview from "./ProjectPreview";
 
 /** A bounded, scroll-led reveal. Content and contact remain usable without JS. */
 export default function LivingPortal({ contact = false }: { contact?: boolean }) {
@@ -39,21 +41,13 @@ export default function LivingPortal({ contact = false }: { contact?: boolean })
     event.currentTarget.style.setProperty("--tilt", `${((event.clientX - rect.left) / rect.width - .5) * 5}deg`);
   }} onPointerLeave={event => event.currentTarget.style.setProperty("--tilt", "0deg")}>
     {contact ? <>
-      <div className="zmh-contact-preview" aria-hidden="true">
-        <span className="zmh-contact-preview-caption">PRZYKŁADOWA ROZMOWA / ZIELONA MARKA</span>
-        <div className="zmh-contact-preview-message">
-          <span>NOWE ZAPYTANIE <i>✓</i></span>
-          <strong>Chcę pokazać swoją firmę z dobrej strony.</strong>
-          <small>Opisz pomysł. Resztę wspólnie ustalimy.</small>
-        </div>
-        <div className="zmh-contact-preview-flow"><span>01 / Rozmowa</span><i>→</i><span>02 / Koncepcja</span><i>→</i><span>03 / Działanie</span></div>
-      </div>
+      <div className="zmh-contact-preview zmh-contact-concepts"><ProjectPreview kind="logo" /></div>
       <p>Dobry pomysł.<br /><em>Zacznijmy od rozmowy.</em></p>
     </> : <>
       <div className="zmh-assembly-heading"><span>Z CHAOSU DO PORZĄDKU</span><h2>Wszystko zaczyna<br />się <em>łączyć.</em></h2><p>Strona. Zapytanie. Kolejny krok.<br />Przewiń i zobacz, jak tworzą całość.</p></div>
       <div className="zmh-assembly-board" aria-label="Ilustracja połączenia strony, zapytania i obsługi klienta">
         <div className="zmh-assembly-lines" aria-hidden="true"><svg viewBox="0 0 600 400"><path d="M80 90 C300 90 150 310 350 310 S480 210 550 210" /></svg></div>
-        <div className="zmh-piece zmh-piece-web"><small>01 / TWOJA STRONA</small><strong>Dobra firma.<br />Dobry początek.</strong><div className="zmh-piece-photo" /><span>Oferta · Kontakt ↗</span></div>
+        <div className="zmh-piece zmh-piece-web"><small>01 / TWOJA STRONA</small><strong>Dobra firma.<br />Dobry początek.</strong><Image className="zmh-piece-concept" src="/concept-samples-v2/styk-640.webp" width={640} height={427} alt="STYK, koncepcja strony firmy elektrycznej" unoptimized /><span>Oferta · Kontakt ↗</span></div>
         <div className="zmh-piece-inquiry"><small>02 / ZAPYTANIE</small><b>Nowy kontakt <i>✓</i></b><span>Potrzeba · Termin · Szczegóły</span></div>
         <div className="zmh-piece-order"><small>03 / KOLEJNY KROK</small><b>Wszystko na swoim miejscu.</b><span>Zapytanie <i>→</i> Wycena <i>→</i> Realizacja</span></div>
         <span className="zmh-assembly-note">PRZYKŁADOWY PROCES DLA TWOJEJ FIRMY</span>

@@ -361,3 +361,14 @@ html:has(.zm-v5){scroll-behavior:smooth;scroll-padding-top:24px}
   @media(max-width:820px){.zmh-concept-feature{grid-template-columns:1fr}.zmh-concept-feature-art{max-width:520px;width:100%}}
   @media(max-width:540px){.zmh-concept-feature{padding:22px;gap:23px}.zmh-concept-feature h3{font-size:29px}.zmh-concept-feature-art{min-height:210px}.zmh-concept-paper{min-height:170px;padding:20px}.zmh-concept-paper strong{font-size:31px;margin-top:24px}}
 }
+
+/* Shared approved illustrations in the home story and contact section. */
+.zmh-piece-concept{display:block;width:100%;height:auto;max-height:180px;object-fit:contain;border-radius:8px}
+.zmh-contact-concepts{padding:16px!important;min-width:0}
+.zmh-contact-concepts .zm-generated-sample{margin:0}
+.zmh-contact-concepts .zm-sample-open{display:block}
+.zmh-contact-concepts img{width:100%;height:auto;object-fit:contain}
+.zm-approved-concept-scene{width:100%;min-width:0}
+.zm-approved-concept-scene .zm-generated-sample{margin:0}
+
+@media(max-width:360px){.zmh-commerce{display:grid;grid-template-columns:minmax(0,1fr);gap:16px}.zmh-commerce-copy{min-width:0}.zmh-voucher{width:100%;min-width:0}}

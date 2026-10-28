@@ -130,9 +130,10 @@ test("homepage free offers are real slides and the stream ends with the hero",as
   assert.match(source,/HomeOffersCarousel/);
   assert.doesNotMatch(source,/zmh-concept-feature/, "Legacy static concept card should no longer be rendered");
   assert.match(page,/Zobacz swoją firmę/);
-  assert.match(page,/Zamów bezpłatną koncepcję/);
+  assert.match(page,/Chcę zobaczyć swój podgląd/);
   for(const name of ["Mini audyt","Mapa Szans","Bezpłatna koncepcja"]) assert.ok(slides.includes(name),name);
-  for(const i of [1,2,3]) assert.match(page,new RegExp("Pokaż slajd " + i));
+  assert.match(page,/inspiration-service-grid/);
+  assert.match(page,/Obejrzyj wszystkie 15 przykładów/);
   assert.match(slides,/aria-pressed=\{index === active\}/);
   assert.match(slides,/onTouchStart=/);
   assert.match(slides,/onTouchEnd=/);
