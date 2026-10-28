@@ -4,6 +4,16 @@ const { chromium } = await import(process.env.BROWSER_QA_PLAYWRIGHT_ENTRY || "pl
 const base = process.env.BROWSER_QA_URL || "http://127.0.0.1:8788";
 const manifest = JSON.parse(await readFile(new URL("../public/concept-samples-v2/manifest.json", import.meta.url), "utf8"));
 const modes = { website: "existing", new: "new", logo: "logo", promo: "promo", sales: "sales" };
+// A media or background request may stay open after the UI is usable.
+// Check the document status and exact UI readiness instead of network silence.
+async function openPage(page, path, readySelector) {
+  const started = Date.now();
+  const response = await page.goto(base + path, {waitUntil:"domcontentloaded", timeout:30000});
+  assert.equal(response?.status(), 200, path + ": document must return HTTP 200");
+  await page.locator(readySelector).waitFor({state:"visible",timeout:15000});
+  await page.waitForFunction(() => document.fonts.status === "loaded", null, {timeout:15000});
+  console.log(`READY ${path}: ${Date.now()-started} ms`);
+}
 await mkdir("browser-qa-artifacts", { recursive: true });
 const browser = await chromium.launch({ headless: true, args: ["--no-sandbox"] });
 try {
@@ -13,7 +23,7 @@ try {
     page.on("pageerror", error => errors.push(error.message));
     // This test never sends inquiries or changes production data.
     await page.route("**/api/**", route => route.abort());
-    await page.goto(base + "/bezplatna-koncepcja-strony?fbclid=gallery-qa", { waitUntil: "networkidle" });
+    await openPage(page, "/bezplatna-koncepcja-strony?fbclid=gallery-qa", ".zm-concept-form");
     if (!process.env.BROWSER_QA_HOME_ONLY) for (const [kind, options] of Object.entries(manifest)) {
       await page.locator(`#zv5-tab-${modes[kind]}`).click();
       for (const option of options) {
@@ -47,7 +57,7 @@ try {
     const conceptField = await page.locator('.zm-concept-form input[name="email"]').evaluate(el => {const s=getComputedStyle(el);return {background:s.backgroundColor,color:s.color,radius:s.borderRadius,fontSize:s.fontSize};});
     assert.equal(conceptField.background, "rgb(8, 40, 27)", "Concept fields must use the shared dark surface");
     assert.equal(conceptField.fontSize, "16px");
-    await page.goto(base + "/", { waitUntil: "networkidle" });
+    await openPage(page, "/", "#krotki-brief input[name=email]");
     const homeField = await page.locator('#krotki-brief input[name="email"]').evaluate(el => {const s=getComputedStyle(el);return {background:s.backgroundColor,color:s.color,radius:s.borderRadius,fontSize:s.fontSize};});
     assert.deepEqual(conceptField, homeField, "Home and concept form fields must share computed styling");
     assert.equal(await page.locator('.zmh-piece-photo').count(), 0, "Old stock photo must not reappear in the home story");
@@ -65,7 +75,7 @@ try {
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 2);
     assert.equal(overflow, false, "Home must fit the viewport: " + JSON.stringify(await page.locator("body *").evaluateAll(els => els.filter(el => el.getBoundingClientRect().right > innerWidth + 2).map(el => ({tag:el.tagName,cls:el.className,width:el.getBoundingClientRect().width,right:el.getBoundingClientRect().right})).slice(0,15))));
     await page.screenshot({path: `browser-qa-artifacts/approved-home-${viewport.width}.png`, fullPage:true});
-    await page.goto(base + "/raport-qa", {waitUntil:"networkidle"});
+    await openPage(page, "/raport-qa", ".zm-quality-mark--current");
     const badge = page.locator('.zm-quality-mark--current');
     assert.ok((await badge.innerText()).includes('STANDARD 3.1'));
     const qaBounds = await badge.boundingBox();
