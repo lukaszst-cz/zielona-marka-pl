@@ -287,13 +287,13 @@ try {
         return {
           heroTitle: get(".zm-concept-hero h1"),
           heroLead: get(".zm-concept-hero .zm-concept-lead"),
-          benefitTitle: get(".zm-concept-benefits h2"),
-          benefitBody: get(".zm-concept-benefit-grid article p"),
+          stepTitle: get(".zm-concept-scope li h3"),
+          stepBody: get(".zm-concept-scope li p"),
           galleryTitle: get(".zm-concept-gallery .zv5-gallery-intro h2"),
           galleryLead: get(".zm-concept-gallery .zv5-gallery-intro>p"),
           scopeTitle: get(".zm-concept-scope h2"),
           requestTitle: get(".zm-concept-request h2"),
-          formField: get("form.zm-concept-form select"),
+          formField: get('form.zm-concept-form input[name="email"]'),
           faqTitle: get(".zm-concept-faq h2"),
         };
       });
@@ -329,20 +329,20 @@ try {
           const assembly = document.querySelector(".zmh-assembly");
           const board = document.querySelector(".zmh-assembly-board");
           const hero = document.querySelector(".zmh-opening");
-          const carousel = document.querySelector(".zm-home-offers");
+          const carousel = document.querySelector(".inspiration-services");
           const social = document.querySelector(".zmh-social-panel");
           const brief = document.querySelector(".zmh-quick-brief");
           const cinema = document.querySelector(".zmh-cinema");
           const contact = document.querySelector(".zmh-contact");
           const rect = e => e?.getBoundingClientRect().width ?? 0;
           return {
-            originalBoard: !!board?.querySelector(".zmh-piece-web .zmh-piece-photo")
+            originalBoard: !!board?.querySelector(".zmh-piece-web .zmh-piece-concept")
               && !!board?.querySelector(".zmh-piece-order"),
             experimentalBoard: !!document.querySelector(".zmh-assembly-board--premium"),
             experimentalMagazine: !!document.querySelector(".zmh-scroll-content"),
             videoCount: document.querySelectorAll(".zmh-opening video").length,
             lowerStreamVideos: document.querySelectorAll(".zmh-assembly video,.zm-home-offers video,.zmh-contact video").length,
-            slideCount: document.querySelectorAll(".zm-home-slide").length,
+            slideCount: document.querySelectorAll(".inspiration-service-card").length,
             chapterCount: document.querySelectorAll(".zmh-cinema-chapters > .zmh-story").length,
             hasForm: !!document.querySelector(".zmh-quick-brief form"),
             primaryOrder: !!(carousel && social && carousel.compareDocumentPosition(social) & Node.DOCUMENT_POSITION_FOLLOWING),
@@ -535,45 +535,21 @@ try {
         return { layouts: layoutVariants.length, screenshots: layoutVariants.length };
       });
     }
-    await check(size.name + ": homepage carousel switches three offers without losing CTA", async () => {
-      const response = await page.goto(base + "/", { waitUntil: "domcontentloaded", timeout: 45000 });
-      assert.ok(response?.ok(), "Homepage unavailable");
-      const carousel = page.locator(".zm-home-carousel");
-      await carousel.waitFor({ state: "visible", timeout: 12000 });
-      const slides = carousel.locator(".zm-home-slide");
-      assert.equal(await slides.count(), 3, "Exactly three existing free offers must remain");
-      const status = carousel.locator(".zm-home-slide-counter");
-      const expected = [
-        ["03 / 03", "Bezpłatna koncepcja", "/bezplatna-koncepcja-strony"],
-        ["02 / 03", "Mapa Szans", "/kontakt"],
-        ["01 / 03", "Mini audyt", "/modernizacja-strony#miniaudyt"],
-      ];
-      const active = async () => {
-        const visible = carousel.locator(".zm-home-slide:visible");
-        assert.equal(await visible.count(), 1, "Exactly one offer slide must be visible");
-        return visible;
-      };
-      assert.equal((await status.textContent())?.trim(), "03 / 03");
-      for (const [number, name, href] of expected) {
-        const index = Number(number.slice(0, 2)) - 1;
-        await carousel.getByRole("button", { name: new RegExp("Pokaż slajd " + (index + 1) + ":") }).click();
-        assert.equal((await status.textContent())?.trim(), number);
-        const current = await active();
-        assert.equal(await current.getAttribute("aria-label"), name);
-        assert.ok(await current.locator('a[href="' + href + '"]').count(), "Preserve the correct service CTA");
+    await check(size.name + ": approved homepage concepts and free offer links", async () => {
+      const response = await page.goto(base + "/", {waitUntil:"domcontentloaded",timeout:45000});
+      assert.ok(response?.ok());
+      assert.equal(await page.locator('.inspiration-service-card').count(), 3);
+      for (const href of ['/bezplatna-koncepcja-strony#zgloszenie', '/modernizacja-strony#miniaudyt', '/demo/mapa-szans-zielona-marka']) {
+        assert.ok(await page.locator('.inspiration-story a[href="'+href+'"]').count(), href);
       }
-      await carousel.getByRole("button", { name: "Następny slajd" }).click();
-      assert.equal((await status.textContent())?.trim(), "02 / 03");
-      await carousel.getByRole("button", { name: "Poprzedni slajd" }).click();
-      assert.equal((await status.textContent())?.trim(), "01 / 03");
-      const layout = await page.evaluate(() => ({
-        overflow: document.documentElement.scrollWidth - innerWidth,
-        streamClips: document.querySelectorAll(".zmh-opening video").length,
-        lowerStreamVideos: document.querySelectorAll(".zmh-assembly video,.zm-home-offers video,.zmh-contact video").length,
-      }));
-      assert.ok(layout.overflow <= 2, "Homepage overflows horizontally after carousel interactions by " + layout.overflow + "px");
-      assert.equal(layout.lowerStreamVideos, 0, "Stream video should appear only in the opening");
-      return layout;
+      const link = page.locator('.zmh-contact-concepts .zm-sample-open');
+      await link.click();
+      const dialog = page.getByRole('dialog', {name:'Pełny podgląd koncepcji'});
+      await dialog.waitFor({state:'visible'});
+      await dialog.locator('img').evaluate(img => img.decode());
+      await page.keyboard.press('Escape');
+      await dialog.waitFor({state:'hidden'});
+      return {serviceCards:3,homeLightbox:true};
     });
     if (size.name === "desktop") {
       await check("Desktop: Oferta opens and closes with Escape", async () => {
