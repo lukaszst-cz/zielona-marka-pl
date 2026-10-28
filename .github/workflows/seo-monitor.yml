@@ -11,6 +11,8 @@ on:
     branches: [main]
     paths:
       - "scripts/monitor-public-seo.mjs"
+      - "scripts/seo-fetch.mjs"
+      - "scripts/seo-robots.mjs"
       - ".github/workflows/seo-monitor.yml"
 
 permissions:
