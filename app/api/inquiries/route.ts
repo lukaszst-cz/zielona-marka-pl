@@ -14,13 +14,13 @@ function plain(value: unknown) {
   return String(value ?? "").trim();
 }
 
-async function notifyOwner(data: { name: string; email: string; company: string; message: string }) {
+async function notifyOwner(data: { id?: number; name: string; email: string; company: string; message: string }) {
   const { env } = await import("cloudflare:workers");
   const runtime = env as unknown as NotificationEnv;
   if (runtime.SMTP_PASSWORD) return sendSmtpInquiry(data, runtime);
   if (!runtime.RESEND_API_KEY || !runtime.INQUIRY_NOTIFICATION_TO || !runtime.INQUIRY_NOTIFICATION_FROM) {
     console.warn("Inquiry notification not configured; saved lead remains in CRM.");
-    return;
+    throw new Error("Inquiry notification is not configured.");
   }
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
@@ -85,7 +85,7 @@ export async function POST(request: Request) {
     if (!payload || Array.isArray(payload) || typeof payload !== "object") return reply("Nieprawidłowe dane.", 400);
     if (payload.website_check) {
       return wantsJson
-        ? Response.json({ ok: true }, { status: 201, headers: { "Cache-Control": "no-store" } })
+        ? Response.json({ ok: true, reference: saved.id }, { status: 201, headers: { "Cache-Control": "no-store" } })
         : Response.redirect(new URL("/kontakt?wyslano=1", request.url), 303);
     }
 
@@ -150,13 +150,20 @@ export async function POST(request: Request) {
       return response;
     }
 
-    await db.insert(inquiries).values({ name, email, company, budget, message, status: "Nowe", createdAt: new Date().toISOString() });
-    await notifyOwner({ name, email, company, message }).catch(() => {
-      console.error("Inquiry saved in CRM, but email notification delivery failed.");
-    });
+    const [saved] = await db.insert(inquiries).values({ name, email, company, budget, message, status: "Nowe", createdAt: new Date().toISOString() }).returning({ id: inquiries.id });
+    if (!saved) throw new Error("Inquiry was not saved.");
+    try {
+      await notifyOwner({ id: saved.id, name, email, company, message });
+    } catch {
+      console.error("Inquiry saved in CRM, but email notification delivery failed.", { inquiryId: saved.id });
+      const error = `Zgłoszenie nr ${saved.id} zapisano, ale nie udało się potwierdzić powiadomienia e-mail. Zadzwoń pod +48 450 458 466.`;
+      return wantsJson
+        ? Response.json({ saved: true, reference: saved.id, error }, { status: 503, headers: { "Cache-Control": "no-store" } })
+        : reply(error, 503);
+    }
 
     return wantsJson
-      ? Response.json({ ok: true }, { status: 201, headers: { "Cache-Control": "no-store" } })
+      ? Response.json({ ok: true, reference: saved.id }, { status: 201, headers: { "Cache-Control": "no-store" } })
       : Response.redirect(new URL("/kontakt?wyslano=1", request.url), 303);
   } catch {
     return reply("Nie udało się zapisać wiadomości. Napisz bezpośrednio na kontakt@zielona-marka.pl.", 500);
