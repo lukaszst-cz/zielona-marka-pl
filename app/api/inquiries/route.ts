@@ -1,8 +1,10 @@
 import { and, count, eq, gte } from "drizzle-orm";
+import { sendSmtpInquiry } from "../../inquiry-smtp";
 import { inquiries } from "../../../db/schema";
 
 type Payload = Record<string, unknown>;
 type NotificationEnv = {
+  SMTP_PASSWORD?: string;
   RESEND_API_KEY?: string;
   INQUIRY_NOTIFICATION_TO?: string;
   INQUIRY_NOTIFICATION_FROM?: string;
@@ -15,6 +17,7 @@ function plain(value: unknown) {
 async function notifyOwner(data: { name: string; email: string; company: string; message: string }) {
   const { env } = await import("cloudflare:workers");
   const runtime = env as unknown as NotificationEnv;
+  if (runtime.SMTP_PASSWORD) return sendSmtpInquiry(data, runtime);
   if (!runtime.RESEND_API_KEY || !runtime.INQUIRY_NOTIFICATION_TO || !runtime.INQUIRY_NOTIFICATION_FROM) {
     console.warn("Inquiry notification not configured; saved lead remains in CRM.");
     return;
@@ -41,7 +44,8 @@ export async function GET() {
     const runtime = env as unknown as NotificationEnv & { DB?: unknown; INQUIRY_FORM_ENABLED?: string };
     return Response.json({
       databaseConfigured: Boolean(runtime.DB),
-      notificationConfigured: Boolean(runtime.RESEND_API_KEY && runtime.INQUIRY_NOTIFICATION_FROM && runtime.INQUIRY_NOTIFICATION_TO),
+      notificationConfigured: Boolean(runtime.SMTP_PASSWORD || (runtime.RESEND_API_KEY && runtime.INQUIRY_NOTIFICATION_FROM && runtime.INQUIRY_NOTIFICATION_TO)),
+      smtpConfigured: Boolean(runtime.SMTP_PASSWORD),
       activationConfigured: runtime.INQUIRY_FORM_ENABLED === "1",
     }, { headers });
   } catch {
