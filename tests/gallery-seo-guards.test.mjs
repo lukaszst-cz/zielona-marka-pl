@@ -1,7 +1,16 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { readFile } from "node:fs/promises";
 import { isRobotsPathBlocked } from "../scripts/seo-robots.mjs";
 import { referencedAssets, isUnusableAssetResponse } from "../scripts/public-asset-utils.mjs";
+
+test("public UI previews never bind the production database", async () => {
+  const config = JSON.parse(await readFile(new URL("../wrangler.jsonc", import.meta.url), "utf8"));
+  assert.ok(Object.hasOwn(config, "previews"), "Wrangler requires explicit preview settings");
+  for (const database of config.d1_databases) {
+    assert.ok(!JSON.stringify(config.previews).includes(database.database_id));
+  }
+});
 
 test("AI crawler blocks do not falsely mark public pages blocked for Googlebot", () => {
   const robots = `User-agent: *\nAllow: /\nUser-agent: GPTBot\nDisallow: /\nUser-agent: Google-Extended\nDisallow: /\nUser-agent: *\nAllow: /\nDisallow: /api/\n`;

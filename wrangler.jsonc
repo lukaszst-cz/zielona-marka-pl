@@ -7,6 +7,7 @@
   "compatibility_flags": ["nodejs_compat"],
   "workers_dev": true,
   "preview_urls": true,
+  "previews": {},
   "routes": [
     {
       "pattern": "zielona-marka.pl/*",
