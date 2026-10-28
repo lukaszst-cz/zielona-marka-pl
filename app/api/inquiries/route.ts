@@ -147,7 +147,7 @@ export async function POST(request: Request) {
       .returning({ id: inquiries.id });
     if (!inserted) throw new Error("Inquiry was not saved.");
     try {
-      if (runtime.SMTP_PASSWORD) await sendSmtpInquiry({ id: inserted.id, name, email, company, message }, runtime);
+      if (runtime.SMTP_PASSWORD) await sendSmtpInquiry({ id: inserted.id, name, email, company, message, title: plain(payload.formTitle).replace(/[\r\n]/g, " ").slice(0, 120) }, runtime);
       else await sendInquiryNotification({ id: inserted.id, name, email, company, message }, runtime);
     } catch {
       console.error("Inquiry saved; provider acknowledgement unavailable.", { inquiryId: inserted.id });
