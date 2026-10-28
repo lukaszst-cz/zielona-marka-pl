@@ -1,6 +1,8 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "zielona-marka",
+  "keep_vars": true,
+  "vars": { "INQUIRY_FORM_ENABLED": "0" },
   "account_id": "e706b41950d232c8fd95da6db0ac0d88",
   "main": "./dist/server/index.js",
   "compatibility_date": "2026-08-25",

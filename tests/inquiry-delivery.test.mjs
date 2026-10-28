@@ -41,3 +41,9 @@ test('persistent failures do not turn into a success after the retry',async()=>{
  await assert.rejects(sendInquiryNotification(data,runtime,async()=>{calls++;throw new Error('network unavailable');}),/network unavailable/);
  assert.equal(calls,2);
 });
+
+test('existing home.pl secret enables SMTP without Resend or copying its value',()=>{
+ assert.equal(inquiryFormEnabled({DB:{},INQUIRY_FORM_ENABLED:'1',SMTP_PASSWORD:'test-only'}),true);
+ assert.equal(inquiryFormEnabled({DB:{},SMTP_PASSWORD:'test-only'}),false);
+ assert.equal(inquiryFormEnabled({INQUIRY_FORM_ENABLED:'1',SMTP_PASSWORD:'test-only'}),false);
+});

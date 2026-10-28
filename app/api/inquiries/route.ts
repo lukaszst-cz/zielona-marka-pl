@@ -1,10 +1,12 @@
 import { and, count, eq, gte } from "drizzle-orm";
 import { inquiries } from "../../../db/schema";
+import { sendSmtpInquiry } from "../../inquiry-smtp";
 import { inquiryFormEnabled } from "../../inquiry-config.mjs";
 import { sendInquiryNotification } from "../../inquiry-notification.mjs";
 
 type Payload = Record<string, unknown>;
 type NotificationEnv = {
+  SMTP_PASSWORD?: string;
   RESEND_API_KEY?: string;
   INQUIRY_NOTIFICATION_TO?: string;
   INQUIRY_NOTIFICATION_FROM?: string;
@@ -23,7 +25,8 @@ export async function GET() {
     return Response.json({
       enabled: inquiryFormEnabled(runtime),
       databaseConfigured: Boolean(runtime.DB),
-      notificationConfigured: Boolean(runtime.RESEND_API_KEY && runtime.INQUIRY_NOTIFICATION_FROM && runtime.INQUIRY_NOTIFICATION_TO),
+      notificationConfigured: Boolean(runtime.SMTP_PASSWORD || (runtime.RESEND_API_KEY && runtime.INQUIRY_NOTIFICATION_FROM && runtime.INQUIRY_NOTIFICATION_TO)),
+      smtpConfigured: Boolean(runtime.SMTP_PASSWORD),
       activationConfigured: runtime.INQUIRY_FORM_ENABLED === "1",
     }, { headers: { "Cache-Control": "no-store, max-age=0", "X-Robots-Tag": "noindex" } });
   } catch {
@@ -144,7 +147,8 @@ export async function POST(request: Request) {
       .returning({ id: inquiries.id });
     if (!inserted) throw new Error("Inquiry was not saved.");
     try {
-      await sendInquiryNotification({ id: inserted.id, name, email, company, message }, runtime);
+      if (runtime.SMTP_PASSWORD) await sendSmtpInquiry({ id: inserted.id, name, email, company, message }, runtime);
+      else await sendInquiryNotification({ id: inserted.id, name, email, company, message }, runtime);
     } catch {
       console.error("Inquiry saved; provider acknowledgement unavailable.", { inquiryId: inserted.id });
       const error = `Zgłoszenie nr ${inserted.id} zostało zapisane. Nie udało się potwierdzić powiadomienia e-mail. Jeśli sprawa jest pilna, zadzwoń pod +48 450 458 466.`;

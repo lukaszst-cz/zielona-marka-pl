@@ -39,7 +39,7 @@ export function useInquirySubmission(title: string) {
     try {
       const response = await fetch("/api/inquiries", {
         method: "POST", headers: { Accept: "application/json" }, body,
-        signal: AbortSignal.timeout(22000),
+        signal: AbortSignal.timeout(60000),
       });
       const result = resultObject(await response.json());
       if (result.saved === true || (response.ok && result.ok === true && Number.isInteger(result.reference))) {
