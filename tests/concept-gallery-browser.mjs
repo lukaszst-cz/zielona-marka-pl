@@ -17,8 +17,8 @@ try {
     for (const [kind, options] of Object.entries(manifest)) {
       await page.locator(`#zv5-tab-${modes[kind]}`).click();
       for (const option of options) {
-        await page.locator(".zm-sample-options").getByRole("button", { name: option.title.split(" / ")[0], exact: true }).click();
-        const open = page.getByRole("link", { name: `Powiększ: ${option.title}`, exact: true });
+        await page.locator("#zv5-preview-panel .zm-sample-options").getByRole("button", { name: option.title.split(" / ")[0], exact: true }).click();
+        const open = page.locator("#zv5-preview-panel").getByRole("link", { name: `Powiększ: ${option.title}`, exact: true });
         await assert.doesNotReject(() => open.locator("img").evaluate(img => img.decode()));
         await open.click();
         const modal = page.getByRole("dialog", { name: "Pełny podgląd koncepcji" });
@@ -26,6 +26,8 @@ try {
         await modal.locator("img").evaluate(img => img.decode());
         const bounds = await modal.boundingBox();
         assert.ok(bounds.width >= viewport.width - 2 && bounds.height >= viewport.height - 2);
+        const imageBounds = await modal.locator("img").boundingBox();
+        assert.ok(imageBounds.height <= viewport.height && imageBounds.width <= viewport.width, "Fitted image must stay inside the screen");
         const controls = await modal.locator(".zm-concept-lightbox-controls").boundingBox();
         assert.ok(controls.height <= 80, "Global footer styles must not enlarge lightbox controls");
         assert.equal(await page.evaluate(() => document.body.style.overflow), "hidden");

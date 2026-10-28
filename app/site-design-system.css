@@ -4,13 +4,13 @@
   --zm-ds-forest:#163b2a;
   --zm-ds-forest-deep:#0f2c20;
   --zm-ds-forest-soft:#28583e;
-  --zm-ds-ink:#1b3427;
-  --zm-ds-muted:#52695a;
-  --zm-ds-paper:#f5f4ed;
-  --zm-ds-card:#fffefa;
-  --zm-ds-sage:#e8eee4;
-  --zm-ds-leaf:#b9d49c;
-  --zm-ds-border:#ced9cb;
+  --zm-ds-ink:#f5f8f1;
+  --zm-ds-muted:#dce8d5;
+  --zm-ds-paper:#03170e;
+  --zm-ds-card:#08281b;
+  --zm-ds-sage:#103628;
+  --zm-ds-leaf:#b0f36c;
+  --zm-ds-border:rgba(197,222,186,.27);
   --zm-ds-shadow:0 15px 38px rgba(25,54,35,.10);
   --zm-ds-content:1180px;
   --zm-ds-radius:12px;
@@ -31,3 +31,390 @@
 .zm-ui-action{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:50px;padding:13px 22px;border-radius:7px;font-weight:700;text-align:center}
 .zm-ui-action:focus-visible{outline:3px solid #82b969;outline-offset:4px}
 @media(max-width:680px){.zm-ui-container{width:calc(100% - 32px)}}
+
+/* Shared components for the forest website; embedded demos keep their own identity. */
+html{scroll-padding-top:100px}
+html body .zm-public .page-hero{padding-block:clamp(48px,6vw,80px)!important}
+html body .zm-public .page-hero h1{font-family:Arial,Helvetica,sans-serif!important;font-size:clamp(38px,5.3vw,74px)!important;font-weight:400!important;line-height:1.08!important;letter-spacing:-.035em!important;color:var(--zm-ds-ink)!important;text-wrap:balance;overflow-wrap:break-word}
+html body .zm-public .page-hero h1 em{color:var(--zm-ds-leaf)!important;font-style:normal!important}
+html body .zm-public .page-hero>p:not(.eyebrow):not(.zm-concept-calm),html body .zm-public .page-hero .zm-concept-lead{font-size:clamp(16px,1.3vw,18px)!important;line-height:1.7!important;max-width:70ch;color:var(--zm-ds-muted)!important}
+html body .zm-public :is(.section,.contact-section){padding-block:clamp(55px,5.6vw,80px)}
+html body .zm-public .section-head{gap:24px 48px;margin-bottom:32px}
+html body .zm-public :is(.section-head h2,.mini-shop-grid h2,.contact-grid h2,.zm-concept-section-head h2){font-family:Arial,Helvetica,sans-serif!important;font-weight:400!important;line-height:1.15!important;letter-spacing:-.035em;text-wrap:balance}
+html body .zm-public :is(.extra-grid,.problem-grid,.situation-grid){gap:18px}
+html body .zm-public :is(.extra-grid,.problem-grid,.situation-grid)>article{display:flex;flex-direction:column;align-items:flex-start;min-width:0;padding:28px!important;border-radius:8px!important;background:rgba(5,30,19,.86)!important;border-color:var(--zm-ds-border)!important}
+html body .zm-public :is(.extra-grid,.problem-grid,.situation-grid)>article>p{min-height:0;margin-bottom:20px;line-height:1.7!important}
+html body .zm-public :is(.extra-grid,.problem-grid,.situation-grid)>article>a:last-child{margin-top:auto}
+html body .zm-public :is(.hero-actions,.mini-shop-grid>div)>.text-link{display:inline-flex;align-items:center;min-height:44px;margin-inline:12px;line-height:1.5}
+html body .zm-public :is(a.button,button.button,.zm-concept-form button[type=submit],.zv5-preview-cta){min-height:52px;border-radius:999px!important;font:700 14px/1.5 Arial,Helvetica,sans-serif!important;box-shadow:none}
+html body :is(.zm-public,.zm-v5) :is(a,button,input,select,textarea,summary):focus-visible{outline:3px solid #d4f5af!important;outline-offset:4px!important}
+html body .zm-public :is(.contact-form,.zm-concept-form){padding:clamp(22px,3vw,32px);gap:18px;background:rgba(5,30,19,.96)!important;border:1px solid var(--zm-ds-border);border-radius:8px}
+html body .zm-public :is(.contact-form,.zm-concept-form) label{font:500 14px/1.5 Arial,Helvetica,sans-serif!important;letter-spacing:0;text-transform:none}
+html body .zm-public :is(.contact-form,.zm-concept-form) :is(input:not([type=checkbox]):not([type=radio]),textarea,select),html body .zm-v5 .zmh-quick-brief :is(input:not([type=checkbox]):not([type=radio]),textarea,select){font-size:16px!important;line-height:1.5;min-height:48px;border-radius:4px}
+html body .zm-public :is(.form-error,.zm-concept-error){color:#ffb6a8!important}
+html body .zm-public .form-details{grid-column:1/-1;border-block:1px solid var(--zm-ds-border);padding-block:14px}
+html body .zm-public .form-details summary{cursor:pointer;font-size:15px;line-height:1.5;color:#d2f6b0;min-height:44px;display:flex;align-items:center}
+html body .zm-public .form-details-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding-top:18px}
+html body .zm-public :is(.faq-list,.zm-concept-faq-items) summary{min-height:68px;font-size:clamp(17px,1.6vw,21px)!important;line-height:1.5!important;padding-block:18px;cursor:pointer}
+html body .zm-public :is(.faq-list,.zm-concept-faq-items) details p{font-size:16px!important;line-height:1.8!important;max-width:75ch}
+html body .zm-public :is(.legal-note,.zm-concept-disclaimer,.zm-concept-form-foot){font-size:14px!important;line-height:1.7!important}
+html body .zm-public :is(.section,.page-hero,[id]){scroll-margin-top:100px}
+html body .zm-header .zm-nav-desktop .zm-offer-menu>.zm-mega-menu{background:#062218;backdrop-filter:none;border-color:var(--zm-ds-border);box-shadow:0 18px 45px #00110966}
+html body .zm-header .zm-mega-group{background:#0c2d20;backdrop-filter:none;border-color:var(--zm-ds-border);box-shadow:none}
+html body .zm-header .zm-mega-group a{min-height:40px;display:flex;align-items:center;line-height:1.4}
+html body .zm-header :is(.zm-mobile-menu-panel,.zm-mega-menu) a[aria-current=page],html body .zm-header .zm-nav-desktop>a[aria-current=page]{color:#d3f5b3;text-decoration:underline;text-underline-offset:6px}
+html body .zm-header .zm-mobile-menu-panel a{min-height:44px}
+html body .zm-footer :is(a,button){line-height:1.65;min-height:30px}
+html body .zm-public.contact-page>.page-hero{padding-bottom:32px!important}
+html body .zm-public.contact-page>.contact-section{padding-top:24px!important}
+@media(max-width:1150px) and (min-width:851px){html body .zm-header .zm-nav-desktop{display:none}html body .zm-header .zm-mobile-menu{display:block}html body .zm-header .zm-nav{min-height:88px}}
+@media(max-width:690px){
+ html body .zm-public .page-hero h1{font-size:39px!important}
+ html body .zm-public .section-head{grid-template-columns:1fr;gap:16px}
+ html body .zm-public .hero-actions{align-items:stretch;gap:16px}
+ html body .zm-public .hero-actions>.button{width:100%}
+ html body .zm-public .hero-actions>.text-link{margin-inline:0}
+ html body .zm-public .form-details-grid{grid-template-columns:1fr}
+ html body .zm-header .brand-apple{width:54px!important;height:58px!important}
+ html body .zm-header .brand-wordmark b{font-size:18px!important;line-height:1!important}
+ html body .zm-header .brand-wordmark small{font-size:7px!important;line-height:1.45!important;max-width:180px}
+ html body .zm-header .zm-nav{min-height:86px;gap:12px}
+ html body .zm-v5 .zmh-hero{padding-top:72px!important}
+ html body .zm-v5 .zmh-hero-copy{display:flex;flex-direction:column}
+ html body .zm-v5 .zmh-hero-copy>.zmh-eyebrow{order:0}
+ html body .zm-v5 .zmh-hero-copy>h1{order:1;font-size:clamp(36px,9vw,44px)!important;line-height:1.1!important}
+ html body .zm-v5 .zmh-hero-copy>.zmh-lead{order:2;font-size:18px!important;line-height:1.65!important;margin-bottom:20px!important}
+ html body .zm-v5 .zmh-hero-copy>.zmh-actions{order:3;margin-top:0!important}
+ html body .zm-v5 .zmh-hero-copy>:is(.zmh-service-line,.zmh-offer-proof,.zmh-trust-note,.zmh-price-note){order:4}
+ html body .zm-v5 .zmh-actions{flex-wrap:wrap;gap:14px}
+ html body .zm-v5 .zmh-actions>.zmh-pill{justify-content:center;width:100%;min-height:52px}
+ html body .zm-v5 :is(.zmh-price-note,.zmh-trust-note){font-size:13px!important;line-height:1.7!important}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}}
+
+html body .zm-public .client-start-paths article :is(p,li,a){font-size:15px!important;line-height:1.65!important}
+html body .zm-public .client-start-paths article h3{font-size:clamp(24px,2.3vw,32px)!important;font-weight:400!important;line-height:1.2!important}
+html body .zm-public .core-package-grid article{background:rgba(5,30,19,.94)!important;border:1px solid var(--zm-ds-border)!important;border-radius:8px!important}
+html body .zm-public .core-package-grid article h2{font-size:clamp(28px,2.8vw,38px)!important;margin-top:28px!important;min-height:2.4em;line-height:1.2!important;font-weight:400!important}
+html body .zm-public .core-package-grid article>b{font-size:clamp(28px,2.6vw,36px)!important;line-height:1.2!important;min-height:2.4em}
+html body .zm-public .contact-form .form-wide{grid-column:1/-1}
+html body .zm-public :is(.zv5-gallery-foot,.zm-concept-calm,.project-case-links){font-size:13px!important;line-height:1.65!important}
+
+html body main.zm-public .hero-actions a.button{position:relative;display:inline-flex;align-items:center;justify-content:center;padding:13px 48px!important;gap:12px}
+html body main.zm-public .hero-actions a.button>span{position:absolute;right:17px;top:50%;transform:translateY(-50%);line-height:1}
+
+/* Keep foreground and surface paired in every form state, including native menus. */
+html body :is(.zm-public,.zm-v5) :is(input:not([type=checkbox]):not([type=radio]):not([type=hidden]),textarea,select){background:#08281b!important;color:#f5f8f1!important;caret-color:#b0f36c;border:1px solid #789981!important;color-scheme:dark}
+html body :is(.zm-public,.zm-v5) :is(input,textarea)::placeholder{color:#bccfba!important;opacity:1}
+html body :is(.zm-public,.zm-v5) :is(input,textarea,select):is(:hover,:focus){background:#103628!important;color:#f5f8f1!important;border-color:#b0f36c!important}
+html body :is(.zm-public,.zm-v5) select option{background:#08281b;color:#f5f8f1}
+html body :is(.zm-public,.zm-v5) input:autofill{box-shadow:0 0 0 1000px #08281b inset!important;-webkit-text-fill-color:#f5f8f1!important}
+html body :is(.zm-public,.zm-v5) ::selection{background:#b0f36c;color:#082112;text-shadow:none}
+html body .zm-public :is(a.button,button.button):is(:hover,:focus-visible,:active){background:#c3f791!important;color:#09291d!important}
+html body .zm-public :is(a.button,button.button):is(:hover,:focus-visible,:active)>:is(span,i){color:#09291d!important}
+.client-journeys{padding-block:36px 55px}
+.client-journeys>p{color:#dce8d5;font-size:17px;max-width:65ch}
+.client-journey-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:24px}
+.client-journey-grid>a{display:flex;flex-direction:column;gap:12px;padding:26px;background:#08281b;color:#f5f8f1;border:1px solid #789981;border-radius:8px;text-decoration:none}
+.client-journey-grid>a:is(:hover,:focus-visible){background:#17432c;color:#f5f8f1;border-color:#b0f36c}
+.client-journey-grid strong{font-size:22px;font-weight:500;line-height:1.25}
+.client-journey-grid span{color:#dce8d5;font-size:16px;line-height:1.6}
+.client-journey-grid b{margin-top:auto;color:#b0f36c;font-size:14px}
+html body .zm-public .offer-scope{grid-column:1/-1;border-block:1px solid var(--zm-ds-border);padding-block:14px}
+html body .zm-public .offer-scope>summary{cursor:pointer;color:#d3f5b3;font-size:18px;min-height:44px;padding:10px 0}
+.contact-next-steps{padding:20px 0;color:#dce8d5;line-height:1.7}
+.contact-next-steps h3{color:#f5f8f1;font-size:21px}
+@media(max-width:750px){.client-journey-grid{grid-template-columns:1fr}}
+html body .zm-v5 .zm-offer-browser-page>div:first-child{background:#123b29}
+html body .zm-v5 .zm-offer-floating-card :is(small,span){color:#34543c!important}
+html body .zm-v5 .zmh-contact-preview-message{background:#e9f1e0!important;color:#173b2a!important}
+html body .zm-v5 .zmh-contact-preview-message :is(span,small,strong){color:#173b2a!important}
+html body .zm-public .zm-demo-about-visual>span{background:#123b29!important;color:#f5f8f1!important;padding:12px}
+html body .zm-public :is(.tools-contact-inner,.project-case-cta) .section-no{color:#173b2a!important}
+html body .zm-public .transportflow-proof .section-no{color:#34543c!important}
+html body .zm-public .concept-screen>aside{background:#08281b!important;color:#f5f8f1!important;border:1px solid #789981}
+html body .zm-public .concept-screen>aside :is(span,b){color:#f5f8f1!important}
+html body .zm-public .concept-screen>aside .section-no{color:#b0f36c!important}
+/* Separate demo brands retain their palettes with readable controls. */
+html body .dom-site :is(.dom-hero a:first-child,.dom-contact){background:#99502a!important;color:#fff!important}
+html body .dom-site .dom-intro>div>span{color:#82401f!important}
+html body .dom-site .dom-table button{color:#f5f8f1!important}
+html body .dom-site .status.reserved{color:#f2c47e!important}
+html body .dom-site .dom-blueprint>span{color:#173544!important}
+html body .studio-denied>div{background:#08281b!important;color:#f5f8f1!important}
+html body .studio-denied .section-no{color:#b0f36c!important}
+html body .studio-denied .button,html body .studio-denied .button span{color:#082112!important}
+html body .studio-denied :is(input,textarea,select){background:#103628!important;color:#f5f8f1!important;color-scheme:dark}
+html body .studio-denied input::placeholder{color:#bccfba;opacity:1}
+html body .mini-audit-page .mini-audit-kicker{color:#34543c}
+html body .mini-audit-page .mini-audit-cover :is(.mini-audit-kicker,.mini-audit-meta span){color:#c3ef9f}
+html body .opportunity-page .opportunity-kicker,html body .opportunity-page :is(.opportunity-wins article,.opportunity-plan li,.opportunity-choice article:not(.recommended))>span{color:#34543c}
+html body .opportunity-page .opportunity-hero .opportunity-kicker{color:#c3ef9f}
+html body main.transport-demo.zm-backoffice{background-color:#041b11!important}
+html body main.transport-demo.zm-backoffice :is(.transport-title,.transport-kpis article,.transport-card,.process-blueprint,.client-preview){background:#08281b!important}
+html body main.transport-demo.zm-backoffice .process-track>li{background:#08281b!important}
+html body main.transport-demo.zm-backoffice :is(.process-result,.phone-preview){background:#103628!important}
+html body main.industry-demo.zm-backoffice{background-color:#041b11!important}
+html body main.industry-demo.zm-backoffice :is(.industry-title,.industry-kpis article,.transport-card,.process-blueprint){background:#08281b!important}
+html body main.industry-demo.zm-backoffice :is(.process-track>li,.process-result){background:#103628!important}
+html body :is(.transport-demo,.industry-demo).zm-backoffice .automation-note{background:#103628!important}
+html body .dom-site .dom-story>div>span{color:#82401f!important}
+html body .dom-site :is(.dom-story,.dom-intro) .dom-kicker{color:#82401f!important}
+html body .mini-audit-page .mini-audit-cover{background-color:#052418}
+html body .mini-audit-page .mini-audit-before-after .mini-audit-kicker{color:#c3ef9f}
+html body .opportunity-page .opportunity-hero,html body .opportunity-page article.recommended{background-color:#052418}
+html body .opportunity-page .opportunity-route .opportunity-kicker{color:#c3ef9f}
+html body .opportunity-page .opportunity-plan li span{color:#34543c}
+html body .ns-site .ns-opening{background-color:#173b2a}
+html body .bf-site .bf-hero{background-color:#322319}
+html body .zm-public .zm-concept-consent span{color:#dce8d5!important;font-size:14px!important;line-height:1.65!important}
+/* Dark fallback under the forest photograph, including after its lower edge. */
+html body main:is(.zm-public,.zm-v5){background-color:#03170e!important}
+html body .zm-public .core-package-grid article>small{color:#dce8d5!important;font-size:14px;line-height:1.65}
+html body .zm-public :is(.industry-package small,.beauty-commerce small,.qa-report-meta span,.leadflow-demo label span){color:#dce8d5!important;font-size:14px!important;line-height:1.65}
+html body .zm-public :is(.qa-checks article>span,.timeline article>span,.technical-check-grid article>span){color:#b0f36c!important}
+
+.zm-nowrap{white-space:nowrap}
+html body .zm-whatsapp-icon{display:block;width:25px;height:25px;flex:none}
+html body .whatsapp-float>span{display:grid;place-items:center;background:#25d366!important;color:#062e19!important}
+html body .zm-public :is(.industry-package small,.qa-report-meta span){color:#fff!important}
+html body main.zm-public .industry-package small,html body main.zm-public .qa-report-meta span{color:#fff!important}
+html body .zm-v5[lang=en] .zmh-forest>.zmh-hero{min-height:calc(100svh - 86px);height:auto;padding-block:70px 55px;display:flex;flex-direction:column;justify-content:space-between;gap:40px}
+html body .zm-v5[lang=en] .zmh-hero-foot{margin-top:0;flex:none}
+html body .zm-v5[lang=en] #services{position:relative;margin-top:0;clear:both}
+.zmh-configurator-entry{padding-block:35px 55px;display:flex;align-items:center;justify-content:space-between;gap:35px;border-top:1px solid #789981}
+.zmh-configurator-entry>div{max-width:690px}
+.zmh-configurator-entry h2{font:400 clamp(28px,3vw,42px)/1.2 Arial,sans-serif}
+.zmh-configurator-entry p:not(.zmh-eyebrow){color:#dce8d5;font-size:16px;line-height:1.7}
+.zmh-configurator-entry>a{flex:none}
+html body .zm-v5 .zmh-contact .zmh-water-portal{background:none!important;box-shadow:none!important;filter:none!important;border:0!important;transform:none!important}
+html body .zm-v5 .zmh-contact .zmh-water-portal::before,html body .zm-v5 .zmh-contact .zmh-water-portal::after{display:none!important}
+.zmh-contact-brief{background:#08281b;border:1px solid #789981;padding:28px;max-width:470px;border-radius:8px;color:#f5f8f1}
+.zmh-contact-brief>span{font:700 12px/1.6 Arial,sans-serif;color:#b0f36c;letter-spacing:.06em}
+.zmh-contact-brief h3{font:400 30px/1.2 Arial,sans-serif;margin:20px 0}
+.zmh-contact-brief ol{padding-left:22px;font:16px/1.7 Arial,sans-serif}
+.zmh-contact-brief li{padding-block:10px;border-bottom:1px solid #78998155}
+html body .zm-v5 .zmh-contact-brief p{font:15px/1.7 Arial,sans-serif;color:#dce8d5}
+
+/* A single restrained interaction for check-mark lists; surfaces stay unchanged. */
+html body .zm-public :is(.check-list,.included-grid,.industry-outcomes,.core-package-grid,.quality-grid,.price-rules,.founder-copy,.care-plan-card) li{background:transparent!important;color:#e3eddc!important;box-shadow:none!important;border-color:#78998155!important;transition:transform .18s ease!important}
+html body .zm-public :is(.check-list,.included-grid,.industry-outcomes,.core-package-grid,.quality-grid,.price-rules,.founder-copy,.care-plan-card) li:is(:hover,:focus-within){background:transparent!important;color:#e3eddc!important;box-shadow:none!important;border-color:#78998155!important;filter:none!important;transform:translateY(1px) scale(.985)!important}
+html body .zm-public .check-list li::before{color:#b0f36c!important}
+html body .zm-public .check-list li a,html body .zm-public .check-list li a:is(:hover,:focus-visible){color:inherit!important;filter:none!important;background:transparent!important}
+
+/* Flat, authored layouts with concrete content instead of decorative mockups. */
+html body main .zm-preview{box-sizing:border-box;background:#f7f7f2;color:#18392c;border:1px solid #bfc9c1;border-radius:2px;box-shadow:none;overflow:hidden;font:14px/1.5 Arial,Helvetica,sans-serif;text-align:left;width:100%;min-width:0}
+html body main .zm-preview header{display:flex;justify-content:space-between;gap:15px;padding:18px 22px;border-bottom:1px solid #bbc9c0;font:700 11px/1.5 Arial,sans-serif;letter-spacing:.04em;background:#f7f7f2;color:#18392c}
+html body main .zm-preview :is(header,footer) span{font:11px/1.5 Arial,sans-serif;color:#34543c}
+html body main .zm-preview-site-main{padding:32px 25px}
+html body main .zm-preview strong{display:block;font:500 clamp(27px,2.7vw,39px)/1.1 Arial,sans-serif;letter-spacing:-.035em;color:#18392c}
+html body main .zm-preview small{display:block;font:700 11px/1.5 Arial,sans-serif;color:#34543c;margin-bottom:15px}
+html body main .zm-preview p{font:14px/1.6 Arial,sans-serif;color:#34543c;margin:18px 0}
+html body main .zm-preview .zm-preview-action{display:inline-block;background:#18392c;color:#fff!important;padding:11px 16px;border-radius:2px;font:700 12px/1.5 Arial,sans-serif}
+html body main .zm-preview-services{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid #bbc9c0}
+html body main .zm-preview-services>div{padding:18px 15px;border-right:1px solid #bbc9c0;display:flex;flex-direction:column;gap:9px}
+html body main .zm-preview-services span{color:#34543c;font-size:11px}
+html body main .zm-preview-services b{color:#18392c;font-size:14px}
+html body main .zm-preview footer{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;padding:15px 22px;gap:10px;background:#f7f7f2;color:#34543c;font:11px/1.5 Arial,sans-serif}
+html body main .zm-preview-logo{min-height:360px;display:flex;flex-direction:column}
+html body main .zm-preview-wordmark{flex:1;display:flex;flex-direction:column;justify-content:center;padding:35px;font:600 90px/1 Arial,sans-serif;letter-spacing:-.08em;color:#18392c}
+html body main .zm-preview-wordmark span{font:14px/1.5 Arial,sans-serif;letter-spacing:.08em;margin-top:20px;color:#34543c}
+html body main .zm-preview-print>strong,html body main .zm-preview-catalog>strong{padding:28px 24px 0}
+html body main .zm-preview-print>p{padding-inline:24px}
+html body main .zm-preview-print>footer b{color:#18392c}
+html body main .zm-preview-price-list{padding:20px 24px}
+html body main .zm-preview-price-list>div{display:grid;grid-template-columns:25px 1fr auto;gap:14px;align-items:center;border-top:1px solid #bbc9c0;padding-block:14px;color:#18392c}
+html body main .zm-preview-price-list h3{font:600 16px/1.4 Arial,sans-serif;color:#18392c;margin:0}
+html body main .zm-preview-price-list p{font-size:12px;margin:4px 0}
+html body main .zm-preview-price-list>div>span{font-size:11px;color:#34543c}
+html body .zm-v5 .zm-offer-art--concept{display:block;min-height:0;padding:0;transform:none}
+html body .zm-v5 .zm-offer-art--concept>.zm-preview{max-width:540px;margin-inline:auto}
+html body .zm-editorial-art>p{color:#dce8d5;font:13px/1.65 Arial,sans-serif;margin:15px 0 0}
+@media(max-width:750px){.zmh-configurator-entry{flex-direction:column;align-items:flex-start}.zmh-contact-brief{padding:22px}.zmh-contact-brief h3{font-size:26px}html body .zm-v5[lang=en] .zmh-forest>.zmh-hero{padding-top:50px;gap:30px}html body main .zm-preview header{padding:14px;font-size:10px}html body main .zm-preview header>span{font-size:10px}html body main .zm-preview-site-main{padding:25px 18px}html body main .zm-preview strong{font-size:28px}html body main .zm-preview-services>div{padding:14px 9px}html body main .zm-preview-services b{font-size:12px}html body main .zm-preview footer{padding:13px 16px}}
+@media(prefers-reduced-motion:reduce){html body .zm-public li:is(:hover,:focus-within){transform:none!important;transition:none!important}}
+
+/* One form frame: the forest shows through, while editable fields stay opaque. */
+:root{--zm-form-surface:rgba(5,32,21,.30);--zm-form-edge:rgba(197,222,186,.32);--zm-form-field:#08281b;--zm-form-pad:clamp(20px,2.5vw,30px)}
+html body main.zm-public form.contact-form,
+html body main.zm-public.zm-concept form.zm-concept-form,
+html body main.zm-v5 .zmh-form-surface form,
+html body main.zm-public .leadflow-demo form,
+html body main.status-entry .status-intro form,
+html body main.studio-denied form.studio-login-form,
+html body .demo-assistant-panel form.assistant-lead-form{
+ background:linear-gradient(135deg,rgba(180,213,161,.055),rgba(5,32,21,.04)),var(--zm-form-surface)!important;border:1px solid var(--zm-form-edge)!important;border-radius:12px!important;
+ padding:var(--zm-form-pad)!important;gap:18px!important;box-shadow:0 14px 38px rgba(0,16,9,.20),inset 0 1px 0 rgba(225,244,213,.12)!important;backdrop-filter:blur(10px)!important;-webkit-backdrop-filter:blur(10px)!important;
+ color:#f5f8f1!important;min-width:0;align-content:start;
+}
+html body .zm-v5 .zmh-quick-brief>.zmh-form-surface,
+html body main.zm-public .leadflow-demo{background:transparent!important;border:0!important;padding:0!important;box-shadow:none!important;backdrop-filter:none!important}
+html body main.studio-denied>div{background:transparent!important;border:0!important;box-shadow:none!important}
+html body :is(.zm-public,.zm-v5,.studio-denied,.demo-assistant-panel) form label{font:500 14px/1.5 Arial,Helvetica,sans-serif!important;letter-spacing:0!important;text-transform:none!important;color:#f5f8f1!important;gap:8px;margin:0!important}
+html body :is(.zm-public,.zm-v5,.studio-denied,.demo-assistant-panel) form :is(input:not([type=checkbox]):not([type=radio]):not([type=hidden]),select,textarea){
+ background:var(--zm-form-field)!important;color:#f5f8f1!important;border:1px solid #789981!important;border-radius:4px!important;
+ min-height:48px!important;width:100%;padding:12px 14px!important;font:400 16px/1.5 Arial,Helvetica,sans-serif!important;box-sizing:border-box;color-scheme:dark;
+}
+html body :is(.zm-public,.zm-v5,.studio-denied,.demo-assistant-panel) form :is(input,textarea)::placeholder{color:#bccfba!important;opacity:1}
+html body :is(.zm-public,.zm-v5,.studio-denied,.demo-assistant-panel) form :is(input,select,textarea):focus-visible{outline:3px solid #d4f5af!important;outline-offset:3px!important;border-color:#b0f36c!important}
+html body .zm-public .form-details-grid,html body .zm-public .zm-concept-form-grid,html body .zm-v5 .zmh-field-grid{gap:18px!important}
+@media(max-width:690px){html body .zm-public form.contact-form{grid-template-columns:1fr!important}html body :is(.zm-public,.zm-v5) :is(.form-details-grid,.zm-concept-form-grid,.zmh-field-grid){grid-template-columns:1fr!important}}
+
+/* Show a built website, rather than a wireframe pretending to be the finished design. */
+html body main .zm-project-screen{background:#101615;border-color:#496055;border-radius:8px;overflow:hidden}
+html body main .zm-project-screen>header{background:#101615;color:#f5f8f1;border-color:#496055;padding:16px 20px}
+html body main .zm-project-screen>header :is(b,span){color:#dce8d5!important;font-size:11px}
+html body main .zm-project-screen>img{display:block;width:100%;height:auto;margin:0;object-fit:contain}
+html body main .zm-project-highlights{display:grid;grid-template-columns:repeat(3,1fr);padding:0 18px;background:#101615}
+html body main .zm-project-highlights>div{padding:18px 10px;display:flex;flex-direction:column;gap:8px;border-right:1px solid #496055}
+html body main .zm-project-highlights>div:last-child{border:0}
+html body main .zm-project-highlights span{color:#b0f36c!important;font:700 11px/1.5 Arial,sans-serif}
+html body main .zm-project-highlights b{color:#f5f8f1!important;font:500 13px/1.45 Arial,sans-serif}
+html body main .zm-project-screen>footer{background:#101615;color:#dce8d5;border-top:1px solid #496055;padding:15px 20px}
+html body main .zm-project-screen>footer span{color:#dce8d5!important}
+html body main .zm-project-screen>footer a{font:700 13px/1.5 Arial,sans-serif;color:#b0f36c;text-decoration:underline;text-underline-offset:4px}
+html body .zm-v5 .zmh-contact-brief.zmh-person-card{display:grid;grid-template-columns:40% 1fr;gap:0;padding:0;background:#08281b;border:1px solid #789981;text-align:left;overflow:hidden;max-width:490px}
+html body .zm-v5 .zmh-person-card>img{display:block;width:100%;height:100%;min-height:330px;object-fit:cover;object-position:50% 30%}
+html body .zm-v5 .zmh-contact .zmh-water-portal .zmh-person-card>img{display:block!important;visibility:visible!important;opacity:1!important;position:static!important;width:100%!important;height:100%!important;transform:none!important;filter:none!important;mask:none!important;-webkit-mask:none!important}
+html body .zm-v5 .zmh-person-card>div{padding:25px 22px}
+html body .zm-v5 .zmh-person-card h3{font:400 32px/1.12 Arial,sans-serif;margin:24px 0 20px;color:#f5f8f1}
+html body .zm-v5 .zmh-person-card span{font:700 10px/1.6 Arial,sans-serif;color:#b0f36c;letter-spacing:.06em}
+html body .zm-v5 .zmh-person-card p{font:14px/1.7 Arial,sans-serif;color:#dce8d5}
+html body .zm-v5 .zmh-person-card a{display:block;font:500 13px/1.6 Arial,sans-serif;margin-top:15px;color:#f5f8f1;overflow-wrap:anywhere}
+.care-delivery>div{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-block:28px}
+.care-delivery article{padding:25px;border:1px solid #789981;background:#08281b;border-radius:8px}
+.care-delivery h2{font:400 clamp(30px,4vw,48px)/1.15 Arial,sans-serif}
+.care-delivery h3{font:400 23px/1.3 Arial,sans-serif;margin-bottom:16px}
+.care-delivery article p{font:16px/1.7 Arial,sans-serif;color:#dce8d5}
+@media(max-width:690px){html body main .zm-project-screen>header{flex-wrap:wrap;gap:5px}html body main .zm-project-highlights{padding:0 6px}html body main .zm-project-highlights>div{padding:12px 7px}html body main .zm-project-highlights b{font-size:11px}html body .zm-v5 .zmh-contact-brief.zmh-person-card{grid-template-columns:34% 1fr}html body .zm-v5 .zmh-person-card>div{padding:20px 16px}html body .zm-v5 .zmh-person-card h3{font-size:27px}.care-delivery>div{grid-template-columns:1fr}}
+.care-report{font:16px/1.75 Arial,sans-serif;color:#e3eddc}
+.care-report h2{font:400 clamp(28px,3vw,40px)/1.2 Arial,sans-serif;color:#f5f8f1;margin-block:32px 22px}
+.care-report-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-block:28px}
+.care-report-meta>div{border:1px solid #789981;padding:24px;background:#08281b;border-radius:8px}
+.care-report-meta dt{font-weight:700;color:#b0f36c;margin-bottom:12px}.care-report-meta dd{margin:0}
+.care-report-table{overflow-x:auto;border:1px solid #789981;border-radius:8px;background:#08281b}
+.care-report table{border-collapse:collapse;width:100%;min-width:660px;text-align:left}
+.care-report caption{padding:18px;text-align:left;color:#dce8d5;font-size:14px}
+.care-report :is(th,td){padding:18px;border:1px solid #78998155;vertical-align:top;font-size:15px;color:#f5f8f1}
+.care-report th{background:#103628;color:#b0f36c}
+@media(max-width:690px){.care-report-meta{grid-template-columns:1fr}}
+
+/* Keep animated process cards in separate rows, including midway through motion. */
+html body .zm-v5:not(.zm-light-preview):not(.zm-dark-preview) .zmh-assembly-board{height:auto;min-height:540px;display:flex;flex-direction:column;gap:22px;perspective:none;transform:none}
+html body .zm-v5 .zmh-assembly-board>div:not(.zmh-assembly-lines){position:relative;inset:auto;width:90%;min-height:0;margin:0;padding:22px 25px;transform:translateX(calc((1 - var(--gather))*-12px));background:rgba(7,31,22,.93);border-radius:10px}
+html body .zm-v5 .zmh-assembly-board>.zmh-piece-inquiry{align-self:flex-end;transform:translateX(calc((1 - var(--gather))*12px))}
+html body .zm-v5 .zmh-assembly-board>.zmh-piece-order{align-self:flex-start}
+html body .zm-v5 .zmh-assembly-board>.zmh-assembly-lines{display:none}
+html body .zm-v5 .zmh-assembly-note{position:static;display:block;margin-top:3px}
+html body .zm-v5 .zmh-assembly-board strong{font:400 26px/1.15 Arial,sans-serif;margin:12px 0}
+html body .zm-v5 .zmh-piece-services{font:14px/1.6 Arial,sans-serif;color:#dce8d5;padding-block:8px}
+html body .zm-v5 .zmh-configurator-entry>a.zmh-pill{background:#b0f36c!important;color:#082112!important;border:1px solid #b0f36c!important;font-weight:700;box-shadow:none;min-height:52px}
+html body .zm-project-screen>header{flex-wrap:wrap;align-items:flex-start;gap:8px 20px}
+html body .zm-project-screen>header>b{min-width:0;max-width:100%;overflow-wrap:anywhere}
+html body .zm-project-screen>img{aspect-ratio:1265/712;object-fit:contain;max-width:100%}
+html body .zm-project-highlights>div{min-width:0;overflow-wrap:break-word}
+@media(max-width:690px){html body .zm-v5 .zmh-assembly-board>div:not(.zmh-assembly-lines){width:100%;transform:none!important}html body .zm-v5 .zmh-assembly-board{min-height:0!important;gap:18px}html body .zm-project-screen>header>span{width:100%}}
+html body main .zm-generated-sample{margin:0;width:100%;min-width:0;background:#08281b;border:1px solid #78998166;border-radius:8px;overflow:hidden;text-align:left;box-shadow:none}
+html body main .zm-generated-sample>a{display:block;position:relative;background:#e7e6e0;color:#fff;filter:none!important}
+html body main .zm-generated-sample img{display:block;width:100%;height:auto!important;aspect-ratio:3/2;object-fit:contain;transform:none!important;opacity:1!important}
+html body main .zm-generated-sample>a>span{position:absolute;bottom:12px;right:12px;background:#08281bf2;color:#fff!important;padding:8px 12px;border-radius:4px;font:600 12px/1.5 Arial,sans-serif}
+html body main .zm-generated-sample figcaption{display:flex;flex-direction:column;gap:7px;padding:17px 20px;background:#08281b;color:#dce8d5;font:13px/1.6 Arial,sans-serif}
+html body main .zm-generated-sample figcaption strong{color:#f5f8f1;font:600 15px/1.5 Arial,sans-serif}
+html body .zm-v5 .zm-offer-art--concept>.zm-generated-sample{max-width:620px;margin-inline:auto}
+html body main .zm-sample-options{display:flex;gap:8px;padding:12px;flex-wrap:wrap;background:#08281b} html body main .zm-sample-options button{border:1px solid #78998199;border-radius:6px;padding:9px 15px;color:#f5f8f1!important;background:#123b2b!important;cursor:pointer;font:600 13px/1.4 Arial,sans-serif} html body main .zm-sample-options button[aria-pressed="true"]{color:#08281b!important;background:#d2ed9b!important}
+
+html body main .zm-generated-sample figcaption small{color:#cbdcc2!important;font-size:12px;opacity:1!important}
+/* Forest invitation: a visual taste of the concepts, with one clear next step. */
+html body .zm-v5 .zm-home-slide--concept{grid-template-columns:minmax(0,.9fr) minmax(0,1.2fr);gap:clamp(25px,4vw,55px);padding-bottom:35px}
+html body .zm-v5 .zm-home-slide--concept h3{font-size:clamp(36px,4.1vw,58px);max-width:500px}
+html body .zm-v5 .zm-home-slide--concept .zm-home-slide-actions{align-items:flex-start;flex-direction:column;gap:12px}
+html body .zm-v5 .zm-home-slide--concept .zmh-pill{border-radius:8px;white-space:normal;text-align:center}
+html body .zm-v5 .zm-concept-see-all{display:inline-block;margin-top:21px;color:#dceccf!important;font:600 13px/1.5 Arial,sans-serif;text-underline-offset:5px}
+html body .zm-v5 .zm-concept-invitation-art{min-width:0;padding-top:8px}
+html body .zm-v5 .zm-concept-invitation-label{display:flex;justify-content:space-between;gap:12px;margin-bottom:12px;color:#c9ddbe;font:600 10px/1.5 Arial,sans-serif;letter-spacing:.09em}
+html body .zm-v5 .zm-concept-invitation-label b{color:#c5e997;white-space:nowrap}
+html body .zm-v5 .zm-concept-invitation-main{display:block;position:relative;border:1px solid #b5d29b66;border-radius:9px;overflow:hidden;background:#08281b;text-decoration:none;box-shadow:0 15px 30px #00190e44}
+html body .zm-v5 .zm-concept-invitation-main img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:contain}
+html body .zm-v5 .zm-concept-invitation-main>span{display:block;padding:12px 15px;background:#0c3021;color:#edf6e5!important;font:600 12px/1.5 Arial,sans-serif}
+html body .zm-v5 .zm-concept-invitation-samples{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}
+html body .zm-v5 .zm-concept-invitation-samples a{min-width:0;display:block;border:1px solid #78998166;border-radius:6px;overflow:hidden;background:#08281b;text-decoration:none;transition:transform .2s}
+html body .zm-v5 .zm-concept-invitation-samples a:hover{transform:translateY(-3px)}
+html body .zm-v5 .zm-concept-invitation-samples img{width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;display:block}
+html body .zm-v5 .zm-concept-invitation-samples span{display:flex;justify-content:space-between;gap:4px;padding:9px 8px;color:#edf6e5!important;font:600 11px/1.4 Arial,sans-serif}
+html body .zm-v5 .zm-concept-invitation-samples i{font-style:normal;color:#c5e997}
+html body .zm-v5 .zm-concept-invitation-note{margin:12px 0 0;color:#c3d5b8;font:11px/1.6 Arial,sans-serif}
+@media(max-width:900px){html body .zm-v5 .zm-home-slide--concept{grid-template-columns:1fr;padding:28px 22px}html body .zm-v5 .zm-home-slide--concept h3{max-width:none}html body .zm-v5 .zm-concept-invitation-art{width:100%;max-width:620px;margin:auto}}
+@media(prefers-reduced-motion:reduce){html body .zm-v5 .zm-concept-invitation-samples a{transition:none}}
+/* Editorial report previews replace decorative application windows. */
+html body .zm-v5 .zm-offer-report{width:100%;min-width:0;margin:0;border:1px solid #7f9c7766;border-radius:10px;background:#0a2b1e;color:#eef5e8;overflow:hidden;box-shadow:0 18px 40px #00170b33;text-align:left}
+html body .zm-v5 .zm-offer-report>header{display:flex;align-items:center;justify-content:space-between;padding:18px 23px;border-bottom:1px solid #78998155;color:#c5dcb8;font:600 10px/1.5 Arial,sans-serif;letter-spacing:.08em}
+html body .zm-v5 .zm-offer-report>header b{font:400 24px Georgia,serif;color:#bce58f}
+html body .zm-v5 .zm-offer-report-title{padding:26px 23px 20px}
+html body .zm-v5 .zm-offer-report-title>small{font:600 9px/1.5 Arial,sans-serif;letter-spacing:.09em;color:#b9d5a8!important}
+html body .zm-v5 .zm-offer-report h4{margin:12px 0 0;font:400 clamp(27px,2.4vw,36px)/1.15 Georgia,serif;color:#f1f6e9!important;letter-spacing:-.025em}
+html body .zm-v5 .zm-offer-report h4 em{font:inherit;color:#bee697!important}
+html body .zm-v5 .zm-offer-contact-compare{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 23px 23px}
+html body .zm-v5 .zm-offer-contact-compare>div>span{display:block;margin:0 0 8px;color:#c3d7b8;font:600 9px/1.5 Arial,sans-serif;letter-spacing:.08em}
+html body .zm-v5 .zm-offer-contact-sample{padding:16px 13px;min-height:170px;background:#143727;border:1px solid #78998166;border-radius:5px;display:flex;flex-direction:column;gap:10px}
+html body .zm-v5 .zm-offer-contact-sample b{color:#e8efdf!important;font:600 12px/1.4 Arial,sans-serif}
+html body .zm-v5 .zm-offer-contact-sample p{margin:0;color:#c7d7be!important;font:11px/1.5 Arial,sans-serif}
+html body .zm-v5 .zm-offer-contact-sample i{display:block;width:90%;height:4px;background:#68836688;border-radius:2px}
+html body .zm-v5 .zm-offer-contact-sample i+i{width:65%}
+html body .zm-v5 .zm-offer-contact-sample small{margin-top:auto;color:#c2d6b6!important;font:10px/1.5 Arial,sans-serif}
+html body .zm-v5 .zm-offer-contact-sample.is-clear{border-color:#badb91;background:#20452e}
+html body .zm-v5 .zm-offer-contact-sample strong{display:block;padding:10px 8px;background:#c5e99c;color:#0a2b1e!important;border-radius:4px;font:600 10px/1.5 Arial,sans-serif}
+html body .zm-v5 .zm-offer-report figcaption{padding:19px 23px;border-top:1px solid #78998155;background:#103522}
+html body .zm-v5 .zm-offer-report figcaption>span{color:#c5e99c!important;font:600 9px/1.5 Arial,sans-serif;letter-spacing:.08em}
+html body .zm-v5 .zm-offer-report figcaption p{margin:9px 0 12px;color:#e1ecd8!important;font:13px/1.65 Arial,sans-serif}
+html body .zm-v5 .zm-offer-report figcaption a{color:#eef6e6!important;font:600 12px/1.5 Arial,sans-serif;text-underline-offset:4px}
+html body .zm-v5 .zm-offer-report-note{padding:12px 23px;margin:0;color:#c0d2b5!important;font:10px/1.5 Arial,sans-serif}
+html body .zm-v5 .zm-offer-journey{list-style:none;margin:0;padding:0 23px 23px;display:grid;gap:0}
+html body .zm-v5 .zm-offer-journey li{position:relative;display:grid;grid-template-columns:33px 1fr;gap:13px;padding:14px 0;border-top:1px solid #78998144;background:transparent!important;transform:none!important}
+html body .zm-v5 .zm-offer-journey li>span{font:400 25px/1.2 Georgia,serif;color:#bee697!important}
+html body .zm-v5 .zm-offer-journey h5{font:600 14px/1.4 Arial,sans-serif;color:#f0f5e8!important;margin:0 0 5px}
+html body .zm-v5 .zm-offer-journey p{font:12px/1.6 Arial,sans-serif;color:#cfdfc5!important;margin:0 0 7px}
+html body .zm-v5 .zm-offer-journey small{display:inline-block;font:600 10px/1.5 Arial,sans-serif;color:#bfe39e!important}
+@media(max-width:900px){html body .zm-v5 .zm-home-slide:has(.zm-offer-report){grid-template-columns:1fr}html body .zm-v5 .zm-offer-report{max-width:620px;margin:auto}}
+@media(max-width:420px){html body .zm-v5 .zm-offer-contact-compare{gap:8px;padding-inline:16px}html body .zm-v5 .zm-offer-contact-sample{padding:13px 9px}html body .zm-v5 .zm-offer-report-title,html body .zm-v5 .zm-offer-report figcaption{padding-inline:18px}}
+html body main.zm-public .zm-quality-artwork{display:block;width:100%;max-width:1050px;margin:28px auto 36px;border:1px solid #8caa7766;border-radius:12px;overflow:hidden;background:rgba(5,32,21,.35);box-shadow:0 18px 45px #001a0d33}
+html body main.zm-public .zm-quality-artwork>a{display:block;background:#062218}
+html body main.zm-public .zm-quality-artwork img{display:block;width:100%;height:auto!important;aspect-ratio:3/2;object-fit:contain;filter:none!important;opacity:1!important}
+html body main.zm-public .zm-quality-artwork figcaption{padding:14px 20px;color:#d7e7cd!important;font:13px/1.7 Arial,sans-serif;background:#0a2b1e}
+@media(max-width:600px){html body main.zm-public .zm-quality-artwork{margin-block:20px 28px;border-radius:8px}html body main.zm-public .zm-quality-artwork figcaption{padding:12px 14px;font-size:12px}}
+/* Review variant: forest composition built from real assets and the unchanged brand mark. */
+html body .zm-v5 .zm-forest-concept-scene{position:relative;isolation:isolate;min-width:0;aspect-ratio:1.14;border:1px solid #9dbb8066;border-radius:14px;overflow:hidden;background:linear-gradient(160deg,#08281b22,#03190bd9),url('/brand-review-v3/forest-continuous.webp') center/cover;box-shadow:inset 0 1px #d7e8c455,0 20px 42px #00160d44}
+html body .zm-v5 .zm-scene-caption{position:absolute;top:7%;left:6%;right:6%;font:600 10px/1.5 Arial,sans-serif;letter-spacing:.12em;color:#deedcf!important}
+html body .zm-v5 .zm-scene-laptop{position:absolute;top:21%;left:12%;width:77%;border:6px solid #1c2923;border-bottom-width:10px;border-radius:10px;background:#14271d;box-shadow:0 20px 28px #00170ccc;transform:rotate(-4deg);text-decoration:none}
+html body .zm-v5 .zm-scene-browser{display:flex;gap:4px;align-items:center;padding:6px 8px;background:#153426;color:#d5e6c9;font:600 7px/1.4 Arial,sans-serif}
+html body .zm-v5 .zm-scene-browser i{width:3px;height:3px;border-radius:50%;background:#9fbd8d}
+html body .zm-v5 .zm-scene-browser b{margin-left:auto;letter-spacing:.06em}
+html body .zm-v5 .zm-scene-laptop>img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:contain}
+html body .zm-v5 .zm-scene-laptop-base{position:absolute;bottom:-16px;left:-7%;width:114%;height:9px;background:linear-gradient(#b5c1b6,#617469);border-radius:2px 2px 60% 60%;box-shadow:0 8px 10px #00160a77}
+html body .zm-v5 .zm-scene-brand-card{position:absolute;left:4%;bottom:13%;width:43%;padding:18px 15px;background:rgba(12,45,29,.87);backdrop-filter:blur(9px);border:1px solid #c1dda088;border-radius:9px;box-shadow:0 12px 25px #00170c88;transform:rotate(-9deg);text-decoration:none}
+html body .zm-v5 .zm-scene-brand-card .brand-signature{gap:8px;max-width:100%}
+html body .zm-v5 .zm-scene-brand-card .brand-apple{width:38px!important;height:39px!important}
+html body .zm-v5 .zm-scene-brand-card .brand-wordmark b{font-size:16px!important;letter-spacing:.09em!important;color:#f3f8e9!important}
+html body .zm-v5 .zm-scene-brand-card .brand-wordmark small{display:none!important}
+html body .zm-v5 .zm-scene-brand-card>small{display:block;margin-top:16px;color:#c5dcb6!important;font:600 7px/1.5 Arial,sans-serif;letter-spacing:.08em}
+html body .zm-v5 .zm-scene-brand-card>span:last-child{display:block;margin-top:7px;color:#eef7df!important;font:600 10px/1.4 Arial,sans-serif}
+html body .zm-v5 .zm-scene-print{position:absolute;right:4%;bottom:12%;width:44%;padding:5px;background:#e0e7ce;box-shadow:0 14px 25px #00170c99;transform:rotate(9deg);text-decoration:none}
+html body .zm-v5 .zm-scene-print img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover}
+html body .zm-v5 .zm-scene-print>span{display:block;color:#133425!important;font:600 9px/1.5 Arial,sans-serif;padding:6px 4px}
+html body .zm-v5 .zm-scene-bottom{position:absolute;left:6%;right:6%;bottom:4%;display:flex;gap:10px;align-items:center;justify-content:center;color:#d6e9c5!important;font:600 8px/1.5 Arial,sans-serif;letter-spacing:.1em}
+html body .zm-v5 .zm-scene-bottom i{height:3px;width:3px;border-radius:50%;background:#bae68b}
+html body .zm-v5 .zm-forest-concept-scene a:focus-visible{outline:3px solid #d5f4ac;outline-offset:4px}
+@media(max-width:480px){html body .zm-v5 .zm-scene-brand-card{padding:12px 10px}html body .zm-v5 .zm-scene-brand-card .brand-apple{width:27px!important;height:28px!important}html body .zm-v5 .zm-scene-brand-card .brand-wordmark b{font-size:11px!important}html body .zm-v5 .zm-scene-caption{font-size:8px}html body .zm-v5 .zm-scene-brand-card>small{margin-top:10px;font-size:6px}html body .zm-v5 .zm-scene-brand-card>span:last-child{font-size:8px}html body .zm-v5 .zm-scene-print>span{font-size:8px}}
+html body .zm-v5 .zm-scene-webpage{display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding:18px 20px 25px;aspect-ratio:3/2;background:linear-gradient(90deg,#062218ee,#06221855),url('/brand-review-v3/forest-continuous.webp') center/cover;box-sizing:border-box}
+html body .zm-v5 .zm-scene-webpage .brand-signature{gap:6px}
+html body .zm-v5 .zm-scene-webpage .brand-apple{width:20px!important;height:21px!important}
+html body .zm-v5 .zm-scene-webpage .brand-wordmark b{font-size:8px!important;color:#f1f7e7!important}
+html body .zm-v5 .zm-scene-webpage .brand-wordmark small{display:none!important}
+html body .zm-v5 .zm-scene-webpage>strong{font:400 clamp(20px,2.5vw,36px)/1.08 Georgia,serif;color:#f1f7e7!important;margin-top:6px}
+html body .zm-v5 .zm-scene-webpage>strong em{font:inherit;color:#c1ed8a!important}
+html body .zm-v5 .zm-scene-webpage>small{font:10px/1.5 Arial,sans-serif;color:#d5e6c9!important}
+html body .zm-v5 .zm-scene-webpage>b{font:600 8px/1.4 Arial,sans-serif;color:#143425!important;background:#c1ed8a;padding:7px 12px;border-radius:20px}
+@media(max-width:480px){html body .zm-v5 .zm-scene-webpage{gap:5px;padding:10px 12px 15px}html body .zm-v5 .zm-scene-webpage>strong{font-size:20px;margin-top:3px}html body .zm-v5 .zm-scene-webpage>small{font-size:7px}html body .zm-v5 .zm-scene-webpage>b{font-size:6px;padding:5px 8px}}
+html body .zm-v5 .zm-forest-concept-scene{aspect-ratio:.95}
+html body .zm-v5 .zm-scene-laptop{top:17%;left:9%;width:82%}
+html body .zm-v5 .zm-scene-brand-card{bottom:10%;width:40%}
+html body .zm-v5 .zm-scene-print{bottom:9%;width:40%}
+@media(max-width:480px){html body .zm-v5 .zm-forest-concept-scene{aspect-ratio:.8}html body .zm-v5 .zm-scene-caption{top:5%}html body .zm-v5 .zm-scene-laptop{top:14%}html body .zm-v5 .zm-scene-brand-card{bottom:10%}html body .zm-v5 .zm-scene-print{bottom:10%}}
