@@ -1,5 +1,6 @@
 import { writeFile, mkdir } from "node:fs/promises";
 import { hasNoindex, isRobotsPathBlocked } from "./seo-robots.mjs";
+import { fetchSeoPage } from "./seo-fetch.mjs";
 
 const base = "https://zielona-marka.pl";
 const routes = [
@@ -18,14 +19,12 @@ const expectedLinks = {
 };
 
 const failures = [];
-const report = { checkedAt: new Date().toISOString(), base, routes: [], sitemap: {}, robots: {} };
+const report = { checkedAt: new Date().toISOString(), base, routes: [], sitemap: {}, robots: {}, requestRetries: [] };
 async function request(path) {
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 18000);
-  try {
-    const response = await fetch(base + path, { signal: controller.signal, headers: { "User-Agent": "ZielonaMarka-TechnicalSeoQA/1.0" }, redirect: "follow" });
-    return { response, body: await response.text() };
-  } finally { clearTimeout(timeout); }
+  return fetchSeoPage(base + path, { onRetry: error => {
+    report.requestRetries.push({ path, error: String(error.message).slice(0, 180) });
+    console.warn("Retrying failed SEO request once: " + path);
+  } });
 }
 function fail(message) { failures.push(message); console.error("FAIL: " + message); }
 function canonical(html) {
@@ -101,5 +100,5 @@ else {
 report.failures = failures;
 await mkdir("seo-monitor-artifacts", { recursive: true });
 await writeFile("seo-monitor-artifacts/report.json", JSON.stringify(report, null, 2) + "\n");
-console.log(JSON.stringify({ routesChecked: report.routes.length, sitemapURLs: sitemapUrls.length, failures }, null, 2));
+console.log(JSON.stringify({ routesChecked: report.routes.length, sitemapURLs: sitemapUrls.length, transientRequestRetries: report.requestRetries.length, failures }, null, 2));
 if (failures.length) process.exitCode = 1;
