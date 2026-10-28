@@ -3,6 +3,20 @@ import { fileURLToPath } from "node:url";
 import { resolve } from "node:path";
 import { referencedAssets, isUnusableAssetResponse } from "./public-asset-utils.mjs";
 
+/** Read-only readiness check. Never submit a lead or send a monitoring email. */
+export async function probeInquiryReadiness({ origin = "https://zielona-marka.pl", request = fetch } = {}) {
+  try {
+    const response = await request(new URL("/api/inquiries", origin), {
+      headers: { "Cache-Control": "no-store" }, signal: AbortSignal.timeout(16000),
+    });
+    const body = await response.json();
+    const ready = response.ok && body?.enabled === true && body?.databaseConfigured === true && body?.notificationConfigured === true;
+    return { status: response.status, ready };
+  } catch {
+    return { status: null, ready: false };
+  }
+}
+
 /* Public contract: these HTML markers must be returned by the server.
    Client-rendered assembly parts are verified in browser QA after hydration. */
 export const releasePages = [
@@ -143,10 +157,12 @@ export async function monitorRelease({
   } catch (err) {
     failures.push("Free concept form probe failed: " + String(err.message).slice(0, 180));
   }
+  const inquiryReadiness = await probeInquiryReadiness({ origin, request });
+  if (!inquiryReadiness.ready) failures.push("Automatic inquiry forms are not enabled or their database/mail configuration is unavailable.");
   return {
     checkedAt: new Date().toISOString(), origin, pages, cssFiles, scriptAssets, missingScripts,
     expectedChanges: "PR #88 (free concepts), PR #89 (UI and care plans), PR #95 (homepage offer slides), PR #102 (free concept previews and request paths), PR #105 (shared light hero layout), V5 agreed showcase integration",
-    missingCss, conceptFormProbe, failures, isCurrent: failures.length === 0,
+    missingCss, conceptFormProbe, inquiryReadiness, failures, isCurrent: failures.length === 0,
     note: "This checks public release parity; successful GitHub CI alone cannot prove Cloudflare deployment.",
   };
 }

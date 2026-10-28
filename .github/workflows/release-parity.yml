@@ -4,6 +4,12 @@ on:
   push:
     branches: [main]
     paths:
+      - "app/api/inquiries/**"
+      - "app/inquiry*"
+      - "app/useInquirySubmission.tsx"
+      - "app/*Form.tsx"
+      - "app/DemoAssistant.tsx"
+      - "wrangler.jsonc"
       - "scripts/monitor-public-release.mjs"
       - ".github/workflows/release-parity.yml"
       - "app/ui-consistency-202610.css"
