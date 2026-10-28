@@ -39,12 +39,12 @@ test("fully simulated latest release passes without touching production", async 
 test("the release monitor detects the new free-concept UI on production", () => {
   const concept = releasePages.find(({ path }) => path === "/bezplatna-koncepcja-strony");
   assert.ok(concept);
-  assert.ok(concept.markers.includes("zv5-hero-art"));
+  assert.ok(concept.markers.includes("zm-editorial-art"));
   assert.ok(concept.markers.includes("zv5-tabs"));
   assert.ok(concept.markers.includes("Twoja firma."));
   assert.ok(missingUiStyles("body{}").includes(".zm-concept-lightbox"));
   assert.ok(missingUiStyles("body{}").includes(".zm-public.zm-concept .page-hero.zm-concept-hero"));
-  assert.deepEqual(missingPageMarkers(concept.markers.filter(marker => marker !== "zv5-hero-art").join(" "), concept.markers), ["zv5-hero-art"]);
+  assert.deepEqual(missingPageMarkers(concept.markers.filter(marker => marker !== "zm-editorial-art").join(" "), concept.markers), ["zm-editorial-art"]);
 });
 
 test("homepage marker regression triggers an alert even if the server is up", async () => {
