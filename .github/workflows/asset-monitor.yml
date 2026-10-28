@@ -6,12 +6,16 @@ on:
     paths:
       - "scripts/monitor-public-assets.mjs"
       - "scripts/public-asset-utils.mjs"
+      - "public/concept-samples-v2/**"
+      - "app/bezplatna-koncepcja-strony/**"
       - ".github/workflows/asset-monitor.yml"
   pull_request:
     branches: [main]
     paths:
       - "scripts/monitor-public-assets.mjs"
       - "scripts/public-asset-utils.mjs"
+      - "public/concept-samples-v2/**"
+      - "app/bezplatna-koncepcja-strony/**"
       - ".github/workflows/asset-monitor.yml"
   workflow_run:
     workflows: ["Public website browser QA"]
@@ -44,7 +48,7 @@ jobs:
           key: asset-history-${{ github.run_id }}
           restore-keys: |
             asset-history-
-      - name: Check production HTML and its versioned JS/CSS assets
+      - name: Check production HTML, JS, CSS and all gallery images
         run: node scripts/monitor-public-assets.mjs
       - name: Preserve asset manifest for comparison with next deployment
         if: always()

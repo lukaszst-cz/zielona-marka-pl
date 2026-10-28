@@ -6,6 +6,7 @@ const port = 8788;
 const baseUrl = `http://${host}:${port}`;
 const npx = process.platform === "win32" ? "npx.cmd" : "npx";
 const logs = [];
+const galleryOnly = process.argv.includes("--gallery");
 
 const wrangler = spawn(
   npx,
@@ -114,13 +115,13 @@ try {
       "--test",
       "--test-concurrency=1",
       "--test-force-exit",
-      "tests/rendered-html.test.mjs",
+      ...(galleryOnly ? ["tests/concept-gallery-browser.mjs"] : ["tests/rendered-html.test.mjs",
       "tests/site-refinements.test.mjs",
-      "tests/local-city-grammar.test.mjs",
+      "tests/local-city-grammar.test.mjs"]),
     ],
     {
       stdio: "inherit",
-      env: { ...process.env, TEST_BASE_URL: baseUrl },
+      env: { ...process.env, TEST_BASE_URL: baseUrl, BROWSER_QA_URL: baseUrl },
     },
   );
   const timeout = setTimeout(() => {

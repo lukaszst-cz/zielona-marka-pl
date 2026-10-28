@@ -57,6 +57,11 @@ jobs:
         env:
           BROWSER_QA_URL: https://zielona-marka.pl
           BROWSER_QA_PLAYWRIGHT_ENTRY: /tmp/zm-browser-qa/node_modules/playwright/index.mjs
+      - name: Verify every original concept and its full-screen preview
+        run: node tests/concept-gallery-browser.mjs
+        env:
+          BROWSER_QA_URL: https://zielona-marka.pl
+          BROWSER_QA_PLAYWRIGHT_ENTRY: /tmp/zm-browser-qa/node_modules/playwright/index.mjs
       - name: Save screenshots and structured QA report
         if: always()
         uses: actions/upload-artifact@v4

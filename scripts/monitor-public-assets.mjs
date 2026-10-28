@@ -32,6 +32,11 @@ async function request(path, body = false) {
 }
 
 const references = new Set();
+// Include inactive gallery tabs: these images are absent from initial HTML.
+const gallery = JSON.parse(await readFile(new URL("../public/concept-samples-v2/manifest.json", import.meta.url), "utf8"));
+for (const sample of Object.values(gallery).flat()) {
+  for (const width of [640, 1280]) references.add(`/concept-samples-v2/${sample.file}-${width}.webp`);
+}
 for (const path of pages) {
   try {
     const response = await request(path, true);
@@ -50,11 +55,13 @@ const allAssets = [...references].sort();
 // Check every referenced asset, including rare chunks which would be missed
 // by a sample. A cap prevents a broken HTML response from creating an
 // unexpectedly large number of public requests.
-const maxAssets = 100;
+const maxAssets = 180;
 if (allAssets.length > maxAssets) {
   failures.push("Referenced asset count " + allAssets.length + " exceeds safety cap " + maxAssets);
 }
-if (allAssets.length === 0) failures.push("No versioned assets found in any page HTML; parser or output format changed.");
+if (!allAssets.some(path => /^\/(?:_next\/static\/|assets\/|static\/)/.test(path) && /\.(?:m?js|css)$/.test(path))) {
+  failures.push("No versioned assets found in any page HTML; parser or output format changed.");
+}
 const queue = allAssets.slice(0, maxAssets);
 await Promise.all(Array.from({ length: Math.min(3, queue.length) }, async () => {
   while (queue.length) {

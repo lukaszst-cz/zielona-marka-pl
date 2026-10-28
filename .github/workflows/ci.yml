@@ -41,6 +41,15 @@ jobs:
       - name: Audit brand spelling in public PDF downloads
         run: python scripts/verify_brand_pdfs.py
       - run: npm test
+      - name: Install isolated browser for pre-deployment gallery verification
+        run: |
+          mkdir -p /tmp/zm-browser-qa
+          npm --prefix /tmp/zm-browser-qa install --no-save --package-lock=false --no-audit --no-fund playwright@1.56.1
+          /tmp/zm-browser-qa/node_modules/.bin/playwright install --with-deps chromium
+      - name: Verify 15 concepts and lightbox before deployment
+        run: node scripts/run-built-worker-tests.mjs --gallery
+        env:
+          BROWSER_QA_PLAYWRIGHT_ENTRY: /tmp/zm-browser-qa/node_modules/playwright/index.mjs
       - name: Check generated Cloudflare Worker bundle without publishing
         run: |
           test -f dist/server/wrangler.json

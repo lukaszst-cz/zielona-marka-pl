@@ -4,7 +4,7 @@
  */
 export function referencedAssets(html, origin) {
   const found = new Set();
-  const tags = html.match(/<(?:script|link)\b[^>]*>/gi) ?? [];
+  const tags = html.match(/<(?:script|link|img|source)\b[^>]*>/gi) ?? [];
   for (const tag of tags) {
     const attribute = /\b(?:src|href)\s*=\s*(["'])(.*?)\1/gi;
     let match;
@@ -13,7 +13,7 @@ export function referencedAssets(html, origin) {
       try { url = new URL(match[2].replace(/&amp;/g, "&"), origin); }
       catch { continue; }
       if (url.origin !== origin) continue;
-      if (!/^\/(?:_next\/static\/|assets\/|static\/)/.test(url.pathname)) continue;
+      if (!/^\/(?:_next\/static\/|assets\/|static\/)/.test(url.pathname) && !/\.(?:svg|webp|png|jpe?g|ico|avif)$/i.test(url.pathname)) continue;
       if (!/\.(?:js|css|mjs|woff2?|svg|webp|png|jpe?g)$/.test(url.pathname)) continue;
       found.add(url.pathname);
     }
@@ -24,5 +24,6 @@ export function referencedAssets(html, origin) {
 export function isUnusableAssetResponse(path, status, contentType) {
   if (!(status >= 200 && status < 300)) return true;
   if (/\.(?:m?js|css)$/.test(path) && /\btext\/html\b/i.test(contentType ?? "")) return true;
+  if (/\.(?:svg|webp|png|jpe?g|ico|avif)$/i.test(path) && !/^image\//i.test(contentType ?? "")) return true;
   return false;
 }
