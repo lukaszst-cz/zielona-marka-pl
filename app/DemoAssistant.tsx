@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "./SafeLink";
+import "./assistant-contact.css";
 import { ContactEmailHelp, startContactEmail, type ContactEmailDraft } from "./EmailContact";
 
 const goals = ["Nowa strona", "Modernizacja strony", "Formularz wyceny", "Mały CRM", "Asystent zapytań", "Ceny i terminy"];
