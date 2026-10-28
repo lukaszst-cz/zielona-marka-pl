@@ -85,7 +85,7 @@ export async function POST(request: Request) {
     if (!payload || Array.isArray(payload) || typeof payload !== "object") return reply("Nieprawidłowe dane.", 400);
     if (payload.website_check) {
       return wantsJson
-        ? Response.json({ ok: true, reference: saved.id }, { status: 201, headers: { "Cache-Control": "no-store" } })
+        ? Response.json({ ok: true }, { status: 201, headers: { "Cache-Control": "no-store" } })
         : Response.redirect(new URL("/kontakt?wyslano=1", request.url), 303);
     }
 
