@@ -75,6 +75,8 @@ try {
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 2);
     assert.equal(overflow, false, "Home must fit the viewport: " + JSON.stringify(await page.locator("body *").evaluateAll(els => els.filter(el => el.getBoundingClientRect().right > innerWidth + 2).map(el => ({tag:el.tagName,cls:el.className,width:el.getBoundingClientRect().width,right:el.getBoundingClientRect().right})).slice(0,15))));
     await page.screenshot({path: `browser-qa-artifacts/approved-home-${viewport.width}.png`, fullPage:true});
+    const cookieChoice=page.getByRole("button",{name:"Tylko niezbędne",exact:true});
+    if(await cookieChoice.isVisible()) await cookieChoice.click();
     await page.getByRole("button", {name:"Wypróbuj asystenta",exact:true}).click();
     const assistant=page.locator(".demo-assistant-panel");
     await assistant.waitFor({state:"visible"});

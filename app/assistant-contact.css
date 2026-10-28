@@ -1,7 +1,8 @@
 /* Keep the assistant readable independently of page-wide link and header styles. */
 html body .demo-assistant .demo-assistant-panel {
+  position:fixed;right:24px;bottom:24px;
   width:min(460px,calc(100vw - 32px));
-  max-height:min(760px,calc(100dvh - 160px));
+  max-height:min(760px,calc(100dvh - 48px));
   background:#08281b;color:#f5f8f1;border:1px solid #789981;
   border-radius:14px;overflow:hidden;isolation:isolate;
   font:400 16px/1.55 Arial,Helvetica,sans-serif;
@@ -33,9 +34,11 @@ html body .demo-assistant-panel .assistant-demo-links a {font:600 13px/1.5 Arial
 html body .demo-assistant-panel > footer {flex:none;padding:14px 20px;background:#0b3021;border-top:1px solid #496055;font:400 12px/1.5 Arial,sans-serif;color:#c7d8c5}
 html body .demo-assistant-panel :is(button,a):focus-visible {outline:3px solid #d4f5af;outline-offset:3px}
 @media(max-width:620px){
- html body .demo-assistant .demo-assistant-panel {position:fixed;right:8px;bottom:76px;width:calc(100vw - 16px);max-height:calc(100dvh - 92px)}
+ html body .demo-assistant .demo-assistant-panel {position:fixed;right:8px;bottom:8px;width:calc(100vw - 16px);max-height:calc(100dvh - 16px)}
  html body .demo-assistant-panel .demo-assistant-body {padding:16px}
  html body .demo-assistant-panel > header {padding:14px 16px}
  html body .demo-assistant-panel form.assistant-lead-form {padding:16px!important}
 }
 @media(max-width:360px){html body .demo-assistant-panel .assistant-options {grid-template-columns:1fr}}
+
+html body .zm-contact-dock .demo-assistant.is-open {z-index:100}
