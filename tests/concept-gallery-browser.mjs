@@ -55,6 +55,13 @@ try {
     assert.equal(await page.locator('.zmh-contact-concepts .zm-generated-sample').count(), 1);
     assert.equal(await page.locator('.zm-approved-concept-scene .zm-generated-sample').count(), 1);
     assert.ok(await page.locator('.inspiration-services').count());
+    await page.locator('.zmh-contact-concepts .zm-sample-open').click();
+    const homeModal = page.getByRole('dialog', {name: 'Pełny podgląd koncepcji'});
+    await homeModal.waitFor({state:'visible'});
+    const homeBounds = await homeModal.boundingBox();
+    assert.ok(homeBounds.width >= viewport.width - 2 && homeBounds.height >= viewport.height - 2, "Home preview must also fill the screen");
+    await page.keyboard.press('Escape');
+
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 2);
     assert.equal(overflow, false, "Home must fit the viewport: " + JSON.stringify(await page.locator("body *").evaluateAll(els => els.filter(el => el.getBoundingClientRect().right > innerWidth + 2).map(el => ({tag:el.tagName,cls:el.className,width:el.getBoundingClientRect().width,right:el.getBoundingClientRect().right})).slice(0,15))));
     await page.screenshot({path: `browser-qa-artifacts/approved-home-${viewport.width}.png`, fullPage:true});

@@ -12,6 +12,7 @@ import HomeStoryMotion from "./HomeStoryMotion";
 import HomeOffersCarousel from "./HomeOffersCarousel";
 import { QuickWhatsApp, SiteHeader, SiteFooter } from "./SiteChrome";
 import "./home-v5.css";
+import "./bezplatna-koncepcja-strony/concept-image-preview.css";
 import "./home-offers-restored.css";
 import "./podglad-inspiracje/inspiration-preview.css";
 
