@@ -19,9 +19,15 @@ function plain(value: unknown) {
 export async function GET() {
   try {
     const { env } = await import("cloudflare:workers");
-    return Response.json({ enabled: inquiryFormEnabled(env) }, { headers: { "Cache-Control": "no-store" } });
+    const runtime = env as unknown as NotificationEnv;
+    return Response.json({
+      enabled: inquiryFormEnabled(runtime),
+      databaseConfigured: Boolean(runtime.DB),
+      notificationConfigured: Boolean(runtime.RESEND_API_KEY && runtime.INQUIRY_NOTIFICATION_FROM && runtime.INQUIRY_NOTIFICATION_TO),
+      activationConfigured: runtime.INQUIRY_FORM_ENABLED === "1",
+    }, { headers: { "Cache-Control": "no-store, max-age=0", "X-Robots-Tag": "noindex" } });
   } catch {
-    return Response.json({ enabled: false }, { headers: { "Cache-Control": "no-store" } });
+    return Response.json({ enabled: false, databaseConfigured: false, notificationConfigured: false, activationConfigured: false }, { headers: { "Cache-Control": "no-store, max-age=0", "X-Robots-Tag": "noindex" } });
   }
 }
 
