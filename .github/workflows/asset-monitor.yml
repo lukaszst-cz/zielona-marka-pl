@@ -27,6 +27,7 @@ on:
 
 permissions:
   contents: read
+  checks: read
 
 jobs:
   public-assets:
@@ -35,29 +36,43 @@ jobs:
           (github.event.workflow_run.head_branch == 'main' &&
            github.event.workflow_run.conclusion != 'skipped') }}
     runs-on: ubuntu-latest
-    timeout-minutes: 6
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
         with:
           node-version: 22
       - name: Restore asset manifest from earlier run
+        if: github.event_name != 'pull_request'
         uses: actions/cache/restore@v4
         with:
           path: asset-monitor-artifacts/asset-history.json
           key: asset-history-${{ github.run_id }}
           restore-keys: |
             asset-history-
+      - name: Verify proposed gallery locally before publication
+        if: github.event_name == 'pull_request'
+        run: |
+          node scripts/verify-concept-assets.mjs
+          node --test tests/gallery-seo-guards.test.mjs
+      - name: Wait for matching Cloudflare production build
+        if: github.event_name == 'push'
+        timeout-minutes: 10
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DEPLOYMENT_SHA: ${{ github.sha }}
+        run: node scripts/wait-for-cloudflare-build.mjs
       - name: Check production HTML, JS, CSS and all gallery images
+        if: github.event_name != 'pull_request'
         run: node scripts/monitor-public-assets.mjs
       - name: Preserve asset manifest for comparison with next deployment
-        if: always()
+        if: always() && github.event_name != 'pull_request'
         uses: actions/cache/save@v4
         with:
           path: asset-monitor-artifacts/asset-history.json
           key: asset-history-${{ github.run_id }}
       - name: Preserve diagnostic results
-        if: always()
+        if: always() && github.event_name != 'pull_request'
         uses: actions/upload-artifact@v4
         with:
           name: production-assets-report
