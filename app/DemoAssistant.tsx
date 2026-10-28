@@ -3,7 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "./SafeLink";
 import "./assistant-contact.css";
-import { ContactEmailHelp, startContactEmail, type ContactEmailDraft } from "./EmailContact";
+import { ContactEmailHelp } from "./EmailContact";
+import { useInquirySubmission, InquirySubmissionStatus } from "./useInquirySubmission";
 
 const goals = ["Nowa strona", "Modernizacja strony", "Formularz wyceny", "Mały CRM", "Asystent zapytań", "Ceny i terminy"];
 const industries = ["Warsztat / detailing", "Remonty / instalacje", "Beauty / wizyty", "Inna firma usługowa"];
@@ -12,7 +13,8 @@ export default function DemoAssistant() {
   const [open, setOpen] = useState(false);
   const [goal, setGoal] = useState("");
   const [industry, setIndustry] = useState("");
-  const [draft, setDraft] = useState<ContactEmailDraft | null>(null);
+  const submission = useInquirySubmission("Asystent zapytań");
+  const { draft } = submission;
   const closeButton = useRef<HTMLButtonElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
 
@@ -42,8 +44,8 @@ export default function DemoAssistant() {
         {goal && !industry && <div className="assistant-step"><div className="user-message">{goal}</div><p>W jakiej branży działasz?</p><div className="assistant-options">{industries.map(item => <button key={item} type="button" onClick={() => setIndustry(item)}>{item}</button>)}</div><button className="assistant-back" type="button" onClick={() => setGoal("")}>← Wróć</button></div>}
         {goal && industry && <div className="assistant-step"><div className="user-message">{industry}</div>
           {goal === "Ceny i terminy" && <div className="bot-message"><p><b>Orientacyjnie:</b> Mała, podstawowa strona ZM Start od 1 449 zł netto / od 72 godzin do 14 dni od otrzymania kompletu materiałów i ustalenia zakresu. LeadFlow od 4 490 zł netto / 10–14 dni roboczych, ZM Flow od 6 900 zł netto / 14–21 dni roboczych.</p><small>30% na start, 70% po odbiorze i kontroli jakości (QA), przed publikacją na serwerze klienta.</small></div>}
-          <p>Zostaw kontakt. Przygotuję e-mail na kontakt@zielona-marka.pl. Wyślesz go w swojej poczcie.</p>
-          <form className="assistant-lead-form" method="post" action="mailto:kontakt@zielona-marka.pl" encType="text/plain" onSubmit={(event) => startContactEmail(event, "Asystent zapytań", setDraft)}>
+          <p>{submission.enabled ? "Zostaw kontakt i opisz sprawę. Zapiszę zgłoszenie i odpowiem na podany e-mail." : "Zostaw kontakt. Przygotuję e-mail na kontakt@zielona-marka.pl. Wyślesz go w swojej poczcie."}</p>
+          <form className="assistant-lead-form" method="post" action={submission.action} encType={submission.encType} onSubmit={(event) => void submission.submit(event)}>
             <input className="form-trap" name="_honey" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" />
             <input type="hidden" name="cel" value={goal} />
             <input type="hidden" name="branza" value={industry} />
@@ -53,8 +55,9 @@ export default function DemoAssistant() {
             <label>Telefon <span>(opcjonalnie)</span><input name="phone" type="tel" autoComplete="tel" /></label>
             <label className="assistant-form-wide">Co jest dziś największym problemem?<textarea name="message" rows={3} /></label>
             <label className="assistant-consent assistant-form-wide"><input type="checkbox" required name="consent" value="yes" /> <span>Akceptuję <Link href="/polityka-prywatnosci">politykę prywatności</Link> i proszę o kontakt.</span></label>
-            <button className="button assistant-form-wide" type="submit" >Przygotuj e-mail<span>↗</span></button>
-            <ContactEmailHelp draft={draft} />
+            <button className="button assistant-form-wide" type="submit" disabled={submission.disabled} >{submission.enabled ? submission.label : "Przygotuj e-mail"}<span>↗</span></button>
+            <InquirySubmissionStatus state={submission.state} />
+    <ContactEmailHelp draft={draft} />
           </form>
           <button className="assistant-back" type="button" onClick={() => setIndustry("")}>← Zmień branżę</button>
         </div>}

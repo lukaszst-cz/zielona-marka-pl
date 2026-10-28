@@ -46,8 +46,10 @@ jobs:
           mkdir -p /tmp/zm-browser-qa
           npm --prefix /tmp/zm-browser-qa install --no-save --package-lock=false --no-audit --no-fund playwright@1.56.1
           /tmp/zm-browser-qa/node_modules/.bin/playwright install --with-deps chromium
-      - name: Verify 15 concepts and lightbox before deployment
-        run: node scripts/run-built-worker-tests.mjs --gallery
+      - name: Verify gallery and guarded server forms before deployment
+        run: |
+          node scripts/run-built-worker-tests.mjs --gallery
+          node scripts/run-built-worker-tests.mjs --forms
         env:
           BROWSER_QA_PLAYWRIGHT_ENTRY: /tmp/zm-browser-qa/node_modules/playwright/index.mjs
       - name: Check generated Cloudflare Worker bundle without publishing
