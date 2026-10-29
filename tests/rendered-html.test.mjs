@@ -257,7 +257,9 @@ test("Company services and readable footer are consistent across current pages",
     const end = page.indexOf("</footer>", start);
     assert.ok(start >= 0 && end > start, route + ": footer missing");
     const footer = page.slice(start, end + 9);
-    assert.match(footer, /Strony WWW, sklepy, prostsza obsługa klientów i materiały do druku, w jednym, spójnym stylu/, route);
+    assert.match(footer, /Projektowanie i modernizacja stron internetowych/, route);
+    assert.match(footer, /Marki, woj\. mazowieckie/, route);
+    assert.match(footer, /href="\/informacje-prawne"/, route);
     assert.ok(footer.includes("icon-github-zielona-marka.svg"), route + ": GitHub icon missing");
   }
   const style = await readFile(new URL("../app/premium-polish.css", import.meta.url), "utf8");
@@ -314,7 +316,7 @@ test("Brand services appear in two deliberately separated lines on all public pa
     assert.equal(response.status, 200, route);
     const html = await response.text();
     assert.match(html, /<small><span>STRONY I SKLEPY WWW · SYSTEMY CRM · DTP<\/span><span>DLA FIRM<\/span><\/small>/, route);
-    assert.match(html, /Strony WWW, sklepy, prostsza obsługa klientów i materiały do druku, w jednym, spójnym stylu\./, route);
+    assert.match(html, /Projektowanie i modernizacja stron internetowych/, route);
   }
   const styles = await readFile(new URL("../app/premium-polish.css", import.meta.url), "utf8");
   assert.match(styles, /brand-wordmark small span\{display:block;white-space:nowrap\}/);
