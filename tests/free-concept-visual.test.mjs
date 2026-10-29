@@ -13,8 +13,9 @@ test("form receives gallery selection and keeps privacy safeguards", async () =>
   }
   assert.ok(form.includes('action={submission.action}'));
   const hook = await read("app/useInquirySubmission.tsx");
-  assert.ok(hook.includes('enabled ? "/api/inquiries" : "mailto:kontakt@zielona-marka.pl"'));
-  assert.ok(hook.includes('resultObject(result).enabled === true'));
+  assert.ok(hook.includes('action: "/api/inquiries"'));
+  assert.doesNotMatch(hook, /mailto:|startContactEmail/);
+  assert.ok(hook.includes('event.preventDefault()')); 
   assert.ok(form.includes('name="consent"'));
   assert.ok(form.includes("nie oznacza zgody na inne wiadomości marketingowe"));
 });
