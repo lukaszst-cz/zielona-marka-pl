@@ -29,9 +29,9 @@ const nextConfig: NextConfig = {
       {key: "Strict-Transport-Security", value: "max-age=31536000; includeSubDomains"},
       {key: "Content-Security-Policy", value: contentSecurityPolicy},
     ];
-    return [{source: "/downloads/:path*", headers: [{key: "Content-Type", value: "application/pdf"}, {key: "Content-Disposition", value: "inline"}]}, {source: "/brand-review-v5/:path*", headers: [{key: "Cache-Control", value: "public, max-age=31536000, immutable"}]}, {source: "/brand-review-v3/:path*", headers: [{key: "Cache-Control", value: "public, max-age=31536000, immutable"}]}, {source: "/", headers: securityHeaders}, {source: "/:path*", headers: securityHeaders}, ...privatePaths.map((source) => ({
+    return [{source: "/api/studio/:path*", headers: [{key:"Cache-Control",value:"private, no-store, max-age=0"},{key:"X-Robots-Tag",value:"noindex, nofollow"}]}, {source: "/downloads/:path*", headers: [{key: "Content-Type", value: "application/pdf"}, {key: "Content-Disposition", value: "inline"}]}, {source: "/brand-review-v5/:path*", headers: [{key: "Cache-Control", value: "public, max-age=31536000, immutable"}]}, {source: "/brand-review-v3/:path*", headers: [{key: "Cache-Control", value: "public, max-age=31536000, immutable"}]}, {source: "/", headers: securityHeaders}, {source: "/:path*", headers: securityHeaders}, ...privatePaths.map((source) => ({
       source,
-      headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }, { key: "Cache-Control", value: "private, no-store, max-age=0" }],
     }))];
   },
 };
