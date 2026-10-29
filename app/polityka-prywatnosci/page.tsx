@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function Privacy() {
   return (
     <><SiteHeader /><main className="zm-public legal shell">
-      <span className="section-no">INFORMACJE PRAWNE · AKTUALIZACJA 18.10.2026</span>
+      <span className="section-no">INFORMACJE PRAWNE · AKTUALIZACJA 29.10.2026</span>
       <h1>Polityka prywatności</h1>
       <p className="legal-lead">
         Krótko i konkretnie: zbieramy tylko dane potrzebne do odpowiedzi na
@@ -48,13 +48,14 @@ export default function Privacy() {
         </p>
         <h2>4. Gdzie dane trafiają</h2>
         <p>
-          Formularze na stronie przygotowują wiadomość w programie pocztowym
-          osoby wypełniającej zgłoszenie. Nadawca sam zatwierdza jej wysłanie
-          na kontakt@zielona-marka.pl. Dane przesyłane są przez usługę
-          pocztową wybraną przez nadawcę i trafiają do firmowej skrzynki e-mail.
-          Wcześniejsze zgłoszenia zapisane w bazie Cloudflare D1 pozostają
-          dostępne w prywatnym Studio. Aktualne formularze nie wysyłają danych
-          do FormSubmit i nie zapisują ich automatycznie w CRM.
+          Formularze wysyłają zgłoszenie przez szyfrowane połączenie do serwera
+          strony w Cloudflare. Zgłoszenie jest zapisywane w bazie Cloudflare D1,
+          dostępnej przez prywatne Studio. Następnie serwer wysyła powiadomienie
+          przez pocztę home.pl do skrzynki właściciela w Gmailu. Adres podany
+          w formularzu służy do odpowiedzi na zapytanie. Formularze nie korzystają
+          z FormSubmit. Dostawcy hostingu i poczty przetwarzają dane w zakresie
+          potrzebnym do obsługi tych usług. Informacje o rozliczaniu zleceń przez
+          Bizky Freelance znajdziesz na podstronie <Link href="/informacje-prawne">Informacje prawne</Link>.
         </p>
         <h2>5. Czas przechowywania</h2>
         <p>
@@ -67,7 +68,7 @@ export default function Privacy() {
         <h2>6. Twoje prawa</h2>
         <p>
           Możesz zażądać dostępu do danych, ich sprostowania, usunięcia,
-          ograniczenia przetwarzania, przeniesienia danych lub wnieść sprzeciw.
+          ograniczenia przetwarzania, przeniesienia danych lub wnieść sprzeciw,
           zależnie od podstawy przetwarzania. Masz też prawo złożyć skargę do
           Prezesa Urzędu Ochrony Danych Osobowych.
         </p>
