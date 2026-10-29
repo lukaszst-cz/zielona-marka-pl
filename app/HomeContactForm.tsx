@@ -26,8 +26,7 @@ export default function HomeContactForm() {
       </div>
     </details>
     <label className="zmh-privacy-check"><input required type="checkbox" name="consent" value="yes" /><span>Zapoznałem/-am się z <Link href="/polityka-prywatnosci">polityką prywatności</Link> i proszę o kontakt.</span></label>
-    <button className="zmh-pill" type="submit" disabled={submission.disabled}>{submission.enabled ? submission.label : "Przygotuj e-mail ↗"}</button>
-    {!submission.enabled && <p>Po kliknięciu otworzy się program pocztowy. Kliknij w nim „Wyślij”.</p>}
+    <button className="zmh-pill" type="submit" disabled={submission.disabled}>{submission.label}</button>
     <InquirySubmissionStatus state={submission.state} />
     <ContactEmailHelp draft={draft} />
   </form>;

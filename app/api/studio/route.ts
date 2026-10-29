@@ -1,3 +1,4 @@
+import { inquiryDeliveryStates } from "../../inquiry-journal.mjs";
 import { privateJson, isSameSiteMutation } from "../../request-security.mjs";
 import { desc, eq } from "drizzle-orm";
 import { getDb } from "../../../db";
@@ -20,7 +21,9 @@ export async function GET() {
     db.select().from(tasks).orderBy(desc(tasks.updatedAt)),
     db.select().from(inquiries).orderBy(desc(inquiries.createdAt)),
   ]);
-  return privateJson({ leads: leadRows, projects: projectRows, tasks: taskRows, inquiries: inquiryRows });
+  const { env } = await import("cloudflare:workers");
+  const states = await inquiryDeliveryStates(env.DB);
+  return privateJson({ leads: leadRows, projects: projectRows, tasks: taskRows, inquiries: inquiryRows.map(row => ({ ...row, notificationState: states.get(row.id) || "unknown" })) });
 }
 
 export async function POST(request: Request) {

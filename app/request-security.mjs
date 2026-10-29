@@ -18,7 +18,7 @@ export function privateJson(body, init = {}) {
 }
 
 /** Enforce the limit while streaming, including requests without Content-Length. */
-export async function limitedFormData(request, limit = 4096) {
+export async function limitedRequestBody(request, limit = 4096) {
   const reader = request.body?.getReader();
   const chunks = [];
   let size = 0;
@@ -36,5 +36,9 @@ export async function limitedFormData(request, limit = 4096) {
       }
     } finally { reader.releaseLock(); }
   }
-  return new Response(new Blob(chunks), { headers: { 'Content-Type': request.headers.get('Content-Type') || '' } }).formData();
+  return new Response(new Blob(chunks), { headers: { 'Content-Type': request.headers.get('Content-Type') || '' } });
+}
+
+export async function limitedFormData(request, limit = 4096) {
+  return (await limitedRequestBody(request, limit)).formData();
 }

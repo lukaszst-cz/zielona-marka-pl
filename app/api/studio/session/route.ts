@@ -1,3 +1,4 @@
+import { checkEdgeRateLimit } from "../../../edge-rate-limit.mjs";
 import { isSameSiteMutation, privateJson, limitedFormData } from "../../../request-security.mjs";
 import { authenticateStudio, createStudioSession, SESSION_MAX_AGE, STUDIO_COOKIE } from "../../../studio/session";
 
@@ -15,6 +16,10 @@ export async function POST(request: Request) {
     return new Response(null, { status: 303, headers: { "Cache-Control": "private, no-store", Location: "/", "Set-Cookie": cookie("", 0) } });
   }
 
+  const { env } = await import("cloudflare:workers");
+  const rate = await checkEdgeRateLimit(env, "ZM_LOGIN_RATE_LIMITER", request);
+  if (!rate.available) return privateJson({ error: "Logowanie chwilowo niedostępne. Spróbuj ponownie za minutę." }, { status: 503 });
+  if (!rate.allowed) return privateJson({ error: "Zbyt wiele prób logowania. Spróbuj ponownie za minutę." }, { status: 429, headers: { "Retry-After": "60" } });
   const email = String(form.get("email") ?? "");
   const password = String(form.get("password") ?? "");
   if (email.length > 254 || password.length > 1024 || !(await authenticateStudio(email, password))) {

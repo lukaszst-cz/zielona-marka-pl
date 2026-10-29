@@ -21,3 +21,8 @@
 .zm-legal-source{font:14px/1.7 Arial,sans-serif}
 .zm-legal-actions{display:flex;flex-wrap:wrap;gap:24px;align-items:center;margin-top:30px}
 @media(max-width:700px){.zm-legal-grid{grid-template-columns:1fr}.zm-legal-grid>section{padding:24px}.zm-legal-information{padding-block:40px 56px}}
+/* Explicit card contrast: public pages inherit a dark botanical theme. */
+html body main.zm-public.zm-legal-information .zm-legal-grid>section{background:rgba(5,35,23,.96)!important;border-color:#65916a!important;border-top-color:#b0f36c!important;color:#edf5e5!important}
+html body main.zm-public.zm-legal-information .zm-legal-grid>section :is(h2,p,li,dd,strong,small,dt,address){color:#edf5e5!important}
+html body main.zm-public.zm-legal-information .zm-legal-grid>section :is(a,.zm-legal-label){color:#b0f36c!important}
+html body main.zm-public.zm-legal-information .zm-legal-grid>section .zm-legal-note{border-color:#65916a!important}

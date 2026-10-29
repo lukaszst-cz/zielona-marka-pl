@@ -34,7 +34,7 @@ test("strona główna prowadzi przez pięć etapów od strony do relacji", async
   assert.match(html, /Bezpłatna Mapa Szans/i);
   assert.match(html, /modernizacja-strony#miniaudyt/i);
   assert.match(html, /demo\/mapa-szans-zielona-marka/i);
-  assert.match(html, /Przygotuj e-mail/i);
+  assert.match(html, /Wyślij zgłoszenie/i);
   assert.match(html, /Zróbmy miejsce/i);
   assert.match(html, /href="\/realizacje\/natura-studio"/i);
   assert.match(html, /href="\/realizacje\/bistro-forma"/i);

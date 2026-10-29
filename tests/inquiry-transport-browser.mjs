@@ -7,7 +7,7 @@ try {
   const page=await browser.newPage({viewport:{width:390,height:844}});
   let posts=0;const bodies=[];let fail=false;
   await page.route('**/api/inquiries',async route=>{
-   if(route.request().method()==='GET')return route.fulfill({status:200,json:{enabled:true}});
+   if(route.request().method()==='GET')return route.abort('timedout');
    posts++;bodies.push(route.request().postData());
    return route.fulfill(fail?{status:500,json:{error:'Testowy błąd zapisu. Spróbuj ponownie.'}}:{status:201,json:{ok:true,reference:71}});
   });
@@ -36,7 +36,7 @@ try {
   assert.match(await form.getByRole('status').innerText(),/nr 71/);
   assert.equal(posts,2,'Exactly one request per deliberate attempt');
   assert.ok(bodies.every(body=>body.includes('name="consent"')&&body.includes('name="formTitle"')));
-  assert.ok(!page.url().startsWith('mailto:'),'Server mode must not open the mail application');
+  assert.ok(!page.url().startsWith('mailto:'),'A failed readiness check must never open the mail application');
   await page.close();
   console.log('PASS mocked server transport, retained fields and acknowledgement: '+item.selector);
  }
