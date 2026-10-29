@@ -259,7 +259,9 @@ test("Company services and readable footer are consistent across current pages",
     const footer = page.slice(start, end + 9);
     assert.match(footer, /Projektowanie i modernizacja stron internetowych/, route);
     assert.match(footer, /Marki, woj\. mazowieckie/, route);
-    assert.match(footer, /href="\/informacje-prawne"/, route);
+    assert.match(footer, /id="fakturowanie"/, route);
+    assert.match(footer, /7010150265/, route);
+    assert.match(footer, /0000312229/, route);
     assert.ok(footer.includes("icon-github-zielona-marka.svg"), route + ": GitHub icon missing");
   }
   const style = await readFile(new URL("../app/premium-polish.css", import.meta.url), "utf8");
