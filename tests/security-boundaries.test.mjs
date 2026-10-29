@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { isSameSiteMutation, privateJson } from '../app/request-security.mjs';
+import { isSameSiteMutation, privateJson, limitedFormData } from '../app/request-security.mjs';
 import { toPublicProject } from '../app/public-project.mjs';
 test('published portfolio cannot disclose client, contract or access-token fields',()=>{
  const row={id:1,title:'Demo',type:'WWW',description:'Opis',imageUrl:'/image.webp',websiteUrl:'https://example.test',updatedAt:'2026-10-29',clientEmail:'private@example.test',clientAddress:'PRIVATE',clientNip:'PRIVATE',publicCode:'SECRET',contractNumber:'PRIVATE',price:12000,clientNote:'PRIVATE',futurePrivateField:'PRIVATE'};
@@ -23,4 +23,14 @@ test('all private JSON responses prohibit shared and browser caching, including 
   assert.equal(r.headers.get('vary'),'Cookie');
   assert.equal(r.headers.get('x-robots-tag'),'noindex, nofollow');
  }
+});
+
+test('login body is bounded even when Content-Length is missing',async()=>{
+ const headers={'Content-Type':'application/x-www-form-urlencoded'};
+ const good=await limitedFormData(new Request('https://example.test/login',{method:'POST',headers,body:'email=test%40example.test&password=test'}));
+ assert.equal(good.get('email'),'test@example.test');
+ const body=new ReadableStream({start(controller){controller.enqueue(new Uint8Array(4097));controller.close();}});
+ const large=new Request('https://example.test/login',{method:'POST',headers,body,duplex:'half'});
+ assert.equal(large.headers.get('Content-Length'),null);
+ await assert.rejects(limitedFormData(large),RangeError);
 });

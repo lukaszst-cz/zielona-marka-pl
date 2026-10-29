@@ -1,4 +1,4 @@
-# Odbiór zabezpieczeń, 29.10.2026
+# Odbiór zabezpieczeń v1.1.1, 29.10.2026
 
 Punkt wyjścia produkcji: v1.1.0, dc12d925ad39695e36185b78ae8334f01854a05b. Nie przywracać starszych źródeł ani grafik.
 
@@ -23,3 +23,5 @@ Do zastosowania potrzebne jest zalogowanie właściciela do ustawień repozytori
 - Przegląd uprawnień kont, 2FA, reguł Cloudflare i zakresów tokenów z właścicielem. Bez zmiany haseł i sekretów w ciemno.
 - Wyjaśnienie wcześniejszych sporadycznych 503 na podstawie logów Cloudflare oraz pomiar wydajności mobilnej.
 - Dokończenie SEO, treści i danych usługodawcy bez publikowania niepotwierdzonych opinii, wyników lub certyfikatów.
+
+Reguła wymaganego testu jest przypięta do aplikacji GitHub Actions (integration_id 15368 odczytane z prawdziwej kontroli CI), aby nie wystarczał status o tej samej nazwie z innego źródła. Potwierdzono też, że kontrola Cloudflare dla gałęzi roboczej prowadzi do ścieżki previews/hardening-2026-10-29, a nie jest dowodem publikacji tej gałęzi jako produkcji.
