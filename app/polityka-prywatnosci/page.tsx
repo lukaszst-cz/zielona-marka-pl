@@ -55,7 +55,7 @@ export default function Privacy() {
           w formularzu służy do odpowiedzi na zapytanie. Formularze nie korzystają
           z FormSubmit. Dostawcy hostingu i poczty przetwarzają dane w zakresie
           potrzebnym do obsługi tych usług. Informacje o rozliczaniu zleceń przez
-          Bizky Freelance znajdziesz na podstronie <Link href="/informacje-prawne">Informacje prawne</Link>.
+          Bizky Freelance znajdziesz <a href="#fakturowanie">w stopce strony</a>.
         </p>
         <h2>5. Czas przechowywania</h2>
         <p>

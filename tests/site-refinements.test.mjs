@@ -283,7 +283,8 @@ test("analytics covers guide journeys and form starts without collecting field v
   assert.match(forms,/form_submit_attempt/);
   const submission=await readFile(new URL("../app/useInquirySubmission.tsx",import.meta.url),"utf8");
   assert.match(forms,/useInquirySubmission/);
-  assert.match(submission,/mailto:kontakt@zielona-marka\.pl/);
+  assert.match(submission,/action: "\/api\/inquiries"/);
+  assert.doesNotMatch(submission,/startContactEmail|mailto:/);
   assert.doesNotMatch(forms,/formsubmit\.co/);
   assert.doesNotMatch(forms,/email:\s*form\.|message:\s*form\.|name:\s*form\./);
 });
@@ -871,11 +872,11 @@ test("key public routes use their own social preview metadata", async () => {
 
 test("inquiry email notification failures remain observable after CRM save", async () => {
   const route = await readFile(new URL("../app/api/inquiries/route.ts", import.meta.url), "utf8");
-  assert.ok(route.indexOf("await db.insert(inquiries)") >= 0);
-  assert.ok(route.indexOf("await db.insert(inquiries)") < route.indexOf("await sendInquiryNotification("), "Save the inquiry before sending optional email notification");
+  assert.ok(route.indexOf("await saveInquiryOnce(") >= 0);
+  assert.ok(route.indexOf("await saveInquiryOnce(") < route.indexOf("await deliverInquiryOnce("), "Save the inquiry before sending optional email notification");
   assert.match(route, /Inquiry saved; provider acknowledgement unavailable/);
   assert.match(route, /saved: true/);
-  assert.ok(route.indexOf("if (!inquiryFormEnabled(runtime))") < route.indexOf("await db.insert(inquiries)"));
+  assert.ok(route.indexOf("if (!inquiryFormEnabled(runtime))") < route.indexOf("await saveInquiryOnce("));
   assert.ok(!route.includes(".catch(() => undefined)"), "Do not swallow notification failures without a log");
 });
 

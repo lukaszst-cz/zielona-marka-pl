@@ -3,21 +3,13 @@
 .zm-footer .zm-footer-identity>span{font:14px/1.6 Arial,sans-serif;color:#d5e1cc}
 .zm-footer .zm-footer-identity>a{width:fit-content;color:#b0f36c}
 .zm-footer .zm-footer-identity>small{font:13px/1.6 Arial,sans-serif;color:#d5e1cc}
-.zm-legal-information{padding-block:64px 80px}
-.zm-legal-information h1{font-size:clamp(36px,5vw,64px);line-height:1.15}
-.zm-legal-information .legal-lead{max-width:760px;font-size:18px;line-height:1.75}
-.zm-legal-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-block:36px}
-.zm-legal-grid>section{padding:32px;background:#f3f6ef;border:1px solid #cad8c5;border-top:3px solid #356b46;border-radius:12px;min-width:0}
-.zm-legal-label{font:700 12px/1.7 Arial,sans-serif;letter-spacing:.08em;color:#356b46}
-.zm-legal-grid h2{font-size:26px;line-height:1.3;margin-block:16px 22px}
-.zm-legal-grid p,.zm-legal-grid address,.zm-legal-grid li,.zm-legal-grid dl{font:16px/1.8 Arial,sans-serif;color:#203e2d}
-.zm-legal-grid a{color:#245538;text-decoration:underline;text-underline-offset:4px;overflow-wrap:anywhere}
-.zm-legal-grid ul{list-style:none;padding:0}
-.zm-legal-grid li{padding-block:5px}
-.zm-legal-grid dl>div{display:flex;gap:16px}
-.zm-legal-grid dt{min-width:40px;font-weight:700}
-.zm-legal-grid dd{margin:0}
-.zm-legal-grid .zm-legal-note{font-size:14px;border-top:1px solid #cad8c5;padding-top:18px}
-.zm-legal-source{font:14px/1.7 Arial,sans-serif}
-.zm-legal-actions{display:flex;flex-wrap:wrap;gap:24px;align-items:center;margin-top:30px}
-@media(max-width:700px){.zm-legal-grid{grid-template-columns:1fr}.zm-legal-grid>section{padding:24px}.zm-legal-information{padding-block:40px 56px}}
+.zm-footer .zm-footer-billing{grid-column:1/-1;border-top:1px solid #d4e7c62e;padding-top:22px;gap:0}
+.zm-footer .zm-footer-billing h2{font-size:14px!important;color:#d5e1cc!important;margin:0 0 8px!important}
+.zm-footer .zm-footer-billing p{max-width:none;margin:0;font-size:14px;line-height:1.8;color:#d5e1cc}
+.zm-footer .zm-footer-billing strong{color:#f3f8ee}
+.zm-footer .zm-footer-billing p>span{white-space:normal}
+.zm-footer-billing{scroll-margin-top:100px}
+.zm-footer .zm-footer-identity .zm-footer-identity-label{font:700 12px/1.6 Arial,sans-serif;letter-spacing:.08em;color:#b0f36c}
+.zm-footer .zm-footer-identity h2{font-size:24px!important;line-height:1.25!important;color:#f3f8ee!important;margin:4px 0 6px!important}
+.zm-footer .zm-footer-identity-links{display:grid;gap:6px;margin-top:8px}
+.zm-footer .zm-footer-identity-links a{color:#b0f36c;width:fit-content}

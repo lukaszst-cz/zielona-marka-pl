@@ -30,8 +30,7 @@ export default function ContactForm({ audit = false, initialPackage = "", initia
     <label>Orientacyjny budżet <span>(opcjonalnie)</span><select name="budget" defaultValue=""><option value="">Wolę najpierw poznać zakres</option><option>do 3 000 zł</option><option>3 000–6 000 zł</option><option>6 000–12 000 zł</option><option>powyżej 12 000 zł</option></select></label>
     <label className="form-wide">Co dziś nie działa albo jaki efekt chcesz osiągnąć?<textarea required name="message" ref={messageRef} maxLength={8000} rows={5} defaultValue={[initialPackage && "Wybrany pakiet: " + initialPackage, initialEstimate].filter(Boolean).join("\n\n")} placeholder="Np. mam obecną stronę, ale klienci rzadko piszą. Chcę lepiej pokazać usługi." /></label>
     <label className="form-consent form-wide"><input required type="checkbox" name="consent" value="yes" /> <span>Zapoznałem/-am się z <Link href="/polityka-prywatnosci">polityką prywatności</Link> i proszę o kontakt.</span></label>
-    <button className="button form-wide" type="submit" disabled={submission.disabled}>{submission.enabled ? submission.label : audit ? "Przygotuj e-mail z minioceną" : "Przygotuj e-mail do wysłania"}<span>↗</span></button>
-    {!submission.enabled && <p className="form-wide">Po kliknięciu otworzy się program pocztowy. Aby wysłać wiadomość, kliknij w nim „Wyślij”.</p>}
+    <button className="button form-wide" type="submit" disabled={submission.disabled}>{submission.label}<span>↗</span></button>
     <InquirySubmissionStatus state={submission.state} />
     <ContactEmailHelp draft={draft} />
   </form>;

@@ -70,9 +70,8 @@ export default function ConceptRequestForm() {
       <input name="consent" type="checkbox" required value="yes" />
       <span>Zapoznałem/-am się z <Link href="/polityka-prywatnosci">polityką prywatności</Link> i proszę o e-mailową odpowiedź dotyczącą tego zgłoszenia. Zgłoszenie nie oznacza zgody na inne wiadomości marketingowe.</span>
     </label>
-    <button type="submit" disabled={submission.disabled} >{submission.enabled ? submission.label : "Przygotuj e-mail z prośbą ↗"}</button>
+    <button type="submit" disabled={submission.disabled} >{submission.label}</button>
     <p className="zm-concept-form-foot">Nie pytam o budżet na tym etapie. Formularz służy do zgłoszenia jednej bezpłatnej, poglądowej koncepcji; nie zamawia pełnego projektu ani gotowych plików do druku.</p>
-    {!submission.enabled && <p>Aby zgłoszenie trafiło do mnie, kliknij „Wyślij” w otwartym programie pocztowym.</p>}
     <InquirySubmissionStatus state={submission.state} />
     <ContactEmailHelp draft={draft} />
   </form>;

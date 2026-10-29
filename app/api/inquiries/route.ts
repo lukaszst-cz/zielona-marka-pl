@@ -1,3 +1,6 @@
+import { checkEdgeRateLimit } from "../../edge-rate-limit.mjs";
+import { isSameSiteMutation, limitedRequestBody } from "../../request-security.mjs";
+import { deliverInquiryOnce, saveInquiryOnce } from "../../inquiry-journal.mjs";
 import { and, count, eq, gte } from "drizzle-orm";
 import { inquiries } from "../../../db/schema";
 import { sendSmtpInquiry } from "../../inquiry-smtp";
@@ -43,23 +46,22 @@ export async function POST(request: Request) {
     : new Response(message, { status, headers: { "Cache-Control": "no-store", "Content-Type": "text/plain; charset=utf-8" } });
 
   try {
-    const requestUrl = new URL(request.url);
-    const origin = request.headers.get("origin");
-    const fetchSite = request.headers.get("sec-fetch-site");
-    if (origin && new URL(origin).host !== requestUrl.host) return reply("Niedozwolone źródło formularza.", 403);
-    if (fetchSite && !["same-origin", "same-site", "none"].includes(fetchSite)) return reply("Niedozwolone źródło formularza.", 403);
+    if (!isSameSiteMutation(request)) return reply("Niedozwolone źródło formularza.", 403);
 
     const declaredLength = Number(request.headers.get("content-length") ?? 0);
     if (declaredLength > 20000) return reply("Wiadomość jest zbyt długa.", 413);
 
+    let limitedBody: Response;
+    try { limitedBody = await limitedRequestBody(request, 20000); }
+    catch (error) { return reply(error instanceof RangeError ? "Wiadomość jest zbyt długa." : "Nieprawidłowe dane.", error instanceof RangeError ? 413 : 400); }
     let payload: Payload;
     if (isJsonBody) {
-      const raw = await request.text();
+      const raw = await limitedBody.text();
       if (raw.length > 20000) return reply("Wiadomość jest zbyt długa.", 413);
       try { payload = JSON.parse(raw) as Payload; }
       catch { return reply("Nieprawidłowe dane.", 400); }
     } else if (contentType.includes("application/x-www-form-urlencoded") || contentType.includes("multipart/form-data")) {
-      payload = Object.fromEntries(await request.formData());
+      payload = Object.fromEntries(await limitedBody.formData());
     } else {
       return reply("Nieobsługiwany format formularza.", 415);
     }
@@ -127,6 +129,13 @@ export async function POST(request: Request) {
     const { env } = await import("cloudflare:workers");
     const runtime = env as unknown as NotificationEnv;
     if (!inquiryFormEnabled(runtime)) return reply("Wysyłka formularza nie jest jeszcze dostępna. Napisz na kontakt@zielona-marka.pl.", 503);
+    const rate = await checkEdgeRateLimit(runtime, "ZM_INQUIRY_RATE_LIMITER", request);
+    if (!rate.available) return reply("Wysyłka jest chwilowo niedostępna. Treść pozostaje w formularzu. Spróbuj ponownie za minutę.", 503);
+    if (!rate.allowed) {
+      const response = reply("Zbyt wiele wiadomości. Spróbuj ponownie za minutę.", 429);
+      response.headers.set("Retry-After", "60");
+      return response;
+    }
     if (plain(payload.formTitle)) message = `Formularz: ${plain(payload.formTitle).slice(0,120)}\n\n${message}`;
 
     const { getDb } = await import("../../../db");
@@ -142,13 +151,13 @@ export async function POST(request: Request) {
       return response;
     }
 
-    const [inserted] = duplicate ? [duplicate] : await db.insert(inquiries)
-      .values({ name, email, company, budget, message, status: "Nowe", createdAt: new Date().toISOString() })
-      .returning({ id: inquiries.id });
-    if (!inserted) throw new Error("Inquiry was not saved.");
+    const inserted = await saveInquiryOnce(runtime.DB, {name,email,company,budget,message}, cutoff);
     try {
-      if (runtime.SMTP_PASSWORD) await sendSmtpInquiry({ id: inserted.id, name, email, company, message, title: plain(payload.formTitle).replace(/[\r\n]/g, " ").slice(0, 120) }, runtime);
-      else await sendInquiryNotification({ id: inserted.id, name, email, company, message }, runtime);
+      const delivery = await deliverInquiryOnce(runtime.DB, inserted.id, async () => {
+        if (runtime.SMTP_PASSWORD) return sendSmtpInquiry({ id: inserted.id, name, email, company, message, title: plain(payload.formTitle).replace(/[\r\n]/g, " ").slice(0, 120) }, runtime);
+        return sendInquiryNotification({ id: inserted.id, name, email, company, message }, runtime);
+      }, { duplicate: inserted.duplicate });
+      if (!delivery.confirmed) throw new Error("Provider acknowledgement requires owner review.");
     } catch {
       console.error("Inquiry saved; provider acknowledgement unavailable.", { inquiryId: inserted.id });
       const error = `Zgłoszenie nr ${inserted.id} zostało zapisane. Nie udało się potwierdzić powiadomienia e-mail. Jeśli sprawa jest pilna, zadzwoń pod +48 450 458 466.`;

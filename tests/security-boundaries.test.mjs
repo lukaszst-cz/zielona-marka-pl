@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { isSameSiteMutation, privateJson, limitedFormData } from '../app/request-security.mjs';
+import { isSameSiteMutation, privateJson, limitedFormData, limitedRequestBody } from '../app/request-security.mjs';
 import { toPublicProject } from '../app/public-project.mjs';
 test('published portfolio cannot disclose client, contract or access-token fields',()=>{
  const row={id:1,title:'Demo',type:'WWW',description:'Opis',imageUrl:'/image.webp',websiteUrl:'https://example.test',updatedAt:'2026-10-29',clientEmail:'private@example.test',clientAddress:'PRIVATE',clientNip:'PRIVATE',publicCode:'SECRET',contractNumber:'PRIVATE',price:12000,clientNote:'PRIVATE',futurePrivateField:'PRIVATE'};
@@ -33,4 +33,25 @@ test('login body is bounded even when Content-Length is missing',async()=>{
  const large=new Request('https://example.test/login',{method:'POST',headers,body,duplex:'half'});
  assert.equal(large.headers.get('Content-Length'),null);
  await assert.rejects(limitedFormData(large),RangeError);
+});
+
+test('public inquiry payload is bounded by bytes before multipart or JSON parsing', async()=>{
+ const headers={'Content-Type':'multipart/form-data; boundary=test'};
+ const body=new ReadableStream({start(controller){controller.enqueue(new Uint8Array(20001));controller.close();}});
+ const request=new Request('https://example.test/inquiries',{method:'POST',headers,body,duplex:'half'});
+ await assert.rejects(limitedRequestBody(request,20000),RangeError);
+ const value=await limitedRequestBody(new Request('https://example.test/inquiries',{method:'POST',headers:{'Content-Type':'application/json'},body:'{"name":"test"}'}),20000);
+ assert.deepEqual(await value.json(),{name:'test'});
+});
+
+test('edge limiter rejects exhaustion and infrastructure failures without exposing raw IP keys',async()=>{
+ const {checkEdgeRateLimit}=await import('../app/edge-rate-limit.mjs');
+ const request=new Request('https://example.test/login',{headers:{'CF-Connecting-IP':'192.0.2.10'}});
+ let seen;
+ const runtime={LIMIT:{async limit(value){seen=value.key;return {success:false}}}};
+ assert.deepEqual(await checkEdgeRateLimit(runtime,'LIMIT',request),{available:true,allowed:false});
+ assert.ok(!seen.includes('192.0.2.10'));
+ assert.deepEqual(await checkEdgeRateLimit({},'LIMIT',request),{available:false,allowed:false});
+ assert.deepEqual(await checkEdgeRateLimit({LIMIT:{async limit(){throw Error('down')}}},'LIMIT',request),{available:false,allowed:false});
+ assert.deepEqual(await checkEdgeRateLimit({},'LIMIT',new Request('http://localhost/login')),{available:true,allowed:true});
 });
