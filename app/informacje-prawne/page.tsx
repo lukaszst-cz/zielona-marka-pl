@@ -4,7 +4,7 @@ import { SiteHeader, SiteFooter } from "../SiteChrome";
 
 export const metadata: Metadata = {
   title: "Informacje prawne i fakturowanie",
-  description: "Dane Zielonej Marki, kontakt do Łukasza Staniewicza i informacje o fakturowaniu przez Bizky Freelance.",
+  description: "Dane marki Zielona Marka, kontakt do Łukasza Staniewicza i informacje o fakturowaniu przez Bizky Freelance.",
   alternates: { canonical: "/informacje-prawne" },
   robots: { index: false, follow: true },
 };
@@ -28,7 +28,7 @@ export default function LegalInformation() {
         <a className="zm-legal-source" href="https://bizky.ai/regulamin-bizky-one-time/" target="_blank" rel="noopener noreferrer">Regulamin Bizky Freelance ↗</a>
       </section>
     </div>
-    <p>W sprawach projektu i kontaktu ze mną korzystaj z danych Zielonej Marki podanych powyżej.</p>
+    <p>W sprawach projektu i kontaktu ze mną korzystaj z danych marki Zielona Marka podanych powyżej.</p>
     <div className="zm-legal-actions"><Link className="button" href="/kontakt">Przejdź do kontaktu <span>↗</span></Link><Link href="/polityka-prywatnosci">Polityka prywatności</Link></div>
   </main><SiteFooter /></>;
 }
