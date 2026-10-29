@@ -689,22 +689,21 @@ try {
         await page.keyboard.press("Escape");
       }
     });
-    await check(size.name + ": contact brief uses an explicit email composer", async () => {
+    await check(size.name + ": contact brief always uses server submission", async () => {
       const response = await page.goto(base + "/kontakt", { waitUntil: "domcontentloaded", timeout: 45000 });
       assert.ok(response?.ok(), "Contact page did not load");
       const form = page.locator('form[data-analytics-form="brief"]');
       await form.waitFor({ state: "visible", timeout: 12000 });
-      assert.equal(await form.getAttribute("action"), "mailto:kontakt@zielona-marka.pl");
-      assert.match(await form.innerText(), /program pocztowy/);
-      assert.ok(await form.getByRole("button", { name: /Przygotuj e-mail/ }).count());
+      assert.equal(await form.getAttribute("action"), "/api/inquiries");
+      assert.doesNotMatch(await form.innerText(), /otworzy się program pocztowy/);
+      assert.ok(await form.getByRole("button", { name: /Wyślij zgłoszenie/ }).count());
       await form.locator('input[name="name"]').fill("Przykładowa osoba QA");
       await form.locator('input[name="email"]').fill("not-an-email");
       await form.locator('textarea[name="message"]').fill("Proszę o informację o stworzeniu strony firmowej.");
       await form.locator('select[name="projectType"]').selectOption({ label: "Strona WWW szyta na miarę" });
       await form.locator('input[name="consent"]').check();
       assert.equal(await form.locator('input[name="email"]').evaluate(el => el.validity.typeMismatch), true);
-      // Never send a valid form in CI. It would open a real mail client instead
-      // of contacting a mockable HTTP endpoint.
+      // Never submit a valid form in public monitoring: it would create a real lead and email.
     });
     await check(size.name + ": JS asset failures recover after a fresh navigation", async () => {
       if (!failedJsChunks.length) return { missingChunks: 0 };
