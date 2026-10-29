@@ -9,3 +9,7 @@
 .zm-footer .zm-footer-billing strong{color:#f3f8ee}
 .zm-footer .zm-footer-billing p>span{white-space:normal}
 .zm-footer-billing{scroll-margin-top:100px}
+.zm-footer .zm-footer-identity .zm-footer-identity-label{font:700 12px/1.6 Arial,sans-serif;letter-spacing:.08em;color:#b0f36c}
+.zm-footer .zm-footer-identity h2{font-size:24px!important;line-height:1.25!important;color:#f3f8ee!important;margin:4px 0 6px!important}
+.zm-footer .zm-footer-identity-links{display:grid;gap:6px;margin-top:8px}
+.zm-footer .zm-footer-identity-links a{color:#b0f36c;width:fit-content}
