@@ -1,3 +1,4 @@
+import { privateJson, isSameSiteMutation } from "../../../../request-security.mjs";
 import { eq } from "drizzle-orm";
 import { getDb } from "../../../../../db";
 import { inquiries, leads, projects, tasks } from "../../../../../db/schema";
@@ -7,9 +8,10 @@ const tables = { lead: leads, project: projects, task: tasks, inquiry: inquiries
 type Entity = keyof typeof tables;
 
 export async function PATCH(request: Request, { params }: { params: Promise<{ entity: string; id: string }> }) {
-  if (!(await getStudioOwner())) return Response.json({ error: "Brak dostępu" }, { status: 403 });
+  if (!isSameSiteMutation(request)) return privateJson({ error: "Niedozwolone źródło żądania" }, { status: 403 });
+  if (!(await getStudioOwner())) return privateJson({ error: "Brak dostępu" }, { status: 403 });
   const { entity, id } = await params;
-  if (!(entity in tables)) return Response.json({ error: "Nieznany rekord" }, { status: 400 });
+  if (!(entity in tables)) return privateJson({ error: "Nieznany rekord" }, { status: 400 });
   const payload = (await request.json()) as Record<string, unknown>;
   const table = tables[entity as Entity];
   const allowed: Record<Entity, string[]> = {
@@ -22,14 +24,15 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ en
   for (const key of allowed[entity as Entity]) if (key in payload) changes[key] = payload[key];
   if (entity !== "inquiry") changes.updatedAt = new Date().toISOString();
   await getDb().update(table as typeof leads).set(changes).where(eq((table as typeof leads).id, Number(id)));
-  return Response.json({ ok: true });
+  return privateJson({ ok: true });
 }
 
-export async function DELETE(_: Request, { params }: { params: Promise<{ entity: string; id: string }> }) {
-  if (!(await getStudioOwner())) return Response.json({ error: "Brak dostępu" }, { status: 403 });
+export async function DELETE(request: Request, { params }: { params: Promise<{ entity: string; id: string }> }) {
+  if (!isSameSiteMutation(request)) return privateJson({ error: "Niedozwolone źródło żądania" }, { status: 403 });
+  if (!(await getStudioOwner())) return privateJson({ error: "Brak dostępu" }, { status: 403 });
   const { entity, id } = await params;
-  if (!(entity in tables)) return Response.json({ error: "Nieznany rekord" }, { status: 400 });
+  if (!(entity in tables)) return privateJson({ error: "Nieznany rekord" }, { status: 400 });
   const table = tables[entity as Entity];
   await getDb().delete(table as typeof leads).where(eq((table as typeof leads).id, Number(id)));
-  return Response.json({ ok: true });
+  return privateJson({ ok: true });
 }
