@@ -372,3 +372,16 @@ html:has(.zm-v5){scroll-behavior:smooth;scroll-padding-top:24px}
 .zm-approved-concept-scene .zm-generated-sample{margin:0}
 
 @media(max-width:360px){.zmh-commerce{display:grid;grid-template-columns:minmax(0,1fr);gap:16px}.zmh-commerce-copy{min-width:0}.zmh-voucher{width:100%;min-width:0}}
+
+/* Mobile homepage: keep text clear of the left and right card edges.
+   Only the five service descriptions and the contact copy are affected.
+   Illustrations, outer section widths and desktop layouts stay unchanged. */
+@media (max-width: 620px) {
+  .zm-v5 .zmh-cinema-chapters .zmh-story .zmh-copy {
+    padding-inline: 18px;
+  }
+
+  .zm-v5 .zmh-contact > div:last-child {
+    padding-inline: 18px;
+  }
+}
