@@ -411,7 +411,7 @@ test("bezpłatne koncepcje mają wspólny układ oraz pięć jasnych wariantów"
     "Koncepcja gazetki sprzedażowej",
   ]) assert.ok(html.includes(variant), variant);
   assert.match(html, /id="zgloszenie"/);
-  assert.match(html, /href="\/projektuj-strone#zm-konfigurator"/);
+  assert.match(html, /href="\/portfolio"/);
   const toolsResponse = await render("/praktyczne-narzedzia");
   assert.equal(toolsResponse.status, 200);
   assert.match(await toolsResponse.text(), /Zobacz nowy wygląd swojej strony, logo albo gazetki/);
