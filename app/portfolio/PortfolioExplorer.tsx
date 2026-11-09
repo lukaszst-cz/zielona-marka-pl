@@ -76,7 +76,7 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
         <a href="#zmp-zestaw" className="zmp-btn zmp-btn-outline">Przygotuj portfolio dla klienta ↗</a>
       </div>
     </section>
-    <section className="zmp-showcase shell" aria-label="Wyróżnione projekty Zielonej Marki">
+    <section className="zmp-showcase shell" aria-label="Wyróżnione projekty marki Zielona Marka">
       <div className="zmp-section-head"><div><small>WYBRANE PRACE</small><h2>Różne projekty. Jeden standard prezentacji.</h2></div><p>Przejdź przez przykłady i otwórz kartę wybranej pracy.</p></div>
       <div className="zmp-stage" aria-roledescription="karuzela">
         {featured.map((item,index) => {
