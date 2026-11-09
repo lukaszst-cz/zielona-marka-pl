@@ -15,6 +15,12 @@ export const metadata: Metadata = {
     description: "Własne projekty koncepcyjne i demonstracje: WWW, gazetki produktowe, logo, aplikacje i Excel.",
     images: ["/og.jpg"],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Portfolio projektów | Zielona Marka",
+    description: "Strony internetowe, gazetki, logo, aplikacje, workflow i Excel. Wybierz projekty do portfolio PDF.",
+    images: ["/og.jpg"],
+  },
 };
 
 export default function PortfolioPage() {
