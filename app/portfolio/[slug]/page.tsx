@@ -67,7 +67,7 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
         <figure className="zmp-detail-visual" data-media={
           item.image?.includes("-autentyczny-podglad.png") || item.image?.includes("aktywnik-plus-aktualny-ekran.png")
             ? "screen"
-            : ["gazetki", "logo", "przed-po", "excel"].includes(item.category) || item.image?.includes("/concept-samples-v2/")
+            : ["gazetki", "logo", "przed-po", "excel"].includes(item.category) || item.image?.includes("/concept-samples-v2/") || item.image?.includes("-20261109.svg") || item.image?.endsWith("/assets/car.png")
               ? "art"
               : "photo"
         }>
