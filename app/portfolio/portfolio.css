@@ -236,7 +236,7 @@
 .zmp-industry-list{display:flex;align-items:center;flex-wrap:wrap;gap:9px;min-width:0}
 .zmp-industry-list button{display:flex;gap:8px;align-items:center;justify-content:center;padding:10px 15px;min-height:42px;white-space:normal;border:1px solid #b7d8d4a8;border-radius:99px;background:rgba(4,32,38,.8);color:#eff9f8;font:inherit;font-size:.8rem;font-weight:750;cursor:pointer;line-height:1.2}
 .zmp-industry-list button>span{font-size:1.15rem;line-height:.8}
-.zmp-industry-list button.is-active{color:#0d3128;background:linear-gradient(120deg,#d3fe55,#8ff967);border-color:#d0fc84;box-shadow:0 0 0 2px #acfb5666}
+.zmp-industry-list button.is-active{color:#0d3128;background:linear-gradient(120deg,#d3fe55,#8ff967);background-color:#b6fb73;border-color:#d0fc84;box-shadow:0 0 0 2px #acfb5666}
 .zmp-industry-list button:hover:not(.is-active){background:#286d69;color:#fff}
 .zmp-projects{background:radial-gradient(ellipse at 20% 0%,rgba(31,105,102,.31),transparent 38%),radial-gradient(ellipse at 90% 95%,rgba(27,94,70,.22),transparent 42%),#08252e;position:relative;padding:65px 0 100px;color:#eef9f4}
 .zmp-projects:before,.zmp-projects:after{content:"";position:absolute;pointer-events:none;background:url('/brand-review-v6/fern-frond.svg') center/contain no-repeat;opacity:.13}
