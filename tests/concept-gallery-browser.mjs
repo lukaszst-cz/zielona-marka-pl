@@ -40,6 +40,30 @@ try {
       assert.ok(await page.locator(".zmp-project-card").count() >= 40, "Unified gallery must list projects from every category");
       assert.equal(await page.locator(".zmp-project-card").filter({hasText:"ZM Studio"}).count(),0,"ZM Studio must not be publicly listed");
       assert.equal(await page.locator(".zmp-project-card img").count(),await page.locator(".zmp-project-card").count(),"Each project must show an image");
+      const [stageBox, arrowLeftBox, arrowRightBox] = await Promise.all([
+        page.locator(".zmp-visual-stage").boundingBox(),
+        page.getByRole("button", {name:"Poprzedni projekt"}).boundingBox(),
+        page.getByRole("button", {name:"Następny projekt"}).boundingBox(),
+      ]);
+      assert.ok(stageBox && arrowLeftBox && arrowRightBox);
+      const stageMiddle = stageBox.y + stageBox.height / 2;
+      assert.ok(Math.abs(stageMiddle - (arrowLeftBox.y + arrowLeftBox.height / 2)) < 3,
+        "Left carousel arrow must be vertically centered");
+      assert.ok(Math.abs(stageMiddle - (arrowRightBox.y + arrowRightBox.height / 2)) < 3,
+        "Right carousel arrow must be vertically centered");
+      const cardColumns = await page.locator(".zmp-projects .zmp-grid")
+        .evaluate(el => getComputedStyle(el).gridTemplateColumns.split(" ").length);
+      assert.equal(cardColumns, viewport.width >= 1200 ? 3 : viewport.width > 760 ? 2 : 1,
+        "Portfolio grid should be three desktop columns and one mobile column");
+      for (const path of [
+        "/portfolio/aktywnik-plus-aktualny-ekran.png",
+        "/portfolio/materivo-autentyczny-podglad.png",
+        "/portfolio/budrivo-autentyczny-podglad.png",
+      ]) {
+        const response = await page.request.get(base + path);
+        assert.equal(response.status(), 200, "Local project visual must load: " + path);
+        assert.ok(response.headers()["content-type"]?.includes("image/png"), "Project visual must be PNG");
+      }
       await page.getByRole("button", { name: "Następny projekt" }).click();
       await page.locator(".zmp-industry-list button").filter({hasText:"Handel i hurtownie"}).click();
       const tradeCount = await page.locator(".zmp-project-card").count();
