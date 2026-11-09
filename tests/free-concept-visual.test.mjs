@@ -72,7 +72,7 @@ test("concept page points to the unified portfolio and keeps an independently se
   const catalog = await read("app/portfolio/catalog.ts");
   const form = await read("app/bezplatna-koncepcja-strony/ConceptRequestForm.tsx");
   assert.ok(gallery.includes('href="/portfolio"'));
-  assert.ok(gallery.includes('"/portfolio/'));
+  assert.ok(gallery.includes('href={`/portfolio/'));
   assert.ok(gallery.includes('name: "OKRUCH"'));
   assert.ok(gallery.includes('name: "SZLAK"'));
   assert.ok(gallery.includes('name: "PELETON"'));
