@@ -485,3 +485,19 @@
   .zmp-explorer .zmp-nav-prev{left:1px}
   .zmp-explorer .zmp-nav-next{right:1px}
 }
+
+/* Podstrony prac: pełny kadr zrzutów, gazetek i projektów graficznych. */
+.zmp-page.zmp-detail .zmp-detail-visual[data-media="screen"]>img,
+.zmp-page.zmp-detail .zmp-detail-visual[data-media="art"]>img{
+  object-fit:contain;
+  padding:12px;
+  background:linear-gradient(135deg,#153e2e,#0b3024);
+  box-sizing:border-box;
+}
+.zmp-page.zmp-detail .zmp-detail-visual[data-media="photo"]>img{
+  object-fit:cover;
+  object-position:center 42%;
+}
+.zmp-page.zmp-detail .zmp-detail-hero{
+  background:radial-gradient(ellipse at 80% 40%,rgba(85,139,86,.13),transparent 42%);
+}
