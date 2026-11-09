@@ -115,8 +115,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Kontakt"
     ],
     "demoUrl": "https://solidom.vercel.app",
-    "image": "https://solidom.vercel.app/assets/hero.webp",
-    "alt": "Zdjęcie wykorzystane w demonstracji projektu",
+    "image": "/portfolio/solidom-foto-20261109.webp",
+    "alt": "Wygenerowana fotografia koncepcyjna nowoczesnego budynku, ilustracja projektu SOLIDOM",
     "status": "projekt demonstracyjny"
   },
   {
@@ -132,8 +132,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Kontakt"
     ],
     "demoUrl": "https://solident-mu.vercel.app",
-    "image": "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=60&w=3000",
-    "alt": "Zdjęcie wykorzystane w demonstracji projektu",
+    "image": "/portfolio/solident-foto-20261109.webp",
+    "alt": "Wygenerowana fotografia koncepcyjna nowoczesnego gabinetu stomatologicznego, ilustracja projektu SOLIDENT",
     "status": "projekt demonstracyjny"
   },
   {
@@ -149,8 +149,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Ścieżka wyceny"
     ],
     "demoUrl": "https://blackharbor.vercel.app",
-    "image": "https://blackharbor.vercel.app/assets/gallery-1.jpg",
-    "alt": "Zdjęcie wykorzystane w demonstracji projektu",
+    "image": "/portfolio/black-harbor-foto-20261109.webp",
+    "alt": "Wygenerowana fotografia koncepcyjna studia detailingu, ilustracja projektu BLACK HARBOR",
     "status": "projekt demonstracyjny"
   },
   {
@@ -184,7 +184,7 @@ export const portfolioItems: PortfolioItem[] = [
     ],
     "demoUrl": "/realizacje/natura-studio",
     "image": "/concept-natura.jpg",
-    "alt": "Prezentacja koncepcyjna projektu Natura Studio",
+    "alt": "Wygenerowana fotografia koncepcyjna wnętrza studia wellness Natura Studio",
     "status": "projekt demonstracyjny"
   },
   {
@@ -201,7 +201,7 @@ export const portfolioItems: PortfolioItem[] = [
     ],
     "demoUrl": "/realizacje/bistro-forma",
     "image": "/concept-bistro.jpg",
-    "alt": "Prezentacja koncepcyjna projektu Bistro Forma",
+    "alt": "Wygenerowana fotografia koncepcyjna wnętrza Bistro Forma",
     "status": "projekt demonstracyjny"
   },
   {
@@ -218,7 +218,7 @@ export const portfolioItems: PortfolioItem[] = [
     ],
     "demoUrl": "/realizacje/dom-dobry",
     "image": "/concept-dom.jpg",
-    "alt": "Prezentacja koncepcyjna projektu Dom Dobry",
+    "alt": "Wygenerowana fotografia koncepcyjna wnętrza apartamentu Dom Dobry",
     "status": "projekt demonstracyjny"
   },
   {

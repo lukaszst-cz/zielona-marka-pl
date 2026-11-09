@@ -56,3 +56,9 @@ Jeśli nie wybierzesz żadnych prac, widok druku obejmie cały katalog. Przy lic
 - Zweryfikuj wszystkie publiczne `demoUrl` oraz czy opisy gazetek odzwierciedlają aktualne wdrożenia.
 - Sprawdź metadane, sitemap, przekierowanie `/realizacje` oraz to, że dokumenty drukowane nie są indeksowane.
 - Nie łącz gałęzi z `main` bez zaakceptowania podglądu i możliwości rollbacku.
+
+## Odświeżenie fotografii, 9 listopada 2026
+
+Sześć nowych fotografii koncepcyjnych utworzono specjalnie do demonstracji Zielonej Marki. Pliki są przechowywane lokalnie w repozytorium, bez zależności od adresów generatora. Trzy starsze pliki `public/concept-natura.jpg`, `public/concept-bistro.jpg` i `public/concept-dom.jpg` zostały zastąpione nową zawartością, a `public/portfolio/{black-harbor,solidom,solident}-foto-20261109.webp` są nowymi zasobami dla kart portfolio.
+
+Fotografie są ilustracjami wygenerowanymi do fikcyjnych projektów, nie przedstawiają faktycznych lokali, zrealizowanych budynków ani prac dla rzeczywistych klientów. Nie zastępują autentycznych zrzutów stron BUDRIVO, MATERIVO czy Aktywnik+. Weryfikacja wizualna przed publikacją i akceptacja właściciela strony nadal obowiązują.

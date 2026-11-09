@@ -17,7 +17,7 @@ export default function DomSite() {
       <nav className="dom-nav"><a className="dom-brand" href="/"><i>DD</i><span>DOM<br/><b>DOBRY</b></span></a><div><a href="#inwestycja">Inwestycja</a><a href="#lokale">Lokale</a><a href="#standard">Standard</a><a href="/#realizacje">Portfolio</a></div><a href="#kontakt">Zapytaj o lokal ↗</a></nav>
       <header className="dom-hero">
         <div className="dom-hero-copy"><span>NOWA INWESTYCJA / ZIELONE PRZEDMIEŚCIA</span><h1>Przestrzeń,<br/>do której <em>wracasz.</em></h1><p>12 kameralnych domów. Funkcjonalne układy, prywatne ogrody i szybki dojazd do miasta.</p><div><a href="#lokale">Sprawdź dostępność</a><a href="#inwestycja">Poznaj inwestycję ↓</a></div></div>
-        <figure><img src="/concept-dom.jpg" alt="Nowoczesny dom w zielonym otoczeniu"/><figcaption><b>ETAP I</b><span>ODBIÓR / IV KW. 2027</span></figcaption></figure>
+        <figure><img src="/concept-dom.jpg" alt="Koncepcyjna wizualizacja wnętrza nowoczesnego apartamentu"/><figcaption><b>ETAP I</b><span>ODBIÓR / IV KW. 2027</span></figcaption></figure>
         <aside><small>POWIERZCHNIA</small><b>61–92 m²</b><small>CENY</small><b>od 689 tys. zł</b><small>DOSTĘPNE</small><b>7 z 12</b></aside>
       </header>
       <section className="dom-story" id="inwestycja"><div><span>01 / INWESTYCJA</span><h2>Dobry układ. Dobra decyzja.</h2></div><div><p>Najważniejsze informacje są widoczne od razu: metraż, termin, standard oraz status lokalu.</p><p>Klient nie musi przeszukiwać plików PDF. Porównuje ofertę i przechodzi prosto do rozmowy z doradcą.</p></div></section>
