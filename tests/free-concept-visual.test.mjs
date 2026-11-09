@@ -67,13 +67,18 @@ test("short concept form shares the public field design and keeps consent", asyn
   assert.ok(tokens.includes("font:400 16px/1.5 Arial,Helvetica,sans-serif!important"));
 });
 
-test("gallery and form remain synchronized with keyboard navigation", async () => {
+test("concept page points to the unified portfolio and keeps an independently selectable form", async () => {
   const gallery = await read("app/bezplatna-koncepcja-strony/ConceptShowcase.tsx");
+  const catalog = await read("app/portfolio/catalog.ts");
   const form = await read("app/bezplatna-koncepcja-strony/ConceptRequestForm.tsx");
-  assert.ok(gallery.includes('role="tablist"'));
-  assert.ok(gallery.includes('role="tabpanel"'));
-  assert.ok(gallery.includes("onKeyDown={onTabsKeyDown}"));
-  assert.ok(gallery.includes('event.key === "ArrowRight"'));
-  assert.ok(gallery.includes('CustomEvent("zm-concept-mode"'));
-  assert.ok(form.includes('window.dispatchEvent(new CustomEvent("zm-concept-mode"'));
+  assert.ok(gallery.includes('href="/portfolio"'));
+  assert.ok(gallery.includes('"/portfolio/'));
+  assert.ok(gallery.includes('name: "OKRUCH"'));
+  assert.ok(gallery.includes('name: "SZLAK"'));
+  assert.ok(gallery.includes('name: "PELETON"'));
+  assert.doesNotMatch(gallery, /role="tablist"|role="tabpanel"/, "The 15-image gallery should no longer be duplicated here");
+  assert.ok(catalog.includes('"slug": "okruch"'));
+  assert.ok(catalog.includes('"slug": "szlak"'));
+  assert.ok(form.includes('window.addEventListener("zm-concept-mode"'));
+  assert.ok(form.includes('name="mode"'));
 });
