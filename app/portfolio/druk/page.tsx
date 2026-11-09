@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element -- Podglądy to istniejące statyczne grafiki WebP i SVG, bez potrzeby zewnętrznego optymalizatora. */
 import type { Metadata } from "next";
 import PrintControls from "../PrintControls";
 import { portfolioItems, portfolioCategories } from "../catalog";
@@ -12,7 +13,6 @@ export default async function PortfolioPrintPage({ searchParams }: { searchParam
   const query = await searchParams;
   const raw = Array.isArray(query.projekty) ? query.projekty[0] : query.projekty;
   const requested = raw?.split(",").map(part => part.trim()).filter(Boolean) || [];
-  const limit = new Set(requested);
   const items = requested.length ? requested.map(slug => portfolioItems.find(item => item.slug === slug)).filter((item): item is (typeof portfolioItems)[number] => Boolean(item)) : portfolioItems;
   const selected = items.length ? items : portfolioItems;
   const date = new Intl.DateTimeFormat("pl-PL", { day:"numeric", month:"long", year:"numeric", timeZone:"Europe/Warsaw" }).format(new Date());
