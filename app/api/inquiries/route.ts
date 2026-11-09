@@ -6,6 +6,7 @@ import { inquiries } from "../../../db/schema";
 import { sendSmtpInquiry } from "../../inquiry-smtp";
 import { inquiryFormEnabled } from "../../inquiry-config.mjs";
 import { sendInquiryNotification } from "../../inquiry-notification.mjs";
+import { looksLikeFormSpam } from "../../inquiry-spam.mjs";
 
 type Payload = Record<string, unknown>;
 type NotificationEnv = {
@@ -119,6 +120,14 @@ export async function POST(request: Request) {
         ["Budżet", budget],
       ].filter(([, value]) => value).map(([label, value]) => `${label}: ${value}`);
       if (details.length) message = `${details.join("\n")}\n\n${message}`;
+    }
+
+    // Zgłoszenia wysyłane maszynowo (reklama usług mailingowych, testy botów)
+    // kończą się tak samo jak pułapka honeypot: cicho, bez zapisu i powiadomienia.
+    if (looksLikeFormSpam({ name, email, company, message, website: plain(payload.website) })) {
+      return wantsJson
+        ? Response.json({ ok: true }, { status: 201, headers: { "Cache-Control": "no-store" } })
+        : Response.redirect(new URL("/kontakt?wyslano=1", request.url), 303);
     }
 
     const fieldsTooLong = additionalFields.some(value => value.length > 500);
