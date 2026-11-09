@@ -3,7 +3,6 @@ import { mkdir, readFile } from "node:fs/promises";
 const { chromium } = await import(process.env.BROWSER_QA_PLAYWRIGHT_ENTRY || "playwright");
 const base = process.env.BROWSER_QA_URL || "http://127.0.0.1:8788";
 const manifest = JSON.parse(await readFile(new URL("../public/concept-samples-v2/manifest.json", import.meta.url), "utf8"));
-const modes = { website: "existing", new: "new", logo: "logo", promo: "promo", sales: "sales" };
 // A media or background request may stay open after the UI is usable.
 // Check the document status and exact UI readiness instead of network silence.
 async function openPage(page, path, readySelector) {
@@ -24,35 +23,40 @@ try {
     // This test never sends inquiries or changes production data.
     await page.route("**/api/**", route => route.abort());
     await openPage(page, "/bezplatna-koncepcja-strony?fbclid=gallery-qa", ".zm-concept-form");
-    if (!process.env.BROWSER_QA_HOME_ONLY) for (const [kind, options] of Object.entries(manifest)) {
-      await page.locator(`#zv5-tab-${modes[kind]}`).click();
-      for (const option of options) {
-        await page.locator("#zv5-preview-panel .zm-sample-options").getByRole("button", { name: option.title.split(" / ")[0], exact: true }).click();
-        const open = page.locator("#zv5-preview-panel").getByRole("link", { name: `Powiększ: ${option.title}`, exact: true });
-        await assert.doesNotReject(() => open.locator("img").evaluate(img => img.decode()));
-        await open.click();
-        const modal = page.getByRole("dialog", { name: "Pełny podgląd koncepcji" });
-        await modal.waitFor({ state: "visible" });
-        await modal.locator("img").evaluate(img => img.decode());
-        const bounds = await modal.boundingBox();
-        assert.ok(bounds.width >= viewport.width - 2 && bounds.height >= viewport.height - 2);
-        const imageBounds = await modal.locator("img").boundingBox();
-        assert.ok(imageBounds.height <= viewport.height && imageBounds.width <= viewport.width, "Fitted image must stay inside the screen");
-        const controls = await modal.locator(".zm-concept-lightbox-controls").boundingBox();
-        assert.ok(controls.height <= 80, "Global footer styles must not enlarge lightbox controls");
-        assert.equal(await page.evaluate(() => document.body.style.overflow), "hidden");
-        await modal.getByRole("button", { name: "Powiększ szczegóły" }).click();
-        await modal.getByRole("button", { name: "Dopasuj do ekranu" }).click();
-        if (option.file === "logo") await page.screenshot({ path: `browser-qa-artifacts/gallery-szlak-${viewport.width}.png` });
-        await page.keyboard.press("ArrowRight");
-        const expected = options[(options.indexOf(option) + 1) % options.length];
-        assert.ok((await modal.locator("img").getAttribute("src")).includes(expected.file + "-1280.webp"));
-        await page.keyboard.press("Escape");
-        await modal.waitFor({ state: "hidden" });
-        await page.waitForFunction(() => document.body.style.overflow !== "hidden");
-        assert.notEqual(await page.evaluate(() => document.body.style.overflow), "hidden");
-        assert.equal(await page.evaluate(() => document.activeElement?.className), "zm-sample-open");
+    assert.equal(await page.locator(".zmp-teaser-card").count(), 3, "Old concept page should show a short selection instead of a second full gallery");
+    if (!process.env.BROWSER_QA_HOME_ONLY) {
+      const slugByFile = {
+        existing: "pion", garden: "forma", "okruch-before-after": "okruch",
+        styk: "styk", glina: "glina", trop: "trop",
+        logo: "szlak", florist: "lodyga", palona: "palona",
+        promo: "peleton", music: "poglos", dalej: "dalej",
+        sales: "dobry-koszyk", furniture: "modul", "garden-catalogue": "zielony-sezon",
+      };
+      assert.equal(Object.values(slugByFile).length, 15);
+      for (const entry of Object.values(manifest).flat()) {
+        assert.ok(slugByFile[entry.file], "The original concept must have a portfolio slug: " + entry.file);
       }
+      await openPage(page, "/portfolio", ".zmp-catalog");
+      assert.ok(await page.locator(".zmp-tile").count() >= 40, "Unified gallery must list projects from all categories");
+      await page.getByRole("button", { name: "Następny projekt" }).click();
+      await page.locator(".zmp-tile").filter({ hasText: "OKRUCH" }).getByRole("checkbox").check();
+      const pdfUrl = await page.locator(".zmp-floating-export a").getAttribute("href");
+      assert.ok(pdfUrl.includes("okruch"), "The selected project must be carried to print");
+      await openPage(page, pdfUrl, ".zmp-print-case");
+      assert.equal(await page.locator(".zmp-print-case").count(), 1, "PDF selection must only print chosen projects");
+      assert.ok(await page.getByRole("button", { name: "Drukuj / zapisz PDF" }).count());
+      for (const [slug, image] of [
+        ["okruch", "okruch-before-after"], ["szlak", "logo"], ["peleton", "promo"],
+      ]) {
+        await openPage(page, "/portfolio/" + slug, ".zmp-detail-hero");
+        const img = page.locator(".zmp-detail-visual img");
+        await img.evaluate(element => element.decode());
+        assert.ok((await img.getAttribute("src")).includes(image + "-1280.webp"));
+      }
+      await openPage(page, "/portfolio", ".zmp-catalog");
+      const overflowPortfolio = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 2);
+      assert.equal(overflowPortfolio, false, "Unified portfolio must fit mobile viewport");
+      await openPage(page, "/bezplatna-koncepcja-strony?fbclid=gallery-qa", ".zm-concept-form");
     }
     const conceptField = await page.locator('.zm-concept-form input[name="email"]').evaluate(el => {const s=getComputedStyle(el);return {background:s.backgroundColor,color:s.color,radius:s.borderRadius,fontSize:s.fontSize};});
     assert.equal(conceptField.background, "rgb(8, 40, 27)", "Concept fields must use the shared dark surface");
@@ -101,7 +105,7 @@ try {
     assert.equal(await badge.evaluate(el => getComputedStyle(el).borderTopLeftRadius), "16px");
     await badge.screenshot({path:`browser-qa-artifacts/qa-mark-${viewport.width}.png`});
     assert.deepEqual(errors, [], "Browser errors");
-    console.log(`PASS: 15 original concepts, full-screen preview, zoom, arrows, Escape, focus at ${viewport.width}px`);
+    console.log(`PASS: migrated portfolio, selected PDF and preserved home preview at ${viewport.width}px`);
     await page.close();
   }
 } finally { await browser.close(); }
