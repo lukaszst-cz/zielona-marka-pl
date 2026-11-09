@@ -48,6 +48,15 @@ test("all portfolio thumbnails refer to existing local assets", async () => {
   }
 });
 
+
+test("portfolio does not use static fern decorations and respects reduced motion", async () => {
+  const css = await read("../app/portfolio/portfolio.css");
+  assert.doesNotMatch(css, /fern-frond\\.svg|paprocie statyczne/i, "Static fern artwork must not appear in portfolio");
+  assert.match(css, /@keyframes zmp-ambient-drift-left/);
+  assert.match(css, /@keyframes zmp-ambient-drift-right/);
+  assert.match(css, /prefers-reduced-motion:\\s*reduce/);
+});
+
 test("portfolio export, route metadata and navigation remain wired together", async () => {
   const [page, print, sitemap, nav] = await Promise.all([
     read("../app/portfolio/page.tsx"),
