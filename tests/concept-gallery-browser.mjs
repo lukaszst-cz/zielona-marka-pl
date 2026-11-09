@@ -9,7 +9,7 @@ async function openPage(page, path, readySelector) {
   const started = Date.now();
   const response = await page.goto(base + path, {waitUntil:"domcontentloaded", timeout:30000});
   assert.equal(response?.status(), 200, path + ": document must return HTTP 200");
-  await page.locator(readySelector).waitFor({state:"visible",timeout:15000});
+  await page.locator(readySelector).first().waitFor({state:"visible",timeout:15000});
   await page.waitForFunction(() => document.fonts.status === "loaded", null, {timeout:15000});
   console.log(`READY ${path}: ${Date.now()-started} ms`);
 }
