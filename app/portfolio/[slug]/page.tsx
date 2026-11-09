@@ -64,7 +64,13 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
             <Link className="zmp-btn zmp-btn-outline" href={`/portfolio/druk?projekty=${item.slug}`} target="_blank" rel="noopener noreferrer">Zapisz kartę jako PDF ↗</Link>
           </div>
         </div>
-        <figure className="zmp-detail-visual">
+        <figure className="zmp-detail-visual" data-media={
+          item.image?.includes("-autentyczny-podglad.png") || item.image?.includes("aktywnik-plus-aktualny-ekran.png")
+            ? "screen"
+            : ["gazetki", "logo", "przed-po", "excel"].includes(item.category) || item.image?.includes("/concept-samples-v2/")
+              ? "art"
+              : "photo"
+        }>
           {item.image ? <img src={item.image} alt={item.alt || `Podgląd projektu ${item.title}`} /> : <div className="zmp-detail-placeholder"><span>Zielona Marka / portfolio</span><strong>{item.title}</strong><small>{item.industry}</small></div>}
           <figcaption>{item.image ? "Materiał koncepcyjny lub podgląd projektu" : "Projekt demonstracyjny, bez udostępnionego zrzutu na stronie portfolio"}</figcaption>
         </figure>
