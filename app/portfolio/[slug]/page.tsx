@@ -61,7 +61,7 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
           <div className="zmp-detail-status">Status: {item.status}</div>
           <div className="zmp-detail-actions">
             {item.demoUrl && <a className="zmp-btn zmp-btn-strong" href={item.demoUrl} target={item.demoUrl.startsWith("http") ? "_blank" : undefined} rel={item.demoUrl.startsWith("http") ? "noopener noreferrer" : undefined}>Otwórz dostępny materiał ↗</a>}
-            <Link className="zmp-btn zmp-btn-outline" href={`/portfolio/druk?projekty=${item.slug}`} target="_blank">Zapisz kartę jako PDF ↗</Link>
+            <Link className="zmp-btn zmp-btn-outline" href={`/portfolio/druk?projekty=${item.slug}`} target="_blank" rel="noopener noreferrer">Zapisz kartę jako PDF ↗</Link>
           </div>
         </div>
         <figure className="zmp-detail-visual">
