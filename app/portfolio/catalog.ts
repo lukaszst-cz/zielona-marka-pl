@@ -132,8 +132,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Kontakt"
     ],
     "demoUrl": "https://solident-mu.vercel.app",
-    "image": "/portfolio/solident-foto-20261109.webp",
-    "alt": "Wygenerowana fotografia koncepcyjna nowoczesnego gabinetu stomatologicznego, ilustracja projektu SOLIDENT",
+    "image": "/portfolio/solident-fotografia-z-demo.jpg",
+    "alt": "Fotografia rodziny użyta w demonstracji SOLIDENT",
     "status": "projekt demonstracyjny"
   },
   {
@@ -149,8 +149,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Ścieżka wyceny"
     ],
     "demoUrl": "https://blackharbor.vercel.app",
-    "image": "/portfolio/black-harbor-foto-20261109.webp",
-    "alt": "Wygenerowana fotografia koncepcyjna studia detailingu, ilustracja projektu BLACK HARBOR",
+    "image": "https://blackharbor.vercel.app/assets/car.png",
+    "alt": "Motyw samochodu z demonstracji BLACK HARBOR",
     "status": "projekt demonstracyjny"
   },
   {
@@ -183,8 +183,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Demo zaplecza"
     ],
     "demoUrl": "/realizacje/natura-studio",
-    "image": "/concept-natura.jpg",
-    "alt": "Wygenerowana fotografia koncepcyjna wnętrza studia wellness Natura Studio",
+    "image": "/portfolio/natura-studio-20261109.svg",
+    "alt": "Autorska grafika koncepcyjna strony NATURA STUDIO",
     "status": "projekt demonstracyjny"
   },
   {
@@ -200,8 +200,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Demo zaplecza"
     ],
     "demoUrl": "/realizacje/bistro-forma",
-    "image": "/concept-bistro.jpg",
-    "alt": "Wygenerowana fotografia koncepcyjna wnętrza Bistro Forma",
+    "image": "/portfolio/bistro-forma-20261109.svg",
+    "alt": "Autorska grafika koncepcyjna strony BISTRO FORMA",
     "status": "projekt demonstracyjny"
   },
   {
@@ -217,8 +217,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Zapytanie"
     ],
     "demoUrl": "/realizacje/dom-dobry",
-    "image": "/concept-dom.jpg",
-    "alt": "Wygenerowana fotografia koncepcyjna wnętrza apartamentu Dom Dobry",
+    "image": "/portfolio/dom-dobry-20261109.svg",
+    "alt": "Autorska grafika koncepcyjna strony DOM DOBRY",
     "status": "projekt demonstracyjny"
   },
   {
