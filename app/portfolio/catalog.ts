@@ -149,8 +149,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Ścieżka wyceny"
     ],
     "demoUrl": "https://blackharbor.vercel.app",
-    "image": "https://blackharbor.vercel.app/assets/car.png",
-    "alt": "Motyw samochodu z demonstracji BLACK HARBOR",
+    "image": "/portfolio/black-harbor-foto-20261109.webp",
+    "alt": "Nowa fotografia koncepcyjna projektu BLACK HARBOR",
     "status": "projekt demonstracyjny"
   },
   {
