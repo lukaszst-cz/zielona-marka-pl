@@ -845,7 +845,7 @@ test("key public routes use their own social preview metadata", async () => {
   const pages = [
     ["/jak-pracuje", "Jak wygląda współpraca nad stroną | Zielona Marka"],
     ["/raport-qa", "Przykładowy raport kontroli jakości strony | Zielona Marka"],
-    ["/portfolio", "Portfolio: strony WWW, gazetki, projekty i aplikacje | Zielona Marka"],
+    ["/portfolio", "Portfolio projektów | Zielona Marka"],
     ["/przyklady-zaplecza", "Przykłady paneli i zaplecza dla firm | Zielona Marka"],
     ["/projekty-flow", "Projekty Flow: procesy i demonstracje | Zielona Marka"],
   ];
