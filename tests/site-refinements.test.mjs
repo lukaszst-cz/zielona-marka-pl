@@ -74,7 +74,7 @@ test("inquiry validation rejects invalid submissions before database access",asy
   assert.equal((await fetchPage("/api/inquiries",{method:"POST",headers:{"content-type":"application/x-www-form-urlencoded"},body:"name=test"})).status,400);
 });
 test("metadata titles do not duplicate the brand",async()=>{
-  for(const path of ["/realizacje","/maly-crm-dla-firm"]){
+  for(const path of ["/portfolio","/maly-crm-dla-firm"]){
     const html=await(await fetchPage(path)).text();
     const title=html.match(/<title>(.*?)<\/title>/)?.[1]||"";
     assert.equal((title.match(/Zielona Marka/g)||[]).length,1);
@@ -133,7 +133,7 @@ test("homepage free offers are real slides and the stream ends with the hero",as
   assert.match(page,/Chcę zobaczyć swój podgląd/);
   for(const name of ["Mini audyt","Mapa Szans","Bezpłatna koncepcja"]) assert.ok(slides.includes(name),name);
   assert.match(page,/inspiration-service-grid/);
-  assert.match(page,/Obejrzyj wszystkie 15 przykładów/);
+  assert.match(page,/Obejrzyj pełne portfolio/);
   assert.match(slides,/aria-pressed=\{index === active\}/);
   assert.match(slides,/onTouchStart=/);
   assert.match(slides,/onTouchEnd=/);
@@ -170,9 +170,9 @@ test("SEO content package links key services and labels the case study template 
     assert.match(html,/NASTĘPNY SENSOWNY KROK/,path);
     assert.match(html,/seo-related-grid/,path);
   }
-  const portfolio=await(await fetchPage("/realizacje")).text();
-  assert.match(portfolio,/Szablon do uzupełnienia po pierwszej realizacji/);
-  assert.match(portfolio,/nie przedstawia wyników żadnego klienta/);
+  const portfolio=await(await fetchPage("/portfolio")).text();
+  assert.match(portfolio,/ZIELONA MARKA \/ PROJEKTY/);
+  assert.match(portfolio,/projekt demonstracyjny/);
 });
 test("guide is discoverable and its diagnostic steps have restrained motion",async()=>{
   const home=await(await fetchPage("/")).text();
@@ -845,7 +845,7 @@ test("key public routes use their own social preview metadata", async () => {
   const pages = [
     ["/jak-pracuje", "Jak wygląda współpraca nad stroną | Zielona Marka"],
     ["/raport-qa", "Przykładowy raport kontroli jakości strony | Zielona Marka"],
-    ["/realizacje", "Realizacje i demonstracje stron WWW | Zielona Marka"],
+    ["/portfolio", "Portfolio: strony WWW, gazetki, projekty i aplikacje | Zielona Marka"],
     ["/przyklady-zaplecza", "Przykłady paneli i zaplecza dla firm | Zielona Marka"],
     ["/projekty-flow", "Projekty Flow: procesy i demonstracje | Zielona Marka"],
   ];
