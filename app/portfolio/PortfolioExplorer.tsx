@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { PortfolioCategory, PortfolioItem } from "./catalog";
 import { portfolioCategories } from "./catalog";
 
@@ -18,15 +18,28 @@ function selectedPdfUrl(slugs: string[]) {
 export default function PortfolioExplorer({ items }: { items: PortfolioItem[] }) {
   const [category, setCategory] = useState<PortfolioCategory | "wszystkie">("wszystkie");
   const [search, setSearch] = useState("");
+  const [onlySelected, setOnlySelected] = useState(false);
   const [selected, setSelected] = useState<string[]>([]);
   const [active, setActive] = useState(0);
   const [feedback, setFeedback] = useState("");
   const featured = items.filter(item => item.featured);
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const requestedCategory = params.get("kategoria");
+    if (portfolioCategories.some(item => item.id === requestedCategory)) setCategory(requestedCategory as PortfolioCategory);
+    const requestedProjects = params.get("projekty")?.split(",").filter(Boolean) || [];
+    if (requestedProjects.length) {
+      const known = new Set(items.map(item => item.slug));
+      setSelected(requestedProjects.filter(slug => known.has(slug)));
+      setOnlySelected(true);
+    }
+  }, [items]);
   const filtered = useMemo(() => {
     const q = search.toLocaleLowerCase("pl-PL").trim();
     return items.filter(item => (category === "wszystkie" || item.category === category) &&
+      (!onlySelected || selected.includes(item.slug)) &&
       (!q || [item.title,item.summary,item.industry,...item.features].join(" ").toLocaleLowerCase("pl-PL").includes(q)));
-  },[items,category,search]);
+  },[items,category,search,onlySelected,selected]);
 
   const selectedItems = selected.map(slug => items.find(item => item.slug === slug)).filter((item): item is PortfolioItem => Boolean(item));
   function toggle(slug: string) {
@@ -35,6 +48,7 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
   function choosePreset(slugs: readonly string[]) {
     const known = new Set(items.map(item => item.slug));
     setSelected(slugs.filter(slug => known.has(slug)));
+    setOnlySelected(false);
     setFeedback("Zestaw wybrany. Możesz dodać lub usunąć pojedyncze projekty.");
   }
   async function copyLink() {
@@ -102,7 +116,7 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
         </div>
         <label className="zmp-search"><span>Wyszukaj projekt</span><input type="search" value={search} onChange={event=>setSearch(event.target.value)} placeholder="Nazwa, branża lub funkcja..." /></label>
       </div>
-      <p className="zmp-count">Wyświetlono {filtered.length} z {items.length} projektów. Wybierz prace, aby przygotować spersonalizowany PDF.</p>
+      <div className="zmp-results-head"><p className="zmp-count">Wyświetlono {filtered.length} z {items.length} projektów. Wybierz prace, aby przygotować spersonalizowany PDF.</p><label className="zmp-check"><input type="checkbox" checked={onlySelected} onChange={event => setOnlySelected(event.target.checked)} disabled={selected.length === 0} /> Pokaż tylko wybrane</label></div>
       <div className="zmp-grid">
         {filtered.map(item=><article className="zmp-tile" key={item.slug}>
           <a href={`/portfolio/${item.slug}`} className="zmp-tile-photo" aria-label={`Zobacz projekt ${item.title}`}>
