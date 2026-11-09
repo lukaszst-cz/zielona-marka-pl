@@ -171,8 +171,8 @@ test("SEO content package links key services and labels the case study template 
     assert.match(html,/seo-related-grid/,path);
   }
   const portfolio=await(await fetchPage("/portfolio")).text();
-  assert.match(portfolio,/ZIELONA MARKA \/ PROJEKTY/);
-  assert.match(portfolio,/projekt demonstracyjny/);
+  assert.match(portfolio,/PORTFOLIO ZIELONA MARKA/);
+  assert.match(portfolio,/Projekt demonstracyjny/i);
 });
 test("guide is discoverable and its diagnostic steps have restrained motion",async()=>{
   const home=await(await fetchPage("/")).text();
