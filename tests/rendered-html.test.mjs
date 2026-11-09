@@ -36,20 +36,18 @@ test("strona główna prowadzi przez pięć etapów od strony do relacji", async
   assert.match(html, /demo\/mapa-szans-zielona-marka/i);
   assert.match(html, /Wyślij zgłoszenie/i);
   assert.match(html, /Zróbmy miejsce/i);
-  assert.match(html, /href="\/realizacje\/natura-studio"/i);
-  assert.match(html, /href="\/realizacje\/bistro-forma"/i);
-  assert.match(html, /href="\/realizacje\/dom-dobry"/i);
+  assert.match(html, /href="\/portfolio"/i);
   assert.doesNotMatch(html, forbiddenBrand);
 });
 
 test("nowe zakładki są renderowane", async () => {
-  for (const path of ["/dtp", "/opieka-nad-strona", "/oferta", "/modernizacja-strony", "/realizacje", "/realizacje/transportflow", "/praktyczne-narzedzia", "/usprawnienia-firmy", "/jak-pracuje", "/raport-qa", "/kontakt", "/strony-dla-warsztatow", "/strony-dla-firm-uslugowych", "/strony-dla-beauty", "/asystent-zapytan", "/maly-crm-dla-firm", "/strony-internetowe-marki", "/poradnik", "/poradnik/jak-przygotowac-pdf-do-druku", "/poradnik/jak-uporzadkowac-zapytania-klientow", "/poradnik/dlaczego-strona-firmy-nie-przynosi-zapytan", "/poradnik/ile-kosztuje-strona-dla-malej-firmy"]) {
+  for (const path of ["/dtp", "/opieka-nad-strona", "/oferta", "/modernizacja-strony", "/portfolio", "/realizacje/transportflow", "/praktyczne-narzedzia", "/usprawnienia-firmy", "/jak-pracuje", "/raport-qa", "/kontakt", "/strony-dla-warsztatow", "/strony-dla-firm-uslugowych", "/strony-dla-beauty", "/asystent-zapytan", "/maly-crm-dla-firm", "/strony-internetowe-marki", "/poradnik", "/poradnik/jak-przygotowac-pdf-do-druku", "/poradnik/jak-uporzadkowac-zapytania-klientow", "/poradnik/dlaczego-strona-firmy-nie-przynosi-zapytan", "/poradnik/ile-kosztuje-strona-dla-malej-firmy"]) {
     const response = await render(path);
     assert.equal(response.status, 200, path);
     const html = await response.text();
     assert.doesNotMatch(html, forbiddenBrand, path);
     if (path === "/oferta") assert.match(html, /Przelewy24/i);
-    if (path === "/realizacje") { assert.match(html, /href="\/realizacje\/natura-studio"/i); assert.match(html, /href="\/realizacje\/bistro-forma"/i); assert.match(html, /href="\/realizacje\/dom-dobry"/i); }
+    if (path === "/portfolio") { assert.match(html, /zmp-catalog/i); assert.match(html, /OKRUCH/i); assert.match(html, /NAVORO HURT/i); }
     if (path === "/maly-crm-dla-firm") assert.match(html, /PWA/i);
     if (path === "/raport-qa") assert.match(html, /kontroli jakości/i);
     if (path.includes("/poradnik/")) assert.match(html, /"@type":"Article"/);
@@ -407,13 +405,13 @@ test("bezpłatne koncepcje mają wspólny układ oraz pięć jasnych wariantów"
   assert.match(html, /class="page-hero shell zm-concept-hero"/);
   for (const variant of [
     "Nowy wygląd obecnej strony",
-    "Strona dla nowej firmy",
-    "Koncepcja logo",
-    "Gazetka reklamowa",
-    "Gazetka sprzedażowa",
+    "Koncepcja strony dla nowej firmy",
+    "Koncepcja nowego lub odświeżonego logo",
+    "Koncepcja gazetki reklamowej",
+    "Koncepcja gazetki sprzedażowej",
   ]) assert.ok(html.includes(variant), variant);
   assert.match(html, /id="zgloszenie"/);
-  assert.match(html, /href="\/projektuj-strone#zm-konfigurator"/);
+  assert.match(html, /href="\/portfolio"/);
   const toolsResponse = await render("/praktyczne-narzedzia");
   assert.equal(toolsResponse.status, 200);
   assert.match(await toolsResponse.text(), /Zobacz nowy wygląd swojej strony, logo albo gazetki/);
@@ -427,13 +425,14 @@ test("główne strony ofertowe korzystają z jednolitego hero i kontenera", asyn
     "/oferta", "/dtp", "/kontakt", "/modernizacja-strony",
     "/opieka-nad-strona", "/maly-crm-dla-firm", "/praktyczne-narzedzia",
     "/projektuj-strone", "/bezplatna-koncepcja-strony", "/standard-dtp",
-    "/standard-jakosci", "/strony-internetowe", "/strony-internetowe/warszawa", "/realizacje"
+    "/standard-jakosci", "/strony-internetowe", "/strony-internetowe/warszawa", "/portfolio"
   ]) {
     const response = await render(path);
     assert.equal(response.status, 200, path);
     const html = await response.text();
     assert.match(html, /class="zm-public(?:\s|")/, path);
-    assert.match(html, /class="page-hero shell(?:\s|")/, path);
+    if (path === "/portfolio") assert.match(html, /class="zmp-hero shell(?:\s|")/, path);
+    else assert.match(html, /class="page-hero shell(?:\s|")/, path);
   }
 });
 

@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { portfolioItems } from "./portfolio/catalog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://zielona-marka.pl";
@@ -17,7 +18,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/standard-dtp`, lastModified: new Date("2026-10-14"), changeFrequency: "monthly", priority: .72 },
     { url: `${base}/modernizacja-strony`, lastModified: new Date("2026-11-09"), changeFrequency: "weekly", priority: .9 },
     { url: `${base}/bezplatna-koncepcja-strony`, lastModified: new Date("2026-10-15"), changeFrequency: "weekly", priority: .88 },
-    { url: `${base}/realizacje`, lastModified: new Date("2026-10-09"), changeFrequency: "monthly", priority: .85 },
+    { url: `${base}/portfolio`, lastModified: new Date("2026-11-09"), changeFrequency: "weekly", priority: .9 },
+    ...portfolioItems.map(item => ({ url: `${base}/portfolio/${item.slug}`, lastModified: new Date("2026-11-09"), changeFrequency: "monthly" as const, priority: item.featured ? .78 : .66 })),
     { url: `${base}/realizacje/transportflow`, lastModified: new Date("2026-10-05"), changeFrequency: "monthly", priority: .72 },
     { url: `${base}/praktyczne-narzedzia`, lastModified: new Date("2026-10-05"), changeFrequency: "monthly", priority: .8 },
     { url: `${base}/projekty-flow`, lastModified: new Date("2026-10-08"), changeFrequency: "monthly", priority: .72 },
