@@ -405,10 +405,10 @@ test("bezpłatne koncepcje mają wspólny układ oraz pięć jasnych wariantów"
   assert.match(html, /class="page-hero shell zm-concept-hero"/);
   for (const variant of [
     "Nowy wygląd obecnej strony",
-    "Strona dla nowej firmy",
-    "Koncepcja logo",
-    "Gazetka reklamowa",
-    "Gazetka sprzedażowa",
+    "Koncepcja strony dla nowej firmy",
+    "Koncepcja nowego lub odświeżonego logo",
+    "Koncepcja gazetki reklamowej",
+    "Koncepcja gazetki sprzedażowej",
   ]) assert.ok(html.includes(variant), variant);
   assert.match(html, /id="zgloszenie"/);
   assert.match(html, /href="\/projektuj-strone#zm-konfigurator"/);
