@@ -470,7 +470,7 @@ export const portfolioItems: PortfolioItem[] = [
       "Przejście z witryny do gazetki",
       "Oferta produktowa"
     ],
-    "demoUrl": "https://nexio-elektro.vercel.app",
+    "demoUrl": "https://nexio-elektro.vercel.app/gazetka.html",
     "status": "materiał koncepcyjny",
     "featured": true
   },
