@@ -771,3 +771,11 @@ export function findPortfolioItem(slug: string) {
   return portfolioItems.find(item => item.slug === slug);
 }
 export const featuredPortfolioItems = portfolioItems.filter(item => item.featured);
+
+/** Polska odmiana liczebnika dla liczby projektów. */
+export function liczbaProjektow(liczba: number) {
+  const dziesiatki = liczba % 100;
+  const jednosci = liczba % 10;
+  const forma = liczba === 1 ? "projekt" : jednosci >= 2 && jednosci <= 4 && !(dziesiatki >= 12 && dziesiatki <= 14) ? "projekty" : "projektów";
+  return `${liczba} ${forma}`;
+}
