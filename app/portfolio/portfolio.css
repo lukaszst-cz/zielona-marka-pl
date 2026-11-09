@@ -324,3 +324,164 @@
  .zmp-industry-list button{font-size:.69rem}
 }
 @media(prefers-reduced-motion:reduce){.zmp-floating-card,.zmp-project-card,.zmp-project-photo img{transition:none}}
+
+
+/* Iteracja: spójność z zieloną identyfikacją witryny i bardziej czytelne prace. */
+.zmp-explorer{font-family:inherit}
+.zmp-explorer .zmp-cinematic{
+  background:
+    radial-gradient(ellipse at 55% 31%,rgba(68,152,94,.27),transparent 43%),
+    radial-gradient(ellipse at 88% 18%,rgba(123,191,59,.22),transparent 42%),
+    radial-gradient(ellipse at 4% 90%,rgba(31,103,59,.22),transparent 43%),
+    linear-gradient(115deg,#061f19 0%,#0a3428 52%,#071d18 100%);
+}
+.zmp-explorer .zmp-projects{
+  background:
+    radial-gradient(ellipse at 16% 5%,rgba(36,105,65,.29),transparent 35%),
+    radial-gradient(ellipse at 85% 98%,rgba(28,101,76,.20),transparent 40%),
+    #09271d;
+}
+.zmp-page .zmp-hero-text h1{
+  font-family:inherit;
+  font-weight:800;
+}
+.zmp-explorer .zmp-hero-text>p{color:#e4f1e9}
+.zmp-explorer .zmp-nav-arrow{
+  top:50%;
+  transform:translateY(-50%);
+  width:52px;
+  height:52px;
+  display:grid;
+  place-items:center;
+  box-sizing:border-box;
+  line-height:1;
+}
+.zmp-explorer .zmp-nav-prev{left:7px}
+.zmp-explorer .zmp-nav-next{right:7px}
+.zmp-explorer .zmp-floating-visual[data-media="screen"],
+.zmp-explorer .zmp-floating-visual[data-media="art"]{
+  background:radial-gradient(ellipse at center,#2f5941 0%,#123526 78%);
+}
+.zmp-explorer .zmp-floating-visual[data-media="screen"] img{
+  object-fit:contain;
+  padding:7px;
+  box-sizing:border-box;
+}
+.zmp-explorer .zmp-floating-visual[data-media="art"] img{
+  object-fit:contain;
+  padding:4px;
+  box-sizing:border-box;
+}
+.zmp-explorer .zmp-project-photo[data-media="screen"],
+.zmp-explorer .zmp-project-photo[data-media="art"]{
+  background:radial-gradient(ellipse at center,#315d47,#0c2f22);
+}
+.zmp-explorer .zmp-project-photo[data-media="screen"] img{
+  object-fit:contain;
+  padding:8px;
+  box-sizing:border-box;
+}
+.zmp-explorer .zmp-project-photo[data-media="art"] img{
+  object-fit:contain;
+  padding:11px;
+  box-sizing:border-box;
+}
+.zmp-explorer .zmp-project-photo[data-media="photo"] img{
+  object-fit:cover;
+  object-position:center 45%;
+  filter:saturate(1.08) contrast(1.025);
+}
+.zmp-explorer .zmp-project-photo[data-project="black-harbor"] img{
+  object-position:center 42%;
+  filter:brightness(1.1) saturate(1.12);
+}
+.zmp-explorer .zmp-project-photo[data-project="solident"] img{
+  object-position:center 38%;
+}
+.zmp-explorer .zmp-project-photo[data-project="aktywnik-plus"] img{
+  object-position:top center;
+}
+.zmp-explorer .zmp-project-photo:after{
+  inset:65% 0 0;
+  background:linear-gradient(transparent,rgba(0,26,17,.35));
+}
+.zmp-explorer .zmp-projects .zmp-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  align-items:stretch;
+  gap:24px;
+}
+.zmp-explorer .zmp-project-card{
+  border-color:rgba(138,200,151,.33);
+  background:linear-gradient(145deg,#173e31,#0b2b24 78%);
+  box-shadow:0 13px 35px rgba(0,20,11,.42);
+}
+.zmp-explorer .zmp-project-card:hover{
+  border-color:#9ee3acaa;
+  box-shadow:0 19px 42px rgba(0,19,11,.55);
+}
+.zmp-explorer .zmp-project-photo{
+  height:265px;
+}
+.zmp-explorer .zmp-project-info{
+  gap:9px;
+  padding:20px 22px 22px;
+}
+.zmp-explorer .zmp-project-meta{
+  flex-wrap:wrap;
+  gap:5px 10px;
+}
+.zmp-explorer .zmp-project-intro{
+  display:-webkit-box;
+  -webkit-line-clamp:3;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+.zmp-explorer .zmp-project-description{
+  display:-webkit-box;
+  -webkit-line-clamp:4;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+.zmp-explorer .zmp-project-features{
+  margin-bottom:10px;
+}
+.zmp-explorer .zmp-projects-title h2{
+  font-family:inherit;
+  font-weight:800;
+}
+.zmp-explorer .zmp-projects-tools{
+  background:#113d2d;
+  border-color:#59886d;
+}
+.zmp-explorer .zmp-projects .zmp-grid .zmp-project-card .zmp-project-open{
+  background:linear-gradient(120deg,#d3fb63,#8cf077);
+}
+.zmp-explorer .zmp-pdf-footer{
+  background:linear-gradient(120deg,#1b5539,#0a3829);
+}
+.zmp-explorer .zmp-industry-dock{
+  background:linear-gradient(115deg,rgba(21,62,42,.98),rgba(7,39,29,.94));
+  border-color:#67976d99;
+}
+.zmp-explorer .zmp-industry-list button{
+  border-color:#b2d3b6;
+  background:rgba(5,29,20,.66);
+}
+.zmp-explorer .zmp-industry-list button.is-active{
+  background:#bafd73;
+  color:#11321d;
+  border-color:#c4f588;
+}
+@media(min-width:1680px){
+  .zmp-explorer .zmp-projects .zmp-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:1200px){
+  .zmp-explorer .zmp-projects .zmp-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:760px){
+  .zmp-explorer .zmp-projects .zmp-grid{grid-template-columns:1fr}
+  .zmp-explorer .zmp-project-photo{height:245px}
+  .zmp-explorer .zmp-nav-arrow{width:38px;height:38px}
+  .zmp-explorer .zmp-nav-prev{left:1px}
+  .zmp-explorer .zmp-nav-next{right:1px}
+}
