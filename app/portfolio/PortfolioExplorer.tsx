@@ -61,7 +61,7 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
 
   return <div className="zmp-explorer">
     <div className="zmp-cinematic">
-      <section className="shell zmp-hero" aria-labelledby="zmp-title">
+      <section className="zmp-hero shell" aria-labelledby="zmp-title">
         <div className="zmp-hero-text">
           <span className="zmp-overline">PORTFOLIO ZIELONA MARKA</span>
           <h1 id="zmp-title">Zobacz, co <em>tworzymy.</em></h1>
