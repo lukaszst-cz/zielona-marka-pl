@@ -30,7 +30,7 @@ const featuredOrder = ["szlak", "materivo", "aktywnik-plus", "okruch", "budrivo"
 function mediaPresentation(item: PortfolioItem): "screen" | "art" | "photo" {
   const src = item.image || "";
   if (src.includes("-autentyczny-podglad.png") || src.includes("aktywnik-plus-aktualny-ekran.png")) return "screen";
-  if (["gazetki", "logo", "przed-po", "excel"].includes(item.category) || src.includes("/concept-samples-v2/")) return "art";
+  if (["gazetki", "logo", "przed-po", "excel"].includes(item.category) || src.includes("/concept-samples-v2/") || src.includes("-20261109.svg") || src.endsWith("/assets/car.png")) return "art";
   return "photo";
 }
 
