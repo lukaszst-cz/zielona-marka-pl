@@ -3,7 +3,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import type { PortfolioCategory, PortfolioItem } from "./catalog";
-import { portfolioCategories } from "./catalog";
+import { portfolioCategories, liczbaProjektow } from "./catalog";
 
 const presets = [
   { label: "Hurtownia i handel", slugs: ["budrivo","navoro-hurt","nexio-elektro","materivo","gazetka-navoro","gazetka-nexio","gazetka-budrivo","gazetka-materivo","dobry-koszyk","zielony-sezon"] },
@@ -103,7 +103,7 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
       <div className="zmp-selection-actions">
         <div className="zmp-presets">{presets.map(item=><button type="button" key={item.label} onClick={()=>choosePreset(item.slugs)}>{item.label}</button>)}</div>
         <div className="zmp-selection-bottom">
-          <strong>{selected.length ? `Zaznaczono ${selected.length} projektów` : "Brak zaznaczonych projektów"}</strong>
+          <strong>{selected.length ? `Zaznaczono ${liczbaProjektow(selected.length)}` : "Brak zaznaczonych projektów"}</strong>
           <a className="zmp-btn zmp-btn-strong" href={selectedPdfUrl(selected)} target="_blank" rel="noopener noreferrer">{selected.length ? "Otwórz zestaw do PDF ↗" : "Otwórz pełne portfolio do PDF ↗"}</a>
           {selected.length > 0 && <button type="button" onClick={()=>setSelected([])}>Wyczyść wybór</button>}
         </div>
