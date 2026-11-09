@@ -25,7 +25,14 @@ function matchesIndustry(item: PortfolioItem, filter: string) {
   return true;
 }
 
-const featuredOrder = ["budrivo", "solident", "navoro-hurt", "nexio-elektro", "materivo", "aktywnik-plus", "okruch", "szlak"];
+const featuredOrder = ["szlak", "materivo", "aktywnik-plus", "okruch", "budrivo", "navoro-hurt", "solident", "nexio-elektro"];
+
+function mediaPresentation(item: PortfolioItem): "screen" | "art" | "photo" {
+  const src = item.image || "";
+  if (src.includes("-autentyczny-podglad.png") || src.includes("aktywnik-plus-aktualny-ekran.png")) return "screen";
+  if (["gazetki", "logo", "przed-po", "excel"].includes(item.category) || src.includes("/concept-samples-v2/")) return "art";
+  return "photo";
+}
 
 export default function PortfolioExplorer({ items }: { items: PortfolioItem[] }) {
   const [active, setActive] = useState(0);
@@ -86,7 +93,7 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
                 zIndex: featured.length - distance,
               }}>
               <span className="zmp-floating-topline"><span className="zmp-floating-dot" /> {item.category === "www" ? "KONCEPCJA WWW" : item.category === "aplikacje" ? "APLIKACJA" : "PROJEKT"} <span>↗</span></span>
-              <span className="zmp-floating-visual">
+              <span className="zmp-floating-visual" data-media={mediaPresentation(item)}>
                 <img src={item.image} alt={item.alt || `Prezentacja ${item.title}`} loading={distance <= 1 ? "eager" : "lazy"} />
               </span>
               <span className="zmp-floating-copy"><strong>{item.title}</strong><small>{item.industry}</small></span>
@@ -147,7 +154,7 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
         </div>
         <div className="zmp-grid">
           {filtered.map(item => <article className="zmp-project-card" key={item.slug}>
-            <Link href={`/portfolio/${item.slug}`} className="zmp-project-photo" aria-label={`Poznaj projekt ${item.title}`}>
+            <Link href={`/portfolio/${item.slug}`} className="zmp-project-photo" data-media={mediaPresentation(item)} data-project={item.slug} aria-label={`Poznaj projekt ${item.title}`}>
               <img src={item.image} alt={item.alt || `Podgląd projektu ${item.title}`} loading="lazy" />
               <span className="zmp-project-category">{portfolioCategories.find(x=>x.id===item.category)?.label}</span>
               <span className="zmp-project-expand" aria-hidden="true">↗</span>
