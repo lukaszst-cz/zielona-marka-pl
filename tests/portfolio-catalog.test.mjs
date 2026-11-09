@@ -28,7 +28,7 @@ test("portfolio includes all 15 approved graphic concepts and the four embedded 
 
 test("all portfolio thumbnails refer to existing local assets", async () => {
   const source = await read("../app/portfolio/catalog.ts");
-  const paths = [...source.matchAll(/"image": "(\/[a-zA-Z0-9_.\/-]+)"/g)].map(match => match[1]);
+  const paths = [...source.matchAll(/"image": "([^"]+)"/g)].map(match => match[1]);
   assert.ok(paths.length >= 15);
   for (const path of paths) await access(new URL("../public" + path, here));
 });
