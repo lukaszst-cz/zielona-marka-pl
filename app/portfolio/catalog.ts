@@ -42,6 +42,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Wizualizacja elewacji"
     ],
     "demoUrl": "https://budrivo.vercel.app",
+    "image": "https://budrivo.vercel.app/assets/budrivo-03.webp",
+    "alt": "Autentyczny materiał graficzny z demonstracji BUDRIVO",
     "status": "projekt demonstracyjny",
     "featured": true
   },
@@ -58,6 +60,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Oglądanie i pobieranie gazetki"
     ],
     "demoUrl": "https://navoro-hurt-koncepcja.vercel.app",
+    "image": "https://navoro-hurt-koncepcja.vercel.app/assets/gazetka-01.webp",
+    "alt": "Autentyczny materiał graficzny z demonstracji NAVORO HURT",
     "status": "projekt demonstracyjny",
     "featured": true
   },
@@ -74,6 +78,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Nawigacja do gazetki ze strony głównej"
     ],
     "demoUrl": "https://nexio-elektro.vercel.app",
+    "image": "https://nexio-elektro.vercel.app/assets/gazetka/cover.webp",
+    "alt": "Autentyczny materiał graficzny z demonstracji NEXIO ELEKTRO",
     "status": "projekt demonstracyjny",
     "featured": true
   },
@@ -91,6 +97,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Gazetka online w wariancie ekonomicznym"
     ],
     "demoUrl": "https://materivo-pro.vercel.app",
+    "image": "https://materivo3.netlify.app/assets/dach.jpg",
+    "alt": "Autentyczny materiał graficzny z demonstracji MATERIVO",
     "status": "projekt demonstracyjny",
     "featured": true
   },
@@ -455,6 +463,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Pobranie pliku ze strony demo"
     ],
     "demoUrl": "https://navoro-hurt-koncepcja.vercel.app",
+    "image": "https://navoro-hurt-koncepcja.vercel.app/assets/gazetka-01.webp",
+    "alt": "Autentyczny materiał graficzny z demonstracji Gazetka NAVORO HURT",
     "status": "materiał koncepcyjny",
     "featured": true
   },
@@ -471,6 +481,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Oferta produktowa"
     ],
     "demoUrl": "https://nexio-elektro.vercel.app/gazetka.html",
+    "image": "https://nexio-elektro.vercel.app/assets/gazetka/cover.webp",
+    "alt": "Autentyczny materiał graficzny z demonstracji Gazetka NEXIO ELEKTRO",
     "status": "materiał koncepcyjny",
     "featured": true
   },
@@ -487,6 +499,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Połączenie z katalogiem"
     ],
     "demoUrl": "https://budrivo.vercel.app",
+    "image": "https://budrivo.vercel.app/assets/budrivo-19.webp",
+    "alt": "Autentyczny materiał graficzny z demonstracji Gazetka BUDRIVO",
     "status": "materiał koncepcyjny"
   },
   {
@@ -502,6 +516,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Integracja z serwisem"
     ],
     "demoUrl": "https://materivo-eko.vercel.app",
+    "image": "https://materivo3.netlify.app/assets/dach.jpg",
+    "alt": "Autentyczny materiał graficzny z demonstracji Gazetka MATERIVO",
     "status": "materiał koncepcyjny"
   },
   {
