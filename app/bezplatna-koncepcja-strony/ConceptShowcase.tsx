@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element -- Podglądy to istniejące statyczne grafiki WebP i SVG, bez potrzeby zewnętrznego optymalizatora. */
 import Link from "../SafeLink";
 import "../portfolio/teaser.css";
 
