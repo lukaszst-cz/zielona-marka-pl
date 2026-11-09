@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element -- Podglądy to istniejące statyczne grafiki WebP i SVG, bez potrzeby zewnętrznego optymalizatora. */
 import type { Metadata } from "next";
 import Link from "../../SafeLink";
 import { notFound } from "next/navigation";
