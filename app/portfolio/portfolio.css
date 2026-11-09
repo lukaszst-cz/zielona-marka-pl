@@ -194,9 +194,38 @@
   radial-gradient(ellipse at 90% 15%,rgba(84,184,72,.28),transparent 40%),
   radial-gradient(ellipse at 11% 80%,rgba(49,151,105,.25),transparent 40%),
   linear-gradient(115deg,#051926 0%,#082c35 43%,#042b27 100%)}
-.zmp-cinematic:before,.zmp-cinematic:after{content:"";position:absolute;pointer-events:none;background:url('/brand-review-v6/fern-frond.svg') center/contain no-repeat;opacity:.43;z-index:-1;filter:drop-shadow(8px 15px 8px #0009)}
-.zmp-cinematic:before{height:530px;width:400px;left:-190px;top:-40px;transform:rotate(48deg)}
-.zmp-cinematic:after{height:640px;width:430px;right:-200px;top:35px;transform:rotate(-55deg)}
+/* Delikatna, powoli poruszająca się poświata zamiast statycznych paproci. */
+.zmp-cinematic:before,.zmp-cinematic:after{
+  content:"";
+  position:absolute;
+  pointer-events:none;
+  z-index:-1;
+  border-radius:50%;
+  will-change:transform,opacity;
+  filter:blur(52px);
+}
+.zmp-cinematic:before{
+  width:58vw;
+  height:58vw;
+  max-width:920px;
+  max-height:920px;
+  left:-24vw;
+  top:-19vw;
+  opacity:.38;
+  background:radial-gradient(circle at 40% 44%,rgba(87,224,150,.27),rgba(57,153,148,.13) 41%,transparent 69%);
+  animation:zmp-ambient-drift-left 21s ease-in-out infinite alternate;
+}
+.zmp-cinematic:after{
+  width:56vw;
+  height:56vw;
+  max-width:850px;
+  max-height:850px;
+  right:-26vw;
+  top:6vw;
+  opacity:.42;
+  background:radial-gradient(circle at 50% 48%,rgba(171,238,98,.25),rgba(56,194,154,.12) 42%,transparent 72%);
+  animation:zmp-ambient-drift-right 26s ease-in-out infinite alternate;
+}
 .zmp-cinematic .zmp-hero{padding-top:clamp(70px,8vw,110px);padding-bottom:14px;text-align:center;isolation:isolate}
 .zmp-cinematic .zmp-hero:before{display:none}
 .zmp-hero-text{position:relative;z-index:3}
@@ -239,9 +268,32 @@
 .zmp-industry-list button.is-active{color:#0d3128;background:linear-gradient(120deg,#d3fe55,#8ff967);background-color:#b6fb73;border-color:#d0fc84;box-shadow:0 0 0 2px #acfb5666}
 .zmp-industry-list button:hover:not(.is-active){background:#286d69;color:#fff}
 .zmp-projects{background:radial-gradient(ellipse at 20% 0%,rgba(31,105,102,.31),transparent 38%),radial-gradient(ellipse at 90% 95%,rgba(27,94,70,.22),transparent 42%),#08252e;position:relative;padding:65px 0 100px;color:#eef9f4}
-.zmp-projects:before,.zmp-projects:after{content:"";position:absolute;pointer-events:none;background:url('/brand-review-v6/fern-frond.svg') center/contain no-repeat;opacity:.13}
-.zmp-projects:before{height:350px;width:280px;left:-130px;top:20px;transform:rotate(40deg)}
-.zmp-projects:after{height:410px;width:300px;right:-140px;bottom:160px;transform:rotate(-50deg)}
+/* Rozproszony blask w tle katalogu, bez zdjęć roślinnych i powtarzających się ornamentów. */
+.zmp-projects:before,.zmp-projects:after{
+  content:"";
+  position:absolute;
+  pointer-events:none;
+  border-radius:50%;
+  filter:blur(55px);
+  opacity:.29;
+  will-change:transform;
+}
+.zmp-projects:before{
+  left:-25%;
+  top:7%;
+  width:64%;
+  height:520px;
+  background:radial-gradient(ellipse,rgba(59,157,106,.25),rgba(25,78,71,.13) 52%,transparent 75%);
+  animation:zmp-ambient-drift-right 28s ease-in-out infinite alternate;
+}
+.zmp-projects:after{
+  right:-21%;
+  bottom:8%;
+  width:59%;
+  height:650px;
+  background:radial-gradient(ellipse,rgba(128,205,100,.22),rgba(27,118,89,.12) 48%,transparent 74%);
+  animation:zmp-ambient-drift-left 33s ease-in-out infinite alternate;
+}
 .zmp-projects>.shell{position:relative;z-index:1}
 .zmp-projects-title{text-align:center;max-width:1000px;margin:0 auto 35px}
 .zmp-projects-title .zmp-overline{font-size:.75rem}
@@ -500,4 +552,22 @@
 }
 .zmp-page.zmp-detail .zmp-detail-hero{
   background:radial-gradient(ellipse at 80% 40%,rgba(85,139,86,.13),transparent 42%);
+}
+
+/* Płynny ruch tła, ograniczony do dekoracyjnego światła. */
+@keyframes zmp-ambient-drift-left {
+  0% { transform:translate3d(-3%,0,0) scale(.94); }
+  100% { transform:translate3d(7%,5%,0) scale(1.1); }
+}
+@keyframes zmp-ambient-drift-right {
+  0% { transform:translate3d(4%,4%,0) scale(1.05); }
+  100% { transform:translate3d(-6%,-4%,0) scale(.94); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .zmp-cinematic:before,.zmp-cinematic:after,
+  .zmp-projects:before,.zmp-projects:after {
+    animation:none;
+    will-change:auto;
+    opacity:.18;
+  }
 }
