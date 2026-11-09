@@ -47,7 +47,7 @@ test("nowe zakładki są renderowane", async () => {
     const html = await response.text();
     assert.doesNotMatch(html, forbiddenBrand, path);
     if (path === "/oferta") assert.match(html, /Przelewy24/i);
-    if (path === "/portfolio") { assert.match(html, /zmp-catalog/i); assert.match(html, /OKRUCH/i); assert.match(html, /NAVORO HURT/i); }
+    if (path === "/portfolio") { assert.match(html, /zmp-projects/i); assert.match(html, /OKRUCH/i); assert.match(html, /NAVORO HURT/i); }
     if (path === "/maly-crm-dla-firm") assert.match(html, /PWA/i);
     if (path === "/raport-qa") assert.match(html, /kontroli jakości/i);
     if (path.includes("/poradnik/")) assert.match(html, /"@type":"Article"/);

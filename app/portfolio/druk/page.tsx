@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element -- Podglądy to istniejące statyczne grafiki WebP i SVG, bez potrzeby zewnętrznego optymalizatora. */
 import type { Metadata } from "next";
 import PrintControls from "../PrintControls";
-import { portfolioItems, portfolioCategories } from "../catalog";
+import { portfolioItems, portfolioCategories, liczbaProjektow } from "../catalog";
 import "../portfolio.css";
 
 export const metadata: Metadata = {
@@ -28,7 +28,7 @@ export default async function PortfolioPrintPage({ searchParams }: { searchParam
         <p>PORTFOLIO PROJEKTOWE / {date}</p>
         <h1>Przykłady prac<br/><em>marki Zielona Marka.</em></h1>
         <p className="zmp-print-cover-description">Strony internetowe, grafika i DTP, gazetki produktowe, aplikacje oraz modele Excel. Wybór prac demonstracyjnych i koncepcyjnych.</p>
-        <div className="zmp-print-cover-footer"><span>{selected.length} projektów</span><span>zielona-marka.pl/portfolio</span></div>
+        <div className="zmp-print-cover-footer"><span>{liczbaProjektow(selected.length)}</span><span>zielona-marka.pl/portfolio</span></div>
       </section>
       <section className="zmp-print-intro">
         <h2>Przegląd wybranych prac</h2>

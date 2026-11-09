@@ -9,7 +9,7 @@ async function openPage(page, path, readySelector) {
   const started = Date.now();
   const response = await page.goto(base + path, {waitUntil:"domcontentloaded", timeout:30000});
   assert.equal(response?.status(), 200, path + ": document must return HTTP 200");
-  await page.locator(readySelector).waitFor({state:"visible",timeout:15000});
+  await page.locator(readySelector).first().waitFor({state:"visible",timeout:15000});
   await page.waitForFunction(() => document.fonts.status === "loaded", null, {timeout:15000});
   console.log(`READY ${path}: ${Date.now()-started} ms`);
 }
@@ -36,14 +36,25 @@ try {
       for (const entry of Object.values(manifest).flat()) {
         assert.ok(slugByFile[entry.file], "The original concept must have a portfolio slug: " + entry.file);
       }
-      await openPage(page, "/portfolio", ".zmp-catalog");
-      assert.ok(await page.locator(".zmp-tile").count() >= 40, "Unified gallery must list projects from all categories");
+      await openPage(page, "/portfolio", ".zmp-projects");
+      assert.ok(await page.locator(".zmp-project-card").count() >= 40, "Unified gallery must list projects from every category");
+      assert.equal(await page.locator(".zmp-project-card").filter({hasText:"ZM Studio"}).count(),0,"ZM Studio must not be publicly listed");
+      assert.equal(await page.locator(".zmp-project-card img").count(),await page.locator(".zmp-project-card").count(),"Each project must show an image");
       await page.getByRole("button", { name: "Następny projekt" }).click();
-      await page.locator(".zmp-tile").filter({ hasText: "OKRUCH" }).getByRole("checkbox").check();
-      const pdfUrl = await page.locator(".zmp-floating-export a").getAttribute("href");
-      assert.ok(pdfUrl.includes("okruch"), "The selected project must be carried to print");
-      await openPage(page, pdfUrl, ".zmp-print-case");
-      assert.equal(await page.locator(".zmp-print-case").count(), 1, "PDF selection must only print chosen projects");
+      await page.locator(".zmp-industry-list button").filter({hasText:"Handel i hurtownie"}).click();
+      const tradeCount = await page.locator(".zmp-project-card").count();
+      assert.ok(tradeCount > 0 && tradeCount < 45,"Industry filter should narrow visible projects");
+      const tradeButton = page.locator(".zmp-industry-list button").filter({hasText:"Handel i hurtownie"});
+      assert.equal(await tradeButton.getAttribute("aria-pressed"),"true","Industry filter should have a visible active state");
+      const visualState = await tradeButton.evaluate(element => {
+        const s = getComputedStyle(element);
+        return { background: s.backgroundColor, color:s.color, display:s.display };
+      });
+      assert.ok(visualState.background!=="rgba(0, 0, 0, 0)" && visualState.display!=="none", "Active industry filter must be visible");
+      await page.locator(".zmp-industry-list button").filter({hasText:"Wszystkie"}).click();
+      await page.screenshot({path:`browser-qa-artifacts/portfolio-${viewport.width}.png`,fullPage:false});
+      await openPage(page, "/portfolio/druk?projekty=okruch,szlak", ".zmp-print-case");
+      assert.equal(await page.locator(".zmp-print-case").count(), 2, "PDF route must print a chosen portfolio set");
       assert.ok(await page.getByRole("button", { name: "Drukuj / zapisz PDF" }).count());
       for (const [slug, image] of [
         ["okruch", "okruch-before-after"], ["szlak", "logo"], ["peleton", "promo"],
@@ -53,7 +64,7 @@ try {
         await img.evaluate(element => element.decode());
         assert.ok((await img.getAttribute("src")).includes(image + "-1280.webp"));
       }
-      await openPage(page, "/portfolio", ".zmp-catalog");
+      await openPage(page, "/portfolio", ".zmp-projects");
       const overflowPortfolio = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 2);
       assert.equal(overflowPortfolio, false, "Unified portfolio must fit mobile viewport");
       await openPage(page, "/bezplatna-koncepcja-strony?fbclid=gallery-qa", ".zm-concept-form");
@@ -105,7 +116,7 @@ try {
     assert.equal(await badge.evaluate(el => getComputedStyle(el).borderTopLeftRadius), "16px");
     await badge.screenshot({path:`browser-qa-artifacts/qa-mark-${viewport.width}.png`});
     assert.deepEqual(errors, [], "Browser errors");
-    console.log(`PASS: migrated portfolio, selected PDF and preserved home preview at ${viewport.width}px`);
+    console.log(`PASS: visual portfolio, filters, PDF and preserved home preview at ${viewport.width}px`);
     await page.close();
   }
 } finally { await browser.close(); }

@@ -6,7 +6,7 @@ import "./portfolio.css";
 
 export const metadata: Metadata = {
   title: "Portfolio: strony WWW, gazetki, projekty i aplikacje",
-  description: "Zobacz koncepcje stron WWW, gazetki, identyfikacje wizualne, aplikacje oraz projekty Excel marki Zielona Marka. Wybierz prace i przygotuj portfolio PDF dla klienta.",
+  description: "Zobacz koncepcje stron WWW, gazetki, identyfikacje wizualne, aplikacje oraz projekty Excel marki Zielona Marka. Poznaj opisy projektów, obejrzyj demonstracje i zapisz portfolio jako PDF.",
   alternates: { canonical: "/portfolio" },
   openGraph: {
     type: "website",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Portfolio projektów | Zielona Marka",
-    description: "Strony internetowe, gazetki, logo, aplikacje, workflow i Excel. Wybierz projekty do portfolio PDF.",
+    description: "Strony internetowe, gazetki, logo, aplikacje, workflow i Excel. Zobacz demonstracje i pobierz przegląd portfolio w PDF.",
     images: ["/og.jpg"],
   },
 };

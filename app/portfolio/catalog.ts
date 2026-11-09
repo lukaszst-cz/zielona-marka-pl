@@ -42,6 +42,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Wizualizacja elewacji"
     ],
     "demoUrl": "https://budrivo.vercel.app",
+    "image": "https://budrivo.vercel.app/assets/budrivo-03.webp",
+    "alt": "Autentyczny materiał graficzny z demonstracji BUDRIVO",
     "status": "projekt demonstracyjny",
     "featured": true
   },
@@ -58,6 +60,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Oglądanie i pobieranie gazetki"
     ],
     "demoUrl": "https://navoro-hurt-koncepcja.vercel.app",
+    "image": "https://navoro-hurt-koncepcja.vercel.app/assets/gazetka-01.webp",
+    "alt": "Autentyczny materiał graficzny z demonstracji NAVORO HURT",
     "status": "projekt demonstracyjny",
     "featured": true
   },
@@ -74,6 +78,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Nawigacja do gazetki ze strony głównej"
     ],
     "demoUrl": "https://nexio-elektro.vercel.app",
+    "image": "https://nexio-elektro.vercel.app/assets/gazetka/cover.webp",
+    "alt": "Autentyczny materiał graficzny z demonstracji NEXIO ELEKTRO",
     "status": "projekt demonstracyjny",
     "featured": true
   },
@@ -91,6 +97,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Gazetka online w wariancie ekonomicznym"
     ],
     "demoUrl": "https://materivo-pro.vercel.app",
+    "image": "https://materivo3.netlify.app/assets/dach.jpg",
+    "alt": "Autentyczny materiał graficzny z demonstracji MATERIVO",
     "status": "projekt demonstracyjny",
     "featured": true
   },
@@ -107,6 +115,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Kontakt"
     ],
     "demoUrl": "https://solidom.vercel.app",
+    "image": "https://solidom.vercel.app/assets/hero.webp",
+    "alt": "Zdjęcie wykorzystane w demonstracji projektu",
     "status": "projekt demonstracyjny"
   },
   {
@@ -122,6 +132,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Kontakt"
     ],
     "demoUrl": "https://solident-mu.vercel.app",
+    "image": "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=60&w=3000",
+    "alt": "Zdjęcie wykorzystane w demonstracji projektu",
     "status": "projekt demonstracyjny"
   },
   {
@@ -137,6 +149,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Ścieżka wyceny"
     ],
     "demoUrl": "https://blackharbor.vercel.app",
+    "image": "https://blackharbor.vercel.app/assets/gallery-1.jpg",
+    "alt": "Zdjęcie wykorzystane w demonstracji projektu",
     "status": "projekt demonstracyjny"
   },
   {
@@ -152,6 +166,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Kontakt"
     ],
     "demoUrl": "https://eltravia-premium.vercel.app",
+    "image": "https://eltravia-premium.vercel.app/assets/gazetka/cover.webp",
+    "alt": "Zdjęcie wykorzystane w demonstracji projektu",
     "status": "projekt demonstracyjny"
   },
   {
@@ -455,6 +471,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Pobranie pliku ze strony demo"
     ],
     "demoUrl": "https://navoro-hurt-koncepcja.vercel.app",
+    "image": "https://navoro-hurt-koncepcja.vercel.app/assets/gazetka-01.webp",
+    "alt": "Autentyczny materiał graficzny z demonstracji Gazetka NAVORO HURT",
     "status": "materiał koncepcyjny",
     "featured": true
   },
@@ -471,6 +489,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Oferta produktowa"
     ],
     "demoUrl": "https://nexio-elektro.vercel.app/gazetka.html",
+    "image": "https://nexio-elektro.vercel.app/assets/gazetka/cover.webp",
+    "alt": "Autentyczny materiał graficzny z demonstracji Gazetka NEXIO ELEKTRO",
     "status": "materiał koncepcyjny",
     "featured": true
   },
@@ -487,6 +507,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Połączenie z katalogiem"
     ],
     "demoUrl": "https://budrivo.vercel.app",
+    "image": "https://budrivo.vercel.app/assets/budrivo-19.webp",
+    "alt": "Autentyczny materiał graficzny z demonstracji Gazetka BUDRIVO",
     "status": "materiał koncepcyjny"
   },
   {
@@ -502,6 +524,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Integracja z serwisem"
     ],
     "demoUrl": "https://materivo-eko.vercel.app",
+    "image": "https://materivo3.netlify.app/assets/dach.jpg",
+    "alt": "Autentyczny materiał graficzny z demonstracji Gazetka MATERIVO",
     "status": "materiał koncepcyjny"
   },
   {
@@ -628,17 +652,18 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "Aktywnik+",
     "category": "aplikacje",
     "industry": "Edukacja i aktywność",
-    "summary": "Aplikacja PWA do prowadzenia dziennika aktywności.",
-    "explanation": "Przykładowe widoki dla dziecka i rodziny.",
+    "summary": "Aktualnie rozwijana aplikacja PWA dla osób indywidualnych i rodzin, w fazie pilotażowej.",
+    "explanation": "Aktywnik+ 0.5.0-beta.4: tryb Dla siebie, tryb Rodzina, lokalny zapis aktywności, eksport danych oraz rozwijana synchronizacja. Widok graficzny ma charakter poglądowy; aktualną funkcjonalność pokazuje demonstracja.",
     "features": [
       "Dziennik aktywności",
       "Tryb rodzinny",
       "PWA"
     ],
     "demoUrl": "https://aktywnik-plus.vercel.app",
-    "image": "/program-aktywnik-plus-photo-v3.png",
-    "alt": "Prezentacja koncepcyjna projektu Aktywnik+",
-    "status": "narzędzie lub demonstracja"
+    "image": "/program-aktywnik-plus-cover.svg",
+    "alt": "Grafika tytułowa rozwijanej aplikacji Aktywnik+",
+    "status": "aplikacja rozwijana, beta 0.5.0-beta.4",
+    "featured": true
   },
   {
     "slug": "czy-to-sciema",
@@ -672,23 +697,6 @@ export const portfolioItems: PortfolioItem[] = [
     "demoUrl": "https://github.com/lukaszst-cz/fleet-ops-desk",
     "image": "/program-fleet-ops-desk-photo-v3.png",
     "alt": "Prezentacja koncepcyjna projektu Fleet Ops Desk",
-    "status": "narzędzie lub demonstracja"
-  },
-  {
-    "slug": "zm-studio",
-    "title": "ZM Studio",
-    "category": "aplikacje",
-    "industry": "Projektowanie WWW",
-    "summary": "Konfigurator wyglądu i orientacyjnego zakresu strony.",
-    "explanation": "Pozwala przetestować układ, wybrać funkcje oraz przygotować zapytanie.",
-    "features": [
-      "Konfigurator",
-      "Orientacyjny koszt",
-      "Brief"
-    ],
-    "demoUrl": "/projektuj-strone",
-    "image": "/portfolio-board-zielona-marka.png",
-    "alt": "Prezentacja koncepcyjna projektu ZM Studio",
     "status": "narzędzie lub demonstracja"
   },
   {
@@ -735,6 +743,8 @@ export const portfolioItems: PortfolioItem[] = [
       "KPI",
       "Wykresy"
     ],
+    "image": "/portfolio/excel-dashboard.svg",
+    "alt": "Autorska wizualizacja arkusza kalkulacyjnego, dane przykładowe",
     "status": "demonstracja, dane syntetyczne"
   },
   {
@@ -749,6 +759,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Kalkulacja kosztów",
       "Porównanie"
     ],
+    "image": "/portfolio/excel-wycena.svg",
+    "alt": "Autorska wizualizacja arkusza kalkulacyjnego, dane przykładowe",
     "status": "demonstracja, dane syntetyczne"
   },
   {
@@ -763,6 +775,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Plan działań",
       "Filtry"
     ],
+    "image": "/portfolio/excel-crm.svg",
+    "alt": "Autorska wizualizacja arkusza kalkulacyjnego, dane przykładowe",
     "status": "demonstracja, dane syntetyczne"
   },
 ];
@@ -771,3 +785,11 @@ export function findPortfolioItem(slug: string) {
   return portfolioItems.find(item => item.slug === slug);
 }
 export const featuredPortfolioItems = portfolioItems.filter(item => item.featured);
+
+/** Polska odmiana liczebnika dla liczby projektów. */
+export function liczbaProjektow(liczba: number) {
+  const dziesiatki = liczba % 100;
+  const jednosci = liczba % 10;
+  const forma = liczba === 1 ? "projekt" : jednosci >= 2 && jednosci <= 4 && !(dziesiatki >= 12 && dziesiatki <= 14) ? "projekty" : "projektów";
+  return `${liczba} ${forma}`;
+}

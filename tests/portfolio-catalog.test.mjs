@@ -29,8 +29,23 @@ test("portfolio includes all 15 approved graphic concepts and the four embedded 
 test("all portfolio thumbnails refer to existing local assets", async () => {
   const source = await read("../app/portfolio/catalog.ts");
   const paths = [...source.matchAll(/"image": "([^"]+)"/g)].map(match => match[1]);
-  assert.ok(paths.length >= 15);
-  for (const path of paths) await access(new URL("../public" + path, here));
+  const listed = [...source.matchAll(/"slug": "([^"]+)"/g)].map(m => m[1]);
+  assert.equal(paths.length, listed.length, "Every published project must have its own visual");
+  assert.ok(paths.length >= 40);
+  assert.ok(!listed.includes("zm-studio"), "ZM Studio must stay off the public portfolio");
+  const approvedExternalHosts = new Set([
+    "budrivo.vercel.app", "navoro-hurt-koncepcja.vercel.app", "nexio-elektro.vercel.app", "materivo3.netlify.app",
+    "solidom.vercel.app", "blackharbor.vercel.app", "eltravia-premium.vercel.app", "images.unsplash.com"
+  ]);
+  for (const path of paths) {
+    if (path.startsWith("https://")) {
+      const url = new URL(path);
+      assert.ok(approvedExternalHosts.has(url.hostname), "Unexpected remote image host: " + url.hostname);
+    } else {
+      assert.ok(path.startsWith("/"), "Local image must be a root-relative URL: " + path);
+      await access(new URL("../public" + path, here));
+    }
+  }
 });
 
 test("portfolio export, route metadata and navigation remain wired together", async () => {
