@@ -42,8 +42,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Wizualizacja elewacji"
     ],
     "demoUrl": "https://budrivo.vercel.app",
-    "image": "https://budrivo.vercel.app/assets/budrivo-03.webp",
-    "alt": "Autentyczny materiał graficzny z demonstracji BUDRIVO",
+    "image": "/portfolio/budrivo-autentyczny-podglad.png",
+    "alt": "Rzeczywisty ekran demonstracyjnej strony BUDRIVO",
     "status": "projekt demonstracyjny",
     "featured": true
   },
@@ -97,8 +97,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Gazetka online w wariancie ekonomicznym"
     ],
     "demoUrl": "https://materivo-pro.vercel.app",
-    "image": "https://materivo3.netlify.app/assets/dach.jpg",
-    "alt": "Autentyczny materiał graficzny z demonstracji MATERIVO",
+    "image": "/portfolio/materivo-autentyczny-podglad.png",
+    "alt": "Rzeczywisty ekran demonstracyjnej strony MATERIVO",
     "status": "projekt demonstracyjny",
     "featured": true
   },
@@ -660,8 +660,8 @@ export const portfolioItems: PortfolioItem[] = [
       "PWA"
     ],
     "demoUrl": "https://aktywnik-plus.vercel.app",
-    "image": "/program-aktywnik-plus-cover.svg",
-    "alt": "Grafika tytułowa rozwijanej aplikacji Aktywnik+",
+    "image": "/portfolio/aktywnik-plus-aktualny-ekran.png",
+    "alt": "Zrzut aktualnej wersji aplikacji Aktywnik+ 0.5 beta.4",
     "status": "aplikacja rozwijana, beta 0.5.0-beta.4",
     "featured": true
   },

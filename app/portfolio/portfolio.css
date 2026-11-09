@@ -194,9 +194,38 @@
   radial-gradient(ellipse at 90% 15%,rgba(84,184,72,.28),transparent 40%),
   radial-gradient(ellipse at 11% 80%,rgba(49,151,105,.25),transparent 40%),
   linear-gradient(115deg,#051926 0%,#082c35 43%,#042b27 100%)}
-.zmp-cinematic:before,.zmp-cinematic:after{content:"";position:absolute;pointer-events:none;background:url('/brand-review-v6/fern-frond.svg') center/contain no-repeat;opacity:.43;z-index:-1;filter:drop-shadow(8px 15px 8px #0009)}
-.zmp-cinematic:before{height:530px;width:400px;left:-190px;top:-40px;transform:rotate(48deg)}
-.zmp-cinematic:after{height:640px;width:430px;right:-200px;top:35px;transform:rotate(-55deg)}
+/* Delikatna, powoli poruszająca się poświata zamiast statycznych paproci. */
+.zmp-cinematic:before,.zmp-cinematic:after{
+  content:"";
+  position:absolute;
+  pointer-events:none;
+  z-index:-1;
+  border-radius:50%;
+  will-change:transform,opacity;
+  filter:blur(52px);
+}
+.zmp-cinematic:before{
+  width:58vw;
+  height:58vw;
+  max-width:920px;
+  max-height:920px;
+  left:-24vw;
+  top:-19vw;
+  opacity:.38;
+  background:radial-gradient(circle at 40% 44%,rgba(87,224,150,.27),rgba(57,153,148,.13) 41%,transparent 69%);
+  animation:zmp-ambient-drift-left 21s ease-in-out infinite alternate;
+}
+.zmp-cinematic:after{
+  width:56vw;
+  height:56vw;
+  max-width:850px;
+  max-height:850px;
+  right:-26vw;
+  top:6vw;
+  opacity:.42;
+  background:radial-gradient(circle at 50% 48%,rgba(171,238,98,.25),rgba(56,194,154,.12) 42%,transparent 72%);
+  animation:zmp-ambient-drift-right 26s ease-in-out infinite alternate;
+}
 .zmp-cinematic .zmp-hero{padding-top:clamp(70px,8vw,110px);padding-bottom:14px;text-align:center;isolation:isolate}
 .zmp-cinematic .zmp-hero:before{display:none}
 .zmp-hero-text{position:relative;z-index:3}
@@ -239,9 +268,32 @@
 .zmp-industry-list button.is-active{color:#0d3128;background:linear-gradient(120deg,#d3fe55,#8ff967);background-color:#b6fb73;border-color:#d0fc84;box-shadow:0 0 0 2px #acfb5666}
 .zmp-industry-list button:hover:not(.is-active){background:#286d69;color:#fff}
 .zmp-projects{background:radial-gradient(ellipse at 20% 0%,rgba(31,105,102,.31),transparent 38%),radial-gradient(ellipse at 90% 95%,rgba(27,94,70,.22),transparent 42%),#08252e;position:relative;padding:65px 0 100px;color:#eef9f4}
-.zmp-projects:before,.zmp-projects:after{content:"";position:absolute;pointer-events:none;background:url('/brand-review-v6/fern-frond.svg') center/contain no-repeat;opacity:.13}
-.zmp-projects:before{height:350px;width:280px;left:-130px;top:20px;transform:rotate(40deg)}
-.zmp-projects:after{height:410px;width:300px;right:-140px;bottom:160px;transform:rotate(-50deg)}
+/* Rozproszony blask w tle katalogu, bez zdjęć roślinnych i powtarzających się ornamentów. */
+.zmp-projects:before,.zmp-projects:after{
+  content:"";
+  position:absolute;
+  pointer-events:none;
+  border-radius:50%;
+  filter:blur(55px);
+  opacity:.29;
+  will-change:transform;
+}
+.zmp-projects:before{
+  left:-25%;
+  top:7%;
+  width:64%;
+  height:520px;
+  background:radial-gradient(ellipse,rgba(59,157,106,.25),rgba(25,78,71,.13) 52%,transparent 75%);
+  animation:zmp-ambient-drift-right 28s ease-in-out infinite alternate;
+}
+.zmp-projects:after{
+  right:-21%;
+  bottom:8%;
+  width:59%;
+  height:650px;
+  background:radial-gradient(ellipse,rgba(128,205,100,.22),rgba(27,118,89,.12) 48%,transparent 74%);
+  animation:zmp-ambient-drift-left 33s ease-in-out infinite alternate;
+}
 .zmp-projects>.shell{position:relative;z-index:1}
 .zmp-projects-title{text-align:center;max-width:1000px;margin:0 auto 35px}
 .zmp-projects-title .zmp-overline{font-size:.75rem}
@@ -324,3 +376,198 @@
  .zmp-industry-list button{font-size:.69rem}
 }
 @media(prefers-reduced-motion:reduce){.zmp-floating-card,.zmp-project-card,.zmp-project-photo img{transition:none}}
+
+
+/* Iteracja: spójność z zieloną identyfikacją witryny i bardziej czytelne prace. */
+.zmp-explorer{font-family:inherit}
+.zmp-explorer .zmp-cinematic{
+  background:
+    radial-gradient(ellipse at 55% 31%,rgba(68,152,94,.27),transparent 43%),
+    radial-gradient(ellipse at 88% 18%,rgba(123,191,59,.22),transparent 42%),
+    radial-gradient(ellipse at 4% 90%,rgba(31,103,59,.22),transparent 43%),
+    linear-gradient(115deg,#061f19 0%,#0a3428 52%,#071d18 100%);
+}
+.zmp-explorer .zmp-projects{
+  background:
+    radial-gradient(ellipse at 16% 5%,rgba(36,105,65,.29),transparent 35%),
+    radial-gradient(ellipse at 85% 98%,rgba(28,101,76,.20),transparent 40%),
+    #09271d;
+}
+.zmp-page .zmp-hero-text h1{
+  font-family:inherit;
+  font-weight:800;
+}
+.zmp-explorer .zmp-hero-text>p{color:#e4f1e9}
+.zmp-explorer .zmp-nav-arrow{
+  top:50%;
+  transform:translateY(-50%);
+  width:52px;
+  height:52px;
+  display:grid;
+  place-items:center;
+  box-sizing:border-box;
+  line-height:1;
+}
+.zmp-explorer .zmp-nav-prev{left:7px}
+.zmp-explorer .zmp-nav-next{right:7px}
+.zmp-explorer .zmp-floating-visual[data-media="screen"],
+.zmp-explorer .zmp-floating-visual[data-media="art"]{
+  background:radial-gradient(ellipse at center,#2f5941 0%,#123526 78%);
+}
+.zmp-explorer .zmp-floating-visual[data-media="screen"] img{
+  object-fit:contain;
+  padding:7px;
+  box-sizing:border-box;
+}
+.zmp-explorer .zmp-floating-visual[data-media="art"] img{
+  object-fit:contain;
+  padding:4px;
+  box-sizing:border-box;
+}
+.zmp-explorer .zmp-project-photo[data-media="screen"],
+.zmp-explorer .zmp-project-photo[data-media="art"]{
+  background:radial-gradient(ellipse at center,#315d47,#0c2f22);
+}
+.zmp-explorer .zmp-project-photo[data-media="screen"] img{
+  object-fit:contain;
+  padding:8px;
+  box-sizing:border-box;
+}
+.zmp-explorer .zmp-project-photo[data-media="art"] img{
+  object-fit:contain;
+  padding:11px;
+  box-sizing:border-box;
+}
+.zmp-explorer .zmp-project-photo[data-media="photo"] img{
+  object-fit:cover;
+  object-position:center 45%;
+  filter:saturate(1.08) contrast(1.025);
+}
+.zmp-explorer .zmp-project-photo[data-project="black-harbor"] img{
+  object-position:center 42%;
+  filter:brightness(1.1) saturate(1.12);
+}
+.zmp-explorer .zmp-project-photo[data-project="solident"] img{
+  object-position:center 38%;
+}
+.zmp-explorer .zmp-project-photo[data-project="aktywnik-plus"] img{
+  object-position:top center;
+}
+.zmp-explorer .zmp-project-photo:after{
+  inset:65% 0 0;
+  background:linear-gradient(transparent,rgba(0,26,17,.35));
+}
+.zmp-explorer .zmp-projects .zmp-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  align-items:stretch;
+  gap:24px;
+}
+.zmp-explorer .zmp-project-card{
+  border-color:rgba(138,200,151,.33);
+  background:linear-gradient(145deg,#173e31,#0b2b24 78%);
+  box-shadow:0 13px 35px rgba(0,20,11,.42);
+}
+.zmp-explorer .zmp-project-card:hover{
+  border-color:#9ee3acaa;
+  box-shadow:0 19px 42px rgba(0,19,11,.55);
+}
+.zmp-explorer .zmp-project-photo{
+  height:265px;
+}
+.zmp-explorer .zmp-project-info{
+  gap:9px;
+  padding:20px 22px 22px;
+}
+.zmp-explorer .zmp-project-meta{
+  flex-wrap:wrap;
+  gap:5px 10px;
+}
+.zmp-explorer .zmp-project-intro{
+  display:-webkit-box;
+  -webkit-line-clamp:3;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+.zmp-explorer .zmp-project-description{
+  display:-webkit-box;
+  -webkit-line-clamp:4;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+.zmp-explorer .zmp-project-features{
+  margin-bottom:10px;
+}
+.zmp-explorer .zmp-projects-title h2{
+  font-family:inherit;
+  font-weight:800;
+}
+.zmp-explorer .zmp-projects-tools{
+  background:#113d2d;
+  border-color:#59886d;
+}
+.zmp-explorer .zmp-projects .zmp-grid .zmp-project-card .zmp-project-open{
+  background:linear-gradient(120deg,#d3fb63,#8cf077);
+}
+.zmp-explorer .zmp-pdf-footer{
+  background:linear-gradient(120deg,#1b5539,#0a3829);
+}
+.zmp-explorer .zmp-industry-dock{
+  background:linear-gradient(115deg,rgba(21,62,42,.98),rgba(7,39,29,.94));
+  border-color:#67976d99;
+}
+.zmp-explorer .zmp-industry-list button{
+  border-color:#b2d3b6;
+  background:rgba(5,29,20,.66);
+}
+.zmp-explorer .zmp-industry-list button.is-active{
+  background:#bafd73;
+  color:#11321d;
+  border-color:#c4f588;
+}
+@media(min-width:1680px){
+  .zmp-explorer .zmp-projects .zmp-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:1200px){
+  .zmp-explorer .zmp-projects .zmp-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:760px){
+  .zmp-explorer .zmp-projects .zmp-grid{grid-template-columns:1fr}
+  .zmp-explorer .zmp-project-photo{height:245px}
+  .zmp-explorer .zmp-nav-arrow{width:38px;height:38px}
+  .zmp-explorer .zmp-nav-prev{left:1px}
+  .zmp-explorer .zmp-nav-next{right:1px}
+}
+
+/* Podstrony prac: pełny kadr zrzutów, gazetek i projektów graficznych. */
+.zmp-page.zmp-detail .zmp-detail-visual[data-media="screen"]>img,
+.zmp-page.zmp-detail .zmp-detail-visual[data-media="art"]>img{
+  object-fit:contain;
+  padding:12px;
+  background:linear-gradient(135deg,#153e2e,#0b3024);
+  box-sizing:border-box;
+}
+.zmp-page.zmp-detail .zmp-detail-visual[data-media="photo"]>img{
+  object-fit:cover;
+  object-position:center 42%;
+}
+.zmp-page.zmp-detail .zmp-detail-hero{
+  background:radial-gradient(ellipse at 80% 40%,rgba(85,139,86,.13),transparent 42%);
+}
+
+/* Płynny ruch tła, ograniczony do dekoracyjnego światła. */
+@keyframes zmp-ambient-drift-left {
+  0% { transform:translate3d(-3%,0,0) scale(.94); }
+  100% { transform:translate3d(7%,5%,0) scale(1.1); }
+}
+@keyframes zmp-ambient-drift-right {
+  0% { transform:translate3d(4%,4%,0) scale(1.05); }
+  100% { transform:translate3d(-6%,-4%,0) scale(.94); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .zmp-cinematic:before,.zmp-cinematic:after,
+  .zmp-projects:before,.zmp-projects:after {
+    animation:none;
+    will-change:auto;
+    opacity:.18;
+  }
+}
