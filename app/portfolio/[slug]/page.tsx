@@ -73,9 +73,9 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
         <article><span className="zmp-overline">ZAMYSŁ PROJEKTU</span><h2>Co pokazuje ten projekt?</h2><p>{item.explanation}</p></article>
         <article><span className="zmp-overline">ZAKRES PREZENTACJI</span><h2>Elementy do obejrzenia</h2><ul>{item.features.map(feature=><li key={feature}>{feature}</li>)}</ul></article>
       </section>
-      <section className="shell zmp-disclaimer"><strong>Charakter materiałów</strong><p>To portfolio koncepcji, projektów własnych i demonstracji Zielonej Marki. Nie oznacza, że prezentowane rozwiązanie zostało wdrożone dla rzeczywistego klienta. Tam, gdzie występują ceny, produkty, dostępność lub dane operacyjne, mogą być one fikcyjne i służą wyłącznie pokazowi.</p></section>
+      <section className="shell zmp-disclaimer"><strong>Charakter materiałów</strong><p>To portfolio koncepcji, projektów własnych i demonstracji marki Zielona Marka. Nie oznacza, że prezentowane rozwiązanie zostało wdrożone dla rzeczywistego klienta. Tam, gdzie występują ceny, produkty, dostępność lub dane operacyjne, mogą być one fikcyjne i służą wyłącznie pokazowi.</p></section>
       {other.length > 0 && <section className="shell zmp-related"><span className="zmp-overline">PODOBNE PRACE</span><h2>W tej samej kategorii</h2><div>{other.map(project=><Link key={project.slug} href={`/portfolio/${project.slug}`}><strong>{project.title}</strong><span>{project.industry} ↗</span></Link>)}</div></section>}
-      <section className="shell zmp-bottom-cta"><div><span className="zmp-overline">KOLEJNY PROJEKT</span><h2>Porozmawiajmy o Twojej firmie.</h2><p>Każde zlecenie wymaga własnego zakresu i materiałów. Demo pokazuje kierunek, a nie gotowy produkt do skopiowania.</p></div><Link href="/kontakt" className="zmp-btn zmp-btn-strong">Napisz do Zielonej Marki ↗</Link></section>
+      <section className="shell zmp-bottom-cta"><div><span className="zmp-overline">KOLEJNY PROJEKT</span><h2>Porozmawiajmy o Twojej firmie.</h2><p>Każde zlecenie wymaga własnego zakresu i materiałów. Demo pokazuje kierunek, a nie gotowy produkt do skopiowania.</p></div><Link href="/kontakt" className="zmp-btn zmp-btn-strong">Napisz do marki Zielona Marka ↗</Link></section>
     </main>
     <QuickWhatsApp />
     <SiteFooter />
