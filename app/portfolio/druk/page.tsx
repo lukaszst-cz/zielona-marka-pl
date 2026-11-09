@@ -26,7 +26,7 @@ export default async function PortfolioPrintPage({ searchParams }: { searchParam
           <strong>ZIELONA<br/>MARKA</strong>
         </div>
         <p>PORTFOLIO PROJEKTOWE / {date}</p>
-        <h1>Przykłady prac<br/><em>Zielonej Marki.</em></h1>
+        <h1>Przykłady prac<br/><em>marki Zielona Marka.</em></h1>
         <p className="zmp-print-cover-description">Strony internetowe, grafika i DTP, gazetki produktowe, aplikacje oraz modele Excel. Wybór prac demonstracyjnych i koncepcyjnych.</p>
         <div className="zmp-print-cover-footer"><span>{selected.length} projektów</span><span>zielona-marka.pl/portfolio</span></div>
       </section>
