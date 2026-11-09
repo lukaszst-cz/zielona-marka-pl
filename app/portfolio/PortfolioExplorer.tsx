@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element -- Podglądy to istniejące statyczne grafiki WebP i SVG, bez potrzeby zewnętrznego optymalizatora. */
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
@@ -26,13 +27,16 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const requestedCategory = params.get("kategoria");
-    if (portfolioCategories.some(item => item.id === requestedCategory)) setCategory(requestedCategory as PortfolioCategory);
     const requestedProjects = params.get("projekty")?.split(",").filter(Boolean) || [];
-    if (requestedProjects.length) {
-      const known = new Set(items.map(item => item.slug));
-      setSelected(requestedProjects.filter(slug => known.has(slug)));
-      setOnlySelected(true);
-    }
+    const known = new Set(items.map(item => item.slug));
+    const frame = window.requestAnimationFrame(() => {
+      if (portfolioCategories.some(item => item.id === requestedCategory)) setCategory(requestedCategory as PortfolioCategory);
+      if (requestedProjects.length) {
+        setSelected(requestedProjects.filter(slug => known.has(slug)));
+        setOnlySelected(true);
+      }
+    });
+    return () => window.cancelAnimationFrame(frame);
   }, [items]);
   const filtered = useMemo(() => {
     const q = search.toLocaleLowerCase("pl-PL").trim();
