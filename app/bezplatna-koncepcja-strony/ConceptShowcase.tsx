@@ -17,7 +17,7 @@ export default function ConceptShowcase() {
       </div>
       <div className="zmp-teaser-grid">
         {examples.map(item=><Link className="zmp-teaser-card" key={item.slug} href={`/portfolio/${item.slug}`}>
-          <img src={item.image} alt={`Własna koncepcja Zielonej Marki: ${item.name}`} loading="lazy" width={640} height={426}/>
+          <img src={item.image} alt={`Własna koncepcja marki Zielona Marka: ${item.name}`} loading="lazy" width={640} height={426}/>
           <span><small>{item.type}</small><strong>{item.name}</strong><b>Zobacz projekt ↗</b></span>
         </Link>)}
       </div>
