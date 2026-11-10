@@ -833,3 +833,61 @@
   font-weight:800;
   color:#c8f3a8;
 }
+
+/* ============================================================
+   Spójność z resztą witryny: portfolio nie maluje już własnego
+   ciemnego tła, tylko stoi na tym samym leśnym tle co pozostałe
+   podstrony. Panele i karty są półprzezroczyste, więc tło widać
+   pod nimi, a tekst zachowuje kontrast dzięki przyciemnieniu.
+   ============================================================ */
+.zmp-page{
+  background:linear-gradient(90deg,#03170ef5,#03170ec9),url('/brand-review-v3/forest-continuous.webp') center top/cover fixed;
+  color:#f1f7f2;
+}
+.zmp-explorer .zmp-cinematic{
+  background:linear-gradient(185deg,rgba(3,22,14,.62) 0%,rgba(4,28,19,.34) 58%,rgba(3,22,14,.5) 100%);
+}
+.zmp-explorer .zmp-projects{
+  background:linear-gradient(185deg,rgba(3,22,14,.38),rgba(3,22,14,.62));
+}
+.zmp-explorer .zmp-cinematic:before,
+.zmp-explorer .zmp-cinematic:after,
+.zmp-explorer .zmp-projects:before,
+.zmp-explorer .zmp-projects:after{opacity:.2}
+.zmp-explorer .zmp-project-card{
+  background:linear-gradient(145deg,rgba(16,51,38,.66),rgba(7,31,23,.6));
+  backdrop-filter:blur(10px) saturate(1.06);
+  -webkit-backdrop-filter:blur(10px) saturate(1.06);
+  border-color:rgba(160,219,170,.34);
+}
+.zmp-explorer .zmp-project-card:hover{
+  background:linear-gradient(145deg,rgba(20,60,44,.74),rgba(9,37,27,.68));
+}
+.zmp-explorer .zmp-projects-tools,
+.zmp-explorer .zmp-industry-dock{
+  background:rgba(7,35,24,.6);
+  backdrop-filter:blur(9px);
+  -webkit-backdrop-filter:blur(9px);
+}
+.zmp-explorer .zmp-pdf-footer{
+  background:linear-gradient(120deg,rgba(26,84,56,.6),rgba(9,54,39,.56));
+  backdrop-filter:blur(9px);
+  -webkit-backdrop-filter:blur(9px);
+}
+.zmp-explorer .zmx-card{
+  background:linear-gradient(145deg,rgba(205,238,217,.9),rgba(40,98,82,.82) 13%,rgba(12,46,35,.86) 70%,rgba(86,196,141,.85));
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+}
+.zmp-explorer .zmp-floating-copy{
+  background:linear-gradient(100deg,rgba(8,38,45,.86),rgba(19,68,57,.86));
+}
+.zmp-page.zmp-detail .zmp-disclaimer{
+  background:rgba(13,45,32,.62);
+  backdrop-filter:blur(9px);
+  -webkit-backdrop-filter:blur(9px);
+}
+@media(max-width:760px){
+  /* Tło przyklejone do okna potrafi zacinać na telefonach. */
+  .zmp-page{background-attachment:scroll}
+}
