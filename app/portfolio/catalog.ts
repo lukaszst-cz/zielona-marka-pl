@@ -26,6 +26,9 @@ export type PortfolioItem = {
   alt?: string;
   status: string;
   featured?: boolean;
+  /** Prace, które można wziąć i używać: "github" to publiczne repozytorium
+      do pobrania, "online" to narzędzie działające w przeglądarce bez konta. */
+  openAccess?: "github" | "online";
 };
 export const portfolioItems: PortfolioItem[] = [
   {
@@ -543,7 +546,8 @@ export const portfolioItems: PortfolioItem[] = [
     "demoUrl": "https://github.com/lukaszst-cz/printflow-360",
     "image": "/portfolio/kadry/printflow.webp",
     "alt": "Prezentacja koncepcyjna projektu PrintFlow 360",
-    "status": "narzędzie lub demonstracja"
+    "status": "narzędzie lub demonstracja",
+    "openAccess": "github"
   },
   {
     "slug": "transportflow",
@@ -577,7 +581,8 @@ export const portfolioItems: PortfolioItem[] = [
     "demoUrl": "https://github.com/lukaszst-cz/workshopflow-360",
     "image": "/portfolio/kadry/workshopflow.webp",
     "alt": "Prezentacja koncepcyjna projektu WorkshopFlow 360",
-    "status": "narzędzie lub demonstracja"
+    "status": "narzędzie lub demonstracja",
+    "openAccess": "github"
   },
   {
     "slug": "auto-naprawa",
@@ -611,7 +616,8 @@ export const portfolioItems: PortfolioItem[] = [
     "demoUrl": "https://lead-offer-zm.pages.dev/",
     "image": "/portfolio/kadry/lead-offer-copilot.webp",
     "alt": "Prezentacja koncepcyjna projektu Lead & Offer Copilot",
-    "status": "narzędzie lub demonstracja"
+    "status": "narzędzie lub demonstracja",
+    "openAccess": "online"
   },
   {
     "slug": "document-checker",
@@ -628,7 +634,8 @@ export const portfolioItems: PortfolioItem[] = [
     "demoUrl": "https://document-checker-zm.pages.dev/",
     "image": "/portfolio/kadry/document-checker.webp",
     "alt": "Prezentacja koncepcyjna projektu Document Checker",
-    "status": "narzędzie lub demonstracja"
+    "status": "narzędzie lub demonstracja",
+    "openAccess": "online"
   },
   {
     "slug": "docpilot",
@@ -645,7 +652,8 @@ export const portfolioItems: PortfolioItem[] = [
     "demoUrl": "https://github.com/lukaszst-cz/docpilot",
     "image": "/portfolio/kadry/docpilot.webp",
     "alt": "Prezentacja koncepcyjna projektu DocPilot",
-    "status": "narzędzie lub demonstracja"
+    "status": "narzędzie lub demonstracja",
+    "openAccess": "github"
   },
   {
     "slug": "aktywnik-plus",
@@ -663,6 +671,7 @@ export const portfolioItems: PortfolioItem[] = [
     "image": "/portfolio/aktywnik-plus-okladka.svg",
     "alt": "Okładka Aktywnika+: znak aplikacji i widok dziennika aktywności",
     "status": "aplikacja rozwijana, beta 0.5.0-beta.4",
+    "openAccess": "online",
     "featured": true
   },
   {
@@ -680,7 +689,8 @@ export const portfolioItems: PortfolioItem[] = [
     "demoUrl": "https://github.com/lukaszst-cz/czy-to-sciema",
     "image": "/portfolio/kadry/czy-to-sciema.webp",
     "alt": "Prezentacja koncepcyjna projektu CzyToŚciema?",
-    "status": "narzędzie lub demonstracja"
+    "status": "narzędzie lub demonstracja",
+    "openAccess": "github"
   },
   {
     "slug": "fleet-ops-desk",
@@ -697,7 +707,8 @@ export const portfolioItems: PortfolioItem[] = [
     "demoUrl": "https://github.com/lukaszst-cz/fleet-ops-desk",
     "image": "/portfolio/kadry/fleet-ops-desk.webp",
     "alt": "Prezentacja koncepcyjna projektu Fleet Ops Desk",
-    "status": "narzędzie lub demonstracja"
+    "status": "narzędzie lub demonstracja",
+    "openAccess": "github"
   },
   {
     "slug": "excel-printflow",
