@@ -63,7 +63,7 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
           <p className="zmp-detail-lead">{item.summary}</p>
           {item.openAccess && <p className="zmx-open-note">
             {item.openAccess === "github"
-              ? "Kod tego narzędzia jest publiczny na GitHubie, można go pobrać i uruchomić u siebie."
+              ? "Kod tego narzędzia jest na GitHubie na licencji MIT: można go pobrać, uruchomić u siebie, zmieniać i używać także komercyjnie."
               : "Narzędzie działa w przeglądarce za darmo, bez zakładania konta."}
           </p>}
           {item.status.includes("beta") && <div className="zmp-detail-status">W budowie: {item.status}</div>}

@@ -345,7 +345,7 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
               <span className="zmp-project-expand" aria-hidden="true">↗</span>
             </Link>
             <div className="zmp-project-info">
-              <div className="zmp-project-meta"><span>{item.industry}</span>{item.openAccess ? <span className="zmx-open-chip">{item.openAccess === "github" ? "Kod na GitHubie" : "Darmowe online"}</span>
+              <div className="zmp-project-meta"><span>{item.industry}</span>{item.openAccess ? <span className="zmx-open-chip">{item.openAccess === "github" ? "Darmowe do pobrania" : "Darmowe online"}</span>
                   : item.status.includes("beta") ? <span>W budowie</span>
                   : item.category === "przed-po" ? <span>Projekt demonstracyjny</span> : null}</div>
               <h3><Link href={`/portfolio/${item.slug}`}>{item.title}</Link></h3>
