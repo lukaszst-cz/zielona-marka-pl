@@ -579,8 +579,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Przykładowe dokumenty"
     ],
     "demoUrl": "/realizacje/transportflow",
-    "image": "/portfolio/kadry/transportflow.webp",
-    "alt": "Prezentacja koncepcyjna projektu TransportFlow 360",
+    "image": "/portfolio/kadry/transportflow.svg",
+    "alt": "TransportFlow 360: etapy zlecenia, trasa, koszty i marża",
     "status": "narzędzie lub demonstracja"
   },
   {
@@ -755,8 +755,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Marża",
       "Raportowanie"
     ],
-    "image": "/portfolio/kadry/transportflow.webp",
-    "alt": "Prezentacja koncepcyjna projektu Arkusz Excel TransportFlow 360",
+    "image": "/portfolio/kadry/transportflow.svg",
+    "alt": "Arkusz TransportFlow: koszty trasy, marża i wskaźniki",
     "status": "demonstracja, dane syntetyczne"
   },
   {
