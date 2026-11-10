@@ -115,6 +115,6 @@ export function SiteFooter({ english = false }: { english?: boolean }) {
 
 export function QuickWhatsApp() {
   return <aside className="zm-contact-dock" aria-label="Szybki kontakt z marką Zielona Marka"><DemoAssistant /><a className="whatsapp-float" href="https://wa.me/48603806833?text=Dzień%20dobry%2C%20chcę%20porozmawiać%20o%20stronie%20dla%20mojej%20firmy." target="_blank" rel="noreferrer" aria-label="Napisz do marki Zielona Marka na WhatsAppie">
-    <span aria-hidden="true">◌</span><b>Napisz na WhatsApp</b><small>WhatsApp: +48 603 806 833</small><i aria-hidden="true">↗</i>
+    <span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" role="presentation" focusable="false"><path d="M12 3.2c-4.7 0-8.5 3.6-8.5 8.1 0 1.5.4 2.9 1.2 4.1l-1 3.6 3.8-1a8.9 8.9 0 0 0 4.5 1.2c4.7 0 8.5-3.6 8.5-8.1S16.7 3.2 12 3.2Z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round"/><path d="M9.3 8.6c.3-.1.6 0 .8.3l.7 1.2c.2.3.1.6-.1.8l-.4.4a5 5 0 0 0 2.4 2.3l.4-.4c.2-.2.6-.3.8-.1l1.2.7c.3.2.4.5.3.8-.3.8-1.1 1.3-2 1.2-2.6-.3-5-2.6-5.4-5.2-.1-.8.4-1.6 1.3-2Z" fill="currentColor"/></svg></span><b>Napisz na WhatsApp</b><small>WhatsApp: +48 603 806 833</small><i aria-hidden="true">↗</i>
   </a></aside>;
 }
