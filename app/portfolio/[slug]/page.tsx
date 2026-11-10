@@ -61,6 +61,11 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
           <span className="zmp-overline">{category?.label} / {item.industry}</span>
           <h1>{item.title}</h1>
           <p className="zmp-detail-lead">{item.summary}</p>
+          {item.openAccess && <p className="zmx-open-note">
+            {item.openAccess === "github"
+              ? "Kod tego narzędzia jest publiczny na GitHubie, można go pobrać i uruchomić u siebie."
+              : "Narzędzie działa w przeglądarce za darmo, bez zakładania konta."}
+          </p>}
           {item.status.includes("beta") && <div className="zmp-detail-status">W budowie: {item.status}</div>}
           <div className="zmp-detail-actions">
             {item.demoUrl && <a className="zmp-btn zmp-btn-strong" href={item.demoUrl} target={item.demoUrl.startsWith("http") ? "_blank" : undefined} rel={item.demoUrl.startsWith("http") ? "noopener noreferrer" : undefined}>Zobacz, jak to działa ↗</a>}

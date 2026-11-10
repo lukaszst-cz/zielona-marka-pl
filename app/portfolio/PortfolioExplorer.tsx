@@ -81,6 +81,7 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
   const [industry, setIndustry] = useState("all");
   const [format, setFormat] = useState<PortfolioCategory | "all">("all");
   const [search, setSearch] = useState("");
+  const [onlyOpen, setOnlyOpen] = useState(false);
   const [paused, setPaused] = useState(false);
   const [drag, setDrag] = useState(0);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
@@ -119,11 +120,12 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
   const filtered = useMemo(() => {
     const query = search.trim().toLocaleLowerCase("pl-PL");
     return items.filter(item => matchesIndustry(item, industry) && (format === "all" || item.category === format) &&
+      (!onlyOpen || Boolean(item.openAccess)) &&
       (!query || [item.title, item.industry, item.summary, item.explanation, ...item.features]
         .join(" ").toLocaleLowerCase("pl-PL").includes(query)));
-  }, [items, industry, format, search]);
+  }, [items, industry, format, search, onlyOpen]);
 
-  const filterKey = `${industry}|${format}|${search.trim().toLocaleLowerCase("pl-PL")}`;
+  const filterKey = `${industry}|${format}|${onlyOpen}|${search.trim().toLocaleLowerCase("pl-PL")}`;
 
   /* Karty katalogu wchodzą kolejno, gdy wjeżdżają w pole widzenia. */
   useEffect(() => {
@@ -310,6 +312,10 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
           </label>
           <label className="zmp-query-field"><span>Znajdź projekt</span><input type="search" value={search} onChange={event=>setSearch(event.target.value)}
             placeholder="Wpisz nazwę, branżę lub funkcję" /></label>
+          <button type="button" className={`zmx-open-filter${onlyOpen ? " is-active" : ""}`}
+            aria-pressed={onlyOpen} onClick={() => setOnlyOpen(value => !value)}>
+            <span aria-hidden="true">↓</span> Tylko do pobrania i użycia
+          </button>
           <span className="zmp-result-count">{filtered.length} z {items.length} projektów</span>
         </div>
         <div className="zmp-grid zmx-grid" ref={gridRef}>
@@ -339,7 +345,9 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
               <span className="zmp-project-expand" aria-hidden="true">↗</span>
             </Link>
             <div className="zmp-project-info">
-              <div className="zmp-project-meta"><span>{item.industry}</span>{item.status.includes("beta") ? <span>W budowie</span> : item.category === "przed-po" ? <span>Projekt demonstracyjny</span> : null}</div>
+              <div className="zmp-project-meta"><span>{item.industry}</span>{item.openAccess ? <span className="zmx-open-chip">{item.openAccess === "github" ? "Kod na GitHubie" : "Darmowe online"}</span>
+                  : item.status.includes("beta") ? <span>W budowie</span>
+                  : item.category === "przed-po" ? <span>Projekt demonstracyjny</span> : null}</div>
               <h3><Link href={`/portfolio/${item.slug}`}>{item.title}</Link></h3>
               <p className="zmp-project-intro">{item.summary}</p>
               <p className="zmp-project-description">{item.explanation}</p>

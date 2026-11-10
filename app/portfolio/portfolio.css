@@ -1381,3 +1381,44 @@
 .zmx-project-card:before{display:none}
 .zmp-detail .zmp-detail-hero:before{display:none}
 .zmp-detail .zmx-detail-stage:after{display:none}
+
+/* Prace, które można wziąć i używać: plakietka, filtr i zdanie na karcie pracy. */
+.zmx-open-chip{
+  color:#07261a!important;
+  background:linear-gradient(120deg,#d6fb63,#8cf077)!important;
+  font-weight:850;
+}
+.zmx-open-filter{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  min-height:44px;
+  padding:11px 16px;
+  border-radius:99px;
+  border:1px solid rgba(182,251,115,.45);
+  background:rgba(8,38,26,.5);
+  color:#dcffb4;
+  font:inherit;
+  font-size:.8rem;
+  font-weight:750;
+  cursor:pointer;
+  transition:background .25s ease,color .25s ease,transform .2s ease;
+}
+.zmx-open-filter:hover{transform:translateY(-1px);background:rgba(16,62,42,.65)}
+.zmx-open-filter.is-active{
+  background:linear-gradient(120deg,#d6fb63,#8cf077);
+  color:#0e3220;
+  border-color:#c4f588;
+}
+.zmx-open-note{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  margin:14px 0 0;
+  padding:11px 15px;
+  border-radius:13px;
+  border:1px solid rgba(182,251,115,.4);
+  background:rgba(14,52,35,.55);
+  color:#dcffb4!important;
+  font-size:.92rem!important;
+}
