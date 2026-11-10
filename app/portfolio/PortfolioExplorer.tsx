@@ -321,8 +321,6 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
               const box = card.getBoundingClientRect();
               const px = (event.clientX - box.left) / box.width;
               const py = (event.clientY - box.top) / box.height;
-              card.style.setProperty("--zmx-mx", `${event.clientX - box.left}px`);
-              card.style.setProperty("--zmx-my", `${event.clientY - box.top}px`);
               card.style.setProperty("--zmx-rx", `${(py - .5) * -5}deg`);
               card.style.setProperty("--zmx-ry", `${(px - .5) * 6}deg`);
               card.style.setProperty("--zmx-px", `${(px - .5) * -14}px`);
