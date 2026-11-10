@@ -571,3 +571,398 @@
     opacity:.18;
   }
 }
+
+
+/* ============================================================
+   Scena portfolio 2026/11: karuzela 14 prac i żywy katalog.
+   Ruch jest dekoracyjny, każdy efekt gaśnie przy prefers-reduced-motion.
+   ============================================================ */
+.zmx-explorer .zmx-stage{
+  height:clamp(350px,38vw,580px);
+  cursor:grab;
+  touch-action:pan-y;
+  outline-offset:6px;
+}
+.zmx-explorer .zmx-stage.is-dragging{cursor:grabbing}
+.zmx-explorer .zmx-stage.is-dragging .zmx-card{transition:opacity .3s ease,filter .3s ease}
+.zmx-explorer .zmx-card{
+  transition:transform .72s cubic-bezier(.16,.84,.24,1),opacity .45s ease,filter .45s ease,box-shadow .45s ease;
+  user-select:none;
+  -webkit-user-drag:none;
+}
+.zmx-explorer .zmx-card.is-current{
+  box-shadow:0 42px 90px rgba(0,8,5,.62),0 0 34px rgba(132,243,146,.3),inset 0 0 0 2px rgba(190,250,170,.45);
+}
+.zmx-explorer .zmx-card .zmp-floating-visual{position:relative}
+/* Powolny przejazd światła po aktywnej pracy. */
+.zmx-card-sheen{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:0;
+  background:linear-gradient(105deg,transparent 36%,rgba(214,255,210,.26) 48%,rgba(255,255,255,.07) 55%,transparent 68%);
+  transform:translateX(-120%);
+}
+.zmx-explorer .zmx-card.is-current .zmx-card-sheen{
+  opacity:1;
+  animation:zmx-sheen 5.4s ease-in-out 1.1s infinite;
+}
+@keyframes zmx-sheen{
+  0%{transform:translateX(-120%)}
+  38%{transform:translateX(120%)}
+  100%{transform:translateX(120%)}
+}
+/* Podgląd działającej demonstracji zamiast zrzutu ekranu. */
+.zmx-live-frame{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  background:#0a2b22;
+  border-radius:inherit;
+  animation:zmx-live-in .5s ease both;
+}
+.zmx-live-frame iframe{
+  width:200%;
+  height:200%;
+  border:0;
+  transform:scale(.5);
+  transform-origin:0 0;
+  pointer-events:none;
+  background:#fff;
+}
+.zmx-live-badge{
+  position:absolute;
+  right:10px;
+  top:10px;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:5px 11px 5px 9px;
+  border-radius:99px;
+  background:rgba(4,30,22,.86);
+  border:1px solid rgba(186,253,115,.6);
+  color:#dcffb4;
+  font-size:.64rem;
+  font-weight:850;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.zmx-live-badge:before{
+  content:"";
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#b6fb73;
+  box-shadow:0 0 9px #b6fb73;
+  animation:zmx-pulse 1.7s ease-in-out infinite;
+}
+@keyframes zmx-live-in{from{opacity:0;transform:scale(1.015)}to{opacity:1;transform:none}}
+@keyframes zmx-pulse{0%,100%{opacity:1}50%{opacity:.35}}
+/* Licznik prac i pasek czasu do następnej pracy. */
+.zmx-explorer .zmx-legend{margin-top:14px}
+.zmx-counter{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  margin-bottom:9px;
+  font-size:.74rem;
+  font-weight:800;
+  letter-spacing:.17em;
+  color:#9fd5b6;
+}
+.zmx-counter b{font-size:1.05rem;color:#b9ff7d;letter-spacing:.04em}
+.zmx-counter i{width:26px;height:1px;background:linear-gradient(90deg,#b9ff7d,transparent)}
+.zmx-track{
+  width:min(380px,62vw);
+  height:2px;
+  margin:15px auto 0;
+  border-radius:99px;
+  background:rgba(197,236,209,.18);
+  overflow:hidden;
+}
+.zmx-track-run{
+  display:block;
+  height:100%;
+  width:100%;
+  transform-origin:0 50%;
+  background:linear-gradient(90deg,#8ef07a,#d6fb63);
+  animation-name:zmx-track-run;
+  animation-timing-function:linear;
+  animation-fill-mode:forwards;
+}
+.zmx-track-run.is-paused{animation-play-state:paused;opacity:.45}
+@keyframes zmx-track-run{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+/* Czternaście kropek czytamy jako delikatne kreski, nie jako gąszcz punktów. */
+.zmx-explorer .zmx-dots{gap:7px;flex-wrap:wrap;margin-top:13px}
+.zmx-explorer .zmx-dots button{
+  width:16px;
+  height:5px;
+  border-radius:99px;
+  border:0;
+  background:rgba(206,237,214,.32);
+  transition:width .35s ease,background .35s ease;
+}
+.zmx-explorer .zmx-dots button:hover{background:rgba(214,251,99,.65)}
+.zmx-explorer .zmx-dots button.is-active{
+  width:34px;
+  background:linear-gradient(90deg,#8ef07a,#d6fb63);
+  box-shadow:0 0 12px rgba(150,240,110,.55);
+}
+/* Katalog: wejście kart przy przewijaniu i światło podążające za kursorem. */
+.zmx-explorer .zmx-project-card{
+  position:relative;
+  opacity:0;
+  transform:translateY(26px) scale(.985);
+  transition:opacity .62s cubic-bezier(.2,.75,.3,1),transform .62s cubic-bezier(.2,.75,.3,1),border-color .25s ease,box-shadow .25s ease;
+  transition-delay:calc(var(--zmx-i,0) * 55ms);
+}
+.zmx-explorer .zmx-project-card.is-revealed{opacity:1;transform:none}
+.zmx-explorer .zmx-project-card:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:3;
+  pointer-events:none;
+  opacity:0;
+  border-radius:inherit;
+  transition:opacity .3s ease;
+  background:radial-gradient(260px circle at var(--zmx-mx,50%) var(--zmx-my,0px),rgba(182,251,115,.16),transparent 62%);
+}
+.zmx-explorer .zmx-project-card:hover{transform:translateY(-6px)}
+.zmx-explorer .zmx-project-card:hover:before{opacity:1}
+.zmx-explorer .zmx-project-card:hover .zmp-project-expand{
+  transform:translate(-2px,-2px) rotate(-8deg);
+  box-shadow:0 10px 22px rgba(0,22,12,.45);
+}
+.zmx-explorer .zmp-project-expand{transition:transform .25s ease,box-shadow .25s ease}
+.zmx-explorer .zmx-project-card .zmp-project-photo img{transition:transform .55s cubic-bezier(.2,.75,.3,1),filter .4s ease}
+.zmx-explorer .zmx-project-card:hover .zmp-project-photo img{transform:scale(1.06)}
+@media(max-width:760px){
+  .zmx-explorer .zmx-stage{height:330px}
+  .zmx-track{width:min(260px,76vw)}
+  .zmx-explorer .zmx-dots button{width:12px}
+  .zmx-explorer .zmx-dots button.is-active{width:26px}
+}
+@media(prefers-reduced-motion:reduce){
+  .zmx-explorer .zmx-card,
+  .zmx-explorer .zmx-project-card,
+  .zmx-explorer .zmx-project-card .zmp-project-photo img{transition:none}
+  .zmx-explorer .zmx-project-card{opacity:1;transform:none}
+  .zmx-card-sheen,.zmx-live-badge:before{animation:none}
+  .zmx-card-sheen{display:none}
+  .zmx-track-run{animation:none;transform:scaleX(1);opacity:.3}
+}
+
+/* Okładki: najlepszy kadr prosto z demonstracji, z autorską grafiką jako podkładem. */
+.zmx-cover{
+  position:absolute;
+  inset:0;
+  display:block;
+  overflow:hidden;
+  border-radius:inherit;
+  background:inherit;
+}
+.zmx-cover .zmx-cover-poster{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  transition:opacity .45s ease;
+}
+.zmx-cover[data-live="on"] .zmx-cover-poster{opacity:0}
+.zmx-cover-frame{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  border-radius:inherit;
+  background:#f6fbf5;
+  opacity:0;
+  transition:opacity .5s ease;
+}
+.zmx-cover[data-live="on"] .zmx-cover-frame{opacity:1}
+.zmx-cover-frame iframe{
+  border:0;
+  display:block;
+  transform-origin:0 0;
+  pointer-events:none;
+  background:#fff;
+}
+.zmx-cover .zmx-live-badge{
+  position:absolute;
+  right:10px;
+  top:10px;
+  z-index:3;
+  padding:5px 11px 5px 9px;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  border-radius:99px;
+  background:rgba(4,30,22,.86);
+  border:1px solid rgba(186,253,115,.6);
+  color:#dcffb4;
+  font-size:.62rem;
+  font-weight:850;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+/* Aktywnik+ przedstawiamy samym znakiem aplikacji. */
+.zmx-cover-logo{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  padding:9% 12%;
+  background:
+    radial-gradient(ellipse at 50% 35%,rgba(150,243,139,.22),transparent 62%),
+    linear-gradient(140deg,#0d3a2c,#12543c 54%,#0a2d26);
+}
+.zmx-cover-logo img{
+  position:static!important;
+  width:min(62%,260px)!important;
+  height:auto!important;
+  max-height:46%;
+  object-fit:contain!important;
+  padding:0!important;
+  filter:drop-shadow(0 10px 26px rgba(0,22,12,.5));
+}
+.zmx-cover-logo small{
+  font-size:.68rem;
+  letter-spacing:.17em;
+  text-transform:uppercase;
+  font-weight:800;
+  color:#c8f3a8;
+}
+
+/* ============================================================
+   Spójność z resztą witryny: portfolio nie maluje już własnego
+   ciemnego tła, tylko stoi na tym samym leśnym tle co pozostałe
+   podstrony. Panele i karty są półprzezroczyste, więc tło widać
+   pod nimi, a tekst zachowuje kontrast dzięki przyciemnieniu.
+   ============================================================ */
+.zmp-page{
+  background:linear-gradient(90deg,#03170ef5,#03170ec9),url('/brand-review-v3/forest-continuous.webp') center top/cover fixed;
+  color:#f1f7f2;
+}
+.zmp-explorer .zmp-cinematic{
+  background:linear-gradient(185deg,rgba(3,22,14,.62) 0%,rgba(4,28,19,.34) 58%,rgba(3,22,14,.5) 100%);
+}
+.zmp-explorer .zmp-projects{
+  background:linear-gradient(185deg,rgba(3,22,14,.38),rgba(3,22,14,.62));
+}
+.zmp-explorer .zmp-cinematic:before,
+.zmp-explorer .zmp-cinematic:after,
+.zmp-explorer .zmp-projects:before,
+.zmp-explorer .zmp-projects:after{opacity:.2}
+.zmp-explorer .zmp-project-card{
+  background:linear-gradient(145deg,rgba(16,51,38,.66),rgba(7,31,23,.6));
+  backdrop-filter:blur(10px) saturate(1.06);
+  -webkit-backdrop-filter:blur(10px) saturate(1.06);
+  border-color:rgba(160,219,170,.34);
+}
+.zmp-explorer .zmp-project-card:hover{
+  background:linear-gradient(145deg,rgba(20,60,44,.74),rgba(9,37,27,.68));
+}
+.zmp-explorer .zmp-projects-tools,
+.zmp-explorer .zmp-industry-dock{
+  background:rgba(7,35,24,.6);
+  backdrop-filter:blur(9px);
+  -webkit-backdrop-filter:blur(9px);
+}
+.zmp-explorer .zmp-pdf-footer{
+  background:linear-gradient(120deg,rgba(26,84,56,.6),rgba(9,54,39,.56));
+  backdrop-filter:blur(9px);
+  -webkit-backdrop-filter:blur(9px);
+}
+.zmp-explorer .zmx-card{
+  background:linear-gradient(145deg,rgba(205,238,217,.9),rgba(40,98,82,.82) 13%,rgba(12,46,35,.86) 70%,rgba(86,196,141,.85));
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+}
+.zmp-explorer .zmp-floating-copy{
+  background:linear-gradient(100deg,rgba(8,38,45,.86),rgba(19,68,57,.86));
+}
+.zmp-page.zmp-detail .zmp-disclaimer{
+  background:rgba(13,45,32,.62);
+  backdrop-filter:blur(9px);
+  -webkit-backdrop-filter:blur(9px);
+}
+@media(max-width:760px){
+  /* Tło przyklejone do okna potrafi zacinać na telefonach. */
+  .zmp-page{background-attachment:scroll}
+}
+
+/* Siatka punktów pod sceną: ukośna fala światła, nic nie przechwytuje kliknięć. */
+.zmp-explorer .zmp-cinematic{position:relative}
+.zmx-dotfield{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.85}
+.zmp-explorer .zmp-hero,
+.zmp-explorer .zmp-industry-dock{position:relative;z-index:1}
+
+/* Jaśniejsze tło na całej podstronie i na kartach prac. */
+.zmp-page{
+  background:linear-gradient(90deg,rgba(6,34,22,.82),rgba(7,38,25,.66)),url('/brand-review-v3/forest-continuous.webp') center top/cover fixed;
+}
+.zmp-explorer .zmp-cinematic{
+  background:linear-gradient(185deg,rgba(6,34,22,.34) 0%,rgba(9,44,30,.12) 58%,rgba(6,34,22,.3) 100%);
+}
+.zmp-explorer .zmp-projects{
+  background:linear-gradient(185deg,rgba(6,34,22,.16),rgba(6,34,22,.4));
+}
+.zmp-explorer .zmp-project-card{
+  background:linear-gradient(145deg,rgba(28,74,56,.58),rgba(14,46,34,.52));
+  border-color:rgba(176,231,185,.4);
+}
+.zmp-explorer .zmp-project-card:hover{
+  background:linear-gradient(145deg,rgba(35,88,65,.66),rgba(17,54,40,.6));
+}
+.zmp-explorer .zmp-projects-tools,
+.zmp-explorer .zmp-industry-dock{background:rgba(13,50,34,.52)}
+.zmp-explorer .zmp-pdf-footer{background:linear-gradient(120deg,rgba(35,100,68,.56),rgba(14,66,48,.5))}
+.zmp-page.zmp-detail .zmp-disclaimer{background:rgba(20,58,42,.55);border-color:rgba(176,231,185,.34)}
+.zmp-page.zmp-detail .zmp-related>div>a{
+  background:rgba(20,58,42,.52);
+  border:1px solid rgba(176,231,185,.3);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+}
+.zmp-page.zmp-detail .zmp-detail-hero{background:none}
+
+/* ============================================================
+   Typografia portfolio: Fraunces w nagłówkach daje butikowy,
+   rzemieślniczy charakter, Inter trzyma tekst czytelny.
+   Zakres ograniczony do portfolio, reszta witryny bez zmian.
+   ============================================================ */
+.zmp-page{
+  font-family:'Inter',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;
+  font-feature-settings:"ss01","cv05";
+}
+.zmp-page :is(h1,h2,h3,h4),
+.zmp-page .zmp-hero-text h1,
+.zmp-page .zmp-projects-title h2,
+.zmp-page .zmp-pdf-footer h2{
+  font-family:'Fraunces','Iowan Old Style',Georgia,serif!important;
+  font-weight:600;
+  letter-spacing:-.02em;
+  font-variation-settings:"SOFT" 20,"WONK" 1;
+}
+.zmp-page .zmp-hero-text h1{font-weight:600;letter-spacing:-.025em;line-height:1.04}
+.zmp-page .zmp-hero-text h1 em{
+  font-style:italic;
+  text-decoration-thickness:2px;
+  text-underline-offset:10px;
+}
+.zmp-page .zmp-projects-title h2 em,
+.zmp-page .zmp-pdf-footer h2 em,
+.zmp-page .zmp-bottom-cta h2 em{font-style:italic}
+.zmp-page .zmp-project-info h3{font-weight:600;letter-spacing:-.015em}
+.zmp-page .zmp-overline,
+.zmp-page .zmp-industry-list button,
+.zmp-page .zmp-btn,
+.zmp-page .zmp-project-open,
+.zmp-page .zmp-project-demo,
+.zmp-page .zmp-floating-topline{font-family:'Inter',system-ui,Arial,sans-serif}
+.zmp-page .zmp-overline{letter-spacing:.26em;font-weight:600}
+.zmp-page :is(p,li,small,span,input,select,button){font-family:'Inter',system-ui,-apple-system,Arial,sans-serif}
+.zmp-page .zmp-floating-copy strong{font-family:'Fraunces',Georgia,serif;font-weight:600}
+.zmp-page .zmx-counter b,
+.zmp-page .zmp-result-count{font-variant-numeric:tabular-nums}
