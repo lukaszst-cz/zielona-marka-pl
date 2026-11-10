@@ -1,0 +1,136 @@
+/* ============================================================
+   Podstrony realizacji i koncepcji w tej samej oprawie co portfolio:
+   leśne tło, półprzezroczyste panele, nagłówki Fraunces i spokojny ruch.
+   ============================================================ */
+.zm-case,
+.concept-page{
+  background:
+    linear-gradient(180deg,rgba(3,20,14,.9),rgba(5,28,19,.8) 45%,rgba(3,20,14,.92)),
+    url('/brand-review-v3/forest-continuous.webp') center center/cover scroll!important;
+  background-color:#07241a!important;
+  color:#f1f7f2;
+  font-family:'Inter',system-ui,-apple-system,Arial,sans-serif;
+}
+.zm-case :is(h1,h2,h3),
+.concept-page :is(h1,h2,h3){
+  font-family:'Fraunces','Iowan Old Style',Georgia,serif!important;
+  font-weight:600!important;
+  letter-spacing:-.022em!important;
+  color:#f6fff5!important;
+  font-variation-settings:"SOFT" 20,"WONK" 1;
+}
+.zm-case :is(p,li,small,span,b),
+.concept-page :is(p,li,small,b){color:#dceee2!important}
+.zm-case .section-no,
+.zm-case .eyebrow,
+.concept-page .section-no,
+.concept-page small{
+  color:#b6fb73!important;
+  font-family:'Inter',system-ui,Arial,sans-serif!important;
+  letter-spacing:.22em!important;
+  font-weight:600!important;
+}
+.zm-case em,.concept-page em{color:#b6fb73!important;font-style:italic}
+
+/* Panele: szkło zamiast płaskich bloków */
+.zm-case .transportflow-process ol>li,
+.zm-case .transportflow-proof,
+.zm-case .tools-contact-inner,
+.concept-page .concept-intro>article,
+.concept-page .concept-screen>aside,
+.concept-page .concept-browser{
+  background:linear-gradient(145deg,rgba(28,74,56,.58),rgba(14,46,34,.52))!important;
+  border:1px solid rgba(176,231,185,.4)!important;
+  border-radius:18px!important;
+  backdrop-filter:blur(10px) saturate(1.06);
+  -webkit-backdrop-filter:blur(10px) saturate(1.06);
+  box-shadow:0 16px 40px rgba(0,20,11,.42);
+  transition:transform .3s cubic-bezier(.2,.75,.3,1),border-color .3s ease,box-shadow .3s ease;
+}
+.zm-case .transportflow-process ol>li:hover,
+.concept-page .concept-intro>article:hover{
+  transform:translateY(-5px);
+  border-color:rgba(182,251,115,.55)!important;
+  box-shadow:0 22px 48px rgba(0,19,11,.52);
+}
+.zm-case .transportflow-process ol{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:18px;
+  list-style:none;
+  padding:0;
+  margin:28px 0 0;
+}
+.zm-case .transportflow-process ol>li{padding:24px 22px!important}
+.zm-case .transportflow-process ol>li b{
+  display:inline-grid;
+  place-items:center;
+  width:42px;
+  height:42px;
+  margin-bottom:14px;
+  border-radius:50%;
+  background:linear-gradient(120deg,#d6fb63,#8cf077);
+  color:#0e3220!important;
+  font-size:1rem;
+  font-weight:800;
+}
+.zm-case .transportflow-proof ul{display:grid;grid-template-columns:1fr 1fr;gap:12px;list-style:none;padding:0}
+.zm-case .transportflow-proof li{
+  position:relative;
+  padding:12px 14px 12px 38px;
+  border-radius:12px;
+  background:rgba(10,42,30,.45);
+  border:1px solid rgba(160,219,170,.26);
+}
+.zm-case .transportflow-proof li:before{
+  content:"";
+  position:absolute;
+  left:16px;
+  top:50%;
+  width:8px;
+  height:8px;
+  margin-top:-4px;
+  border-radius:50%;
+  background:#b6fb73;
+  box-shadow:0 0 10px rgba(182,251,115,.8);
+}
+/* Przyciski w stylu portfolio */
+.zm-case .button,
+.concept-page .button{
+  background:linear-gradient(120deg,#d6fb63,#7afb5c)!important;
+  color:#0f3220!important;
+  border:1px solid #b9ed5a!important;
+  border-radius:99px!important;
+  font-weight:800!important;
+  box-shadow:0 10px 26px rgba(120,220,90,.22);
+}
+.zm-case .text-link,
+.concept-page .text-link{color:#b6fb73!important}
+.concept-page .concept-browser{overflow:hidden}
+.concept-page .concept-browser>span{color:#9ec6a8!important;letter-spacing:.4em}
+.concept-page .concept-hero figure img{
+  border-radius:20px;
+  border:1px solid rgba(190,240,200,.3);
+  box-shadow:0 26px 64px rgba(0,16,9,.55);
+}
+.concept-page .concept-screen>aside>div{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:12px 0;
+  border-bottom:1px solid rgba(160,219,170,.22);
+}
+.concept-page .concept-screen>aside>div b{color:#b6fb73!important;font-variant-numeric:tabular-nums}
+.concept-page .demo-simple-nav a{color:#cdeedb!important}
+.zm-case .tools-contact-inner{padding:34px!important}
+@media(max-width:1000px){
+  .zm-case .transportflow-process ol{grid-template-columns:1fr 1fr}
+  .zm-case .transportflow-proof ul{grid-template-columns:1fr}
+}
+@media(max-width:620px){
+  .zm-case .transportflow-process ol{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  .zm-case .transportflow-process ol>li,
+  .concept-page .concept-intro>article{transition:none}
+}
