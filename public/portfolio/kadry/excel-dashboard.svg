@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Dashboard operacyjny: wskaźniki, wykresy i tabela zleceń">
+  <defs>
+    <linearGradient id="dash-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#06291d"/><stop offset=".55" stop-color="#0d4330"/><stop offset="1" stop-color="#07231d"/>
+    </linearGradient>
+    <linearGradient id="dash-panel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef6ea"/>
+    </linearGradient>
+    <linearGradient id="dash-bar" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#4fae63"/><stop offset="1" stop-color="#c7f56a"/>
+    </linearGradient>
+    <linearGradient id="dash-area" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6fd16a" stop-opacity=".55"/><stop offset="1" stop-color="#6fd16a" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="dash-glow" cx="78%" cy="18%" r="60%">
+      <stop offset="0" stop-color="#b6fb73" stop-opacity=".28"/><stop offset="1" stop-color="#b6fb73" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#dash-bg)"/>
+  <rect width="1600" height="900" fill="url(#dash-glow)"/>
+
+  <!-- Okno arkusza -->
+  <g transform="translate(96 92)">
+    <rect x="10" y="14" width="1408" height="748" rx="26" fill="rgba(2,18,12,.45)"/>
+    <rect width="1408" height="740" rx="22" fill="url(#dash-panel)"/>
+
+    <!-- Pasek narzędzi -->
+    <rect width="1408" height="64" rx="22" fill="#12422f"/>
+    <rect y="40" width="1408" height="24" fill="#12422f"/>
+    <circle cx="36" cy="32" r="7" fill="#ff5f57"/><circle cx="60" cy="32" r="7" fill="#febc2e"/><circle cx="84" cy="32" r="7" fill="#28c840"/>
+    <text x="120" y="39" fill="#d8f3c6" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700">Dashboard operacyjny.xlsx</text>
+    <text x="1210" y="39" fill="#9fd0ad" font-family="Arial, Helvetica, sans-serif" font-size="16">dane przykładowe</text>
+
+    <!-- Wskaźniki -->
+    <g font-family="Arial, Helvetica, sans-serif">
+      <g transform="translate(40 96)">
+        <rect width="310" height="134" rx="16" fill="#f3faef" stroke="#cfe3cb"/>
+        <text x="24" y="38" fill="#5c7d66" font-size="16" font-weight="700" letter-spacing="2">ZLECENIA W TOKU</text>
+        <text x="24" y="96" fill="#103a28" font-size="52" font-weight="800">128</text>
+        <text x="150" y="96" fill="#2f8a4a" font-size="20" font-weight="700">+12%</text>
+        <rect x="24" y="112" width="262" height="6" rx="3" fill="#dceccf"/>
+        <rect x="24" y="112" width="190" height="6" rx="3" fill="url(#dash-bar)"/>
+      </g>
+      <g transform="translate(374 96)">
+        <rect width="310" height="134" rx="16" fill="#f3faef" stroke="#cfe3cb"/>
+        <text x="24" y="38" fill="#5c7d66" font-size="16" font-weight="700" letter-spacing="2">NA CZAS</text>
+        <text x="24" y="96" fill="#103a28" font-size="52" font-weight="800">94%</text>
+        <text x="152" y="96" fill="#2f8a4a" font-size="20" font-weight="700">+3 pkt</text>
+        <rect x="24" y="112" width="262" height="6" rx="3" fill="#dceccf"/>
+        <rect x="24" y="112" width="246" height="6" rx="3" fill="url(#dash-bar)"/>
+      </g>
+      <g transform="translate(708 96)">
+        <rect width="310" height="134" rx="16" fill="#f3faef" stroke="#cfe3cb"/>
+        <text x="24" y="38" fill="#5c7d66" font-size="16" font-weight="700" letter-spacing="2">MARŻA</text>
+        <text x="24" y="96" fill="#103a28" font-size="52" font-weight="800">23,4%</text>
+        <rect x="24" y="112" width="262" height="6" rx="3" fill="#dceccf"/>
+        <rect x="24" y="112" width="150" height="6" rx="3" fill="url(#dash-bar)"/>
+      </g>
+      <g transform="translate(1042 96)">
+        <rect width="326" height="134" rx="16" fill="#12422f"/>
+        <text x="24" y="38" fill="#b6fb73" font-size="16" font-weight="700" letter-spacing="2">DO ROZLICZENIA</text>
+        <text x="24" y="96" fill="#ffffff" font-size="52" font-weight="800">41 800 zł</text>
+        <text x="24" y="118" fill="#9fd0ad" font-size="15">7 faktur czeka na wystawienie</text>
+      </g>
+    </g>
+
+    <!-- Wykres liniowy -->
+    <g transform="translate(40 258)" font-family="Arial, Helvetica, sans-serif">
+      <rect width="644" height="276" rx="16" fill="#ffffff" stroke="#cfe3cb"/>
+      <text x="24" y="38" fill="#103a28" font-size="19" font-weight="800">Zlecenia w miesiącu</text>
+      <text x="24" y="62" fill="#5c7d66" font-size="15">ostatnie 12 tygodni</text>
+      <g stroke="#e3efdd" stroke-width="1">
+        <path d="M24 100h596M24 148h596M24 196h596M24 232h596"/>
+      </g>
+      <path d="M40 212 118 188 196 196 274 154 352 162 430 120 508 134 586 92" fill="none" stroke="#2f8a4a" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+      <path d="M40 212 118 188 196 196 274 154 352 162 430 120 508 134 586 92 586 240 40 240Z" fill="url(#dash-area)"/>
+      <g fill="#ffffff" stroke="#2f8a4a" stroke-width="3">
+        <circle cx="274" cy="154" r="6"/><circle cx="430" cy="120" r="6"/><circle cx="586" cy="92" r="7"/>
+      </g>
+      <g fill="#7d9b86" font-size="13">
+        <text x="30" y="260">T1</text><text x="188" y="260">T4</text><text x="344" y="260">T8</text><text x="564" y="260">T12</text>
+      </g>
+    </g>
+
+    <!-- Tabela zleceń -->
+    <g transform="translate(708 258)" font-family="Arial, Helvetica, sans-serif">
+      <rect width="660" height="276" rx="16" fill="#ffffff" stroke="#cfe3cb"/>
+      <text x="24" y="38" fill="#103a28" font-size="19" font-weight="800">Ostatnie zlecenia</text>
+      <rect x="24" y="56" width="612" height="34" rx="8" fill="#eef6e7"/>
+      <g fill="#5c7d66" font-size="14" font-weight="700" letter-spacing="1">
+        <text x="40" y="78">NUMER</text><text x="180" y="78">KLIENT</text><text x="400" y="78">STATUS</text><text x="540" y="78">WARTOŚĆ</text>
+      </g>
+      <g font-size="15" fill="#1d4c35">
+        <text x="40" y="122">ZL-2041</text><text x="180" y="122">Hurtownia Północ</text><text x="540" y="122">7 400 zł</text>
+        <rect x="396" y="106" width="104" height="24" rx="12" fill="#d7f5b4"/><text x="412" y="123" font-size="13" font-weight="700" fill="#1d5c2c">w produkcji</text>
+
+        <text x="40" y="168">ZL-2040</text><text x="180" y="168">Serwis Ogrodowy</text><text x="540" y="168">2 150 zł</text>
+        <rect x="396" y="152" width="104" height="24" rx="12" fill="#ffe7b0"/><text x="412" y="169" font-size="13" font-weight="700" fill="#7a5410">czeka na dane</text>
+
+        <text x="40" y="214">ZL-2039</text><text x="180" y="214">Zakład Mechaniczny</text><text x="540" y="214">11 900 zł</text>
+        <rect x="396" y="198" width="104" height="24" rx="12" fill="#cfeedd"/><text x="420" y="215" font-size="13" font-weight="700" fill="#14523a">gotowe</text>
+
+        <text x="40" y="258">ZL-2038</text><text x="180" y="258">Piekarnia Okruch</text><text x="540" y="258">3 320 zł</text>
+        <rect x="396" y="242" width="104" height="24" rx="12" fill="#cfeedd"/><text x="420" y="259" font-size="13" font-weight="700" fill="#14523a">gotowe</text>
+      </g>
+    </g>
+
+    <!-- Słupki tygodniowe -->
+    <g transform="translate(40 562)" font-family="Arial, Helvetica, sans-serif">
+      <rect width="1328" height="146" rx="16" fill="#ffffff" stroke="#cfe3cb"/>
+      <text x="24" y="36" fill="#103a28" font-size="18" font-weight="800">Obciążenie zespołu w dniach tygodnia</text>
+      <g fill="url(#dash-bar)">
+        <rect x="24" y="56" width="150" height="66" rx="9"/>
+        <rect x="200" y="44" width="150" height="78" rx="9"/>
+        <rect x="376" y="70" width="150" height="52" rx="9"/>
+        <rect x="552" y="38" width="150" height="84" rx="9"/>
+        <rect x="728" y="62" width="150" height="60" rx="9"/>
+        <rect x="904" y="86" width="150" height="36" rx="9"/>
+        <rect x="1080" y="52" width="150" height="70" rx="9"/>
+      </g>
+    </g>
+  </g>
+</svg>

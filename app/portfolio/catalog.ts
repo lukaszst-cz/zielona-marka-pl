@@ -45,8 +45,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Wizualizacja elewacji"
     ],
     "demoUrl": "https://budrivo.vercel.app",
-    "image": "/portfolio/budrivo-autentyczny-podglad.png",
-    "alt": "Rzeczywisty ekran demonstracyjnej strony BUDRIVO",
+    "image": "/portfolio/kadry/budrivo-ekran.webp",
+    "alt": "Pierwszy ekran serwisu BUDRIVO",
     "status": "projekt demonstracyjny",
     "featured": true
   },
@@ -63,8 +63,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Oglądanie i pobieranie gazetki"
     ],
     "demoUrl": "https://navoro-hurt-koncepcja.vercel.app",
-    "image": "/portfolio/kadry/navoro-hurt.webp",
-    "alt": "Strona główna hurtowni NAVORO z kampanią produktową",
+    "image": "/portfolio/kadry/navoro-hurt-ekran.webp",
+    "alt": "Pierwszy ekran serwisu NAVORO HURT",
     "status": "projekt demonstracyjny",
     "featured": true
   },
@@ -81,8 +81,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Nawigacja do gazetki ze strony głównej"
     ],
     "demoUrl": "https://nexio-elektro.vercel.app",
-    "image": "/portfolio/kadry/nexio-elektro.webp",
-    "alt": "Strona główna NEXIO ELEKTRO z katalogiem materiałów",
+    "image": "/portfolio/kadry/nexio-elektro-ekran.webp",
+    "alt": "Pierwszy ekran serwisu NEXIO ELEKTRO",
     "status": "projekt demonstracyjny",
     "featured": true
   },
@@ -100,10 +100,27 @@ export const portfolioItems: PortfolioItem[] = [
       "Gazetka online w wariancie ekonomicznym"
     ],
     "demoUrl": "https://materivo-pro.vercel.app",
-    "image": "/portfolio/materivo-autentyczny-podglad.png",
-    "alt": "Rzeczywisty ekran demonstracyjnej strony MATERIVO",
+    "image": "/portfolio/kadry/materivo-ekran.webp",
+    "alt": "Pierwszy ekran serwisu MATERIVO w wersji premium",
     "status": "projekt demonstracyjny",
     "featured": true
+  },
+  {
+    "slug": "aurea-smile",
+    "title": "AUREA SMILE",
+    "category": "www",
+    "industry": "Stomatologia premium",
+    "summary": "Klinika stomatologiczna, która sprzedaje spokój, a nie zabiegi.",
+    "explanation": "Ciemna, złocona oprawa i sześć kafli specjalizacji prowadzą pacjenta od pierwszej konsultacji do konkretnej usługi.",
+    "features": [
+      "Sześć specjalizacji",
+      "Ścieżka konsultacji",
+      "Cennik i wiedza"
+    ],
+    "demoUrl": "https://aurea-smile.vercel.app",
+    "image": "/portfolio/kadry/aurea-smile-ekran.webp",
+    "alt": "Pierwszy ekran strony kliniki AUREA SMILE",
+    "status": "projekt demonstracyjny"
   },
   {
     "slug": "solidom",
@@ -118,8 +135,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Kontakt"
     ],
     "demoUrl": "https://solidom.vercel.app",
-    "image": "/portfolio/kadry/solidom.webp",
-    "alt": "Strona główna SOLIDOM z realizacją domu jednorodzinnego",
+    "image": "/portfolio/kadry/solidom-ekran.webp",
+    "alt": "Pierwszy ekran strony SOLIDOM",
     "status": "projekt demonstracyjny"
   },
   {
@@ -135,8 +152,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Kontakt"
     ],
     "demoUrl": "https://solident-mu.vercel.app",
-    "image": "/portfolio/kadry/solident.webp",
-    "alt": "Strona główna gabinetu SOLIDENT",
+    "image": "/portfolio/kadry/solident-ekran.webp",
+    "alt": "Pierwszy ekran strony gabinetu SOLIDENT",
     "status": "projekt demonstracyjny"
   },
   {
@@ -152,8 +169,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Ścieżka wyceny"
     ],
     "demoUrl": "https://blackharbor.vercel.app",
-    "image": "/portfolio/black-harbor-kadr.webp",
-    "alt": "Samochód po korekcie lakieru na stronie BLACK HARBOR",
+    "image": "/portfolio/kadry/black-harbor-ekran.webp",
+    "alt": "Pierwszy ekran strony BLACK HARBOR",
     "status": "projekt demonstracyjny"
   },
   {
@@ -597,8 +614,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Status naprawy"
     ],
     "demoUrl": "/demo/auto-naprawa/",
-    "image": "/portfolio/kadry/auto-naprawa.webp",
-    "alt": "Prezentacja koncepcyjna projektu Auto Naprawa",
+    "image": "/portfolio/kadry/auto-naprawa-ekran.webp",
+    "alt": "Pierwszy ekran portalu Auto Naprawa",
     "status": "narzędzie lub demonstracja"
   },
   {
@@ -668,8 +685,8 @@ export const portfolioItems: PortfolioItem[] = [
       "PWA"
     ],
     "demoUrl": "https://aktywnik-plus.vercel.app",
-    "image": "/portfolio/aktywnik-plus-okladka.svg",
-    "alt": "Okładka Aktywnika+: znak aplikacji i widok dziennika aktywności",
+    "image": "/portfolio/kadry/aktywnik-plus.svg",
+    "alt": "Aktywnik+: dziennik aktywności, tryb rodziny i podsumowanie tygodnia",
     "status": "aplikacja rozwijana, beta 0.5.0-beta.4",
     "openAccess": "online",
     "featured": true
@@ -754,8 +771,8 @@ export const portfolioItems: PortfolioItem[] = [
       "KPI",
       "Wykresy"
     ],
-    "image": "/portfolio/excel-dashboard.svg",
-    "alt": "Autorska wizualizacja arkusza kalkulacyjnego, dane przykładowe",
+    "image": "/portfolio/kadry/excel-dashboard.svg",
+    "alt": "Panel wskaźników operacyjnych z wykresami i listą zleceń",
     "status": "demonstracja, dane syntetyczne"
   },
   {
@@ -770,8 +787,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Kalkulacja kosztów",
       "Porównanie"
     ],
-    "image": "/portfolio/excel-wycena.svg",
-    "alt": "Autorska wizualizacja arkusza kalkulacyjnego, dane przykładowe",
+    "image": "/portfolio/kadry/excel-wycena.svg",
+    "alt": "Trzy warianty oferty z zakresem i kosztem obok siebie",
     "status": "demonstracja, dane syntetyczne"
   },
   {
@@ -786,8 +803,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Plan działań",
       "Filtry"
     ],
-    "image": "/portfolio/excel-crm.svg",
-    "alt": "Autorska wizualizacja arkusza kalkulacyjnego, dane przykładowe",
+    "image": "/portfolio/kadry/excel-crm.svg",
+    "alt": "Rejestr kontaktów ze statusami i kolejnymi krokami",
     "status": "demonstracja, dane syntetyczne"
   },
 ];

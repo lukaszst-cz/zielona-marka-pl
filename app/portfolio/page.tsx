@@ -29,8 +29,8 @@ export default function PortfolioPage() {
     <main className="zm-public zmp-page">
       <PortfolioExplorer items={portfolioItems} />
       <section className="zmp-bottom-cta shell">
-        <div><span className="zmp-overline">DOPASOWANE DO TWOJEJ FIRMY</span><h2>Chcesz coś podobnego u siebie?</h2><p>Napisz w dwóch zdaniach, co Twoja strona ma robić, a odpiszemy, ile to zajmie i ile kosztuje. Zakres ustalamy przed startem, więc na fakturze nie ma niespodzianek.</p></div>
-        <a href="/kontakt" className="zmp-btn zmp-btn-strong">Porozmawiajmy o projekcie ↗</a>
+        <div><span className="zmp-overline">DOPASOWANE DO TWOJEJ FIRMY</span><h2>Chcesz coś podobnego u siebie?</h2><p>Napisz w dwóch zdaniach, co Twoja strona ma robić, a odpiszemy, ile to zajmie i ile kosztuje. Zakres ustalamy przed startem, więc na fakturze nie ma niespodzianek. Możesz też zacząć od bezpłatnej koncepcji: przygotujemy pomysł na Twoją stronę, zanim cokolwiek zamówisz.</p></div>
+        <div className="zmp-pdf-actions"><a href="/bezplatna-koncepcja-strony" className="zmp-btn zmp-btn-strong">Zamów bezpłatną koncepcję ↗</a><a href="/kontakt" className="zmp-btn zmp-btn-outline">Napisz do nas ↗</a></div>
       </section>
     </main>
     <QuickWhatsApp />

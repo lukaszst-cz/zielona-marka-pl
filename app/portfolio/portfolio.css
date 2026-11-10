@@ -1422,3 +1422,28 @@
   color:#dcffb4!important;
   font-size:.92rem!important;
 }
+
+/* Pełne zrzuty stron pokazujemy w całości, w ciemnej ramce zamiast docinać boki. */
+.zmp-explorer .zmp-project-photo[data-media="screen"]{
+  background:linear-gradient(150deg,#0d3426,#07251c);
+}
+.zmp-explorer .zmp-project-photo[data-media="screen"] img,
+.zmp-explorer .zmp-project-photo[data-media="screen"] .zmx-cover-poster{
+  object-fit:contain;
+  padding:10px;
+  box-sizing:border-box;
+}
+.zmp-explorer .zmx-card .zmp-floating-visual[data-media="screen"] img,
+.zmp-explorer .zmx-card .zmp-floating-visual[data-media="screen"] .zmx-cover-poster{
+  object-fit:cover;
+  object-position:top center;
+  padding:0;
+}
+
+/* Podpowiedź, co czeka w działającej demonstracji. */
+.zmx-demo-hint{
+  margin:0!important;
+  font-size:.8rem!important;
+  color:#b7e6c4!important;
+  line-height:1.45!important;
+}

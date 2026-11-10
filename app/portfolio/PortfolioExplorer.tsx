@@ -29,14 +29,14 @@ function matchesIndustry(item: PortfolioItem, filter: string) {
 
 /* Czternaście prac na scenie: przekrój przez wszystkie formaty, bez tłoku na jednym ekranie. */
 const featuredOrder = [
-  "materivo", "aktywnik-plus", "navoro-hurt", "szlak", "nexio-elektro", "transportflow", "okruch",
-  "budrivo", "gazetka-nexio", "black-harbor", "auto-naprawa", "peleton", "eltravia", "excel-dashboard",
+  "black-harbor", "solidom", "navoro-hurt", "aurea-smile", "budrivo", "nexio-elektro", "materivo",
+  "solident", "auto-naprawa", "gazetka-navoro", "transportflow", "okruch", "szlak", "docpilot",
 ];
 
 const AUTOPLAY_MS = 6500;
 function mediaPresentation(item: PortfolioItem): "screen" | "art" | "photo" {
   const src = item.image || "";
-  if (src.includes("-autentyczny-podglad.png") || src.includes("aktywnik-plus-aktualny-ekran.png")) return "screen";
+  if (src.includes("-ekran.webp") || src.includes("-autentyczny-podglad.png")) return "screen";
   if (["gazetki", "logo", "przed-po", "excel"].includes(item.category) || src.includes("/concept-samples-v2/")) return "art";
   return "photo";
 }
@@ -351,6 +351,7 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
               <h3><Link href={`/portfolio/${item.slug}`}>{item.title}</Link></h3>
               <p className="zmp-project-intro">{item.summary}</p>
               <p className="zmp-project-description">{item.explanation}</p>
+              {item.demoUrl && <p className="zmx-demo-hint">W demonstracji klikniesz: {item.features.slice(0, 2).join(", ").toLocaleLowerCase("pl-PL")}.</p>}
               <div className="zmp-project-features" aria-label="Elementy projektu">
                 {item.features.slice(0,3).map(feature=><span key={feature}>{feature}</span>)}
               </div>

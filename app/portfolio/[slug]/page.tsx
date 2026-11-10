@@ -73,7 +73,7 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
           </div>
         </div>
         <figure className="zmp-detail-visual" data-media={
-          item.image?.includes("-autentyczny-podglad.png") || item.image?.includes("aktywnik-plus-aktualny-ekran.png")
+          item.image?.includes("-ekran.webp") || item.image?.includes("-autentyczny-podglad.png")
             ? "screen"
             : ["gazetki", "logo", "przed-po", "excel"].includes(item.category) || item.image?.includes("/concept-samples-v2/")
               ? "art"
