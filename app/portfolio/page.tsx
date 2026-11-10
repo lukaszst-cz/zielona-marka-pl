@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     type: "website",
     url: "/portfolio",
     title: "Portfolio projektów | Zielona Marka",
-    description: "Prace Zielonej Marki: strony WWW, gazetki produktowe, logo, aplikacje i Excel, każda z działającym podglądem.",
+    description: "Prace marki Zielona Marka: strony WWW, gazetki produktowe, logo, aplikacje i Excel, każda z działającym podglądem.",
     images: ["/og.jpg"],
   },
   twitter: {
