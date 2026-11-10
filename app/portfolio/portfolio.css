@@ -1361,3 +1361,17 @@
   .zmp-explorer .zmx-card .zmp-floating-copy{padding:9px 12px 11px}
   .zmp-explorer .zmx-card .zmp-floating-copy:before{width:58px;margin-left:-29px}
 }
+
+/* Strzałki karuzeli: rysowany szewron zamiast znaku pisarskiego, który
+   nigdy nie siedzi w osi kółka. */
+.zmp-explorer .zmp-nav-arrow{font-size:0;line-height:0;padding:0}
+.zmp-explorer .zmp-nav-arrow>i{
+  display:block;
+  width:11px;
+  height:11px;
+  border-right:2.5px solid currentColor;
+  border-bottom:2.5px solid currentColor;
+  border-radius:2px;
+}
+.zmp-explorer .zmp-nav-prev>i{transform:translateX(2px) rotate(135deg)}
+.zmp-explorer .zmp-nav-next>i{transform:translateX(-2px) rotate(-45deg)}

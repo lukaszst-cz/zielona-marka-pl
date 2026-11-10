@@ -249,8 +249,8 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
             </Link>;
           })}
           {featured.length > 1 && <>
-            <button className="zmp-nav-arrow zmp-nav-prev" type="button" aria-label="Poprzedni projekt" onClick={() => step(-1)}>‹</button>
-            <button className="zmp-nav-arrow zmp-nav-next" type="button" aria-label="Następny projekt" onClick={() => step(1)}>›</button>
+            <button className="zmp-nav-arrow zmp-nav-prev" type="button" aria-label="Poprzedni projekt" onClick={() => step(-1)}><i aria-hidden="true" /></button>
+            <button className="zmp-nav-arrow zmp-nav-next" type="button" aria-label="Następny projekt" onClick={() => step(1)}><i aria-hidden="true" /></button>
           </>}
         </div>
 
