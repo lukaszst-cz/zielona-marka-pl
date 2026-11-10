@@ -33,8 +33,8 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "BUDRIVO",
     "category": "www",
     "industry": "Budownictwo i materiały",
-    "summary": "Strona produktowo-usługowa z katalogiem materiałów, kalkulatorem, wizualizacją elewacji i gazetką.",
-    "explanation": "Pokazujemy powiązanie strony firmowej z ofertą produktową oraz narzędziami pomagającymi przygotować zapytanie.",
+    "summary": "Hurtownia budowlana, w której klient sam znajdzie materiał, policzy koszt i zobaczy elewację w swoim kolorze.",
+    "explanation": "Katalog, kalkulator i gazetka pracują w jednym miejscu, więc zapytanie przychodzi już z numerem produktu i metrażem.",
     "features": [
       "Katalog materiałów",
       "Kalkulator",
@@ -52,16 +52,16 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "NAVORO HURT",
     "category": "www",
     "industry": "Hurtownie i handel B2B",
-    "summary": "Demonstracyjny serwis hurtowni z katalogiem produktów oraz gazetką promocyjną.",
-    "explanation": "Projekt pokazuje, jak odbiorca hurtowy może przeglądać asortyment i materiały ofertowe w jednym miejscu.",
+    "summary": "Serwis hurtowni, gdzie cały asortyment i aktualna gazetka leżą pod jednym adresem.",
+    "explanation": "Odbiorca B2B przegląda 17 produktów i pobiera ośmiostronicową gazetkę, zamiast prosić handlowca o plik.",
     "features": [
       "Katalog 17 produktów",
       "Gazetka 8-stronicowa PDF",
       "Oglądanie i pobieranie gazetki"
     ],
     "demoUrl": "https://navoro-hurt-koncepcja.vercel.app",
-    "image": "https://navoro-hurt-koncepcja.vercel.app/assets/gazetka-01.webp",
-    "alt": "Autentyczny materiał graficzny z demonstracji NAVORO HURT",
+    "image": "/portfolio/kadry/navoro-hurt.webp",
+    "alt": "Strona główna hurtowni NAVORO z kampanią produktową",
     "status": "projekt demonstracyjny",
     "featured": true
   },
@@ -70,16 +70,16 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "NEXIO ELEKTRO",
     "category": "www",
     "industry": "Elektrotechnika",
-    "summary": "Prezentacja oferty elektrycznej połączona z katalogiem i rozbudowaną gazetką.",
-    "explanation": "Punktem wyjścia jest szybkie znalezienie odpowiedniego działu oferty i przejście do materiału promocyjnego.",
+    "summary": "Oferta elektryczna poukładana tak, żeby instalator w kilka sekund trafił do swojego działu.",
+    "explanation": "Ze strony głównej prowadzi krótka droga do szesnastostronicowej gazetki z pełnym asortymentem.",
     "features": [
       "Prezentacja asortymentu",
       "Gazetka 16-stronicowa",
       "Nawigacja do gazetki ze strony głównej"
     ],
     "demoUrl": "https://nexio-elektro.vercel.app",
-    "image": "https://nexio-elektro.vercel.app/assets/gazetka/cover.webp",
-    "alt": "Autentyczny materiał graficzny z demonstracji NEXIO ELEKTRO",
+    "image": "/portfolio/kadry/nexio-elektro.webp",
+    "alt": "Strona główna NEXIO ELEKTRO z katalogiem materiałów",
     "status": "projekt demonstracyjny",
     "featured": true
   },
@@ -88,8 +88,8 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "MATERIVO",
     "category": "www",
     "industry": "Materiały budowlane",
-    "summary": "Koncepcja hurtowni budowlanej w dwóch wariantach estetycznych: Premium i Ekonomicznym.",
-    "explanation": "Jedna rodzina demonstracji pozwala porównać sposób eksponowania produktów oraz komunikowania promocji.",
+    "summary": "Ta sama hurtownia budowlana w dwóch odsłonach: premium i ekonomicznej.",
+    "explanation": "Dobrze widać, jak zmiana stylu zmienia odbiór identycznej oferty i tych samych promocji.",
     "features": [
       "Wariant Premium",
       "Wariant Ekonomiczny",
@@ -107,16 +107,16 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "SOLIDOM",
     "category": "www",
     "industry": "Usługi budowlane",
-    "summary": "Demonstracyjna prezentacja usług i realizacji firmy budowlano-remontowej.",
-    "explanation": "Przykład witryny nastawionej na czytelną ofertę i kontakt z wykonawcą.",
+    "summary": "Firma budowlano-remontowa z czytelną ofertą i realizacjami na pierwszym planie.",
+    "explanation": "Układ prowadzi od zakresu prac do kontaktu, bez przewijania przez ścianę tekstu.",
     "features": [
       "Oferta usług",
       "Prezentacja projektów",
       "Kontakt"
     ],
     "demoUrl": "https://solidom.vercel.app",
-    "image": "https://solidom.vercel.app/assets/hero.webp",
-    "alt": "Zdjęcie wykorzystane w demonstracji projektu",
+    "image": "/portfolio/kadry/solidom.webp",
+    "alt": "Strona główna SOLIDOM z realizacją domu jednorodzinnego",
     "status": "projekt demonstracyjny"
   },
   {
@@ -124,16 +124,16 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "SOLIDENT",
     "category": "www",
     "industry": "Stomatologia",
-    "summary": "Koncepcja witryny dla placówki stomatologicznej.",
-    "explanation": "Pokazuje uporządkowanie oferty medycznej i informacji potrzebnych przed wizytą.",
+    "summary": "Gabinet stomatologiczny z ofertą i wszystkim, co pacjent chce wiedzieć przed wizytą.",
+    "explanation": "Usługi, przygotowanie do zabiegu i telefon siedzą tam, gdzie pacjent ich szuka.",
     "features": [
       "Zakres usług",
       "Informacje dla pacjenta",
       "Kontakt"
     ],
     "demoUrl": "https://solident-mu.vercel.app",
-    "image": "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=60&w=3000",
-    "alt": "Zdjęcie wykorzystane w demonstracji projektu",
+    "image": "/portfolio/kadry/solident.webp",
+    "alt": "Strona główna gabinetu SOLIDENT",
     "status": "projekt demonstracyjny"
   },
   {
@@ -141,16 +141,16 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "BLACK HARBOR",
     "category": "www",
     "industry": "Auto detailing",
-    "summary": "Wizualna prezentacja pakietów detailingu i efektów prac.",
-    "explanation": "Projekt skoncentrowany na ofercie usług, zapytaniu o wycenę i prezentacji efektów.",
+    "summary": "Detailing pokazany efektami: pakiety, zdjęcia przed i po, szybka wycena.",
+    "explanation": "Ciemna oprawa zdjęć robi tu robotę, której w tej branży nie zastąpi żaden opis.",
     "features": [
       "Pakiety usług",
       "Galeria efektów",
       "Ścieżka wyceny"
     ],
     "demoUrl": "https://blackharbor.vercel.app",
-    "image": "https://blackharbor.vercel.app/assets/gallery-1.jpg",
-    "alt": "Zdjęcie wykorzystane w demonstracji projektu",
+    "image": "/portfolio/black-harbor-kadr.webp",
+    "alt": "Samochód po korekcie lakieru na stronie BLACK HARBOR",
     "status": "projekt demonstracyjny"
   },
   {
@@ -158,16 +158,16 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "ELTRAVIA Premium",
     "category": "www",
     "industry": "Usługi elektroinstalacyjne",
-    "summary": "Alternatywny kierunek witryny dla branży elektrycznej.",
-    "explanation": "Przykład wizualnego pozycjonowania marki technicznej na rynku usług premium.",
+    "summary": "Druga, ostrzejsza droga dla firmy elektrycznej: marka techniczna w wersji premium.",
+    "explanation": "Przykład na to, że ta sama usługa może wyglądać na podstawową albo na ekskluzywną.",
     "features": [
       "Prezentacja usług",
       "Wyrazisty kierunek graficzny",
       "Kontakt"
     ],
     "demoUrl": "https://eltravia-premium.vercel.app",
-    "image": "https://eltravia-premium.vercel.app/assets/gazetka/cover.webp",
-    "alt": "Zdjęcie wykorzystane w demonstracji projektu",
+    "image": "/portfolio/kadry/eltravia.webp",
+    "alt": "Strona główna ELTRAVIA w wersji premium",
     "status": "projekt demonstracyjny"
   },
   {
@@ -175,8 +175,8 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "Natura Studio",
     "category": "www",
     "industry": "Wellness i beauty",
-    "summary": "Demonstracja strony zabiegowej z ofertą i przykładową obsługą wizyt.",
-    "explanation": "Koncepcja strony i zaplecza firmy usługowej z naciskiem na wybór zabiegu.",
+    "summary": "Studio zabiegowe z ofertą i obsługą wizyt po stronie właścicielki.",
+    "explanation": "Klientka wybiera zabieg i się umawia, a za kulisami widać terminarz.",
     "features": [
       "Oferta zabiegów",
       "Ścieżka rezerwacji",
@@ -192,8 +192,8 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "Bistro Forma",
     "category": "www",
     "industry": "Gastronomia",
-    "summary": "Demonstracja witryny lokalu gastronomicznego.",
-    "explanation": "Ułatwia przejście od menu i informacji o lokalu do zapytania lub rezerwacji.",
+    "summary": "Lokal gastronomiczny z menu i rezerwacją w zasięgu jednego kliknięcia.",
+    "explanation": "Gość sprawdza kartę, godziny i dojazd, a potem pisze albo rezerwuje stolik.",
     "features": [
       "Menu",
       "Informacje dla gości",
@@ -209,8 +209,8 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "Dom Dobry",
     "category": "www",
     "industry": "Nieruchomości",
-    "summary": "Koncepcyjna prezentacja inwestycji i mieszkań.",
-    "explanation": "Scenariusz porównywania lokali, parametrów i dostępności.",
+    "summary": "Inwestycja mieszkaniowa z kartami lokali i ich dostępnością.",
+    "explanation": "Kupujący porównuje metraż, piętro i cenę zamiast prosić o PDF z ofertą.",
     "features": [
       "Karty lokali",
       "Przykładowa dostępność",
@@ -226,8 +226,8 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "PION",
     "category": "przed-po",
     "industry": "Modernizacja stron",
-    "summary": "Symulowana modernizacja strony obiektu wspinaczkowego.",
-    "explanation": "Pokazuje zmianę kompozycji i czytelności oferty. Stan „przed” jest fikcyjny.",
+    "summary": "Ścianka wspinaczkowa przed i po przebudowie strony.",
+    "explanation": "Po lewej gąszcz informacji, po prawej jasna oferta i godziny otwarcia. To projekt demonstracyjny: oba widoki, przed i po, zaprojektowaliśmy sami.",
     "features": [
       "Porównanie przed i po",
       "Nowa hierarchia informacji"
@@ -241,8 +241,8 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "FORMA",
     "category": "przed-po",
     "industry": "Ogrody i projektowanie",
-    "summary": "Porównanie koncepcyjne strony pracowni ogrodów.",
-    "explanation": "Projekt obrazuje zmianę wizualną i uproszczenie układu treści.",
+    "summary": "Pracownia ogrodów po uporządkowaniu strony.",
+    "explanation": "Mniej ozdobników, więcej zdjęć realizacji i prosta droga do wyceny. To projekt demonstracyjny, oba warianty są nasze.",
     "features": [
       "Porównanie przed i po",
       "Prezentacja usług"
@@ -256,8 +256,8 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "OKRUCH",
     "category": "przed-po",
     "industry": "Piekarnia i gastronomia",
-    "summary": "Autorska symulacja przebudowy strony piekarni OKRUCH.",
-    "explanation": "Porównanie przedstawia dwa fikcyjne projekty, a nie przed i po pracy u rzeczywistego klienta.",
+    "summary": "Piekarnia OKRUCH w starej i nowej odsłonie.",
+    "explanation": "Zmiana typografii i zdjęć robi tu większą różnicę niż nowe treści. To projekt demonstracyjny, a nie przebudowa cudzej strony: stara i nowa wersja są nasze.",
     "features": [
       "Układ przed i po",
       "Zdjęcia i typografia",
@@ -273,8 +273,8 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "STYK",
     "category": "www",
     "industry": "Elektrotechnika",
-    "summary": "Wizualizacja strony nowej firmy elektrycznej.",
-    "explanation": "Koncepcja widoku na laptopie i telefonie, bez działającego zaplecza.",
+    "summary": "Nowa firma elektryczna, która od pierwszego dnia musi wyglądać solidnie.",
+    "explanation": "Widok na laptopie i telefonie, oparty na jednym mocnym zdjęciu i telefonie w zasięgu kciuka.",
     "features": [
       "Projekt graficzny",
       "Widok desktop i mobile"
@@ -288,8 +288,8 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "GLINA",
     "category": "www",
     "industry": "Rękodzieło",
-    "summary": "Wizualizacja strony pracowni ceramiki.",
-    "explanation": "Projekt przedstawia przykładową estetykę i układ strony.",
+    "summary": "Pracownia ceramiki, w której zdjęcia prowadzą cały układ.",
+    "explanation": "Spokojna typografia i dużo powietrza, żeby nic nie konkurowało z naczyniami.",
     "features": [
       "Koncepcja WWW",
       "Widok desktop i mobile"
@@ -303,8 +303,8 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "TROP",
     "category": "www",
     "industry": "Weterynaria",
-    "summary": "Wizualizacja strony gabinetu weterynaryjnego.",
-    "explanation": "Koncepcja pokazuje organizację komunikacji usług i kontaktu.",
+    "summary": "Gabinet weterynaryjny z informacjami, których szuka się w pośpiechu.",
+    "explanation": "Godziny, dyżur i numer telefonu na wierzchu, reszta oferty niżej.",
     "features": [
       "Koncepcja WWW",
       "Widok desktop i mobile"
@@ -318,8 +318,8 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "SZLAK",
     "category": "logo",
     "industry": "Identyfikacja wizualna",
-    "summary": "Koncepcja znaku i jego zastosowań na materiałach marki.",
-    "explanation": "Pokazujemy znak, wersję odwróconą oraz przykłady użycia.",
+    "summary": "Znak dla marki outdoorowej razem z jego życiem na materiałach.",
+    "explanation": "Wersja podstawowa, odwrócona, metka i wizytówka, czyli wszystko, o co poprosi drukarnia.",
     "features": [
       "Znak",
       "Wersja odwrócona",
@@ -335,8 +335,8 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "ŁODYGA",
     "category": "logo",
     "industry": "Identyfikacja wizualna",
-    "summary": "Koncepcja identyfikacji kwiaciarni.",
-    "explanation": "Znak i zastosowania na papierze, opakowaniach oraz wizytówkach.",
+    "summary": "Kwiaciarnia ŁODYGA: znak, który dobrze wygląda też na papierze i wstążce.",
+    "explanation": "Logo, wizytówka i opakowania złożone w jeden spójny zestaw.",
     "features": [
       "Logo",
       "Wizytówka",
@@ -351,8 +351,8 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "PALONA",
     "category": "logo",
     "industry": "Identyfikacja wizualna",
-    "summary": "Identyfikacja palarni kawy.",
-    "explanation": "Zestawienie znaku z projektami opakowań i materiałów firmowych.",
+    "summary": "Palarnia kawy z identyfikacją rozpisaną na opakowania.",
+    "explanation": "Znak, etykieta paczki i materiały firmowe trzymają jeden charakter.",
     "features": [
       "Znak",
       "Opakowania",
@@ -367,8 +367,8 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "PELETON",
     "category": "gazetki",
     "industry": "Handel i reklama",
-    "summary": "Koncepcja gazetki promocyjnej sklepu rowerowego.",
-    "explanation": "Przykładowe okładka, usługi i rozkładówka reklamowa.",
+    "summary": "Gazetka sklepu rowerowego na początek sezonu.",
+    "explanation": "Okładka, rozkładówka z rowerami i strona serwisu, czyli to, po co klient sięga najpierw.",
     "features": [
       "Okładka",
       "Rozkładówka",
@@ -383,8 +383,8 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "POGŁOS",
     "category": "gazetki",
     "industry": "Kultura i wydarzenia",
-    "summary": "Wizualizacja gazetki muzycznej.",
-    "explanation": "Projekt pokazuje charakterystyczną okładkę oraz środek publikacji.",
+    "summary": "Gazetka muzyczna z mocną okładką.",
+    "explanation": "Wyrazista typografia i duże kadry, w sam raz dla klubu albo festiwalu.",
     "features": [
       "Okładka",
       "Rozkładówka",
@@ -399,8 +399,8 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "DALEJ",
     "category": "gazetki",
     "industry": "Turystyka",
-    "summary": "Koncepcja gazetki podróżniczej.",
-    "explanation": "Pokazuje układ materiału promocyjnego biura podróży.",
+    "summary": "Katalog biura podróży z kierunkami na sezon.",
+    "explanation": "Układ redakcyjny, który pozwala opisać wyjazd bez ściany tekstu.",
     "features": [
       "Okładka",
       "Układ redakcyjny",
@@ -415,8 +415,8 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "DOBRY KOSZYK",
     "category": "gazetki",
     "industry": "FMCG i handel",
-    "summary": "Gazetka produktowa delikatesów.",
-    "explanation": "Przykładowa oferta z produktami i fikcyjnymi cenami.",
+    "summary": "Gazetka delikatesów z ofertą tygodnia.",
+    "explanation": "Produkty i hierarchia promocji poukładane tak, jak czyta je klient przy półce. Ceny są przykładowe.",
     "features": [
       "Okładka",
       "Rozkładówka produktowa",
@@ -431,8 +431,8 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "MODUŁ",
     "category": "gazetki",
     "industry": "Meble i wyposażenie",
-    "summary": "Koncepcja gazetki meblowej.",
-    "explanation": "Pokazuje ekspozycję asortymentu, okładkę i rozkładówkę.",
+    "summary": "Katalog mebli, w którym asortyment ma się czym pochwalić.",
+    "explanation": "Okładka i rozkładówki pokazują kolekcje bez tłoku na stronie.",
     "features": [
       "Gazetka meblowa",
       "Układ oferty",
@@ -447,8 +447,8 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "ZIELONY SEZON",
     "category": "gazetki",
     "industry": "Ogród",
-    "summary": "Koncepcja gazetki ogrodniczej.",
-    "explanation": "Przykładowy układ sezonowej oferty produktów z cenami.",
+    "summary": "Gazetka ogrodnicza na wiosnę i lato.",
+    "explanation": "Sezonowa oferta z cenami, rozpisana na kategorie roślin i narzędzi.",
     "features": [
       "Gazetka sezonowa",
       "Produkty",
@@ -463,16 +463,16 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "Gazetka NAVORO HURT",
     "category": "gazetki",
     "industry": "Hurtownie i handel B2B",
-    "summary": "Gazetka promocyjna umieszczona w demonstracyjnej witrynie hurtowni NAVORO HURT.",
-    "explanation": "W projekcie połączono katalog 17 produktów z 8-stronicową gazetką PDF dostępną do przeglądania i pobrania na stronie demonstracyjnej.",
+    "summary": "Ośmiostronicowa gazetka wpięta wprost w stronę hurtowni NAVORO.",
+    "explanation": "Klient przegląda ją w przeglądarce albo pobiera PDF, bez proszenia o plik mailem.",
     "features": [
       "8-stronicowy PDF",
       "Przeglądanie stron",
       "Pobranie pliku ze strony demo"
     ],
     "demoUrl": "https://navoro-hurt-koncepcja.vercel.app",
-    "image": "https://navoro-hurt-koncepcja.vercel.app/assets/gazetka-01.webp",
-    "alt": "Autentyczny materiał graficzny z demonstracji Gazetka NAVORO HURT",
+    "image": "/portfolio/kadry/gazetka-navoro.webp",
+    "alt": "Okładka gazetki promocyjnej NAVORO HURT",
     "status": "materiał koncepcyjny",
     "featured": true
   },
@@ -481,16 +481,16 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "Gazetka NEXIO ELEKTRO",
     "category": "gazetki",
     "industry": "Elektrotechnika",
-    "summary": "16-stronicowa gazetka dostępna z witryny demonstracyjnej NEXIO ELEKTRO.",
-    "explanation": "Prezentacja rozbudowanej oferty produktowej z poziomu strony internetowej.",
+    "summary": "Szesnaście stron oferty elektrycznej dostępnych prosto ze strony głównej.",
+    "explanation": "Jedno kliknięcie z menu prowadzi do pełnego materiału promocyjnego.",
     "features": [
       "16 stron",
       "Przejście z witryny do gazetki",
       "Oferta produktowa"
     ],
     "demoUrl": "https://nexio-elektro.vercel.app/gazetka.html",
-    "image": "https://nexio-elektro.vercel.app/assets/gazetka/cover.webp",
-    "alt": "Autentyczny materiał graficzny z demonstracji Gazetka NEXIO ELEKTRO",
+    "image": "/portfolio/kadry/gazetka-nexio.webp",
+    "alt": "Rozkładówka gazetki NEXIO ELEKTRO",
     "status": "materiał koncepcyjny",
     "featured": true
   },
@@ -499,16 +499,16 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "Gazetka BUDRIVO",
     "category": "gazetki",
     "industry": "Budownictwo",
-    "summary": "Gazetka zintegrowana z demonstracyjnym serwisem BUDRIVO.",
-    "explanation": "Pokazuje, jak promocyjny materiał produktowy może funkcjonować obok katalogu i kalkulatora.",
+    "summary": "Gazetka BUDRIVO działająca obok katalogu i kalkulatora.",
+    "explanation": "Promocje i produkty trzymają jedną linię graficzną ze stroną.",
     "features": [
       "Oferta produktowa",
       "Przejście z witryny",
       "Połączenie z katalogiem"
     ],
     "demoUrl": "https://budrivo.vercel.app",
-    "image": "https://budrivo.vercel.app/assets/budrivo-19.webp",
-    "alt": "Autentyczny materiał graficzny z demonstracji Gazetka BUDRIVO",
+    "image": "/portfolio/kadry/gazetka-budrivo.webp",
+    "alt": "Sekcja gazetki promocyjnej na stronie BUDRIVO",
     "status": "materiał koncepcyjny"
   },
   {
@@ -516,16 +516,16 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "Gazetka MATERIVO",
     "category": "gazetki",
     "industry": "Materiał budowlany",
-    "summary": "Gazetka online w wariancie ekonomicznym MATERIVO.",
-    "explanation": "Wspólny projekt strony i materiału promocyjnego dla sklepu budowlanego.",
+    "summary": "Gazetka online w ekonomicznej odsłonie MATERIVO.",
+    "explanation": "Strona i materiał promocyjny powstały razem, więc wyglądają jak jedna marka.",
     "features": [
       "Gazetka online",
       "Oferta produktowa",
       "Integracja z serwisem"
     ],
     "demoUrl": "https://materivo-eko.vercel.app",
-    "image": "https://materivo3.netlify.app/assets/dach.jpg",
-    "alt": "Autentyczny materiał graficzny z demonstracji Gazetka MATERIVO",
+    "image": "/portfolio/kadry/gazetka-materivo.webp",
+    "alt": "Gazetka online w serwisie MATERIVO",
     "status": "materiał koncepcyjny"
   },
   {
@@ -533,15 +533,15 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "PrintFlow 360",
     "category": "aplikacje",
     "industry": "Poligrafia i produkcja",
-    "summary": "Demonstracja procesu od zapytania i wyceny przez produkcję i kontrolę jakości do faktury.",
-    "explanation": "Wariant obejmuje portal, scenariusz przebiegu pracy oraz powiązany skoroszyt Excel.",
+    "summary": "Drukarnia od zapytania do faktury: wycena, produkcja, kontrola jakości, rozliczenie.",
+    "explanation": "Portal z przebiegiem zlecenia i powiązany skoroszyt Excel na tych samych danych.",
     "features": [
       "Proces Order-to-Cash",
       "Dane demonstracyjne",
       "KPI i dokumentacja"
     ],
     "demoUrl": "https://github.com/lukaszst-cz/printflow-360",
-    "image": "/tool-printflow-360-v2.jpg",
+    "image": "/portfolio/kadry/printflow.webp",
     "alt": "Prezentacja koncepcyjna projektu PrintFlow 360",
     "status": "narzędzie lub demonstracja"
   },
@@ -550,15 +550,15 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "TransportFlow 360",
     "category": "aplikacje",
     "industry": "Transport i logistyka",
-    "summary": "Przebieg zlecenia transportowego od kalkulacji do rozliczenia.",
-    "explanation": "Przykładowe role, pojazdy, trasy, dokumenty i wyniki.",
+    "summary": "Zlecenie transportowe od kalkulacji po rozliczenie kierowcy.",
+    "explanation": "Role, pojazdy, trasy i dokumenty w jednym panelu, z kosztem i marżą na końcu.",
     "features": [
       "Panel demonstracyjny",
       "Koszty i marża",
       "Przykładowe dokumenty"
     ],
     "demoUrl": "/realizacje/transportflow",
-    "image": "/tool-transportflow-360-v2.jpg",
+    "image": "/portfolio/kadry/transportflow.webp",
     "alt": "Prezentacja koncepcyjna projektu TransportFlow 360",
     "status": "narzędzie lub demonstracja"
   },
@@ -567,15 +567,15 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "WorkshopFlow 360",
     "category": "aplikacje",
     "industry": "Serwis samochodowy",
-    "summary": "Demonstracja obiegu zgłoszeń i napraw w warsztacie.",
-    "explanation": "Proces obejmuje etap przyjęcia, pracy i przekazania pojazdu.",
+    "summary": "Warsztat i obieg zgłoszeń: przyjęcie, naprawa, wydanie auta.",
+    "explanation": "Statusy zleceń widzi i mechanik, i osoba przyjmująca samochód.",
     "features": [
       "Statusy zleceń",
       "Kolejne etapy obsługi",
       "Dane testowe"
     ],
     "demoUrl": "https://github.com/lukaszst-cz/workshopflow-360",
-    "image": "/tool-workshopflow-360-photo.png",
+    "image": "/portfolio/kadry/workshopflow.webp",
     "alt": "Prezentacja koncepcyjna projektu WorkshopFlow 360",
     "status": "narzędzie lub demonstracja"
   },
@@ -584,15 +584,15 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "Auto Naprawa",
     "category": "aplikacje",
     "industry": "Warsztat",
-    "summary": "Demonstracja portalu obsługi zgłoszeń i kosztorysów warsztatowych.",
-    "explanation": "Przykładowy proces obsługi naprawy oraz panel kierownika.",
+    "summary": "Portal warsztatowy ze zgłoszeniami i kosztorysami.",
+    "explanation": "Klient śledzi naprawę, kierownik ma podgląd na wszystkie zlecenia.",
     "features": [
       "Portal klienta",
       "Wycena",
       "Status naprawy"
     ],
     "demoUrl": "/demo/auto-naprawa/",
-    "image": "/portfolio-auto-naprawa-live.png",
+    "image": "/portfolio/kadry/auto-naprawa.webp",
     "alt": "Prezentacja koncepcyjna projektu Auto Naprawa",
     "status": "narzędzie lub demonstracja"
   },
@@ -601,15 +601,15 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "Lead & Offer Copilot",
     "category": "aplikacje",
     "industry": "Ofertowanie",
-    "summary": "Narzędzie do uporządkowania zapytania i przygotowania szkicu oferty.",
-    "explanation": "Analizuje braki danych i proponuje tekst do ręcznego sprawdzenia.",
+    "summary": "Narzędzie, które porządkuje zapytanie i podsuwa szkic oferty.",
+    "explanation": "Wskazuje, czego brakuje w mailu od klienta, i proponuje tekst do Twojej korekty.",
     "features": [
       "Analiza zapytania",
       "Lista braków",
       "Szkic odpowiedzi"
     ],
     "demoUrl": "https://lead-offer-zm.pages.dev/",
-    "image": "/tool-lead-offer-copilot-v2.jpg",
+    "image": "/portfolio/kadry/lead-offer-copilot.webp",
     "alt": "Prezentacja koncepcyjna projektu Lead & Offer Copilot",
     "status": "narzędzie lub demonstracja"
   },
@@ -618,15 +618,15 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "Document Checker",
     "category": "aplikacje",
     "industry": "Kontrola dokumentów",
-    "summary": "Lokalna wstępna weryfikacja danych w Excelu, CSV i PDF.",
-    "explanation": "Pomaga znaleźć niezgodności kwot i pól przed wysłaniem.",
+    "summary": "Szybkie sprawdzenie Excela, CSV i PDF przed wysłaniem.",
+    "explanation": "Wyłapuje rozjazdy kwot i puste pola, liczy w przeglądarce, bez wysyłania plików na serwer.",
     "features": [
       "XLSX, CSV, PDF",
       "Kontrola formatów",
       "Praca w przeglądarce"
     ],
     "demoUrl": "https://document-checker-zm.pages.dev/",
-    "image": "/tool-document-checker-v2.jpg",
+    "image": "/portfolio/kadry/document-checker.webp",
     "alt": "Prezentacja koncepcyjna projektu Document Checker",
     "status": "narzędzie lub demonstracja"
   },
@@ -635,15 +635,15 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "DocPilot",
     "category": "aplikacje",
     "industry": "Zarządzanie dokumentami",
-    "summary": "Program do pracy z dokumentami, wyszukiwaniem i terminami.",
-    "explanation": "Pokazuje pracę na plikach i OCR z lokalnym przechowywaniem danych.",
+    "summary": "Program do dokumentów, wyszukiwania i pilnowania terminów.",
+    "explanation": "Rozpoznaje tekst ze skanów i szuka po treści, a dane zostają na Twoim dysku.",
     "features": [
       "OCR",
       "Wyszukiwanie",
       "Terminy"
     ],
     "demoUrl": "https://github.com/lukaszst-cz/docpilot",
-    "image": "/program-docpilot-photo-v3.png",
+    "image": "/portfolio/kadry/docpilot.webp",
     "alt": "Prezentacja koncepcyjna projektu DocPilot",
     "status": "narzędzie lub demonstracja"
   },
@@ -652,16 +652,16 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "Aktywnik+",
     "category": "aplikacje",
     "industry": "Edukacja i aktywność",
-    "summary": "Aktualnie rozwijana aplikacja PWA dla osób indywidualnych i rodzin, w fazie pilotażowej.",
-    "explanation": "Aktywnik+ 0.5.0-beta.4: tryb Dla siebie, tryb Rodzina, lokalny zapis aktywności, eksport danych oraz rozwijana synchronizacja. Widok graficzny ma charakter poglądowy; aktualną funkcjonalność pokazuje demonstracja.",
+    "summary": "Aplikacja PWA do aktywności dla siebie i dla rodziny, w fazie pilotażu.",
+    "explanation": "Wersja 0.5.0-beta.4: tryb Dla siebie, tryb Rodzina, zapis bez internetu, eksport danych i synchronizacja w budowie.",
     "features": [
       "Dziennik aktywności",
       "Tryb rodzinny",
       "PWA"
     ],
     "demoUrl": "https://aktywnik-plus.vercel.app",
-    "image": "/portfolio/aktywnik-plus-aktualny-ekran.png",
-    "alt": "Zrzut aktualnej wersji aplikacji Aktywnik+ 0.5 beta.4",
+    "image": "/portfolio/aktywnik-plus-okladka.svg",
+    "alt": "Okładka Aktywnika+: znak aplikacji i widok dziennika aktywności",
     "status": "aplikacja rozwijana, beta 0.5.0-beta.4",
     "featured": true
   },
@@ -670,15 +670,15 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "CzyToŚciema?",
     "category": "aplikacje",
     "industry": "Bezpieczeństwo cyfrowe",
-    "summary": "Projekt sprawdzania sygnałów ostrzegawczych w treściach i linkach.",
-    "explanation": "Pomaga ocenić podejrzane wiadomości, ale nie daje gwarancji bezpieczeństwa.",
+    "summary": "Sprawdzanie podejrzanych wiadomości, linków i kodów QR.",
+    "explanation": "Pokazuje sygnały ostrzegawcze w treści, ale nie zastąpi ostrożności.",
     "features": [
       "SMS i e-mail",
       "Linki i QR",
       "Lokalna analiza"
     ],
     "demoUrl": "https://github.com/lukaszst-cz/czy-to-sciema",
-    "image": "/program-czy-to-sciema-photo-v3.png",
+    "image": "/portfolio/kadry/czy-to-sciema.webp",
     "alt": "Prezentacja koncepcyjna projektu CzyToŚciema?",
     "status": "narzędzie lub demonstracja"
   },
@@ -687,15 +687,15 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "Fleet Ops Desk",
     "category": "aplikacje",
     "industry": "Flota i administracja",
-    "summary": "Demonstracyjna ewidencja floty, dokumentów i kosztów.",
-    "explanation": "Projekt Python i SQLite z przykładowymi danymi.",
+    "summary": "Ewidencja floty: pojazdy, umowy, terminy i koszty.",
+    "explanation": "Python i SQLite, z przypomnieniem o kończących się przeglądach i polisach.",
     "features": [
       "Pojazdy i umowy",
       "Terminy",
       "Analizy kosztów"
     ],
     "demoUrl": "https://github.com/lukaszst-cz/fleet-ops-desk",
-    "image": "/program-fleet-ops-desk-photo-v3.png",
+    "image": "/portfolio/kadry/fleet-ops-desk.webp",
     "alt": "Prezentacja koncepcyjna projektu Fleet Ops Desk",
     "status": "narzędzie lub demonstracja"
   },
@@ -704,14 +704,14 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "Arkusz Excel PrintFlow 360",
     "category": "excel",
     "industry": "Poligrafia i produkcja",
-    "summary": "Skoroszyt demonstracyjny do kalkulacji, produkcji i raportowania.",
-    "explanation": "W portfolio pokazujemy przykłady pracy na syntetycznych danych.",
+    "summary": "Skoroszyt do kalkulacji, produkcji i raportów drukarni.",
+    "explanation": "Formuły liczą koszt zlecenia, a zestawienia pokazują wynik miesiąca. Liczby w przykładzie są wymyślone.",
     "features": [
       "Kalkulacje",
       "Raportowanie",
       "Zestawienia KPI"
     ],
-    "image": "/tool-printflow-360-v2.jpg",
+    "image": "/portfolio/kadry/printflow.webp",
     "alt": "Prezentacja koncepcyjna projektu Arkusz Excel PrintFlow 360",
     "status": "demonstracja, dane syntetyczne"
   },
@@ -720,14 +720,14 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "Arkusz Excel TransportFlow 360",
     "category": "excel",
     "industry": "Transport i logistyka",
-    "summary": "Skoroszyt do analizy przykładowych zleceń i kosztów transportu.",
-    "explanation": "Pomaga pokazać sposób liczenia kosztów, marży i wskaźników.",
+    "summary": "Arkusz do liczenia kosztów tras, marży i wyniku przewoźnika.",
+    "explanation": "Widać w nim, skąd bierze się wynik na zleceniu, pozycja po pozycji.",
     "features": [
       "Koszty tras",
       "Marża",
       "Raportowanie"
     ],
-    "image": "/tool-transportflow-360-v2.jpg",
+    "image": "/portfolio/kadry/transportflow.webp",
     "alt": "Prezentacja koncepcyjna projektu Arkusz Excel TransportFlow 360",
     "status": "demonstracja, dane syntetyczne"
   },
@@ -736,8 +736,8 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "Dashboard operacyjny",
     "category": "excel",
     "industry": "Zarządzanie procesem",
-    "summary": "Przykładowy panel zestawień i wskaźników w Excelu.",
-    "explanation": "Pokazuje możliwy sposób zestawiania danych operacyjnych; pliki źródłowe nie są publiczne.",
+    "summary": "Panel wskaźników operacyjnych w samym Excelu.",
+    "explanation": "Zestawienia i wykresy liczą się z arkusza danych, bez dodatkowych narzędzi.",
     "features": [
       "Zestawienia",
       "KPI",
@@ -752,8 +752,8 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "Kalkulator wariantów oferty",
     "category": "excel",
     "industry": "Wyceny usług",
-    "summary": "Przykładowy arkusz porównujący zakres i koszty wariantów usługi.",
-    "explanation": "Do portfolio trafi wyłącznie anonimowy wariant demonstracyjny, bez wycen konkretnych firm.",
+    "summary": "Kalkulator wariantów oferty: zakres obok kosztu.",
+    "explanation": "Porównuje trzy warianty usługi i pokazuje klientowi, za co dokładnie płaci.",
     "features": [
       "Warianty zakresu",
       "Kalkulacja kosztów",
@@ -768,8 +768,8 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "Rejestr kontaktów i działań w Excelu",
     "category": "excel",
     "industry": "Sprzedaż i CRM",
-    "summary": "Przykład uporządkowania kontaktów, statusów i kolejnych działań.",
-    "explanation": "Publiczny opis i zrzuty będą oparte wyłącznie na fikcyjnych danych, bez baz prospektów.",
+    "summary": "Prosty rejestr kontaktów, statusów i kolejnych kroków.",
+    "explanation": "Dla firmy, której pełny CRM na razie zwyczajnie się nie opłaca. Dane w przykładzie są fikcyjne.",
     "features": [
       "Status kontaktu",
       "Plan działań",
