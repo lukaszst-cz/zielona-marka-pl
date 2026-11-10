@@ -1116,3 +1116,120 @@
   .zmx-project-card:hover .zmp-project-open:after{animation:none}
   .zmx-project-card .zmp-project-info h3{transition:none}
 }
+
+/* ============================================================
+   Podstrony prac: spokojniejsze tło (las nie ma bić zielenią)
+   i mocniejszy efekt na okładce.
+   ============================================================ */
+.zmp-page.zmp-detail{
+  background:
+    linear-gradient(180deg,rgba(3,20,14,.9),rgba(5,28,19,.8) 45%,rgba(3,20,14,.92)),
+    url('/brand-review-v3/forest-continuous.webp') center center/cover scroll;
+  background-color:#07241a;
+}
+.zmp-page.zmp-detail:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  backdrop-filter:saturate(.72) blur(1.5px);
+  -webkit-backdrop-filter:saturate(.72) blur(1.5px);
+}
+.zmp-detail .zmp-detail-hero:before{
+  background:radial-gradient(520px circle at var(--zmx-hx) var(--zmx-hy),rgba(182,251,115,.12),transparent 68%);
+}
+/* Okładka pracy reaguje na kursor: lekkie przechylenie i refleks. */
+.zmp-detail .zmx-detail-stage{
+  --zmx-rx:0deg;
+  --zmx-ry:0deg;
+  --zmx-sx:50%;
+  --zmx-sy:40%;
+  transform-style:preserve-3d;
+  transform:perspective(1100px) rotateX(var(--zmx-rx)) rotateY(var(--zmx-ry));
+  transition:transform .35s cubic-bezier(.2,.75,.3,1),box-shadow .5s ease;
+}
+.zmp-detail .zmx-detail-stage:hover{transform:perspective(1100px) rotateX(var(--zmx-rx)) rotateY(var(--zmx-ry)) translateY(-5px)}
+.zmp-detail .zmx-detail-stage:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:3;
+  pointer-events:none;
+  opacity:0;
+  transition:opacity .35s ease;
+  background:radial-gradient(420px circle at var(--zmx-sx) var(--zmx-sy),rgba(255,255,255,.18),transparent 62%);
+}
+.zmp-detail .zmx-detail-stage:hover:after{opacity:1}
+/* Cienka zielona nić pod nagłówkiem sekcji, rysowana przy wejściu. */
+.zmp-detail .zmx-reveal .zmp-overline{position:relative;display:inline-flex;align-items:center;padding-bottom:9px}
+.zmp-detail .zmx-reveal .zmp-overline:after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  height:2px;
+  width:0;
+  border-radius:2px;
+  background:linear-gradient(90deg,#b6fb73,rgba(182,251,115,0));
+  transition:width .9s cubic-bezier(.2,.75,.3,1) .25s;
+}
+.zmp-detail .zmx-reveal.is-in .zmp-overline:after{width:100%}
+.zmp-detail .zmp-related>div>a{
+  position:relative;
+  overflow:hidden;
+  transition:transform .3s cubic-bezier(.2,.75,.3,1),border-color .3s ease,background .3s ease;
+}
+.zmp-detail .zmp-related>div>a:hover{
+  transform:translateY(-4px);
+  border-color:rgba(182,251,115,.55);
+  background:rgba(27,74,53,.6);
+}
+
+/* ============================================================
+   Karty katalogu: przechylenie za kursorem, parallax okładki
+   i ukośny błysk po całej karcie.
+   ============================================================ */
+.zmx-project-card{
+  --zmx-rx:0deg;
+  --zmx-ry:0deg;
+  --zmx-px:0px;
+  --zmx-py:0px;
+  transform-style:preserve-3d;
+}
+.zmx-project-card.is-revealed{
+  transform:perspective(1200px) rotateX(var(--zmx-rx)) rotateY(var(--zmx-ry));
+}
+.zmx-project-card.is-revealed:hover{
+  transform:perspective(1200px) rotateX(var(--zmx-rx)) rotateY(var(--zmx-ry)) translateY(-6px);
+}
+.zmx-project-card .zmp-project-photo{overflow:hidden}
+.zmx-project-card .zmp-project-photo .zmx-cover{
+  transition:transform .45s cubic-bezier(.2,.75,.3,1);
+}
+.zmx-project-card:hover .zmp-project-photo .zmx-cover{
+  transform:scale(1.07) translate(var(--zmx-px),var(--zmx-py));
+}
+.zmx-project-card .zmp-project-info{transform:translateZ(18px)}
+.zmx-project-card .zmp-project-photo:before{
+  content:"";
+  position:absolute;
+  inset:-40%;
+  z-index:2;
+  pointer-events:none;
+  opacity:0;
+  transform:translateX(-80%) rotate(14deg);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.26),transparent);
+  width:45%;
+}
+.zmx-project-card:hover .zmp-project-photo:before{opacity:1;animation:zmx-card-flash .85s ease forwards}
+@keyframes zmx-card-flash{to{transform:translateX(320%) rotate(14deg)}}
+@media(prefers-reduced-motion:reduce){
+  .zmx-project-card.is-revealed,
+  .zmx-project-card.is-revealed:hover,
+  .zmp-detail .zmx-detail-stage,
+  .zmp-detail .zmx-detail-stage:hover{transform:none}
+  .zmx-project-card:hover .zmp-project-photo .zmx-cover{transform:none}
+  .zmx-project-card:hover .zmp-project-photo:before{animation:none;opacity:0}
+  .zmp-detail .zmx-reveal .zmp-overline:after{transition:none;width:100%}
+}

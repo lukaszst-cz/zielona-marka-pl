@@ -24,6 +24,23 @@ export default function DetailMotion() {
     parts.forEach(part => observer.observe(part));
 
     const hero = document.querySelector<HTMLElement>(".zmp-detail-hero");
+    const stage = document.querySelector<HTMLElement>(".zmx-detail-stage");
+    const onStageMove = (event: PointerEvent) => {
+      if (!stage || event.pointerType !== "mouse") return;
+      const box = stage.getBoundingClientRect();
+      const px = (event.clientX - box.left) / box.width;
+      const py = (event.clientY - box.top) / box.height;
+      stage.style.setProperty("--zmx-rx", `${(py - .5) * -6}deg`);
+      stage.style.setProperty("--zmx-ry", `${(px - .5) * 8}deg`);
+      stage.style.setProperty("--zmx-sx", `${px * 100}%`);
+      stage.style.setProperty("--zmx-sy", `${py * 100}%`);
+    };
+    const onStageLeave = () => {
+      stage?.style.setProperty("--zmx-rx", "0deg");
+      stage?.style.setProperty("--zmx-ry", "0deg");
+    };
+    stage?.addEventListener("pointermove", onStageMove);
+    stage?.addEventListener("pointerleave", onStageLeave);
     const onMove = (event: PointerEvent) => {
       if (!hero || event.pointerType !== "mouse") return;
       const box = hero.getBoundingClientRect();
@@ -34,6 +51,8 @@ export default function DetailMotion() {
     return () => {
       observer.disconnect();
       hero?.removeEventListener("pointermove", onMove);
+      stage?.removeEventListener("pointermove", onStageMove);
+      stage?.removeEventListener("pointerleave", onStageLeave);
     };
   }, []);
 

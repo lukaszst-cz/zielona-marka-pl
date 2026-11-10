@@ -305,8 +305,21 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
               if (reducedMotion) return;
               const card = event.currentTarget;
               const box = card.getBoundingClientRect();
+              const px = (event.clientX - box.left) / box.width;
+              const py = (event.clientY - box.top) / box.height;
               card.style.setProperty("--zmx-mx", `${event.clientX - box.left}px`);
               card.style.setProperty("--zmx-my", `${event.clientY - box.top}px`);
+              card.style.setProperty("--zmx-rx", `${(py - .5) * -5}deg`);
+              card.style.setProperty("--zmx-ry", `${(px - .5) * 6}deg`);
+              card.style.setProperty("--zmx-px", `${(px - .5) * -14}px`);
+              card.style.setProperty("--zmx-py", `${(py - .5) * -10}px`);
+            }}
+            onMouseLeave={event => {
+              const card = event.currentTarget;
+              card.style.setProperty("--zmx-rx", "0deg");
+              card.style.setProperty("--zmx-ry", "0deg");
+              card.style.setProperty("--zmx-px", "0px");
+              card.style.setProperty("--zmx-py", "0px");
             }}>
             <Link href={`/portfolio/${item.slug}`} className="zmp-project-photo" data-media={mediaPresentation(item)} data-project={item.slug} aria-label={`Poznaj projekt ${item.title}`}>
               <ProjectCover slug={item.slug} title={item.title} image={item.image} alt={item.alt} />
