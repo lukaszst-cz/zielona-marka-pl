@@ -41,6 +41,20 @@ function mediaPresentation(item: PortfolioItem): "screen" | "art" | "photo" {
   return "photo";
 }
 
+/* W pasku adresu pokazujemy prawdziwy adres demonstracji, a bez niej rodzaj pracy. */
+function addressLabel(item: PortfolioItem) {
+  const url = item.demoUrl;
+  if (url && url.startsWith("http")) {
+    try {
+      return new URL(url).hostname.replace(/^www\./, "");
+    } catch {
+      return cardKicker(item);
+    }
+  }
+  if (url) return `zielona-marka.pl${url}`;
+  return cardKicker(item);
+}
+
 function cardKicker(item: PortfolioItem) {
   if (item.category === "www") return "KONCEPCJA WWW";
   if (item.category === "aplikacje") return "APLIKACJA";
@@ -223,7 +237,7 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
                 zIndex: featured.length - distance,
               }}>
               <span className="zmp-floating-topline">
-                <span className="zmp-floating-dot" /> {cardKicker(item)}
+                <span className="zmp-floating-dot" /> {addressLabel(item)}
                 <span>↗</span>
               </span>
               <span className="zmp-floating-visual" data-media={mediaPresentation(item)}>

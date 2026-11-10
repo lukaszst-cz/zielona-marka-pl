@@ -1233,3 +1233,131 @@
   .zmx-project-card:hover .zmp-project-photo:before{animation:none;opacity:0}
   .zmp-detail .zmx-reveal .zmp-overline:after{transition:none;width:100%}
 }
+
+/* ============================================================
+   Karuzela jako realny sprzęt: karta udaje laptopa z paskiem
+   przeglądarki, szkłem, aluminiową podstawą i cieniem na blacie.
+   ============================================================ */
+.zmp-explorer .zmx-card{
+  padding:10px 10px 0;
+  border-radius:16px 16px 10px 10px;
+  border:1px solid rgba(214,232,222,.22);
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,0) 14%),
+    linear-gradient(170deg,#28332f 0%,#141d1a 42%,#0a110f 100%);
+  box-shadow:
+    0 2px 0 rgba(255,255,255,.1) inset,
+    0 -1px 0 rgba(0,0,0,.6) inset,
+    0 34px 70px rgba(0,8,5,.66),
+    0 10px 22px rgba(0,8,5,.5);
+  backdrop-filter:none;
+  -webkit-backdrop-filter:none;
+}
+.zmp-explorer .zmx-card.is-current{
+  border-color:rgba(226,244,234,.42);
+  box-shadow:
+    0 2px 0 rgba(255,255,255,.16) inset,
+    0 -1px 0 rgba(0,0,0,.6) inset,
+    0 44px 92px rgba(0,8,5,.72),
+    0 0 26px rgba(132,243,146,.16);
+}
+/* Pasek przeglądarki z kropkami i adresem demonstracji. */
+.zmp-explorer .zmx-card .zmp-floating-topline{
+  position:relative;
+  height:28px;
+  flex:0 0 28px;
+  align-items:center;
+  gap:0;
+  padding:0 10px 0 64px;
+  border-radius:8px 8px 0 0;
+  background:linear-gradient(180deg,#223029,#17211d);
+  border:1px solid rgba(255,255,255,.08);
+  border-bottom:0;
+  font-size:.56rem;
+  letter-spacing:.14em;
+  color:#bfd8c6;
+}
+.zmp-explorer .zmx-card .zmp-floating-topline:before{
+  content:"";
+  position:absolute;
+  left:14px;
+  top:50%;
+  width:8px;
+  height:8px;
+  margin-top:-4px;
+  border-radius:50%;
+  background:#ff5f57;
+  box-shadow:14px 0 0 #febc2e,28px 0 0 #28c840;
+  opacity:.9;
+}
+.zmp-explorer .zmx-card .zmp-floating-dot{display:none}
+.zmp-explorer .zmx-card .zmp-floating-topline>span:last-child{
+  margin-left:auto;
+  color:#9ec6a8;
+  font-size:.8rem;
+}
+/* Szkło: lekki refleks i winieta na krawędziach ekranu. */
+.zmp-explorer .zmx-card .zmp-floating-visual{
+  border-radius:0 0 4px 4px;
+  box-shadow:
+    0 0 0 1px rgba(0,0,0,.65) inset,
+    0 18px 38px rgba(0,0,0,.32) inset;
+}
+.zmp-explorer .zmx-card .zmp-floating-visual:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:4;
+  pointer-events:none;
+  background:
+    linear-gradient(118deg,rgba(255,255,255,.16) 0%,rgba(255,255,255,.05) 18%,rgba(255,255,255,0) 38%),
+    radial-gradient(130% 90% at 50% -20%,rgba(255,255,255,.1),transparent 60%),
+    radial-gradient(120% 120% at 50% 50%,transparent 58%,rgba(0,0,0,.35) 100%);
+}
+/* Aluminiowa podstawa z zawiasem i wytłoczeniem na zatrzask. */
+.zmp-explorer .zmx-card .zmp-floating-copy{
+  position:relative;
+  margin:0 -10px;
+  padding:13px 18px 15px;
+  border-radius:0 0 10px 10px;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,0) 40%),
+    linear-gradient(180deg,#d8e4dc 0%,#aebdb4 52%,#8a9a92 100%);
+  box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 -6px 14px rgba(0,0,0,.25) inset;
+}
+.zmp-explorer .zmx-card .zmp-floating-copy:before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:6px;
+  width:84px;
+  height:5px;
+  margin-left:-42px;
+  border-radius:0 0 7px 7px;
+  background:linear-gradient(180deg,#7c8c84,#aebdb4);
+  box-shadow:0 1px 0 rgba(255,255,255,.45);
+}
+.zmp-explorer .zmx-card .zmp-floating-copy strong{color:#0f2a1f}
+.zmp-explorer .zmx-card .zmp-floating-copy small{color:#2f4a3c}
+/* Cień rzucany na blat pod sprzętem. */
+.zmp-explorer .zmx-card:after{
+  content:"";
+  position:absolute;
+  left:6%;
+  right:6%;
+  bottom:-18px;
+  height:26px;
+  z-index:-1;
+  pointer-events:none;
+  border-radius:50%;
+  background:radial-gradient(ellipse at center,rgba(0,0,0,.55),transparent 72%);
+  filter:blur(7px);
+  opacity:.75;
+}
+.zmp-explorer .zmx-card.is-current:after{opacity:.95;bottom:-22px}
+@media(max-width:760px){
+  .zmp-explorer .zmx-card .zmp-floating-topline{height:22px;flex-basis:22px;padding-left:52px;font-size:.48rem}
+  .zmp-explorer .zmx-card .zmp-floating-topline:before{left:10px;width:6px;height:6px;margin-top:-3px;box-shadow:11px 0 0 #febc2e,22px 0 0 #28c840}
+  .zmp-explorer .zmx-card .zmp-floating-copy{padding:9px 12px 11px}
+  .zmp-explorer .zmx-card .zmp-floating-copy:before{width:58px;margin-left:-29px}
+}
