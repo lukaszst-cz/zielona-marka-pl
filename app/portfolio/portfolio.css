@@ -571,3 +571,265 @@
     opacity:.18;
   }
 }
+
+
+/* ============================================================
+   Scena portfolio 2026/11: karuzela 14 prac i żywy katalog.
+   Ruch jest dekoracyjny, każdy efekt gaśnie przy prefers-reduced-motion.
+   ============================================================ */
+.zmx-explorer .zmx-stage{
+  height:clamp(350px,38vw,580px);
+  cursor:grab;
+  touch-action:pan-y;
+  outline-offset:6px;
+}
+.zmx-explorer .zmx-stage.is-dragging{cursor:grabbing}
+.zmx-explorer .zmx-stage.is-dragging .zmx-card{transition:opacity .3s ease,filter .3s ease}
+.zmx-explorer .zmx-card{
+  transition:transform .72s cubic-bezier(.16,.84,.24,1),opacity .45s ease,filter .45s ease,box-shadow .45s ease;
+  user-select:none;
+  -webkit-user-drag:none;
+}
+.zmx-explorer .zmx-card.is-current{
+  box-shadow:0 42px 90px rgba(0,8,5,.62),0 0 34px rgba(132,243,146,.3),inset 0 0 0 2px rgba(190,250,170,.45);
+}
+.zmx-explorer .zmx-card .zmp-floating-visual{position:relative}
+/* Powolny przejazd światła po aktywnej pracy. */
+.zmx-card-sheen{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:0;
+  background:linear-gradient(105deg,transparent 36%,rgba(214,255,210,.26) 48%,rgba(255,255,255,.07) 55%,transparent 68%);
+  transform:translateX(-120%);
+}
+.zmx-explorer .zmx-card.is-current .zmx-card-sheen{
+  opacity:1;
+  animation:zmx-sheen 5.4s ease-in-out 1.1s infinite;
+}
+@keyframes zmx-sheen{
+  0%{transform:translateX(-120%)}
+  38%{transform:translateX(120%)}
+  100%{transform:translateX(120%)}
+}
+/* Podgląd działającej demonstracji zamiast zrzutu ekranu. */
+.zmx-live-frame{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  background:#0a2b22;
+  border-radius:inherit;
+  animation:zmx-live-in .5s ease both;
+}
+.zmx-live-frame iframe{
+  width:200%;
+  height:200%;
+  border:0;
+  transform:scale(.5);
+  transform-origin:0 0;
+  pointer-events:none;
+  background:#fff;
+}
+.zmx-live-badge{
+  position:absolute;
+  right:10px;
+  top:10px;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:5px 11px 5px 9px;
+  border-radius:99px;
+  background:rgba(4,30,22,.86);
+  border:1px solid rgba(186,253,115,.6);
+  color:#dcffb4;
+  font-size:.64rem;
+  font-weight:850;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.zmx-live-badge:before{
+  content:"";
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#b6fb73;
+  box-shadow:0 0 9px #b6fb73;
+  animation:zmx-pulse 1.7s ease-in-out infinite;
+}
+@keyframes zmx-live-in{from{opacity:0;transform:scale(1.015)}to{opacity:1;transform:none}}
+@keyframes zmx-pulse{0%,100%{opacity:1}50%{opacity:.35}}
+/* Licznik prac i pasek czasu do następnej pracy. */
+.zmx-explorer .zmx-legend{margin-top:14px}
+.zmx-counter{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  margin-bottom:9px;
+  font-size:.74rem;
+  font-weight:800;
+  letter-spacing:.17em;
+  color:#9fd5b6;
+}
+.zmx-counter b{font-size:1.05rem;color:#b9ff7d;letter-spacing:.04em}
+.zmx-counter i{width:26px;height:1px;background:linear-gradient(90deg,#b9ff7d,transparent)}
+.zmx-track{
+  width:min(380px,62vw);
+  height:2px;
+  margin:15px auto 0;
+  border-radius:99px;
+  background:rgba(197,236,209,.18);
+  overflow:hidden;
+}
+.zmx-track-run{
+  display:block;
+  height:100%;
+  width:100%;
+  transform-origin:0 50%;
+  background:linear-gradient(90deg,#8ef07a,#d6fb63);
+  animation-name:zmx-track-run;
+  animation-timing-function:linear;
+  animation-fill-mode:forwards;
+}
+.zmx-track-run.is-paused{animation-play-state:paused;opacity:.45}
+@keyframes zmx-track-run{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+/* Czternaście kropek czytamy jako delikatne kreski, nie jako gąszcz punktów. */
+.zmx-explorer .zmx-dots{gap:7px;flex-wrap:wrap;margin-top:13px}
+.zmx-explorer .zmx-dots button{
+  width:16px;
+  height:5px;
+  border-radius:99px;
+  border:0;
+  background:rgba(206,237,214,.32);
+  transition:width .35s ease,background .35s ease;
+}
+.zmx-explorer .zmx-dots button:hover{background:rgba(214,251,99,.65)}
+.zmx-explorer .zmx-dots button.is-active{
+  width:34px;
+  background:linear-gradient(90deg,#8ef07a,#d6fb63);
+  box-shadow:0 0 12px rgba(150,240,110,.55);
+}
+/* Katalog: wejście kart przy przewijaniu i światło podążające za kursorem. */
+.zmx-explorer .zmx-project-card{
+  position:relative;
+  opacity:0;
+  transform:translateY(26px) scale(.985);
+  transition:opacity .62s cubic-bezier(.2,.75,.3,1),transform .62s cubic-bezier(.2,.75,.3,1),border-color .25s ease,box-shadow .25s ease;
+  transition-delay:calc(var(--zmx-i,0) * 55ms);
+}
+.zmx-explorer .zmx-project-card.is-revealed{opacity:1;transform:none}
+.zmx-explorer .zmx-project-card:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:3;
+  pointer-events:none;
+  opacity:0;
+  border-radius:inherit;
+  transition:opacity .3s ease;
+  background:radial-gradient(260px circle at var(--zmx-mx,50%) var(--zmx-my,0px),rgba(182,251,115,.16),transparent 62%);
+}
+.zmx-explorer .zmx-project-card:hover{transform:translateY(-6px)}
+.zmx-explorer .zmx-project-card:hover:before{opacity:1}
+.zmx-explorer .zmx-project-card:hover .zmp-project-expand{
+  transform:translate(-2px,-2px) rotate(-8deg);
+  box-shadow:0 10px 22px rgba(0,22,12,.45);
+}
+.zmx-explorer .zmp-project-expand{transition:transform .25s ease,box-shadow .25s ease}
+.zmx-explorer .zmx-project-card .zmp-project-photo img{transition:transform .55s cubic-bezier(.2,.75,.3,1),filter .4s ease}
+.zmx-explorer .zmx-project-card:hover .zmp-project-photo img{transform:scale(1.06)}
+@media(max-width:760px){
+  .zmx-explorer .zmx-stage{height:330px}
+  .zmx-track{width:min(260px,76vw)}
+  .zmx-explorer .zmx-dots button{width:12px}
+  .zmx-explorer .zmx-dots button.is-active{width:26px}
+}
+@media(prefers-reduced-motion:reduce){
+  .zmx-explorer .zmx-card,
+  .zmx-explorer .zmx-project-card,
+  .zmx-explorer .zmx-project-card .zmp-project-photo img{transition:none}
+  .zmx-explorer .zmx-project-card{opacity:1;transform:none}
+  .zmx-card-sheen,.zmx-live-badge:before{animation:none}
+  .zmx-card-sheen{display:none}
+  .zmx-track-run{animation:none;transform:scaleX(1);opacity:.3}
+}
+
+/* Okładki: najlepszy kadr prosto z demonstracji, z autorską grafiką jako podkładem. */
+.zmx-cover{
+  position:absolute;
+  inset:0;
+  display:block;
+  overflow:hidden;
+  border-radius:inherit;
+  background:inherit;
+}
+.zmx-cover .zmx-cover-poster{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  transition:opacity .45s ease;
+}
+.zmx-cover[data-live="on"] .zmx-cover-poster{opacity:0}
+.zmx-cover-frame{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  border-radius:inherit;
+  background:#f6fbf5;
+  opacity:0;
+  transition:opacity .5s ease;
+}
+.zmx-cover[data-live="on"] .zmx-cover-frame{opacity:1}
+.zmx-cover-frame iframe{
+  border:0;
+  display:block;
+  transform-origin:0 0;
+  pointer-events:none;
+  background:#fff;
+}
+.zmx-cover .zmx-live-badge{
+  position:absolute;
+  right:10px;
+  top:10px;
+  z-index:3;
+  padding:5px 11px 5px 9px;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  border-radius:99px;
+  background:rgba(4,30,22,.86);
+  border:1px solid rgba(186,253,115,.6);
+  color:#dcffb4;
+  font-size:.62rem;
+  font-weight:850;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+/* Aktywnik+ przedstawiamy samym znakiem aplikacji. */
+.zmx-cover-logo{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  padding:9% 12%;
+  background:
+    radial-gradient(ellipse at 50% 35%,rgba(150,243,139,.22),transparent 62%),
+    linear-gradient(140deg,#0d3a2c,#12543c 54%,#0a2d26);
+}
+.zmx-cover-logo img{
+  position:static!important;
+  width:min(62%,260px)!important;
+  height:auto!important;
+  max-height:46%;
+  object-fit:contain!important;
+  padding:0!important;
+  filter:drop-shadow(0 10px 26px rgba(0,22,12,.5));
+}
+.zmx-cover-logo small{
+  font-size:.68rem;
+  letter-spacing:.17em;
+  text-transform:uppercase;
+  font-weight:800;
+  color:#c8f3a8;
+}
