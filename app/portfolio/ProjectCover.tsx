@@ -4,6 +4,10 @@
 import { useEffect, useRef, useState } from "react";
 import { coverFor } from "./covers";
 
+/* Żywe okładki wyłączone: część demonstracji ładuje się biała albo odsłania treść
+   dopiero po przewinięciu, a karta ma zawsze pokazywać gotowy kadr. Plany kadrów
+   zostają w covers.ts, więc wystarczy zmienić tę stałą, żeby wrócić do ramek. */
+const LIVE_COVERS_ENABLED = false;
 /* Jednocześnie renderujemy tylko kilka żywych okładek, żeby strona pozostała lekka. */
 const MAX_LIVE_FRAMES = 6;
 const live = new Set<string>();
@@ -42,7 +46,7 @@ export default function ProjectCover({ slug, title, image, alt, priority = false
   const cropTop = plan?.top || 0;
   const cropLeft = plan?.leftOffset || 0;
   const zoom = plan?.zoom || 1;
-  const source = plan?.live;
+  const source = LIVE_COVERS_ENABLED ? plan?.live : undefined;
 
   /* Uzbrajamy ramkę, gdy okładka jest w polu widzenia i mieści się w limicie. */
   useEffect(() => {
