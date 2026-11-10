@@ -227,7 +227,7 @@ export const portfolioItems: PortfolioItem[] = [
     "category": "przed-po",
     "industry": "Modernizacja stron",
     "summary": "Ścianka wspinaczkowa przed i po przebudowie strony.",
-    "explanation": "Po lewej gąszcz informacji, po prawej jasna oferta i godziny otwarcia. Obie wersje wymyśliłem sam.",
+    "explanation": "Po lewej gąszcz informacji, po prawej jasna oferta i godziny otwarcia. To projekt demonstracyjny: oba widoki, przed i po, zaprojektowaliśmy sami.",
     "features": [
       "Porównanie przed i po",
       "Nowa hierarchia informacji"
@@ -242,7 +242,7 @@ export const portfolioItems: PortfolioItem[] = [
     "category": "przed-po",
     "industry": "Ogrody i projektowanie",
     "summary": "Pracownia ogrodów po uporządkowaniu strony.",
-    "explanation": "Mniej ozdobników, więcej zdjęć realizacji i prosta droga do wyceny. Oba warianty są moje.",
+    "explanation": "Mniej ozdobników, więcej zdjęć realizacji i prosta droga do wyceny. To projekt demonstracyjny, oba warianty są nasze.",
     "features": [
       "Porównanie przed i po",
       "Prezentacja usług"
@@ -257,7 +257,7 @@ export const portfolioItems: PortfolioItem[] = [
     "category": "przed-po",
     "industry": "Piekarnia i gastronomia",
     "summary": "Piekarnia OKRUCH w starej i nowej odsłonie.",
-    "explanation": "Zmiana typografii i zdjęć robi tu większą różnicę niż nowe treści. Oba warianty są moje, to nie jest przebudowa cudzej strony.",
+    "explanation": "Zmiana typografii i zdjęć robi tu większą różnicę niż nowe treści. To projekt demonstracyjny, a nie przebudowa cudzej strony: stara i nowa wersja są nasze.",
     "features": [
       "Układ przed i po",
       "Zdjęcia i typografia",

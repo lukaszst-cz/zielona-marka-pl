@@ -282,7 +282,7 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
         <div className="zmp-projects-title">
           <span className="zmp-overline">PROJEKTY I DEMONSTRACJE</span>
           <h2>Wszystko, co mamy <em>na podorędziu.</em></h2>
-          <p>Każda praca ma działające demo albo plik do obejrzenia i krótki opis, do czego służy. Większość z nich to projekt demonstracyjny, czyli nasz własny pomysł na daną branżę, a nie zlecenie od klienta.</p>
+          <p>Każda praca ma działające demo albo plik do obejrzenia i krótki opis, do czego służy. Filtruj po branży albo wpisz, czego szukasz.</p>
         </div>
         <div className="zmp-projects-tools">
           <label className="zmp-format-field">
@@ -312,7 +312,7 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
               <span className="zmp-project-expand" aria-hidden="true">↗</span>
             </Link>
             <div className="zmp-project-info">
-              <div className="zmp-project-meta"><span>{item.industry}</span>{item.status.includes("beta") && <span>W budowie</span>}</div>
+              <div className="zmp-project-meta"><span>{item.industry}</span>{item.status.includes("beta") ? <span>W budowie</span> : item.category === "przed-po" ? <span>Projekt demonstracyjny</span> : null}</div>
               <h3><Link href={`/portfolio/${item.slug}`}>{item.title}</Link></h3>
               <p className="zmp-project-intro">{item.summary}</p>
               <p className="zmp-project-description">{item.explanation}</p>
