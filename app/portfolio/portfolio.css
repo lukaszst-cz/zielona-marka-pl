@@ -966,3 +966,153 @@
 .zmp-page .zmp-floating-copy strong{font-family:'Fraunces',Georgia,serif;font-weight:600}
 .zmp-page .zmx-counter b,
 .zmp-page .zmp-result-count{font-variant-numeric:tabular-nums}
+
+/* ============================================================
+   Podstrony prac: layout jak na pozostałych stronach marki,
+   plus ruch, który ożywia statyczną kartę.
+   ============================================================ */
+.zmp-detail .zmx-reveal{
+  opacity:0;
+  transform:translateY(28px);
+  transition:opacity .7s cubic-bezier(.2,.75,.3,1),transform .7s cubic-bezier(.2,.75,.3,1);
+}
+.zmp-detail .zmx-reveal.is-in{opacity:1;transform:none}
+.zmp-detail .zmp-detail-hero{
+  position:relative;
+  isolation:isolate;
+  --zmx-hx:70%;
+  --zmx-hy:35%;
+}
+.zmp-detail .zmp-detail-hero:before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  inset:-8% -6%;
+  pointer-events:none;
+  border-radius:40px;
+  background:radial-gradient(520px circle at var(--zmx-hx) var(--zmx-hy),rgba(182,251,115,.17),transparent 68%);
+  transition:background .25s ease;
+}
+.zmp-detail .zmp-overline i{
+  font-style:normal;
+  margin-right:10px;
+  padding:3px 9px;
+  border-radius:99px;
+  background:rgba(182,251,115,.16);
+  border:1px solid rgba(182,251,115,.4);
+  font-size:.72em;
+  letter-spacing:.08em;
+}
+/* Okładka pracy pokazuje to samo, co karta w katalogu. */
+.zmp-detail .zmx-detail-stage{
+  position:relative;
+  display:block;
+  width:100%;
+  aspect-ratio:3/2;
+  border-radius:20px;
+  overflow:hidden;
+  border:1px solid rgba(190,240,200,.3);
+  box-shadow:0 26px 64px rgba(0,16,9,.55);
+  background:linear-gradient(140deg,#14402f,#0b2b22);
+  transition:transform .5s cubic-bezier(.2,.75,.3,1),box-shadow .5s ease;
+}
+.zmp-detail .zmx-detail-stage:hover{transform:translateY(-5px);box-shadow:0 34px 76px rgba(0,16,9,.62)}
+.zmp-detail .zmx-detail-stage .zmx-cover-poster{object-fit:cover}
+.zmp-detail .zmp-detail-visual[data-media="screen"] .zmx-cover-poster,
+.zmp-detail .zmp-detail-visual[data-media="art"] .zmx-cover-poster{object-fit:contain;padding:12px}
+.zmp-detail .zmx-feature-list{list-style:none;padding:0;display:grid;gap:10px}
+.zmp-detail .zmx-feature-list li{
+  position:relative;
+  padding:13px 16px 13px 44px;
+  border-radius:14px;
+  border:1px solid rgba(160,219,170,.3);
+  background:rgba(18,56,41,.5);
+  line-height:1.4;
+  opacity:0;
+  transform:translateX(-10px);
+  animation:zmx-slide-in .55s cubic-bezier(.2,.75,.3,1) forwards;
+  animation-delay:calc(var(--zmx-i,0) * 90ms + 180ms);
+}
+.zmp-detail .zmx-feature-list li:before{
+  content:"";
+  position:absolute;
+  left:18px;
+  top:50%;
+  width:9px;
+  height:9px;
+  margin-top:-4px;
+  border-radius:50%;
+  background:#b6fb73;
+  box-shadow:0 0 10px rgba(182,251,115,.8);
+}
+@keyframes zmx-slide-in{to{opacity:1;transform:none}}
+
+/* ============================================================
+   Karty katalogu: mniej statyki, więcej reakcji na kursor.
+   ============================================================ */
+.zmx-project-card:after{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  z-index:2;
+  border-radius:inherit;
+  pointer-events:none;
+  opacity:0;
+  transition:opacity .35s ease;
+  background:linear-gradient(130deg,rgba(214,251,99,.65),rgba(124,228,174,.1) 38%,transparent 62%,rgba(182,251,115,.45));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  padding:1px;
+}
+.zmx-project-card:hover:after{opacity:1}
+.zmx-project-card .zmp-project-info h3{
+  display:inline-block;
+  background-image:linear-gradient(90deg,#b6fb73,#d6fb63);
+  background-repeat:no-repeat;
+  background-size:0% 2px;
+  background-position:0 100%;
+  transition:background-size .45s cubic-bezier(.2,.75,.3,1);
+  padding-bottom:3px;
+}
+.zmx-project-card:hover .zmp-project-info h3{background-size:100% 2px}
+.zmx-project-card .zmp-project-description{
+  transition:color .3s ease;
+}
+.zmx-project-card:hover .zmp-project-description{color:#e4f4ea}
+.zmx-project-card .zmp-project-features span{
+  transition:transform .35s cubic-bezier(.2,.75,.3,1),background .3s ease,border-color .3s ease;
+}
+.zmx-project-card:hover .zmp-project-features span{
+  background:#23675f;
+  border-color:rgba(182,251,115,.5);
+}
+.zmx-project-card:hover .zmp-project-features span:nth-child(1){transform:translateY(-2px)}
+.zmx-project-card:hover .zmp-project-features span:nth-child(2){transform:translateY(-2px);transition-delay:60ms}
+.zmx-project-card:hover .zmp-project-features span:nth-child(3){transform:translateY(-2px);transition-delay:120ms}
+.zmx-project-card .zmp-project-open{
+  position:relative;
+  overflow:hidden;
+}
+.zmx-project-card .zmp-project-open:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  transform:translateX(-120%);
+  background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.55) 50%,transparent 65%);
+}
+.zmx-project-card:hover .zmp-project-open:after{animation:zmx-swipe .75s ease forwards}
+@keyframes zmx-swipe{to{transform:translateX(120%)}}
+.zmx-project-card .zmp-project-category{
+  transform:translateY(0);
+  transition:transform .35s cubic-bezier(.2,.75,.3,1),background .3s ease;
+}
+.zmx-project-card:hover .zmp-project-category{background:#0a3f32e6;transform:translateY(-3px)}
+@media(prefers-reduced-motion:reduce){
+  .zmp-detail .zmx-reveal{opacity:1;transform:none;transition:none}
+  .zmp-detail .zmx-feature-list li{opacity:1;transform:none;animation:none}
+  .zmp-detail .zmx-detail-stage{transition:none}
+  .zmx-project-card:hover .zmp-project-open:after{animation:none}
+  .zmx-project-card .zmp-project-info h3{transition:none}
+}

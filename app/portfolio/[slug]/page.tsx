@@ -1,9 +1,11 @@
-/* eslint-disable @next/next/no-img-element -- Podglądy to istniejące statyczne grafiki WebP i SVG, bez potrzeby zewnętrznego optymalizatora. */
+ 
 import type { Metadata } from "next";
 import Link from "../../SafeLink";
 import { notFound } from "next/navigation";
 import { QuickWhatsApp, SiteFooter, SiteHeader } from "../../SiteChrome";
 import { findPortfolioItem, portfolioCategories, portfolioItems } from "../catalog";
+import ProjectCover from "../ProjectCover";
+import DetailMotion from "../DetailMotion";
 import "../portfolio.css";
 
 export function generateStaticParams() {
@@ -51,9 +53,10 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
   return <>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     <SiteHeader />
+    <DetailMotion />
     <main className="zm-public zmp-page zmp-detail">
       <nav className="shell zmp-back" aria-label="Ścieżka nawigacji"><Link href="/">Strona główna</Link><span>/</span><Link href="/portfolio">Portfolio</Link><span>/</span><span aria-current="page">{item.title}</span></nav>
-      <section className="shell zmp-detail-hero">
+      <section className="shell zmp-detail-hero zmx-reveal">
         <div className="zmp-detail-copy">
           <span className="zmp-overline">{category?.label} / {item.industry}</span>
           <h1>{item.title}</h1>
@@ -71,17 +74,19 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
               ? "art"
               : "photo"
         }>
-          {item.image ? <img src={item.image} alt={item.alt || `Podgląd projektu ${item.title}`} /> : <div className="zmp-detail-placeholder"><span>Zielona Marka / portfolio</span><strong>{item.title}</strong><small>{item.industry}</small></div>}
+          {item.image
+            ? <span className="zmx-detail-stage"><ProjectCover slug={item.slug} title={item.title} image={item.image} alt={item.alt} priority /></span>
+            : <div className="zmp-detail-placeholder"><span>Zielona Marka / portfolio</span><strong>{item.title}</strong><small>{item.industry}</small></div>}
           <figcaption>{item.image ? `Kadr z projektu ${item.title}` : "Tej pracy nie pokazujemy na zrzucie"}</figcaption>
         </figure>
       </section>
-      <section className="shell zmp-detail-text">
-        <article><span className="zmp-overline">PO CO TO POWSTAŁO</span><h2>Pomysł w skrócie</h2><p>{item.explanation}</p></article>
-        <article><span className="zmp-overline">CO JEST W ŚRODKU</span><h2>Na co zwrócić uwagę</h2><ul>{item.features.map(feature=><li key={feature}>{feature}</li>)}</ul></article>
+      <section className="shell zmp-detail-text zmx-reveal">
+        <article><span className="zmp-overline"><i>01</i> PO CO TO POWSTAŁO</span><h2>Pomysł w skrócie</h2><p>{item.explanation}</p></article>
+        <article><span className="zmp-overline"><i>02</i> CO JEST W ŚRODKU</span><h2>Na co zwrócić uwagę</h2><ul className="zmx-feature-list">{item.features.map((feature,index)=><li key={feature} style={{ ["--zmx-i" as string]: String(index) }}>{feature}</li>)}</ul></article>
       </section>
-      <section className="shell zmp-disclaimer"><strong>Szczerze o tej pracy</strong><p>To nasz własny projekt, a nie wdrożenie zamówione przez firmę o tej nazwie. Nazwy, ceny, produkty i dostępność są wymyślone na potrzeby pokazu.</p></section>
-      {other.length > 0 && <section className="shell zmp-related"><span className="zmp-overline">PODOBNE PRACE</span><h2>W tej samej kategorii</h2><div>{other.map(project=><Link key={project.slug} href={`/portfolio/${project.slug}`}><strong>{project.title}</strong><span>{project.industry} ↗</span></Link>)}</div></section>}
-      <section className="shell zmp-bottom-cta"><div><span className="zmp-overline">KOLEJNY PROJEKT</span><h2>Zróbmy to dla Twojej firmy.</h2><p>Twoja strona dostanie własne treści, zdjęcia i zakres. To, co widzisz obok, pokazuje kierunek i poziom wykonania.</p></div><Link href="/kontakt" className="zmp-btn zmp-btn-strong">Napisz do nas ↗</Link></section>
+      <section className="shell zmp-disclaimer zmx-reveal"><strong>Szczerze o tej pracy</strong><p>To nasz własny projekt, a nie wdrożenie zamówione przez firmę o tej nazwie. Nazwy, ceny, produkty i dostępność są wymyślone na potrzeby pokazu.</p></section>
+      {other.length > 0 && <section className="shell zmp-related zmx-reveal"><span className="zmp-overline">PODOBNE PRACE</span><h2>W tej samej kategorii</h2><div>{other.map(project=><Link key={project.slug} href={`/portfolio/${project.slug}`}><strong>{project.title}</strong><span>{project.industry} ↗</span></Link>)}</div></section>}
+      <section className="shell zmp-bottom-cta zmx-reveal"><div><span className="zmp-overline">KOLEJNY PROJEKT</span><h2>Zróbmy to dla Twojej firmy.</h2><p>Twoja strona dostanie własne treści, zdjęcia i zakres. To, co widzisz obok, pokazuje kierunek i poziom wykonania.</p></div><Link href="/kontakt" className="zmp-btn zmp-btn-strong">Napisz do nas ↗</Link></section>
     </main>
     <QuickWhatsApp />
     <SiteFooter />

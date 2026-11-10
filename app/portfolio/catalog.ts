@@ -60,8 +60,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Oglądanie i pobieranie gazetki"
     ],
     "demoUrl": "https://navoro-hurt-koncepcja.vercel.app",
-    "image": "https://navoro-hurt-koncepcja.vercel.app/assets/gazetka-01.webp",
-    "alt": "Autentyczny materiał graficzny z demonstracji NAVORO HURT",
+    "image": "/portfolio/kadry/navoro-hurt.webp",
+    "alt": "Strona główna hurtowni NAVORO z kampanią produktową",
     "status": "projekt demonstracyjny",
     "featured": true
   },
@@ -78,8 +78,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Nawigacja do gazetki ze strony głównej"
     ],
     "demoUrl": "https://nexio-elektro.vercel.app",
-    "image": "https://nexio-elektro.vercel.app/assets/gazetka/cover.webp",
-    "alt": "Autentyczny materiał graficzny z demonstracji NEXIO ELEKTRO",
+    "image": "/portfolio/kadry/nexio-elektro.webp",
+    "alt": "Strona główna NEXIO ELEKTRO z katalogiem materiałów",
     "status": "projekt demonstracyjny",
     "featured": true
   },
@@ -115,8 +115,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Kontakt"
     ],
     "demoUrl": "https://solidom.vercel.app",
-    "image": "https://solidom.vercel.app/assets/hero.webp",
-    "alt": "Zdjęcie wykorzystane w demonstracji projektu",
+    "image": "/portfolio/kadry/solidom.webp",
+    "alt": "Strona główna SOLIDOM z realizacją domu jednorodzinnego",
     "status": "projekt demonstracyjny"
   },
   {
@@ -132,8 +132,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Kontakt"
     ],
     "demoUrl": "https://solident-mu.vercel.app",
-    "image": "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=60&w=3000",
-    "alt": "Zdjęcie wykorzystane w demonstracji projektu",
+    "image": "/portfolio/kadry/solident.webp",
+    "alt": "Strona główna gabinetu SOLIDENT",
     "status": "projekt demonstracyjny"
   },
   {
@@ -166,8 +166,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Kontakt"
     ],
     "demoUrl": "https://eltravia-premium.vercel.app",
-    "image": "https://eltravia-premium.vercel.app/assets/gazetka/cover.webp",
-    "alt": "Zdjęcie wykorzystane w demonstracji projektu",
+    "image": "/portfolio/kadry/eltravia.webp",
+    "alt": "Strona główna ELTRAVIA w wersji premium",
     "status": "projekt demonstracyjny"
   },
   {
@@ -471,8 +471,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Pobranie pliku ze strony demo"
     ],
     "demoUrl": "https://navoro-hurt-koncepcja.vercel.app",
-    "image": "https://navoro-hurt-koncepcja.vercel.app/assets/gazetka-01.webp",
-    "alt": "Autentyczny materiał graficzny z demonstracji Gazetka NAVORO HURT",
+    "image": "/portfolio/kadry/gazetka-navoro.webp",
+    "alt": "Okładka gazetki promocyjnej NAVORO HURT",
     "status": "materiał koncepcyjny",
     "featured": true
   },
@@ -489,8 +489,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Oferta produktowa"
     ],
     "demoUrl": "https://nexio-elektro.vercel.app/gazetka.html",
-    "image": "https://nexio-elektro.vercel.app/assets/gazetka/cover.webp",
-    "alt": "Autentyczny materiał graficzny z demonstracji Gazetka NEXIO ELEKTRO",
+    "image": "/portfolio/kadry/gazetka-nexio.webp",
+    "alt": "Rozkładówka gazetki NEXIO ELEKTRO",
     "status": "materiał koncepcyjny",
     "featured": true
   },
@@ -507,8 +507,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Połączenie z katalogiem"
     ],
     "demoUrl": "https://budrivo.vercel.app",
-    "image": "https://budrivo.vercel.app/assets/budrivo-19.webp",
-    "alt": "Autentyczny materiał graficzny z demonstracji Gazetka BUDRIVO",
+    "image": "/portfolio/kadry/gazetka-budrivo.webp",
+    "alt": "Sekcja gazetki promocyjnej na stronie BUDRIVO",
     "status": "materiał koncepcyjny"
   },
   {
@@ -524,8 +524,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Integracja z serwisem"
     ],
     "demoUrl": "https://materivo-eko.vercel.app",
-    "image": "https://materivo3.netlify.app/assets/dach.jpg",
-    "alt": "Autentyczny materiał graficzny z demonstracji Gazetka MATERIVO",
+    "image": "/portfolio/kadry/gazetka-materivo.webp",
+    "alt": "Gazetka online w serwisie MATERIVO",
     "status": "materiał koncepcyjny"
   },
   {
@@ -541,7 +541,7 @@ export const portfolioItems: PortfolioItem[] = [
       "KPI i dokumentacja"
     ],
     "demoUrl": "https://github.com/lukaszst-cz/printflow-360",
-    "image": "/tool-printflow-360-v2.jpg",
+    "image": "/portfolio/kadry/printflow.webp",
     "alt": "Prezentacja koncepcyjna projektu PrintFlow 360",
     "status": "narzędzie lub demonstracja"
   },
@@ -558,7 +558,7 @@ export const portfolioItems: PortfolioItem[] = [
       "Przykładowe dokumenty"
     ],
     "demoUrl": "/realizacje/transportflow",
-    "image": "/tool-transportflow-360-v2.jpg",
+    "image": "/portfolio/kadry/transportflow.webp",
     "alt": "Prezentacja koncepcyjna projektu TransportFlow 360",
     "status": "narzędzie lub demonstracja"
   },
@@ -575,7 +575,7 @@ export const portfolioItems: PortfolioItem[] = [
       "Dane testowe"
     ],
     "demoUrl": "https://github.com/lukaszst-cz/workshopflow-360",
-    "image": "/tool-workshopflow-360-photo.png",
+    "image": "/portfolio/kadry/workshopflow.webp",
     "alt": "Prezentacja koncepcyjna projektu WorkshopFlow 360",
     "status": "narzędzie lub demonstracja"
   },
@@ -592,7 +592,7 @@ export const portfolioItems: PortfolioItem[] = [
       "Status naprawy"
     ],
     "demoUrl": "/demo/auto-naprawa/",
-    "image": "/portfolio-auto-naprawa-live.png",
+    "image": "/portfolio/kadry/auto-naprawa.webp",
     "alt": "Prezentacja koncepcyjna projektu Auto Naprawa",
     "status": "narzędzie lub demonstracja"
   },
@@ -609,7 +609,7 @@ export const portfolioItems: PortfolioItem[] = [
       "Szkic odpowiedzi"
     ],
     "demoUrl": "https://lead-offer-zm.pages.dev/",
-    "image": "/tool-lead-offer-copilot-v2.jpg",
+    "image": "/portfolio/kadry/lead-offer-copilot.webp",
     "alt": "Prezentacja koncepcyjna projektu Lead & Offer Copilot",
     "status": "narzędzie lub demonstracja"
   },
@@ -626,7 +626,7 @@ export const portfolioItems: PortfolioItem[] = [
       "Praca w przeglądarce"
     ],
     "demoUrl": "https://document-checker-zm.pages.dev/",
-    "image": "/tool-document-checker-v2.jpg",
+    "image": "/portfolio/kadry/document-checker.webp",
     "alt": "Prezentacja koncepcyjna projektu Document Checker",
     "status": "narzędzie lub demonstracja"
   },
@@ -643,7 +643,7 @@ export const portfolioItems: PortfolioItem[] = [
       "Terminy"
     ],
     "demoUrl": "https://github.com/lukaszst-cz/docpilot",
-    "image": "/program-docpilot-photo-v3.png",
+    "image": "/portfolio/kadry/docpilot.webp",
     "alt": "Prezentacja koncepcyjna projektu DocPilot",
     "status": "narzędzie lub demonstracja"
   },
@@ -678,7 +678,7 @@ export const portfolioItems: PortfolioItem[] = [
       "Lokalna analiza"
     ],
     "demoUrl": "https://github.com/lukaszst-cz/czy-to-sciema",
-    "image": "/program-czy-to-sciema-photo-v3.png",
+    "image": "/portfolio/kadry/czy-to-sciema.webp",
     "alt": "Prezentacja koncepcyjna projektu CzyToŚciema?",
     "status": "narzędzie lub demonstracja"
   },
@@ -695,7 +695,7 @@ export const portfolioItems: PortfolioItem[] = [
       "Analizy kosztów"
     ],
     "demoUrl": "https://github.com/lukaszst-cz/fleet-ops-desk",
-    "image": "/program-fleet-ops-desk-photo-v3.png",
+    "image": "/portfolio/kadry/fleet-ops-desk.webp",
     "alt": "Prezentacja koncepcyjna projektu Fleet Ops Desk",
     "status": "narzędzie lub demonstracja"
   },
@@ -711,7 +711,7 @@ export const portfolioItems: PortfolioItem[] = [
       "Raportowanie",
       "Zestawienia KPI"
     ],
-    "image": "/tool-printflow-360-v2.jpg",
+    "image": "/portfolio/kadry/printflow.webp",
     "alt": "Prezentacja koncepcyjna projektu Arkusz Excel PrintFlow 360",
     "status": "demonstracja, dane syntetyczne"
   },
@@ -727,7 +727,7 @@ export const portfolioItems: PortfolioItem[] = [
       "Marża",
       "Raportowanie"
     ],
-    "image": "/tool-transportflow-360-v2.jpg",
+    "image": "/portfolio/kadry/transportflow.webp",
     "alt": "Prezentacja koncepcyjna projektu Arkusz Excel TransportFlow 360",
     "status": "demonstracja, dane syntetyczne"
   },
