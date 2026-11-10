@@ -176,7 +176,7 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
         <div className="zmp-hero-text">
           <span className="zmp-overline">PORTFOLIO ZIELONA MARKA</span>
           <h1 id="zmp-title">Zobacz, co <em>tworzymy.</em></h1>
-          <p>Nowoczesne strony internetowe, katalogi, gazetki i rozwiązania online dopasowane do różnych branż.</p>
+          <p>Strony, sklepy, gazetki i małe systemy dla firm. Kliknij w kartę i zobacz, jak to działa w środku, bez umawiania się na prezentację.</p>
         </div>
 
         <div ref={stageRef}
@@ -281,8 +281,8 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
       <div className="shell">
         <div className="zmp-projects-title">
           <span className="zmp-overline">PROJEKTY I DEMONSTRACJE</span>
-          <h2>Projekty, które <em>warto zobaczyć.</em></h2>
-          <p>Każda praca ma własną grafikę, opis zastosowania oraz informacje o funkcjach. Zobacz, jak różne rozwiązania mogą wyglądać w praktyce.</p>
+          <h2>Wszystko, co mamy <em>na podorędziu.</em></h2>
+          <p>Każda praca ma działające demo albo plik do obejrzenia i krótki opis, do czego służy. Większość z nich to projekt demonstracyjny, czyli nasz własny pomysł na daną branżę, a nie zlecenie od klienta.</p>
         </div>
         <div className="zmp-projects-tools">
           <label className="zmp-format-field">
@@ -312,7 +312,7 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
               <span className="zmp-project-expand" aria-hidden="true">↗</span>
             </Link>
             <div className="zmp-project-info">
-              <div className="zmp-project-meta"><span>{item.industry}</span><span>{item.status.includes("beta")?"Projekt rozwijany":"Projekt demonstracyjny"}</span></div>
+              <div className="zmp-project-meta"><span>{item.industry}</span>{item.status.includes("beta") && <span>W budowie</span>}</div>
               <h3><Link href={`/portfolio/${item.slug}`}>{item.title}</Link></h3>
               <p className="zmp-project-intro">{item.summary}</p>
               <p className="zmp-project-description">{item.explanation}</p>
