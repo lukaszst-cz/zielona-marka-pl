@@ -385,3 +385,13 @@ html:has(.zm-v5){scroll-behavior:smooth;scroll-padding-top:24px}
     padding-inline: 18px;
   }
 }
+
+/* Portfolio na stronie glownej: trzy okladki prac */
+.zm-v5 .zmh-projects-trio{grid-template-columns:repeat(3,1fr);align-items:stretch;gap:22px}
+.zm-v5 .zmh-projects-trio .zmh-project{display:flex;flex-direction:column}
+.zm-v5 .zmh-projects-trio .zmh-project img{height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top center}
+.zm-v5 .zmh-projects-trio .zmh-project>div{display:flex;flex-direction:column;gap:6px;flex:1}
+.zm-v5 .zmh-projects-trio .zmh-project h3{font-size:26px;margin:6px 0}
+.zm-v5 .zmh-projects-trio .zmh-project>div>span{margin-top:auto;padding-top:10px}
+@media(max-width:980px){.zm-v5 .zmh-projects-trio{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.zm-v5 .zmh-projects-trio{grid-template-columns:1fr}}
