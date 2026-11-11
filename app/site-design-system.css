@@ -418,3 +418,65 @@ html body .zm-v5 .zm-scene-laptop{top:17%;left:9%;width:82%}
 html body .zm-v5 .zm-scene-brand-card{bottom:10%;width:40%}
 html body .zm-v5 .zm-scene-print{bottom:9%;width:40%}
 @media(max-width:480px){html body .zm-v5 .zm-forest-concept-scene{aspect-ratio:.8}html body .zm-v5 .zm-scene-caption{top:5%}html body .zm-v5 .zm-scene-laptop{top:14%}html body .zm-v5 .zm-scene-brand-card{bottom:10%}html body .zm-v5 .zm-scene-print{bottom:10%}}
+
+
+/* A restrained green navigation: keep it integrated with the forest design. */
+html body .zm-header{
+  background:linear-gradient(110deg,#061c13 0%,#0b2e20 60%,#0d3523 100%);
+  border-bottom:1px solid rgba(176,243,108,.32);
+}
+html body .zm-v5 .zmh-opening>.zm-header{
+  background:linear-gradient(110deg,rgba(3,24,16,.94),rgba(12,50,32,.83))!important;
+  -webkit-backdrop-filter:blur(13px);
+  backdrop-filter:blur(13px);
+}
+html body .zm-header .brand-apple{
+  filter:brightness(0) saturate(100%) invert(87%) sepia(21%) saturate(756%) hue-rotate(46deg) brightness(106%) contrast(97%);
+}
+html body .zm-header .brand-wordmark b:last-of-type,
+html body .zm-header .brand-wordmark small span:last-child{
+  color:#bef58e!important;
+}
+html body .zm-header .zm-nav-desktop>a:not(.zm-nav-studio),
+html body .zm-header .zm-offer-menu>summary{
+  color:#e2eddb;
+}
+html body .zm-header .zm-nav-desktop>a:is(:hover,:focus-visible),
+html body .zm-header .zm-offer-menu>summary:is(:hover,:focus-visible),
+html body .zm-header .zm-offer-menu[open]>summary{
+  color:#c9ffa2;
+  background:rgba(176,243,108,.11);
+  box-shadow:0 0 0 1px rgba(176,243,108,.27);
+}
+html body .zm-header .zm-nav-desktop .zm-offer-menu>.zm-mega-menu{
+  background:linear-gradient(140deg,#09251a 0%,#0d3423 100%);
+  border-color:rgba(176,243,108,.3);
+}
+html body .zm-header .zm-mega-group{
+  background:linear-gradient(135deg,#123928,#0b2c20);
+  border-color:rgba(190,245,142,.26);
+  border-left:2px solid rgba(190,245,142,.58);
+}
+html body .zm-header .zm-mega-group:is(:hover,:focus-within){
+  background:linear-gradient(135deg,#194631,#103324);
+  border-left-color:#b0f36c;
+}
+html body .zm-header .zm-mobile-menu>summary{
+  color:#c6f79d;
+  border:1px solid rgba(176,243,108,.34);
+  border-radius:8px;
+  padding:7px 14px;
+  background:rgba(8,42,26,.55);
+}
+html body .zm-header .zm-mobile-menu>.zm-mobile-menu-panel{
+  background:linear-gradient(150deg,#09251a,#0e3424);
+  border-color:rgba(176,243,108,.34);
+}
+html body .zm-header .zm-mobile-menu-shortcuts a{
+  background:#16402d;
+  color:#f2f9ed;
+  border-color:rgba(176,243,108,.35);
+}
+@media(prefers-reduced-transparency:reduce){
+  html body .zm-v5 .zmh-opening>.zm-header{background:#092719!important;backdrop-filter:none}
+}
