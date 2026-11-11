@@ -45,7 +45,16 @@ jobs:
         run: |
           mkdir -p /tmp/zm-browser-qa
           npm --prefix /tmp/zm-browser-qa install --no-save --package-lock=false --no-audit --no-fund playwright@1.56.1
-          /tmp/zm-browser-qa/node_modules/.bin/playwright install --with-deps chromium
+          # Runnery GitHuba miewaja chwilowe problemy z DNS przy apt, wiec probujemy kilka razy,
+          # a na koncu instalujemy sama przegladarke bez pakietow systemowych.
+          bin=/tmp/zm-browser-qa/node_modules/.bin/playwright
+          for i in 1 2 3; do
+            if "$bin" install --with-deps chromium; then exit 0; fi
+            echo "Proba $i instalacji zaleznosci nie powiodla sie, ponawiam za 20 s."
+            sleep 20
+          done
+          echo "Zaleznosci systemowe niedostepne, instaluje sama przegladarke."
+          "$bin" install chromium
       - name: Verify gallery and guarded server forms before deployment
         run: |
           node scripts/run-built-worker-tests.mjs --gallery
