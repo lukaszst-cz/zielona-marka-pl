@@ -91,3 +91,26 @@
     background: #19392b;
   }
 }
+
+/* Menu oferty i bloki w nim: 70 procent krycia, tlo lekko przebija */
+.zm-header .zm-nav-desktop .zm-offer-menu > .zm-mega-menu{
+  background:linear-gradient(135deg,rgba(3,24,16,.7),rgba(5,30,21,.7))}
+.zm-header .zm-mega-group{
+  background:linear-gradient(140deg,rgba(16,50,34,.7),rgba(12,42,29,.7))}
+.zm-header .zm-mega-group:is(:hover,:focus-within){
+  background:linear-gradient(140deg,rgba(24,64,44,.7),rgba(18,54,37,.7))}
+.zm-header .zm-mega-quick-actions a,
+.zm-header .zm-mega-quick-actions a:first-child{background:rgba(16,50,34,.7)}
+.zm-header .zm-mega-quick-actions a:is(:hover,:focus-visible),
+.zm-header .zm-mega-quick-actions a:first-child:is(:hover,:focus-visible){background:rgba(28,72,49,.7)}
+.zm-header .zm-mobile-menu > .zm-mobile-menu-panel{
+  background:linear-gradient(155deg,rgba(3,24,16,.7),rgba(5,32,21,.7))}
+.zm-header .zm-mobile-menu-shortcuts a{background:rgba(16,50,34,.7)}
+.zm-header .zm-mobile-menu-shortcuts a:is(:hover,:focus-visible){background:rgba(28,72,49,.7)}
+.zm-header .zm-mobile-menu > .zm-mobile-menu-panel{
+  -webkit-backdrop-filter:blur(26px) saturate(120%);backdrop-filter:blur(26px) saturate(120%)}
+.zm-header .zm-nav-desktop .zm-offer-menu > .zm-mega-menu{
+  -webkit-backdrop-filter:blur(26px) saturate(118%);backdrop-filter:blur(26px) saturate(118%)}
+/* Naglowek z wlasnym rozmyciem odcina rozmycie panelu menu, wiec na czas otwarcia je zdejmujemy */
+.zm-header:has(.zm-mobile-menu[open]),
+.zm-header:has(.zm-offer-menu[open]){-webkit-backdrop-filter:none;backdrop-filter:none}

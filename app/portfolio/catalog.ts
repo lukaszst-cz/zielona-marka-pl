@@ -36,8 +36,8 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "BUDRIVO",
     "category": "www",
     "industry": "Budownictwo i materiały",
-    "summary": "Hurtownia budowlana, w której klient sam znajdzie materiał, policzy koszt i zobaczy elewację w swoim kolorze.",
-    "explanation": "Katalog, kalkulator i gazetka pracują w jednym miejscu, więc zapytanie przychodzi już z numerem produktu i metrażem.",
+    "summary": "Hurtownia budowlana, w której klient sam policzy koszt elewacji.",
+    "explanation": "Katalog i kalkulator liczą za klienta, więc zapytanie trafia już gotowe.",
     "features": [
       "Katalog materiałów",
       "Kalkulator",
@@ -73,7 +73,7 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "NEXIO ELEKTRO",
     "category": "www",
     "industry": "Elektrotechnika",
-    "summary": "Oferta elektryczna poukładana tak, żeby instalator w kilka sekund trafił do swojego działu.",
+    "summary": "Oferta elektryczna poukładana pod instalatora, nie pod katalog.",
     "explanation": "Ze strony głównej prowadzi krótka droga do szesnastostronicowej gazetki z pełnym asortymentem.",
     "features": [
       "Prezentacja asortymentu",
