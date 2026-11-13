@@ -18,12 +18,19 @@ const modeLabels: Record<Mode, string> = {
 
 export default function ConceptRequestForm() {
   const [mode, setMode] = useState<Mode>("existing");
+  const [site, setSite] = useState("");
   const submission = useInquirySubmission("Bezpłatna koncepcja wizualna");
   const { draft } = submission;
   useEffect(() => {
-    const requested = new URLSearchParams(window.location.search).get("typ");
+    const params = new URLSearchParams(window.location.search);
+    const requested = params.get("typ");
     if (requested && Object.prototype.hasOwnProperty.call(modeLabels, requested)) {
       window.requestAnimationFrame(() => setMode(requested as Mode));
+    }
+    const requestedSite = params.get("strona");
+    if (requestedSite) {
+      const trimmed = requestedSite.slice(0, 200);
+      window.requestAnimationFrame(() => setSite(trimmed));
     }
     const selectMode = (event: Event) => {
       const selected = (event as CustomEvent<string>).detail;
@@ -64,7 +71,7 @@ export default function ConceptRequestForm() {
       <input name="email" required type="email" maxLength={254} autoComplete="email" placeholder="Twój adres e-mail" />
     </label>
     <label>{mode === "existing" ? "Wklej adres swojej strony" : "Napisz, czym zajmuje się Twoja firma"}
-      <textarea name="details" required minLength={10} maxLength={4000} rows={3} placeholder={mode === "existing" ? "https://twojastrona.pl, możesz też dopisać, co chcesz zmienić" : "Np. kwiaciarnia w Markach, potrzebuję pomysłu na logo"} />
+      <textarea name="details" required minLength={10} maxLength={4000} rows={3} value={site} onChange={(event) => setSite(event.target.value)} placeholder={mode === "existing" ? "https://twojastrona.pl, możesz też dopisać, co chcesz zmienić" : "Np. kwiaciarnia w Markach, potrzebuję pomysłu na logo"} />
     </label>
     <label className="zm-concept-consent">
       <input name="consent" type="checkbox" required value="yes" />

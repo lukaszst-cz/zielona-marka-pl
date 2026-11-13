@@ -47,9 +47,9 @@ export default function LivingPortal({ contact = false }: { contact?: boolean })
       <div className="zmh-assembly-heading"><span>Z CHAOSU DO PORZĄDKU</span><h2>Wszystko zaczyna<br />się <em>łączyć.</em></h2><p>Strona. Zapytanie. Kolejny krok.<br />Przewiń i zobacz, jak tworzą całość.</p></div>
       <div className="zmh-assembly-board" aria-label="Ilustracja połączenia strony, zapytania i obsługi klienta">
         <div className="zmh-assembly-lines" aria-hidden="true"><svg viewBox="0 0 600 400"><path d="M80 90 C300 90 150 310 350 310 S480 210 550 210" /></svg></div>
-        <div className="zmh-piece zmh-piece-web"><small>01 / TWOJA STRONA</small><strong>Dobra firma.<br />Dobry początek.</strong><Image className="zmh-piece-concept" src="/concept-samples-v2/styk-640.webp" width={640} height={427} alt="STYK, koncepcja strony firmy elektrycznej" unoptimized /><span>Oferta · Kontakt ↗</span></div>
-        <div className="zmh-piece-inquiry"><small>02 / ZAPYTANIE</small><b>Nowy kontakt <i>✓</i></b><span>Potrzeba · Termin · Szczegóły</span></div>
-        <div className="zmh-piece-order"><small>03 / KOLEJNY KROK</small><b>Wszystko na swoim miejscu.</b><span>Zapytanie <i>→</i> Wycena <i>→</i> Realizacja</span></div>
+        <div className="zmh-piece zmh-piece-web"><small>TWOJA STRONA</small><strong>Dobra firma.<br />Dobry początek.</strong><Image className="zmh-piece-concept" src="/concept-samples-v2/styk-640.webp" width={640} height={427} alt="STYK, koncepcja strony firmy elektrycznej" unoptimized /><span>Oferta · Kontakt ↗</span></div>
+        <div className="zmh-piece-inquiry"><small>ZAPYTANIE</small><b>Nowy kontakt <i>✓</i></b><span>Potrzeba · Termin · Szczegóły</span></div>
+        <div className="zmh-piece-order"><small>KOLEJNY KROK</small><b>Wszystko na swoim miejscu.</b><span>Zapytanie <i>→</i> Wycena <i>→</i> Realizacja</span></div>
         <span className="zmh-assembly-note">PRZYKŁADOWY PROCES DLA TWOJEJ FIRMY</span>
       </div>
     </>}
