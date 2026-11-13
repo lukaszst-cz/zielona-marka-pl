@@ -1468,3 +1468,15 @@
 .zmp-page .zmp-beforeafter-steps p{margin:0;font-size:.95rem;color:#b7ccbd}
 @media(max-width:900px){.zmp-page .zmp-beforeafter{grid-template-columns:1fr;padding:26px 20px;gap:26px}}
 .zmp-page .zmp-beforeafter .zmp-pdf-actions .zmp-btn{flex:0 0 auto}
+
+/* Formularz bezplatnej koncepcji na dole portfolio: jedno pole na adres strony. */
+.zmp-concept-form{flex:0 1 480px;max-width:520px}
+.zmp-concept-form label{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#cfe0c4;margin-bottom:10px}
+.zmp-concept-row{display:flex;flex-wrap:wrap;gap:12px}
+.zmp-concept-row input{flex:1 1 220px;min-width:0;padding:15px 18px;border-radius:12px;border:1px solid rgba(206,240,160,.34);background:rgba(6,24,15,.55);color:#f2f7ec;font:inherit;font-size:15px}
+.zmp-concept-row input::placeholder{color:#9db394}
+.zmp-concept-row input:focus-visible{outline:2px solid #b5ed84;outline-offset:2px}
+.zmp-concept-row .zmp-btn{white-space:nowrap}
+.zmp-concept-note{font-size:13px;line-height:1.7;color:#c6d7bc;margin:14px 0 0}
+.zmp-concept-note a{text-decoration:underline;text-underline-offset:4px}
+@media(max-width:860px){.zmp-concept-form{flex:1 1 auto;max-width:100%;margin-top:26px}.zmp-concept-row .zmp-btn{width:100%;text-align:center;justify-content:center}}
