@@ -24,19 +24,22 @@ test("strona główna prowadzi przez pięć etapów od strony do relacji", async
   const html = await response.text();
   assert.match(html, /Masz dobrą firmę/i);
   assert.match(html, /Pokażmy ją z dobrej strony/i);
-  assert.match(html, /01 \/ TWOJA STRONA/i);
-  assert.match(html, /02 \/ FORMULARZE/i);
-  assert.match(html, /03 \/ SKLEP I PŁATNOŚCI/i);
-  assert.match(html, /04 \/ CRM I OBSŁUGA ZLECEŃ/i);
-  assert.match(html, /05 \/ KONTAKT PO USŁUDZE/i);
-  assert.match(html, /Bezpłatny mini audyt/i);
-  assert.match(html, /Przeczytaj poradnik/i);
-  assert.match(html, /Bezpłatna Mapa Szans/i);
+  assert.match(html, /TWOJA STRONA/i);
+  assert.match(html, /FORMULARZE/i);
+  assert.match(html, /SKLEP I PŁATNOŚCI/i);
+  assert.match(html, /CRM I OBSŁUGA ZLECEŃ/i);
+  assert.match(html, /KONTAKT PO USŁUDZE/i);
+  assert.doesNotMatch(html, /\d\d \/ TWOJA STRONA/i);
   assert.match(html, /modernizacja-strony#miniaudyt/i);
-  assert.match(html, /demo\/mapa-szans-zielona-marka/i);
   assert.match(html, /Wyślij zgłoszenie/i);
   assert.match(html, /Zróbmy miejsce/i);
   assert.match(html, /href="\/portfolio"/i);
+  assert.match(html, /Zobacz nasze prace/i);
+  assert.match(html, /Czterdzieści sześć prac/i);
+  // bezplatna koncepcja ma w tresci glownej jedno wejscie, w sekcji podgladu
+  assert.match(html, /href="\/bezplatna-koncepcja-strony#zgloszenie"/i);
+  assert.doesNotMatch(html, /Zamów bezpłatną koncepcję swojej strony/i);
+  assert.doesNotMatch(html, /Zobacz bezpłatną koncepcję/i);
   assert.doesNotMatch(html, forbiddenBrand);
 });
 
