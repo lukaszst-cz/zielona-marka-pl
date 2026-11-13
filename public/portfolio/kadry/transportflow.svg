@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="TransportFlow 360: przebieg zlecenia transportowego od kalkulacji do rozliczenia">
+  <defs>
+    <linearGradient id="tf-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#06291d"/><stop offset=".55" stop-color="#0d4330"/><stop offset="1" stop-color="#07231d"/>
+    </linearGradient>
+    <linearGradient id="tf-panel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef6ea"/>
+    </linearGradient>
+    <linearGradient id="tf-accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#d6fb63"/><stop offset="1" stop-color="#6fd16a"/>
+    </linearGradient>
+    <linearGradient id="tf-bar" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#4fae63"/><stop offset="1" stop-color="#c7f56a"/>
+    </linearGradient>
+    <radialGradient id="tf-glow" cx="78%" cy="16%" r="60%">
+      <stop offset="0" stop-color="#b6fb73" stop-opacity=".26"/><stop offset="1" stop-color="#b6fb73" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#tf-bg)"/>
+  <rect width="1600" height="900" fill="url(#tf-glow)"/>
+
+  <g transform="translate(96 92)" font-family="Arial, Helvetica, sans-serif">
+    <rect x="10" y="14" width="1408" height="748" rx="26" fill="rgba(2,18,12,.45)"/>
+    <rect width="1408" height="740" rx="22" fill="url(#tf-panel)"/>
+    <rect width="1408" height="64" rx="22" fill="#12422f"/>
+    <rect y="40" width="1408" height="24" fill="#12422f"/>
+    <circle cx="36" cy="32" r="7" fill="#ff5f57"/><circle cx="60" cy="32" r="7" fill="#febc2e"/><circle cx="84" cy="32" r="7" fill="#28c840"/>
+    <text x="120" y="39" fill="#d8f3c6" font-size="19" font-weight="700">TransportFlow 360 · zlecenie TR-1184</text>
+    <text x="1160" y="39" fill="#9fd0ad" font-size="16">dane przykładowe</text>
+
+    <!-- Etapy zlecenia -->
+    <g transform="translate(44 100)">
+      <rect width="1320" height="86" rx="16" fill="#f3faef" stroke="#cfe3cb"/>
+      <g font-size="15" font-weight="700">
+        <g fill="#1d5c2c">
+          <circle cx="48" cy="43" r="15" fill="url(#tf-accent)"/><text x="42" y="49" fill="#0e3220" font-size="14">1</text>
+          <text x="76" y="40">Kalkulacja</text><text x="76" y="62" fill="#5c7d66" font-size="13" font-weight="400">wt, 09:12</text>
+          <circle cx="324" cy="43" r="15" fill="url(#tf-accent)"/><text x="318" y="49" fill="#0e3220" font-size="14">2</text>
+          <text x="352" y="40">Zlecenie</text><text x="352" y="62" fill="#5c7d66" font-size="13" font-weight="400">wt, 11:40</text>
+          <circle cx="600" cy="43" r="15" fill="url(#tf-accent)"/><text x="594" y="49" fill="#0e3220" font-size="14">3</text>
+          <text x="628" y="40">Transport</text><text x="628" y="62" fill="#5c7d66" font-size="13" font-weight="400">w drodze</text>
+        </g>
+        <g fill="#8fb39c">
+          <circle cx="876" cy="43" r="15" fill="#e2ece0"/><text x="870" y="49" fill="#6b8d78" font-size="14">4</text>
+          <text x="904" y="40">Dokumenty</text><text x="904" y="62" font-size="13" font-weight="400">czeka na CMR</text>
+          <circle cx="1152" cy="43" r="15" fill="#e2ece0"/><text x="1146" y="49" fill="#6b8d78" font-size="14">5</text>
+          <text x="1180" y="40">Rozliczenie</text>
+        </g>
+      </g>
+      <g stroke="#cfe3cb" stroke-width="3">
+        <path d="M66 43h240M342 43h240M618 43h240M894 43h240"/>
+      </g>
+      <g stroke="url(#tf-accent)" stroke-width="3">
+        <path d="M66 43h240M342 43h240"/>
+      </g>
+    </g>
+
+    <!-- Trasa -->
+    <g transform="translate(44 212)">
+      <rect width="812" height="320" rx="16" fill="#0f3a2a"/>
+      <text x="28" y="44" fill="#ffffff" font-size="20" font-weight="800">Trasa: Szczecin → Poznań → Łódź</text>
+      <text x="28" y="70" fill="#9fd0ad" font-size="15">612 km · 2 rozładunki · kierowca: M. Zych</text>
+      <g opacity=".35" stroke="#7fd39a" stroke-width="1">
+        <path d="M28 108h756M28 160h756M28 212h756M28 264h756"/>
+        <path d="M140 94v182M300 94v182M460 94v182M620 94v182"/>
+      </g>
+      <path d="M72 252 L250 206 L470 180 L720 128" fill="none" stroke="url(#tf-accent)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      <g fill="#0f3a2a" stroke="#d6fb63" stroke-width="4">
+        <circle cx="72" cy="252" r="10"/><circle cx="470" cy="180" r="10"/><circle cx="720" cy="128" r="10"/>
+      </g>
+      <g fill="#dff3c8" font-size="14">
+        <text x="56" y="284">Szczecin</text><text x="438" y="212">Poznań</text><text x="688" y="110">Łódź</text>
+      </g>
+      <g transform="translate(236 176)">
+        <rect width="52" height="26" rx="6" fill="#ffffff"/>
+        <rect x="30" y="6" width="22" height="20" rx="4" fill="#d6fb63"/>
+        <circle cx="14" cy="28" r="5" fill="#0f3a2a"/><circle cx="42" cy="28" r="5" fill="#0f3a2a"/>
+      </g>
+    </g>
+
+    <!-- Koszty i marża -->
+    <g transform="translate(884 212)">
+      <rect width="480" height="320" rx="16" fill="#ffffff" stroke="#cfe3cb"/>
+      <text x="28" y="44" fill="#103a28" font-size="20" font-weight="800">Wynik na zleceniu</text>
+      <g font-size="16" fill="#1d4c35">
+        <text x="28" y="88">Fracht</text><text x="372" y="88" font-weight="700">7 400 zł</text>
+        <text x="28" y="128">Paliwo</text><text x="372" y="128">2 180 zł</text>
+        <text x="28" y="168">Kierowca</text><text x="372" y="168">1 240 zł</text>
+        <text x="28" y="208">Opłaty drogowe</text><text x="372" y="208">640 zł</text>
+      </g>
+      <g stroke="#e3efdd" stroke-width="1">
+        <path d="M28 104h424M28 144h424M28 184h424M28 224h424"/>
+      </g>
+      <rect x="28" y="240" width="424" height="56" rx="12" fill="#12422f"/>
+      <text x="52" y="264" fill="#b6fb73" font-size="13" font-weight="700" letter-spacing="2">MARŻA PO KOSZTACH</text>
+      <text x="52" y="288" fill="#ffffff" font-size="24" font-weight="800">3 340 zł · 45%</text>
+    </g>
+
+    <!-- Dokumenty i flota -->
+    <g transform="translate(44 560)">
+      <rect width="812" height="144" rx="16" fill="#ffffff" stroke="#cfe3cb"/>
+      <text x="28" y="40" fill="#103a28" font-size="18" font-weight="800">Dokumenty zlecenia</text>
+      <g font-size="15">
+        <g transform="translate(28 58)">
+          <rect width="240" height="64" rx="12" fill="#f3faef" stroke="#cfe3cb"/>
+          <rect x="18" y="18" width="24" height="30" rx="4" fill="#d7f5b4"/>
+          <text x="56" y="32" fill="#12402b" font-weight="700">Zlecenie PDF</text>
+          <text x="56" y="52" fill="#5f8169" font-size="13">podpisane</text>
+        </g>
+        <g transform="translate(286 58)">
+          <rect width="240" height="64" rx="12" fill="#f3faef" stroke="#cfe3cb"/>
+          <rect x="18" y="18" width="24" height="30" rx="4" fill="#ffe7b0"/>
+          <text x="56" y="32" fill="#12402b" font-weight="700">CMR</text>
+          <text x="56" y="52" fill="#7a5410" font-size="13">czeka na skan</text>
+        </g>
+        <g transform="translate(544 58)">
+          <rect width="240" height="64" rx="12" fill="#f3faef" stroke="#cfe3cb"/>
+          <rect x="18" y="18" width="24" height="30" rx="4" fill="#cfe4ff"/>
+          <text x="56" y="32" fill="#12402b" font-weight="700">Faktura</text>
+          <text x="56" y="52" fill="#5f8169" font-size="13">po rozładunku</text>
+        </g>
+      </g>
+    </g>
+    <g transform="translate(884 560)">
+      <rect width="480" height="144" rx="16" fill="#ffffff" stroke="#cfe3cb"/>
+      <text x="28" y="40" fill="#103a28" font-size="18" font-weight="800">Flota w tym tygodniu</text>
+      <g fill="url(#tf-bar)">
+        <rect x="28" y="58" width="48" height="52" rx="8"/>
+        <rect x="92" y="70" width="48" height="40" rx="8"/>
+        <rect x="156" y="48" width="48" height="62" rx="8"/>
+        <rect x="220" y="76" width="48" height="34" rx="8"/>
+        <rect x="284" y="62" width="48" height="48" rx="8"/>
+        <rect x="348" y="84" width="48" height="26" rx="8"/>
+      </g>
+      <text x="404" y="110" fill="#5c7d66" font-size="14">6 aut</text>
+    </g>
+  </g>
+</svg>

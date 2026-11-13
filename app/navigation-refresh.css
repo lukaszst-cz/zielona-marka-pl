@@ -51,3 +51,27 @@
 @media(max-width:1120px){.zm-header .zm-nav-desktop{gap:8px;font-size:13px}.zm-header .zm-nav-desktop>a{padding-inline:4px}}
 @media(max-width:850px){.zm-header .zm-mega-groups{grid-template-columns:1fr}.zm-header .zm-nav-desktop .zm-offer-menu>.zm-mega-menu{grid-template-columns:1fr}}
 @media(max-width:600px){.zm-public.zm-blog-page .guide-library .zm-blog-results>a>span{font-size:12px!important}.zm-public.zm-blog-page .guide-card-meta :is(b,small){font-size:13px!important}.zm-footer .zm-footer-social-links{gap:5px 12px}}
+
+/* Telefon: nagłówek i menu nigdy nie wychodzą poza ekran. */
+@media(max-width:850px){
+  .zm-header .zm-nav{flex-wrap:nowrap;gap:12px}
+  .zm-header .zm-brand{min-width:0;flex:0 1 auto;overflow:hidden}
+  .zm-header .zm-mobile-menu{flex:none;margin-left:auto}
+  .zm-header .zm-mobile-menu>.zm-mobile-menu-panel{
+    box-sizing:border-box;
+    width:min(400px,calc(100vw - 20px));
+    max-width:calc(100vw - 20px);
+    left:auto;
+    right:0;
+    overflow-y:auto;
+    overscroll-behavior:contain;
+  }
+  .zm-header .zm-mobile-menu-shortcuts{gap:7px}
+  .zm-header .zm-mobile-menu-shortcuts a{min-width:0;padding:9px 6px;font-size:14px;hyphens:auto}
+  .zm-header .zm-mobile-menu-group>a,
+  .zm-header .zm-mobile-menu-group h2{min-width:0;overflow-wrap:anywhere}
+}
+@media(max-width:380px){
+  .zm-header .zm-mobile-menu-shortcuts{grid-template-columns:1fr}
+  .zm-header .zm-brand svg,.zm-header .zm-brand img{max-width:40px;height:auto}
+}

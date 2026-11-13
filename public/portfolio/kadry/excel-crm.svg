@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Rejestr kontaktów i działań: lista kontaktów ze statusami i kolejnymi krokami">
+  <defs>
+    <linearGradient id="crm-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#06291d"/><stop offset=".55" stop-color="#0d4330"/><stop offset="1" stop-color="#07231d"/>
+    </linearGradient>
+    <linearGradient id="crm-panel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef6ea"/>
+    </linearGradient>
+    <linearGradient id="crm-accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#d6fb63"/><stop offset="1" stop-color="#6fd16a"/>
+    </linearGradient>
+    <radialGradient id="crm-glow" cx="80%" cy="16%" r="60%">
+      <stop offset="0" stop-color="#b6fb73" stop-opacity=".26"/><stop offset="1" stop-color="#b6fb73" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#crm-bg)"/>
+  <rect width="1600" height="900" fill="url(#crm-glow)"/>
+
+  <g transform="translate(96 92)" font-family="Arial, Helvetica, sans-serif">
+    <rect x="10" y="14" width="1408" height="748" rx="26" fill="rgba(2,18,12,.45)"/>
+    <rect width="1408" height="740" rx="22" fill="url(#crm-panel)"/>
+    <rect width="1408" height="64" rx="22" fill="#12422f"/>
+    <rect y="40" width="1408" height="24" fill="#12422f"/>
+    <circle cx="36" cy="32" r="7" fill="#ff5f57"/><circle cx="60" cy="32" r="7" fill="#febc2e"/><circle cx="84" cy="32" r="7" fill="#28c840"/>
+    <text x="120" y="39" fill="#d8f3c6" font-size="19" font-weight="700">Rejestr kontaktów i działań.xlsx</text>
+    <text x="1160" y="39" fill="#9fd0ad" font-size="16">dane fikcyjne</text>
+
+    <!-- Lejek statusów -->
+    <g transform="translate(40 94)">
+      <g fill="#f3faef" stroke="#cfe3cb">
+        <rect width="318" height="104" rx="16"/>
+        <rect x="342" width="318" height="104" rx="16"/>
+        <rect x="684" width="318" height="104" rx="16"/>
+      </g>
+      <rect x="1026" width="342" height="104" rx="16" fill="#12422f"/>
+      <g font-size="15" font-weight="700" letter-spacing="2" fill="#5c7d66">
+        <text x="24" y="38">NOWE ZAPYTANIA</text><text x="366" y="38">W ROZMOWIE</text><text x="708" y="38">OFERTA WYSŁANA</text>
+      </g>
+      <text x="1050" y="38" fill="#b6fb73" font-size="15" font-weight="700" letter-spacing="2">DO ODEZWANIA SIĘ DZIŚ</text>
+      <g fill="#103a28" font-size="42" font-weight="800">
+        <text x="24" y="86">7</text><text x="366" y="86">12</text><text x="708" y="86">5</text>
+      </g>
+      <text x="1050" y="86" fill="#ffffff" font-size="42" font-weight="800">3</text>
+    </g>
+
+    <!-- Nagłówek tabeli -->
+    <g transform="translate(40 226)">
+      <rect width="1328" height="44" rx="10" fill="#eef6e7"/>
+      <g fill="#5c7d66" font-size="15" font-weight="700" letter-spacing="1">
+        <text x="24" y="29">KONTAKT</text><text x="330" y="29">FIRMA</text><text x="636" y="29">STATUS</text>
+        <text x="868" y="29">NASTĘPNY KROK</text><text x="1200" y="29">TERMIN</text>
+      </g>
+    </g>
+
+    <!-- Wiersze -->
+    <g transform="translate(40 282)" font-size="17">
+      <g>
+        <rect width="1328" height="62" rx="10" fill="#ffffff" stroke="#e1eedb"/>
+        <circle cx="42" cy="31" r="17" fill="#dff3c8"/><text x="34" y="37" fill="#2b6b3b" font-size="15" font-weight="800">AK</text>
+        <text x="74" y="37" fill="#1d4c35">Anna Kowal</text>
+        <text x="330" y="37" fill="#1d4c35">Piekarnia Okruch</text>
+        <rect x="632" y="18" width="150" height="26" rx="13" fill="#d7f5b4"/><text x="650" y="36" font-size="14" font-weight="700" fill="#1d5c2c">oferta wysłana</text>
+        <text x="868" y="37" fill="#1d4c35">zadzwonić po decyzję</text>
+        <text x="1200" y="37" fill="#b4451f" font-weight="700">dziś</text>
+      </g>
+      <g transform="translate(0 74)">
+        <rect width="1328" height="62" rx="10" fill="#ffffff" stroke="#e1eedb"/>
+        <circle cx="42" cy="31" r="17" fill="#dff3c8"/><text x="32" y="37" fill="#2b6b3b" font-size="15" font-weight="800">MZ</text>
+        <text x="74" y="37" fill="#1d4c35">Marek Zych</text>
+        <text x="330" y="37" fill="#1d4c35">Hurtownia Północ</text>
+        <rect x="632" y="18" width="150" height="26" rx="13" fill="#ffe7b0"/><text x="650" y="36" font-size="14" font-weight="700" fill="#7a5410">w rozmowie</text>
+        <text x="868" y="37" fill="#1d4c35">wysłać przykłady gazetek</text>
+        <text x="1200" y="37" fill="#1d4c35">jutro</text>
+      </g>
+      <g transform="translate(0 148)">
+        <rect width="1328" height="62" rx="10" fill="#ffffff" stroke="#e1eedb"/>
+        <circle cx="42" cy="31" r="17" fill="#dff3c8"/><text x="34" y="37" fill="#2b6b3b" font-size="15" font-weight="800">JP</text>
+        <text x="74" y="37" fill="#1d4c35">Joanna Pawlik</text>
+        <text x="330" y="37" fill="#1d4c35">Gabinet Trop</text>
+        <rect x="632" y="18" width="150" height="26" rx="13" fill="#cfe4ff"/><text x="650" y="36" font-size="14" font-weight="700" fill="#1a4a7a">nowe zapytanie</text>
+        <text x="868" y="37" fill="#1d4c35">umówić rozmowę</text>
+        <text x="1200" y="37" fill="#1d4c35">pt, 14:00</text>
+      </g>
+      <g transform="translate(0 222)">
+        <rect width="1328" height="62" rx="10" fill="#ffffff" stroke="#e1eedb"/>
+        <circle cx="42" cy="31" r="17" fill="#dff3c8"/><text x="32" y="37" fill="#2b6b3b" font-size="15" font-weight="800">PS</text>
+        <text x="74" y="37" fill="#1d4c35">Piotr Sowa</text>
+        <text x="330" y="37" fill="#1d4c35">Warsztat Auto Naprawa</text>
+        <rect x="632" y="18" width="150" height="26" rx="13" fill="#cfeedd"/><text x="658" y="36" font-size="14" font-weight="700" fill="#14523a">podpisana</text>
+        <text x="868" y="37" fill="#1d4c35">przekazać do realizacji</text>
+        <text x="1200" y="37" fill="#7d9b86">—</text>
+      </g>
+      <g transform="translate(0 296)">
+        <rect width="1328" height="62" rx="10" fill="#f7fbf4" stroke="#e1eedb" stroke-dasharray="6 5"/>
+        <circle cx="42" cy="31" r="17" fill="#ffffff" stroke="#bcdcb6"/>
+        <path d="M42 22v18m-9-9h18" stroke="#6b9478" stroke-width="3" stroke-linecap="round"/>
+        <text x="74" y="37" fill="#6b8d78">Dodaj kontakt i zaplanuj pierwszy krok</text>
+      </g>
+    </g>
+
+    <!-- Pasek dolny -->
+    <g transform="translate(40 644)">
+      <rect width="1328" height="60" rx="14" fill="#eef6e7" stroke="#cfe3cb"/>
+      <text x="28" y="37" fill="#5c7d66" font-size="16">Filtry: status, właściciel, termin kolejnego kroku</text>
+      <rect x="1040" y="12" width="264" height="36" rx="18" fill="url(#crm-accent)"/>
+      <text x="1078" y="36" fill="#0e3220" font-size="16" font-weight="800">Lista na dziś: 3 kontakty</text>
+    </g>
+  </g>
+</svg>

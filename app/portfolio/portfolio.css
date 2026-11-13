@@ -1422,3 +1422,49 @@
   color:#dcffb4!important;
   font-size:.92rem!important;
 }
+
+/* Pełne zrzuty stron pokazujemy w całości, w ciemnej ramce zamiast docinać boki. */
+.zmp-explorer .zmp-project-photo[data-media="screen"]{
+  background:linear-gradient(150deg,#0d3426,#07251c);
+}
+.zmp-explorer .zmp-project-photo[data-media="screen"] img,
+.zmp-explorer .zmp-project-photo[data-media="screen"] .zmx-cover-poster{
+  object-fit:contain;
+  padding:10px;
+  box-sizing:border-box;
+}
+.zmp-explorer .zmx-card .zmp-floating-visual[data-media="screen"] img,
+.zmp-explorer .zmx-card .zmp-floating-visual[data-media="screen"] .zmx-cover-poster{
+  object-fit:cover;
+  object-position:top center;
+  padding:0;
+}
+
+/* Podpowiedź, co czeka w działającej demonstracji. */
+.zmx-demo-hint{
+  margin:0!important;
+  font-size:.8rem!important;
+  color:#b7e6c4!important;
+  line-height:1.45!important;
+}
+
+/* Scena karuzeli przycina karty, żeby strona nie przewijała się w bok na telefonie. */
+.zmp-explorer .zmp-cinematic{overflow-x:clip}
+.zmp-explorer .zmx-stage{overflow:visible}
+@media(max-width:760px){
+  .zmp-explorer .zmx-stage{max-width:100%}
+  .zmp-explorer .zmx-card{width:min(78vw,340px)}
+}
+
+/* Sekcja przed i po: zaproszenie do bezplatnej koncepcji */
+.zmp-page .zmp-beforeafter{display:grid;grid-template-columns:1.25fr .85fr;gap:38px;align-items:start;margin-top:56px;padding:38px;border-radius:26px;background:linear-gradient(135deg,rgba(9,38,25,.72),rgba(4,20,13,.6));border:1px solid rgba(214,251,99,.22);backdrop-filter:blur(10px)}
+.zmp-page .zmp-beforeafter h2{font-size:clamp(1.9rem,3.1vw,2.7rem);line-height:1.08;margin:12px 0 16px;letter-spacing:-.02em}
+.zmp-page .zmp-beforeafter p{color:#c3d8c7;max-width:62ch;margin:0 0 14px}
+.zmp-page .zmp-beforeafter .zmp-pdf-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:22px}
+.zmp-page .zmp-beforeafter-steps{list-style:none;margin:0;padding:0;display:grid;gap:14px;counter-reset:none}
+.zmp-page .zmp-beforeafter-steps li{position:relative;padding:18px 20px 18px 62px;border-radius:16px;background:rgba(6,28,19,.55);border:1px solid rgba(221,240,214,.14)}
+.zmp-page .zmp-beforeafter-steps b{position:absolute;left:20px;top:18px;font-size:.8rem;letter-spacing:.18em;color:#d6fb63}
+.zmp-page .zmp-beforeafter-steps h3{margin:0 0 6px;font-size:1.05rem;letter-spacing:-.01em}
+.zmp-page .zmp-beforeafter-steps p{margin:0;font-size:.95rem;color:#b7ccbd}
+@media(max-width:900px){.zmp-page .zmp-beforeafter{grid-template-columns:1fr;padding:26px 20px;gap:26px}}
+.zmp-page .zmp-beforeafter .zmp-pdf-actions .zmp-btn{flex:0 0 auto}

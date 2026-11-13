@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Kalkulator wariantów oferty: trzy warianty usługi z zakresem i kosztem">
+  <defs>
+    <linearGradient id="kal-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#06291d"/><stop offset=".55" stop-color="#0d4330"/><stop offset="1" stop-color="#07231d"/>
+    </linearGradient>
+    <linearGradient id="kal-panel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef6ea"/>
+    </linearGradient>
+    <linearGradient id="kal-accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#d6fb63"/><stop offset="1" stop-color="#6fd16a"/>
+    </linearGradient>
+    <radialGradient id="kal-glow" cx="22%" cy="14%" r="62%">
+      <stop offset="0" stop-color="#b6fb73" stop-opacity=".26"/><stop offset="1" stop-color="#b6fb73" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#kal-bg)"/>
+  <rect width="1600" height="900" fill="url(#kal-glow)"/>
+
+  <g transform="translate(96 92)" font-family="Arial, Helvetica, sans-serif">
+    <rect x="10" y="14" width="1408" height="748" rx="26" fill="rgba(2,18,12,.45)"/>
+    <rect width="1408" height="740" rx="22" fill="url(#kal-panel)"/>
+    <rect width="1408" height="64" rx="22" fill="#12422f"/>
+    <rect y="40" width="1408" height="24" fill="#12422f"/>
+    <circle cx="36" cy="32" r="7" fill="#ff5f57"/><circle cx="60" cy="32" r="7" fill="#febc2e"/><circle cx="84" cy="32" r="7" fill="#28c840"/>
+    <text x="120" y="39" fill="#d8f3c6" font-size="19" font-weight="700">Kalkulator wariantów oferty.xlsx</text>
+    <text x="1152" y="39" fill="#9fd0ad" font-size="16">kwoty przykładowe</text>
+
+    <text x="44" y="118" fill="#103a28" font-size="30" font-weight="800">Trzy warianty tej samej usługi</text>
+    <text x="44" y="150" fill="#5c7d66" font-size="17">Klient widzi, za co dokładnie płaci i co odpada w tańszej wersji.</text>
+
+    <!-- Wariant podstawowy -->
+    <g transform="translate(44 184)">
+      <rect width="420" height="396" rx="18" fill="#f5faf1" stroke="#cfe3cb"/>
+      <text x="28" y="48" fill="#5c7d66" font-size="15" font-weight="700" letter-spacing="2">PODSTAWOWY</text>
+      <text x="28" y="104" fill="#103a28" font-size="46" font-weight="800">3 400 zł</text>
+      <text x="28" y="132" fill="#7d9b86" font-size="15">termin: 10 dni roboczych</text>
+      <g fill="#1d4c35" font-size="17">
+        <text x="56" y="186">Strona na jednej podstronie</text>
+        <text x="56" y="228">Formularz zapytania</text>
+        <text x="56" y="270">Teksty od klienta</text>
+      </g>
+      <g fill="#8fb39c" font-size="17">
+        <text x="56" y="312">Katalog produktów</text>
+        <text x="56" y="354">Kalkulator i gazetka</text>
+      </g>
+      <g fill="#4fae63">
+        <circle cx="36" cy="180" r="7"/><circle cx="36" cy="222" r="7"/><circle cx="36" cy="264" r="7"/>
+      </g>
+      <g stroke="#c2d4c8" stroke-width="3" stroke-linecap="round">
+        <path d="M31 301l10 10m0-10l-10 10"/><path d="M31 343l10 10m0-10l-10 10"/>
+      </g>
+    </g>
+
+    <!-- Wariant rozszerzony: wyróżniony -->
+    <g transform="translate(492 164)">
+      <rect width="420" height="436" rx="18" fill="#12422f"/>
+      <rect x="28" y="-15" width="232" height="30" rx="15" fill="url(#kal-accent)"/>
+      <text x="48" y="6" fill="#0e3220" font-size="14" font-weight="800" letter-spacing="1">NAJCZĘŚCIEJ WYBIERANY</text>
+      <text x="28" y="68" fill="#b6fb73" font-size="15" font-weight="700" letter-spacing="2">ROZSZERZONY</text>
+      <text x="28" y="124" fill="#ffffff" font-size="46" font-weight="800">6 900 zł</text>
+      <text x="28" y="152" fill="#9fd0ad" font-size="15">termin: 18 dni roboczych</text>
+      <g fill="#eafbe2" font-size="17">
+        <text x="56" y="206">Pięć podstron i blog</text>
+        <text x="56" y="248">Katalog produktów</text>
+        <text x="56" y="290">Kalkulator kosztu</text>
+        <text x="56" y="332">Teksty i zdjęcia od nas</text>
+      </g>
+      <g fill="#8fb39c" font-size="17">
+        <text x="56" y="374">Gazetka promocyjna</text>
+      </g>
+      <g fill="#b6fb73">
+        <circle cx="36" cy="200" r="7"/><circle cx="36" cy="242" r="7"/><circle cx="36" cy="284" r="7"/><circle cx="36" cy="326" r="7"/>
+      </g>
+      <path d="M31 363l10 10m0-10l-10 10" stroke="#6d8d7c" stroke-width="3" stroke-linecap="round"/>
+    </g>
+
+    <!-- Wariant pełny -->
+    <g transform="translate(940 184)">
+      <rect width="424" height="396" rx="18" fill="#f5faf1" stroke="#cfe3cb"/>
+      <text x="28" y="48" fill="#5c7d66" font-size="15" font-weight="700" letter-spacing="2">PEŁNY</text>
+      <text x="28" y="104" fill="#103a28" font-size="46" font-weight="800">11 500 zł</text>
+      <text x="28" y="132" fill="#7d9b86" font-size="15">termin: 30 dni roboczych</text>
+      <g fill="#1d4c35" font-size="17">
+        <text x="56" y="186">Wszystko z rozszerzonego</text>
+        <text x="56" y="228">Gazetka i katalog PDF</text>
+        <text x="56" y="270">Panel do aktualizacji</text>
+        <text x="56" y="312">Opieka przez rok</text>
+      </g>
+      <g fill="#4fae63">
+        <circle cx="36" cy="180" r="7"/><circle cx="36" cy="222" r="7"/><circle cx="36" cy="264" r="7"/><circle cx="36" cy="306" r="7"/>
+      </g>
+      <rect x="28" y="336" width="368" height="40" rx="10" fill="#e8f6dc"/>
+      <text x="48" y="362" fill="#1d5c2c" font-size="16" font-weight="700">Różnica do rozszerzonego: 4 600 zł</text>
+    </g>
+
+    <!-- Pasek sumy -->
+    <g transform="translate(44 612)">
+      <rect width="1320" height="92" rx="16" fill="#eef6e7" stroke="#cfe3cb"/>
+      <text x="32" y="40" fill="#5c7d66" font-size="15" font-weight="700" letter-spacing="2">KOSZT WYBRANEGO WARIANTU</text>
+      <text x="32" y="76" fill="#103a28" font-size="30" font-weight="800">6 900 zł netto</text>
+      <text x="320" y="76" fill="#5c7d66" font-size="17">rozłożone na 3 płatności: 2 300 zł po etapie</text>
+      <rect x="1032" y="24" width="256" height="46" rx="23" fill="url(#kal-accent)"/>
+      <text x="1072" y="54" fill="#0e3220" font-size="18" font-weight="800">Pobierz jako PDF</text>
+    </g>
+  </g>
+</svg>
