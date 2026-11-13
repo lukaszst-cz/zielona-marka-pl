@@ -95,7 +95,7 @@
 .zmp-detail-status{display:inline-block;margin-top:8px;padding:9px 13px;border:1px solid rgba(206,249,187,.35);border-radius:100px;color:#c0f09a;font-size:.8rem}
 .zmp-detail-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:25px}
 .zmp-detail-visual{margin:0}
-.zmp-detail-visual>img,.zmp-detail-placeholder{width:100%;border-radius:17px;aspect-ratio:3/2;object-fit:cover;border:1px solid rgba(235,255,228,.17);box-shadow:0 20px 50px #0007}
+.zmp-detail-visual>img,.zmp-detail-placeholder{width:100%;border-radius:17px;aspect-ratio:16/9;object-fit:cover;border:1px solid rgba(235,255,228,.17);box-shadow:0 20px 50px #0007}
 .zmp-detail-placeholder strong{font-size:3rem}
 .zmp-detail-visual figcaption{font-size:.73rem;color:#aac1ad;margin-top:12px}
 .zmp-detail-text{display:grid;grid-template-columns:1fr 1fr;gap:55px;padding:40px 0 80px}
@@ -1008,7 +1008,7 @@
   position:relative;
   display:block;
   width:100%;
-  aspect-ratio:3/2;
+  aspect-ratio:16/9;
   border-radius:20px;
   overflow:hidden;
   border:1px solid rgba(190,240,200,.3);
