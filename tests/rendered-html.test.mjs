@@ -206,7 +206,7 @@ test("Premium clarity and ZM Mini pricing are consistent in public website", asy
   const home = await (await render("/")).text();
   assert.match(home, /zmh-social-panel/);
   assert.match(home, /\/icon-github-zielona-marka\.svg/);
-  assert.match(home, /zaprojektuj przykładową stronę/i);
+  assert.match(home, /href="\/projektuj-strone/i);
   const article = await (await render("/poradnik/jak-przygotowac-pdf-do-druku")).text();
   assert.match(article, /Łukasz Staniewicz/);
 });
