@@ -114,3 +114,13 @@
 /* Naglowek z wlasnym rozmyciem odcina rozmycie panelu menu, wiec na czas otwarcia je zdejmujemy */
 .zm-header:has(.zm-mobile-menu[open]),
 .zm-header:has(.zm-offer-menu[open]){-webkit-backdrop-filter:none;backdrop-filter:none}
+
+/* Telefon: otwarte menu ma pelne tlo, zeby tresc strony przez nie nie przebijala. */
+@media(max-width:850px){
+  html body .zm-header .zm-mobile-menu[open] > .zm-mobile-menu-panel{
+    background:linear-gradient(155deg,#03180f,#061f14);
+    -webkit-backdrop-filter:none;backdrop-filter:none;
+    border:1px solid rgba(184,212,164,.42);
+    box-shadow:0 22px 60px rgba(0,0,0,.5)}
+  html body .zm-header .zm-mobile-menu[open] .zm-mobile-menu-shortcuts a{background:#163b27}
+}
