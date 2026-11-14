@@ -126,18 +126,21 @@ export const portfolioItems: PortfolioItem[] = [
     "slug": "solidom",
     "title": "SOLIDOM",
     "category": "www",
-    "industry": "Usługi budowlane",
-    "summary": "Firma budowlano-remontowa z czytelną ofertą i realizacjami na pierwszym planie.",
-    "explanation": "Układ prowadzi od zakresu prac do kontaktu, bez przewijania przez ścianę tekstu.",
+    "industry": "Budownictwo i remonty",
+    "summary": "Strona firmy budowlanej, która na pierwszym planie pokazuje ofertę i przykładowe realizacje.",
+    "explanation": "Duże fotografie, galeria prac i czytelny podział usług pomagają szybko poznać zakres działalności. Sekcja opinii i wyraźna droga do kontaktu domykają prezentację, także na telefonie.",
     "features": [
-      "Oferta usług",
-      "Prezentacja projektów",
-      "Kontakt"
+      "Wyraziste zdjęcia i galeria realizacji",
+      "Przejrzysta oferta usług",
+      "Przykładowe opinie i liczniki",
+      "Wygodna droga do kontaktu",
+      "Układ na telefon i komputer"
     ],
     "demoUrl": "https://solidom.vercel.app",
     "image": "/portfolio/kadry/solidom-ekran.webp",
-    "alt": "Pierwszy ekran strony SOLIDOM",
-    "status": "projekt demonstracyjny"
+    "alt": "Podgląd strony SOLIDOM z dużą fotografią i ofertą usług budowlanych",
+    "status": "projekt demonstracyjny",
+    "featured": true
   },
   {
     "slug": "solident",
