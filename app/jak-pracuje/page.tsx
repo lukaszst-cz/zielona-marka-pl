@@ -12,7 +12,7 @@ const workflowIllustrations = [
   { src: "/mapa-procesu-zielona-marka-20260908.png", alt: "Schemat planowania i projektowania strony internetowej", fit: "contain" },
   { src: "/lukasz-zielona-marka-jak-pracuje-20260908.webp", alt: "Praca nad projektem strony przy komputerze", fit: "cover" },
   { src: "/test-strony-mobilnej-zielona-marka.png", alt: "Materiały dotyczące testów strony mobilnej", fit: "contain" },
-  { src: "/portfolio-zielona-marka-live.png", alt: "Kadr z gotowej strony Zielonej Marki", fit: "contain" },
+  { src: "/portfolio-zielona-marka-live.png", alt: "Kadr z gotowej witryny marki Zielona Marka", fit: "contain" },
 ] as const;
 
 
