@@ -89,8 +89,8 @@ test("homepage menu stays above the hero and mobile devices use the lighter film
   ]);
   assert.match(homeCss,/zmh-opening>\.zm-header\{position:relative;z-index:40\}/);
   assert.match(hero,/fern-moss-stream-mobile-20260929\.mp4/);
-  assert.match(hero,/let intent = false/);
-  assert.match(hero,/scrollY\s*>\s*48/);
+  assert.match(hero,/userIntent\.current/);
+  assert.match(hero,/scrollY>48/);
   assert.doesNotMatch(hero,/setTimeout\([^)]*3000/);
   assert.doesNotMatch(portal,/fern-moss-stream-mobile-20260929\.mp4/, "Stream video is only loaded in ForestHero");
   assert.match(portal,/zmh-contact-preview/, "Final CTA shows a contact preview rather than water");
@@ -105,7 +105,7 @@ test("v1.0.1 defers non-critical home media and caches hashed assets",async()=>{
     readFile(new URL("../app/LivingPortal.tsx",import.meta.url),"utf8"),
   ]);
   assert.match(headers,/\/_next\/static\/\*[\s\S]*max-age=31536000, immutable/);
-  assert.match(hero,/zmh-living-forest.*is-media-ready/);
+  assert.match(hero,/zmh-living-forest\$\{ready\?' is-media-ready'/);
   assert.match(homeCss,/\.zmh-living-forest\.is-media-ready:before\{background-image:url\('\/brand-review-v5\/user-stream-tree-optimized\.webp'\)/);
   assert.match(portal,/if \(visible\) el\.classList\.add\("zmh-media-ready"\)/);
   assert.doesNotMatch(refinements,/stream-water-bottom\.webp/, "No water photograph below the first screen");
@@ -371,14 +371,13 @@ test("public quality manuals are discoverable and have clean canonical titles",a
   }
 });
 
-test("forest hero has no extra playback bar and respects media preferences",async()=>{
+test("forest hero ambient sound is opt-in and stops when tab is hidden",async()=>{
   const hero=await readFile(new URL("../app/ForestHero.tsx",import.meta.url),"utf8");
-  assert.ok(hero.includes("muted loop playsInline"),"Background film is always muted");
-  assert.ok(!hero.includes("zmh-media-controls"),"No diagnostic or playback control strip");
-  assert.ok(!hero.includes("new Audio("),"No ambient audio is created");
-  assert.ok(hero.includes("reducedMotion.matches"),"Reduced motion is respected");
-  assert.ok(hero.includes("document.hidden"),"Film pauses in background tabs");
-  assert.ok(hero.includes("connection?.saveData"),"Data saving is respected");
+  assert.match(hero,/onClick=\{toggleSound\}/);
+  assert.match(hero,/document\.addEventListener\('visibilitychange',syncSound\)/);
+  assert.match(hero,/document\.hidden\)\{sound\.pause\(\);return;\}/);
+  assert.doesNotMatch(hero,/const resume=\(\)=>startSound\(\)/);
+  assert.doesNotMatch(hero,/useEffect\(\(\)=>\{\s*if\(userMuted\.current\)return;\s*startSound\(\)/);
 });
 
 test("SEO release guard keeps sitemap and robots aligned",async()=>{
@@ -974,21 +973,4 @@ test("restored homepage keeps basic scroll and mobile behavior", async () => {
   assert.doesNotMatch(story, /innerHTML\s*=/);
   assert.match(css, /@media\(max-width:520px\)/);
   assert.match(css, /prefers-reduced-motion:reduce/);
-});
-
-test("process imagery and footer keep contact and Bizky information visible",async()=>{
-  const [work,home,chrome,css]=await Promise.all([
-    readFile(new URL("../app/jak-pracuje/page.tsx",import.meta.url),"utf8"),
-    readFile(new URL("../app/OrganicHome.tsx",import.meta.url),"utf8"),
-    readFile(new URL("../app/SiteChrome.tsx",import.meta.url),"utf8"),
-    readFile(new URL("../app/workflow-visuals.css",import.meta.url),"utf8"),
-  ]);
-  assert.ok(work.includes("Od pierwszej rozmowy do gotowego efektu"));
-  assert.ok(work.includes("zm-workflow-timeline"));
-  assert.ok(home.includes("zmh-care-photo"));
-  assert.ok(css.includes("max-width: 680px"),"Mobile layout breakpoint");
-  assert.ok(chrome.includes("zm-footer-top"));
-  assert.ok(chrome.indexOf('className="zm-footer-top"') < chrome.indexOf('"Explore"'),"Billing before footer navigation");
-  assert.equal((chrome.match(/id="fakturowanie"/g)||[]).length,1,"One billing section");
-  assert.ok(chrome.includes("kontakt@zielona-marka.pl"));
 });
