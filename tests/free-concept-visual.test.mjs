@@ -6,7 +6,10 @@ const read = (file) => readFile(path.join(process.cwd(), file), "utf8");
 
 test("form receives gallery selection and keeps privacy safeguards", async () => {
   const form = await read("app/bezplatna-koncepcja-strony/ConceptRequestForm.tsx");
-  assert.ok(form.includes('new URLSearchParams(window.location.search).get("typ")'));
+  assert.ok(form.includes("new URLSearchParams(window.location.search)"));
+  assert.ok(form.includes('params.get("typ")'));
+  // adres strony przekazany z portfolio uzupelnia pole opisu
+  assert.ok(form.includes('params.get("strona")'));
   assert.ok(form.includes('window.addEventListener("zm-concept-mode"'));
   for (const mode of ["existing", "new", "logo", "promo", "sales"]) {
     assert.match(form, new RegExp("^\\s*" + mode + ': "', "m"));

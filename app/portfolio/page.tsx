@@ -42,9 +42,17 @@ export default function PortfolioPage() {
           <li><b>03</b><h3>Oglądasz porównanie</h3><p>Stara i nowa wersja obok siebie, z komentarzem, co i dlaczego się zmieniło.</p></li>
         </ol>
       </section>
-      <section className="zmp-bottom-cta shell">
-        <div><span className="zmp-overline">DOPASOWANE DO TWOJEJ FIRMY</span><h2>Chcesz coś podobnego u siebie?</h2><p>Napisz w dwóch zdaniach, co Twoja strona ma robić, a odpiszemy, ile to zajmie i ile kosztuje. Zakres ustalamy przed startem, więc na fakturze nie ma niespodzianek. Możesz też zacząć od bezpłatnej koncepcji: przygotujemy pomysł na Twoją stronę, zanim cokolwiek zamówisz.</p></div>
-        <div className="zmp-pdf-actions"><a href="/bezplatna-koncepcja-strony" className="zmp-btn zmp-btn-strong">Zamów bezpłatną koncepcję ↗</a><a href="/kontakt" className="zmp-btn zmp-btn-outline">Napisz do nas ↗</a></div>
+      <section className="zmp-bottom-cta shell" id="koncepcja">
+        <div><span className="zmp-overline">BEZPŁATNA KONCEPCJA</span><h2>Chcesz zobaczyć swoją stronę w takiej wersji?</h2><p>Wklej adres swojej strony. Przygotuję nową wersję na Twoich treściach i pokażę porównanie starej z nową. Bez opłat, bez zobowiązań i bez pytania o budżet.</p></div>
+        <form className="zmp-concept-form" method="get" action="/bezplatna-koncepcja-strony#zgloszenie">
+          <input type="hidden" name="typ" value="existing" />
+          <label htmlFor="zmp-concept-site">Adres Twojej strony</label>
+          <div className="zmp-concept-row">
+            <input id="zmp-concept-site" name="strona" type="text" inputMode="url" autoComplete="url" maxLength={200} placeholder="twojastrona.pl" />
+            <button type="submit" className="zmp-btn zmp-btn-strong">Pokaż moją stronę w nowej wersji ↗</button>
+          </div>
+          <p className="zmp-concept-note">Nie masz jeszcze strony? <a href="/bezplatna-koncepcja-strony">Zamów koncepcję dla nowej firmy ↗</a> albo <a href="/kontakt">napisz do nas ↗</a>.</p>
+        </form>
       </section>
     </main>
     <QuickWhatsApp />
