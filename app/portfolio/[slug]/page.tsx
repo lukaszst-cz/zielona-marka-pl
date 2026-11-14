@@ -7,6 +7,7 @@ import { findPortfolioItem, portfolioCategories, portfolioItems } from "../catal
 import ProjectCover from "../ProjectCover";
 import DetailMotion from "../DetailMotion";
 import { websiteCaseStudies } from "../websiteCaseStudies";
+import { additionalCaseStudies } from "../additionalCaseStudies";
 import "../portfolio.css";
 
 export function generateStaticParams() {
@@ -35,7 +36,7 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
   const { slug } = await params;
   const item = findPortfolioItem(slug);
   if (!item) notFound();
-  const caseStudy = websiteCaseStudies[item.slug];
+  const caseStudy = websiteCaseStudies[item.slug] ?? additionalCaseStudies[item.slug];
   const category = portfolioCategories.find(group => group.id === item.category);
   const other = portfolioItems.filter(project => project.category === item.category && project.slug !== item.slug).slice(0, 3);
   const jsonLd = {
@@ -93,13 +94,13 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
       </section>
       {caseStudy && <section className="shell zmp-website-story zmx-reveal" aria-label="Opis wykonania strony">
         <header className="zmp-story-heading">
-          <div><span className="zmp-overline">JAK POWSTAŁ PROJEKT</span><h2>Od kierunku graficznego do działania</h2></div>
+          <div><span className="zmp-overline">JAK POWSTAŁ PROJEKT</span><h2>Od pomysłu do wykonania</h2></div>
           {caseStudy.version && <p className="zmp-story-version">{caseStudy.version}</p>}
         </header>
         <div className="zmp-story-grid">
           <article><span className="zmp-story-step">01 / WYGLĄD</span><h3>Warstwa wizualna</h3><p>{caseStudy.visual}</p></article>
           <article><span className="zmp-story-step">02 / KORZYSTANIE</span><h3>Ścieżka użytkownika</h3><p>{caseStudy.flow}</p></article>
-          <article><span className="zmp-story-step">03 / REALIZACJA</span><h3>Funkcje i technologia</h3><p>{caseStudy.technical}</p></article>
+          <article><span className="zmp-story-step">03 / REALIZACJA</span><h3>Sposób wykonania</h3><p>{caseStudy.technical}</p></article>
           <article><span className="zmp-story-step">04 / REZULTAT</span><h3>Zakres wykonania</h3><p>{caseStudy.scope}</p>
             {caseStudy.sources && <nav aria-label="Pliki projektu" className="zmp-story-links">{caseStudy.sources.map(source=><a key={source.url} href={source.url} target="_blank" rel="noopener noreferrer">{source.label} ↗</a>)}</nav>}
           </article>
