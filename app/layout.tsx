@@ -23,7 +23,6 @@ import "./ui-consistency-202610.css";
 import "./site-design-system.css";
 import "./legal-information.css";
 import "./realizacje-premium.css";
-import "./workflow-visuals.css";
 import PolishTypography from "./PolishTypography";
 import CookieConsent from "./CookieConsent";
 import SiteTracking from "./SiteTracking";
