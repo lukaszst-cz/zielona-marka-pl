@@ -6,6 +6,7 @@ import { QuickWhatsApp, SiteFooter, SiteHeader } from "../../SiteChrome";
 import { findPortfolioItem, portfolioCategories, portfolioItems } from "../catalog";
 import ProjectCover from "../ProjectCover";
 import DetailMotion from "../DetailMotion";
+import { websiteCaseStudies } from "../websiteCaseStudies";
 import "../portfolio.css";
 
 export function generateStaticParams() {
@@ -34,6 +35,7 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
   const { slug } = await params;
   const item = findPortfolioItem(slug);
   if (!item) notFound();
+  const caseStudy = websiteCaseStudies[item.slug];
   const category = portfolioCategories.find(group => group.id === item.category);
   const other = portfolioItems.filter(project => project.category === item.category && project.slug !== item.slug).slice(0, 3);
   const jsonLd = {
@@ -89,6 +91,20 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
         <article><span className="zmp-overline"><i>01</i> PO CO TO POWSTAŁO</span><h2>Pomysł w skrócie</h2><p>{item.explanation}</p></article>
         <article><span className="zmp-overline"><i>02</i> CO JEST W ŚRODKU</span><h2>Na co zwrócić uwagę</h2><ul className="zmx-feature-list">{item.features.map((feature,index)=><li key={feature} style={{ ["--zmx-i" as string]: String(index) }}>{feature}</li>)}</ul></article>
       </section>
+      {caseStudy && <section className="shell zmp-website-story zmx-reveal" aria-label="Opis wykonania strony">
+        <header className="zmp-story-heading">
+          <div><span className="zmp-overline">JAK POWSTAŁ PROJEKT</span><h2>Od kierunku graficznego do działania</h2></div>
+          {caseStudy.version && <p className="zmp-story-version">{caseStudy.version}</p>}
+        </header>
+        <div className="zmp-story-grid">
+          <article><span className="zmp-story-step">01 / WYGLĄD</span><h3>Warstwa wizualna</h3><p>{caseStudy.visual}</p></article>
+          <article><span className="zmp-story-step">02 / KORZYSTANIE</span><h3>Ścieżka użytkownika</h3><p>{caseStudy.flow}</p></article>
+          <article><span className="zmp-story-step">03 / REALIZACJA</span><h3>Funkcje i technologia</h3><p>{caseStudy.technical}</p></article>
+          <article><span className="zmp-story-step">04 / REZULTAT</span><h3>Zakres wykonania</h3><p>{caseStudy.scope}</p>
+            {caseStudy.sources && <nav aria-label="Pliki projektu" className="zmp-story-links">{caseStudy.sources.map(source=><a key={source.url} href={source.url} target="_blank" rel="noopener noreferrer">{source.label} ↗</a>)}</nav>}
+          </article>
+        </div>
+      </section>}
       <section className="shell zmp-disclaimer zmx-reveal"><strong>Szczerze o tej pracy</strong><p>To nasz własny projekt, a nie wdrożenie zamówione przez firmę o tej nazwie. Nazwy, ceny, produkty i dostępność są wymyślone na potrzeby pokazu.</p></section>
       {other.length > 0 && <section className="shell zmp-related zmx-reveal"><span className="zmp-overline">PODOBNE PRACE</span><h2>W tej samej kategorii</h2><div>{other.map(project=><Link key={project.slug} href={`/portfolio/${project.slug}`}><strong>{project.title}</strong><span>{project.industry} ↗</span></Link>)}</div></section>}
       <section className="shell zmp-bottom-cta zmx-reveal"><div><span className="zmp-overline">KOLEJNY PROJEKT</span><h2>Zróbmy to dla Twojej firmy.</h2><p>Twoja strona dostanie własne treści, zdjęcia i zakres. To, co widzisz obok, pokazuje kierunek i poziom wykonania.</p></div><Link href="/kontakt" className="zmp-btn zmp-btn-strong">Napisz do nas ↗</Link></section>

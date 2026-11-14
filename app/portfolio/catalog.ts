@@ -127,14 +127,14 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "SOLIDOM",
     "category": "www",
     "industry": "Budownictwo i remonty",
-    "summary": "Strona firmy budowlanej, która na pierwszym planie pokazuje ofertę i przykładowe realizacje.",
-    "explanation": "Duże fotografie, galeria prac i czytelny podział usług pomagają szybko poznać zakres działalności. Sekcja opinii i wyraźna droga do kontaktu domykają prezentację, także na telefonie.",
+    "summary": "Finalna strona marki budowlanej z galerią, animacjami i prostą drogą do kontaktu.",
+    "explanation": "Duże fotografie, granatowa paleta z pomarańczowymi akcentami, animowane wejścia sekcji, filtry galerii, cztery etapy ze zdjęciami, liczniki i formularz testowy prowadzą od poznania usług do kontaktu.",
     "features": [
       "Wyraziste zdjęcia i galeria realizacji",
       "Przejrzysta oferta usług",
-      "Przykładowe opinie i liczniki",
-      "Wygodna droga do kontaktu",
-      "Układ na telefon i komputer"
+      "Animowane liczniki i karuzela opinii",
+      "Filtrowana galeria i formularz",
+      "Wersja mobilna, animacje i PWA"
     ],
     "demoUrl": "https://solidom.vercel.app",
     "image": "/portfolio/kadry/solidom-ekran.webp",
