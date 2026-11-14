@@ -80,7 +80,7 @@ export const websiteCaseStudies: Record<string, WebsiteCaseStudy> = {
     "visual": "Spokojna typografia, jasne tło i fotografia usług wellness. Układ ułatwia zapoznanie się z zabiegami.",
     "flow": "Klientka wybiera usługę i przechodzi do ścieżki rezerwacji, a właścicielka może zobaczyć pokaz zaplecza.",
     "technical": "W katalogu potwierdzono ofertę, ścieżkę rezerwacji i demonstracyjny terminarz. Nie zweryfikowano rzeczywistego kalendarza ani płatności.",
-    "scope": "Interaktywna prezentacja branży beauty w serwisie Zielonej Marki."
+    "scope": "Interaktywna prezentacja branży beauty w serwisie marki Zielona Marka."
   },
   "bistro-forma": {
     "visual": "Układ restauracyjny: fotografie dań, czytelna karta i podstawowe informacje o lokalu.",
