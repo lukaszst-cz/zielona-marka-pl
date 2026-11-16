@@ -30,7 +30,7 @@ function matchesIndustry(item: PortfolioItem, filter: string) {
 /* Czternaście prac na scenie: przekrój przez wszystkie formaty, bez tłoku na jednym ekranie. */
 /* Karuzela pokazuje wylacznie pierwsze ekrany stron i gazetki; narzedzia i arkusze zostaja w katalogu nizej. */
 const featuredOrder = [
-  "navoro-hurt", "solidom", "black-harbor", "aurea-smile", "solident", "eltravia",
+  "navoro-hurt", "phu-marecki", "solidom", "black-harbor", "aurea-smile", "solident", "eltravia",
   "gazetka-navoro", "nexio-elektro", "gazetka-nexio", "materivo", "budrivo", "okruch", "szlak",
 ];
 
@@ -301,7 +301,7 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
       <div className="shell">
         <div className="zmp-projects-title">
           <span className="zmp-overline">PROJEKTY I DEMONSTRACJE</span>
-          <h2>Wszystko, co mamy <em>na podorędziu.</em></h2>
+          <h2>Wszystkie prace <em>w jednym miejscu.</em></h2>
           <p>Każda praca ma działające demo albo plik do obejrzenia i krótki opis, do czego służy. Filtruj po branży albo wpisz, czego szukasz.</p>
         </div>
         <div className="zmp-projects-tools">
@@ -352,8 +352,6 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
                   : item.category === "przed-po" ? <span>Projekt demonstracyjny</span> : null}</div>
               <h3><Link href={`/portfolio/${item.slug}`}>{item.title}</Link></h3>
               <p className="zmp-project-intro">{item.summary}</p>
-              <p className="zmp-project-description">{item.explanation}</p>
-              {item.demoUrl && <p className="zmx-demo-hint">W demonstracji klikniesz: {item.features.slice(0, 2).join(", ").toLocaleLowerCase("pl-PL")}.</p>}
               <div className="zmp-project-features" aria-label="Elementy projektu">
                 {item.features.slice(0,3).map(feature=><span key={feature}>{feature}</span>)}
               </div>

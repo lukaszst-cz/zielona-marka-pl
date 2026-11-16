@@ -1522,3 +1522,11 @@ html body .zmp-page .zmp-story-variant{margin-top:12px;padding-top:12px;border-t
 /* Scena karuzeli jest wyzsza, bo prezentowana karta jest teraz powiekszona. */
 html body .zmp-page .zmp-visual-stage{height:clamp(360px,40vw,620px)}
 @media(max-width:700px){html body .zmp-page .zmp-visual-stage{height:330px}}
+
+/* Galeria na dole: kadr 4:3 jak w karuzeli, zamiast niskiego paska. */
+html body .zmp-explorer .zmp-project-photo{height:auto;aspect-ratio:4/3}
+html body .zmp-explorer .zmp-project-photo[data-media="screen"] img,
+html body .zmp-explorer .zmp-project-photo[data-media="art"] img{object-fit:cover;object-position:top center;padding:0}
+html body .zmp-explorer .zmp-project-photo[data-media="photo"] img{object-position:center 45%}
+html body .zmp-explorer .zmp-project-intro{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+@media(max-width:700px){html body .zmp-explorer .zmp-project-photo{aspect-ratio:4/3}}

@@ -23,6 +23,14 @@ export const websiteCaseStudies: Record<string, WebsiteCaseStudy> = {
     "honest": "To koncepcja fikcyjnej hurtowni, nie wdrożenie dla klienta. Kalkulator elewacji i katalog działają naprawdę i można je kliknąć, ale strona nie jest połączona z żadnym magazynem ani systemem sprzedaży. U realnego klienta trzeba by podpiąć jego asortyment i ustalić, skąd biorą się ceny.",
     "variant": "Strona i gazetka BUDRIVO stoją pod jednym adresem. Gazetka jest częścią serwisu, nie osobnym projektem."
   },
+  "phu-marecki": {
+    "visual": "Granat i czerwień centrum budowlanego, duże zdjęcia placu, tartaku i transportu. Gazetka wygląda jak rozkładówka papierowej ulotki, tylko że da się z niej dodawać produkty.",
+    "flow": "Od gazetki lub katalogu przez listę do wyceny z ilościami do jednej gotowej wiadomości e-mail. Osobna ścieżka prowadzi do zapytania o transport na budowę.",
+    "technical": "W działającej publikacji potwierdzono gazetkę z filtrami działów, katalog 18 pozycji z wyszukiwarką, listę zapisywaną w przeglądarce, formularz transportu i formularz kontaktu. Nie ma płatności ani połączenia z magazynem.",
+    "scope": "Opublikowana koncepcja centrum budowlanego razem z aplikacją na telefon.",
+    "honest": "To nasz własny projekt pokazowy, nie wdrożenie dla firmy o tej nazwie. Produkty, ceny i promocje są przykładowe, a formularze nie wysyłają niczego same: otwierają gotową wiadomość w poczcie, którą wysyła się ręcznie. U realnego klienta trzeba podpiąć jego asortyment, ustalić źródło cen i zdecydować, czy zapytania mają trafiać do skrzynki, czy do systemu.",
+    "variant": "Ta praca ma dwie części. Strona WWW jest dla kogoś, kto szuka materiałów na komputerze i chce obejrzeć gazetkę na dużym ekranie. Aplikacja na telefon to ten sam asortyment w formie instalowanej na ekranie głównym, z pięcioma ekranami i listą, która zostaje w telefonie. Obie korzystają z tej samej listy produktów."
+  },
   "navoro-hurt": {
     "visual": "Silne fotografie produktów i kolorystyka promocji, połączone z czytelną nawigacją B2B.",
     "flow": "Klient przegląda 17 produktów i otwiera lub pobiera ośmiostronicową gazetkę. Oferta jest połączona z przygotowaniem zapytania.",
