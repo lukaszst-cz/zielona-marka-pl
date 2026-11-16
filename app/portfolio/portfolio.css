@@ -1497,3 +1497,21 @@
 .zmp-story-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:19px}
 .zmp-story-links a{font-size:.81rem;font-weight:700;color:#cef0ae;text-decoration:underline;text-underline-offset:3px}
 @media(max-width:760px){.zmp-website-story{padding-top:40px;padding-bottom:52px}.zmp-story-grid{grid-template-columns:1fr}.zmp-story-grid article{padding:22px 21px 26px}.zmp-story-grid p{font-size:.88rem}}
+
+/* Obudowa tabletu: ten sam wyglad w karuzeli i w kafelkach katalogu.
+   Kadr jest wyrownany do gory, zeby karta pokazywala pierwszy ekran strony, a nie jej srodek. */
+html body .zmp-page .zmp-floating-card{padding:9px 9px 20px;border-radius:22px;background:linear-gradient(160deg,#0f2b31,#06181d 70%);border:1px solid rgba(154,214,205,.34)}
+html body .zmp-page .zmp-floating-visual{border-radius:12px;overflow:hidden}
+html body .zmp-page .zmp-floating-card:after{content:"";position:absolute;left:50%;bottom:8px;width:34px;height:4px;border-radius:4px;background:rgba(190,226,218,.38);transform:translateX(-50%)}
+
+html body .zmp-page .zmp-project-photo{height:auto;padding:9px 9px 18px;background:linear-gradient(160deg,#10333a,#071c22 72%);border-bottom:1px solid rgba(124,186,176,.26)}
+html body .zmp-page .zmp-project-photo img{aspect-ratio:16/9;height:auto;border-radius:10px;object-fit:cover;object-position:top center}
+html body .zmp-page .zmp-project-photo:after{inset:auto 0 18px 0;height:38%;border-radius:0 0 10px 10px;margin:0 9px}
+html body .zmp-page .zmp-project-photo:before{content:"";position:absolute;left:50%;bottom:7px;width:30px;height:3px;border-radius:3px;background:rgba(190,226,218,.34);transform:translateX(-50%);z-index:2}
+@media(max-width:700px){
+  html body .zmp-page .zmp-floating-card{padding:6px 6px 14px;border-radius:15px}
+  html body .zmp-page .zmp-project-photo{padding:7px 7px 14px}
+}
+
+/* Pobranie pustego arkusza obok odnosnika do demonstracji. */
+html body .zmp-page .zmp-project-demo.zmx-download{background:rgba(182,235,138,.14);border-color:rgba(182,235,138,.5)}

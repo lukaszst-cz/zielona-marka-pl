@@ -361,6 +361,7 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
                 {item.demoUrl && <a className="zmp-project-demo" href={item.demoUrl}
                   target={item.demoUrl.startsWith("http")?"_blank":undefined}
                   rel={item.demoUrl.startsWith("http")?"noopener noreferrer":undefined}>Otwórz demo ↗</a>}
+                {item.downloadUrl && <a className="zmp-project-demo zmx-download" href={item.downloadUrl} download>{item.downloadLabel ?? "Pobierz plik"} ↓</a>}
               </div>
             </div>
           </article>)}
