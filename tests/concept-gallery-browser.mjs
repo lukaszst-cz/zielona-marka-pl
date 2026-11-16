@@ -23,7 +23,8 @@ try {
     // This test never sends inquiries or changes production data.
     await page.route("**/api/**", route => route.abort());
     await openPage(page, "/bezplatna-koncepcja-strony?fbclid=gallery-qa", ".zm-concept-form");
-    assert.equal(await page.locator(".zmp-teaser-card").count(), 3, "Old concept page should show a short selection instead of a second full gallery");
+    assert.equal(await page.locator(".zmp-teaser-card").count(), 0, "Concept page must not run a second gallery: works live in the portfolio")
+    assert.equal(await page.locator(".zm-concept-proof img").count(), 1, "Concept page shows exactly one before and after as proof");
     if (!process.env.BROWSER_QA_HOME_ONLY) {
       const slugByFile = {
         existing: "pion", garden: "forma", "okruch-before-after": "okruch",
