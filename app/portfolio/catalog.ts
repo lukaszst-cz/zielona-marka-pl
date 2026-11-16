@@ -775,18 +775,20 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "Arkusz Excel PrintFlow 360",
     "category": "excel",
     "industry": "Poligrafia i produkcja",
-    "summary": "Skoroszyt do kalkulacji, produkcji i raportów drukarni.",
-    "explanation": "Formuły liczą koszt zlecenia, a zestawienia pokazują wynik miesiąca. Liczby w przykładzie są wymyślone.",
+    "summary": "Ten sam proces co w PrintFlow 360, rozpisany na role: zapytanie, produkcja, kontrola jakości, wysyłka i faktura.",
+    "explanation": "Biuro, produkcja i kontrola jakości mają osobne arkusze. Numer zlecenia przenosi klienta, produkt i nakład dalej, a KPI pokazuje skuteczność wycen, braki i pieniądze do odzyskania.",
     "features": [
-      "Kalkulacje",
-      "Raportowanie",
-      "Zestawienia KPI"
+      "Arkusze dla pięciu ról",
+      "Dane przechodzą po numerze zlecenia",
+      "Kontrola jakości i braki",
+      "Faktury i płatności",
+      "KPI całego procesu"
     ],
     "image": "/portfolio/kadry/printflow.webp",
     "alt": "Prezentacja koncepcyjna projektu Arkusz Excel PrintFlow 360",
-    "status": "demonstracja, dane syntetyczne",
+    "status": "gotowy plik, dane przykładowe",
     "downloadUrl": "/pliki/printflow-360-zielona-marka.xlsx",
-    "downloadLabel": "Pobierz pusty arkusz PrintFlow (XLSX)",
+    "downloadLabel": "Pobierz arkusz PrintFlow (XLSX)",
     "openAccess": "github"
   },
   {
@@ -794,18 +796,20 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "Arkusz Excel TransportFlow 360",
     "category": "excel",
     "industry": "Transport i logistyka",
-    "summary": "Arkusz do liczenia kosztów tras, marży i wyniku przewoźnika.",
-    "explanation": "Widać w nim, skąd bierze się wynik na zleceniu, pozycja po pozycji.",
+    "summary": "Ten sam proces co w TransportFlow 360: dyspozytor wycenia trasę, kierowca zapisuje przejazd, biuro rozlicza.",
+    "explanation": "Marża poniżej progu świeci się na czerwono jeszcze przed przyjęciem zlecenia. Koszt paliwa liczy się z litrów wpisanych przez kierowcę, a KPI porównuje spalanie z normą.",
     "features": [
-      "Koszty tras",
-      "Marża",
-      "Raportowanie"
+      "Arkusze dla dyspozytora, kierowcy i biura",
+      "Stawki w jednym miejscu",
+      "Wynik i stawka za kilometr",
+      "Spalanie wobec normy",
+      "Faktury i płatności"
     ],
     "image": "/portfolio/kadry/transportflow.svg",
     "alt": "Arkusz TransportFlow: koszty trasy, marża i wskaźniki",
-    "status": "demonstracja, dane syntetyczne",
+    "status": "gotowy plik, dane przykładowe",
     "downloadUrl": "/pliki/transportflow-360-zielona-marka.xlsx",
-    "downloadLabel": "Pobierz pusty arkusz TransportFlow (XLSX)",
+    "downloadLabel": "Pobierz arkusz TransportFlow (XLSX)",
     "openAccess": "github"
   },
   {
@@ -813,18 +817,20 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "Dashboard operacyjny",
     "category": "excel",
     "industry": "Zarządzanie procesem",
-    "summary": "Panel wskaźników operacyjnych w samym Excelu.",
-    "explanation": "Zestawienia i wykresy liczą się z arkusza danych, bez dodatkowych narzędzi.",
+    "summary": "Zlecenia w jednym arkuszu, a obok wskaźniki, które liczą się same.",
+    "explanation": "Widać, co jest w toku, co po terminie, ile zostało do zafakturowania i kto ma najwięcej na głowie. Bez dodatkowych programów.",
     "features": [
-      "Zestawienia",
-      "KPI",
-      "Wykresy"
+      "Etapy i priorytety z listy",
+      "Opóźnienia na czerwono",
+      "Do zafakturowania",
+      "Obciążenie osób",
+      "Podział na role"
     ],
     "image": "/portfolio/kadry/excel-dashboard.svg",
     "alt": "Panel wskaźników operacyjnych z wykresami i listą zleceń",
-    "status": "demonstracja, dane syntetyczne",
+    "status": "gotowy plik, dane przykładowe",
     "downloadUrl": "/pliki/dashboard-operacyjny-zielona-marka.xlsx",
-    "downloadLabel": "Pobierz pusty dashboard (XLSX)",
+    "downloadLabel": "Pobierz dashboard (XLSX)",
     "openAccess": "github"
   },
   {
@@ -832,18 +838,20 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "Kalkulator wariantów oferty",
     "category": "excel",
     "industry": "Wyceny usług",
-    "summary": "Kalkulator wariantów oferty: zakres obok kosztu.",
-    "explanation": "Porównuje trzy warianty usługi i pokazuje klientowi, za co dokładnie płaci.",
+    "summary": "Oferta rozpisana na pozycje i od razu w trzech wariantach ceny.",
+    "explanation": "Stawki, VAT i rabaty ustawia się w jednym arkuszu. Kalkulator pokazuje też koszt godzin, żeby było widać, czy cena pokrywa pracę.",
     "features": [
-      "Warianty zakresu",
-      "Kalkulacja kosztów",
-      "Porównanie"
+      "Założenia w jednym miejscu",
+      "Wycena pozycja po pozycji",
+      "Trzy warianty i zaliczka",
+      "Koszt godzin pracy",
+      "Podział na role"
     ],
     "image": "/portfolio/kadry/excel-wycena.svg",
     "alt": "Trzy warianty oferty z zakresem i kosztem obok siebie",
-    "status": "demonstracja, dane syntetyczne",
+    "status": "gotowy plik, dane przykładowe",
     "downloadUrl": "/pliki/kalkulator-wariantow-oferty-zielona-marka.xlsx",
-    "downloadLabel": "Pobierz pusty kalkulator (XLSX)",
+    "downloadLabel": "Pobierz kalkulator (XLSX)",
     "openAccess": "github"
   },
   {
@@ -851,18 +859,20 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "Rejestr kontaktów i działań w Excelu",
     "category": "excel",
     "industry": "Sprzedaż i CRM",
-    "summary": "Prosty rejestr kontaktów, statusów i kolejnych kroków.",
-    "explanation": "Dla firmy, której pełny CRM na razie zwyczajnie się nie opłaca. Dane w przykładzie są fikcyjne.",
+    "summary": "Firmy, rozmowy i kolejne kroki w jednym pliku, z lejkiem sprzedaży.",
+    "explanation": "Dla firmy, której pełny CRM na razie się nie opłaca. Plik liczy wartość ofert ważoną szansą i podświetla kontakty, do których nikt nie dzwonił od dwóch tygodni.",
     "features": [
-      "Status kontaktu",
-      "Plan działań",
-      "Filtry"
+      "Kontakty i dziennik działań",
+      "Wartość ważona szansą",
+      "Zaległe kontakty na czerwono",
+      "Lejek i źródła klientów",
+      "Podział na role"
     ],
     "image": "/portfolio/kadry/excel-crm.svg",
     "alt": "Rejestr kontaktów ze statusami i kolejnymi krokami",
-    "status": "demonstracja, dane syntetyczne",
+    "status": "gotowy plik, dane przykładowe",
     "downloadUrl": "/pliki/rejestr-kontaktow-zielona-marka.xlsx",
-    "downloadLabel": "Pobierz pusty rejestr (XLSX)",
+    "downloadLabel": "Pobierz rejestr (XLSX)",
     "openAccess": "github"
   },
 ];
