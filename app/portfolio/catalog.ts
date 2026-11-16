@@ -74,6 +74,24 @@ export const portfolioItems: PortfolioItem[] = [
     "featured": true
   },
   {
+    "slug": "phu-marecki-aplikacja",
+    "title": "PHU Marecki, aplikacja na telefon",
+    "category": "aplikacje",
+    "industry": "Budownictwo i materiały",
+    "summary": "Ta sama hurtownia w formie aplikacji instalowanej na telefonie, z pięcioma ekranami i gazetką do przewijania.",
+    "explanation": "Kierownik budowy dokłada materiały z telefonu, a lista zostaje w aplikacji po jej zamknięciu, bo zapisuje się na urządzeniu.",
+    "features": [
+      "Pięć ekranów: główna, oferta, gazetka, lista, więcej",
+      "Gazetka na sześć stron",
+      "Lista zapisana w telefonie",
+      "Instalacja na ekranie głównym (PWA)"
+    ],
+    "demoUrl": "https://phu-marecki.vercel.app/app.html",
+    "image": "/portfolio/kadry/phu-marecki-aplikacja.webp",
+    "alt": "Trzy ekrany aplikacji PHU Marecki na telefonie: gazetka, ekran główny i oferta",
+    "status": "projekt demonstracyjny"
+  },
+  {
     "slug": "navoro-hurt",
     "title": "NAVORO HURT",
     "category": "www",
@@ -728,8 +746,8 @@ export const portfolioItems: PortfolioItem[] = [
       "PWA"
     ],
     "demoUrl": "https://aktywnik-plus.vercel.app",
-    "image": "/portfolio/kadry/aktywnik-plus.svg",
-    "alt": "Aktywnik+: dziennik aktywności, tryb rodziny i podsumowanie tygodnia",
+    "image": "/portfolio/kadry/aktywnik-plus-ekran.webp",
+    "alt": "Trzy ekrany aplikacji Aktywnik+ na telefonie",
     "status": "aplikacja rozwijana, beta 0.5.0-beta.4",
     "openAccess": "online",
     "featured": true
@@ -784,8 +802,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Faktury i płatności",
       "KPI całego procesu"
     ],
-    "image": "/portfolio/kadry/printflow.webp",
-    "alt": "Prezentacja koncepcyjna projektu Arkusz Excel PrintFlow 360",
+    "image": "/portfolio/kadry/excel-printflow.webp",
+    "alt": "Arkusz PrintFlow 360: zapytania i wyceny z kartami ról na dole",
     "status": "gotowy plik, dane przykładowe",
     "downloadUrl": "/pliki/printflow-360-zielona-marka.xlsx",
     "downloadLabel": "Pobierz arkusz PrintFlow (XLSX)",
@@ -805,8 +823,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Spalanie wobec normy",
       "Faktury i płatności"
     ],
-    "image": "/portfolio/kadry/transportflow.svg",
-    "alt": "Arkusz TransportFlow: koszty trasy, marża i wskaźniki",
+    "image": "/portfolio/kadry/excel-transportflow.webp",
+    "alt": "Arkusz TransportFlow 360: rozliczenie przewozów z wynikiem i stawką za kilometr",
     "status": "gotowy plik, dane przykładowe",
     "downloadUrl": "/pliki/transportflow-360-zielona-marka.xlsx",
     "downloadLabel": "Pobierz arkusz TransportFlow (XLSX)",
@@ -826,8 +844,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Obciążenie osób",
       "Podział na role"
     ],
-    "image": "/portfolio/kadry/excel-dashboard.svg",
-    "alt": "Panel wskaźników operacyjnych z wykresami i listą zleceń",
+    "image": "/portfolio/kadry/excel-dashboard.webp",
+    "alt": "Dashboard operacyjny: zlecenia, etapy i opóźnienia",
     "status": "gotowy plik, dane przykładowe",
     "downloadUrl": "/pliki/dashboard-operacyjny-zielona-marka.xlsx",
     "downloadLabel": "Pobierz dashboard (XLSX)",
@@ -847,8 +865,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Koszt godzin pracy",
       "Podział na role"
     ],
-    "image": "/portfolio/kadry/excel-wycena.svg",
-    "alt": "Trzy warianty oferty z zakresem i kosztem obok siebie",
+    "image": "/portfolio/kadry/excel-wycena.webp",
+    "alt": "Kalkulator wariantów oferty: wycena pozycja po pozycji",
     "status": "gotowy plik, dane przykładowe",
     "downloadUrl": "/pliki/kalkulator-wariantow-oferty-zielona-marka.xlsx",
     "downloadLabel": "Pobierz kalkulator (XLSX)",
@@ -868,8 +886,8 @@ export const portfolioItems: PortfolioItem[] = [
       "Lejek i źródła klientów",
       "Podział na role"
     ],
-    "image": "/portfolio/kadry/excel-crm.svg",
-    "alt": "Rejestr kontaktów ze statusami i kolejnymi krokami",
+    "image": "/portfolio/kadry/excel-crm.webp",
+    "alt": "Rejestr kontaktów: etapy, szansa i wartość ważona",
     "status": "gotowy plik, dane przykładowe",
     "downloadUrl": "/pliki/rejestr-kontaktow-zielona-marka.xlsx",
     "downloadLabel": "Pobierz rejestr (XLSX)",
