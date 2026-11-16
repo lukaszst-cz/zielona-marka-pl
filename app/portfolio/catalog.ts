@@ -109,6 +109,23 @@ export const portfolioItems: PortfolioItem[] = [
     "featured": true
   },
   {
+    "slug": "materivo-eko",
+    "title": "MATERIVO Ekonomiczna",
+    "category": "www",
+    "industry": "Budownictwo i materiały",
+    "summary": "Tańsza wersja strony hurtowni: wszystko na jednej stronie, z gazetką w środku.",
+    "explanation": "Ten sam asortyment co w wersji Pro, ale bez katalogu z filtrami i bez koszyka zapytań.",
+    "features": [
+      "Gazetka online",
+      "Kategorie asortymentu",
+      "Formularz zapytania"
+    ],
+    "demoUrl": "https://materivo-eko.vercel.app",
+    "image": "/portfolio/kadry/materivo-eko-ekran.webp",
+    "alt": "Pierwszy ekran strony MATERIVO w wersji ekonomicznej",
+    "status": "demonstracja, dane syntetyczne"
+  },
+  {
     "slug": "aurea-smile",
     "title": "AUREA SMILE",
     "category": "www",

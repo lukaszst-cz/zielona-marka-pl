@@ -46,6 +46,14 @@ export const websiteCaseStudies: Record<string, WebsiteCaseStudy> = {
     "honest": "Koncepcja hurtowni materiałów w wersji rozbudowanej. Pokazuje układ i nawigację, nie jest sklepem: nie ma koszyka, płatności ani stanów magazynowych.",
     "variant": "MATERIVO ma dwa warianty pod jednym adresem, z przełącznikiem u góry. Ekonomiczny to jedna przewijana strona: hero, cztery działy asortymentu, galeria kategorii, pięciostronicowa gazetka otwierana w miejscu i krótki formularz zapytania. Pro to sześć osobnych ekranów z własną nawigacją: strona główna, katalog dwunastu produktów z filtrami, sortowaniem i wyszukiwarką, gazetka w rozkładówkach z przewracaniem stron i miniaturami, koszyk zapytań z ilościami i sumą orientacyjną, strona o firmie oraz kontakt. W wersji Pro produkt dodaje się do koszyka prosto z gazetki, a formularz zbiera dodatkowo firmę, miejscowość i termin. Żadna z wersji nie jest sklepem: nie ma płatności ani stanów magazynowych, a zapytanie kończy się szkicem wiadomości, którą klient wysyła sam."
   },
+  "materivo-eko": {
+    "visual": "Ta sama identyfikacja co w wersji Pro, ale układ jest prostszy: jedna przewijana strona z wyraźnym hero i czterema działami asortymentu.",
+    "flow": "Klient przewija stronę, przegląda kategorie, otwiera pięciostronicową gazetkę w miejscu i wypełnia krótki formularz zapytania.",
+    "technical": "Gazetka działa na stronie, bez pobierania pliku. Formularz przygotowuje szkic wiadomości i nie wysyła danych automatycznie. Nie ma koszyka, wyszukiwarki ani katalogu z filtrami.",
+    "scope": "Opublikowana koncepcja tańszego wariantu strony hurtowni budowlanej.",
+    "honest": "To tańszy wariant tej samej marki pokazowej. Dobrze pokazuje, ile da się zrobić bez rozbudowanego katalogu: jest oferta, gazetka i droga do zapytania. Nie ma koszyka, wyszukiwarki ani stanów magazynowych, bo przy tym budżecie ich nie ma sensu obiecywać.",
+    "variant": "Wersja ekonomiczna to jedna strona z gazetką w środku. Wersja Pro to sześć ekranów z katalogiem, wyszukiwarką, rozkładówkową gazetką i koszykiem zapytań. Obie stoją pod jednym adresem, z przełącznikiem u góry."
+  },
   "aurea-smile": {
     "visual": "Stonowane, ciemne tło i złote detale. Ostre zdjęcia medyczne, duże odstępy i sześć czytelnych specjalizacji.",
     "flow": "Pacjent wybiera potrzebę, poznaje zakres zabiegów, etapy pierwszej wizyty i informacje o gabinecie.",
