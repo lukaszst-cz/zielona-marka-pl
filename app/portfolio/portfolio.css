@@ -947,13 +947,13 @@
 }
 .zmp-page .zmp-hero-text h1{font-weight:600;letter-spacing:-.025em;line-height:1.04}
 .zmp-page .zmp-hero-text h1 em{
-  font-style:italic;
   text-decoration-thickness:2px;
   text-underline-offset:10px;
 }
-.zmp-page .zmp-projects-title h2 em,
-.zmp-page .zmp-pdf-footer h2 em,
-.zmp-page .zmp-bottom-cta h2 em{font-style:italic}
+/* Wyroznione slowa w naglowkach trzymaja krój nagłówka; wyróżnia je sam kolor. */
+.zmp-page h1 em,
+.zmp-page h2 em,
+.zmp-page h3 em{font-style:normal;font-family:inherit;font-weight:inherit}
 .zmp-page .zmp-project-info h3{font-weight:600;letter-spacing:-.015em}
 .zmp-page .zmp-overline,
 .zmp-page .zmp-industry-list button,
