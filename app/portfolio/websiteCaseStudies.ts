@@ -9,37 +9,49 @@ export type WebsiteCaseStudy = {
   scope: string;
   version?: string;
   sources?: { label: string; url: string }[];
+  /** Uczciwie o tej pracy: co w niej dziala, a czego nie zastepuje. */
+  honest?: string;
+  /** Czym rozni sie od blizniaczej wersji, jesli taka istnieje. */
+  variant?: string;
 };
 export const websiteCaseStudies: Record<string, WebsiteCaseStudy> = {
   "budrivo": {
     "visual": "Fotografie materiałów, elewacji i mieszalni kolorów. Kategorie odpowiadają rzeczywistym pytaniom osoby remontującej dom.",
     "flow": "Od poznania materiałów przez kalkulator powierzchni elewacji do listy i zapytania. Gazetka uzupełnia ofertę.",
     "technical": "W działającej publikacji potwierdzono sekcje katalogu, mieszalni, dostawy i kalkulatora elewacji. Nie potwierdzono integracji z magazynem.",
-    "scope": "Opublikowana, interaktywna koncepcja hurtowni budowlanej."
+    "scope": "Opublikowana, interaktywna koncepcja hurtowni budowlanej.",
+    "honest": "To koncepcja fikcyjnej hurtowni, nie wdrożenie dla klienta. Kalkulator elewacji i katalog działają naprawdę i można je kliknąć, ale strona nie jest połączona z żadnym magazynem ani systemem sprzedaży. U realnego klienta trzeba by podpiąć jego asortyment i ustalić, skąd biorą się ceny.",
+    "variant": "Strona i gazetka BUDRIVO stoją pod jednym adresem. Gazetka jest częścią serwisu, nie osobnym projektem."
   },
   "navoro-hurt": {
     "visual": "Silne fotografie produktów i kolorystyka promocji, połączone z czytelną nawigacją B2B.",
     "flow": "Klient przegląda 17 produktów i otwiera lub pobiera ośmiostronicową gazetkę. Oferta jest połączona z przygotowaniem zapytania.",
     "technical": "Witryna prezentuje kampanię produktową, katalog, gazetkę i sekcję współpracy hurtowej. Dane produktowe nie są potwierdzonym stanem magazynowym.",
-    "scope": "Opublikowana koncepcja B2B z katalogiem i gazetką PDF."
+    "scope": "Opublikowana koncepcja B2B z katalogiem i gazetką PDF.",
+    "honest": "Marka jest wymyślona, produkty i ceny są przykładowe. Działa to, co najważniejsze w hurtowni: przeglądanie asortymentu i pobranie gazetki bez proszenia handlowca o plik. Przy prawdziwym wdrożeniu dochodzi import oferty i ustalenie, kto i jak często ją aktualizuje."
   },
   "nexio-elektro": {
     "visual": "Techniczny układ, fotografie osprzętu, czytelne kategorie i wyraźne wejście do gazetki.",
     "flow": "Instalator przegląda kategorie, wyszukuje materiały, korzysta z własnej listy i przechodzi do gazetki.",
     "technical": "Zweryfikowano działającą witrynę z wyszukiwaniem, strefą wykonawcy i listą. Gazetka produktowa ma 16 stron. Nie potwierdzono integracji ERP.",
-    "scope": "Opublikowana koncepcja elektrotechnicznego katalogu i gazetki."
+    "scope": "Opublikowana koncepcja elektrotechnicznego katalogu i gazetki.",
+    "honest": "Fikcyjna marka elektrotechniczna zrobiona po to, żeby pokazać drogę instalatora od kategorii do gazetki. Wyszukiwanie i lista działają, integracji z systemem magazynowym nie ma i nie udaję, że jest.",
+    "variant": "Strona i gazetka NEXIO to jedno wdrożenie. Serwis prowadzi do szesnastostronicowej gazetki pod adresem z końcówką gazetka, a nie do osobnej strony."
   },
   "materivo": {
     "visual": "Porównanie estetyki premium i ekonomicznej dla podobnej oferty. Duże fotografie, kategorie i oferta materiałowa.",
     "flow": "Klient przechodzi przez produkty, katalog, listę materiałów i ofertę promocyjną. Dwa warianty pokazują różne sposoby prezentacji.",
     "technical": "Zweryfikowano działającą wersję premium z kategoriami, galerią produktów i gazetką. Wariant ekonomiczny jest odrębną koncepcją.",
-    "scope": "Dwa kierunki prezentacji hurtowni budowlanej, premium i ekonomiczny."
+    "scope": "Dwa kierunki prezentacji hurtowni budowlanej, premium i ekonomiczny.",
+    "honest": "Koncepcja hurtowni materiałów w wersji rozbudowanej. Pokazuje układ i nawigację, nie jest sklepem: nie ma koszyka, płatności ani stanów magazynowych.",
+    "variant": "Materivo występuje w portfolio w dwóch wdrożeniach. Pod adresem materivo-pro stoi rozbudowana strona hurtowni, a pod materivo-eko tańsza wersja, z której pochodzi gazetka w tym portfolio. Pełne porównanie zakresu obu wersji uzupełnię po ich przeglądzie."
   },
   "aurea-smile": {
     "visual": "Stonowane, ciemne tło i złote detale. Ostre zdjęcia medyczne, duże odstępy i sześć czytelnych specjalizacji.",
     "flow": "Pacjent wybiera potrzebę, poznaje zakres zabiegów, etapy pierwszej wizyty i informacje o gabinecie.",
     "technical": "Potwierdzono opublikowane sekcje specjalizacji, zespołu i pierwszej wizyty. Kalendarz wskazany w dokumentacji jest demonstracją, a nie systemem przyjęć.",
-    "scope": "Wersja v7 koncepcyjnej witryny stomatologicznej, opublikowana na Vercel."
+    "scope": "Wersja v7 koncepcyjnej witryny stomatologicznej, opublikowana na Vercel.",
+    "honest": "Fikcyjna klinika stomatologiczna. Strona pokazuje, jak układać ofertę zabiegów i prowadzić pacjenta do kontaktu. Nie ma rezerwacji terminów online ani połączenia z systemem gabinetu, bo to osobny, płatny etap."
   },
   "solidom": {
     "visual": "Duże fotografie budowy i wnętrz, granatowa kolorystyka, pomarańczowe akcenty i mocna typografia Manrope. Responsywny układ, cztery etapy współpracy ze zdjęciami oraz pełnowymiarowa galeria.",
@@ -56,60 +68,70 @@ export const websiteCaseStudies: Record<string, WebsiteCaseStudy> = {
         "label": "Archiwum na Dysku Google",
         "url": "https://drive.google.com/drive/folders/1dgsa9MAx-I0d5mk6-1rtQ-u153QvVkDT"
       }
-    ]
+    ],
+    "honest": "Fikcyjna firma budowlana. Zdjęcia i realizacje są poglądowe, ale układ strony jest zrobiony tak, jak robiłbym go dla prawdziwego wykonawcy: najpierw dowód z realizacji, potem droga do wyceny."
   },
   "solident": {
     "visual": "Jasny, ciepły projekt gabinetu: fotografie, karty usług, zrozumiałe komunikaty dla pacjenta.",
     "flow": "Od wyboru usługi i informacji o pierwszej wizycie do planowania konsultacji. Osobne sekcje pomagają przygotować się do zabiegu.",
     "technical": "Potwierdzono działający układ usług i ścieżkę pierwszej wizyty. Rejestracja z zaliczką jest elementem koncepcji, nie potwierdzonym systemem płatności.",
-    "scope": "Opublikowana koncepcja gabinetu stomatologicznego."
+    "scope": "Opublikowana koncepcja gabinetu stomatologicznego.",
+    "honest": "Druga koncepcja dla stomatologii, pokazująca inny, spokojniejszy kierunek niż AUREA. Ta sama uwaga: brak rezerwacji online i połączenia z systemem gabinetu."
   },
   "black-harbor": {
     "visual": "Ciemna, fotograficzna oprawa detailingu. Zdjęcia efektów lakieru, oszczędna typografia i kontrastujące przyciski.",
     "flow": "Klient wybiera usługę, poznaje efekt, przegląda zakres i przechodzi do wyceny lub planowania terminu.",
     "technical": "W działającej witrynie potwierdzono sekcje usług, efektów, wyceny i kontaktu. Nie potwierdzono rzeczywistej rezerwacji terminów.",
-    "scope": "Opublikowana strona koncepcyjna studia detailingu."
+    "scope": "Opublikowana strona koncepcyjna studia detailingu.",
+    "honest": "Fikcyjny salon i detailing. Pokazuje, jak sprzedawać efektem: zdjęciami przed i po oraz szybką wyceną. Nie obsługuje umawiania wizyt ani płatności."
   },
   "eltravia": {
     "visual": "Kontrastowa identyfikacja elektrotechniczna: fotografie osprzętu, wyraźne nagłówki i podział usług.",
     "flow": "Wykonawca sprawdza ofertę, strefę dla instalatorów oraz kalkulator planowania przewodu.",
     "technical": "Zweryfikowano opublikowaną ofertę elektryczną i sekcję kalkulacji. To demonstracja, bez potwierdzonej integracji magazynowej.",
-    "scope": "Opublikowana koncepcja premium branży elektrycznej."
+    "scope": "Opublikowana koncepcja premium branży elektrycznej.",
+    "honest": "Koncepcja marki premium. Służy do pokazania języka wizualnego i tempa strony, nie zawiera funkcji sprzedażowych."
   },
   "natura-studio": {
     "visual": "Spokojna typografia, jasne tło i fotografia usług wellness. Układ ułatwia zapoznanie się z zabiegami.",
     "flow": "Klientka wybiera usługę i przechodzi do ścieżki rezerwacji, a właścicielka może zobaczyć pokaz zaplecza.",
     "technical": "W katalogu potwierdzono ofertę, ścieżkę rezerwacji i demonstracyjny terminarz. Nie zweryfikowano rzeczywistego kalendarza ani płatności.",
-    "scope": "Interaktywna prezentacja branży beauty w serwisie marki Zielona Marka."
+    "scope": "Interaktywna prezentacja branży beauty w serwisie marki Zielona Marka.",
+    "honest": "Wczesna koncepcja demonstracyjna, starsza od obecnego portfolio. Zostawiam ją, bo pokazuje kierunek dla małej firmy usługowej, ale nowsze prace są bliżej tego, co robię dziś."
   },
   "bistro-forma": {
     "visual": "Układ restauracyjny: fotografie dań, czytelna karta i podstawowe informacje o lokalu.",
     "flow": "Gość poznaje menu i godziny, sprawdza dojazd i wybiera kontakt lub ścieżkę rezerwacji.",
     "technical": "Katalog potwierdza menu i pokaz zaplecza. Brak potwierdzonej integracji z systemem rezerwacji stolików.",
-    "scope": "Interaktywna demonstracja strony gastronomicznej."
+    "scope": "Interaktywna demonstracja strony gastronomicznej.",
+    "honest": "Wczesna koncepcja lokalu gastronomicznego. Menu i rezerwacja są poglądowe, nie obsługują realnych zamówień."
   },
   "dom-dobry": {
     "visual": "Karty mieszkań z naciskiem na metraż, piętro, cenę i czytelną dostępność.",
     "flow": "Kupujący porównuje lokale i przygotowuje zapytanie dotyczące wybranego mieszkania.",
     "technical": "Katalog potwierdza karty mieszkań, przykładowe statusy i zapytanie. Nie zweryfikowano połączenia z ofertą dewelopera.",
-    "scope": "Interaktywna koncepcja prezentacji inwestycji mieszkaniowej."
+    "scope": "Interaktywna koncepcja prezentacji inwestycji mieszkaniowej.",
+    "honest": "Wczesna koncepcja z początku portfolio. Dobrze pokazuje układ treści, ale wizualnie odstaje od nowszych prac."
   },
   "styk": {
     "visual": "Jedna silna fotografia, prosta typografia i telefon w najbardziej widocznym miejscu.",
     "flow": "Projekt prowadzi użytkownika od zakresu usług elektrycznych do szybkiego kontaktu.",
     "technical": "Dostępne wizualizacje na laptop i telefon. Brak potwierdzonej publikacji działającej strony.",
-    "scope": "Koncepcja graficzna desktop i mobile."
+    "scope": "Koncepcja graficzna desktop i mobile.",
+    "honest": "Koncepcja wizualna, nie wdrożona strona. Pokazuje pomysł na prowadzenie użytkownika, bez działającego zaplecza."
   },
   "glina": {
     "visual": "Minimalistyczny kierunek ceramiczny: dużo przestrzeni, spokojne liternictwo i fotografie naczyń.",
     "flow": "Oglądający poznaje wyroby pracowni, a zdjęcia stają się główną osią układu.",
     "technical": "Widoki desktop i mobile. Nie potwierdzono wdrożenia sklepu, koszyka ani płatności.",
-    "scope": "Koncepcja graficzna desktop i mobile."
+    "scope": "Koncepcja graficzna desktop i mobile.",
+    "honest": "Koncepcja wizualna fikcyjnej marki, przygotowana jako ćwiczenie kierunku, nie jako gotowy serwis."
   },
   "trop": {
     "visual": "Przejrzysta witryna weterynaryjna, w której telefon, dyżur i godziny otwarcia są na pierwszym planie.",
     "flow": "Opiekun zwierzęcia szybko znajduje pomoc, kontakt i podstawowy zakres usług.",
     "technical": "Dostępne makiety desktop i mobile. Brak potwierdzenia wdrożonej strony lub rejestracji.",
-    "scope": "Koncepcja graficzna desktop i mobile."
+    "scope": "Koncepcja graficzna desktop i mobile.",
+    "honest": "Koncepcja wizualna. Pokazuje sposób układania treści, nie jest opublikowanym wdrożeniem."
   }
 };

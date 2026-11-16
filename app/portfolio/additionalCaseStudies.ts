@@ -8,19 +8,22 @@ export const additionalCaseStudies: Record<string, WebsiteCaseStudy> = {
     "visual": "Makieta modernizacji strony ścianki wspinaczkowej. Zestawiono zagęszczony układ informacyjny z uporządkowaną wersją, w której mocniej wyeksponowano ofertę, godziny otwarcia i kontakt.",
     "flow": "Oglądający porównuje dwa sposoby prowadzenia użytkownika: szukanie najważniejszych informacji w gęstym układzie oraz bezpośrednie odnalezienie oferty i godzin po zmianie hierarchii.",
     "technical": "Przedstawiono zestawienie graficzne przed i po. Oba widoki powstały do tej demonstracji. Nie ma potwierdzenia modyfikacji rzeczywistej witryny ani wdrożenia produkcyjnego.",
-    "scope": "Autorska symulacja wizualna modernizacji, bez udziału rzeczywistego klienta."
+    "scope": "Autorska symulacja wizualna modernizacji, bez udziału rzeczywistego klienta.",
+    "honest": "Porównanie przed i po jest symulacją przygotowaną przeze mnie, a nie przebudową czyjejś strony. Pokazuje sposób myślenia o hierarchii informacji, nie efekt wdrożenia u klienta."
   },
   "forma": {
     "visual": "Koncepcja odświeżenia strony pracowni ogrodów. W odmienionym wariancie ograniczono ozdobniki, zwiększono znaczenie fotografii projektów i uporządkowano drogę do wyceny.",
     "flow": "Porównanie pomaga zobaczyć, jak zmiana proporcji zdjęć, odstępów i rozmieszczenia przycisków ułatwia przeglądanie realizacji oraz przejście do zapytania.",
     "technical": "Zachowano formę zestawienia dwóch zaprojektowanych makiet. Brak potwierdzonego kodu produkcyjnego, integracji formularza i wdrożenia u istniejącej pracowni.",
-    "scope": "Wizualizacja przed i po, przygotowana specjalnie do portfolio."
+    "scope": "Wizualizacja przed i po, przygotowana specjalnie do portfolio.",
+    "honest": "Obie wersje powstały na potrzeby tej demonstracji. To nie jest praca wykonana dla pracowni ogrodów."
   },
   "okruch": {
     "visual": "Porównanie wizualnego wizerunku piekarni. W nowej odsłonie czytelniejsza typografia, fotografie wypieków i prostszy układ zastępują zagęszczoną prezentację.",
     "flow": "Klient od razu widzi ofertę piekarni i może szybciej rozpoznać charakter miejsca; porównanie pokazuje wpływ fotografii, proporcji i hierarchii na odbiór strony.",
     "technical": "Obie strony porównania są własnymi koncepcjami graficznymi, nie zrzutami witryny prawdziwej piekarni. Nie potwierdzono działającego sklepu ani systemu zamówień.",
-    "scope": "Autorskie studium zmiany kierunku wizualnego, z widokami przed i po."
+    "scope": "Autorskie studium zmiany kierunku wizualnego, z widokami przed i po.",
+    "honest": "Przed i po zrobione na fikcyjnej marce. Pokazuje, co zwykle poprawiam najpierw, ale nie jest dowodem wdrożenia u klienta."
   },
   "szlak": {
     "visual": "Identyfikacja marki outdoorowej zaplanowana od prostego znaku po materiały firmowe. Pokazano wariant podstawowy i odwrócony oraz umieszczenie logo na metce i wizytówce.",
@@ -80,25 +83,32 @@ export const additionalCaseStudies: Record<string, WebsiteCaseStudy> = {
     "visual": "Gazetka promocyjna zaprojektowana w tej samej oprawie co witryna NAVORO HURT. Duże zdjęcia i wyrazista ekspozycja produktów zapewniają ciągłość z kampanią na stronie.",
     "flow": "Odbiorca hurtowy otwiera materiał z witryny, przegląda osiem stron i może pobrać PDF do dalszego wykorzystania.",
     "technical": "Potwierdzono w katalogu ośmiostronicowy PDF oraz przeglądanie i pobieranie w ramach działającego serwisu. Materiał ofertowy jest poglądowy.",
-    "scope": "Interaktywna publikacja i ośmiostronicowy PDF powiązany ze stroną NAVORO HURT."
+    "scope": "Interaktywna publikacja i ośmiostronicowy PDF powiązany ze stroną NAVORO HURT.",
+    "honest": "Gazetka należy do tego samego wdrożenia co strona NAVORO. Ośmiostronicowy PDF można obejrzeć i pobrać, produkty są przykładowe. Przy prawdziwej hurtowni to miejsce, gdzie trzeba ustalić, kto przygotowuje ofertę na każdy miesiąc."
   },
   "gazetka-nexio": {
     "visual": "Szesnastostronicowa oferta elektrotechniczna z czytelnymi kategoriami materiałów i jednorodną typografią techniczną.",
     "flow": "Przejście z głównej strony NEXIO ELEKTRO pozwala użytkownikowi szybko odnaleźć pełną gazetkę i poznać asortyment.",
     "technical": "Katalog potwierdza 16 stron materiału oraz przejście do gazetki pod osobnym adresem serwisu. Nie zweryfikowano połączenia z bieżącym stanem magazynowym.",
-    "scope": "Cyfrowa gazetka produktowa dostępna z witryny branży elektro."
+    "scope": "Cyfrowa gazetka produktowa dostępna z witryny branży elektro.",
+    "honest": "Szesnastostronicowa gazetka z tego samego wdrożenia co strona NEXIO. Zawartość jest przykładowa i służy pokazaniu układu, nie jest aktualną ofertą.",
+    "variant": "Gazetka jest częścią wdrożenia NEXIO ELEKTRO, nie osobną realizacją."
   },
   "gazetka-budrivo": {
     "visual": "Projekt materiału promocyjnego BUDRIVO zachowuje kolory, sposób prezentacji produktów i hierarchię serwisu hurtowni budowlanej.",
     "flow": "Klient przegląda promocje w sąsiedztwie katalogu i kalkulatora elewacji, nie opuszczając znanej struktury informacji.",
     "technical": "Gazetka jest powiązana z demonstracyjną witryną BUDRIVO. Zakres opisany w katalogu nie potwierdza rzeczywistej aktualizacji cen lub automatycznego importu produktów.",
-    "scope": "Demonstracyjna gazetka powiązana z katalogiem materiałów budowlanych."
+    "scope": "Demonstracyjna gazetka powiązana z katalogiem materiałów budowlanych.",
+    "honest": "Gazetka stoi pod tym samym adresem co strona BUDRIVO i jest jej częścią, nie osobnym projektem. Treść jest poglądowa.",
+    "variant": "Gazetka jest częścią wdrożenia BUDRIVO, nie osobną realizacją."
   },
   "gazetka-materivo": {
     "visual": "Gazetka online dopasowana do ekonomicznej odsłony MATERIVO. Układ produktowy i nawigacja powtarzają rozpoznawalny język strony.",
     "flow": "Odbiorca przechodzi ze strony sklepu do promocji, porównuje propozycje i wraca do reszty asortymentu.",
     "technical": "Katalog dokumentuje działającą gazetkę online w wariancie ekonomicznym. Nie potwierdzono integracji z ERP, automatycznej aktualizacji cen i stanów.",
-    "scope": "Cyfrowa gazetka produktowa zintegrowana wizualnie z koncepcją WWW."
+    "scope": "Cyfrowa gazetka produktowa zintegrowana wizualnie z koncepcją WWW.",
+    "honest": "Gazetka pochodzi z wersji ekonomicznej Materivo, czyli osobnego wdrożenia niż strona Pro. Układ i oprawa są gotowe, dane produktowe są przykładowe.",
+    "variant": "Ta gazetka pochodzi z wersji ekonomicznej Materivo. Strona Pro to osobne, szersze wdrożenie opisane w pozycji MATERIVO."
   },
   "printflow": {
     "visual": "Procesowy interfejs dla drukarni, obejmujący zlecenie, kalkulator i pulpity wskaźników. Układ organizuje dane wokół kolejnych etapów pracy zamiast izolowanych formularzy.",

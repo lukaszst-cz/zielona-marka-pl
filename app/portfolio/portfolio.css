@@ -1515,3 +1515,6 @@ html body .zmp-page .zmp-project-photo:before{content:"";position:absolute;left:
 
 /* Pobranie pustego arkusza obok odnosnika do demonstracji. */
 html body .zmp-page .zmp-project-demo.zmx-download{background:rgba(182,235,138,.14);border-color:rgba(182,235,138,.5)}
+
+/* Zdanie o roznicy miedzy blizniaczymi wersjami, pod uczciwym opisem pracy. */
+html body .zmp-page .zmp-story-variant{margin-top:12px;padding-top:12px;border-top:1px solid rgba(154,214,205,.26);color:#cfe3d0}
