@@ -54,6 +54,26 @@ export const portfolioItems: PortfolioItem[] = [
     "featured": true
   },
   {
+    "slug": "phu-marecki",
+    "title": "PHU MARECKI",
+    "category": "www",
+    "industry": "Budownictwo i materiały",
+    "summary": "Strona centrum budowlanego z gazetką, katalogiem i listą do wyceny, a obok niej osobna aplikacja na telefon.",
+    "explanation": "Klient przegląda gazetkę jak w sklepie, dokłada materiały do listy, podaje ilości i wysyła jedno zapytanie zamiast dzwonić po ceny.",
+    "features": [
+      "Gazetka interaktywna z działami",
+      "Katalog 18 pozycji z wyszukiwarką",
+      "Lista do wyceny z ilościami",
+      "Zapytanie o transport",
+      "Aplikacja PWA na telefon"
+    ],
+    "demoUrl": "https://phu-marecki.vercel.app",
+    "image": "/portfolio/kadry/phu-marecki-ekran.webp",
+    "alt": "Pierwszy ekran strony PHU Marecki",
+    "status": "projekt demonstracyjny",
+    "featured": true
+  },
+  {
     "slug": "navoro-hurt",
     "title": "NAVORO HURT",
     "category": "www",
@@ -602,7 +622,7 @@ export const portfolioItems: PortfolioItem[] = [
       "Przykładowe dokumenty"
     ],
     "demoUrl": "/realizacje/transportflow",
-    "image": "/portfolio/kadry/transportflow.svg",
+    "image": "/portfolio/kadry/transportflow-ekran.webp",
     "alt": "TransportFlow 360: etapy zlecenia, trasa, koszty i marża",
     "status": "narzędzie lub demonstracja"
   },
