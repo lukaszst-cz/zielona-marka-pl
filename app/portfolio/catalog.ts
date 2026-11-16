@@ -29,6 +29,9 @@ export type PortfolioItem = {
   /** Prace, które można wziąć i używać: "github" to publiczne repozytorium
       do pobrania, "online" to narzędzie działające w przeglądarce bez konta. */
   openAccess?: "github" | "online";
+  /** Gotowy plik do pobrania, na przykład pusty szablon arkusza. */
+  downloadUrl?: string;
+  downloadLabel?: string;
 };
 export const portfolioItems: PortfolioItem[] = [
   {
@@ -104,6 +107,23 @@ export const portfolioItems: PortfolioItem[] = [
     "alt": "Pierwszy ekran serwisu MATERIVO w wersji premium",
     "status": "projekt demonstracyjny",
     "featured": true
+  },
+  {
+    "slug": "materivo-eko",
+    "title": "MATERIVO Ekonomiczna",
+    "category": "www",
+    "industry": "Budownictwo i materiały",
+    "summary": "Tańsza wersja strony hurtowni: wszystko na jednej stronie, z gazetką w środku.",
+    "explanation": "Ten sam asortyment co w wersji Pro, ale bez katalogu z filtrami i bez koszyka zapytań.",
+    "features": [
+      "Gazetka online",
+      "Kategorie asortymentu",
+      "Formularz zapytania"
+    ],
+    "demoUrl": "https://materivo-eko.vercel.app",
+    "image": "/portfolio/kadry/materivo-eko-ekran.webp",
+    "alt": "Pierwszy ekran strony MATERIVO w wersji ekonomicznej",
+    "status": "demonstracja, dane syntetyczne"
   },
   {
     "slug": "aurea-smile",
@@ -744,7 +764,10 @@ export const portfolioItems: PortfolioItem[] = [
     ],
     "image": "/portfolio/kadry/printflow.webp",
     "alt": "Prezentacja koncepcyjna projektu Arkusz Excel PrintFlow 360",
-    "status": "demonstracja, dane syntetyczne"
+    "status": "demonstracja, dane syntetyczne",
+    "downloadUrl": "/pliki/printflow-360-zielona-marka.xlsx",
+    "downloadLabel": "Pobierz pusty arkusz PrintFlow (XLSX)",
+    "openAccess": "github"
   },
   {
     "slug": "excel-transportflow",
@@ -760,7 +783,10 @@ export const portfolioItems: PortfolioItem[] = [
     ],
     "image": "/portfolio/kadry/transportflow.svg",
     "alt": "Arkusz TransportFlow: koszty trasy, marża i wskaźniki",
-    "status": "demonstracja, dane syntetyczne"
+    "status": "demonstracja, dane syntetyczne",
+    "downloadUrl": "/pliki/transportflow-360-zielona-marka.xlsx",
+    "downloadLabel": "Pobierz pusty arkusz TransportFlow (XLSX)",
+    "openAccess": "github"
   },
   {
     "slug": "excel-dashboard",
@@ -776,7 +802,10 @@ export const portfolioItems: PortfolioItem[] = [
     ],
     "image": "/portfolio/kadry/excel-dashboard.svg",
     "alt": "Panel wskaźników operacyjnych z wykresami i listą zleceń",
-    "status": "demonstracja, dane syntetyczne"
+    "status": "demonstracja, dane syntetyczne",
+    "downloadUrl": "/pliki/dashboard-operacyjny-zielona-marka.xlsx",
+    "downloadLabel": "Pobierz pusty dashboard (XLSX)",
+    "openAccess": "github"
   },
   {
     "slug": "excel-wycena",
@@ -792,7 +821,10 @@ export const portfolioItems: PortfolioItem[] = [
     ],
     "image": "/portfolio/kadry/excel-wycena.svg",
     "alt": "Trzy warianty oferty z zakresem i kosztem obok siebie",
-    "status": "demonstracja, dane syntetyczne"
+    "status": "demonstracja, dane syntetyczne",
+    "downloadUrl": "/pliki/kalkulator-wariantow-oferty-zielona-marka.xlsx",
+    "downloadLabel": "Pobierz pusty kalkulator (XLSX)",
+    "openAccess": "github"
   },
   {
     "slug": "excel-crm",
@@ -808,7 +840,10 @@ export const portfolioItems: PortfolioItem[] = [
     ],
     "image": "/portfolio/kadry/excel-crm.svg",
     "alt": "Rejestr kontaktów ze statusami i kolejnymi krokami",
-    "status": "demonstracja, dane syntetyczne"
+    "status": "demonstracja, dane syntetyczne",
+    "downloadUrl": "/pliki/rejestr-kontaktow-zielona-marka.xlsx",
+    "downloadLabel": "Pobierz pusty rejestr (XLSX)",
+    "openAccess": "github"
   },
 ];
 
