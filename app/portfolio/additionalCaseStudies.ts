@@ -108,7 +108,7 @@ export const additionalCaseStudies: Record<string, WebsiteCaseStudy> = {
     "technical": "Katalog dokumentuje działającą gazetkę online w wariancie ekonomicznym. Nie potwierdzono integracji z ERP, automatycznej aktualizacji cen i stanów.",
     "scope": "Cyfrowa gazetka produktowa zintegrowana wizualnie z koncepcją WWW.",
     "honest": "Gazetka pochodzi z wersji ekonomicznej Materivo, czyli osobnego wdrożenia niż strona Pro. Układ i oprawa są gotowe, dane produktowe są przykładowe.",
-    "variant": "Ta gazetka pochodzi z wersji ekonomicznej Materivo. Strona Pro to osobne, szersze wdrożenie opisane w pozycji MATERIVO."
+    "variant": "Gazetka pochodzi z wariantu ekonomicznego, w którym otwiera się wprost na stronie i liczy pięć pojedynczych stron. W wariancie Pro ta sama oferta działa jako rozkładówka z przewracaniem stron, miniaturami i dodawaniem produktów do koszyka zapytań. Oba warianty stoją pod jednym adresem, z przełącznikiem u góry."
   },
   "printflow": {
     "visual": "Procesowy interfejs dla drukarni, obejmujący zlecenie, kalkulator i pulpity wskaźników. Układ organizuje dane wokół kolejnych etapów pracy zamiast izolowanych formularzy.",

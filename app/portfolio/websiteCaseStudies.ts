@@ -44,7 +44,7 @@ export const websiteCaseStudies: Record<string, WebsiteCaseStudy> = {
     "technical": "Zweryfikowano działającą wersję premium z kategoriami, galerią produktów i gazetką. Wariant ekonomiczny jest odrębną koncepcją.",
     "scope": "Dwa kierunki prezentacji hurtowni budowlanej, premium i ekonomiczny.",
     "honest": "Koncepcja hurtowni materiałów w wersji rozbudowanej. Pokazuje układ i nawigację, nie jest sklepem: nie ma koszyka, płatności ani stanów magazynowych.",
-    "variant": "Materivo występuje w portfolio w dwóch wdrożeniach. Pod adresem materivo-pro stoi rozbudowana strona hurtowni, a pod materivo-eko tańsza wersja, z której pochodzi gazetka w tym portfolio. Pełne porównanie zakresu obu wersji uzupełnię po ich przeglądzie."
+    "variant": "MATERIVO ma dwa warianty pod jednym adresem, z przełącznikiem u góry. Ekonomiczny to jedna przewijana strona: hero, cztery działy asortymentu, galeria kategorii, pięciostronicowa gazetka otwierana w miejscu i krótki formularz zapytania. Pro to sześć osobnych ekranów z własną nawigacją: strona główna, katalog dwunastu produktów z filtrami, sortowaniem i wyszukiwarką, gazetka w rozkładówkach z przewracaniem stron i miniaturami, koszyk zapytań z ilościami i sumą orientacyjną, strona o firmie oraz kontakt. W wersji Pro produkt dodaje się do koszyka prosto z gazetki, a formularz zbiera dodatkowo firmę, miejscowość i termin. Żadna z wersji nie jest sklepem: nie ma płatności ani stanów magazynowych, a zapytanie kończy się szkicem wiadomości, którą klient wysyła sam."
   },
   "aurea-smile": {
     "visual": "Stonowane, ciemne tło i złote detale. Ostre zdjęcia medyczne, duże odstępy i sześć czytelnych specjalizacji.",
