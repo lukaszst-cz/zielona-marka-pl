@@ -1,29 +1,21 @@
-/* eslint-disable @next/next/no-img-element -- Podglądy to istniejące statyczne grafiki WebP i SVG, bez potrzeby zewnętrznego optymalizatora. */
+/* eslint-disable @next/next/no-img-element -- Podgląd to istniejąca statyczna grafika WebP, bez potrzeby zewnętrznego optymalizatora. */
 import Link from "../SafeLink";
 import "../portfolio/teaser.css";
 
-const examples = [
-  { name: "OKRUCH", type: "Modernizacja przed i po", image: "/concept-samples-v2/okruch-before-after-1280.webp", slug: "okruch" },
-  { name: "SZLAK", type: "Logo i identyfikacja", image: "/concept-samples-v2/logo-1280.webp", slug: "szlak" },
-  { name: "PELETON", type: "Gazetka reklamowa", image: "/concept-samples-v2/promo-1280.webp", slug: "peleton" },
-];
-
+/* Jedna koncepcja jako dowód. Wszystkie prace mieszkają w portfolio, żeby nie prowadzić dwóch galerii. */
 export default function ConceptShowcase() {
   return <section className="section zm-concept-gallery zmp-teaser" id="mozliwosci" aria-labelledby="zm-concept-gallery-heading">
     <div className="shell">
       <div className="zv5-gallery-intro">
-        <div><span className="zv5-kicker">PRZYKŁADY I PORTFOLIO</span><h2 id="zm-concept-gallery-heading">Zobacz projekty.<br/><em>Wybierz własny kierunek.</em></h2></div>
-        <p>Pełne portfolio stron, gazetek, logo, aplikacji i arkuszy Excel ma teraz jedno miejsce. Poniżej trzy przykłady z galerii koncepcyjnej.</p>
+        <div><span className="zv5-kicker">TAK TO WYGLĄDA</span><h2 id="zm-concept-gallery-heading">Jedna strona.<br/><em>Stara i nowa wersja obok siebie.</em></h2></div>
+        <p>Tak wygląda gotowa koncepcja: ten sam zakres usług i te same treści, pokazane w układzie, który prowadzi klienta do kontaktu. Poniżej przykład dla fikcyjnej marki OKRUCH.</p>
       </div>
-      <div className="zmp-teaser-grid">
-        {examples.map(item=><Link className="zmp-teaser-card" key={item.slug} href={`/portfolio/${item.slug}`}>
-          <img src={item.image} alt={`Własna koncepcja marki Zielona Marka: ${item.name}`} loading="lazy" width={640} height={426}/>
-          <span><small>{item.type}</small><strong>{item.name}</strong><b>Zobacz projekt ↗</b></span>
-        </Link>)}
+      <div className="zm-concept-proof">
+        <img src="/concept-samples-v2/okruch-before-after-1280.webp" alt="Porównanie starej i nowej wersji strony fikcyjnej marki OKRUCH" loading="lazy" width={1280} height={853} />
       </div>
       <div className="zmp-teaser-bottom">
-        <p>To koncepcje pokazowe fikcyjnych marek, nie wdrożenia wykonane dla klientów.</p>
-        <Link className="zmp-teaser-main-link" href="/portfolio">Zobacz całe portfolio i przygotuj PDF ↗</Link>
+        <p>To koncepcja pokazowa fikcyjnej marki, nie wdrożenie wykonane dla klienta.</p>
+        <Link className="zmp-teaser-main-link" href="/portfolio">Zobacz wszystkie prace w portfolio ↗</Link>
       </div>
     </div>
   </section>;

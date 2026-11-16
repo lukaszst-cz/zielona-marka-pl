@@ -1218,3 +1218,14 @@ html body main.zm-public.zm-concept .zm-generated-sample figcaption strong{color
 html body main.zm-public.zm-concept .zm-generated-sample figcaption span{color:#dce8d5!important}
 
 html body main.zm-public.zm-concept .zm-generated-sample figcaption small{color:#cbdcc2!important;font-size:12px!important;opacity:1!important}
+
+/* Jedno porównanie przed i po zamiast drugiej galerii. */
+html body main.zm-concept .zm-concept-proof{margin:34px 0 10px;border-radius:22px;overflow:hidden;border:1px solid rgba(188,216,170,.3);box-shadow:0 24px 60px rgba(4,20,12,.32)}
+html body main.zm-concept .zm-concept-proof img{display:block;width:100%;height:auto}
+
+/* Co dostajesz: trzy konkrety przed formularzem. */
+html body main.zm-concept .zm-concept-promise-list{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(248px,1fr))}
+html body main.zm-concept .zm-concept-promise-list li{display:grid;gap:8px;padding:22px;border-radius:18px;background:rgba(236,243,228,.72);border:1px solid rgba(120,154,104,.26)}
+html body main.zm-concept .zm-concept-promise-list strong{font-size:17px;line-height:1.3}
+html body main.zm-concept .zm-concept-promise-list span{font-size:14px;line-height:1.65;color:#41543c}
+html body main.zm-concept .zm-concept-promise-note{margin:22px 0 0;font-size:15px;line-height:1.7;max-width:70ch}

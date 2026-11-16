@@ -25,7 +25,7 @@ const faq = [
   ["Czy otrzymam gotowy projekt do wdrożenia lub druku?", "Nie. Bezpłatna propozycja to jeden poglądowy kierunek, np. ekran WWW, szkic logo albo okładka lub strona gazetki. Gotowe pliki produkcyjne, kod i pełną identyfikację wyceniamy osobno."],
   ["Czy potrzebuję obecnej strony lub gotowego logo?", "Nie. Wystarczy opis działalności. Jeśli masz dotychczasową stronę, logo lub gazetkę, prześlij publiczny link do materiału, by można było odnieść się do aktualnego wyglądu."],
   ["Czy mogę samodzielnie wygenerować podgląd?", "Tak, w ZM Studio możesz samodzielnie złożyć przykładowy układ strony WWW. W przypadku logo i gazetek formularz służy do zgłoszenia indywidualnej propozycji, a nie automatycznego generowania gotowego projektu."],
-  ["Kiedy otrzymam odpowiedź?", "Najpierw potwierdzę zakres i możliwość przygotowania bezpłatnej koncepcji. Termin przekażę w odpowiedzi na zgłoszenie."],
+  ["Kiedy otrzymam odpowiedź?", "Odpowiadam najszybciej, jak to możliwe, zwykle tego samego dnia, najpóźniej następnego dnia roboczego. W odpowiedzi potwierdzę zakres i termin przygotowania koncepcji."],
 ] as const;
 
 export default function FreeConceptPage() {
@@ -52,6 +52,16 @@ export default function FreeConceptPage() {
           <div><p className="zm-concept-kicker">JAK TO DZIAŁA</p><h2 id="koncept-scope">Trzy proste kroki.<br /><em>Jasny rezultat.</em></h2><p>Wystarczy link do obecnej strony, zdjęcie gazetki albo kilka zdań o firmie. Nie potrzebuję od Ciebie gotowego projektu ani listy technicznych wymagań.</p><Link href="#zgloszenie">Przejdź do krótkiego formularza ↗</Link></div>
           <ol><li><span>01</span><div><h3>Opisujesz firmę</h3><p>Podajesz e-mail oraz link do strony albo krótki opis działalności.</p></div></li><li><span>02</span><div><h3>Przygotowuję kierunek</h3><p>Najpierw potwierdzę, czy mogę przyjąć zgłoszenie. Następnie przygotuję jeden kierunek wizualny z krótkim wyjaśnieniem pomysłu.</p></div></li><li><span>03</span><div><h3>Otrzymujesz materiał</h3><p>Po przygotowaniu wyślę koncepcję na wskazany adres e-mail. Możesz na tym poprzestać albo porozmawiać o kolejnym etapie.</p></div></li></ol>
         </div>
+      </section>
+
+      <section className="section shell zm-concept-promise" aria-labelledby="koncept-promise">
+        <div className="zm-concept-section-head"><p>CO DOSTAJESZ</p><h2 id="koncept-promise">Konkret, nie obietnica<br /><em>ładnego projektu.</em></h2></div>
+        <ul className="zm-concept-promise-list">
+          <li><strong>Jeden ekran Twojej strony w nowej wersji</strong><span>Złożony na Twoich treściach i Twojej ofercie, nie na przypadkowym szablonie.</span></li>
+          <li><strong>Porównanie starej i nowej wersji</strong><span>Obok siebie, więc od razu widzisz, co się zmienia i dlaczego.</span></li>
+          <li><strong>Krótki komentarz do zmian</strong><span>Kilka zdań o tym, co utrudnia dziś kontakt i jak to poprawiłem.</span></li>
+        </ul>
+        <p className="zm-concept-promise-note">Odpowiadam najszybciej, jak to możliwe, zwykle tego samego dnia. Bez opłaty, bez umowy i bez zobowiązania. Twoje materiały służą tylko do przygotowania koncepcji i nie trafiają nigdzie dalej.</p>
       </section>
 
       <section className="section shell zm-concept-request" id="zgloszenie" aria-labelledby="koncept-form">
