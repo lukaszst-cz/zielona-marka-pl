@@ -222,7 +222,8 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
             const distance = Math.abs(offset);
             const hidden = distance > 3;
             const isCurrent = distance === 0;
-            const scale = isCurrent ? 1 : distance === 1 ? .87 : distance === 2 ? .76 : .68;
+            /* Prezentowana karta jest wyraźnie większa od sąsiadów, żeby na pokazie dało się ją czytać. */
+            const scale = isCurrent ? 1.16 : distance === 1 ? .82 : distance === 2 ? .7 : .62;
             const lift = isCurrent ? 0 : distance * 10;
             const tiltY = isCurrent ? tilt.x * 5 : 0;
             const tiltX = isCurrent ? tilt.y * -4 : 0;

@@ -1518,3 +1518,7 @@ html body .zmp-page .zmp-project-demo.zmx-download{background:rgba(182,235,138,.
 
 /* Zdanie o roznicy miedzy blizniaczymi wersjami, pod uczciwym opisem pracy. */
 html body .zmp-page .zmp-story-variant{margin-top:12px;padding-top:12px;border-top:1px solid rgba(154,214,205,.26);color:#cfe3d0}
+
+/* Scena karuzeli jest wyzsza, bo prezentowana karta jest teraz powiekszona. */
+html body .zmp-page .zmp-visual-stage{height:clamp(360px,40vw,620px)}
+@media(max-width:700px){html body .zmp-page .zmp-visual-stage{height:330px}}
