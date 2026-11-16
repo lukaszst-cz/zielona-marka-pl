@@ -10,6 +10,7 @@ test("form receives gallery selection and keeps privacy safeguards", async () =>
   assert.ok(form.includes('params.get("typ")'));
   // adres strony przekazany z portfolio uzupelnia pole opisu
   assert.ok(form.includes('params.get("strona")'));
+  assert.ok(form.includes("detailsRef"));
   assert.ok(form.includes('window.addEventListener("zm-concept-mode"'));
   for (const mode of ["existing", "new", "logo", "promo", "sales"]) {
     assert.match(form, new RegExp("^\\s*" + mode + ': "', "m"));
@@ -62,7 +63,7 @@ test("short concept form shares the public field design and keeps consent", asyn
   const form = await read("app/bezplatna-koncepcja-strony/ConceptRequestForm.tsx");
   const tokens = await read("app/site-design-system.css");
   assert.match(form, /name="email" required type="email"/);
-  assert.match(form, /textarea name="details" required/);
+  assert.match(form, /textarea ref=\{detailsRef\} name="details" required/);
   assert.doesNotMatch(form, /name="company"|name="website"/);
   assert.ok(tokens.includes(".zm-concept-form"));
   assert.ok(tokens.includes(".contact-form"));
@@ -75,10 +76,10 @@ test("concept page points to the unified portfolio and keeps an independently se
   const catalog = await read("app/portfolio/catalog.ts");
   const form = await read("app/bezplatna-koncepcja-strony/ConceptRequestForm.tsx");
   assert.ok(gallery.includes('href="/portfolio"'));
-  assert.ok(gallery.includes('href={`/portfolio/'));
-  assert.ok(gallery.includes('name: "OKRUCH"'));
-  assert.ok(gallery.includes('name: "SZLAK"'));
-  assert.ok(gallery.includes('name: "PELETON"'));
+  // Prace mieszkaja w portfolio: strona koncepcji pokazuje tylko jedno porownanie przed i po.
+  assert.ok(gallery.includes("okruch-before-after"));
+  assert.ok(gallery.includes("zm-concept-proof"));
+  assert.doesNotMatch(gallery, /zmp-teaser-grid/, "Druga galeria nie wraca na strone koncepcji");
   assert.doesNotMatch(gallery, /role="tablist"|role="tabpanel"/, "The 15-image gallery should no longer be duplicated here");
   assert.ok(catalog.includes('"slug": "okruch"'));
   assert.ok(catalog.includes('"slug": "szlak"'));
