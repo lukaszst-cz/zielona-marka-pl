@@ -72,6 +72,7 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
           {item.status.includes("beta") && <div className="zmp-detail-status">W budowie: {item.status}</div>}
           <div className="zmp-detail-actions">
             {item.demoUrl && <a className="zmp-btn zmp-btn-strong" href={item.demoUrl} target={item.demoUrl.startsWith("http") ? "_blank" : undefined} rel={item.demoUrl.startsWith("http") ? "noopener noreferrer" : undefined}>Zobacz, jak to działa ↗</a>}
+            {item.downloadUrl && <a className="zmp-btn zmp-btn-strong" href={item.downloadUrl} download>{item.downloadLabel ?? "Pobierz plik"} ↓</a>}
             <Link className="zmp-btn zmp-btn-outline" href={`/portfolio/druk?projekty=${item.slug}`} target="_blank" rel="noopener noreferrer">Zapisz kartę jako PDF ↗</Link>
           </div>
         </div>
@@ -106,7 +107,7 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
           </article>
         </div>
       </section>}
-      <section className="shell zmp-disclaimer zmx-reveal"><strong>Szczerze o tej pracy</strong><p>To nasz własny projekt, a nie wdrożenie zamówione przez firmę o tej nazwie. Nazwy, ceny, produkty i dostępność są wymyślone na potrzeby pokazu.</p></section>
+      <section className="shell zmp-disclaimer zmx-reveal"><strong>Szczerze o tej pracy</strong><p>{caseStudy?.honest ?? "To nasz własny projekt, a nie wdrożenie zamówione przez firmę o tej nazwie. Nazwy, ceny, produkty i dostępność są wymyślone na potrzeby pokazu."}</p>{caseStudy?.variant && <p className="zmp-story-variant">{caseStudy.variant}</p>}</section>
       {other.length > 0 && <section className="shell zmp-related zmx-reveal"><span className="zmp-overline">PODOBNE PRACE</span><h2>W tej samej kategorii</h2><div>{other.map(project=><Link key={project.slug} href={`/portfolio/${project.slug}`}><strong>{project.title}</strong><span>{project.industry} ↗</span></Link>)}</div></section>}
       <section className="shell zmp-bottom-cta zmx-reveal"><div><span className="zmp-overline">KOLEJNY PROJEKT</span><h2>Zróbmy to dla Twojej firmy.</h2><p>Twoja strona dostanie własne treści, zdjęcia i zakres. To, co widzisz obok, pokazuje kierunek i poziom wykonania.</p></div><Link href="/kontakt" className="zmp-btn zmp-btn-strong">Napisz do nas ↗</Link></section>
     </main>
