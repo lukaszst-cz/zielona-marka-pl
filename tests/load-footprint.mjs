@@ -84,8 +84,15 @@ try {
         const largest = [...timings.resources].sort((a, b) => b.transferredBytes - a.transferredBytes).slice(0, 12);
         const transferred = timings.resources.reduce((sum, item) => sum + item.transferredBytes, 0);
         const budgetBytes = Number(process.env.BROWSER_QA_TRANSFER_BUDGET_BYTES || 1500000);
-        assert.ok(transferred <= budgetBytes,
-          viewport.name + " " + route + " exceeds same-origin cold-load transfer budget: " + transferred + " / " + budgetBytes + " bytes");
+        const exceedsBudget = transferred > budgetBytes;
+        if (exceedsBudget && process.env.BROWSER_QA_BASELINE_ONLY === "true") {
+          console.warn("BASELINE " + viewport.name + " " + route + " exceeds budget on already deployed production: "
+            + transferred + " / " + budgetBytes + " bytes");
+        } else {
+          assert.ok(!exceedsBudget,
+            viewport.name + " " + route + " exceeds same-origin cold-load transfer budget: "
+              + transferred + " / " + budgetBytes + " bytes");
+        }
         const byType = Object.groupBy(timings.resources, item => item.type);
         const types = Object.fromEntries(Object.entries(byType).map(([name, items]) =>
           [name, { count: items.length, transferredBytes: items.reduce((sum, item) => sum + item.transferredBytes, 0) }]));
@@ -93,7 +100,7 @@ try {
           viewport: viewport.name, route, title: timings.title, navigation: timings.navigation,
           lcpMs: timings.lcpMs, cls: timings.cls, blockingTimeMs: timings.blockingTimeMs,
           longTasks: timings.longTasks, resources: timings.resources.length,
-          transferredBytes: transferred, byType: types, largest, responseHeaders: transfers,
+          transferredBytes: transferred, budgetBytes, exceedsBudget, byType: types, largest, responseHeaders: transfers,
         });
         console.log("LOAD " + viewport.name + " " + route + ": " + Math.round(transferred / 1024) +
           " KiB same-origin resources; LCP " + (timings.lcpMs ?? "n/a") +
