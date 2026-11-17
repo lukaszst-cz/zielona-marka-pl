@@ -48,7 +48,7 @@ Google potrzebuje czasu na ponowne odwiedzenie mapy i uwzględnienie nowych adre
 ## GitHub
 
 - kod znajduje się w repozytorium `lukaszst-cz/zielona-marka-pl`,
-- gałąź publikacyjna: `codex/published-unified-2026-10-05`,
+- gałąź publikacyjna powiązana z pull requestem nr 2,
 - pull request do `main`: https://github.com/lukaszst-cz/zielona-marka-pl/pull/2,
 - główna gałąź nie została nadpisana bezpośrednio.
 
