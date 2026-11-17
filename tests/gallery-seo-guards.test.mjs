@@ -130,8 +130,8 @@ test("robots.txt does not need to advertise a sitemap when the endpoint is check
     "Disallow: /",
     "User-agent: *",
     "Allow: /",
-  ].join("\\n");
+  ].join("\n");
   assert.equal(hasCriticalRobotsIssue(200, withoutSitemap), false);
   assert.equal(hasCriticalRobotsIssue(404, withoutSitemap), true);
-  assert.equal(hasCriticalRobotsIssue(200, "User-agent: *\\nDisallow: /"), true);
+  assert.equal(hasCriticalRobotsIssue(200, "User-agent: *\nDisallow: /"), true);
 });
