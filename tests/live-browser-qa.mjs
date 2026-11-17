@@ -700,6 +700,11 @@ try {
         assert.ok(opacityBefore, "Cards must be visible even before scrolling or running reveal JS");
 
         await cards.last().scrollIntoViewIfNeeded({ timeout: 15000 });
+        await page.waitForFunction(() => {
+          const cards = document.querySelectorAll(".zmp-project-card");
+          const lastImage = cards[cards.length - 1]?.querySelector(".zmx-cover-poster");
+          return lastImage instanceof HTMLImageElement && lastImage.complete && lastImage.naturalWidth > 0;
+        }, null, { timeout: 20000 });
         const opacityAfter = await cards.evaluateAll(elements =>
           elements.every(element => getComputedStyle(element).opacity === "1"));
         assert.ok(opacityAfter, "All cards must remain visible after scrolling");
