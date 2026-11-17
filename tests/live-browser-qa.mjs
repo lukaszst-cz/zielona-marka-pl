@@ -688,6 +688,37 @@ try {
         assert.equal(await menu.evaluate(el => el.open), false);
       });
     }
+    await check(size.name + ": portfolio links projects to workbooks in both directions", async () => {
+      for (const [site, workbook] of [
+        ["phu-marecki", "excel-hurtownia"],
+        ["printflow", "excel-printflow"],
+        ["transportflow", "excel-transportflow"],
+      ]) {
+        const response = await page.goto(base + "/portfolio/" + site, { waitUntil: "domcontentloaded", timeout: 45000 });
+        assert.ok(response?.ok(), "Project not available: " + site);
+        const section = page.locator(".zmp-workflow");
+        await section.waitFor({ state: "attached", timeout: 12000 });
+        assert.equal(await section.locator('a[href="/portfolio/' + workbook + '"]').count(), 1,
+          "Missing workbook link for " + site);
+        assert.ok(await section.getByText(/nie wymieniają automatycznie danych/).count(),
+          "Missing information about separate demo systems");
+
+        const bookResponse = await page.goto(base + "/portfolio/" + workbook, { waitUntil: "domcontentloaded", timeout: 45000 });
+        assert.ok(bookResponse?.ok(), "Workbook detail missing: " + workbook);
+        assert.ok(await page.locator('.zmp-workflow a[href="/portfolio/' + site + '"]').count(),
+          "Missing reverse link from " + workbook + " to " + site);
+      }
+      const response = await page.goto(base + "/projekty-flow", { waitUntil: "domcontentloaded", timeout: 45000 });
+      assert.ok(response?.ok(), "Flow projects page unavailable");
+      for (const slug of ["excel-printflow", "excel-transportflow", "excel-warsztat", "excel-dashboard", "excel-wycena", "excel-crm"]) {
+        assert.ok(await page.locator('a[href="/portfolio/' + slug + '"]').count(),
+          "Flow projects page does not link to " + slug);
+      }
+      const fit = await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 8);
+      assert.ok(fit, "Flow projects page overflows the viewport");
+      return { samplePairs: 3, workbooks: 6, reciprocal: true };
+    });
+
     await check(size.name + ": quality standards pages, links and layout", async () => {
       const response = await page.goto(base + "/standardy-jakosci", { waitUntil: "domcontentloaded", timeout: 45000 });
       assert.ok(response?.ok(), "The quality standards hub is not reachable");
