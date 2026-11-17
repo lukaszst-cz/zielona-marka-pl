@@ -55,7 +55,7 @@ const katalog: PortfolioItem[] = [
     "image": "/portfolio/centrum-budowlane-dashboard.webp",
     "cardImage": "/portfolio/centrum-budowlane-dashboard.webp",
     "alt": "Oryginalna grafika koncepcyjna Centrum Budowlane z granatowo-czerwonym pulpitem, hurtownią, tartakiem, elektryką, transportem HDS i planem publikacji",
-    "status": "interaktywne demo na Vercelu, dane demonstracyjne, repozytorium GitHub prywatne",
+    "status": "interaktywne demo na Vercelu i GitHub Pages, dane demonstracyjne, publiczne repozytorium GitHub",
     "demoUrl": "https://centrum-budowlane-pwa.vercel.app/app/",
     "openAccess": "online",
     "downloadUrl": "/pliki/centrum-budowlane-model-finansowy-2026.xlsx",

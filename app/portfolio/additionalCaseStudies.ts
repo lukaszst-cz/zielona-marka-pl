@@ -8,10 +8,12 @@ export const additionalCaseStudies: Record<string, WebsiteCaseStudy> = {
     "visual": "Granat #06152B i intensywna czerwień, wyraziste karty KPI, fotografia składu budowlanego, zdjęcia hurtowni budowlanej i elektrycznej, tartaku i HDS. Ten sam styl na komputerze i telefonie.",
     "flow": "Handlowiec tworzy wycenę i zamówienie. Zakupy i magazyn uzupełniają kartoteki oraz wystawiają PZ/WZ. Tartak rozlicza produkcję. Dyspozytor planuje HDS, kierowca załącza POD, a biuro akceptuje dokumenty oraz rozlicza dostawę.",
     "technical": "Interaktywne formularze, lokalna baza przeglądarki, walidacje, raporty, import tabel i plików oraz PWA. Oddzielny Excel z symulacją płac, podatków, marż i kosztów floty. Brak serwera, synchronizacji między stanowiskami i uwierzytelniania pracowników.",
-    "scope": "Własna koncepcja marki Zielona Marka. Interaktywna strona projektu, aplikacja i Excel są dostępne publicznie na Vercelu. Kod źródłowy znajduje się w osobnym, obecnie prywatnym repozytorium GitHub.",
-    "honest": "To autorska symulacja systemu dla fikcyjnego centrum budowlanego, nie wdrożenie u klienta. Kwoty i dane są przykładowe, a role demonstracyjne nie zapewniają realnej ochrony danych. Publiczne demo działa na Vercelu. Dane zapisują się lokalnie w przeglądarce, nie są współdzielone między pracownikami. Repozytorium GitHub pozostaje prywatne.",
+    "scope": "Własna koncepcja marki Zielona Marka. Interaktywna strona projektu, aplikacja i Excel są dostępne publicznie na Vercelu. Kod źródłowy znajduje się w publicznym repozytorium GitHub. Projekt jest dostępny także na GitHub Pages.",
+    "honest": "To autorska symulacja systemu dla fikcyjnego centrum budowlanego, nie wdrożenie u klienta. Kwoty i dane są przykładowe, a role demonstracyjne nie zapewniają realnej ochrony danych. Publiczne demo działa na Vercelu i GitHub Pages. Dane zapisują się lokalnie w przeglądarce, nie są współdzielone między pracownikami. Kod źródłowy jest publiczny na GitHubie.",
     "sources": [
       {"label":"Strona prezentacyjna na Vercelu","url":"https://centrum-budowlane-pwa.vercel.app/"},
+      {"label":"Publiczny kod na GitHubie","url":"https://github.com/lukaszst-cz/centrum-budowlane-pwa"},
+      {"label":"Strona na GitHub Pages","url":"https://lukaszst-cz.github.io/centrum-budowlane-pwa/"},
       {"label":"Uruchom aplikację","url":"https://centrum-budowlane-pwa.vercel.app/app/"},
       {"label":"Pobierz Excel","url":"https://centrum-budowlane-pwa.vercel.app/downloads/Centrum_Budowlane_Model_Finansowy_2026.xlsx"}
     ]
