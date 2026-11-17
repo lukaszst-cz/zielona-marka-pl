@@ -301,7 +301,7 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
           <span className="zmp-result-count">{filtered.length} z {items.length} projektów</span>
         </div>
         <div className="zmp-grid zmx-grid">
-          {filtered.map((item, index) => <article className="zmp-project-card zmx-project-card" key={`${filterKey}|${item.slug}`}
+          {filtered.map(item => <article className="zmp-project-card zmx-project-card" key={`${filterKey}|${item.slug}`}
 
             onMouseMove={event => {
               if (reducedMotion) return;
