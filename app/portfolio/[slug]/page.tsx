@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { QuickWhatsApp, SiteFooter, SiteHeader } from "../../SiteChrome";
 import { findPortfolioItem, portfolioCategories, portfolioItems } from "../catalog";
 import ZoomableProjectCover from "../ZoomableProjectCover";
+import WorkflowConnections from "../WorkflowConnections";
 import "../zoom.css";
 import DetailMotion from "../DetailMotion";
 import { websiteCaseStudies } from "../websiteCaseStudies";
@@ -22,7 +23,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!item) return {};
   return {
     title: `${item.title} | portfolio projektowe`,
-    description: `${item.summary} ${item.explanation}`.slice(0, 270),
+    description: item.summary.length <= 158
+      ? item.summary
+      : item.summary.slice(0, 157).replace(/\\s+\\S*$/, "") + ".",
     alternates: { canonical: `/portfolio/${slug}` },
     openGraph: {
       type: "article",
@@ -107,6 +110,7 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
         <article><span className="zmp-overline"><i>01</i> PO CO TO POWSTAŁO</span><h2>Pomysł w skrócie</h2><p>{item.explanation}</p></article>
         <article><span className="zmp-overline"><i>02</i> CO JEST W ŚRODKU</span><h2>Na co zwrócić uwagę</h2><ul className="zmx-feature-list">{item.features.map((feature,index)=><li key={feature} style={{ ["--zmx-i" as string]: String(index) }}>{feature}</li>)}</ul></article>
       </section>
+      <WorkflowConnections item={item} />
       {caseStudy && <section className="shell zmp-website-story zmx-reveal" aria-label="Opis wykonania strony">
         <header className="zmp-story-heading">
           <div><span className="zmp-overline">JAK POWSTAŁ PROJEKT</span><h2>Od pomysłu do wykonania</h2></div>
