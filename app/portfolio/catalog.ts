@@ -55,7 +55,7 @@ const katalog: PortfolioItem[] = [
     "image": "/portfolio/centrum-budowlane-dashboard.webp",
     "cardImage": "/portfolio/centrum-budowlane-dashboard.webp",
     "alt": "Oryginalna grafika koncepcyjna Centrum Budowlane z granatowo-czerwonym pulpitem, hurtownią, tartakiem, elektryką, transportem HDS i planem publikacji",
-    "status": "projekt demonstracyjny, publikacja osobnego repozytorium PWA w przygotowaniu",
+    "status": "projekt demonstracyjny, kod opublikowany w osobnym repozytorium GitHub, włączenie Pages w przygotowaniu",
     "downloadUrl": "/pliki/centrum-budowlane-model-finansowy-2026.xlsx",
     "downloadLabel": "Pobierz model finansowy Excel",
     "featured": true
