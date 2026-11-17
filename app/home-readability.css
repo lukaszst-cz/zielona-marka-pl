@@ -7,3 +7,5 @@ html body main.zm-v5 .zmh-assembly-board span{font-size:14px;color:#e8f0e2}
 html body main.zm-v5 .zmh-assembly-note{font-size:12px!important;color:#e6f1da}
 html body main.zm-v5 .zmh-aside-note{font-size:12px;color:#e8f2df}
 @media(max-width:700px){html body main.zm-v5 .zmh-hero-copy .zmh-trust-note{font-size:16px!important}html body main.zm-v5 .zmh-hero-copy .zmh-price-note{font-size:13.5px!important}}
+html body main.zm-v5 .zmh-modernization-links{display:flex;flex-wrap:wrap;gap:6px 24px;margin:0}
+html body main.zm-v5 .zmh-modernization-links .zmh-text-link{margin-top:10px}

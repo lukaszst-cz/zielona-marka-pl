@@ -3,6 +3,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { coverFor } from "./covers";
+import { coverVariants } from "./coverVariants";
 
 /* Żywe okładki wyłączone: część demonstracji ładuje się biała albo odsłania treść
    dopiero po przewinięciu, a karta ma zawsze pokazywać gotowy kadr. Plany kadrów
@@ -13,6 +14,13 @@ const MAX_LIVE_FRAMES = 6;
 const live = new Set<string>();
 const DEFAULT_RENDER_WIDTH = 1280;
 const FRAME_TIMEOUT_MS = 6000;
+
+function responsiveSource(image: string | undefined) {
+  const entry = image ? coverVariants[image] : undefined;
+  if (!image || !entry) return undefined;
+  const variants = entry.variants.map(width => `${image.replace(/\.(webp|jpe?g|png)$/, `-w${width}.webp`)} ${width}w`);
+  return [...variants, `${image} ${entry.width}w`].join(", ");
+}
 
 function canRenderLive() {
   if (typeof window === "undefined") return false;
@@ -108,7 +116,7 @@ export default function ProjectCover({ slug, title, image, alt, priority = false
   useEffect(() => () => { live.delete(slug); }, [slug]);
 
   return <span className="zmx-cover" ref={hostRef} data-live={armed && loaded ? "on" : undefined}>
-    <img className="zmx-cover-poster" src={image} alt={alt || `Podgląd projektu ${title}`} loading={priority ? "eager" : "lazy"} fetchPriority={priority ? "high" : "auto"} draggable={false} />
+    <img className="zmx-cover-poster" src={image} srcSet={responsiveSource(image)} sizes={priority ? "(max-width: 700px) 92vw, 720px" : "(max-width: 700px) 92vw, 380px"} alt={alt || `Podgląd projektu ${title}`} loading={priority ? "eager" : "lazy"} fetchPriority={priority ? "high" : "auto"} draggable={false} />
     {armed && !failed && <span className="zmx-cover-frame" aria-hidden="true">
       <iframe
         src={source}
