@@ -37,6 +37,29 @@ export type PortfolioItem = {
 };
 const katalog: PortfolioItem[] = [
   {
+    "slug": "centrum-budowlane-pwa",
+    "title": "Centrum Budowlane, system PWA",
+    "category": "aplikacje",
+    "industry": "Budownictwo, hurt B2B i logistyka HDS",
+    "summary": "Interaktywna aplikacja PWA dla centrum budowlanego: materiały, elektryka, tartak, magazyn, flota HDS, obieg dokumentów i finanse.",
+    "explanation": "Autorska demonstracja wspólnego obiegu pracy od zamówienia inwestora przez wycenę, zakupy, PZ, WZ, produkcję tartaku i transport HDS do dokumentu POD i rozliczenia. W pakiecie dostępny model finansowy Excel z kosztami pracowników, floty, marżami i podatkami.",
+    "features": [
+      "Jedenaście profili ról z różnymi ekranami i zadaniami",
+      "Zamówienia B2B, inwestorzy, limity kredytowe i marże",
+      "Magazyn, PZ, WZ, zakupy, rezerwacje i tartak",
+      "Przykładowa flota sześciu samochodów, w tym trzech HDS",
+      "Obieg dokumentów kierowca, biuro, szkoda, rozliczenie",
+      "Import CSV, XLSX, TSV i HTML oraz lokalny zapis",
+      "Model finansowy Excel do pobrania"
+    ],
+    "image": "/portfolio/centrum-budowlane-pwa.svg",
+    "alt": "Prezentacja interfejsu Centrum Budowlanego, granatowo-czerwony dashboard dla handlu, tartaku i transportu",
+    "status": "projekt demonstracyjny, publikacja osobnego repozytorium PWA w przygotowaniu",
+    "downloadUrl": "/pliki/centrum-budowlane-model-finansowy-2026.xlsx",
+    "downloadLabel": "Pobierz model finansowy Excel",
+    "featured": true
+  },
+  {
     "slug": "phu-marecki",
     "title": "PHU MARECKI",
     "category": "www",
