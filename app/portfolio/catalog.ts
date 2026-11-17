@@ -35,25 +35,6 @@ export type PortfolioItem = {
 };
 export const portfolioItems: PortfolioItem[] = [
   {
-    "slug": "budrivo",
-    "title": "BUDRIVO",
-    "category": "www",
-    "industry": "Budownictwo i materiały",
-    "summary": "Hurtownia budowlana, w której klient sam policzy koszt elewacji.",
-    "explanation": "Katalog i kalkulator liczą za klienta, więc zapytanie trafia już gotowe.",
-    "features": [
-      "Katalog materiałów",
-      "Kalkulator",
-      "Gazetka w serwisie",
-      "Wizualizacja elewacji"
-    ],
-    "demoUrl": "https://budrivo.vercel.app",
-    "image": "/portfolio/kadry/budrivo-ekran.webp",
-    "alt": "Pierwszy ekran serwisu BUDRIVO",
-    "status": "projekt demonstracyjny",
-    "featured": true
-  },
-  {
     "slug": "phu-marecki",
     "title": "PHU MARECKI",
     "category": "www",
@@ -70,6 +51,25 @@ export const portfolioItems: PortfolioItem[] = [
     "demoUrl": "https://phu-marecki.vercel.app",
     "image": "/portfolio/kadry/phu-marecki-ekran.webp",
     "alt": "Pierwszy ekran strony PHU Marecki",
+    "status": "projekt demonstracyjny",
+    "featured": true
+  },
+  {
+    "slug": "budrivo",
+    "title": "BUDRIVO",
+    "category": "www",
+    "industry": "Budownictwo i materiały",
+    "summary": "Hurtownia budowlana, w której klient sam policzy koszt elewacji.",
+    "explanation": "Katalog i kalkulator liczą za klienta, więc zapytanie trafia już gotowe.",
+    "features": [
+      "Katalog materiałów",
+      "Kalkulator",
+      "Gazetka w serwisie",
+      "Wizualizacja elewacji"
+    ],
+    "demoUrl": "https://budrivo.vercel.app",
+    "image": "/portfolio/kadry/budrivo-ekran.webp",
+    "alt": "Pierwszy ekran serwisu BUDRIVO",
     "status": "projekt demonstracyjny",
     "featured": true
   },

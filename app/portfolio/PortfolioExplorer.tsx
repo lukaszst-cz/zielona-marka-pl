@@ -30,7 +30,7 @@ function matchesIndustry(item: PortfolioItem, filter: string) {
 /* Czternaście prac na scenie: przekrój przez wszystkie formaty, bez tłoku na jednym ekranie. */
 /* Karuzela pokazuje wylacznie pierwsze ekrany stron i gazetki; narzedzia i arkusze zostaja w katalogu nizej. */
 const featuredOrder = [
-  "navoro-hurt", "phu-marecki", "solidom", "black-harbor", "aurea-smile", "solident", "eltravia",
+  "phu-marecki", "navoro-hurt", "phu-marecki-aplikacja", "solidom", "black-harbor", "aurea-smile", "solident", "eltravia",
   "gazetka-navoro", "nexio-elektro", "gazetka-nexio", "materivo", "budrivo", "okruch", "szlak",
 ];
 
@@ -352,9 +352,9 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
                   : item.category === "przed-po" ? <span>Projekt demonstracyjny</span> : null}</div>
               <h3><Link href={`/portfolio/${item.slug}`}>{item.title}</Link></h3>
               <p className="zmp-project-intro">{item.summary}</p>
-              <div className="zmp-project-features" aria-label="Elementy projektu">
-                {item.features.slice(0,3).map(feature=><span key={feature}>{feature}</span>)}
-              </div>
+              <ul className="zmx-card-points" aria-label="Co zastosowano w tej pracy">
+                {item.features.slice(0,5).map(feature=><li key={feature}>{feature}</li>)}
+              </ul>
               <div className="zmp-project-actions">
                 <Link className="zmp-project-open" href={`/portfolio/${item.slug}`}>Zobacz projekt <span aria-hidden="true">↗</span></Link>
                 {item.demoUrl && <a className="zmp-project-demo" href={item.demoUrl}
