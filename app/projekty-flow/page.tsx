@@ -4,7 +4,7 @@ import { QuickWhatsApp, SiteFooter, SiteHeader } from "../SiteChrome";
 import "./workbooks.css";
 
 export const metadata: Metadata = {
-  title: "Procesy pracy i arkusze Excel dla firm | Zielona Marka",
+  title: "Procesy pracy i arkusze Excel dla firm",
   description: "Zobacz demonstracje obiegu zleceń w drukarni, transporcie i warsztacie. Projekty Flow, przykładowe arkusze Excel i sposoby organizacji pracy firmy.",
   alternates: { canonical: "/projekty-flow" },
   openGraph: {
