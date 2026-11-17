@@ -801,7 +801,7 @@ const katalog: PortfolioItem[] = [
     "category": "aplikacje",
     "industry": "Edukacja i aktywność",
     "summary": "Aplikacja PWA do aktywności dla siebie i dla rodziny, w fazie pilotażu.",
-    "explanation": "Wersja 0.5.0-beta.4: tryb Dla siebie, tryb Rodzina, zapis bez internetu, eksport danych i synchronizacja w budowie.",
+    "explanation": "Wersja 0.5.0-beta.4: tryb Dla siebie i Rodzina, zapis lokalny, eksport danych, logowanie Magic Link oraz pilotażowa synchronizacja powiązanych profili. Wdrożenie szkolne wymaga dodatkowych testów i uzgodnień dotyczących danych.",
     "features": [
       "Dziennik aktywności",
       "Tryb rodzinny",
