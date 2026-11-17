@@ -30,7 +30,7 @@ function matchesIndustry(item: PortfolioItem, filter: string) {
 /* Czternaście prac na scenie: przekrój przez wszystkie formaty, bez tłoku na jednym ekranie. */
 /* Karuzela pokazuje wylacznie pierwsze ekrany stron i gazetki; narzedzia i arkusze zostaja w katalogu nizej. */
 const featuredOrder = [
-  "phu-marecki", "navoro-hurt", "phu-marecki-aplikacja", "solidom", "black-harbor", "aurea-smile", "solident", "eltravia",
+  "navoro-hurt", "solidom", "phu-marecki", "phu-marecki-aplikacja", "black-harbor", "aurea-smile", "solident", "eltravia",
   "gazetka-navoro", "nexio-elektro", "gazetka-nexio", "materivo", "budrivo", "okruch", "szlak",
 ];
 
