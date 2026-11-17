@@ -271,7 +271,7 @@ const katalog: PortfolioItem[] = [
     "category": "www",
     "industry": "Beauty i pielęgnacja",
     "summary": "Koncepcja strony atelier beauty z prezentacją oferty i demonstracyjną ścieżką rezerwacji.",
-    "explanation": "Nieoficjalna demonstracja Zielonej Marki. Pokazuje sposób przedstawienia salonu i oferty w oprawie wizualnej dopasowanej do usług beauty. Rezerwacje służą wyłącznie do prezentacji interfejsu i nie trafiają do systemu rezerwacyjnego.",
+    "explanation": "Nieoficjalna demonstracja marki Zielona Marka. Pokazuje sposób przedstawienia salonu i oferty w oprawie wizualnej dopasowanej do usług beauty. Rezerwacje służą wyłącznie do prezentacji interfejsu i nie trafiają do systemu rezerwacyjnego.",
     "features": [
       "Autorska oprawa wizualna atelier",
       "Prezentacja usług i zdjęć",
@@ -279,7 +279,7 @@ const katalog: PortfolioItem[] = [
       "Wersja do obejrzenia w przeglądarce"
     ],
     "demoUrl": "https://beata-beauty-atelier.vercel.app/",
-    "image": "https://raw.githubusercontent.com/lukaszst-cz/zielona-marka-public-portfolio/main/demos/beata-beauty-atelier/assets/beata-cover.png",
+    "image": "https://beata-beauty-atelier.vercel.app/assets/beata-cover.png",
     "alt": "Grafika projektu BEATA Beauty Atelier",
     "status": "projekt demonstracyjny"
   },
@@ -289,7 +289,7 @@ const katalog: PortfolioItem[] = [
     "category": "www",
     "industry": "Usługi fryzjerskie i barbering",
     "summary": "Koncepcja strony salonu barberskiego z ofertą usług, prezentacją kosmetyków i przykładowymi rezerwacjami.",
-    "explanation": "Nieoficjalna demonstracja Zielonej Marki. Strona łączy charakterystyczną oprawę salonu z ofertą i kartami kosmetyków. Koszyk i rezerwacje są demonstracyjne: nie ma integracji z Booksy, magazynem ani płatnościami. Formularz przygotowuje wiadomość w programie pocztowym.",
+    "explanation": "Nieoficjalna demonstracja marki Zielona Marka. Strona łączy charakterystyczną oprawę salonu z ofertą i kartami kosmetyków. Koszyk i rezerwacje są demonstracyjne: nie ma integracji z Booksy, magazynem ani płatnościami. Formularz przygotowuje wiadomość w programie pocztowym.",
     "features": [
       "Prezentacja usług barberskich",
       "Karty produktów i fotografie",
@@ -297,7 +297,7 @@ const katalog: PortfolioItem[] = [
       "Formularz otwierający program pocztowy"
     ],
     "demoUrl": "https://kordon-barber-studio-zielona-marka.vercel.app/",
-    "image": "https://raw.githubusercontent.com/lukaszst-cz/zielona-marka-public-portfolio/main/demos/kordon-barber-studio/site/assets/hero.webp",
+    "image": "https://kordon-barber-studio-zielona-marka.vercel.app/assets/hero.webp",
     "alt": "Fotografia główna w koncepcji KORDON Barber Studio",
     "status": "projekt demonstracyjny"
   },
