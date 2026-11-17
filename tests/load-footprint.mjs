@@ -3,7 +3,7 @@ import { mkdirSync, writeFileSync } from "node:fs";
 
 const { chromium } = await import(process.env.BROWSER_QA_PLAYWRIGHT_ENTRY || "playwright");
 const base = (process.env.BROWSER_QA_URL || "https://zielona-marka.pl").replace(/\/$/, "");
-const routes = ["/", "/oferta", "/dtp", "/poradnik/ile-kosztuje-projekt-gazetki", "/projektuj-strone"];
+const routes = ["/", "/oferta", "/portfolio", "/portfolio/phu-marecki", "/strony-internetowe-marki", "/kontakt", "/dtp", "/poradnik/ile-kosztuje-projekt-gazetki", "/projektuj-strone"];
 const viewports = [{ name: "mobile", width: 390, height: 844 }, { name: "desktop", width: 1440, height: 900 }];
 const report = { base, recordedAt: new Date().toISOString(), methodology: "Chromium cold browser context per page, reduced motion and analytics disabled; unthrottled lab snapshot, not CrUX or PSI", pages: [] };
 
@@ -16,7 +16,7 @@ try {
       await context.addInitScript(() => {
         try { localStorage.setItem("zm_analytics_consent", "denied"); } catch { /* Storage unavailable */ }
         performance.setResourceTimingBufferSize(1000);
-        window.__qaVitals = { lcpMs: null, cls: 0 };
+        window.__qaVitals = { lcpMs: null, cls: 0, blockingTimeMs: 0, longTasks: 0 };
         if ("PerformanceObserver" in window) {
           try {
             new PerformanceObserver(list => {
@@ -29,6 +29,14 @@ try {
                 if (!entry.hadRecentInput) window.__qaVitals.cls += entry.value;
               }
             }).observe({ type: "layout-shift", buffered: true });
+          } catch { /* Unsupported browser entry type */ }
+          try {
+            new PerformanceObserver(list => {
+              for (const entry of list.getEntries()) {
+                window.__qaVitals.blockingTimeMs += Math.max(0, entry.duration - 50);
+                window.__qaVitals.longTasks++;
+              }
+            }).observe({ type: "longtask", buffered: true });
           } catch { /* Unsupported browser entry type */ }
         }
       });
@@ -67,6 +75,8 @@ try {
             } : null,
             lcpMs: window.__qaVitals?.lcpMs ?? null,
             cls: Number((window.__qaVitals?.cls ?? 0).toFixed(4)),
+            blockingTimeMs: Math.round(window.__qaVitals?.blockingTimeMs ?? 0),
+            longTasks: window.__qaVitals?.longTasks ?? 0,
             resources,
             title: document.title,
           };
@@ -81,11 +91,13 @@ try {
           [name, { count: items.length, transferredBytes: items.reduce((sum, item) => sum + item.transferredBytes, 0) }]));
         report.pages.push({
           viewport: viewport.name, route, title: timings.title, navigation: timings.navigation,
-          lcpMs: timings.lcpMs, cls: timings.cls, resources: timings.resources.length,
+          lcpMs: timings.lcpMs, cls: timings.cls, blockingTimeMs: timings.blockingTimeMs,
+          longTasks: timings.longTasks, resources: timings.resources.length,
           transferredBytes: transferred, byType: types, largest, responseHeaders: transfers,
         });
         console.log("LOAD " + viewport.name + " " + route + ": " + Math.round(transferred / 1024) +
-          " KiB same-origin resources; LCP " + (timings.lcpMs ?? "n/a") + " ms; CLS " + timings.cls);
+          " KiB same-origin resources; LCP " + (timings.lcpMs ?? "n/a") +
+          " ms; CLS " + timings.cls + "; long-task blocking " + timings.blockingTimeMs + " ms");
       } finally {
         await context.close();
       }
