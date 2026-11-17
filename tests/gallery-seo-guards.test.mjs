@@ -135,3 +135,24 @@ test("robots.txt does not need to advertise a sitemap when the endpoint is check
   assert.equal(hasCriticalRobotsIssue(404, withoutSitemap), true);
   assert.equal(hasCriticalRobotsIssue(200, "User-agent: *\nDisallow: /"), true);
 });
+
+
+test("portfolio grid stays indexable and visible without scroll-reveal JavaScript", async () => {
+  const [css, explorer, cover, footprint] = await Promise.all([
+    readFile(new URL("../app/portfolio/portfolio.css", import.meta.url), "utf8"),
+    readFile(new URL("../app/portfolio/PortfolioExplorer.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/portfolio/ProjectCover.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../tests/load-footprint.mjs", import.meta.url), "utf8"),
+  ]);
+  const start = css.indexOf("/* Wszystkie projekty pozostają widoczne");
+  assert.ok(start >= 0, "Portfolio scroll effect should explain the visibility safeguard");
+  const part = css.slice(start, start + 550);
+  assert.match(part, /opacity:1/);
+  assert.doesNotMatch(part, /opacity:0/);
+  assert.match(css, /@supports \(animation-timeline: view\(\)\)/);
+  assert.match(css, /animation:none!important/, "Reduced-motion visitors must not receive scroll animation");
+  assert.doesNotMatch(explorer, /is-revealed|ref=\{gridRef\}/);
+  assert.match(cover, /fetchPriority=\{priority \? "high" : "auto"\}/);
+  assert.match(footprint, /"\/portfolio"/);
+  assert.match(footprint, /"\/strony-internetowe-marki"/);
+});

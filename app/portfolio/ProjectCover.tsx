@@ -108,7 +108,7 @@ export default function ProjectCover({ slug, title, image, alt, priority = false
   useEffect(() => () => { live.delete(slug); }, [slug]);
 
   return <span className="zmx-cover" ref={hostRef} data-live={armed && loaded ? "on" : undefined}>
-    <img className="zmx-cover-poster" src={image} alt={alt || `Podgląd projektu ${title}`} loading={priority ? "eager" : "lazy"} draggable={false} />
+    <img className="zmx-cover-poster" src={image} alt={alt || `Podgląd projektu ${title}`} loading={priority ? "eager" : "lazy"} fetchPriority={priority ? "high" : "auto"} draggable={false} />
     {armed && !failed && <span className="zmx-cover-frame" aria-hidden="true">
       <iframe
         src={source}

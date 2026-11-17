@@ -92,7 +92,6 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
   const reducedMotion = useReducedMotion();
 
   const stageRef = useRef<HTMLDivElement>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
   const dragOrigin = useRef<number | null>(null);
 
   const featured = useMemo(() => featuredOrder.map(slug => items.find(item => item.slug === slug))
@@ -130,27 +129,6 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
   }, [items, industry, format, search, onlyOpen]);
 
   const filterKey = `${industry}|${format}|${onlyOpen}|${search.trim().toLocaleLowerCase("pl-PL")}`;
-
-  /* Karty katalogu wchodzą kolejno, gdy wjeżdżają w pole widzenia. */
-  useEffect(() => {
-    const grid = gridRef.current;
-    if (!grid) return;
-    const cards = Array.from(grid.querySelectorAll<HTMLElement>(".zmp-project-card"));
-    if (reducedMotion || typeof IntersectionObserver === "undefined") {
-      cards.forEach(card => card.classList.add("is-revealed"));
-      return;
-    }
-    cards.forEach(card => card.classList.remove("is-revealed"));
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add("is-revealed");
-        observer.unobserve(entry.target);
-      });
-    }, { rootMargin: "0px 0px -60px 0px", threshold: .12 });
-    cards.forEach(card => observer.observe(card));
-    return () => observer.disconnect();
-  }, [filterKey, filtered.length, reducedMotion]);
 
   function chooseIndustry(id: string) {
     setIndustry(id);
@@ -223,24 +201,24 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
             if (offset > featured.length / 2) offset -= featured.length;
             if (offset < -featured.length / 2) offset += featured.length;
             const distance = Math.abs(offset);
-            const hidden = distance > 3;
+            // Nie ładuj obrazów slajdów poza najbliższymi sąsiadami.
+            if (distance > 2) return null;
             const isCurrent = distance === 0;
             /* Prezentowana karta jest wyraźnie większa od sąsiadów, żeby na pokazie dało się ją czytać. */
-            const scale = isCurrent ? 1.16 : distance === 1 ? .82 : distance === 2 ? .7 : .62;
+            const scale = isCurrent ? 1.16 : distance === 1 ? .82 : .7;
             const lift = isCurrent ? 0 : distance * 10;
             const tiltY = isCurrent ? tilt.x * 5 : 0;
             const tiltX = isCurrent ? tilt.y * -4 : 0;
             return <Link key={item.slug} href={`/portfolio/${item.slug}`}
               aria-label={`Zobacz projekt ${item.title}`}
-              aria-hidden={hidden ? true : undefined}
-              tabIndex={hidden ? -1 : 0}
+
               draggable={false}
               onClick={event => { if (Math.abs(drag) > 8) event.preventDefault(); }}
-              className={`zmp-floating-card zmx-card${isCurrent ? " is-current" : ""}${hidden ? " is-outside" : ""}`}
+              className={`zmp-floating-card zmx-card${isCurrent ? " is-current" : ""}`}
               style={{
                 transform: `translate(-50%, -50%) translateX(calc(${offset * 64}% + ${isCurrent ? "var(--zmx-drag, 0px)" : "0px"})) translateY(${lift}px) rotateY(${offset * -17 + tiltY}deg) rotateX(${tiltX}deg) scale(${scale})`,
-                opacity: hidden ? 0 : distance === 3 ? .45 : 1,
-                filter: distance >= 2 ? `blur(${distance === 3 ? 4 : 1.6}px) saturate(.8)` : undefined,
+                opacity: 1,
+                filter: distance === 2 ? "blur(1.6px) saturate(.8)" : undefined,
                 zIndex: featured.length - distance,
               }}>
               <span className="zmp-floating-topline">
@@ -248,8 +226,7 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
                 <span>↗</span>
               </span>
               <span className="zmp-floating-visual" data-media={mediaPresentation(item)}>
-                <ProjectCover slug={item.slug} title={item.title} image={item.cardImage ?? item.image} alt={item.alt}
-                  priority={distance <= 1} />
+                <ProjectCover slug={item.slug} title={item.title} image={item.cardImage ?? item.image} alt={item.alt} priority={isCurrent} />
                 <span className="zmx-card-sheen" aria-hidden="true" />
               </span>
               <span className="zmp-floating-copy"><strong>{item.title}</strong><small>{item.industry}</small></span>
@@ -323,9 +300,9 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
           </button>
           <span className="zmp-result-count">{filtered.length} z {items.length} projektów</span>
         </div>
-        <div className="zmp-grid zmx-grid" ref={gridRef}>
-          {filtered.map((item, index) => <article className="zmp-project-card zmx-project-card" key={`${filterKey}|${item.slug}`}
-            style={{ ["--zmx-i" as string]: String(Math.min(index, 11)) }}
+        <div className="zmp-grid zmx-grid">
+          {filtered.map(item => <article className="zmp-project-card zmx-project-card" key={`${filterKey}|${item.slug}`}
+
             onMouseMove={event => {
               if (reducedMotion) return;
               const card = event.currentTarget;

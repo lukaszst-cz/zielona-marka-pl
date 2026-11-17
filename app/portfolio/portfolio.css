@@ -708,15 +708,25 @@
   background:linear-gradient(90deg,#8ef07a,#d6fb63);
   box-shadow:0 0 12px rgba(150,240,110,.55);
 }
-/* Katalog: wejście kart przy przewijaniu i światło podążające za kursorem. */
+/* Wszystkie projekty pozostają widoczne także przed uruchomieniem JavaScriptu.
+   Delikatny ruch przy przewijaniu jest opcjonalnym ulepszeniem, bez ukrywania treści. */
 .zmx-explorer .zmx-project-card{
   position:relative;
-  opacity:0;
-  transform:translateY(26px) scale(.985);
-  transition:opacity .62s cubic-bezier(.2,.75,.3,1),transform .62s cubic-bezier(.2,.75,.3,1),border-color .25s ease,box-shadow .25s ease;
-  transition-delay:calc(var(--zmx-i,0) * 55ms);
+  opacity:1;
+  transform:none;
+  transition:transform .28s cubic-bezier(.2,.75,.3,1),border-color .25s ease,box-shadow .25s ease;
 }
-.zmx-explorer .zmx-project-card.is-revealed{opacity:1;transform:none}
+@supports (animation-timeline: view()) {
+  .zmx-explorer .zmx-project-card:not(:hover):not(:focus-within){
+    animation:zmx-card-scroll-shift linear both;
+    animation-timeline:view(block);
+    animation-range:entry 0% cover 20%;
+  }
+  @keyframes zmx-card-scroll-shift {
+    from{transform:translateY(8px)}
+    to{transform:translateY(0)}
+  }
+}
 .zmx-explorer .zmx-project-card:before{
   content:"";
   position:absolute;
@@ -747,7 +757,7 @@
   .zmx-explorer .zmx-card,
   .zmx-explorer .zmx-project-card,
   .zmx-explorer .zmx-project-card .zmp-project-photo img{transition:none}
-  .zmx-explorer .zmx-project-card{opacity:1;transform:none}
+  .zmx-explorer .zmx-project-card{opacity:1;transform:none;animation:none!important}
   .zmx-card-sheen,.zmx-live-badge:before{animation:none}
   .zmx-card-sheen{display:none}
   .zmx-track-run{animation:none;transform:scaleX(1);opacity:.3}

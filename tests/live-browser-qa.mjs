@@ -688,6 +688,34 @@ try {
         assert.equal(await menu.evaluate(el => el.open), false);
       });
     }
+    if (["desktop", "mobile"].includes(size.name)) {
+      await check(size.name + ": portfolio cards remain visible during scrolling and filtering", async () => {
+        const response = await page.goto(base + "/portfolio", { waitUntil: "domcontentloaded", timeout: 45000 });
+        assert.ok(response?.ok(), "Portfolio is unavailable");
+        const cards = page.locator(".zmp-project-card");
+        await cards.first().waitFor({ state: "attached", timeout: 15000 });
+        assert.ok(await cards.count() >= 55, "The catalog should retain all public projects");
+        const opacityBefore = await cards.evaluateAll(elements =>
+          elements.every(element => getComputedStyle(element).opacity === "1"));
+        assert.ok(opacityBefore, "Cards must be visible even before scrolling or running reveal JS");
+
+        await cards.last().scrollIntoViewIfNeeded({ timeout: 15000 });
+        const opacityAfter = await cards.evaluateAll(elements =>
+          elements.every(element => getComputedStyle(element).opacity === "1"));
+        assert.ok(opacityAfter, "All cards must remain visible after scrolling");
+        const noOverflow = await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 8);
+        assert.ok(noOverflow, "Portfolio overflows the viewport");
+
+        await page.locator(".zmp-format-field select").selectOption("excel");
+        await page.waitForTimeout(120);
+        assert.equal(await cards.count(), 12, "Excel filter should return 12 portfolio projects");
+        const filteredVisible = await cards.evaluateAll(elements =>
+          elements.every(element => getComputedStyle(element).opacity === "1"));
+        assert.ok(filteredVisible, "Filtered cards must appear immediately, without scroll reveal");
+        return { fullCatalog: true, filteredExcelCount: 12, immediateVisibility: true };
+      });
+    }
+
     await check(size.name + ": portfolio links projects to workbooks in both directions", async () => {
       for (const [site, workbook] of [
         ["phu-marecki", "excel-hurtownia"],
