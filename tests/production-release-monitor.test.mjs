@@ -41,7 +41,10 @@ test("the release monitor detects the new free-concept UI on production", () => 
   const concept = releasePages.find(({ path }) => path === "/bezplatna-koncepcja-strony");
   assert.ok(concept);
   assert.ok(concept.markers.includes("zm-editorial-art"));
-  assert.ok(concept.markers.includes("zv5-tabs"));
+  assert.ok(concept.markers.includes("zm-concept-gallery"));
+  assert.ok(concept.markers.includes("okruch-before-after-1280.webp"));
+  assert.ok(concept.markers.includes("zmp-teaser-bottom"));
+  assert.ok(!concept.markers.includes("zv5-tabs"));
   assert.ok(concept.markers.includes("Twoja firma."));
   assert.ok(missingUiStyles("body{}").includes(".zm-concept-lightbox"));
   assert.ok(missingUiStyles("body{}").includes(".zm-public.zm-concept .page-hero.zm-concept-hero"));
