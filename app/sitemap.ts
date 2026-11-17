@@ -5,7 +5,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://zielona-marka.pl";
   const localCities = ["zabki", "zielonka", "kobylka", "wolomin", "radzymin", "targowek", "bialoleka", "warszawa"];
   return [
-    { url: base, lastModified: new Date("2026-10-09"), changeFrequency: "weekly", priority: 1 },
+    { url: base, lastModified: new Date("2026-11-17"), changeFrequency: "weekly", priority: 1 },
     { url: `${base}/oferta`, lastModified: new Date("2026-10-14"), changeFrequency: "weekly", priority: .9 },
     { url: `${base}/opieka-nad-strona`, lastModified: new Date("2026-10-14"), changeFrequency: "monthly", priority: .78 },
     { url: `${base}/dtp`, lastModified: new Date("2026-10-14"), changeFrequency: "monthly", priority: .82 },
@@ -16,7 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/standardy-jakosci`, lastModified: new Date("2026-10-15"), changeFrequency: "monthly", priority: .8 },
     { url: `${base}/standard-jakosci`, lastModified: new Date("2026-10-14"), changeFrequency: "monthly", priority: .72 },
     { url: `${base}/standard-dtp`, lastModified: new Date("2026-10-14"), changeFrequency: "monthly", priority: .72 },
-    { url: `${base}/modernizacja-strony`, lastModified: new Date("2026-11-09"), changeFrequency: "weekly", priority: .9 },
+    { url: `${base}/modernizacja-strony`, lastModified: new Date("2026-11-17"), changeFrequency: "weekly", priority: .9 },
     { url: `${base}/bezplatna-koncepcja-strony`, lastModified: new Date("2026-10-15"), changeFrequency: "weekly", priority: .88 },
     { url: `${base}/portfolio`, lastModified: new Date("2026-11-09"), changeFrequency: "weekly", priority: .9 },
     ...portfolioItems.map(item => ({ url: `${base}/portfolio/${item.slug}`, lastModified: new Date("2026-11-17"), changeFrequency: "monthly" as const, priority: item.featured ? .78 : .66 })),
@@ -35,8 +35,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/usprawnienia-firmy`, lastModified: new Date("2026-10-07"), changeFrequency: "monthly", priority: .8 },
     { url: `${base}/jak-pracuje`, lastModified: new Date("2026-10-07"), changeFrequency: "monthly", priority: .75 },
     { url: `${base}/kontakt`, lastModified: new Date("2026-11-09"), changeFrequency: "monthly", priority: .75 },
-    { url: `${base}/strony-internetowe`, lastModified: new Date("2026-10-07"), changeFrequency: "weekly", priority: .92 },
-    { url: `${base}/strony-internetowe-marki`, lastModified: new Date("2026-10-07"), changeFrequency: "weekly", priority: .9 },
+    { url: `${base}/strony-internetowe`, lastModified: new Date("2026-11-17"), changeFrequency: "weekly", priority: .92 },
+    { url: `${base}/strony-internetowe-marki`, lastModified: new Date("2026-11-17"), changeFrequency: "weekly", priority: .9 },
     { url: `${base}/strony-dla-warsztatow`, lastModified: new Date("2026-10-07"), changeFrequency: "weekly", priority: .85 },
     { url: `${base}/strony-dla-firm-uslugowych`, lastModified: new Date("2026-10-07"), changeFrequency: "weekly", priority: .85 },
     { url: `${base}/strony-dla-beauty`, lastModified: new Date("2026-10-07"), changeFrequency: "weekly", priority: .85 },
@@ -46,6 +46,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/realizacje/natura-studio`, lastModified: new Date("2026-10-09"), changeFrequency: "monthly", priority: .6 },
     { url: `${base}/realizacje/bistro-forma`, lastModified: new Date("2026-10-09"), changeFrequency: "monthly", priority: .6 },
     { url: `${base}/realizacje/dom-dobry`, lastModified: new Date("2026-10-09"), changeFrequency: "monthly", priority: .6 },
-    ...localCities.map(city => ({ url: `${base}/strony-internetowe/${city}`, lastModified: new Date("2026-10-09"), changeFrequency: "monthly" as const, priority: .82 })),
+    ...localCities.map(city => ({ url: `${base}/strony-internetowe/${city}`, lastModified: new Date("2026-11-17"), changeFrequency: "monthly" as const, priority: .82 })),
   ];
 }
