@@ -30,12 +30,13 @@ function matchesIndustry(item: PortfolioItem, filter: string) {
 /* Czternaście prac na scenie: przekrój przez wszystkie formaty, bez tłoku na jednym ekranie. */
 /* Karuzela pokazuje wylacznie pierwsze ekrany stron i gazetki; narzedzia i arkusze zostaja w katalogu nizej. */
 const featuredOrder = [
-  "navoro-hurt", "solidom", "phu-marecki", "phu-marecki-aplikacja", "black-harbor", "aurea-smile", "solident", "eltravia",
-  "gazetka-navoro", "nexio-elektro", "gazetka-nexio", "materivo", "budrivo", "okruch", "szlak",
+  "materivo", "phu-marecki", "phu-marecki-aplikacja", "black-harbor", "aurea-smile", "eltravia", "solidom",
+  "navoro-hurt", "gazetka-navoro", "nexio-elektro", "solident", "auto-naprawa", "okruch", "gazetka-nexio", "szlak",
 ];
 
 const AUTOPLAY_MS = 6500;
 function mediaPresentation(item: PortfolioItem): "screen" | "art" | "photo" {
+  if (item.cardImage) return "photo";
   const src = item.image || "";
   if (src.includes("-ekran.webp") || src.includes("-autentyczny-podglad.png") || src.endsWith(".svg")) return "screen";
   if (["gazetki", "logo", "przed-po", "excel"].includes(item.category) || src.includes("/concept-samples-v2/")) return "art";
@@ -245,7 +246,7 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
                 <span>↗</span>
               </span>
               <span className="zmp-floating-visual" data-media={mediaPresentation(item)}>
-                <ProjectCover slug={item.slug} title={item.title} image={item.image} alt={item.alt}
+                <ProjectCover slug={item.slug} title={item.title} image={item.cardImage ?? item.image} alt={item.alt}
                   priority={distance <= 1} />
                 <span className="zmx-card-sheen" aria-hidden="true" />
               </span>
@@ -342,12 +343,12 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
               card.style.setProperty("--zmx-py", "0px");
             }}>
             <Link href={`/portfolio/${item.slug}`} className="zmp-project-photo" data-media={mediaPresentation(item)} data-project={item.slug} aria-label={`Poznaj projekt ${item.title}`}>
-              <ProjectCover slug={item.slug} title={item.title} image={item.image} alt={item.alt} />
+              <ProjectCover slug={item.slug} title={item.title} image={item.cardImage ?? item.image} alt={item.alt} />
               <span className="zmp-project-category">{portfolioCategories.find(x=>x.id===item.category)?.label}</span>
               <span className="zmp-project-expand" aria-hidden="true">↗</span>
             </Link>
             <div className="zmp-project-info">
-              <div className="zmp-project-meta"><span>{item.industry}</span>{item.openAccess ? <span className="zmx-open-chip">{item.openAccess === "github" ? "Darmowe do pobrania" : "Darmowe online"}</span>
+              <div className="zmp-project-meta"><span>{item.industry}</span>{item.downloadUrl && item.category !== "excel" && <span className="zmx-flow-chip">Przebieg pracy do pobrania</span>}{item.openAccess ? <span className="zmx-open-chip">{item.openAccess === "github" ? "Darmowe do pobrania" : "Darmowe online"}</span>
                   : item.status.includes("beta") ? <span>W budowie</span>
                   : item.category === "przed-po" ? <span>Projekt demonstracyjny</span> : null}</div>
               <h3><Link href={`/portfolio/${item.slug}`}>{item.title}</Link></h3>
