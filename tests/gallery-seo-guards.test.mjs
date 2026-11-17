@@ -70,3 +70,26 @@ test("asset monitor includes gallery pictures and rejects disguised HTML respons
   assert.equal(isUnusableAssetResponse("/concept-samples-v2/furniture-1280.webp", 200, "image/webp"), false);
   assert.equal(isUnusableAssetResponse("/concept-samples-v2/furniture-1280.webp", 404, "image/webp"), true);
 });
+
+test("Marki and Ząbki have distinct local SEO content and links to modernization", async () => {
+  const [marki, cities, cityPage, modernization, sitemap] = await Promise.all([
+    readFile(new URL("../app/strony-internetowe-marki/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/strony-internetowe/[miasto]/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/LocalCityPage.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/modernizacja-strony/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/sitemap.ts", import.meta.url), "utf8"),
+  ]);
+
+  assert.match(marki, /Strony internetowe w Markach/);
+  assert.match(marki, /href="\/modernizacja-strony"/);
+  assert.match(marki, /href="\/strony-internetowe\/zabki"/);
+  assert.match(cities, /Strony internetowe Ząbki \| Projekt i modernizacja/);
+  assert.match(cityPage, /Strony internetowe dla firm z Ząbek/);
+  assert.match(cityPage, /href="\/strony-internetowe-marki"/);
+  assert.match(cityPage, /href="\/modernizacja-strony"/);
+  assert.match(modernization, /SEO PODCZAS PRZEBUDOWY/);
+  assert.match(modernization, /href="\/strony-internetowe-marki"/);
+  assert.match(modernization, /href="\/strony-internetowe\/zabki"/);
+  assert.match(sitemap, /strony-internetowe-marki/);
+  assert.match(sitemap, /"zabki"/);
+});
