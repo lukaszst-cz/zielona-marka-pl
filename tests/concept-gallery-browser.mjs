@@ -101,7 +101,9 @@ try {
     const homeField = await page.locator('#krotki-brief input[name="email"]').evaluate(el => {const s=getComputedStyle(el);return {background:s.backgroundColor,color:s.color,radius:s.borderRadius,fontSize:s.fontSize};});
     assert.deepEqual(conceptField, homeField, "Home and concept form fields must share computed styling");
     assert.equal(await page.locator('.zmh-piece-photo').count(), 0, "Old stock photo must not reappear in the home story");
-    await page.locator('.zmh-piece-concept').evaluate(img => img.decode());
+    const conceptPiece = page.locator('.zmh-piece-concept');
+    await conceptPiece.scrollIntoViewIfNeeded();
+    await conceptPiece.evaluate(img => (img.complete ? img.decode() : new Promise((resolve, reject) => { img.addEventListener("load", () => img.decode().then(resolve, reject), { once: true }); img.addEventListener("error", reject, { once: true }); })));
     assert.equal(await page.locator('.zmh-contact-concepts .zm-generated-sample').count(), 1);
     assert.equal(await page.locator('.zm-approved-concept-scene .zm-generated-sample').count(), 1);
     assert.ok(await page.locator('.inspiration-services').count());
