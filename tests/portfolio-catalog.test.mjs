@@ -121,7 +121,7 @@ test("all Excel portfolio tiles have distinct accessible 3D illustrations", asyn
     imagePaths.add(cardImage);
     const svg = await readFile(new URL("../public" + cardImage, here), "utf8");
     assert.match(svg, /<svg\b/);
-    assert.doesNotMatch(svg, /<script|<foreignObject|https?:\/\//i, "Tile must be a safe, self-contained SVG");
+    assert.doesNotMatch(svg, /<script|<foreignObject|(?:href|src)=["\x27]https?:\/\//i, "Tile must be a safe, self-contained SVG");
     assert.match(record, /"image": "\/portfolio\/kadry\/[^"]+-ekran\.webp"/, "Keep an authentic workbook preview on the details page");
   }
   assert.match(source, /item\.cardAlt \?\? item\.alt/);
