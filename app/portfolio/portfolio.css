@@ -1622,3 +1622,37 @@ html body .zmp-page .zmp-project-demo.zmx-download:hover{background:#b6eb8a;colo
 @media(prefers-reduced-motion:reduce){
   .zmp-workflow-links nav a{transition:none}
 }
+
+
+/* Karty katalogu są widoczne od razu; lekkie tło w miejscu zdjęcia pozostaje
+   do czasu pobrania miniatury, tuż przed wejściem karty na ekran. */
+.zmx-cover-deferred{
+  position:absolute;
+  inset:0;
+  display:block;
+  background:
+    radial-gradient(ellipse at 73% 24%,rgba(142,232,145,.24),transparent 43%),
+    linear-gradient(145deg,#164e39 0%,#0b3025 62%,#082219 100%);
+}
+.zmx-cover-deferred:after{
+  content:"";
+  position:absolute;
+  top:20%;
+  left:14%;
+  width:56%;
+  height:55%;
+  border:1px solid rgba(188,244,199,.18);
+  border-radius:13px;
+  transform:rotate(-6deg);
+  box-shadow:12px 12px 0 rgba(97,174,131,.08);
+}
+/* Na małych ekranach fotografie projektów są ważniejsze niż duże ozdobne tło.
+   Ta wersja zachowuje zielony charakter strony bez pobierania zdjęcia lasu. */
+@media(max-width:760px){
+  .zmp-page:not(.zmp-detail){
+    background:
+      radial-gradient(ellipse at 12% 14%,rgba(41,100,67,.38),transparent 40%),
+      radial-gradient(ellipse at 84% 73%,rgba(29,85,59,.30),transparent 46%),
+      linear-gradient(155deg,#062319,#0a2b20 48%,#061b16);
+  }
+}
