@@ -36,7 +36,8 @@ const featuredOrder = [
 
 const AUTOPLAY_MS = 6500;
 function mediaPresentation(item: PortfolioItem): "screen" | "art" | "photo" {
-  const src = item.cardImage || item.image || "";
+  if (item.cardImage) return "photo";
+  const src = item.image || "";
   if (src.includes("-ekran.webp") || src.includes("-autentyczny-podglad.png") || src.endsWith(".svg")) return "screen";
   if (["gazetki", "logo", "przed-po", "excel"].includes(item.category) || src.includes("/concept-samples-v2/")) return "art";
   return "photo";
