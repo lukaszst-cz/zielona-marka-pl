@@ -1,10 +1,9 @@
-# Zielona Marka — strony i systemy dla firm
+# Zielona Marka: strony i systemy dla firm
 
-Projekt demonstracyjny strony oraz lekkiego zaplecza operacyjnego dla małych
-firm. Pokazuje, jak połączyć ofertę, zbieranie zapytań, mały CRM, statusy
-realizacji i kontrolę jakości w jednym spójnym procesie.
+Repozytorium strony **Zielonej Marki** i jej publicznych materiałów projektowych. Witryna przedstawia ofertę tworzenia i modernizacji stron WWW, a także portfolio koncepcji, gazetek i praktycznych narzędzi. Towarzyszące jej demonstracje i wybrane moduły zaplecza pokazują przykładowy obieg zapytań i pracy projektowej. Nie są gotowym produktem SaaS.
 
-**Wersja online:** [zielona-marka.pl](https://zielona-marka.pl)<br>
+**Strona:** [zielona-marka.pl](https://zielona-marka.pl)  
+**Portfolio:** [zielona-marka.pl/portfolio](https://zielona-marka.pl/portfolio)  
 **Kontakt:** [kontakt@zielona-marka.pl](mailto:kontakt@zielona-marka.pl)
 
 ![Podgląd Zielonej Marki](public/og.png)
@@ -12,13 +11,16 @@ realizacji i kontrolę jakości w jednym spójnym procesie.
 ## Dla jakich firm
 
 Projekt jest przygotowany jako baza pod strony i usprawnienia dla lokalnych
-firm usługowych — między innymi branży beauty, warsztatów, gastronomii,
+firm usługowych, między innymi branży beauty, warsztatów, gastronomii,
 transportu oraz usług dla domu. Każda branża może otrzymać własny język oferty,
 formularz i prosty proces obsługi zapytań.
 
 ## Zobacz demonstracje
 
 - [Strona główna](https://zielona-marka.pl)
+- [Aktualne portfolio projektów](https://zielona-marka.pl/portfolio)
+- [Modernizacja istniejących stron](https://zielona-marka.pl/modernizacja-strony)
+- [Bezpłatna koncepcja strony](https://zielona-marka.pl/bezplatna-koncepcja-strony)
 - [Mały CRM dla firm](https://zielona-marka.pl/maly-crm-dla-firm)
 - [Usprawnienia firmy](https://zielona-marka.pl/usprawnienia-firmy)
 - [Strony dla branży beauty](https://zielona-marka.pl/strony-dla-beauty)
@@ -97,6 +99,8 @@ npm run build
 - Dla każdego projektu sprawdź mobilność, formularze, linki, podstawowe SEO i przekazanie materiałów. Do tego służy checklista QA w Studio.
 
 ## Jak rozwijać portfolio
+
+Portfolio obejmuje projekty demonstracyjne, koncepcje i materiały do pokazania możliwości. Dla każdego projektu zaznaczaj jego rzeczywisty status. Akceptacja projektu przez autora i opublikowanie demonstracji nie potwierdzają realizacji dla klienta.
 
 Po zakończeniu rzeczywistego zlecenia dodaj w Studio projekt, zaznacz opcję „Pokaż w portfolio” i uzupełnij opis, adres wdrożenia oraz zgodę klienta. W publicznym repozytorium pokazuj przede wszystkim opis rozwiązania, wykorzystane technologie i wynik biznesowy, bez prywatnych danych.
 
