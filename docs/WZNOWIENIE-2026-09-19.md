@@ -15,7 +15,7 @@ STATUS: WSTRZYMANE, NIEUKOŃCZONE. Wznowić dopiero gdy właściciel napisze „
 - Live prefers-reduced-motion: enhanced false przy reduce, true po przywróceniu no-preference. Emulację przywrócono. Test błędu HomeContactForm NIE dokończony: fill przerwał się zanim włączono offline. Sieć nie została przełączona w offline.
 - Ostatnie zmiany źródłowe NIE są jeszcze w buildzie: ukrywanie pływających przycisków przy formularzu/stopce rozszerzone także na desktop (app/brand-system.css); pomijanie polskiej typografii na /en (app/PolishTypography.tsx). Wymagają builda i weryfikacji.
 - Higgsfield: wygenerowano JEDEN film 6 s, veo3_1_lite, 16:9, bez dźwięku. Potwierdzony koszt przed generacją 6 kredytów. Job b2803923-6bde-4cf9-9bb8-48a4a72568d3 ukończony. Pobrany do public/brand-review-v5/fern-moss-stream-20260919.mp4. NIE osadzony ani obejrzany w układzie strony. Nie generować ponownie bez sprawdzenia tego pliku. Saldo po generacji nieodczytane. Plan etapu do 30 ze 110 kredytów nadal obowiązuje.
-- Właściciel zniósł rezerwę 15% limitu Codex, ale następnie wyraźnie WSTRZYMAŁ pracę. Wstrzymanie ma pierwszeństwo.
+- Właściciel wyraźnie WSTRZYMAŁ pracę. Wstrzymanie ma pierwszeństwo.
 
 ## Najnowsze poprawki właściciela, do wykonania po „kontynuuj”
 
