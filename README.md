@@ -6,7 +6,7 @@ Repozytorium strony marki **Zielona Marka** i jej publicznych materiałów proje
 **Portfolio:** [zielona-marka.pl/portfolio](https://zielona-marka.pl/portfolio)  
 **Kontakt:** [kontakt@zielona-marka.pl](mailto:kontakt@zielona-marka.pl)
 
-![Podgląd Zielonej Marki](public/og.png)
+![Podgląd strony Zielona Marka](public/og.png)
 
 ## Dla jakich firm
 
@@ -129,6 +129,6 @@ przed kolejnym wdrożeniem.
 
 ---
 
-Projekt jest rozwijany przez Zieloną Markę dla firm z Ząbek, Marek, Warszawy,
+Projekt jest rozwijany przez markę Zielona Marka dla firm z Ząbek, Marek, Warszawy,
 Kobyłki, Zielonki, Radzymina, Wołomina i okolic. Zobacz
 [profil GitHub](https://github.com/lukaszst-cz).
