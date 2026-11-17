@@ -35,7 +35,8 @@ test("all portfolio thumbnails refer to existing local assets", async () => {
   assert.ok(!listed.includes("zm-studio"), "ZM Studio must stay off the public portfolio");
   const approvedExternalHosts = new Set([
     "budrivo.vercel.app", "navoro-hurt-koncepcja.vercel.app", "nexio-elektro.vercel.app", "materivo3.netlify.app",
-    "solidom.vercel.app", "blackharbor.vercel.app", "eltravia-premium.vercel.app", "images.unsplash.com"
+    "solidom.vercel.app", "blackharbor.vercel.app", "eltravia-premium.vercel.app", "images.unsplash.com",
+    "beata-beauty-atelier.vercel.app", "kordon-barber-studio-zielona-marka.vercel.app"
   ]);
   for (const path of paths) {
     if (path.startsWith("https://")) {
