@@ -52,8 +52,9 @@ const katalog: PortfolioItem[] = [
       "Import CSV, XLSX, TSV i HTML oraz lokalny zapis",
       "Model finansowy Excel do pobrania"
     ],
-    "image": "/portfolio/centrum-budowlane-pwa.svg",
-    "alt": "Prezentacja interfejsu Centrum Budowlanego, granatowo-czerwony dashboard dla handlu, tartaku i transportu",
+    "image": "/portfolio/centrum-budowlane-dashboard.webp",
+    "cardImage": "/portfolio/centrum-budowlane-dashboard.webp",
+    "alt": "Oryginalna grafika koncepcyjna Centrum Budowlane z granatowo-czerwonym pulpitem, hurtownią, tartakiem, elektryką, transportem HDS i planem publikacji",
     "status": "projekt demonstracyjny, publikacja osobnego repozytorium PWA w przygotowaniu",
     "downloadUrl": "/pliki/centrum-budowlane-model-finansowy-2026.xlsx",
     "downloadLabel": "Pobierz model finansowy Excel",
@@ -1115,8 +1116,9 @@ const katalog: PortfolioItem[] = [
 
 /* Kolejność w galerii: najpierw najważniejsze realizacje, potem koncepcje, gazetki poglądowe, narzędzia i arkusze. */
 const kolejnosc = [
-  "materivo", "materivo-eko", "phu-marecki", "phu-marecki-aplikacja", "black-harbor", "aurea-smile", "eltravia",
-  "solidom", "navoro-hurt", "gazetka-navoro", "nexio-elektro", "solident", "auto-naprawa",
+  "materivo", "materivo-eko", "black-harbor", "aurea-smile", "centrum-budowlane-pwa",
+  "eltravia", "solidom", "navoro-hurt", "gazetka-navoro", "phu-marecki",
+  "nexio-elektro", "solident", "phu-marecki-aplikacja", "auto-naprawa",
   "pion", "forma", "okruch", "natura-studio", "bistro-forma", "dom-dobry", "budrivo",
   "styk", "glina", "trop", "szlak", "lodyga", "palona",
   "gazetka-nexio", "gazetka-budrivo", "gazetka-materivo",

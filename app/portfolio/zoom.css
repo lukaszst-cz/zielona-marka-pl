@@ -1,0 +1,48 @@
+/* Powiększenie grafiki na każdej podstronie portfolio. */
+.zmp-detail .zmx-zoom-trigger{
+  display:block;position:relative;width:100%;padding:0;margin:0;
+  border:0;background:transparent;text-align:inherit;color:inherit;
+  cursor:zoom-in;font:inherit;
+}
+.zmp-detail .zmx-zoom-trigger:focus-visible{outline:3px solid #c1ed91;outline-offset:6px;border-radius:18px}
+.zmp-detail .zmx-zoom-hint{
+  position:absolute;bottom:16px;right:16px;z-index:5;
+  padding:10px 14px;border:1px solid rgba(255,255,255,.35);border-radius:100px;
+  background:rgba(6,21,43,.91);color:white;font-size:.83rem;font-weight:750;
+  box-shadow:0 8px 24px rgba(0,0,0,.26);transition:background .2s ease;
+}
+.zmp-detail .zmx-zoom-trigger:hover .zmx-zoom-hint{background:#b90d25}
+.zmx-zoom-dialog{
+  width:min(96vw,1600px);max-width:96vw;max-height:96dvh;overflow:auto;
+  margin:auto;padding:0;box-sizing:border-box;border:1px solid #47627c;border-radius:18px;
+  background:#06152b;color:#f3f8ff;box-shadow:0 36px 100px rgba(0,0,0,.65);
+}
+.zmx-zoom-dialog::backdrop{background:rgba(2,10,19,.88);backdrop-filter:blur(7px)}
+.zmx-zoom-dialog-inner{display:flex;flex-direction:column;align-items:stretch;padding:18px;gap:10px}
+.zmx-zoom-dialog-heading{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.zmx-zoom-dialog-heading strong{font-size:clamp(.9rem,2vw,1.3rem)}
+.zmx-zoom-dialog-heading button{
+  flex:none;cursor:pointer;border:1px solid #93a8bd;background:#163b5e;color:#fff;
+  padding:9px 16px;font:inherit;font-weight:750;border-radius:9px;min-height:44px;
+}
+.zmx-zoom-dialog-heading button:hover{background:#b90d25}
+.zmx-zoom-dialog-heading button:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.zmx-zoom-dialog-inner>img{display:block;margin:auto;width:auto;max-width:100%;height:auto;max-height:79dvh;object-fit:contain}
+.zmx-zoom-dialog-inner>p{margin:0;text-align:center;color:#bed0df;font-size:.81rem}
+.zmp-detail .zmp-detail-visual[data-project="centrum-budowlane-pwa"] .zmx-detail-stage{
+  aspect-ratio:1672 / 941;background:#06152b;border-color:#3b5874;
+}
+.zmp-detail .zmp-detail-visual[data-project="centrum-budowlane-pwa"] .zmx-cover-poster{
+  object-fit:contain!important;object-position:center!important;padding:0!important;
+}
+.zmp-explorer .zmp-floating-visual img[src$="centrum-budowlane-dashboard.webp"],
+.zmp-explorer .zmp-project-photo img[src$="centrum-budowlane-dashboard.webp"]{
+  object-fit:contain!important;object-position:center!important;padding:0!important;background:#06152b;
+}
+@media(max-width:700px){
+  .zmx-zoom-dialog{width:98vw;max-width:98vw;max-height:97dvh;border-radius:10px}
+  .zmx-zoom-dialog-inner{padding:10px;gap:8px}
+  .zmx-zoom-dialog-inner>img{max-height:73dvh}
+  .zmp-detail .zmx-zoom-hint{bottom:9px;right:9px;padding:7px 10px;font-size:.7rem}
+}
+@media(prefers-reduced-motion:reduce){.zmp-detail .zmx-zoom-hint{transition:none}}

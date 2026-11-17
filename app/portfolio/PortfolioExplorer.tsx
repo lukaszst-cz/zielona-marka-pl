@@ -27,11 +27,12 @@ function matchesIndustry(item: PortfolioItem, filter: string) {
   return true;
 }
 
-/* Czternaście prac na scenie: przekrój przez wszystkie formaty, bez tłoku na jednym ekranie. */
+/* Wybrane prace w karuzeli: przejrzysty przekrój przez witryny, aplikacje i gazetki. */
 /* Karuzela pokazuje wylacznie pierwsze ekrany stron i gazetki; narzedzia i arkusze zostaja w katalogu nizej. */
 const featuredOrder = [
-  "materivo", "phu-marecki", "phu-marecki-aplikacja", "black-harbor", "aurea-smile", "eltravia", "solidom",
-  "navoro-hurt", "gazetka-navoro", "nexio-elektro", "solident", "auto-naprawa", "okruch", "gazetka-nexio", "szlak",
+  "materivo", "black-harbor", "aurea-smile", "centrum-budowlane-pwa", "eltravia", "solidom",
+  "navoro-hurt", "gazetka-navoro", "phu-marecki", "nexio-elektro",
+  "solident", "phu-marecki-aplikacja", "auto-naprawa", "okruch", "gazetka-nexio", "szlak",
 ];
 
 const AUTOPLAY_MS = 6500;
