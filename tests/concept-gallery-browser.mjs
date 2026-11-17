@@ -67,7 +67,11 @@ try {
       }
       await page.getByRole("button", { name: "Następny projekt" }).click();
       await page.locator(".zmp-industry-list button").filter({hasText:"Handel i hurtownie"}).click();
-      const tradeCount = await page.locator(".zmp-project-card").count();
+      let tradeCount = await page.locator(".zmp-project-card").count();
+      for (let attempt = 0; attempt < 20 && tradeCount >= 45; attempt++) {
+        await page.waitForTimeout(250);
+        tradeCount = await page.locator(".zmp-project-card").count();
+      }
       assert.ok(tradeCount > 0 && tradeCount < 45,"Industry filter should narrow visible projects");
       const tradeButton = page.locator(".zmp-industry-list button").filter({hasText:"Handel i hurtownie"});
       assert.equal(await tradeButton.getAttribute("aria-pressed"),"true","Industry filter should have a visible active state");
