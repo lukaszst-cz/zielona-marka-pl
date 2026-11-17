@@ -1,0 +1,9 @@
+html body main.zm-v5 .zmh-hero-copy .zmh-trust-note{font-size:17px!important;line-height:1.6!important;color:#f3f8ee!important;max-width:640px}
+html body main.zm-v5 .zmh-hero-copy .zmh-price-note{font-size:14px!important;line-height:1.6!important;color:#e8f0e2!important;max-width:650px;padding:10px 14px;border-radius:8px;background:rgba(3,24,14,.74)}
+html body main.zm-v5 .zmh-assembly-heading>span{font-size:13px;font-weight:700;letter-spacing:.14em;color:#e6f1da}
+html body main.zm-v5 .zmh-assembly-heading h2 em{font-family:inherit;font-weight:inherit;font-style:normal}
+html body main.zm-v5 .zmh-assembly-board small{font-size:12px;font-weight:700;color:#e8f2df}
+html body main.zm-v5 .zmh-assembly-board span{font-size:14px;color:#e8f0e2}
+html body main.zm-v5 .zmh-assembly-note{font-size:12px!important;color:#e6f1da}
+html body main.zm-v5 .zmh-aside-note{font-size:12px;color:#e8f2df}
+@media(max-width:700px){html body main.zm-v5 .zmh-hero-copy .zmh-trust-note{font-size:16px!important}html body main.zm-v5 .zmh-hero-copy .zmh-price-note{font-size:13.5px!important}}

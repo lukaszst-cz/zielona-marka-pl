@@ -15,6 +15,7 @@ import "./home-v5.css";
 import "./bezplatna-koncepcja-strony/concept-image-preview.css";
 import "./home-offers-restored.css";
 import "./podglad-inspiracje/inspiration-preview.css";
+import "./home-readability.css";
 
 function WebsiteVisual() {
   return <div className="zmh-visual"><p className="zmh-caption">Przykład strony firmy usługowej</p><ProjectPreview /></div>;
