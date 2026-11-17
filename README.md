@@ -1,6 +1,6 @@
 # Zielona Marka: strony i systemy dla firm
 
-Repozytorium strony **Zielonej Marki** i jej publicznych materiałów projektowych. Witryna przedstawia ofertę tworzenia i modernizacji stron WWW, a także portfolio koncepcji, gazetek i praktycznych narzędzi. Towarzyszące jej demonstracje i wybrane moduły zaplecza pokazują przykładowy obieg zapytań i pracy projektowej. Nie są gotowym produktem SaaS.
+Repozytorium strony marki **Zielona Marka** i jej publicznych materiałów projektowych. Witryna przedstawia ofertę tworzenia i modernizacji stron WWW, a także portfolio koncepcji, gazetek i praktycznych narzędzi. Towarzyszące jej demonstracje i wybrane moduły zaplecza pokazują przykładowy obieg zapytań i pracy projektowej. Nie są gotowym produktem SaaS.
 
 **Strona:** [zielona-marka.pl](https://zielona-marka.pl)  
 **Portfolio:** [zielona-marka.pl/portfolio](https://zielona-marka.pl/portfolio)  
@@ -28,6 +28,23 @@ formularz i prosty proces obsługi zapytań.
 - [Demo dla firmy usługowej](https://zielona-marka.pl/demo/dom-strona)
 - [Demo dla gastronomii](https://zielona-marka.pl/demo/bistro-strona)
 - [Demo dla transportu](https://zielona-marka.pl/demo/transport)
+
+## Wybrane projekty stron WWW
+
+Poniższe strony to **autorskie koncepcje i demonstracje**, a nie potwierdzone realizacje klientów. Wszystkie mają osobne karty z opisem zakresu w [portfolio Zielona Marka](https://zielona-marka.pl/portfolio).
+
+| Koncepcja | Zakres | Podgląd |
+| --- | --- | --- |
+| [PHU MARECKI](https://zielona-marka.pl/portfolio/phu-marecki) | Hurtownia, gazetka, aplikacja PWA | [Otwórz](https://phu-marecki.vercel.app) |
+| [BUDRIVO](https://zielona-marka.pl/portfolio/budrivo) | Kalkulator i katalog materiałów | [Otwórz](https://budrivo.vercel.app) |
+| [MATERIVO](https://zielona-marka.pl/portfolio/materivo) | Dwa warianty strony hurtowni | [Otwórz](https://materivo-pro.vercel.app) |
+| [NEXIO ELEKTRO](https://zielona-marka.pl/portfolio/nexio-elektro) | Oferta elektrotechniczna i gazetka | [Otwórz](https://nexio-elektro.vercel.app) |
+| [NAVORO HURT](https://zielona-marka.pl/portfolio/navoro-hurt) | Hurtowy katalog i gazetka B2B | [Otwórz](https://navoro-hurt-koncepcja.vercel.app) |
+| [SOLIDOM](https://zielona-marka.pl/portfolio/solidom) | Strona firmy budowlanej z galerią | [Otwórz](https://solidom.vercel.app) |
+| [AUREA SMILE](https://zielona-marka.pl/portfolio/aurea-smile) | Stomatologia premium | [Otwórz](https://aurea-smile.vercel.app) |
+| [SOLIDENT](https://zielona-marka.pl/portfolio/solident) | Gabinet stomatologiczny | [Otwórz](https://solident-mu.vercel.app) |
+| [BEATA Beauty Atelier](https://zielona-marka.pl/portfolio/beata-beauty-atelier) | Strona beauty i przykładowa rezerwacja | [Otwórz](https://beata-beauty-atelier.vercel.app/) |
+| [KORDON Barber Studio](https://zielona-marka.pl/portfolio/kordon-barber-studio) | Strona salonu i demonstracyjne zamówienia | [Otwórz](https://kordon-barber-studio-zielona-marka.vercel.app/) |
 
 ## Co pokazuje ten projekt
 
