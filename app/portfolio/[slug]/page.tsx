@@ -25,8 +25,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const description = summary.length <= 158
     ? summary
     : summary.slice(0, 157).replace(/\s+\S*$/, "").trimEnd() + ".";
+  const titleSuffix: Record<typeof item.category, string> = {
+    www: "projekt strony WWW",
+    aplikacje: "przykład aplikacji",
+    excel: "arkusz XLSX do pobrania",
+    gazetki: "projekt gazetki",
+    logo: "projekt logo",
+    "przed-po": "porównanie przed i po",
+  };
   return {
-    title: `${item.title} | portfolio projektowe`,
+    title: `${item.title} | ${titleSuffix[item.category]}`,
     description,
     alternates: { canonical: `/portfolio/${slug}` },
     openGraph: {
@@ -47,6 +55,15 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
   const category = portfolioCategories.find(group => group.id === item.category);
   const other = portfolioItems.filter(project => project.category === item.category && project.slug !== item.slug).slice(0, 3);
   const materivoAlternative = slug === "materivo" ? findPortfolioItem("materivo-eko") : slug === "materivo-eko" ? findPortfolioItem("materivo") : null;
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Strona główna", item: "https://zielona-marka.pl/" },
+      { "@type": "ListItem", position: 2, name: "Portfolio", item: "https://zielona-marka.pl/portfolio" },
+      { "@type": "ListItem", position: 3, name: item.title, item: `https://zielona-marka.pl/portfolio/${item.slug}` },
+    ],
+  };
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
@@ -63,6 +80,7 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
 
   return <>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
     <SiteHeader />
     <DetailMotion />
     <main className="zm-public zmp-page zmp-detail">
