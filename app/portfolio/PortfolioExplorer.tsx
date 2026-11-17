@@ -248,7 +248,7 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
                 <span>↗</span>
               </span>
               <span className="zmp-floating-visual" data-media={mediaPresentation(item)}>
-                <ProjectCover slug={item.slug} title={item.title} image={item.cardImage ?? item.image} alt={item.alt}
+                <ProjectCover slug={item.slug} title={item.title} image={item.cardImage ?? item.image} alt={item.cardAlt ?? item.alt}
                   priority={distance <= 1} />
                 <span className="zmx-card-sheen" aria-hidden="true" />
               </span>
@@ -345,7 +345,7 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
               card.style.setProperty("--zmx-py", "0px");
             }}>
             <Link href={`/portfolio/${item.slug}`} className="zmp-project-photo" data-media={mediaPresentation(item)} data-project={item.slug} aria-label={`Poznaj projekt ${item.title}`}>
-              <ProjectCover slug={item.slug} title={item.title} image={item.cardImage ?? item.image} alt={item.alt} />
+              <ProjectCover slug={item.slug} title={item.title} image={item.cardImage ?? item.image} alt={item.cardAlt ?? item.alt} />
               <span className="zmp-project-category">{portfolioCategories.find(x=>x.id===item.category)?.label}</span>
               <span className="zmp-project-expand" aria-hidden="true">↗</span>
             </Link>

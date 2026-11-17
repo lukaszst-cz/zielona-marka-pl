@@ -25,6 +25,8 @@ export type PortfolioItem = {
   image?: string;
   /** Grafika na kafelek w galerii, gdy w środku ma być prawdziwy zrzut. */
   cardImage?: string;
+  /** Alternatywny opis ilustracji na kafelku, gdy różni się od zrzutu na stronie szczegółów. */
+  cardAlt?: string;
   alt?: string;
   status: string;
   featured?: boolean;
@@ -865,7 +867,8 @@ const katalog: PortfolioItem[] = [
       "Wzory zlecenia, protokołu i gwarancji"
     ],
     "image": "/portfolio/kadry/excel-warsztat-ekran.webp",
-    "cardImage": "/portfolio/kadry/excel-warsztat-kafelek.webp",
+    "cardImage": "/portfolio/kadry/excel-warsztat-3d.svg",
+    "cardAlt": "Przestrzenna ilustracja arkusza kalkulacyjnego ze znakiem branży: warsztat samochodowy",
     "alt": "Prawdziwy podgląd arkusza: Warsztat samochodowy: przebieg pracy w Excelu",
     "status": "gotowy plik, dane przykładowe",
     "downloadUrl": "/pliki/warsztat-samochodowy-zielona-marka.xlsx",
@@ -887,7 +890,8 @@ const katalog: PortfolioItem[] = [
       "Wzór umowy na przyjęcie i karta HACCP"
     ],
     "image": "/portfolio/kadry/excel-kawiarnia-ekran.webp",
-    "cardImage": "/portfolio/kadry/excel-kawiarnia-kafelek.webp",
+    "cardImage": "/portfolio/kadry/excel-kawiarnia-3d.svg",
+    "cardAlt": "Przestrzenna ilustracja arkusza kalkulacyjnego ze znakiem branży: kawiarnia",
     "alt": "Prawdziwy podgląd arkusza: Kawiarnia i bistro: przebieg pracy w Excelu",
     "status": "gotowy plik, dane przykładowe",
     "downloadUrl": "/pliki/kawiarnia-bistro-zielona-marka.xlsx",
@@ -909,7 +913,8 @@ const katalog: PortfolioItem[] = [
       "Wzory planu leczenia, zgody i gwarancji"
     ],
     "image": "/portfolio/kadry/excel-stomatologia-ekran.webp",
-    "cardImage": "/portfolio/kadry/excel-stomatologia-kafelek.webp",
+    "cardImage": "/portfolio/kadry/excel-stomatologia-3d.svg",
+    "cardAlt": "Przestrzenna ilustracja arkusza kalkulacyjnego ze znakiem branży: gabinet stomatologiczny",
     "alt": "Prawdziwy podgląd arkusza: Gabinet stomatologiczny: przebieg pracy w Excelu",
     "status": "gotowy plik, dane przykładowe",
     "downloadUrl": "/pliki/gabinet-stomatologiczny-zielona-marka.xlsx",
@@ -931,7 +936,8 @@ const katalog: PortfolioItem[] = [
       "Wzory warunków sprzedaży i umowy z instalatorem"
     ],
     "image": "/portfolio/kadry/excel-hurtownia-ekran.webp",
-    "cardImage": "/portfolio/kadry/excel-hurtownia-kafelek.webp",
+    "cardImage": "/portfolio/kadry/excel-hurtownia-3d.svg",
+    "cardAlt": "Przestrzenna ilustracja arkusza kalkulacyjnego ze znakiem branży: hurtownia",
     "alt": "Prawdziwy podgląd arkusza: Hurtownia materiałów: przebieg pracy w Excelu",
     "status": "gotowy plik, dane przykładowe",
     "downloadUrl": "/pliki/hurtownia-elektryczna-budowlana-zielona-marka.xlsx",
@@ -953,7 +959,8 @@ const katalog: PortfolioItem[] = [
       "Wzory umowy, protokołu i prac dodatkowych"
     ],
     "image": "/portfolio/kadry/excel-remonty-ekran.webp",
-    "cardImage": "/portfolio/kadry/excel-remonty-kafelek.webp",
+    "cardImage": "/portfolio/kadry/excel-remonty-3d.svg",
+    "cardAlt": "Przestrzenna ilustracja arkusza kalkulacyjnego ze znakiem branży: remonty",
     "alt": "Prawdziwy podgląd arkusza: Firma remontowa: przebieg pracy w Excelu",
     "status": "gotowy plik, dane przykładowe",
     "downloadUrl": "/pliki/firma-remontowa-zielona-marka.xlsx",
@@ -975,7 +982,8 @@ const katalog: PortfolioItem[] = [
       "Wzory umów i protokołu odbioru"
     ],
     "image": "/portfolio/kadry/excel-budowa-ekran.webp",
-    "cardImage": "/portfolio/kadry/excel-budowa-kafelek.webp",
+    "cardImage": "/portfolio/kadry/excel-budowa-3d.svg",
+    "cardAlt": "Przestrzenna ilustracja arkusza kalkulacyjnego ze znakiem branży: budownictwo",
     "alt": "Prawdziwy podgląd arkusza: Firma budowlana: przebieg pracy w Excelu",
     "status": "gotowy plik, dane przykładowe",
     "downloadUrl": "/pliki/firma-budowlana-zielona-marka.xlsx",
@@ -997,7 +1005,8 @@ const katalog: PortfolioItem[] = [
       "Wzory umowy rezerwacyjnej i protokołu odbioru"
     ],
     "image": "/portfolio/kadry/excel-deweloper-ekran.webp",
-    "cardImage": "/portfolio/kadry/excel-deweloper-kafelek.webp",
+    "cardImage": "/portfolio/kadry/excel-deweloper-3d.svg",
+    "cardAlt": "Przestrzenna ilustracja arkusza kalkulacyjnego ze znakiem branży: deweloper",
     "alt": "Prawdziwy podgląd arkusza: Mały deweloper: przebieg pracy w Excelu",
     "status": "gotowy plik, dane przykładowe",
     "downloadUrl": "/pliki/maly-deweloper-zielona-marka.xlsx",
@@ -1019,7 +1028,8 @@ const katalog: PortfolioItem[] = [
       "KPI całego procesu"
     ],
     "image": "/portfolio/kadry/excel-printflow-ekran.webp",
-    "cardImage": "/portfolio/kadry/excel-printflow-kafelek.webp",
+    "cardImage": "/portfolio/kadry/excel-printflow-3d.svg",
+    "cardAlt": "Przestrzenna ilustracja arkusza kalkulacyjnego ze znakiem branży: produkcja poligraficzna",
     "alt": "Arkusz PrintFlow 360: zapytania i wyceny z kartami ról na dole",
     "status": "gotowy plik, dane przykładowe",
     "downloadUrl": "/pliki/printflow-360-zielona-marka.xlsx",
@@ -1041,7 +1051,8 @@ const katalog: PortfolioItem[] = [
       "Faktury i płatności"
     ],
     "image": "/portfolio/kadry/excel-transportflow-ekran.webp",
-    "cardImage": "/portfolio/kadry/excel-transportflow-kafelek.webp",
+    "cardImage": "/portfolio/kadry/excel-transportflow-3d.svg",
+    "cardAlt": "Przestrzenna ilustracja arkusza kalkulacyjnego ze znakiem branży: transport",
     "alt": "Arkusz TransportFlow 360: rozliczenie przewozów z wynikiem i stawką za kilometr",
     "status": "gotowy plik, dane przykładowe",
     "downloadUrl": "/pliki/transportflow-360-zielona-marka.xlsx",
@@ -1063,7 +1074,8 @@ const katalog: PortfolioItem[] = [
       "Podział na role"
     ],
     "image": "/portfolio/kadry/excel-dashboard-ekran.webp",
-    "cardImage": "/portfolio/kadry/excel-dashboard-kafelek.webp",
+    "cardImage": "/portfolio/kadry/excel-dashboard-3d.svg",
+    "cardAlt": "Przestrzenna ilustracja arkusza kalkulacyjnego ze znakiem branży: dashboard operacyjny",
     "alt": "Dashboard operacyjny: zlecenia, etapy i opóźnienia",
     "status": "gotowy plik, dane przykładowe",
     "downloadUrl": "/pliki/dashboard-operacyjny-zielona-marka.xlsx",
@@ -1085,7 +1097,8 @@ const katalog: PortfolioItem[] = [
       "Podział na role"
     ],
     "image": "/portfolio/kadry/excel-wycena-ekran.webp",
-    "cardImage": "/portfolio/kadry/excel-wycena-kafelek.webp",
+    "cardImage": "/portfolio/kadry/excel-wycena-3d.svg",
+    "cardAlt": "Przestrzenna ilustracja arkusza kalkulacyjnego ze znakiem branży: kalkulator wyceny",
     "alt": "Kalkulator wariantów oferty: wycena pozycja po pozycji",
     "status": "gotowy plik, dane przykładowe",
     "downloadUrl": "/pliki/kalkulator-wariantow-oferty-zielona-marka.xlsx",
@@ -1107,7 +1120,8 @@ const katalog: PortfolioItem[] = [
       "Podział na role"
     ],
     "image": "/portfolio/kadry/excel-crm-ekran.webp",
-    "cardImage": "/portfolio/kadry/excel-crm-kafelek.webp",
+    "cardImage": "/portfolio/kadry/excel-crm-3d.svg",
+    "cardAlt": "Przestrzenna ilustracja arkusza kalkulacyjnego ze znakiem branży: zarządzanie kontaktami",
     "alt": "Rejestr kontaktów: etapy, szansa i wartość ważona",
     "status": "gotowy plik, dane przykładowe",
     "downloadUrl": "/pliki/rejestr-kontaktow-zielona-marka.xlsx",

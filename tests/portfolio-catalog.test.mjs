@@ -105,3 +105,24 @@ test("portfolio workflow pairings link to real projects and downloadable workboo
     assert.ok(flowPage.includes('slug: "' + slug + '"'));
   }
 });
+
+test("all Excel portfolio tiles have distinct accessible 3D illustrations", async () => {
+  const catalog = await read("../app/portfolio/catalog.ts");
+  const source = await read("../app/portfolio/PortfolioExplorer.tsx");
+  const records = catalog.split(/\n  \{\n/).filter(part => /"category": "excel"/.test(part));
+  assert.equal(records.length, 12);
+  const imagePaths = new Set();
+  for (const record of records) {
+    const slug = record.match(/"slug": "([^"]+)"/)?.[1];
+    const cardImage = record.match(/"cardImage": "([^"]+)"/)?.[1];
+    assert.equal(cardImage, "/portfolio/kadry/" + slug + "-3d.svg");
+    assert.match(record, /"cardAlt": "Przestrzenna ilustracja/);
+    assert.ok(!imagePaths.has(cardImage), "Repeated Excel tile: " + cardImage);
+    imagePaths.add(cardImage);
+    const svg = await readFile(new URL("../public" + cardImage, here), "utf8");
+    assert.match(svg, /<svg\b/);
+    assert.doesNotMatch(svg, /<script|<foreignObject|https?:\/\//i, "Tile must be a safe, self-contained SVG");
+    assert.match(record, /"image": "\/portfolio\/kadry\/[^"]+-ekran\.webp"/, "Keep an authentic workbook preview on the details page");
+  }
+  assert.match(source, /item\.cardAlt \?\? item\.alt/);
+});
