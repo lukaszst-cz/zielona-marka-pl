@@ -8,7 +8,7 @@ export const additionalCaseStudies: Record<string, WebsiteCaseStudy> = {
     "visual": "Granat #06152B i intensywna czerwień, wyraziste karty KPI, fotografia składu budowlanego, zdjęcia hurtowni budowlanej i elektrycznej, tartaku i HDS. Ten sam styl na komputerze i telefonie.",
     "flow": "Handlowiec tworzy wycenę i zamówienie. Zakupy i magazyn uzupełniają kartoteki oraz wystawiają PZ/WZ. Tartak rozlicza produkcję. Dyspozytor planuje HDS, kierowca załącza POD, a biuro akceptuje dokumenty oraz rozlicza dostawę.",
     "technical": "Interaktywne formularze, lokalna baza przeglądarki, walidacje, raporty, import tabel i plików oraz PWA. Oddzielny Excel z symulacją płac, podatków, marż i kosztów floty. Brak serwera, synchronizacji między stanowiskami i uwierzytelniania pracowników.",
-    "scope": "Własna koncepcja Zielonej Marki. Komplet aplikacji, strona prezentacyjna i pliki GitHub Pages przygotowane do publikacji. Arkusz XLSX dostępny w portfolio.",
+    "scope": "Własna koncepcja marki Zielona Marka. Komplet aplikacji, strona prezentacyjna i pliki GitHub Pages przygotowane do publikacji. Arkusz XLSX dostępny w portfolio.",
     "honest": "To autorska symulacja systemu dla fikcyjnego centrum budowlanego, nie wdrożenie u klienta. Kwoty i dane są przykładowe. Role demonstracyjne nie zapewniają realnej ochrony danych. Osobne publiczne repozytorium i działające demo GitHub Pages nie zostały jeszcze uruchomione."
   },
   "pion": {
