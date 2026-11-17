@@ -93,3 +93,28 @@ test("Marki and Ząbki have distinct local SEO content and links to modernizatio
   assert.match(sitemap, /strony-internetowe-marki/);
   assert.match(sitemap, /"zabki"/);
 });
+
+test("Local pages use different service priorities instead of interchangeable copy", async () => {
+  const cities = await readFile(new URL("../app/strony-internetowe/[miasto]/page.tsx", import.meta.url), "utf8");
+  const cityComponent = await readFile(new URL("../app/LocalCityPage.tsx", import.meta.url), "utf8");
+  const hub = await readFile(new URL("../app/strony-internetowe/page.tsx", import.meta.url), "utf8");
+
+  const focus = {
+    zielonka: "Modernizacja strony firmowej w Zielonce",
+    kobylka: "Nowa strona dla firmy z Kobyłki",
+    wolomin: "Odświeżenie strony firmy z Wołomina",
+    radzymin: "Strona firmowa zbudowana pod usługi i dojazd",
+    targowek: "Modernizacja strony na Targówku i Bródnie",
+    bialoleka: "Nowa strona dla firmy z Białołęki",
+    warszawa: "Nowa strona dla warszawskiej firmy usługowej",
+  };
+  for (const [city, heading] of Object.entries(focus)) {
+    const cityEntry = cities.split("\n").find(line => line.startsWith(`  ${city}: { name:`));
+    assert.ok(cityEntry, `Missing local page configuration for ${city}`);
+    assert.ok(cityEntry.includes(`title: "${heading}"`), `Missing unique service emphasis for ${city}`);
+  }
+  assert.match(cityComponent, /city\.focus\.href/);
+  const areas = hub.split("const areas = [")[1].split("] as const;")[0];
+  assert.ok(areas.indexOf('["Marki"') < areas.indexOf('["Warszawa"'));
+  assert.ok(areas.indexOf('["Ząbki"') < areas.indexOf('["Warszawa"'));
+});
