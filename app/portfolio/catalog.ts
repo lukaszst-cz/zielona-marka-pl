@@ -35,6 +35,26 @@ export type PortfolioItem = {
 };
 export const portfolioItems: PortfolioItem[] = [
   {
+    "slug": "phu-marecki",
+    "title": "PHU MARECKI",
+    "category": "www",
+    "industry": "Budownictwo i materiały",
+    "summary": "Strona centrum budowlanego z gazetką, katalogiem i listą do wyceny, a obok niej osobna aplikacja na telefon.",
+    "explanation": "Klient przegląda gazetkę jak w sklepie, dokłada materiały do listy, podaje ilości i wysyła jedno zapytanie zamiast dzwonić po ceny.",
+    "features": [
+      "Gazetka interaktywna z działami",
+      "Katalog 18 pozycji z wyszukiwarką",
+      "Lista do wyceny z ilościami",
+      "Zapytanie o transport",
+      "Aplikacja PWA na telefon"
+    ],
+    "demoUrl": "https://phu-marecki.vercel.app",
+    "image": "/portfolio/kadry/phu-marecki-ekran.webp",
+    "alt": "Pierwszy ekran strony PHU Marecki",
+    "status": "projekt demonstracyjny",
+    "featured": true
+  },
+  {
     "slug": "budrivo",
     "title": "BUDRIVO",
     "category": "www",
@@ -52,6 +72,24 @@ export const portfolioItems: PortfolioItem[] = [
     "alt": "Pierwszy ekran serwisu BUDRIVO",
     "status": "projekt demonstracyjny",
     "featured": true
+  },
+  {
+    "slug": "phu-marecki-aplikacja",
+    "title": "PHU Marecki, aplikacja na telefon",
+    "category": "aplikacje",
+    "industry": "Budownictwo i materiały",
+    "summary": "Ta sama hurtownia w formie aplikacji instalowanej na telefonie, z pięcioma ekranami i gazetką do przewijania.",
+    "explanation": "Kierownik budowy dokłada materiały z telefonu, a lista zostaje w aplikacji po jej zamknięciu, bo zapisuje się na urządzeniu.",
+    "features": [
+      "Pięć ekranów: główna, oferta, gazetka, lista, więcej",
+      "Gazetka na sześć stron",
+      "Lista zapisana w telefonie",
+      "Instalacja na ekranie głównym (PWA)"
+    ],
+    "demoUrl": "https://phu-marecki.vercel.app/app.html",
+    "image": "/portfolio/kadry/phu-marecki-aplikacja.webp",
+    "alt": "Trzy ekrany aplikacji PHU Marecki na telefonie: gazetka, ekran główny i oferta",
+    "status": "projekt demonstracyjny"
   },
   {
     "slug": "navoro-hurt",
@@ -602,7 +640,7 @@ export const portfolioItems: PortfolioItem[] = [
       "Przykładowe dokumenty"
     ],
     "demoUrl": "/realizacje/transportflow",
-    "image": "/portfolio/kadry/transportflow.svg",
+    "image": "/portfolio/kadry/transportflow-ekran.webp",
     "alt": "TransportFlow 360: etapy zlecenia, trasa, koszty i marża",
     "status": "narzędzie lub demonstracja"
   },
@@ -708,8 +746,8 @@ export const portfolioItems: PortfolioItem[] = [
       "PWA"
     ],
     "demoUrl": "https://aktywnik-plus.vercel.app",
-    "image": "/portfolio/kadry/aktywnik-plus.svg",
-    "alt": "Aktywnik+: dziennik aktywności, tryb rodziny i podsumowanie tygodnia",
+    "image": "/portfolio/kadry/aktywnik-plus-ekran.webp",
+    "alt": "Trzy ekrany aplikacji Aktywnik+ na telefonie",
     "status": "aplikacja rozwijana, beta 0.5.0-beta.4",
     "openAccess": "online",
     "featured": true
@@ -755,18 +793,20 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "Arkusz Excel PrintFlow 360",
     "category": "excel",
     "industry": "Poligrafia i produkcja",
-    "summary": "Skoroszyt do kalkulacji, produkcji i raportów drukarni.",
-    "explanation": "Formuły liczą koszt zlecenia, a zestawienia pokazują wynik miesiąca. Liczby w przykładzie są wymyślone.",
+    "summary": "Ten sam proces co w PrintFlow 360, rozpisany na role: zapytanie, produkcja, kontrola jakości, wysyłka i faktura.",
+    "explanation": "Biuro, produkcja i kontrola jakości mają osobne arkusze. Numer zlecenia przenosi klienta, produkt i nakład dalej, a KPI pokazuje skuteczność wycen, braki i pieniądze do odzyskania.",
     "features": [
-      "Kalkulacje",
-      "Raportowanie",
-      "Zestawienia KPI"
+      "Arkusze dla pięciu ról",
+      "Dane przechodzą po numerze zlecenia",
+      "Kontrola jakości i braki",
+      "Faktury i płatności",
+      "KPI całego procesu"
     ],
-    "image": "/portfolio/kadry/printflow.webp",
-    "alt": "Prezentacja koncepcyjna projektu Arkusz Excel PrintFlow 360",
-    "status": "demonstracja, dane syntetyczne",
+    "image": "/portfolio/kadry/excel-printflow.webp",
+    "alt": "Arkusz PrintFlow 360: zapytania i wyceny z kartami ról na dole",
+    "status": "gotowy plik, dane przykładowe",
     "downloadUrl": "/pliki/printflow-360-zielona-marka.xlsx",
-    "downloadLabel": "Pobierz pusty arkusz PrintFlow (XLSX)",
+    "downloadLabel": "Pobierz arkusz PrintFlow (XLSX)",
     "openAccess": "github"
   },
   {
@@ -774,18 +814,20 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "Arkusz Excel TransportFlow 360",
     "category": "excel",
     "industry": "Transport i logistyka",
-    "summary": "Arkusz do liczenia kosztów tras, marży i wyniku przewoźnika.",
-    "explanation": "Widać w nim, skąd bierze się wynik na zleceniu, pozycja po pozycji.",
+    "summary": "Ten sam proces co w TransportFlow 360: dyspozytor wycenia trasę, kierowca zapisuje przejazd, biuro rozlicza.",
+    "explanation": "Marża poniżej progu świeci się na czerwono jeszcze przed przyjęciem zlecenia. Koszt paliwa liczy się z litrów wpisanych przez kierowcę, a KPI porównuje spalanie z normą.",
     "features": [
-      "Koszty tras",
-      "Marża",
-      "Raportowanie"
+      "Arkusze dla dyspozytora, kierowcy i biura",
+      "Stawki w jednym miejscu",
+      "Wynik i stawka za kilometr",
+      "Spalanie wobec normy",
+      "Faktury i płatności"
     ],
-    "image": "/portfolio/kadry/transportflow.svg",
-    "alt": "Arkusz TransportFlow: koszty trasy, marża i wskaźniki",
-    "status": "demonstracja, dane syntetyczne",
+    "image": "/portfolio/kadry/excel-transportflow.webp",
+    "alt": "Arkusz TransportFlow 360: rozliczenie przewozów z wynikiem i stawką za kilometr",
+    "status": "gotowy plik, dane przykładowe",
     "downloadUrl": "/pliki/transportflow-360-zielona-marka.xlsx",
-    "downloadLabel": "Pobierz pusty arkusz TransportFlow (XLSX)",
+    "downloadLabel": "Pobierz arkusz TransportFlow (XLSX)",
     "openAccess": "github"
   },
   {
@@ -793,18 +835,20 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "Dashboard operacyjny",
     "category": "excel",
     "industry": "Zarządzanie procesem",
-    "summary": "Panel wskaźników operacyjnych w samym Excelu.",
-    "explanation": "Zestawienia i wykresy liczą się z arkusza danych, bez dodatkowych narzędzi.",
+    "summary": "Zlecenia w jednym arkuszu, a obok wskaźniki, które liczą się same.",
+    "explanation": "Widać, co jest w toku, co po terminie, ile zostało do zafakturowania i kto ma najwięcej na głowie. Bez dodatkowych programów.",
     "features": [
-      "Zestawienia",
-      "KPI",
-      "Wykresy"
+      "Etapy i priorytety z listy",
+      "Opóźnienia na czerwono",
+      "Do zafakturowania",
+      "Obciążenie osób",
+      "Podział na role"
     ],
-    "image": "/portfolio/kadry/excel-dashboard.svg",
-    "alt": "Panel wskaźników operacyjnych z wykresami i listą zleceń",
-    "status": "demonstracja, dane syntetyczne",
+    "image": "/portfolio/kadry/excel-dashboard.webp",
+    "alt": "Dashboard operacyjny: zlecenia, etapy i opóźnienia",
+    "status": "gotowy plik, dane przykładowe",
     "downloadUrl": "/pliki/dashboard-operacyjny-zielona-marka.xlsx",
-    "downloadLabel": "Pobierz pusty dashboard (XLSX)",
+    "downloadLabel": "Pobierz dashboard (XLSX)",
     "openAccess": "github"
   },
   {
@@ -812,18 +856,20 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "Kalkulator wariantów oferty",
     "category": "excel",
     "industry": "Wyceny usług",
-    "summary": "Kalkulator wariantów oferty: zakres obok kosztu.",
-    "explanation": "Porównuje trzy warianty usługi i pokazuje klientowi, za co dokładnie płaci.",
+    "summary": "Oferta rozpisana na pozycje i od razu w trzech wariantach ceny.",
+    "explanation": "Stawki, VAT i rabaty ustawia się w jednym arkuszu. Kalkulator pokazuje też koszt godzin, żeby było widać, czy cena pokrywa pracę.",
     "features": [
-      "Warianty zakresu",
-      "Kalkulacja kosztów",
-      "Porównanie"
+      "Założenia w jednym miejscu",
+      "Wycena pozycja po pozycji",
+      "Trzy warianty i zaliczka",
+      "Koszt godzin pracy",
+      "Podział na role"
     ],
-    "image": "/portfolio/kadry/excel-wycena.svg",
-    "alt": "Trzy warianty oferty z zakresem i kosztem obok siebie",
-    "status": "demonstracja, dane syntetyczne",
+    "image": "/portfolio/kadry/excel-wycena.webp",
+    "alt": "Kalkulator wariantów oferty: wycena pozycja po pozycji",
+    "status": "gotowy plik, dane przykładowe",
     "downloadUrl": "/pliki/kalkulator-wariantow-oferty-zielona-marka.xlsx",
-    "downloadLabel": "Pobierz pusty kalkulator (XLSX)",
+    "downloadLabel": "Pobierz kalkulator (XLSX)",
     "openAccess": "github"
   },
   {
@@ -831,18 +877,20 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "Rejestr kontaktów i działań w Excelu",
     "category": "excel",
     "industry": "Sprzedaż i CRM",
-    "summary": "Prosty rejestr kontaktów, statusów i kolejnych kroków.",
-    "explanation": "Dla firmy, której pełny CRM na razie zwyczajnie się nie opłaca. Dane w przykładzie są fikcyjne.",
+    "summary": "Firmy, rozmowy i kolejne kroki w jednym pliku, z lejkiem sprzedaży.",
+    "explanation": "Dla firmy, której pełny CRM na razie się nie opłaca. Plik liczy wartość ofert ważoną szansą i podświetla kontakty, do których nikt nie dzwonił od dwóch tygodni.",
     "features": [
-      "Status kontaktu",
-      "Plan działań",
-      "Filtry"
+      "Kontakty i dziennik działań",
+      "Wartość ważona szansą",
+      "Zaległe kontakty na czerwono",
+      "Lejek i źródła klientów",
+      "Podział na role"
     ],
-    "image": "/portfolio/kadry/excel-crm.svg",
-    "alt": "Rejestr kontaktów ze statusami i kolejnymi krokami",
-    "status": "demonstracja, dane syntetyczne",
+    "image": "/portfolio/kadry/excel-crm.webp",
+    "alt": "Rejestr kontaktów: etapy, szansa i wartość ważona",
+    "status": "gotowy plik, dane przykładowe",
     "downloadUrl": "/pliki/rejestr-kontaktow-zielona-marka.xlsx",
-    "downloadLabel": "Pobierz pusty rejestr (XLSX)",
+    "downloadLabel": "Pobierz rejestr (XLSX)",
     "openAccess": "github"
   },
 ];
