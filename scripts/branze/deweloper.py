@@ -68,7 +68,7 @@ CFG = {
          "rows": [
              ["Grunt i projekt", 1450000, 1450000, "=TODAY()-400", 0.23, None, None, 1, "=TODAY()-300", "Nie dotyczy"],
              ["Stan surowy", 2100000, 1260000, "=TODAY()-60", 0.08, None, None, 0.6, "=TODAY()+40", "Złożony wniosek"],
-             ["Instalacje i wykończenie części wspólnych", 1300000, 0, "", 0.08, None, None, 0, "=TODAY()+180", ""],
+             ["Instalacje i wykończenie części wspólnych", 1300000, 140000, "=TODAY()-4", 0.08, None, None, 0.1, "=TODAY()+180", "Złożony wniosek"],
              ["Zagospodarowanie terenu", 350000, 0, "", 0.08, None, None, 0, "=TODAY()+230", ""]],
          "formulas": {6: '=IF(C{r}="","",C{r}*E{r})', 7: '=IF(A{r}="","",C{r}-B{r}*H{r})'},
          "red": [("G", "greaterThan", "0")]},

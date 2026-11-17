@@ -23,6 +23,8 @@ export type PortfolioItem = {
   features: string[];
   demoUrl?: string;
   image?: string;
+  /** Grafika na kafelek w galerii, gdy w środku ma być prawdziwy zrzut. */
+  cardImage?: string;
   alt?: string;
   status: string;
   featured?: boolean;
@@ -52,6 +54,8 @@ export const portfolioItems: PortfolioItem[] = [
     "image": "/portfolio/kadry/phu-marecki-ekran.webp",
     "alt": "Pierwszy ekran strony PHU Marecki",
     "status": "projekt demonstracyjny",
+    "downloadUrl": "/pliki/hurtownia-elektryczna-budowlana-zielona-marka.xlsx",
+    "downloadLabel": "Pobierz przebieg pracy (XLSX)",
     "featured": true
   },
   {
@@ -71,6 +75,8 @@ export const portfolioItems: PortfolioItem[] = [
     "image": "/portfolio/kadry/budrivo-ekran.webp",
     "alt": "Pierwszy ekran serwisu BUDRIVO",
     "status": "projekt demonstracyjny",
+    "downloadUrl": "/pliki/hurtownia-elektryczna-budowlana-zielona-marka.xlsx",
+    "downloadLabel": "Pobierz przebieg pracy (XLSX)",
     "featured": true
   },
   {
@@ -78,8 +84,8 @@ export const portfolioItems: PortfolioItem[] = [
     "title": "PHU Marecki, aplikacja na telefon",
     "category": "aplikacje",
     "industry": "Budownictwo i materiały",
-    "summary": "Ta sama hurtownia w formie aplikacji instalowanej na telefonie, z pięcioma ekranami i gazetką do przewijania.",
-    "explanation": "Kierownik budowy dokłada materiały z telefonu, a lista zostaje w aplikacji po jej zamknięciu, bo zapisuje się na urządzeniu.",
+    "summary": "Aplikacja na telefon dla klientów hurtowni: inwestora, kierownika budowy i wykonawcy, który kupuje u PHU Marecki materiały.",
+    "explanation": "Klient przegląda ofertę i gazetkę na budowie, dokłada materiały do listy z ilościami i wysyła zapytanie o wycenę i transport. Lista zostaje w telefonie, więc może do niej wrócić.",
     "features": [
       "Pięć ekranów: główna, oferta, gazetka, lista, więcej",
       "Gazetka na sześć stron",
@@ -89,7 +95,9 @@ export const portfolioItems: PortfolioItem[] = [
     "demoUrl": "https://phu-marecki.vercel.app/app.html",
     "image": "/portfolio/kadry/phu-marecki-aplikacja.webp",
     "alt": "Trzy ekrany aplikacji PHU Marecki na telefonie: gazetka, ekran główny i oferta",
-    "status": "projekt demonstracyjny"
+    "status": "projekt demonstracyjny",
+    "downloadUrl": "/pliki/hurtownia-elektryczna-budowlana-zielona-marka.xlsx",
+    "downloadLabel": "Pobierz przebieg pracy (XLSX)",
   },
   {
     "slug": "navoro-hurt",
@@ -107,6 +115,8 @@ export const portfolioItems: PortfolioItem[] = [
     "image": "/portfolio/kadry/navoro-hurt-ekran.webp",
     "alt": "Pierwszy ekran serwisu NAVORO HURT",
     "status": "projekt demonstracyjny",
+    "downloadUrl": "/pliki/hurtownia-elektryczna-budowlana-zielona-marka.xlsx",
+    "downloadLabel": "Pobierz przebieg pracy (XLSX)",
     "featured": true
   },
   {
@@ -125,6 +135,8 @@ export const portfolioItems: PortfolioItem[] = [
     "image": "/portfolio/kadry/nexio-elektro-ekran.webp",
     "alt": "Pierwszy ekran serwisu NEXIO ELEKTRO",
     "status": "projekt demonstracyjny",
+    "downloadUrl": "/pliki/hurtownia-elektryczna-budowlana-zielona-marka.xlsx",
+    "downloadLabel": "Pobierz przebieg pracy (XLSX)",
     "featured": true
   },
   {
@@ -144,6 +156,8 @@ export const portfolioItems: PortfolioItem[] = [
     "image": "/portfolio/kadry/materivo-ekran.webp",
     "alt": "Pierwszy ekran serwisu MATERIVO w wersji premium",
     "status": "projekt demonstracyjny",
+    "downloadUrl": "/pliki/hurtownia-elektryczna-budowlana-zielona-marka.xlsx",
+    "downloadLabel": "Pobierz przebieg pracy (XLSX)",
     "featured": true
   },
   {
@@ -161,7 +175,9 @@ export const portfolioItems: PortfolioItem[] = [
     "demoUrl": "https://materivo-eko.vercel.app",
     "image": "/portfolio/kadry/materivo-eko-ekran.webp",
     "alt": "Pierwszy ekran strony MATERIVO w wersji ekonomicznej",
-    "status": "demonstracja, dane syntetyczne"
+    "status": "demonstracja, dane syntetyczne",
+    "downloadUrl": "/pliki/hurtownia-elektryczna-budowlana-zielona-marka.xlsx",
+    "downloadLabel": "Pobierz przebieg pracy (XLSX)",
   },
   {
     "slug": "aurea-smile",
@@ -178,7 +194,9 @@ export const portfolioItems: PortfolioItem[] = [
     "demoUrl": "https://aurea-smile.vercel.app",
     "image": "/portfolio/kadry/aurea-smile-ekran.webp",
     "alt": "Pierwszy ekran strony kliniki AUREA SMILE",
-    "status": "projekt demonstracyjny"
+    "status": "projekt demonstracyjny",
+    "downloadUrl": "/pliki/gabinet-stomatologiczny-zielona-marka.xlsx",
+    "downloadLabel": "Pobierz przebieg pracy (XLSX)",
   },
   {
     "slug": "solidom",
@@ -198,6 +216,8 @@ export const portfolioItems: PortfolioItem[] = [
     "image": "/portfolio/kadry/solidom-ekran.webp",
     "alt": "Podgląd strony SOLIDOM z dużą fotografią i ofertą usług budowlanych",
     "status": "projekt demonstracyjny",
+    "downloadUrl": "/pliki/firma-remontowa-zielona-marka.xlsx",
+    "downloadLabel": "Pobierz przebieg pracy (XLSX)",
     "featured": true
   },
   {
@@ -215,7 +235,9 @@ export const portfolioItems: PortfolioItem[] = [
     "demoUrl": "https://solident-mu.vercel.app",
     "image": "/portfolio/kadry/solident-ekran.webp",
     "alt": "Pierwszy ekran strony gabinetu SOLIDENT",
-    "status": "projekt demonstracyjny"
+    "status": "projekt demonstracyjny",
+    "downloadUrl": "/pliki/gabinet-stomatologiczny-zielona-marka.xlsx",
+    "downloadLabel": "Pobierz przebieg pracy (XLSX)",
   },
   {
     "slug": "black-harbor",
@@ -283,7 +305,9 @@ export const portfolioItems: PortfolioItem[] = [
     "demoUrl": "/realizacje/bistro-forma",
     "image": "/concept-bistro.jpg",
     "alt": "Prezentacja koncepcyjna projektu Bistro Forma",
-    "status": "projekt demonstracyjny"
+    "status": "projekt demonstracyjny",
+    "downloadUrl": "/pliki/kawiarnia-bistro-zielona-marka.xlsx",
+    "downloadLabel": "Pobierz przebieg pracy (XLSX)",
   },
   {
     "slug": "dom-dobry",
@@ -300,7 +324,9 @@ export const portfolioItems: PortfolioItem[] = [
     "demoUrl": "/realizacje/dom-dobry",
     "image": "/concept-dom.jpg",
     "alt": "Prezentacja koncepcyjna projektu Dom Dobry",
-    "status": "projekt demonstracyjny"
+    "status": "projekt demonstracyjny",
+    "downloadUrl": "/pliki/maly-deweloper-zielona-marka.xlsx",
+    "downloadLabel": "Pobierz przebieg pracy (XLSX)",
   },
   {
     "slug": "pion",
@@ -347,6 +373,8 @@ export const portfolioItems: PortfolioItem[] = [
     "image": "/concept-samples-v2/okruch-before-after-1280.webp",
     "alt": "Prezentacja koncepcyjna projektu OKRUCH",
     "status": "symulacja wizualna",
+    "downloadUrl": "/pliki/kawiarnia-bistro-zielona-marka.xlsx",
+    "downloadLabel": "Pobierz przebieg pracy (XLSX)",
     "featured": true
   },
   {
@@ -625,6 +653,8 @@ export const portfolioItems: PortfolioItem[] = [
     "image": "/portfolio/kadry/printflow.webp",
     "alt": "Prezentacja koncepcyjna projektu PrintFlow 360",
     "status": "narzędzie lub demonstracja",
+    "downloadUrl": "/pliki/printflow-360-zielona-marka.xlsx",
+    "downloadLabel": "Pobierz przebieg pracy (XLSX)",
     "openAccess": "github"
   },
   {
@@ -642,7 +672,9 @@ export const portfolioItems: PortfolioItem[] = [
     "demoUrl": "/realizacje/transportflow",
     "image": "/portfolio/kadry/transportflow-ekran.webp",
     "alt": "TransportFlow 360: etapy zlecenia, trasa, koszty i marża",
-    "status": "narzędzie lub demonstracja"
+    "status": "narzędzie lub demonstracja",
+    "downloadUrl": "/pliki/transportflow-360-zielona-marka.xlsx",
+    "downloadLabel": "Pobierz przebieg pracy (XLSX)",
   },
   {
     "slug": "workshopflow",
@@ -660,6 +692,8 @@ export const portfolioItems: PortfolioItem[] = [
     "image": "/portfolio/kadry/workshopflow.webp",
     "alt": "Prezentacja koncepcyjna projektu WorkshopFlow 360",
     "status": "narzędzie lub demonstracja",
+    "downloadUrl": "/pliki/warsztat-samochodowy-zielona-marka.xlsx",
+    "downloadLabel": "Pobierz przebieg pracy (XLSX)",
     "openAccess": "github"
   },
   {
@@ -677,7 +711,9 @@ export const portfolioItems: PortfolioItem[] = [
     "demoUrl": "/demo/auto-naprawa/",
     "image": "/portfolio/kadry/auto-naprawa-ekran.webp",
     "alt": "Pierwszy ekran portalu Auto Naprawa",
-    "status": "narzędzie lub demonstracja"
+    "status": "narzędzie lub demonstracja",
+    "downloadUrl": "/pliki/warsztat-samochodowy-zielona-marka.xlsx",
+    "downloadLabel": "Pobierz przebieg pracy (XLSX)",
   },
   {
     "slug": "lead-offer-copilot",
@@ -789,6 +825,160 @@ export const portfolioItems: PortfolioItem[] = [
     "openAccess": "github"
   },
   {
+    "slug": "excel-warsztat",
+    "title": "Warsztat samochodowy: przebieg pracy w Excelu",
+    "category": "excel",
+    "industry": "Serwis samochodowy",
+    "summary": "Cały warsztat w jednym pliku: przyjęcie auta, naprawa, części, kosztorys ze zgodą klienta, wydanie, gwarancja i przypomnienia.",
+    "explanation": "Ten sam proces co w WorkshopFlow 360 i Auto Naprawa. Obok koszty warsztatu, leasingi i przeglądy UDT, ludzie, pozyskanie klientów, VAT, podatek i próg rentowności w roboczogodzinach.",
+    "features": [
+      "Arkusze dla doradcy, mechanika, magazynu i biura",
+      "Alarm, gdy kosztorys przekracza zgodę klienta",
+      "Koszty, leasingi i przeglądy urządzeń",
+      "Wynik, VAT i próg rentowności",
+      "Wzory zlecenia, protokołu i gwarancji"
+    ],
+    "image": "/portfolio/kadry/excel-warsztat-ekran.webp",
+    "cardImage": "/portfolio/kadry/excel-warsztat-kafelek.svg",
+    "alt": "Prawdziwy podgląd arkusza: Warsztat samochodowy: przebieg pracy w Excelu",
+    "status": "gotowy plik, dane przykładowe",
+    "downloadUrl": "/pliki/warsztat-samochodowy-zielona-marka.xlsx",
+    "downloadLabel": "Pobierz przebieg pracy (XLSX)",
+    "openAccess": "github"
+  },
+  {
+    "slug": "excel-kawiarnia",
+    "title": "Kawiarnia i bistro: przebieg pracy w Excelu",
+    "category": "excel",
+    "industry": "Gastronomia",
+    "summary": "Rezerwacje i przyjęcia, utarg według kanałów, dostawy z terminami ważności, food cost każdej pozycji w karcie i straty.",
+    "explanation": "Proces jak w Bistro Forma. Obok koszty lokalu, zezwolenia i opłaty za muzykę, sprzęt z przeglądami, zespół, pozyskanie gości, VAT według stawek i próg rentowności w paragonach.",
+    "features": [
+      "Rezerwacje z zadatkiem",
+      "Utarg dzienny i różnice w kasie",
+      "Food cost z alarmem",
+      "Dostawy z terminami ważności",
+      "Wzór umowy na przyjęcie i karta HACCP"
+    ],
+    "image": "/portfolio/kadry/excel-kawiarnia-ekran.webp",
+    "cardImage": "/portfolio/kadry/excel-kawiarnia-kafelek.svg",
+    "alt": "Prawdziwy podgląd arkusza: Kawiarnia i bistro: przebieg pracy w Excelu",
+    "status": "gotowy plik, dane przykładowe",
+    "downloadUrl": "/pliki/kawiarnia-bistro-zielona-marka.xlsx",
+    "downloadLabel": "Pobierz przebieg pracy (XLSX)",
+    "openAccess": "github"
+  },
+  {
+    "slug": "excel-stomatologia",
+    "title": "Gabinet stomatologiczny: przebieg pracy w Excelu",
+    "category": "excel",
+    "industry": "Stomatologia",
+    "summary": "Cennik z czasem zabiegu, grafik wizyt z nieobecnościami, plany leczenia z akceptacją, płatności i prace laboratoryjne.",
+    "explanation": "Proces jak w AUREA SMILE i SOLIDENT. Uwzględnia zwolnienie z VAT, testy RTG i walidację autoklawu, zakaz reklamy lekarzy i przypomnienia o kontrolach.",
+    "features": [
+      "Grafik wizyt i odsetek nieobecności",
+      "Plany leczenia z akceptacją",
+      "Obłożenie foteli",
+      "Przeglądy RTG i autoklawu",
+      "Wzory planu leczenia, zgody i gwarancji"
+    ],
+    "image": "/portfolio/kadry/excel-stomatologia-ekran.webp",
+    "cardImage": "/portfolio/kadry/excel-stomatologia-kafelek.svg",
+    "alt": "Prawdziwy podgląd arkusza: Gabinet stomatologiczny: przebieg pracy w Excelu",
+    "status": "gotowy plik, dane przykładowe",
+    "downloadUrl": "/pliki/gabinet-stomatologiczny-zielona-marka.xlsx",
+    "downloadLabel": "Pobierz przebieg pracy (XLSX)",
+    "openAccess": "github"
+  },
+  {
+    "slug": "excel-hurtownia",
+    "title": "Hurtownia materiałów: przebieg pracy w Excelu",
+    "category": "excel",
+    "industry": "Hurtownie i handel B2B",
+    "summary": "Zapytania i oferty z marżą, magazyn ze stanami minimalnymi, kompletacja, dostawy z HDS, faktury z kredytem kupieckim.",
+    "explanation": "Proces jak w NAVORO HURT, NEXIO ELEKTRO, MATERIVO i PHU Marecki. Obok koszty magazynu, wózki i HDS pod dozorem UDT, kanały pozyskania instalatorów i firm budowlanych, rabaty roczne.",
+    "features": [
+      "Oferty z alarmem niskiej marży",
+      "Stany minimalne i zamówienia",
+      "Dostawy i rozładunek HDS",
+      "Należności po terminie",
+      "Wzory warunków sprzedaży i umowy z instalatorem"
+    ],
+    "image": "/portfolio/kadry/excel-hurtownia-ekran.webp",
+    "cardImage": "/portfolio/kadry/excel-hurtownia-kafelek.svg",
+    "alt": "Prawdziwy podgląd arkusza: Hurtownia materiałów: przebieg pracy w Excelu",
+    "status": "gotowy plik, dane przykładowe",
+    "downloadUrl": "/pliki/hurtownia-elektryczna-budowlana-zielona-marka.xlsx",
+    "downloadLabel": "Pobierz przebieg pracy (XLSX)",
+    "openAccess": "github"
+  },
+  {
+    "slug": "excel-remonty",
+    "title": "Firma remontowa: przebieg pracy w Excelu",
+    "category": "excel",
+    "industry": "Budownictwo i remonty",
+    "summary": "Zapytania i wizje lokalne, kosztorys pomieszczenie po pomieszczeniu z marżą, harmonogram ekip, zakupy, odbiory i płatności etapowe.",
+    "explanation": "Obok koszty firmy, bus i sprzęt, ekipy, kanały pozyskania klientów, VAT 8 lub 23 procent i gwarancja z przeglądem po roku.",
+    "features": [
+      "Kosztorys z marżą na każdej pozycji",
+      "Harmonogram ekip i opóźnienia",
+      "Odbiory i płatności etapowe",
+      "Gwarancja i przegląd po roku",
+      "Wzory umowy, protokołu i prac dodatkowych"
+    ],
+    "image": "/portfolio/kadry/excel-remonty-ekran.webp",
+    "cardImage": "/portfolio/kadry/excel-remonty-kafelek.svg",
+    "alt": "Prawdziwy podgląd arkusza: Firma remontowa: przebieg pracy w Excelu",
+    "status": "gotowy plik, dane przykładowe",
+    "downloadUrl": "/pliki/firma-remontowa-zielona-marka.xlsx",
+    "downloadLabel": "Pobierz przebieg pracy (XLSX)",
+    "openAccess": "github"
+  },
+  {
+    "slug": "excel-budowa",
+    "title": "Firma budowlana: przebieg pracy w Excelu",
+    "category": "excel",
+    "industry": "Budownictwo",
+    "summary": "Budowy z wartościami i terminami, budżet każdej budowy z przekroczeniami, dziennik prac, podwykonawcy z kaucjami i faktury etapowe.",
+    "explanation": "Obok sprzęt z UDT i przeglądami, przetargi i inne źródła zleceń, kaucje inwestora, rękojmia i zwroty kaucji podwykonawcom.",
+    "features": [
+      "Budżet budowy z alarmem przekroczeń",
+      "Podwykonawcy, kaucje i OC",
+      "Faktury etapowe i kaucja inwestora",
+      "Rękojmia i przeglądy gwarancyjne",
+      "Wzory umów i protokołu odbioru"
+    ],
+    "image": "/portfolio/kadry/excel-budowa-ekran.webp",
+    "cardImage": "/portfolio/kadry/excel-budowa-kafelek.svg",
+    "alt": "Prawdziwy podgląd arkusza: Firma budowlana: przebieg pracy w Excelu",
+    "status": "gotowy plik, dane przykładowe",
+    "downloadUrl": "/pliki/firma-budowlana-zielona-marka.xlsx",
+    "downloadLabel": "Pobierz przebieg pracy (XLSX)",
+    "openAccess": "github"
+  },
+  {
+    "slug": "excel-deweloper",
+    "title": "Mały deweloper: przebieg pracy w Excelu",
+    "category": "excel",
+    "industry": "Nieruchomości",
+    "summary": "Lokale z cenami i marżą, klienci od kontaktu do aktu, harmonogram wpłat na rachunek powierniczy, budżet budowy i odbiory z wadami.",
+    "explanation": "Proces jak w Dom Dobry. Uwzględnia limit opłaty rezerwacyjnej, składkę na fundusz gwarancyjny, VAT 8 i 23 procent oraz terminy na usunięcie wad.",
+    "features": [
+      "Statusy lokali i marża na m²",
+      "Limit opłaty rezerwacyjnej",
+      "Wpłaty i zaległości",
+      "Budżet etapów budowy",
+      "Wzory umowy rezerwacyjnej i protokołu odbioru"
+    ],
+    "image": "/portfolio/kadry/excel-deweloper-ekran.webp",
+    "cardImage": "/portfolio/kadry/excel-deweloper-kafelek.svg",
+    "alt": "Prawdziwy podgląd arkusza: Mały deweloper: przebieg pracy w Excelu",
+    "status": "gotowy plik, dane przykładowe",
+    "downloadUrl": "/pliki/maly-deweloper-zielona-marka.xlsx",
+    "downloadLabel": "Pobierz przebieg pracy (XLSX)",
+    "openAccess": "github"
+  },
+  {
     "slug": "excel-printflow",
     "title": "Arkusz Excel PrintFlow 360",
     "category": "excel",
@@ -803,6 +993,7 @@ export const portfolioItems: PortfolioItem[] = [
       "KPI całego procesu"
     ],
     "image": "/portfolio/kadry/excel-printflow.webp",
+    "cardImage": "/portfolio/kadry/excel-printflow-kafelek.svg",
     "alt": "Arkusz PrintFlow 360: zapytania i wyceny z kartami ról na dole",
     "status": "gotowy plik, dane przykładowe",
     "downloadUrl": "/pliki/printflow-360-zielona-marka.xlsx",
@@ -824,6 +1015,7 @@ export const portfolioItems: PortfolioItem[] = [
       "Faktury i płatności"
     ],
     "image": "/portfolio/kadry/excel-transportflow.webp",
+    "cardImage": "/portfolio/kadry/excel-transportflow-kafelek.svg",
     "alt": "Arkusz TransportFlow 360: rozliczenie przewozów z wynikiem i stawką za kilometr",
     "status": "gotowy plik, dane przykładowe",
     "downloadUrl": "/pliki/transportflow-360-zielona-marka.xlsx",
@@ -845,6 +1037,7 @@ export const portfolioItems: PortfolioItem[] = [
       "Podział na role"
     ],
     "image": "/portfolio/kadry/excel-dashboard.webp",
+    "cardImage": "/portfolio/kadry/excel-dashboard-kafelek.svg",
     "alt": "Dashboard operacyjny: zlecenia, etapy i opóźnienia",
     "status": "gotowy plik, dane przykładowe",
     "downloadUrl": "/pliki/dashboard-operacyjny-zielona-marka.xlsx",
@@ -866,6 +1059,7 @@ export const portfolioItems: PortfolioItem[] = [
       "Podział na role"
     ],
     "image": "/portfolio/kadry/excel-wycena.webp",
+    "cardImage": "/portfolio/kadry/excel-wycena-kafelek.svg",
     "alt": "Kalkulator wariantów oferty: wycena pozycja po pozycji",
     "status": "gotowy plik, dane przykładowe",
     "downloadUrl": "/pliki/kalkulator-wariantow-oferty-zielona-marka.xlsx",
@@ -887,6 +1081,7 @@ export const portfolioItems: PortfolioItem[] = [
       "Podział na role"
     ],
     "image": "/portfolio/kadry/excel-crm.webp",
+    "cardImage": "/portfolio/kadry/excel-crm-kafelek.svg",
     "alt": "Rejestr kontaktów: etapy, szansa i wartość ważona",
     "status": "gotowy plik, dane przykładowe",
     "downloadUrl": "/pliki/rejestr-kontaktow-zielona-marka.xlsx",
