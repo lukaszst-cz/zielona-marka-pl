@@ -92,7 +92,6 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
   const reducedMotion = useReducedMotion();
 
   const stageRef = useRef<HTMLDivElement>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
   const dragOrigin = useRef<number | null>(null);
 
   const featured = useMemo(() => featuredOrder.map(slug => items.find(item => item.slug === slug))
@@ -130,27 +129,6 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
   }, [items, industry, format, search, onlyOpen]);
 
   const filterKey = `${industry}|${format}|${onlyOpen}|${search.trim().toLocaleLowerCase("pl-PL")}`;
-
-  /* Karty katalogu wchodzą kolejno, gdy wjeżdżają w pole widzenia. */
-  useEffect(() => {
-    const grid = gridRef.current;
-    if (!grid) return;
-    const cards = Array.from(grid.querySelectorAll<HTMLElement>(".zmp-project-card"));
-    if (reducedMotion || typeof IntersectionObserver === "undefined") {
-      cards.forEach(card => card.classList.add("is-revealed"));
-      return;
-    }
-    cards.forEach(card => card.classList.remove("is-revealed"));
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add("is-revealed");
-        observer.unobserve(entry.target);
-      });
-    }, { rootMargin: "0px 0px -60px 0px", threshold: .12 });
-    cards.forEach(card => observer.observe(card));
-    return () => observer.disconnect();
-  }, [filterKey, filtered.length, reducedMotion]);
 
   function chooseIndustry(id: string) {
     setIndustry(id);
@@ -248,7 +226,7 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
                 <span>↗</span>
               </span>
               <span className="zmp-floating-visual" data-media={mediaPresentation(item)}>
-                <ProjectCover slug={item.slug} title={item.title} image={item.cardImage ?? item.image} alt={item.alt}
+                <ProjectCover slug={item.slug} title={item.title} image={item.cardImage ?? item.image} alt={item.alt} priority={isCurrent}
                   priority={distance <= 1} />
                 <span className="zmx-card-sheen" aria-hidden="true" />
               </span>
@@ -323,9 +301,9 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
           </button>
           <span className="zmp-result-count">{filtered.length} z {items.length} projektów</span>
         </div>
-        <div className="zmp-grid zmx-grid" ref={gridRef}>
+        <div className="zmp-grid zmx-grid">
           {filtered.map((item, index) => <article className="zmp-project-card zmx-project-card" key={`${filterKey}|${item.slug}`}
-            style={{ ["--zmx-i" as string]: String(Math.min(index, 11)) }}
+
             onMouseMove={event => {
               if (reducedMotion) return;
               const card = event.currentTarget;
