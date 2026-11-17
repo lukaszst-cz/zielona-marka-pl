@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/no-img-element -- Pełnowymiarowe obrazy w natywnym oknie dialogowym. */
+/* eslint-disable @next/next/no-img-element, jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions -- Pełny obraz w natywnym dialogu: klawisz Escape działa domyślnie, kliknięcie w tło zamyka modal, jest też dostępny przycisk zamknięcia. */
 "use client";
 
 import { useRef, type MouseEvent } from "react";
