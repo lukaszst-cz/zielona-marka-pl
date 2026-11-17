@@ -85,6 +85,12 @@ try {
         const transferred = timings.resources.reduce((sum, item) => sum + item.transferredBytes, 0);
         const budgetBytes = Number(process.env.BROWSER_QA_TRANSFER_BUDGET_BYTES || 1500000);
         const exceedsBudget = transferred > budgetBytes;
+        if (exceedsBudget) {
+          console.warn("HEAVIEST " + viewport.name + " " + route + ": "
+            + JSON.stringify(largest.slice(0, 12).map(item => ({
+              path: item.url, bytes: item.transferredBytes, type: item.type,
+            }))));
+        }
         if (exceedsBudget && process.env.BROWSER_QA_BASELINE_ONLY === "true") {
           console.warn("BASELINE " + viewport.name + " " + route + " exceeds budget on already deployed production: "
             + transferred + " / " + budgetBytes + " bytes");
