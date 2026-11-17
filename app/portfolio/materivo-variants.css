@@ -1,0 +1,14 @@
+/* Połączenie wariantów projektu MATERIVO na kartach szczegółów. */
+.zmp-detail .zmp-materivo-variants {
+  display:flex;align-items:center;justify-content:space-between;gap:26px;
+  padding:26px 30px!important;margin-bottom:42px;
+  border:1px solid rgba(154,215,175,.29);border-radius:20px;
+  background:linear-gradient(110deg,rgba(28,75,54,.73),rgba(8,42,31,.76));
+}
+.zmp-detail .zmp-materivo-variants h2{margin:10px 0 8px;font-size:clamp(1.4rem,2.6vw,2.1rem)}
+.zmp-detail .zmp-materivo-variants p{margin:0;color:#c8e0d0;max-width:540px}
+.zmp-detail .zmp-materivo-variants .zmp-btn{flex:none}
+@media(max-width:700px){
+ .zmp-detail .zmp-materivo-variants{padding:22px!important;align-items:stretch;flex-direction:column}
+ .zmp-detail .zmp-materivo-variants .zmp-btn{width:100%;text-align:center}
+}
