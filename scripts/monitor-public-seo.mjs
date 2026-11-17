@@ -1,5 +1,5 @@
 import { writeFile, mkdir } from "node:fs/promises";
-import { hasNoindex, isRobotsPathBlocked } from "./seo-robots.mjs";
+import { hasNoindex, isRobotsPathBlocked, hasCriticalRobotsIssue } from "./seo-robots.mjs";
 import { fetchSeoPage } from "./seo-fetch.mjs";
 
 const base = "https://zielona-marka.pl";
@@ -37,7 +37,8 @@ try {
   const { response, body } = await request("/robots.txt");
   robotsText = body;
   report.robots = { status: response.status, sitemapDeclared: /sitemap:\s*https:\/\/zielona-marka\.pl\/sitemap\.xml/i.test(body), disallowRoot: isRobotsPathBlocked(body) };
-  if (!response.ok || !report.robots.sitemapDeclared || report.robots.disallowRoot) fail("robots.txt missing, incorrect sitemap declaration, or root crawling blocked");
+  if (hasCriticalRobotsIssue(response.status, body)) fail("robots.txt unavailable or root crawl blocked for Googlebot");
+  if (!report.robots.sitemapDeclared) console.warn("robots.txt did not advertise sitemap.xml in this response; checking the sitemap endpoint separately");
 } catch (error) { fail("robots.txt request failed: " + error.message); }
 let sitemapUrls = [];
 try {

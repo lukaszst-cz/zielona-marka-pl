@@ -49,3 +49,8 @@ export function isRobotsPathBlocked(text, path = "/", userAgent = "Googlebot") {
   }
   return !allowed;
 }
+
+/** A sitemap declaration is optional; sitemap.xml is checked separately. */
+export function hasCriticalRobotsIssue(status, text) {
+  return status < 200 || status >= 300 || isRobotsPathBlocked(text);
+}

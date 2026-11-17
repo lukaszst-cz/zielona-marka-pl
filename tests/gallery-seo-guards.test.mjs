@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { readFile } from "node:fs/promises";
 import { fetchSeoPage } from "../scripts/seo-fetch.mjs";
-import { isRobotsPathBlocked } from "../scripts/seo-robots.mjs";
+import { isRobotsPathBlocked, hasCriticalRobotsIssue } from "../scripts/seo-robots.mjs";
 import { referencedAssets, isUnusableAssetResponse } from "../scripts/public-asset-utils.mjs";
 
 test("SEO monitoring recovers from one network failure and records the retry", async () => {
@@ -117,4 +117,21 @@ test("Local pages use different service priorities instead of interchangeable co
   const areas = hub.split("const areas = [")[1].split("] as const;")[0];
   assert.ok(areas.indexOf('["Marki"') < areas.indexOf('["Warszawa"'));
   assert.ok(areas.indexOf('["Ząbki"') < areas.indexOf('["Warszawa"'));
+});
+
+test("robots.txt does not need to advertise a sitemap when the endpoint is checked separately", () => {
+  const withoutSitemap = [
+    "User-agent: *",
+    "Content-Signal: search=yes,ai-train=no,use=reference",
+    "Allow: /",
+    "User-agent: Google-Extended",
+    "Disallow: /",
+    "User-agent: GPTBot",
+    "Disallow: /",
+    "User-agent: *",
+    "Allow: /",
+  ].join("\n");
+  assert.equal(hasCriticalRobotsIssue(200, withoutSitemap), false);
+  assert.equal(hasCriticalRobotsIssue(404, withoutSitemap), true);
+  assert.equal(hasCriticalRobotsIssue(200, "User-agent: *\nDisallow: /"), true);
 });
