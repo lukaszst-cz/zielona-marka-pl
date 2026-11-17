@@ -10,6 +10,7 @@ import DetailMotion from "../DetailMotion";
 import { websiteCaseStudies } from "../websiteCaseStudies";
 import { additionalCaseStudies } from "../additionalCaseStudies";
 import "../portfolio.css";
+import "../materivo-variants.css";
 
 export function generateStaticParams() {
   return portfolioItems.map(item => ({ slug: item.slug }));
@@ -40,6 +41,7 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
   const caseStudy = websiteCaseStudies[item.slug] ?? additionalCaseStudies[item.slug];
   const category = portfolioCategories.find(group => group.id === item.category);
   const other = portfolioItems.filter(project => project.category === item.category && project.slug !== item.slug).slice(0, 3);
+  const materivoAlternative = slug === "materivo" ? findPortfolioItem("materivo-eko") : slug === "materivo-eko" ? findPortfolioItem("materivo") : null;
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
@@ -91,6 +93,14 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
           <figcaption>{item.image ? `Kadr z projektu ${item.title}. Kliknij obraz, aby go powiększyć.` : "Tej pracy nie pokazujemy na zrzucie"}</figcaption>
         </figure>
       </section>
+      {materivoAlternative && <section className="shell zmp-materivo-variants zmx-reveal" aria-label="Warianty projektu MATERIVO">
+        <div>
+          <span className="zmp-overline">DWA WARIANTY JEDNEJ KONCEPCJI</span>
+          <h2>Porównaj wersje MATERIVO</h2>
+          <p>{slug === "materivo-eko" ? "Przeglądasz wersję ekonomiczną. Zobacz bardziej rozbudowaną wersję projektu." : "Przeglądasz rozbudowaną wersję. Zobacz prostszy wariant ekonomiczny."}</p>
+        </div>
+        <Link className="zmp-btn zmp-btn-outline" href={`/portfolio/${materivoAlternative.slug}`}>Otwórz {materivoAlternative.title} ↗</Link>
+      </section>}
       <section className="shell zmp-detail-text zmx-reveal">
         <article><span className="zmp-overline"><i>01</i> PO CO TO POWSTAŁO</span><h2>Pomysł w skrócie</h2><p>{item.explanation}</p></article>
         <article><span className="zmp-overline"><i>02</i> CO JEST W ŚRODKU</span><h2>Na co zwrócić uwagę</h2><ul className="zmx-feature-list">{item.features.map((feature,index)=><li key={feature} style={{ ["--zmx-i" as string]: String(index) }}>{feature}</li>)}</ul></article>

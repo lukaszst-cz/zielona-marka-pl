@@ -55,7 +55,9 @@ const katalog: PortfolioItem[] = [
     "image": "/portfolio/centrum-budowlane-dashboard.webp",
     "cardImage": "/portfolio/centrum-budowlane-dashboard.webp",
     "alt": "Oryginalna grafika koncepcyjna Centrum Budowlane z granatowo-czerwonym pulpitem, hurtownią, tartakiem, elektryką, transportem HDS i planem publikacji",
-    "status": "projekt demonstracyjny, kod opublikowany w osobnym repozytorium GitHub, włączenie Pages w przygotowaniu",
+    "status": "interaktywne demo na Vercelu, dane demonstracyjne, repozytorium GitHub prywatne",
+    "demoUrl": "https://centrum-budowlane-pwa.vercel.app/app/",
+    "openAccess": "online",
     "downloadUrl": "/pliki/centrum-budowlane-model-finansowy-2026.xlsx",
     "downloadLabel": "Pobierz model finansowy Excel",
     "featured": true
@@ -1116,8 +1118,8 @@ const katalog: PortfolioItem[] = [
 
 /* Kolejność w galerii: najpierw najważniejsze realizacje, potem koncepcje, gazetki poglądowe, narzędzia i arkusze. */
 const kolejnosc = [
-  "materivo", "materivo-eko", "black-harbor", "aurea-smile", "centrum-budowlane-pwa",
-  "eltravia", "solidom", "navoro-hurt", "gazetka-navoro", "phu-marecki",
+  "black-harbor", "materivo-eko", "aurea-smile", "phu-marecki", "centrum-budowlane-pwa",
+  "eltravia", "solidom", "navoro-hurt", "gazetka-navoro", "materivo",
   "nexio-elektro", "solident", "phu-marecki-aplikacja", "auto-naprawa",
   "pion", "forma", "okruch", "natura-studio", "bistro-forma", "dom-dobry", "budrivo",
   "styk", "glina", "trop", "szlak", "lodyga", "palona",
