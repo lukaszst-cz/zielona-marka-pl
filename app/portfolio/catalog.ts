@@ -1118,14 +1118,34 @@ const katalog: PortfolioItem[] = [
 
 /* Kolejność w galerii: najpierw najważniejsze realizacje, potem koncepcje, gazetki poglądowe, narzędzia i arkusze. */
 const kolejnosc = [
-  "black-harbor", "materivo-eko", "aurea-smile", "phu-marecki", "centrum-budowlane-pwa",
-  "eltravia", "solidom", "navoro-hurt", "gazetka-navoro", "materivo",
-  "nexio-elektro", "solident", "phu-marecki-aplikacja", "auto-naprawa",
-  "pion", "forma", "okruch", "natura-studio", "bistro-forma", "dom-dobry", "budrivo",
-  "styk", "glina", "trop", "szlak", "lodyga", "palona",
-  "gazetka-nexio", "gazetka-budrivo", "gazetka-materivo",
-  "peleton", "poglos", "dalej", "dobry-koszyk", "modul", "zielony-sezon",
-  "printflow", "transportflow", "workshopflow",
+  // Witryny wybrane do pierwszych rzędów
+  "black-harbor", "phu-marecki", "eltravia", "aurea-smile",
+  "solidom", "navoro-hurt", "gazetka-navoro", "centrum-budowlane-pwa",
+  "solident", "nexio-elektro",
+
+  // Strony z katalogiem, gazetką lub aplikacją
+  "gazetka-nexio", "budrivo", "gazetka-budrivo", "phu-marecki-aplikacja",
+  "materivo-eko", "auto-naprawa", "printflow", "transportflow",
+  "workshopflow", "lead-offer-copilot", "document-checker", "docpilot",
+  "fleet-ops-desk", "aktywnik-plus", "czy-to-sciema", "materivo",
+  "gazetka-materivo",
+
+  // Koncepcje samych witryn
+  "natura-studio", "bistro-forma", "dom-dobry", "styk",
+  "glina", "trop",
+
+  // Projekty identyfikacji i kampanii
+  "szlak", "lodyga", "palona", "peleton",
+  "poglos", "dalej", "dobry-koszyk", "modul",
+  "zielony-sezon",
+
+  // Arkusze, dashboardy i kalkulatory
+  "excel-dashboard", "excel-wycena", "excel-crm", "excel-hurtownia",
+  "excel-budowa", "excel-deweloper", "excel-remonty", "excel-stomatologia",
+  "excel-warsztat", "excel-kawiarnia", "excel-printflow", "excel-transportflow",
+
+  // Koncepcje przed i po
+  "pion", "forma", "okruch",
 ];
 const pozycja = (slug: string) => {
   const i = kolejnosc.indexOf(slug);
