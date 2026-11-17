@@ -31,12 +31,15 @@ type Props = {
   priority?: boolean;
   /** Katalog uruchamia ramki dopiero od szerokości biurkowej. */
   minWidth?: number;
+  /** Odrocz pobieranie zdjęcia w katalogu do momentu zbliżenia się karty do ekranu. */
+  deferImage?: boolean;
 };
 
-export default function ProjectCover({ slug, title, image, alt, priority = false, minWidth = 900 }: Props) {
+export default function ProjectCover({ slug, title, image, alt, priority = false, minWidth = 900, deferImage = false }: Props) {
   const plan = coverFor(slug);
   const hostRef = useRef<HTMLSpanElement>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [imageReady, setImageReady] = useState(!deferImage);
   const [armed, setArmed] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [failed, setFailed] = useState(false);
@@ -47,6 +50,24 @@ export default function ProjectCover({ slug, title, image, alt, priority = false
   const cropLeft = plan?.leftOffset || 0;
   const zoom = plan?.zoom || 1;
   const source = LIVE_COVERS_ENABLED ? plan?.live : undefined;
+
+  /* Katalog renderuje od razu wszystkie karty i opisy. Zewnętrzne odroczenie dotyczy
+     tylko pobrania pliku obrazu, aby Chrome nie ściągał kilkunastu zdjęć poniżej widoku. */
+  useEffect(() => {
+    if (!deferImage) return;
+    const host = hostRef.current;
+    if (!host || typeof IntersectionObserver === "undefined") {
+      setImageReady(true);
+      return;
+    }
+    const observer = new IntersectionObserver(entries => {
+      if (!entries.some(entry => entry.isIntersecting)) return;
+      setImageReady(true);
+      observer.disconnect();
+    }, { rootMargin: "420px 0px", threshold: 0 });
+    observer.observe(host);
+    return () => observer.disconnect();
+  }, [deferImage]);
 
   /* Uzbrajamy ramkę, gdy okładka jest w polu widzenia i mieści się w limicie. */
   useEffect(() => {
@@ -108,7 +129,10 @@ export default function ProjectCover({ slug, title, image, alt, priority = false
   useEffect(() => () => { live.delete(slug); }, [slug]);
 
   return <span className="zmx-cover" ref={hostRef} data-live={armed && loaded ? "on" : undefined}>
-    <img className="zmx-cover-poster" src={image} alt={alt || `Podgląd projektu ${title}`} loading={priority ? "eager" : "lazy"} fetchPriority={priority ? "high" : "auto"} draggable={false} />
+    {imageReady
+      ? <img className="zmx-cover-poster" src={image} alt={alt || `Podgląd projektu ${title}`} loading={priority ? "eager" : "lazy"} fetchPriority={priority ? "high" : "auto"} decoding="async" draggable={false} />
+      : <span className="zmx-cover-deferred" aria-hidden="true" />}
+    {deferImage && <noscript><img className="zmx-cover-poster" src={image} alt={alt || `Podgląd projektu ${title}`} loading="lazy" /></noscript>}
     {armed && !failed && <span className="zmx-cover-frame" aria-hidden="true">
       <iframe
         src={source}
