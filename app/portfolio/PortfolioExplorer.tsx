@@ -80,6 +80,15 @@ function useReducedMotion() {
   return reduced;
 }
 
+function portfolioStatusLabel(item: PortfolioItem) {
+  if (item.status.includes("beta")) return "W budowie";
+  if (item.status === "projekt demonstracyjny" || item.status.startsWith("interaktywne demo") || item.status.startsWith("demonstracja")) return "Projekt demonstracyjny";
+  if (item.status === "symulacja wizualna" || item.status === "materiał koncepcyjny") return "Koncepcja";
+  if (item.status === "narzędzie lub demonstracja") return "Narzędzie lub demo";
+  if (item.status === "gotowy plik, dane przykładowe") return "Plik z danymi przykładowymi";
+  return item.status;
+}
+
 export default function PortfolioExplorer({ items }: { items: PortfolioItem[] }) {
   const [active, setActive] = useState(0);
   const [industry, setIndustry] = useState("all");
@@ -176,7 +185,7 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
         <div className="zmp-hero-text">
           <span className="zmp-overline">PORTFOLIO ZIELONA MARKA</span>
           <h1 id="zmp-title">Zobacz, co <em>tworzymy.</em></h1>
-          <p>Strony, sklepy, gazetki i małe systemy dla firm. Kliknij w kartę i zobacz, jak to działa w środku, bez umawiania się na prezentację.</p>
+          <p>Autorskie koncepcje stron, sklepów, gazetek i narzędzi dla firm. Zobacz działające demonstracje i sprawdź pomysły, które można dopasować do własnej działalności.</p>
         </div>
 
         <div ref={stageRef}
@@ -282,7 +291,7 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
         <div className="zmp-projects-title">
           <span className="zmp-overline">PROJEKTY I DEMONSTRACJE</span>
           <h2>Wszystkie prace <em>w jednym miejscu.</em></h2>
-          <p>Każda praca ma działające demo albo plik do obejrzenia i krótki opis, do czego służy. Filtruj po branży albo wpisz, czego szukasz.</p>
+          <p>W katalogu są koncepcje, projekty demonstracyjne i narzędzia z przykładowymi danymi. Status znajdziesz przy każdej pracy. Filtruj po branży albo wpisz, czego szukasz.</p>
         </div>
         <div className="zmp-projects-tools">
           <label className="zmp-format-field">
@@ -327,9 +336,7 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
               <span className="zmp-project-expand" aria-hidden="true">↗</span>
             </Link>
             <div className="zmp-project-info">
-              <div className="zmp-project-meta"><span>{item.industry}</span>{item.downloadUrl && item.category !== "excel" && <span className="zmx-flow-chip">Przebieg pracy do pobrania</span>}{item.openAccess ? <span className="zmx-open-chip">{item.openAccess === "github" ? "Darmowe do pobrania" : "Darmowe online"}</span>
-                  : item.status.includes("beta") ? <span>W budowie</span>
-                  : item.image?.startsWith("/concept-") ? <span>Projekt koncepcyjny</span> : null}</div>
+              <div className="zmp-project-meta"><span>{item.industry}</span>{item.downloadUrl && item.category !== "excel" && <span className="zmx-flow-chip">Przebieg pracy do pobrania</span>}<span>{portfolioStatusLabel(item)}</span>{item.openAccess && <span className="zmx-open-chip">{item.openAccess === "github" ? "Darmowe do pobrania" : "Darmowe online"}</span>}</div>
               <h3><Link href={`/portfolio/${item.slug}`}>{item.title}</Link></h3>
               <p className="zmp-project-intro">{item.summary}</p>
               <ul className="zmx-card-points" aria-label="Co zastosowano w tej pracy">
