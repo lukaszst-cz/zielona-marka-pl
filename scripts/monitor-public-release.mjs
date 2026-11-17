@@ -21,7 +21,7 @@ export async function probeInquiryReadiness({ origin = "https://zielona-marka.pl
    Client-rendered assembly parts are verified in browser QA after hydration. */
 export const releasePages = [
   { path: "/", markers: ["inspiration-services", "inspiration-story", "zm-approved-concept-scene", "zmh-piece-concept", "zmh-contact-concepts", "Zobacz swoją firmę"] },
-  { path: "/bezplatna-koncepcja-strony", markers: ["Gazetka sprzedażowa", "Koncepcja logo", "zm-editorial-art", "zv5-tabs", "Twoja firma.", "existing-1280.webp", "Gdzie przesłać propozycję?"] },
+  { path: "/bezplatna-koncepcja-strony", markers: ["zm-concept-gallery", "okruch-before-after-1280.webp", "zmp-teaser-bottom", "zm-editorial-art", "Twoja firma.", "existing-1280.webp", "Gdzie przesłać propozycję?"] },
   { path: "/opieka-nad-strona", markers: ["care-plans", "care-plan-benefit", "care-plan-difference", "Co zyskujesz?"] },
   { path: "/strony-internetowe", markers: ["Wybierz miasto lub dzielnicę."] },
   { path: "/dtp", markers: ["DTP"] },
