@@ -21,11 +21,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const item = findPortfolioItem(slug);
   if (!item) return {};
+  const summary = (item.summary + " " + item.explanation).replace(/\s+/g, " ").trim();
+  const description = summary.length <= 158
+    ? summary
+    : summary.slice(0, 157).replace(/\s+\S*$/, "").trimEnd() + ".";
   return {
     title: `${item.title} | portfolio projektowe`,
-    description: item.summary.length <= 158
-      ? item.summary
-      : item.summary.slice(0, 157).replace(/\s+\S*$/, "") + ".",
+    description,
     alternates: { canonical: `/portfolio/${slug}` },
     openGraph: {
       type: "article",
