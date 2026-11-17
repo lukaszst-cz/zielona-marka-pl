@@ -305,7 +305,7 @@ const katalog: PortfolioItem[] = [
     "category": "www",
     "industry": "Wellness i beauty",
     "summary": "Studio zabiegowe z ofertą i obsługą wizyt po stronie właścicielki.",
-    "explanation": "Klientka wybiera zabieg i się umawia, a za kulisami widać terminarz.",
+    "explanation": "Koncepcja pokazuje drogę od czytelnej listy zabiegów do wyboru terminu oraz pomysł na zaplecze właścicielki. Dzięki podziałowi na ofertę i terminarz odbiorca szybciej rozumie sposób umawiania wizyty. To demonstracja procesu, nie działający system rezerwacji prawdziwego salonu.",
     "features": [
       "Oferta zabiegów",
       "Ścieżka rezerwacji",
@@ -322,7 +322,7 @@ const katalog: PortfolioItem[] = [
     "category": "www",
     "industry": "Gastronomia",
     "summary": "Lokal gastronomiczny z menu i rezerwacją w zasięgu jednego kliknięcia.",
-    "explanation": "Gość sprawdza kartę, godziny i dojazd, a potem pisze albo rezerwuje stolik.",
+    "explanation": "Na jednej stronie zebrano menu, godziny, dojazd i ścieżkę kontaktu w sprawie stolika. Gość może łatwiej znaleźć podstawowe informacje przed wizytą. Zaprezentowano koncepcję i przykładowe zaplecze, bez potwierdzenia połączenia z systemem rezerwacyjnym lokalu.",
     "features": [
       "Menu",
       "Informacje dla gości",
@@ -341,7 +341,7 @@ const katalog: PortfolioItem[] = [
     "category": "www",
     "industry": "Nieruchomości",
     "summary": "Inwestycja mieszkaniowa z kartami lokali i ich dostępnością.",
-    "explanation": "Kupujący porównuje metraż, piętro i cenę zamiast prosić o PDF z ofertą.",
+    "explanation": "Karty lokali zestawiają metraż, piętro, cenę i przykładową dostępność w łatwym do porównania układzie. Taki sposób prezentacji ułatwia znalezienie odpowiedniego mieszkania i przygotowanie zapytania. Dane są fikcyjne, nie pochodzą z prawdziwej inwestycji.",
     "features": [
       "Karty lokali",
       "Przykładowa dostępność",
@@ -409,7 +409,7 @@ const katalog: PortfolioItem[] = [
     "category": "www",
     "industry": "Elektrotechnika",
     "summary": "Nowa firma elektryczna, która od pierwszego dnia musi wyglądać solidnie.",
-    "explanation": "Widok na laptopie i telefonie, oparty na jednym mocnym zdjęciu i telefonie w zasięgu kciuka.",
+    "explanation": "Projekt stawia na jedno mocne zdjęcie, krótki opis usług i łatwo dostępny numer telefonu. Pokazuje, jak na komputerze i telefonie ograniczyć liczbę kroków do kontaktu z wykonawcą. Materiał jest makietą graficzną, a nie wdrożoną stroną firmy.",
     "features": [
       "Projekt graficzny",
       "Widok desktop i mobile"
@@ -424,7 +424,7 @@ const katalog: PortfolioItem[] = [
     "category": "www",
     "industry": "Rękodzieło",
     "summary": "Pracownia ceramiki, w której zdjęcia prowadzą cały układ.",
-    "explanation": "Spokojna typografia i dużo powietrza, żeby nic nie konkurowało z naczyniami.",
+    "explanation": "Fotografie ceramiki prowadzą wzrok, a oszczędne podpisy i większe odstępy pomagają skupić uwagę na wyrobach. Pokazano koncepcję widoku na komputerze i telefonie. Nie jest to potwierdzony sklep internetowy z koszykiem i płatnościami.",
     "features": [
       "Koncepcja WWW",
       "Widok desktop i mobile"
@@ -439,7 +439,7 @@ const katalog: PortfolioItem[] = [
     "category": "www",
     "industry": "Weterynaria",
     "summary": "Gabinet weterynaryjny z informacjami, których szuka się w pośpiechu.",
-    "explanation": "Godziny, dyżur i numer telefonu na wierzchu, reszta oferty niżej.",
+    "explanation": "Godziny przyjęć, telefon i informacje o dyżurze umieszczono na pierwszym planie, bo właściciel zwierzęcia często szuka ich w pośpiechu. Układ ogranicza czas potrzebny na znalezienie kontaktu. To koncepcja wizualna, bez rzeczywistego systemu wizyt i dyżurów.",
     "features": [
       "Koncepcja WWW",
       "Widok desktop i mobile"
@@ -454,7 +454,7 @@ const katalog: PortfolioItem[] = [
     "category": "logo",
     "industry": "Identyfikacja wizualna",
     "summary": "Znak dla marki outdoorowej razem z jego życiem na materiałach.",
-    "explanation": "Wersja podstawowa, odwrócona, metka i wizytówka, czyli wszystko, o co poprosi drukarnia.",
+    "explanation": "Pokazano podstawową i odwróconą wersję znaku na metce i wizytówce. Odbiorca może ocenić, czy identyfikacja zachowuje czytelność przy różnych rozmiarach i tłach. Projekt jest wizualizacją, bez potwierdzonego zestawu plików produkcyjnych.",
     "features": [
       "Znak",
       "Wersja odwrócona",
@@ -471,7 +471,7 @@ const katalog: PortfolioItem[] = [
     "category": "logo",
     "industry": "Identyfikacja wizualna",
     "summary": "Kwiaciarnia ŁODYGA: znak, który dobrze wygląda też na papierze i wstążce.",
-    "explanation": "Logo, wizytówka i opakowania złożone w jeden spójny zestaw.",
+    "explanation": "Koncepcja łączy logo kwiaciarni z wizytówką i elementami opakowania. Dzięki temu można zobaczyć spójność marki od pierwszego kontaktu po wręczenie bukietu. Pokazane nośniki są makietami, a nie potwierdzonymi wydrukami.",
     "features": [
       "Logo",
       "Wizytówka",
@@ -487,7 +487,7 @@ const katalog: PortfolioItem[] = [
     "category": "logo",
     "industry": "Identyfikacja wizualna",
     "summary": "Palarnia kawy z identyfikacją rozpisaną na opakowania.",
-    "explanation": "Znak, etykieta paczki i materiały firmowe trzymają jeden charakter.",
+    "explanation": "Znak, etykieta i opakowanie mają wspólną hierarchię informacji i charakter graficzny. Klient może wyobrazić sobie markę na półce oraz ocenić czytelność etykiety. Materiał nie jest gotową specyfikacją drukarską.",
     "features": [
       "Znak",
       "Opakowania",
@@ -503,7 +503,7 @@ const katalog: PortfolioItem[] = [
     "category": "gazetki",
     "industry": "Handel i reklama",
     "summary": "Gazetka sklepu rowerowego na początek sezonu.",
-    "explanation": "Okładka, rozkładówka z rowerami i strona serwisu, czyli to, po co klient sięga najpierw.",
+    "explanation": "Okładka przyciąga uwagę ofertą sezonową, a rozkładówka porządkuje modele i informacje o serwisie. Taki układ pomaga szybciej porównać grupy produktów. Ceny i oferta są przykładowe, a projekt ma charakter koncepcyjny.",
     "features": [
       "Okładka",
       "Rozkładówka",
@@ -519,7 +519,7 @@ const katalog: PortfolioItem[] = [
     "category": "gazetki",
     "industry": "Kultura i wydarzenia",
     "summary": "Gazetka muzyczna z mocną okładką.",
-    "explanation": "Wyrazista typografia i duże kadry, w sam raz dla klubu albo festiwalu.",
+    "explanation": "Wyrazisty nagłówek i duże fotografie nadają okładce charakter wydarzenia, a rozkładówka porządkuje program. Odbiorca łatwiej odróżnia najważniejsze informacje od materiału ilustracyjnego. To projekt układu, nie publikacja rzeczywistego festiwalu.",
     "features": [
       "Okładka",
       "Rozkładówka",
@@ -535,7 +535,7 @@ const katalog: PortfolioItem[] = [
     "category": "gazetki",
     "industry": "Turystyka",
     "summary": "Katalog biura podróży z kierunkami na sezon.",
-    "explanation": "Układ redakcyjny, który pozwala opisać wyjazd bez ściany tekstu.",
+    "explanation": "Duże zdjęcia kierunków, krótkie bloki tekstu i wyraźne śródtytuły pomagają przeglądać przykładowe wyjazdy. Układ pokazuje sposób prezentacji katalogu bez zatłoczonych stron. Nie zawiera prawdziwych ofert ani rezerwacji.",
     "features": [
       "Okładka",
       "Układ redakcyjny",
@@ -551,7 +551,7 @@ const katalog: PortfolioItem[] = [
     "category": "gazetki",
     "industry": "FMCG i handel",
     "summary": "Gazetka delikatesów z ofertą tygodnia.",
-    "explanation": "Produkty i hierarchia promocji poukładane tak, jak czyta je klient przy półce. Ceny są przykładowe.",
+    "explanation": "Układ pokazuje tygodniową ofertę w kolejności, w jakiej klient przegląda produkty i ceny. Hierarchia promocji ułatwia odnalezienie wybranych kategorii. Kwoty i produkty są przykładowe, nie stanowią aktualnej gazetki sklepu.",
     "features": [
       "Okładka",
       "Rozkładówka produktowa",
@@ -567,7 +567,7 @@ const katalog: PortfolioItem[] = [
     "category": "gazetki",
     "industry": "Meble i wyposażenie",
     "summary": "Katalog mebli, w którym asortyment ma się czym pochwalić.",
-    "explanation": "Okładka i rozkładówki pokazują kolekcje bez tłoku na stronie.",
+    "explanation": "Koncepcja katalogu porządkuje kolekcje mebli zdjęciami, nagłówkami i krótkimi informacjami. Dzięki temu łatwiej porównać charakter poszczególnych linii produktowych. Pokazane rozkładówki są makietą, a nie pełnym katalogiem handlowym.",
     "features": [
       "Gazetka meblowa",
       "Układ oferty",
@@ -583,7 +583,7 @@ const katalog: PortfolioItem[] = [
     "category": "gazetki",
     "industry": "Ogród",
     "summary": "Gazetka ogrodnicza na wiosnę i lato.",
-    "explanation": "Sezonowa oferta z cenami, rozpisana na kategorie roślin i narzędzi.",
+    "explanation": "Przykładową ofertę wiosenno-letnią podzielono na rośliny, narzędzia i akcesoria. Czytelny podział i oznaczenia cen pomagają szybko przeglądać asortyment. To projekt gazetki sezonowej z danymi demonstracyjnymi.",
     "features": [
       "Gazetka sezonowa",
       "Produkty",
@@ -1118,33 +1118,24 @@ const katalog: PortfolioItem[] = [
 
 /* Kolejność w galerii: najpierw najważniejsze realizacje, potem koncepcje, gazetki poglądowe, narzędzia i arkusze. */
 const kolejnosc = [
-  // Witryny wybrane do pierwszych rzędów
+  // Wdrożone i działające demonstracje: WWW, workflow, aplikacje oraz materiały do pobrania
   "black-harbor", "phu-marecki", "eltravia", "aurea-smile",
   "solidom", "navoro-hurt", "gazetka-navoro", "centrum-budowlane-pwa",
-  "solident", "nexio-elektro",
+  "solident", "nexio-elektro", "gazetka-nexio", "budrivo",
+  "gazetka-budrivo", "phu-marecki-aplikacja", "materivo-eko", "auto-naprawa",
+  "printflow", "transportflow", "workshopflow", "lead-offer-copilot",
+  "document-checker", "docpilot", "fleet-ops-desk", "aktywnik-plus",
+  "czy-to-sciema", "materivo", "gazetka-materivo", "excel-dashboard",
+  "excel-wycena", "excel-crm", "excel-hurtownia", "excel-budowa",
+  "excel-deweloper", "excel-remonty", "excel-stomatologia", "excel-warsztat",
+  "excel-kawiarnia", "excel-printflow", "excel-transportflow",
 
-  // Strony z katalogiem, gazetką lub aplikacją
-  "gazetka-nexio", "budrivo", "gazetka-budrivo", "phu-marecki-aplikacja",
-  "materivo-eko", "auto-naprawa", "printflow", "transportflow",
-  "workshopflow", "lead-offer-copilot", "document-checker", "docpilot",
-  "fleet-ops-desk", "aktywnik-plus", "czy-to-sciema", "materivo",
-  "gazetka-materivo",
-
-  // Koncepcje samych witryn
-  "natura-studio", "bistro-forma", "dom-dobry", "styk",
-  "glina", "trop",
-
-  // Projekty identyfikacji i kampanii
-  "szlak", "lodyga", "palona", "peleton",
-  "poglos", "dalej", "dobry-koszyk", "modul",
-  "zielony-sezon",
-
-  // Arkusze, dashboardy i kalkulatory
-  "excel-dashboard", "excel-wycena", "excel-crm", "excel-hurtownia",
-  "excel-budowa", "excel-deweloper", "excel-remonty", "excel-stomatologia",
-  "excel-warsztat", "excel-kawiarnia", "excel-printflow", "excel-transportflow",
-
-  // Koncepcje przed i po
+  // Osobna, końcowa część galerii: koncepcje graficzne i makiety o podobnym stylu
+  "natura-studio", "bistro-forma", "dom-dobry",
+  "styk", "glina", "trop",
+  "szlak", "lodyga", "palona",
+  "peleton", "poglos", "dalej",
+  "dobry-koszyk", "modul", "zielony-sezon",
   "pion", "forma", "okruch",
 ];
 const pozycja = (slug: string) => {

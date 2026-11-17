@@ -73,6 +73,7 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
               : "Narzędzie działa w przeglądarce za darmo, bez zakładania konta."}
           </p>}
           {item.status.includes("beta") && <div className="zmp-detail-status">W budowie: {item.status}</div>}
+          {item.image?.startsWith("/concept-") && <div className="zmp-detail-status">Materiał koncepcyjny. Grafika pokazuje kierunek projektu, a nie wdrożenie u klienta.</div>}
           <div className="zmp-detail-actions">
             {item.demoUrl && <a className="zmp-btn zmp-btn-strong" href={item.demoUrl} target={item.demoUrl.startsWith("http") ? "_blank" : undefined} rel={item.demoUrl.startsWith("http") ? "noopener noreferrer" : undefined}>Zobacz, jak to działa ↗</a>}
             {item.downloadUrl && <a className="zmp-btn zmp-btn-strong" href={item.downloadUrl} download>{item.downloadLabel ?? "Pobierz plik"} ↓</a>}
