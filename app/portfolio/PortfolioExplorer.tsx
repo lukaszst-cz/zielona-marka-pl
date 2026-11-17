@@ -226,8 +226,7 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
                 <span>↗</span>
               </span>
               <span className="zmp-floating-visual" data-media={mediaPresentation(item)}>
-                <ProjectCover slug={item.slug} title={item.title} image={item.cardImage ?? item.image} alt={item.alt} priority={isCurrent}
-                  priority={distance <= 1} />
+                <ProjectCover slug={item.slug} title={item.title} image={item.cardImage ?? item.image} alt={item.alt} priority={isCurrent} />
                 <span className="zmx-card-sheen" aria-hidden="true" />
               </span>
               <span className="zmp-floating-copy"><strong>{item.title}</strong><small>{item.industry}</small></span>
