@@ -33,6 +33,9 @@ test("strona główna prowadzi przez pięć etapów od strony do relacji", async
   assert.match(html, /modernizacja-strony#miniaudyt/i);
   assert.match(html, /Wyślij zgłoszenie/i);
   assert.match(html, /Zróbmy miejsce/i);
+  assert.match(html, /Nowa strona czy modernizacja\?/i);
+  assert.match(html, /Napisz, czego potrzebuje Twoja firma/i);
+  assert.doesNotMatch(html, /Dobry pomysł\.<br\s*\/>\s*<em>Zacznijmy od rozmowy/i);
   assert.match(html, /href="\/portfolio"/i);
   assert.match(html, /Zobacz nasze prace/i);
   assert.match(html, /Projekty i koncepcje/i);
