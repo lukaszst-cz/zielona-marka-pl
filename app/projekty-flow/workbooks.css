@@ -1,0 +1,20 @@
+/* Czytelne linki między demonstracjami a arkuszami na stronie Projektów Flow. */
+.flow-projects-page .project-case-links{flex-wrap:wrap;gap:13px 19px}
+.flow-projects-page .project-case-links .text-link{font-size:.88rem;font-weight:700;line-height:1.4}
+.flow-workbooks{padding-top:86px;padding-bottom:80px}
+.flow-workbooks .section-head p{max-width:440px;line-height:1.65}
+.flow-workbook-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.flow-workbook-grid article{min-width:0;border-top:2px solid #265d42;padding:25px 0 15px}
+.flow-workbook-grid article span{color:#2d7652;font-size:.7rem;font-weight:800;letter-spacing:.13em}
+.flow-workbook-grid h3{font:400 clamp(1.55rem,2.3vw,2.15rem)/1.12 Georgia,serif;letter-spacing:-.04em;margin:14px 0}
+.flow-workbook-grid p{color:#52685a;line-height:1.65;max-width:300px}
+.flow-workbook-grid a{display:inline-block;color:#145d39;font-weight:750;line-height:1.4;padding:7px 0;text-underline-offset:4px}
+.flow-workbooks-more{margin:22px 0 10px}
+.flow-workbooks-more a{color:#175c3c;font-weight:750;text-underline-offset:4px}
+.flow-workbooks-note{font-size:.86rem;line-height:1.6;color:#647769;max-width:790px}
+@media(max-width:760px){
+ .flow-workbook-grid{grid-template-columns:1fr;gap:0}
+ .flow-workbooks{padding-top:55px;padding-bottom:55px}
+ .flow-workbook-grid article{padding:20px 0}
+ .flow-workbook-grid p{max-width:none}
+}
