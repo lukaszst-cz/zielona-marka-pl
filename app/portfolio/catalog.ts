@@ -35,7 +35,7 @@ export type PortfolioItem = {
   downloadUrl?: string;
   downloadLabel?: string;
 };
-export const portfolioItems: PortfolioItem[] = [
+const katalog: PortfolioItem[] = [
   {
     "slug": "phu-marecki",
     "title": "PHU MARECKI",
@@ -1089,6 +1089,25 @@ export const portfolioItems: PortfolioItem[] = [
     "openAccess": "github"
   },
 ];
+
+/* Kolejność w galerii: najpierw najważniejsze realizacje, potem koncepcje, gazetki poglądowe, narzędzia i arkusze. */
+const kolejnosc = [
+  "materivo", "materivo-eko", "phu-marecki", "phu-marecki-aplikacja", "black-harbor", "aurea-smile", "eltravia",
+  "solidom", "navoro-hurt", "gazetka-navoro", "nexio-elektro", "solident", "auto-naprawa",
+  "pion", "forma", "okruch", "natura-studio", "bistro-forma", "dom-dobry", "budrivo",
+  "styk", "glina", "trop", "szlak", "lodyga", "palona",
+  "gazetka-nexio", "gazetka-budrivo", "gazetka-materivo",
+  "peleton", "poglos", "dalej", "dobry-koszyk", "modul", "zielony-sezon",
+  "printflow", "transportflow", "workshopflow",
+];
+const pozycja = (slug: string) => {
+  const i = kolejnosc.indexOf(slug);
+  return i === -1 ? kolejnosc.length : i;
+};
+export const portfolioItems: PortfolioItem[] = katalog
+  .map((item, index) => ({ item, index }))
+  .sort((a, b) => pozycja(a.item.slug) - pozycja(b.item.slug) || a.index - b.index)
+  .map(({ item }) => item);
 
 export function findPortfolioItem(slug: string) {
   return portfolioItems.find(item => item.slug === slug);
