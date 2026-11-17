@@ -7,19 +7,19 @@ import "./zoom.css";
 
 export const metadata: Metadata = {
   title: "Portfolio stron internetowych i koncepcji",
-  description: "Autorskie projekty stron internetowych, koncepcje modernizacji, gazetki i narzędzia Zielonej Marki. Zobacz demonstracje i przykładowe rozwiązania.",
+  description: "Autorskie projekty stron internetowych, koncepcje modernizacji, gazetki i narzędzia marki Zielona Marka. Zobacz demonstracje i przykładowe rozwiązania.",
   alternates: { canonical: "/portfolio" },
   openGraph: {
     type: "website",
     url: "/portfolio",
     title: "Portfolio projektów | Zielona Marka",
-    description: "Koncepcje stron internetowych, projekty demonstracyjne, gazetki i narzędzia dla firm. Zobacz wybrane rozwiązania Zielonej Marki.",
+    description: "Koncepcje stron internetowych, projekty demonstracyjne, gazetki i narzędzia dla firm. Zobacz wybrane rozwiązania marki Zielona Marka.",
     images: ["/og.jpg"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Portfolio projektów | Zielona Marka",
-    description: "Autorskie projekty i demonstracje: strony internetowe, gazetki, logo, aplikacje i arkusze. Obejrzyj portfolio Zielonej Marki.",
+    description: "Autorskie projekty i demonstracje: strony internetowe, gazetki, logo, aplikacje i arkusze. Obejrzyj portfolio marki Zielona Marka.",
     images: ["/og.jpg"],
   },
 };
