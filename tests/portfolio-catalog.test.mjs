@@ -70,3 +70,38 @@ test("portfolio export, route metadata and navigation remain wired together", as
   assert.match(sitemap, /portfolioItems\.map/);
   assert.match(nav, /href="\/portfolio"/);
 });
+
+
+test("portfolio workflow pairings link to real projects and downloadable workbooks", async () => {
+  const [pairings, catalog, details, flowPage] = await Promise.all([
+    read("../app/portfolio/WorkflowConnections.tsx"),
+    read("../app/portfolio/catalog.ts"),
+    read("../app/portfolio/[slug]/page.tsx"),
+    read("../app/projekty-flow/page.tsx"),
+  ]);
+  const projectSlugs = new Set([...catalog.matchAll(/"slug": "([^"]+)"/g)].map(match => match[1]));
+  const groups = [...pairings.matchAll(/id: "([^"]+)"[\s\S]*?projectSlugs: \[([^\]]*)\][\s\S]*?featuredProjects: \[([^\]]*)\][\s\S]*?workbookSlug: (null|"[^"]+")/g)];
+  assert.equal(groups.length, 10, "Ten groups of complementary portfolio examples are required");
+  for (const group of groups) {
+    const [, name, projects, featured, workbook] = group;
+    for (const slug of [...projects.matchAll(/"([^"]+)"/g), ...featured.matchAll(/"([^"]+)"/g)].map(x => x[1])) {
+      assert.ok(projectSlugs.has(slug), name + " links to a missing portfolio entry: " + slug);
+    }
+    if (workbook === "null") continue;
+    const slug = workbook.slice(1, -1);
+    assert.ok(projectSlugs.has(slug), name + " workbook is missing: " + slug);
+    const block = catalog.slice(catalog.indexOf('"slug": "' + slug + '"'));
+    const following = block.indexOf('\n  {\n', 2);
+    const entry = following < 0 ? block : block.slice(0, following);
+    const match = entry.match(/"downloadUrl": "(\/pliki\/[^"]+\.xlsx)"/);
+    assert.ok(match, slug + " must have a downloadable XLSX");
+    await access(new URL("../public" + match[1], here));
+  }
+  assert.match(details, /<WorkflowConnections item=\{item\}/);
+  assert.match(pairings, /nie wymieniają automatycznie danych/);
+  assert.match(flowPage, /project\.workbookSlug/);
+  assert.match(flowPage, /everydayWorkbooks\.map/);
+  for (const slug of ["excel-dashboard", "excel-wycena", "excel-crm"]) {
+    assert.ok(flowPage.includes('slug: "' + slug + '"'));
+  }
+});

@@ -1541,3 +1541,74 @@ html body .zmp-explorer .zmx-card-points li:before{content:"";position:absolute;
 html body .zmp-explorer .zmx-flow-chip{background:rgba(182,235,138,.16);color:#d6f5c4;border:1px solid rgba(182,235,138,.5);border-radius:999px;padding:2px 10px;font-weight:700}
 html body .zmp-page .zmp-project-demo.zmx-download{background:linear-gradient(120deg,rgba(182,235,138,.22),rgba(45,212,191,.18));border:1px solid #b6eb8a;color:#eafbe1;font-weight:800}
 html body .zmp-page .zmp-project-demo.zmx-download:hover{background:#b6eb8a;color:#0b2e21}
+
+
+/* Powiązania projektów z zapleczem: czytelna ścieżka zamiast kolejnej galerii kart. */
+.zmp-workflow{
+  margin-top:5px;
+  margin-bottom:68px;
+  padding:clamp(26px,4vw,48px)!important;
+  border:1px solid rgba(188,231,171,.27);
+  border-radius:22px;
+  background:#0e3024;
+}
+.zmp-workflow-heading{
+  display:grid;
+  grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);
+  align-items:end;
+  gap:clamp(22px,5vw,68px);
+  padding-bottom:30px;
+}
+.zmp-workflow-heading h2{
+  font-size:clamp(1.85rem,3.4vw,3rem);
+  margin:14px 0 0;
+  max-width:690px;
+}
+.zmp-workflow-heading p{color:#d1e0d0;margin:0;max-width:480px}
+.zmp-workflow-steps{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  list-style:none;
+  padding:0;
+  margin:0;
+  border-block:1px solid rgba(197,233,190,.27);
+}
+.zmp-workflow-steps li{position:relative;min-width:0;padding:28px 28px 30px 0}
+.zmp-workflow-steps li+li{
+  padding-left:28px;
+  border-left:1px solid rgba(197,233,190,.22);
+}
+.zmp-workflow-number{color:#aed985;font-size:.78rem;letter-spacing:.16em;font-weight:800}
+.zmp-workflow-steps h3{font-size:clamp(1.1rem,1.55vw,1.35rem);margin:13px 0 8px;letter-spacing:-.025em}
+.zmp-workflow-steps p{font-size:.91rem;color:#c6d7c9;margin:0;line-height:1.6}
+.zmp-workflow-links{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);gap:24px;align-items:center;padding:27px 0 0}
+.zmp-workflow-links strong{color:#eef7e8;font-size:1.08rem}
+.zmp-workflow-links p{font-size:.87rem;color:#b8d0bf;margin:7px 0 0}
+.zmp-workflow-links nav{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px}
+.zmp-workflow-links nav a{
+  display:inline-flex;
+  align-items:center;
+  min-height:45px;
+  max-width:100%;
+  border:1px solid rgba(195,232,183,.38);
+  border-radius:9px;
+  padding:11px 14px;
+  color:#e8f9dc;
+  font-size:.88rem;
+  font-weight:700;
+  line-height:1.35;
+  text-decoration:none;
+}
+.zmp-workflow-links nav a:hover{background:rgba(187,233,151,.12);border-color:#b5e18e}
+.zmp-workflow-note{margin:23px 0 0!important;color:#a9c5b1;font-size:.77rem;line-height:1.6}
+@media(max-width:760px){
+  .zmp-workflow-heading,.zmp-workflow-links{grid-template-columns:1fr;gap:17px}
+  .zmp-workflow-steps{grid-template-columns:1fr}
+  .zmp-workflow-steps li{padding:19px 0}
+  .zmp-workflow-steps li+li{border-left:0;border-top:1px solid rgba(197,233,190,.22);padding-left:0}
+  .zmp-workflow-links nav{justify-content:flex-start}
+  .zmp-workflow-links nav a{width:100%;justify-content:space-between}
+}
+@media(prefers-reduced-motion:reduce){
+  .zmp-workflow-links nav a{transition:none}
+}

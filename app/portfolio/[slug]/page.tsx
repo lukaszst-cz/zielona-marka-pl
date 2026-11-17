@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { QuickWhatsApp, SiteFooter, SiteHeader } from "../../SiteChrome";
 import { findPortfolioItem, portfolioCategories, portfolioItems } from "../catalog";
 import ZoomableProjectCover from "../ZoomableProjectCover";
+import WorkflowConnections from "../WorkflowConnections";
 import "../zoom.css";
 import DetailMotion from "../DetailMotion";
 import { websiteCaseStudies } from "../websiteCaseStudies";
@@ -20,9 +21,21 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const item = findPortfolioItem(slug);
   if (!item) return {};
+  const summary = (item.summary + " " + item.explanation).replace(/\s+/g, " ").trim();
+  const description = summary.length <= 158
+    ? summary
+    : summary.slice(0, 157).replace(/\s+\S*$/, "").trimEnd() + ".";
+  const titleSuffix: Record<typeof item.category, string> = {
+    www: "projekt strony WWW",
+    aplikacje: "przykład aplikacji",
+    excel: "arkusz XLSX do pobrania",
+    gazetki: "projekt gazetki",
+    logo: "projekt logo",
+    "przed-po": "porównanie przed i po",
+  };
   return {
-    title: `${item.title} | portfolio projektowe`,
-    description: `${item.summary} ${item.explanation}`.slice(0, 270),
+    title: `${item.title} | ${titleSuffix[item.category]}`,
+    description,
     alternates: { canonical: `/portfolio/${slug}` },
     openGraph: {
       type: "article",
@@ -42,6 +55,15 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
   const category = portfolioCategories.find(group => group.id === item.category);
   const other = portfolioItems.filter(project => project.category === item.category && project.slug !== item.slug).slice(0, 3);
   const materivoAlternative = slug === "materivo" ? findPortfolioItem("materivo-eko") : slug === "materivo-eko" ? findPortfolioItem("materivo") : null;
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Strona główna", item: "https://zielona-marka.pl/" },
+      { "@type": "ListItem", position: 2, name: "Portfolio", item: "https://zielona-marka.pl/portfolio" },
+      { "@type": "ListItem", position: 3, name: item.title, item: `https://zielona-marka.pl/portfolio/${item.slug}` },
+    ],
+  };
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
@@ -58,6 +80,7 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
 
   return <>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
     <SiteHeader />
     <DetailMotion />
     <main className="zm-public zmp-page zmp-detail">
@@ -107,6 +130,7 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
         <article><span className="zmp-overline"><i>01</i> PO CO TO POWSTAŁO</span><h2>Pomysł w skrócie</h2><p>{item.explanation}</p></article>
         <article><span className="zmp-overline"><i>02</i> CO JEST W ŚRODKU</span><h2>Na co zwrócić uwagę</h2><ul className="zmx-feature-list">{item.features.map((feature,index)=><li key={feature} style={{ ["--zmx-i" as string]: String(index) }}>{feature}</li>)}</ul></article>
       </section>
+      <WorkflowConnections item={item} />
       {caseStudy && <section className="shell zmp-website-story zmx-reveal" aria-label="Opis wykonania strony">
         <header className="zmp-story-heading">
           <div><span className="zmp-overline">JAK POWSTAŁ PROJEKT</span><h2>Od pomysłu do wykonania</h2></div>
