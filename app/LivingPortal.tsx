@@ -42,7 +42,7 @@ export default function LivingPortal({ contact = false }: { contact?: boolean })
   }} onPointerLeave={event => event.currentTarget.style.setProperty("--tilt", "0deg")}>
     {contact ? <>
       <div className="zmh-contact-preview zmh-contact-concepts"><ProjectPreview kind="logo" /></div>
-      <p>Dobry pomysł.<br /><em>Zacznijmy od rozmowy.</em></p>
+      <p>Nowa strona czy modernizacja?<br />Napisz, czego potrzebuje Twoja firma.</p>
     </> : <>
       <div className="zmh-assembly-heading"><span>Z CHAOSU DO PORZĄDKU</span><h2>Wszystko zaczyna<br />się <em>łączyć.</em></h2><p>Strona. Zapytanie. Kolejny krok.<br />Przewiń i zobacz, jak tworzą całość.</p></div>
       <div className="zmh-assembly-board" aria-label="Ilustracja połączenia strony, zapytania i obsługi klienta">
