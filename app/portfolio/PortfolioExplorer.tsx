@@ -201,24 +201,24 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
             if (offset > featured.length / 2) offset -= featured.length;
             if (offset < -featured.length / 2) offset += featured.length;
             const distance = Math.abs(offset);
-            const hidden = distance > 3;
+            // Nie ładuj obrazów slajdów poza najbliższymi sąsiadami.
+            if (distance > 2) return null;
             const isCurrent = distance === 0;
             /* Prezentowana karta jest wyraźnie większa od sąsiadów, żeby na pokazie dało się ją czytać. */
-            const scale = isCurrent ? 1.16 : distance === 1 ? .82 : distance === 2 ? .7 : .62;
+            const scale = isCurrent ? 1.16 : distance === 1 ? .82 : .7;
             const lift = isCurrent ? 0 : distance * 10;
             const tiltY = isCurrent ? tilt.x * 5 : 0;
             const tiltX = isCurrent ? tilt.y * -4 : 0;
             return <Link key={item.slug} href={`/portfolio/${item.slug}`}
               aria-label={`Zobacz projekt ${item.title}`}
-              aria-hidden={hidden ? true : undefined}
-              tabIndex={hidden ? -1 : 0}
+
               draggable={false}
               onClick={event => { if (Math.abs(drag) > 8) event.preventDefault(); }}
-              className={`zmp-floating-card zmx-card${isCurrent ? " is-current" : ""}${hidden ? " is-outside" : ""}`}
+              className={`zmp-floating-card zmx-card${isCurrent ? " is-current" : ""}`}
               style={{
                 transform: `translate(-50%, -50%) translateX(calc(${offset * 64}% + ${isCurrent ? "var(--zmx-drag, 0px)" : "0px"})) translateY(${lift}px) rotateY(${offset * -17 + tiltY}deg) rotateX(${tiltX}deg) scale(${scale})`,
-                opacity: hidden ? 0 : distance === 3 ? .45 : 1,
-                filter: distance >= 2 ? `blur(${distance === 3 ? 4 : 1.6}px) saturate(.8)` : undefined,
+                opacity: 1,
+                filter: distance === 2 ? "blur(1.6px) saturate(.8)" : undefined,
                 zIndex: featured.length - distance,
               }}>
               <span className="zmp-floating-topline">
