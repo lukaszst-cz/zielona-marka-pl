@@ -36,7 +36,7 @@ test("strona główna prowadzi przez pięć etapów od strony do relacji", async
   assert.match(html, /href="\/portfolio"/i);
   assert.match(html, /Zobacz nasze prace/i);
   assert.match(html, /Projekty i koncepcje/i);
-  assert.match(html, /nie potwierdzone wdrożenia dla klientów/i);
+  assert.match(html, /projekty pokazowe, a nie wdrożenia wykonane dla klientów/i);
   assert.doesNotMatch(html, /Dobra strona to także dobrze poprowadzony projekt/i);
   // bezplatna koncepcja ma w tresci glownej jedno wejscie, w sekcji podgladu
   assert.match(html, /href="\/bezplatna-koncepcja-strony#zgloszenie"/i);
