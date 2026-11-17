@@ -5,19 +5,19 @@ import ProcessStandard from "../ProcessStandard";
 import { QuickWhatsApp, SiteFooter, SiteHeader } from "../SiteChrome";
 
 export const metadata: Metadata = {
-  title: "Strony internetowe Warszawa i okolice",
-  description: "Strony WWW dla firm z Warszawy, Targówka, Białołęki, Marek, Ząbek, Zielonki, Kobyłki, Wołomina i Radzymina. Lokalna widoczność, formularze i wygodny kontakt.",
+  title: "Strony internetowe lokalnie | Marki i Ząbki",
+  description: "Tworzenie i modernizacja stron dla firm z Marek, Ząbek, Zielonki i okolic Warszawy. Zobacz ofertę dla swojej miejscowości.",
   alternates: { canonical: "/strony-internetowe" },
-  openGraph: { type: "website", url: "/strony-internetowe", title: "Strony internetowe Warszawa i okolice | Zielona Marka", description: "Strony WWW dla firm z Warszawy, Targówka, Białołęki, Marek, Ząbek, Zielonki, Kobyłki, Wołomina i Radzymina. Lokalna widoczność, formularze i wygodny kontakt.", images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Zielona Marka: strony WWW i narzędzia dla firm" }] },
-  twitter: { card: "summary_large_image", title: "Strony internetowe Warszawa i okolice | Zielona Marka", description: "Strony WWW dla firm z Warszawy, Targówka, Białołęki, Marek, Ząbek, Zielonki, Kobyłki, Wołomina i Radzymina. Lokalna widoczność, formularze i wygodny kontakt.", images: ["/og.jpg"] },
+  openGraph: { type: "website", url: "/strony-internetowe", title: "Strony internetowe lokalnie | Marki i Ząbki | Zielona Marka", description: "Tworzenie i modernizacja stron dla firm z Marek, Ząbek, Zielonki i okolic Warszawy. Zobacz ofertę dla swojej miejscowości.", images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Zielona Marka: strony WWW i narzędzia dla firm" }] },
+  twitter: { card: "summary_large_image", title: "Strony internetowe lokalnie | Marki i Ząbki | Zielona Marka", description: "Tworzenie i modernizacja stron dla firm z Marek, Ząbek, Zielonki i okolic Warszawy. Zobacz ofertę dla swojej miejscowości.", images: ["/og.jpg"] },
 };
 
 const areas = [
+  ["Marki", "/strony-internetowe-marki", "Strona dla lokalnej firmy z Marek z czytelnym zasięgiem działania i prostą drogą do kontaktu."],
+  ["Ząbki", "/strony-internetowe/zabki", "Informacja o obszarze dojazdu, usługach i danych potrzebnych przed pierwszą rozmową."],
   ["Warszawa", "/strony-internetowe/warszawa", "Strona dla firmy usługowej konkurującej na dużym rynku: konkretna specjalizacja, dzielnice i jasny pierwszy krok."],
   ["Targówek", "/strony-internetowe/targowek", "Oferta i kontakt czytelne na telefonie dla klientów z Targówka, Bródna i Zacisza."],
   ["Białołęka", "/strony-internetowe/bialoleka", "Lokalizacja, dojazd i formularz, który zbiera dane potrzebne do wyceny usługi."],
-  ["Marki", "/strony-internetowe-marki", "Strona dla lokalnej firmy z Marek z czytelnym zasięgiem działania i prostą drogą do kontaktu."],
-  ["Ząbki", "/strony-internetowe/zabki", "Informacja o obszarze dojazdu, usługach i danych potrzebnych przed pierwszą rozmową."],
   ["Zielonka", "/strony-internetowe/zielonka", "Oddzielna ścieżka dla pilnego telefonu i większego zapytania wymagającego wyceny."],
   ["Kobyłka", "/strony-internetowe/kobylka", "Formularz z lokalizacją, zdjęciami i terminem pomaga zacząć rozmowę od konkretów."],
   ["Wołomin", "/strony-internetowe/wolomin", "Jasny zasięg miasta i sąsiednich gmin oraz czytelne zasady pierwszej wyceny."],
@@ -28,9 +28,9 @@ const structuredData = [
   {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "Strony internetowe dla firm. Warszawa i okolice",
+    name: "Strony internetowe dla firm. Marki, Ząbki i okolice",
     url: "https://zielona-marka.pl/strony-internetowe",
-    description: "Lokalne strony internetowe dla firm usługowych z Warszawy i okolic.",
+    description: "Lokalne strony internetowe i modernizacja dla firm z Marek, Ząbek i okolic Warszawy.",
     mainEntity: {
       "@type": "ItemList",
       itemListElement: areas.map(([name, href], index) => ({
@@ -54,9 +54,9 @@ const structuredData = [
 export default function LocalWebsitesHubPage() {
   return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} /><SiteHeader /><main className="zm-public">
     <section className="page-hero shell">
-      <span className="eyebrow"><i />WARSZAWA I OKOLICE · STRONY DLA FIRM</span>
-      <h1>Strony internetowe dla lokalnych firm, które mają prowadzić do <em>konkretnego kontaktu.</em></h1>
-      <p>Projektuję strony dla firm z Warszawy i okolic. Pokazuję usługi, obszar działania i wygodny kontakt, tak, żeby klient już po chwili wiedział, czy trafił pod właściwy adres.</p>
+      <span className="eyebrow"><i />MARKI, ZĄBKI I OKOLICE · STRONY DLA FIRM</span>
+      <h1>Strony internetowe w Markach, Ząbkach i okolicach, <em>dopasowane do potrzeb firmy.</em></h1>
+      <p>Projektuję nowe strony i odświeżam istniejące witryny firm z Marek, Ząbek i sąsiednich miejscowości. Pomagam uporządkować ofertę, pokazać zakres usług i ułatwić klientowi pierwszy kontakt.</p>
       <div className="hero-actions"><Link className="button" href="/kontakt">Porozmawiajmy o stronie <span>↗</span></Link><a className="text-link" href="#lokalizacje">Wybierz lokalizację <span>↓</span></a></div>
     </section>
 

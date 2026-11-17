@@ -70,3 +70,51 @@ test("asset monitor includes gallery pictures and rejects disguised HTML respons
   assert.equal(isUnusableAssetResponse("/concept-samples-v2/furniture-1280.webp", 200, "image/webp"), false);
   assert.equal(isUnusableAssetResponse("/concept-samples-v2/furniture-1280.webp", 404, "image/webp"), true);
 });
+
+test("Marki and Ząbki have distinct local SEO content and links to modernization", async () => {
+  const [marki, cities, cityPage, modernization, sitemap] = await Promise.all([
+    readFile(new URL("../app/strony-internetowe-marki/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/strony-internetowe/[miasto]/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/LocalCityPage.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/modernizacja-strony/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/sitemap.ts", import.meta.url), "utf8"),
+  ]);
+
+  assert.match(marki, /Strony internetowe w Markach/);
+  assert.match(marki, /href="\/modernizacja-strony"/);
+  assert.match(marki, /href="\/strony-internetowe\/zabki"/);
+  assert.match(cities, /Strony internetowe Ząbki \| Projekt i modernizacja/);
+  assert.match(cityPage, /Strony internetowe dla firm z Ząbek/);
+  assert.match(cityPage, /href="\/strony-internetowe-marki"/);
+  assert.match(cityPage, /href="\/modernizacja-strony"/);
+  assert.match(modernization, /SEO PODCZAS PRZEBUDOWY/);
+  assert.match(modernization, /href="\/strony-internetowe-marki"/);
+  assert.match(modernization, /href="\/strony-internetowe\/zabki"/);
+  assert.match(sitemap, /strony-internetowe-marki/);
+  assert.match(sitemap, /"zabki"/);
+});
+
+test("Local pages use different service priorities instead of interchangeable copy", async () => {
+  const cities = await readFile(new URL("../app/strony-internetowe/[miasto]/page.tsx", import.meta.url), "utf8");
+  const cityComponent = await readFile(new URL("../app/LocalCityPage.tsx", import.meta.url), "utf8");
+  const hub = await readFile(new URL("../app/strony-internetowe/page.tsx", import.meta.url), "utf8");
+
+  const focus = {
+    zielonka: "Modernizacja strony firmowej w Zielonce",
+    kobylka: "Nowa strona dla firmy z Kobyłki",
+    wolomin: "Odświeżenie strony firmy z Wołomina",
+    radzymin: "Strona firmowa zbudowana pod usługi i dojazd",
+    targowek: "Modernizacja strony na Targówku i Bródnie",
+    bialoleka: "Nowa strona dla firmy z Białołęki",
+    warszawa: "Nowa strona dla warszawskiej firmy usługowej",
+  };
+  for (const [city, heading] of Object.entries(focus)) {
+    const cityEntry = cities.split("\n").find(line => line.startsWith(`  ${city}: { name:`));
+    assert.ok(cityEntry, `Missing local page configuration for ${city}`);
+    assert.ok(cityEntry.includes(`title: "${heading}"`), `Missing unique service emphasis for ${city}`);
+  }
+  assert.match(cityComponent, /city\.focus\.href/);
+  const areas = hub.split("const areas = [")[1].split("] as const;")[0];
+  assert.ok(areas.indexOf('["Marki"') < areas.indexOf('["Warszawa"'));
+  assert.ok(areas.indexOf('["Ząbki"') < areas.indexOf('["Warszawa"'));
+});
