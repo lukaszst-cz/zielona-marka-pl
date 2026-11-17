@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: `${item.title} | portfolio projektowe`,
     description: item.summary.length <= 158
       ? item.summary
-      : item.summary.slice(0, 157).replace(/\\s+\\S*$/, "") + ".",
+      : item.summary.slice(0, 157).replace(/\s+\S*$/, "") + ".",
     alternates: { canonical: `/portfolio/${slug}` },
     openGraph: {
       type: "article",
