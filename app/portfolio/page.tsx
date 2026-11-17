@@ -6,20 +6,20 @@ import "./portfolio.css";
 import "./zoom.css";
 
 export const metadata: Metadata = {
-  title: "Portfolio: strony WWW, gazetki, projekty i aplikacje",
-  description: "Strony WWW, gazetki, logo, aplikacje i arkusze Excel marki Zielona Marka. Obejrzyj działające demo każdej pracy albo zapisz całe portfolio jako PDF.",
+  title: "Portfolio stron internetowych i koncepcji",
+  description: "Autorskie projekty stron internetowych, koncepcje modernizacji, gazetki i narzędzia Zielonej Marki. Zobacz demonstracje i przykładowe rozwiązania.",
   alternates: { canonical: "/portfolio" },
   openGraph: {
     type: "website",
     url: "/portfolio",
     title: "Portfolio projektów | Zielona Marka",
-    description: "Prace marki Zielona Marka: strony WWW, gazetki produktowe, logo, aplikacje i Excel, każda z działającym podglądem.",
+    description: "Koncepcje stron internetowych, projekty demonstracyjne, gazetki i narzędzia dla firm. Zobacz wybrane rozwiązania Zielonej Marki.",
     images: ["/og.jpg"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Portfolio projektów | Zielona Marka",
-    description: "Strony internetowe, gazetki, logo, aplikacje i Excel. Obejrzyj prace na żywo albo pobierz portfolio w PDF.",
+    description: "Autorskie projekty i demonstracje: strony internetowe, gazetki, logo, aplikacje i arkusze. Obejrzyj portfolio Zielonej Marki.",
     images: ["/og.jpg"],
   },
 };
@@ -33,7 +33,7 @@ export default function PortfolioPage() {
         <div className="zmp-beforeafter-copy">
           <span className="zmp-overline">PRZED I PO</span>
           <h2 id="zmp-przedpo-title">Zobacz swoją stronę w nowej wersji, zanim cokolwiek zamówisz.</h2>
-          <p>Trzy prace w tym portfolio, PION, FORMA i OKRUCH, pokazują tę samą firmę przed zmianą i po niej. Ten sam zabieg mogę wykonać na Twojej stronie: biorę Twoje treści, zdjęcia i ofertę, a potem pokazuję, jak to samo może wyglądać i działać.</p>
+          <p>Koncepcje PION, FORMA i OKRUCH pokazują przykładowe strony przed odświeżeniem i po nim. To symulacje, a nie przebudowy wykonane dla klientów. Podobne porównanie mogę przygotować na podstawie Twojej strony, jej treści, zdjęć i oferty.</p>
           <p>Koncepcja jest bezpłatna i nie zobowiązuje do niczego. Jeśli się spodoba, rozmawiamy dalej. Jeśli nie, zostaje Ci gotowy pomysł na poprawki.</p>
           <div className="zmp-pdf-actions"><a href="/bezplatna-koncepcja-strony" className="zmp-btn zmp-btn-strong">Zamów symulację swojej strony ↗</a><a href="#zmp-katalog" className="zmp-btn zmp-btn-outline">Obejrzyj prace przed i po ↓</a></div>
         </div>
