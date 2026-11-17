@@ -39,6 +39,9 @@ jobs:
         env:
           BROWSER_QA_URL: https://zielona-marka.pl
           BROWSER_QA_PLAYWRIGHT_ENTRY: /tmp/zm-browser-profile/node_modules/playwright/index.mjs
+          # PR mierzy aktualną produkcję, nie kod gałęzi: wynik ponad limit raportujemy bez blokowania PR.
+          # Po publikacji Public website browser QA egzekwuje pełny limit 1,5 MB.
+          BROWSER_QA_BASELINE_ONLY: ${{ github.event_name == 'pull_request' && 'true' || 'false' }}
       - name: Upload loading report
         if: always()
         uses: actions/upload-artifact@v4
