@@ -396,3 +396,21 @@ html:has(.zm-v5){scroll-behavior:smooth;scroll-padding-top:24px}
 @media(max-width:980px){.zm-v5 .zmh-projects-trio{grid-template-columns:1fr 1fr}}
 @media(max-width:700px){.zm-v5 .zmh-projects-trio{grid-template-columns:1fr}}
 .zm-v5 .zmh-hero h1 .zmh-hero-kicker{display:block;margin:0 0 22px;font-family:Arial,Helvetica,sans-serif;text-transform:uppercase;line-height:1.6;color:var(--white)}
+
+
+/* Dodatkowy, zwarty indeks koncepcji pod głównymi prezentacjami. */
+.zm-v5 .zmh-project-index{margin-top:35px;padding-top:28px;border-top:1px solid rgba(216,237,207,.25)}
+.zm-v5 .zmh-project-index-heading{display:grid;grid-template-columns:1fr 2fr;gap:10px 30px;align-items:start;margin-bottom:22px}
+.zm-v5 .zmh-project-index-heading .zmh-eyebrow{grid-column:1/-1;margin:0;color:#b0f36c}
+.zm-v5 .zmh-project-index-heading h3{font:400 clamp(24px,2.5vw,34px)/1.15 Georgia,serif;letter-spacing:-.025em;margin:0}
+.zm-v5 .zmh-project-index-heading p:last-child{margin:0;max-width:640px;font-size:14px;line-height:1.7;color:#d3dfcc}
+.zm-v5 .zmh-project-index-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0}
+.zm-v5 .zmh-project-index-grid a{min-width:0;display:flex;flex-direction:column;padding:20px 17px 22px 0;margin-right:17px;border-top:1px solid rgba(214,234,205,.27);transition:border-color .2s}
+.zm-v5 .zmh-project-index-grid a:hover{border-color:#b0f36c;filter:none}
+.zm-v5 .zmh-project-index-grid small{display:block;color:#bdccba;font-size:10px;letter-spacing:.08em;line-height:1.5}
+.zm-v5 .zmh-project-index-grid strong{display:block;margin:9px 0 10px;color:#f3f7ed;font-size:17px;line-height:1.3}
+.zm-v5 .zmh-project-index-grid span{font-size:12px;color:#b0f36c;margin-top:auto;line-height:1.45}
+@media(max-width:1000px){.zm-v5 .zmh-project-index-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.zm-v5 .zmh-project-index-heading{grid-template-columns:1fr}.zm-v5 .zmh-project-index-grid{grid-template-columns:1fr 1fr;column-gap:15px}.zm-v5 .zmh-project-index-grid a{margin-right:0;padding:17px 4px 20px 0}.zm-v5 .zmh-project-index-grid strong{font-size:15px}.zm-v5 .zmh-project-index-grid span{font-size:11px}}
+@media(max-width:380px){.zm-v5 .zmh-project-index-grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.zm-v5 .zmh-project-index-grid a{transition:none}}
