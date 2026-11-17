@@ -35,7 +35,9 @@ test("strona główna prowadzi przez pięć etapów od strony do relacji", async
   assert.match(html, /Zróbmy miejsce/i);
   assert.match(html, /href="\/portfolio"/i);
   assert.match(html, /Zobacz nasze prace/i);
-  assert.match(html, /Pięćdziesiąt sześć prac/i);
+  assert.match(html, /Projekty i koncepcje/i);
+  assert.match(html, /nie potwierdzone wdrożenia dla klientów/i);
+  assert.doesNotMatch(html, /Dobra strona to także dobrze poprowadzony projekt/i);
   // bezplatna koncepcja ma w tresci glownej jedno wejscie, w sekcji podgladu
   assert.match(html, /href="\/bezplatna-koncepcja-strony#zgloszenie"/i);
   assert.doesNotMatch(html, /Zamów bezpłatną koncepcję swojej strony/i);
@@ -50,7 +52,7 @@ test("nowe zakładki są renderowane", async () => {
     const html = await response.text();
     assert.doesNotMatch(html, forbiddenBrand, path);
     if (path === "/oferta") assert.match(html, /Przelewy24/i);
-    if (path === "/portfolio") { assert.match(html, /zmp-projects/i); assert.match(html, /OKRUCH/i); assert.match(html, /NAVORO HURT/i); }
+    if (path === "/portfolio") { assert.match(html, /zmp-projects/i); assert.match(html, /OKRUCH/i); assert.match(html, /NAVORO HURT/i); assert.match(html, /Projekt demonstracyjny/i); assert.match(html, /To symulacje, a nie przebudowy wykonane dla klientów/i); }
     if (path === "/maly-crm-dla-firm") assert.match(html, /PWA/i);
     if (path === "/raport-qa") assert.match(html, /kontroli jakości/i);
     if (path.includes("/poradnik/")) assert.match(html, /"@type":"Article"/);
