@@ -225,21 +225,31 @@ try {
       const form = page.locator("form.zm-concept-form");
       await form.waitFor({ state: "visible", timeout: 15000 });
       assert.equal(await form.locator('input[name="mode"]').count(), 5, "Missing project choices");
-      await page.locator("#zv5-tab-logo").click();
-      await page.waitForFunction(() => {
-        const radio = document.querySelector('form.zm-concept-form input[name="mode"][value="logo"]');
-        return radio?.checked === true;
-      }, null, { timeout: 10000 });
-      assert.equal(await page.locator("#zv5-tab-logo").getAttribute("aria-selected"), "true");
-      assert.ok((await form.locator(".zm-concept-picked").innerText()).includes("logo"),
-        "Form summary must follow the gallery selection");
+      assert.equal(await form.getAttribute("action"), "/api/inquiries");
       await form.locator(".zm-concept-change summary").click();
+      await form.locator('input[name="mode"][value="logo"]').check();
+      await page.waitForFunction(() =>
+        document.querySelector(".zm-concept-picked strong")?.textContent?.includes("logo"),
+        null, { timeout: 10000 });
+      assert.ok(await form.locator('input[name="mode"][value="logo"]').isChecked());
+
       await form.locator('input[name="mode"][value="new"]').check();
       await page.waitForFunction(() =>
-        document.querySelector("#zv5-tab-new")?.getAttribute("aria-selected") === "true");
+        document.querySelector(".zm-concept-picked strong")?.textContent?.includes("nowej firmy"),
+        null, { timeout: 10000 });
+      assert.ok(await form.locator('input[name="mode"][value="new"]').isChecked());
       assert.ok(await form.locator('textarea[name="details"]').isVisible(), "Description field hidden");
+      assert.ok(await form.locator('input[name="email"]').isVisible(), "Email field hidden");
       assert.ok(await form.locator('input[name="consent"]').isVisible(), "Consent field hidden");
-      return { projectChoices: 5, synchronizedBothWays: true, fbclid: true };
+
+      await page.goto(base + "/bezplatna-koncepcja-strony?fbclid=qa-check&typ=promo", {
+        waitUntil: "domcontentloaded", timeout: 45000,
+      });
+      await page.waitForFunction(() =>
+        document.querySelector('form.zm-concept-form input[name="mode"][value="promo"]')?.checked === true,
+        null, { timeout: 10000 });
+      assert.ok((await page.locator(".zm-concept-picked strong").innerText()).includes("gazetki"));
+      return { projectChoices: 5, radioSelection: true, querySelection: true, fbclid: true };
     });
     await check(size.name + ": Free concept page has readable contrast", async () => {
       await page.goto(base + "/bezplatna-koncepcja-strony?fbclid=qa-contrast", {
@@ -536,20 +546,35 @@ try {
       });
     }
     await check(size.name + ": approved homepage concepts and free offer links", async () => {
-      const response = await page.goto(base + "/", {waitUntil:"domcontentloaded",timeout:45000});
+      const response = await page.goto(base + "/", { waitUntil: "domcontentloaded", timeout: 45000 });
       assert.ok(response?.ok());
-      assert.equal(await page.locator('.inspiration-service-card').count(), 3);
-      for (const href of ['/bezplatna-koncepcja-strony#zgloszenie', '/modernizacja-strony#miniaudyt', '/demo/mapa-szans-zielona-marka']) {
-        assert.ok(await page.locator('.inspiration-story a[href="'+href+'"]').count(), href);
-      }
-      const link = page.locator('.zmh-contact-concepts .zm-sample-open');
-      await link.click();
-      const dialog = page.getByRole('dialog', {name:'Pełny podgląd koncepcji'});
-      await dialog.waitFor({state:'visible'});
-      await dialog.locator('img').evaluate(img => img.decode());
-      await page.keyboard.press('Escape');
-      await dialog.waitFor({state:'hidden'});
-      return {serviceCards:3,homeLightbox:true};
+      assert.equal(await page.locator(".inspiration-service-card").count(), 3);
+      const carousel = page.locator(".zm-home-offers");
+      await carousel.waitFor({ state: "visible", timeout: 15000 });
+      assert.equal(await carousel.locator(".zm-home-slide").count(), 3);
+
+      await carousel.getByRole("button", { name: "Pokaż slajd 1: Mini audyt" }).click();
+      const auditSlide = carousel.locator('.zm-home-slide[aria-label="Mini audyt"]');
+      assert.ok(await auditSlide.isVisible());
+      assert.ok(await auditSlide.locator('a[href="/modernizacja-strony#miniaudyt"]').isVisible());
+      assert.ok(await page.locator('.client-journey-grid a[href="/modernizacja-strony#miniaudyt"]').count());
+
+      await carousel.getByRole("button", { name: "Pokaż slajd 2: Mapa Szans" }).click();
+      const mapSlide = carousel.locator('.zm-home-slide[aria-label="Mapa Szans"]');
+      assert.ok(await mapSlide.isVisible());
+      assert.ok(await mapSlide.locator('a[href="/demo/mapa-szans-zielona-marka"]').isVisible());
+
+      await carousel.getByRole("button", { name: "Pokaż slajd 3: Bezpłatna koncepcja" }).click();
+      const conceptSlide = carousel.locator('.zm-home-slide[aria-label="Bezpłatna koncepcja"]');
+      assert.ok(await conceptSlide.isVisible());
+      assert.ok(await conceptSlide.locator('a[href="/bezplatna-koncepcja-strony"]').isVisible());
+
+      const auditResponse = await page.goto(base + "/modernizacja-strony#miniaudyt", {
+        waitUntil: "domcontentloaded", timeout: 45000,
+      });
+      assert.ok(auditResponse?.ok(), "Mini audit landing page not available");
+      assert.ok(await page.locator("section#miniaudyt form.contact-form").isVisible());
+      return { serviceCards: 3, offers: 3, auditAnchor: true };
     });
     if (size.name === "desktop") {
       await check("Desktop: Oferta opens and closes with Escape", async () => {
