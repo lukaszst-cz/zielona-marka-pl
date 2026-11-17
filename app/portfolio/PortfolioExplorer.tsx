@@ -30,9 +30,10 @@ function matchesIndustry(item: PortfolioItem, filter: string) {
 /* Wybrane prace w karuzeli: przejrzysty przekrój przez witryny, aplikacje i gazetki. */
 /* Karuzela pokazuje wylacznie pierwsze ekrany stron i gazetki; narzedzia i arkusze zostaja w katalogu nizej. */
 const featuredOrder = [
-  "materivo", "black-harbor", "aurea-smile", "centrum-budowlane-pwa", "eltravia", "solidom",
-  "navoro-hurt", "gazetka-navoro", "phu-marecki", "nexio-elektro",
-  "solident", "phu-marecki-aplikacja", "auto-naprawa", "okruch", "gazetka-nexio", "szlak",
+  "black-harbor", "aurea-smile", "phu-marecki", "centrum-budowlane-pwa",
+  "eltravia", "solidom", "navoro-hurt", "gazetka-navoro",
+  "nexio-elektro", "materivo", "solident", "phu-marecki-aplikacja",
+  "auto-naprawa", "okruch", "gazetka-nexio", "szlak",
 ];
 
 const AUTOPLAY_MS = 6500;
