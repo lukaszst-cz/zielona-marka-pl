@@ -352,7 +352,7 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
             <div className="zmp-project-info">
               <div className="zmp-project-meta"><span>{item.industry}</span>{item.downloadUrl && item.category !== "excel" && <span className="zmx-flow-chip">Przebieg pracy do pobrania</span>}{item.openAccess ? <span className="zmx-open-chip">{item.openAccess === "github" ? "Darmowe do pobrania" : "Darmowe online"}</span>
                   : item.status.includes("beta") ? <span>W budowie</span>
-                  : item.category === "przed-po" ? <span>Projekt demonstracyjny</span> : null}</div>
+                  : item.image?.startsWith("/concept-") ? <span>Projekt koncepcyjny</span> : null}</div>
               <h3><Link href={`/portfolio/${item.slug}`}>{item.title}</Link></h3>
               <p className="zmp-project-intro">{item.summary}</p>
               <ul className="zmx-card-points" aria-label="Co zastosowano w tej pracy">
