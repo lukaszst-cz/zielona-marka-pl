@@ -545,36 +545,31 @@ try {
         return { layouts: layoutVariants.length, screenshots: layoutVariants.length };
       });
     }
-    await check(size.name + ": approved homepage concepts and free offer links", async () => {
+    await check(size.name + ": homepage service cards and concept links", async () => {
       const response = await page.goto(base + "/", { waitUntil: "domcontentloaded", timeout: 45000 });
       assert.ok(response?.ok());
-      assert.equal(await page.locator(".inspiration-service-card").count(), 3);
-      const carousel = page.locator(".zm-home-offers");
-      await carousel.waitFor({ state: "visible", timeout: 15000 });
-      assert.equal(await carousel.locator(".zm-home-slide").count(), 3);
+      const cards = page.locator(".inspiration-service-card");
+      assert.equal(await cards.count(), 3, "Missing homepage service categories");
+      for (const category of ["www", "logo", "gazetki"]) {
+        assert.ok(await cards.locator('a[href="/portfolio?kategoria=' + category + '"]').count()
+          || await page.locator('.inspiration-service-card[href="/portfolio?kategoria=' + category + '"]').count(),
+          "Missing portfolio category: " + category);
+      }
 
-      await carousel.getByRole("button", { name: "Pokaż slajd 1: Mini audyt" }).click();
-      const auditSlide = carousel.locator('.zm-home-slide[aria-label="Mini audyt"]');
-      assert.ok(await auditSlide.isVisible());
-      assert.ok(await auditSlide.locator('a[href="/modernizacja-strony#miniaudyt"]').isVisible());
-      assert.ok(await page.locator('.client-journey-grid a[href="/modernizacja-strony#miniaudyt"]').count());
+      const story = page.locator(".inspiration-story");
+      await story.waitFor({ state: "attached", timeout: 15000 });
+      assert.ok(await story.locator('a[href="/bezplatna-koncepcja-strony#zgloszenie"]').count(),
+        "Missing free concept call to action");
+      assert.ok(await story.locator('a[href="/portfolio"]').count(), "Missing portfolio link");
 
-      await carousel.getByRole("button", { name: "Pokaż slajd 2: Mapa Szans" }).click();
-      const mapSlide = carousel.locator('.zm-home-slide[aria-label="Mapa Szans"]');
-      assert.ok(await mapSlide.isVisible());
-      assert.ok(await mapSlide.locator('a[href="/demo/mapa-szans-zielona-marka"]').isVisible());
+      const audit = page.locator('.client-journey-grid a[href="/modernizacja-strony#miniaudyt"]');
+      assert.equal(await audit.count(), 1, "Mini audit entry missing from client journeys");
+      await audit.click();
+      await page.waitForURL("**/modernizacja-strony#miniaudyt");
+      assert.ok(await page.locator("section#miniaudyt form.contact-form").isVisible(),
+        "Mini audit form did not open");
 
-      await carousel.getByRole("button", { name: "Pokaż slajd 3: Bezpłatna koncepcja" }).click();
-      const conceptSlide = carousel.locator('.zm-home-slide[aria-label="Bezpłatna koncepcja"]');
-      assert.ok(await conceptSlide.isVisible());
-      assert.ok(await conceptSlide.locator('a[href="/bezplatna-koncepcja-strony"]').isVisible());
-
-      const auditResponse = await page.goto(base + "/modernizacja-strony#miniaudyt", {
-        waitUntil: "domcontentloaded", timeout: 45000,
-      });
-      assert.ok(auditResponse?.ok(), "Mini audit landing page not available");
-      assert.ok(await page.locator("section#miniaudyt form.contact-form").isVisible());
-      return { serviceCards: 3, offers: 3, auditAnchor: true };
+      return { serviceCards: 3, conceptCta: true, auditAnchor: true };
     });
     if (size.name === "desktop") {
       await check("Desktop: Oferta opens and closes with Escape", async () => {
