@@ -4,7 +4,8 @@ import Link from "../../SafeLink";
 import { notFound } from "next/navigation";
 import { QuickWhatsApp, SiteFooter, SiteHeader } from "../../SiteChrome";
 import { findPortfolioItem, portfolioCategories, portfolioItems } from "../catalog";
-import ProjectCover from "../ProjectCover";
+import ZoomableProjectCover from "../ZoomableProjectCover";
+import "../zoom.css";
 import DetailMotion from "../DetailMotion";
 import { websiteCaseStudies } from "../websiteCaseStudies";
 import { additionalCaseStudies } from "../additionalCaseStudies";
@@ -76,7 +77,8 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
             <Link className="zmp-btn zmp-btn-outline" href={`/portfolio/druk?projekty=${item.slug}`} target="_blank" rel="noopener noreferrer">Zapisz kartę jako PDF ↗</Link>
           </div>
         </div>
-        <figure className="zmp-detail-visual" data-media={
+        <figure className="zmp-detail-visual" data-project={item.slug} data-media={
+          item.slug === "centrum-budowlane-pwa" ? "screen" :
           item.image?.includes("-ekran.webp") || item.image?.includes("-autentyczny-podglad.png")
             ? "screen"
             : ["gazetki", "logo", "przed-po", "excel"].includes(item.category) || item.image?.includes("/concept-samples-v2/")
@@ -84,9 +86,9 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
               : "photo"
         }>
           {item.image
-            ? <span className="zmx-detail-stage"><ProjectCover slug={item.slug} title={item.title} image={item.image} alt={item.alt} priority /></span>
+            ? <ZoomableProjectCover slug={item.slug} title={item.title} image={item.image} alt={item.alt} />
             : <div className="zmp-detail-placeholder"><span>Zielona Marka / portfolio</span><strong>{item.title}</strong><small>{item.industry}</small></div>}
-          <figcaption>{item.image ? `Kadr z projektu ${item.title}` : "Tej pracy nie pokazujemy na zrzucie"}</figcaption>
+          <figcaption>{item.image ? `Kadr z projektu ${item.title}. Kliknij obraz, aby go powiększyć.` : "Tej pracy nie pokazujemy na zrzucie"}</figcaption>
         </figure>
       </section>
       <section className="shell zmp-detail-text zmx-reveal">
