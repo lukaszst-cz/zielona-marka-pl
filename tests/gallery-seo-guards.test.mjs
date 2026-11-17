@@ -153,6 +153,9 @@ test("portfolio grid stays indexable and visible without scroll-reveal JavaScrip
   assert.match(css, /animation:none!important/, "Reduced-motion visitors must not receive scroll animation");
   assert.doesNotMatch(explorer, /is-revealed|ref=\{gridRef\}/);
   assert.match(cover, /fetchPriority=\{priority \? "high" : "auto"\}/);
+  assert.match(cover, /rootMargin: "420px 0px"/);
+  assert.match(cover, /<noscript>/, "Images need a fallback when JavaScript is disabled");
+  assert.match(explorer, /alt=\{item.alt\} deferImage/, "Deferred photos must only be enabled for the grid");
   assert.match(footprint, /"\/portfolio"/);
   assert.match(footprint, /"\/strony-internetowe-marki"/);
 });
