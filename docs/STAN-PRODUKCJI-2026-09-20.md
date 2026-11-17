@@ -21,7 +21,7 @@ Cloudflare Version ID: 85640ba8-348b-419e-bca9-cc54007df764
 - To wydanie dotyczy wyglądu. Nie wykonano ponownie pełnego testu wysyłki e-mail, płatności ani zewnętrznych integracji.
 
 ## Źródło i odtworzenie
-Aktualny katalog: C:\Users\User\OneDrive\Documents\ChatGPT\PRACA\zielona-marka-full-fix
+Aktualny katalog projektu: `zielona-marka-full-fix`
 Prototypy V05/V06 i wcześniejsze wpisy są historyczne, nie zastępują tego wydania.
 Kod: ZIELONA-MARKA-KOD-FINAL-2026-09-20.zip (app, db, worker, konfiguracja, lockfile, testy, dokumentacja).
 Osobne istniejące archiwa obrazów, demonstracji i części filmu pozostają w folderze Drive.

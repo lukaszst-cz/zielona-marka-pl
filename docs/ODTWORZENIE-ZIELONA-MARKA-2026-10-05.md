@@ -3,7 +3,7 @@
 Stan kopii: 5 października 2026  
 Strona: https://zielona-marka.pl  
 Repozytorium: https://github.com/lukaszst-cz/zielona-marka-pl  
-Gałąź kopii: `codex/published-unified-2026-10-05`  
+Gałąź kopii: robocza gałąź z 5.10.2026 (powiązana z pull requestem nr 2)  
 Pull request: https://github.com/lukaszst-cz/zielona-marka-pl/pull/2  
 Cloudflare Worker: `zielona-marka`  
 Wersja wdrożona: `f877b757-de48-47e2-93b1-3cbc6fd9e473`
@@ -104,7 +104,7 @@ Mapa https://zielona-marka.pl/sitemap.xml została ponownie przesłana 5 paździ
 
 ## GitHub i sposób dalszej pracy
 
-Aktualna kopia została wysłana na gałąź `codex/published-unified-2026-10-05`. Pull request nr 2 prowadzi do gałęzi `main`. Nie należy nadpisywać `main` na siłę. Zmiany powinny przejść przez pull request oraz test GitHub Actions.
+Aktualna kopia została wysłana na gałąź roboczą powiązaną z pull requestem nr 2. Pull request nr 2 prowadzi do gałęzi `main`. Nie należy nadpisywać `main` na siłę. Zmiany powinny przejść przez pull request oraz test GitHub Actions.
 
 ## Strumyk na stronie głównej
 

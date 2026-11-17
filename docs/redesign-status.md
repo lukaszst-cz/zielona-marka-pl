@@ -19,8 +19,8 @@ Aktualizacja: 14 września 2026, podsumowanie po nocnych pracach.
 - Google Drive: świeżo otwarty folder w przeglądarce pokazywał instrukcję i raport, bez ZIP-a. ZIP istnieje w lokalnym G:, ale log DriveFS zawiera timeouty przesyłania. Kopia chmurowa pozostaje NIEPOTWIERDZONA.
 - Notion: dokumentacja istnieje; próby przesłania części archiwum 19 MB i 4 MB zakończyły się timeoutem, sprawdzone uploady mają status pending. Żadna część nie została dołączona do strony. Lokalnie przygotowane części nie są kopią w chmurze. Pełny eksport DNS/reguł Cloudflare nadal brak (wcześniej 403).
 - Termin pracy nocnej minął; automatyzacja została wstrzymana podczas podsumowania. Dalsza praca w tym zadaniu pozostaje lokalna, bez publikacji.
-Gałąź: `codex/organic-home-prototype`.
-Projekt: `C:\Users\User\OneDrive\Documents\ChatGPT\PRACA\zielona-marka-full-fix`.
+Gałąź robocza projektu (identyfikator dostępny w historii Git).
+Projekt lokalny: `zielona-marka-full-fix`.
 
 ## Granice pracy
 
@@ -61,7 +61,7 @@ Użytkownik zatwierdził wykonanie nowej wersji lokalnie i pracę przez noc. NIE
 
 Podgląd: http://127.0.0.1:4180. Sesja serwera może nie przetrwać do następnego uruchomienia.
 
-Node: `C:\Users\User\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe`.
+Node: lokalna instalacja Node.js zgodna z wymaganiami projektu.
 
 Zatrzymaj proces podglądu PRZED buildem (blokada plików dist na Windows powoduje EPERM). Nie ubijaj wszystkich procesów Node, tylko własną sesję podglądu. Wywołania w katalogu projektu:
 
@@ -71,7 +71,7 @@ node node_modules/wrangler/bin/wrangler.js dev --local --config wrangler.preview
 node --test tests/rendered-html.test.mjs tests/local-city-grammar.test.mjs
 ```
 
-Skrypty QA wymagają lokalnego Chrome i ścieżki do Playwright z runtime Codex. `review-local.mjs` tworzy syntetyczny rekord w lokalnej D1 za każdym uruchomieniem; nie uruchamiać przeciwko produkcji.
+Skrypty QA wymagają lokalnego Chrome i dostępnego środowiska Playwright. `review-local.mjs` tworzy syntetyczny rekord w lokalnej D1 za każdym uruchomieniem; nie uruchamiać przeciwko produkcji.
 
 ## Archiwum i dokumentacja
 
@@ -79,7 +79,7 @@ Notion: https://app.notion.com/p/3da72bf39ceb8171aa4dccba013faf90?pvs=204
 
 Google Drive: https://drive.google.com/drive/folders/1gmBnkBfrd2yw01bJriv73elHqNGMiufK
 
-Lokalne archiwum starej wersji: `C:\Users\User\Documents\Codex\backups\zielona-marka`, ZIP 130203373 B, SHA-256 `14690B140927429CBCBC7E78A1DA6B09E625A81584C1057B5603B9C9FE20BAAB`. Synchronizowana kopia lokalna miała tę samą sumę; pobranie z chmury niepotwierdzone.
+Lokalne archiwum starej wersji: ZIP 130203373 B, SHA-256 `14690B140927429CBCBC7E78A1DA6B09E625A81584C1057B5603B9C9FE20BAAB`. Synchronizowana kopia lokalna miała tę samą sumę; pobranie z chmury niepotwierdzone.
 
 ## Automatyzacja
 
