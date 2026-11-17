@@ -266,6 +266,42 @@ const katalog: PortfolioItem[] = [
     "downloadLabel": "Pobierz przebieg pracy (XLSX)",
   },
   {
+    "slug": "beata-beauty-atelier",
+    "title": "BEATA Beauty Atelier",
+    "category": "www",
+    "industry": "Beauty i pielęgnacja",
+    "summary": "Koncepcja strony atelier beauty z prezentacją oferty i demonstracyjną ścieżką rezerwacji.",
+    "explanation": "Nieoficjalna demonstracja marki Zielona Marka. Pokazuje sposób przedstawienia salonu i oferty w oprawie wizualnej dopasowanej do usług beauty. Rezerwacje służą wyłącznie do prezentacji interfejsu i nie trafiają do systemu rezerwacyjnego.",
+    "features": [
+      "Autorska oprawa wizualna atelier",
+      "Prezentacja usług i zdjęć",
+      "Demonstracyjna ścieżka rezerwacji",
+      "Wersja do obejrzenia w przeglądarce"
+    ],
+    "demoUrl": "https://beata-beauty-atelier.vercel.app/",
+    "image": "https://beata-beauty-atelier.vercel.app/assets/beata-cover.png",
+    "alt": "Grafika projektu BEATA Beauty Atelier",
+    "status": "projekt demonstracyjny"
+  },
+  {
+    "slug": "kordon-barber-studio",
+    "title": "KORDON Barber Studio",
+    "category": "www",
+    "industry": "Usługi fryzjerskie i barbering",
+    "summary": "Koncepcja strony salonu barberskiego z ofertą usług, prezentacją kosmetyków i przykładowymi rezerwacjami.",
+    "explanation": "Nieoficjalna demonstracja marki Zielona Marka. Strona łączy charakterystyczną oprawę salonu z ofertą i kartami kosmetyków. Koszyk i rezerwacje są demonstracyjne: nie ma integracji z Booksy, magazynem ani płatnościami. Formularz przygotowuje wiadomość w programie pocztowym.",
+    "features": [
+      "Prezentacja usług barberskich",
+      "Karty produktów i fotografie",
+      "Demonstracyjny koszyk i rezerwacje",
+      "Formularz otwierający program pocztowy"
+    ],
+    "demoUrl": "https://kordon-barber-studio-zielona-marka.vercel.app/",
+    "image": "https://kordon-barber-studio-zielona-marka.vercel.app/assets/hero.webp",
+    "alt": "Fotografia główna w koncepcji KORDON Barber Studio",
+    "status": "projekt demonstracyjny"
+  },
+  {
     "slug": "black-harbor",
     "title": "BLACK HARBOR",
     "category": "www",
