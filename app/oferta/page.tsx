@@ -68,6 +68,7 @@ export default function OfferPage() {
       <p className="legal-note">Ceny są cenami wyjściowymi i dotyczą zakresu opisanego powyżej. Liczbę podstron liczymy łącznie ze stroną główną i kontaktem, jeśli mają osobne adresy. Limity słów, zasady poprawek i wyłączenia opisują <Link href="/warunki-wspolpracy">warunki współpracy</Link>.</p>
     </section>
 
+    <section className="shell zm-addons-bridge" aria-label="Przejście do cennika dodatków"><div><b>To cennik podstawowy.</b><p>Do każdego pakietu możesz dobrać dodatki, na przykład kolejne podstrony, rezerwacje, sklep albo większą liczbę języków.</p></div><Link className="button" href="/cennik-dodatkow">Zobacz cennik dodatków <span>↗</span></Link></section>
     <section className="section shell" aria-labelledby="standards-title"><div className="section-head"><div><span className="section-no">W KAŻDYM PAKIECIE</span><h2 id="standards-title">Te rzeczy mają wszyscy klienci.</h2></div><p>Nie musisz się zastanawiać, czy wersja na telefon, certyfikat SSL albo uruchomienie strony są płatne osobno.</p></div>
       <ul className="zm-standards">{packageStandards.map(([name, text]) => <li key={name}><b>{name.toUpperCase()}</b>{text}</li>)}</ul>
       <details className="zm-compare"><summary>Porównaj pakiety w tabeli</summary><div className="zm-compare-scroll"><table>
