@@ -167,3 +167,22 @@ html body .improvements-page .seo-related-grid a>b{font:700 14px/1.5 Arial,sans-
 html body .improvements-page .process-strip span{padding:10px 18px!important;border-radius:999px!important;font:15px/1.4 Arial,sans-serif!important;letter-spacing:0!important;text-transform:none!important;background:rgba(5,32,21,.3)!important;border:1px solid rgba(197,222,186,.32)!important;color:#f5f8f1!important}
 html body .improvements-page .process-strip i{color:#b0f36c;font-style:normal}
 html body .improvements-page .transport-demo .text-link{font:700 14px/1.5 Arial,sans-serif!important;letter-spacing:0!important;text-transform:none!important}
+/* Przejście z cennika pakietów do cennika dodatków */
+html body .zm-public .zm-addons-bridge{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 28px;padding:20px 24px;margin-block:8px 0;background:rgba(5,32,21,.3);border:1px solid rgba(197,222,186,.32);border-left:3px solid rgba(176,243,108,.75);border-radius:12px}
+html body .zm-public .zm-addons-bridge b{font-size:17px;color:#f5f8f1}
+html body .zm-public .zm-addons-bridge p{margin:4px 0 0;font-size:15px;color:#dcebd4;max-width:62ch}
+html body .zm-header .zm-nav-desktop a.zm-nav-price{color:#d9ef9a;font-weight:700}
+html body .zm-header .zm-mega-group,html body .zm-header .zm-mobile-menu-group{background:rgba(12,45,32,.9)!important}
+
+/* Menu oferty na komputerze: zwarte, żeby mieściło się bez przewijania */
+@media(min-width:851px){
+html body .zm-header .zm-nav-desktop .zm-offer-menu>.zm-mega-menu{padding:20px 24px!important;gap:20px!important;max-height:calc(100vh - 100px)!important}
+html body .zm-header .zm-mega-intro p{margin:0 0 14px}
+html body .zm-header .zm-mega-intro>strong{margin-bottom:10px}
+html body .zm-header .zm-mega-quick-actions{margin-top:10px;gap:7px}
+html body .zm-header .zm-mega-groups{gap:14px 20px!important}
+html body .zm-header .zm-mega-group{padding:12px 16px!important}
+html body .zm-header .zm-mega-group h2{margin:0 0 3px}
+html body .zm-header .zm-mega-group p{margin:0 0 6px;line-height:1.4}
+html body .zm-header .zm-mega-group a{min-height:32px!important;padding:5px 0!important;line-height:1.3!important}
+}
