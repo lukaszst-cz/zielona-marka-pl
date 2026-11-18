@@ -73,14 +73,14 @@ export function SiteHeader({ english = false }: { english?: boolean }) {
               </section>)}</div>
             </div>
           </details>}
-      <Link href={english ? "/en#projects" : "/portfolio"}>{english ? "Projects" : "Portfolio"}</Link>{!english && <><Link className="zm-nav-studio" href="/projektuj-strone">ZM Studio</Link><Link href="/poradnik">Blog</Link></>}<Link href={english ? "/en#process" : "/jak-pracuje"}>{english ? "Working together" : "Współpraca"}</Link>{!english && <Link href="/standardy-jakosci">Standardy jakości</Link>}<Link href={english ? "/en#contact" : "/kontakt"}>{english ? "Contact" : "Kontakt"}</Link><Link className="zm-client-link" href="/status" rel="nofollow">{english ? "Client area (PL)" : "Strefa klienta"}</Link>
+      <Link href={english ? "/en#projects" : "/portfolio"}>{english ? "Projects" : "Portfolio"}</Link>{!english && <><Link className="zm-nav-studio" href="/projektuj-strone">ZM Studio</Link><Link href="/poradnik">Blog</Link></>}<Link href={english ? "/en#process" : "/jak-pracuje"}>{english ? "Working together" : "Współpraca"}</Link>{!english && <Link href="/cennik-dodatkow">Cennik dodatków</Link>}<Link href={english ? "/en#contact" : "/kontakt"}>{english ? "Contact" : "Kontakt"}</Link><Link className="zm-client-link" href="/status" rel="nofollow">{english ? "Client area (PL)" : "Strefa klienta"}</Link>
       <LanguageSwitch english={english} />
     </div>
     <details className="zm-mobile-menu"><summary>Menu <span aria-hidden="true">+</span></summary>
       <div className="zm-mobile-menu-panel">
         {english ? <><a href="/en#services">Services</a><a href="/en#projects">Projects</a><a href="/en#process">Working together</a><a href="/en#contact">Contact</a></>
           : <>
-            <div className="zm-mobile-menu-shortcuts"><Link className="zm-mega-price" href="/oferta">Oferta i ceny</Link><Link href="/portfolio">Portfolio</Link><Link href="/poradnik">Blog</Link><Link href="/standardy-jakosci">Standardy jakości</Link><Link href="/kontakt">Kontakt</Link></div>
+            <div className="zm-mobile-menu-shortcuts"><Link className="zm-mega-price" href="/oferta">Oferta i ceny</Link><Link href="/portfolio">Portfolio</Link><Link href="/poradnik">Blog</Link><Link href="/cennik-dodatkow">Cennik dodatków</Link><Link href="/kontakt">Kontakt</Link></div>
             {offerGroups.map((group) => <section className="zm-mobile-menu-group" key={group.title} aria-label={group.title}>
               <h2>{group.title}</h2>
               {group.links.map(([label, href]) => <Link href={href} key={href}>{label}</Link>)}
