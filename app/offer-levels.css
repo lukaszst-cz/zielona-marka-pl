@@ -132,7 +132,7 @@ html body .zm-footer .zm-footer2-billing[open] summary::after{content:"−"}
 html body .zm-footer .zm-footer2-billing p{font-size:13px!important}
 
 /* Pasek kontaktu: półprzezroczysty zamiast pełnej zieleni, spokojniejsze przyciski */
-html body .zm-contact-dock{background:rgba(4,20,13,.45)!important;backdrop-filter:blur(5px);border-top:1px solid rgba(197,222,186,.28)!important}
+html body .zm-contact-dock{background:rgba(4,20,13,.55)!important;border-top:1px solid rgba(197,222,186,.28)!important}
 html body .zm-contact-dock .demo-assistant-trigger{background:rgba(5,32,21,.5)!important;color:#f5f8f1!important;border:1px solid rgba(176,243,108,.55)!important;box-shadow:none!important}
 html body .zm-contact-dock .demo-assistant-trigger:hover{background:rgba(10,45,29,.7)!important}
 html body .zm-contact-dock .demo-assistant-trigger>span{color:#b0f36c!important;background:transparent!important}
