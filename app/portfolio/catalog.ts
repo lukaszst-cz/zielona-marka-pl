@@ -279,8 +279,8 @@ const katalog: PortfolioItem[] = [
       "Wersja do obejrzenia w przeglądarce"
     ],
     "demoUrl": "https://beata-beauty-atelier.vercel.app/",
-    "image": "https://beata-beauty-atelier.vercel.app/assets/beata-cover.png",
-    "alt": "Grafika projektu BEATA Beauty Atelier",
+    "image": "https://d2ol7oe51mr4n9.cloudfront.net/user_3JF0bAXNGCfkXeILZKHayHagGgi/9ae8465b-773b-40f2-b0cd-b4c6993faa66.png",
+    "alt": "Zrzut ekranu BEATA Beauty Atelier: różowa kompozycja perfum i hasło Piękno w Twoim rytmie",
     "status": "projekt demonstracyjny"
   },
   {
@@ -297,8 +297,8 @@ const katalog: PortfolioItem[] = [
       "Formularz otwierający program pocztowy"
     ],
     "demoUrl": "https://kordon-barber-studio-zielona-marka.vercel.app/",
-    "image": "https://kordon-barber-studio-zielona-marka.vercel.app/assets/hero.webp",
-    "alt": "Fotografia główna w koncepcji KORDON Barber Studio",
+    "image": "https://d2ol7oe51mr4n9.cloudfront.net/user_3JF0bAXNGCfkXeILZKHayHagGgi/addcea12-ae99-406d-9947-089b3d0b79e9.jpg",
+    "alt": "Zrzut ekranu KORDON Barber Studio: Barbering z charakterem",
     "status": "projekt demonstracyjny"
   },
   {
@@ -1156,6 +1156,7 @@ const katalog: PortfolioItem[] = [
 const kolejnosc = [
   // Wdrożone i działające demonstracje: WWW, workflow, aplikacje oraz materiały do pobrania
   "black-harbor", "phu-marecki", "eltravia", "aurea-smile",
+  "kordon-barber-studio", "beata-beauty-atelier",
   "solidom", "navoro-hurt", "gazetka-navoro", "centrum-budowlane-pwa",
   "solident", "nexio-elektro", "gazetka-nexio", "budrivo",
   "gazetka-budrivo", "phu-marecki-aplikacja", "materivo-eko", "auto-naprawa",

@@ -36,7 +36,8 @@ test("all portfolio thumbnails refer to existing local assets", async () => {
   const approvedExternalHosts = new Set([
     "budrivo.vercel.app", "navoro-hurt-koncepcja.vercel.app", "nexio-elektro.vercel.app", "materivo3.netlify.app",
     "solidom.vercel.app", "blackharbor.vercel.app", "eltravia-premium.vercel.app", "images.unsplash.com",
-    "beata-beauty-atelier.vercel.app", "kordon-barber-studio-zielona-marka.vercel.app"
+    "beata-beauty-atelier.vercel.app", "kordon-barber-studio-zielona-marka.vercel.app",
+    "d2ol7oe51mr4n9.cloudfront.net"
   ]);
   for (const path of paths) {
     if (path.startsWith("https://")) {
@@ -105,4 +106,28 @@ test("portfolio workflow pairings link to real projects and downloadable workboo
   for (const slug of ["excel-dashboard", "excel-wycena", "excel-crm"]) {
     assert.ok(flowPage.includes('slug: "' + slug + '"'));
   }
+});
+
+
+test("Excel workbooks are hidden from the default gallery but stay accessible", async () => {
+  const [explorer, details, downloads, pairings, catalog] = await Promise.all([
+    read("../app/portfolio/PortfolioExplorer.tsx"),
+    read("../app/portfolio/[slug]/page.tsx"),
+    read("../app/portfolio/WorkbookDownloads.tsx"),
+    read("../app/portfolio/relatedWorkbooks.ts"),
+    read("../app/portfolio/catalog.ts"),
+  ]);
+  const excelSlugs = [...catalog.matchAll(/"slug": "(excel-[^"]+)"/g)].map(m => m[1]);
+  assert.equal(excelSlugs.length, 12, "All twelve Excel catalog entries must stay available");
+  assert.match(explorer, /item\.category !== "excel" \|\| format === "excel" \|\| Boolean\(query\)/);
+  assert.match(explorer, /setFormat\("excel"\)/);
+  assert.match(explorer, /id="zmp-excel-spotlight-title"/);
+  assert.match(details, /<WorkbookDownloads item=\{item\} \/>/);
+  assert.match(downloads, /download/);
+  for (const slug of excelSlugs) {
+    assert.ok(pairings.includes('"' + slug + '"'), slug + " should be linked with a project");
+  }
+  const urls = [...catalog.matchAll(/"downloadUrl": "(\/pliki\/[^"]+\.xlsx)"/g)].map(m => m[1]);
+  assert.ok(urls.length >= 13);
+  for (const url of new Set(urls)) await access(new URL("../public" + url, here));
 });

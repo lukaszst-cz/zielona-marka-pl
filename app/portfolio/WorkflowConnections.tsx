@@ -176,7 +176,6 @@ export default function WorkflowConnections({ item }: { item: PortfolioItem }) {
   if (!connection) return null;
 
   const workbook = connection.workbookSlug ? findPortfolioItem(connection.workbookSlug) : item;
-  const fileUrl = workbook?.downloadUrl;
   const examples = connection.featuredProjects
     .map(slug => findPortfolioItem(slug))
     .filter((project): project is PortfolioItem => Boolean(project));
@@ -210,13 +209,12 @@ export default function WorkflowConnections({ item }: { item: PortfolioItem }) {
       </> : <>
         <div>
           <strong>Sprawdź przykładowe zaplecze</strong>
-          <p>Otwórz opis skoroszytu lub pobierz plik do własnej analizy.</p>
+          <p>Opis powiązanego arkusza znajdziesz poniżej, a pliki do pobrania w sekcji nad opisem procesu.</p>
         </div>
         <nav aria-label="Arkusz i narzędzia powiązane z projektem">
           {connection.workbookSlug && workbook && <Link href={"/portfolio/" + workbook.slug}>
             Zobacz arkusz: {workbook.title}<span aria-hidden="true"> ↗</span>
           </Link>}
-          {fileUrl && <a href={fileUrl} download>Pobierz przykładowy arkusz XLSX <span aria-hidden="true">↓</span></a>}
           {!connection.workbookSlug && <Link href="/projekty-flow">Zobacz inne procesy i narzędzia <span aria-hidden="true">↗</span></Link>}
         </nav>
       </>}
