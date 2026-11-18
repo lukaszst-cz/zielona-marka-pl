@@ -31,6 +31,7 @@ function matchesIndustry(item: PortfolioItem, filter: string) {
 /* Na scenie są wybrane realizacje WWW, ich dodatki i aplikacje. Pozostałe materiały są niżej w katalogu. */
 const featuredOrder = [
   "black-harbor", "phu-marecki", "eltravia", "aurea-smile",
+  "kordon-barber-studio", "beata-beauty-atelier",
   "solidom", "navoro-hurt", "gazetka-navoro", "centrum-budowlane-pwa",
   "solident", "nexio-elektro", "gazetka-nexio", "budrivo",
   "phu-marecki-aplikacja", "materivo-eko", "auto-naprawa", "gazetka-budrivo",
@@ -38,6 +39,7 @@ const featuredOrder = [
 
 const AUTOPLAY_MS = 6500;
 function mediaPresentation(item: PortfolioItem): "screen" | "art" | "photo" {
+  if (item.slug === "kordon-barber-studio" || item.slug === "beata-beauty-atelier") return "screen";
   if (item.cardImage) return "photo";
   const src = item.image || "";
   if (src.includes("-ekran.webp") || src.includes("-autentyczny-podglad.png") || src.endsWith(".svg")) return "screen";
