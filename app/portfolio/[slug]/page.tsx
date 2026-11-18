@@ -6,6 +6,7 @@ import { QuickWhatsApp, SiteFooter, SiteHeader } from "../../SiteChrome";
 import { findPortfolioItem, portfolioCategories, portfolioItems } from "../catalog";
 import ZoomableProjectCover from "../ZoomableProjectCover";
 import WorkflowConnections from "../WorkflowConnections";
+import WorkbookDownloads from "../WorkbookDownloads";
 import "../zoom.css";
 import DetailMotion from "../DetailMotion";
 import { websiteCaseStudies } from "../websiteCaseStudies";
@@ -99,7 +100,7 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
           {item.image?.startsWith("/concept-") && <div className="zmp-detail-status">Materiał koncepcyjny. Grafika pokazuje kierunek projektu, a nie wdrożenie u klienta.</div>}
           <div className="zmp-detail-actions">
             {item.demoUrl && <a className="zmp-btn zmp-btn-strong" href={item.demoUrl} target={item.demoUrl.startsWith("http") ? "_blank" : undefined} rel={item.demoUrl.startsWith("http") ? "noopener noreferrer" : undefined}>Zobacz, jak to działa ↗</a>}
-            {item.downloadUrl && <a className="zmp-btn zmp-btn-strong" href={item.downloadUrl} download>{item.downloadLabel ?? "Pobierz plik"} ↓</a>}
+            {item.category === "excel" && item.downloadUrl && <a className="zmp-btn zmp-btn-strong" href={item.downloadUrl} download>{item.downloadLabel ?? "Pobierz plik"} ↓</a>}
             {item.slug === "centrum-budowlane-pwa" && <a className="zmp-btn zmp-btn-outline" href="https://github.com/lukaszst-cz/centrum-budowlane-pwa" target="_blank" rel="noopener noreferrer">Zobacz kod na GitHubie ↗</a>}
             <Link className="zmp-btn zmp-btn-outline" href={`/portfolio/druk?projekty=${item.slug}`} target="_blank" rel="noopener noreferrer">Zapisz kartę jako PDF ↗</Link>
           </div>
@@ -118,6 +119,7 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
           <figcaption>{item.image ? `Kadr z projektu ${item.title}. Kliknij obraz, aby go powiększyć.` : "Tej pracy nie pokazujemy na zrzucie"}</figcaption>
         </figure>
       </section>
+      <WorkbookDownloads item={item} />
       {materivoAlternative && <section className="shell zmp-materivo-variants zmx-reveal" aria-label="Warianty projektu MATERIVO">
         <div>
           <span className="zmp-overline">DWA WARIANTY JEDNEJ KONCEPCJI</span>
