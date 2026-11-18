@@ -162,3 +162,4 @@ html body .zm-public .zm-addons-bridge{display:flex;flex-wrap:wrap;align-items:c
 html body .zm-public .zm-addons-bridge b{font-size:17px;color:#f5f8f1}
 html body .zm-public .zm-addons-bridge p{margin:4px 0 0;font-size:15px;color:#dcebd4;max-width:62ch}
 html body .zm-header .zm-nav-desktop a.zm-nav-price{color:#d9ef9a;font-weight:700}
+html body .zm-header .zm-mega-group,html body .zm-header .zm-mobile-menu-group{background:rgba(12,45,32,.9)!important}
