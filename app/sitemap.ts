@@ -6,7 +6,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const localCities = ["zabki", "zielonka", "kobylka", "wolomin", "radzymin", "targowek", "bialoleka", "warszawa"];
   return [
     { url: base, lastModified: new Date("2026-11-17"), changeFrequency: "weekly", priority: 1 },
-    { url: `${base}/oferta`, lastModified: new Date("2026-10-14"), changeFrequency: "weekly", priority: .9 },
+    { url: `${base}/oferta`, lastModified: new Date("2026-11-18"), changeFrequency: "weekly", priority: .9 },
+    { url: `${base}/cennik-dodatkow`, lastModified: new Date("2026-11-18"), changeFrequency: "monthly", priority: .8 },
+    { url: `${base}/warunki-wspolpracy`, lastModified: new Date("2026-11-18"), changeFrequency: "monthly", priority: .6 },
     { url: `${base}/opieka-nad-strona`, lastModified: new Date("2026-10-14"), changeFrequency: "monthly", priority: .78 },
     { url: `${base}/dtp`, lastModified: new Date("2026-10-14"), changeFrequency: "monthly", priority: .82 },
     { url: `${base}/projektuj-strone`, lastModified: new Date("2026-10-14"), changeFrequency: "monthly", priority: .84 },
