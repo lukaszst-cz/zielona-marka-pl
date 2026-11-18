@@ -694,7 +694,15 @@ try {
         assert.ok(response?.ok(), "Portfolio is unavailable");
         const cards = page.locator(".zmp-project-card");
         await cards.first().waitFor({ state: "attached", timeout: 15000 });
-        assert.ok(await cards.count() >= 55, "The catalog should retain all public projects");
+        const mainGalleryCount = await cards.count();
+        assert.ok(mainGalleryCount >= 40, "The main gallery should still show website and app projects");
+        assert.equal(await cards.locator('a[href^="/portfolio/excel-"]').count(), 0,
+          "Standalone Excel workbooks must not appear in the default gallery");
+        assert.equal(await page.locator(".zmp-excel-spotlight button").count(), 1,
+          "The Excel catalog must remain reachable from the main gallery");
+        const featuredTitles = await cards.locator("h3").allTextContents();
+        assert.equal(featuredTitles[4]?.trim(), "KORDON Barber Studio", "KORDON should be high in the gallery");
+        assert.equal(featuredTitles[5]?.trim(), "BEATA Beauty Atelier", "BEATA should be next to KORDON");
         const opacityBefore = await cards.evaluateAll(elements =>
           elements.every(element => getComputedStyle(element).opacity === "1"));
         assert.ok(opacityBefore, "Cards must be visible even before scrolling or running reveal JS");
@@ -706,13 +714,15 @@ try {
         const noOverflow = await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 8);
         assert.ok(noOverflow, "Portfolio overflows the viewport");
 
-        await page.locator(".zmp-format-field select").selectOption("excel");
-        await page.waitForTimeout(120);
-        assert.equal(await cards.count(), 12, "Excel filter should return 12 portfolio projects");
+        await page.locator(".zmp-excel-spotlight button").click();
+        await page.waitForFunction(() => document.querySelectorAll(".zmp-project-card").length === 12);
+        assert.equal(await cards.count(), 12, "The Excel shortcut must reveal all 12 workbooks");
         const filteredVisible = await cards.evaluateAll(elements =>
           elements.every(element => getComputedStyle(element).opacity === "1"));
         assert.ok(filteredVisible, "Filtered cards must appear immediately, without scroll reveal");
-        return { fullCatalog: true, filteredExcelCount: 12, immediateVisibility: true };
+        assert.equal(await cards.locator('a[href^="/portfolio/excel-"]').count(), 24,
+          "All twelve Excel entries should link to their preserved detail pages");
+        return { mainGalleryCount, filteredExcelCount: 12, immediateVisibility: true };
       });
     }
 
@@ -728,6 +738,10 @@ try {
         await section.waitFor({ state: "attached", timeout: 12000 });
         assert.equal(await section.locator('a[href="/portfolio/' + workbook + '"]').count(), 1,
           "Missing workbook link for " + site);
+        const downloads = page.locator(".zmp-related-workbooks");
+        await downloads.waitFor({ state: "attached", timeout: 12000 });
+        assert.ok(await downloads.locator('a[href^="/pliki/"][download]').count(),
+          "Project should expose a real downloadable XLSX: " + site);
         assert.ok(await section.getByText(/nie wymieniają automatycznie danych/).count(),
           "Missing information about separate demo systems");
 
