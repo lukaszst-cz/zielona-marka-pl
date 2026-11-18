@@ -157,6 +157,16 @@ html body .zm-header .zm-mega-quick-actions a:not(.zm-mega-price){background:rgb
 html body .zm-header .zm-mobile-menu-shortcuts a.zm-mega-price{background:#b7f185;color:#122916;border-radius:5px;font-weight:700}
 html body .zm-header .zm-mega-group a[href="/oferta"],html body .zm-header .zm-mobile-menu-group a[href="/oferta"],html body .zm-header .zm-mega-group a[href="/cennik-dodatkow"],html body .zm-header .zm-mobile-menu-group a[href="/cennik-dodatkow"]{font-weight:700;color:#d9ef9a}
 
+/* Usprawnienia firmy: ten sam wygląd kart, znaczników i odnośników co na ofercie */
+html body .improvements-page :is(.situation-grid article,.tool-grid article,.seo-related-grid a){background:rgba(5,32,21,.3)!important;border:1px solid rgba(197,222,186,.32)!important;border-radius:12px!important;box-shadow:0 14px 38px rgba(0,16,9,.2)!important;backdrop-filter:blur(5px)!important;transform:none!important}
+html body .improvements-page :is(.situation-grid article,.tool-grid article,.seo-related-grid a):is(:hover,:focus-visible){background:rgba(10,45,29,.42)!important;border-color:rgba(197,222,186,.5)!important;transform:none!important}
+html body .improvements-page :is(.situation-grid,.tool-grid) h3,html body .improvements-page .seo-related-grid h3{font:400 22px/1.25 Arial,sans-serif!important;color:#f5f8f1!important}
+html body .improvements-page :is(.situation-grid,.tool-grid) p,html body .improvements-page .seo-related-grid p{font:15px/1.6 Arial,sans-serif!important;color:#dcebd4!important}
+html body .improvements-page .seo-related-grid a>span{font:700 13px/1.4 Arial,sans-serif!important;letter-spacing:.08em;color:#b0f36c!important}
+html body .improvements-page .seo-related-grid a>b{font:700 14px/1.5 Arial,sans-serif!important;color:#b0f36c!important;text-transform:none!important;letter-spacing:0!important}
+html body .improvements-page .process-strip span{padding:10px 18px!important;border-radius:999px!important;font:15px/1.4 Arial,sans-serif!important;letter-spacing:0!important;text-transform:none!important;background:rgba(5,32,21,.3)!important;border:1px solid rgba(197,222,186,.32)!important;color:#f5f8f1!important}
+html body .improvements-page .process-strip i{color:#b0f36c;font-style:normal}
+html body .improvements-page .transport-demo .text-link{font:700 14px/1.5 Arial,sans-serif!important;letter-spacing:0!important;text-transform:none!important}
 /* Przejście z cennika pakietów do cennika dodatków */
 html body .zm-public .zm-addons-bridge{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 28px;padding:20px 24px;margin-block:8px 0;background:rgba(5,32,21,.3);border:1px solid rgba(197,222,186,.32);border-left:3px solid rgba(176,243,108,.75);border-radius:12px}
 html body .zm-public .zm-addons-bridge b{font-size:17px;color:#f5f8f1}
