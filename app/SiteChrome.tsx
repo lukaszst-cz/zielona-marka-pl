@@ -64,9 +64,9 @@ export function SiteHeader({ english = false }: { english?: boolean }) {
     <div className="zm-nav-desktop">
       {english
         ? <Link href="/en#services">Services</Link>
-        : <details className="zm-offer-menu"><summary>Oferta <span aria-hidden="true">⌄</span></summary>
+        : <details className="zm-offer-menu"><summary>Oferta i ceny <span aria-hidden="true">⌄</span></summary>
             <div className="zm-mega-menu">
-              <div className="zm-mega-intro"><strong>W czym mogę Ci pomóc?</strong><p>Zajrzyj do usług i przykładów, łatwiej będzie wybrać, od czego zacząć.</p><div className="zm-mega-quick-actions"><Link href="/projektuj-strone">Zaprojektuj własną stronę ↗</Link><Link href="/oferta">Porównaj pakiety i ceny ↗</Link><Link href="/dtp">Projekt do druku ↗</Link></div></div>
+              <div className="zm-mega-intro"><strong>W czym mogę Ci pomóc?</strong><p>Zajrzyj do usług i przykładów, łatwiej będzie wybrać, od czego zacząć.</p><div className="zm-mega-quick-actions"><Link className="zm-mega-price" href="/oferta"><span>Porównaj pakiety i ceny ↗</span><small>strony od 899 zł netto</small></Link><Link href="/projektuj-strone">Zaprojektuj własną stronę ↗</Link><Link href="/dtp">Projekt do druku ↗</Link></div></div>
               <div className="zm-mega-groups">{offerGroups.map((group) => <section key={group.title} className="zm-mega-group" aria-label={group.title}>
                 <h2>{group.title}</h2><p>{group.description}</p>
                 {group.links.map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}
@@ -80,7 +80,7 @@ export function SiteHeader({ english = false }: { english?: boolean }) {
       <div className="zm-mobile-menu-panel">
         {english ? <><a href="/en#services">Services</a><a href="/en#projects">Projects</a><a href="/en#process">Working together</a><a href="/en#contact">Contact</a></>
           : <>
-            <div className="zm-mobile-menu-shortcuts"><Link href="/oferta">Oferta</Link><Link href="/portfolio">Portfolio</Link><Link href="/poradnik">Blog</Link><Link href="/standardy-jakosci">Standardy jakości</Link><Link href="/kontakt">Kontakt</Link></div>
+            <div className="zm-mobile-menu-shortcuts"><Link className="zm-mega-price" href="/oferta">Oferta i ceny</Link><Link href="/portfolio">Portfolio</Link><Link href="/poradnik">Blog</Link><Link href="/standardy-jakosci">Standardy jakości</Link><Link href="/kontakt">Kontakt</Link></div>
             {offerGroups.map((group) => <section className="zm-mobile-menu-group" key={group.title} aria-label={group.title}>
               <h2>{group.title}</h2>
               {group.links.map(([label, href]) => <Link href={href} key={href}>{label}</Link>)}

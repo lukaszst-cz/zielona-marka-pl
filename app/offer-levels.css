@@ -147,3 +147,12 @@ html body .zm-footer .zm-footer2-billing p{margin:0;font:14px/1.6 Arial,sans-ser
 html body .zm-footer .zm-footer2-billing>p{margin-top:12px}
 html body .zm-footer .zm-footer2-billing a{color:#d9efbd;text-decoration:underline;text-underline-offset:3px}
 @media(max-width:800px){html body .zm-footer .zm-footer2-billing-grid{grid-template-columns:1fr}}
+
+/* Menu oferty: półprzezroczyste tło (ok. 88%), wyróżniony cennik */
+html body .zm-header .zm-nav-desktop .zm-offer-menu>.zm-mega-menu,html body .zm-header .zm-mobile-menu>.zm-mobile-menu-panel{background:rgba(4,24,16,.88)!important;backdrop-filter:blur(10px)!important;-webkit-backdrop-filter:blur(10px)!important;border:1px solid rgba(197,222,186,.3)!important}
+html body .zm-header .zm-mega-quick-actions a.zm-mega-price{flex-direction:column;align-items:flex-start;justify-content:center;gap:2px;min-height:54px;background:#b7f185!important;color:#122916!important;border-color:#b7f185!important;box-shadow:0 0 0 3px rgba(183,241,133,.22)}
+html body .zm-header .zm-mega-quick-actions a.zm-mega-price small{font:600 12px/1.3 Arial,sans-serif;color:#1d4126}
+html body .zm-header .zm-mega-quick-actions a.zm-mega-price:is(:hover,:focus-visible){background:#cbfba0!important;color:#0e2412!important}
+html body .zm-header .zm-mega-quick-actions a:not(.zm-mega-price){background:rgba(16,50,34,.7)!important;color:#f2faec!important;border-color:#85ba76!important}
+html body .zm-header .zm-mobile-menu-shortcuts a.zm-mega-price{background:#b7f185;color:#122916;border-radius:5px;font-weight:700}
+html body .zm-header .zm-mega-group a[href="/oferta"],html body .zm-header .zm-mobile-menu-group a[href="/oferta"],html body .zm-header .zm-mega-group a[href="/cennik-dodatkow"],html body .zm-header .zm-mobile-menu-group a[href="/cennik-dodatkow"]{font-weight:700;color:#d9ef9a}
