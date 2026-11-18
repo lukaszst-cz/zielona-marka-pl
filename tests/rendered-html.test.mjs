@@ -54,7 +54,7 @@ test("nowe zakładki są renderowane", async () => {
     assert.equal(response.status, 200, path);
     const html = await response.text();
     assert.doesNotMatch(html, forbiddenBrand, path);
-    if (path === "/oferta") assert.match(html, /Przelewy24/i);
+    if (path === "/oferta") assert.match(html, /Cztery poziomy/i);
     if (path === "/portfolio") { assert.match(html, /zmp-projects/i); assert.match(html, /OKRUCH/i); assert.match(html, /NAVORO HURT/i); assert.match(html, /Projekt demonstracyjny/i); assert.match(html, /To symulacje, a nie przebudowy wykonane dla klientów/i); }
     if (path === "/maly-crm-dla-firm") assert.match(html, /PWA/i);
     if (path === "/raport-qa") assert.match(html, /kontroli jakości/i);
@@ -63,7 +63,7 @@ test("nowe zakładki są renderowane", async () => {
     if (path === "/praktyczne-narzedzia") { assert.match(html, /Lead &amp; Offer Copilot/); assert.match(html, /"@type":"ItemList"/); }
     if (path === "/realizacje/transportflow") { assert.match(html, /TransportFlow 360/); assert.match(html, /"@type":"SoftwareApplication"/); }
     if (path.includes("dlaczego-strona")) assert.match(html, /7 najczęstszych przyczyn/i);
-    if (path.includes("ile-kosztuje")) { assert.match(html, /1 449 zł netto/i); assert.match(html, /6 900 zł netto/i); }
+    if (path.includes("ile-kosztuje")) { assert.match(html, /1 449 zł netto/i); assert.match(html, /4 499 zł netto/i); }
   }
 });
 
@@ -86,7 +86,7 @@ test("lokalne podstrony mają unikalną treść i działający kontakt", async (
 
 test("kluczowe statyczne podstrony mają własne metadata w head", async () => {
   const expected = [
-    ["/oferta", "Strony internetowe: cennik i koszt utrzymania", "Wizytówka od 899 zł netto", "https://zielona-marka.pl/oferta"],
+    ["/oferta", "Strony internetowe: cennik i zakres pakietów", "Wizytówka od 899 zł", "https://zielona-marka.pl/oferta"],
     ["/poradnik", "Blog: strony WWW, SEO, DTP i porady dla firm", "Blog Zielona Marka", "https://zielona-marka.pl/poradnik"],
     ["/dtp", "DTP, wizytówki, ulotki i przygotowanie do druku", "Projektowanie wizytówek", "https://zielona-marka.pl/dtp"],
     ["/opieka-nad-strona", "Opieka nad stroną, hosting i koszty utrzymania", "Ile kosztuje utrzymanie strony WWW?", "https://zielona-marka.pl/opieka-nad-strona"],
@@ -169,9 +169,9 @@ test("ZM Studio is part of the real website and previews a complete customer pag
     "zm-demo-contact", "zm-demo-footer",
   ]) assert.match(html, new RegExp(className), className);
   assert.match(html, /Cała przykładowa strona/);
-  assert.match(html, /Pierwszy rok łącznie/);
-  assert.match(html, /Łącznie przez 3 lata/);
-  assert.match(html, /<dd>od\s*<!-- -->1669 zł<\/dd>/);
+  assert.match(html, /Brutto z 23% VAT/);
+  assert.match(html, /Miesięcznie \(opcjonalnie\)/);
+  assert.match(html, /1449 zł/);
   assert.match(html, /Wyślij projekt i wycenę/);
   assert.doesNotMatch(html, /class="zm-web-preview"/);
 });
@@ -188,7 +188,7 @@ test("Global navigation uses categorized menu and branded social icons", async (
     assert.match(html, /class="zm-mobile-menu-group"/);
     assert.match(html, /\/podpis-email\/icon-facebook\.png/);
     assert.match(html, /\/podpis-email\/icon-instagram\.png/);
-    assert.match(html, /\/podpis-email\/icon-www\.png/);
+    assert.match(html, /href="\/warunki-wspolpracy"/);
     const footer = html.match(/<footer\b[\s\S]*?<\/footer>/i);
     assert.ok(footer, path + ": missing footer");
     assert.ok((footer[0].match(/href="\/dtp"/g) || []).length <= 1, path + ": repeated DTP link");
@@ -205,7 +205,7 @@ test("Premium clarity and ZM Mini pricing are consistent in public website", asy
     assert.doesNotMatch(html, /wizytówk[^<]{0,70}990 zł/, path + ": outdated Mini price");
   }
   const offer = await (await render("/oferta")).text();
-  assert.match(offer, /jednostronicowy układ z 3 sekcjami/);
+  assert.match(offer, /3 sekcje/);
   const studio = await (await render("/projektuj-strone")).text();
   assert.match(studio, /899 zł/);
   const home = await (await render("/")).text();
@@ -237,19 +237,17 @@ test("Website quote tools render accurate default prices, with alternate conditi
   const [offer, studio] = await Promise.all([
     render("/oferta").then(r=>r.text()), render("/projektuj-strone").then(r=>r.text())
   ]);
-  assert.match(offer, /Odnowienie domeny, zł netto\/rok/);
-  assert.match(offer, /Rejestracja \(rok 1\), zł netto/);
-  assert.match(studio, /Formularz kontaktowy jest uwzględniony w podstawowym zakresie pakietu/);
+  assert.match(offer, /Złóż swój pakiet w trzech krokach/);
+  assert.match(studio, /Formularz kontaktowy jest w cenie pakietu/);
   assert.match(studio, /w cenie wybranego pakietu/);
-  assert.match(studio, /Pierwszy rok łącznie/);
+  assert.match(studio, /Brutto z 23% VAT/);
   // React server output includes only the currently selected branch.
   // Check code paths for conditional options separately; pure pricing tests
   // cover calculations for each branch.
   const offerSource = await readFile(new URL("../app/TotalCostCalculator.tsx", import.meta.url), "utf8");
   const studioSource = await readFile(new URL("../app/WebsiteConfigurator.jsx", import.meta.url), "utf8");
-  assert.match(offerSource, /Posiadana domena, odnowienie w pierwszym roku/);
-  assert.match(studioSource, /Domena posiadana, koszt odnowienia w pierwszym roku/);
-  assert.match(studioSource, /ZM Mini: 3 sekcje na materiałach klienta, bez formularza/);
+  assert.match(offerSource, /website_quote_to_contact/);
+  assert.match(studioSource, /Wizytówka: 3 sekcje na materiałach klienta/);
   assert.match(studioSource, /wycena indywidualna/);
   assert.match(studioSource, /saveQuoteTransfer/);
 });
@@ -301,7 +299,7 @@ test("DTP and website care list included services separately from exclusions", a
   assert.match(dtp, /Druk i dostawa nie są wliczone w cenę projektu/);
   assert.match(care, /Zakres opieki/);
   assert.match(care, /Ważne:/);
-  assert.match(offer, /W cenie pakietu/);
+  assert.match(offer, /W cenie/);
   assert.match(blog, /Co obejmuje orientacyjna cena/);
   const styles = await readFile(new URL("../app/premium-clarity.css", import.meta.url), "utf8");
   for (const cls of [".zm-dtp-prices", ".cost-packages", ".faq-list", ".guide-faq", ".zm-creator-config", ".zm-mega-group"]) {
@@ -340,8 +338,8 @@ test("Cennik i nawigacja zachowują czytelność najważniejszych informacji", a
   assert.match(home, /class="zm-contact-dock"/);
 
   const offer = await (await render("/oferta")).text();
-  assert.match(offer, /Ile naprawdę kosztuje strona: projekt, hosting i jej utrzymanie\?/);
-  assert.match(offer, /DODATKI, KTÓRE MAJĄ SENS/);
+  assert.match(offer, /Strona rośnie razem z firmą/);
+  assert.match(offer, /DOBIERZ DO PAKIETU/);
   assert.match(offer, /899 zł netto/);
 
   const studio = await (await render("/projektuj-strone")).text();
@@ -371,7 +369,7 @@ test("standardy QA mają wspólny wygląd serwisu, nawigację oraz pobieralne do
   const homepage = await render("/");
   const homeMarkup = await homepage.text();
   assert.match(homeMarkup, /href="\/standardy-jakosci"/, "strona główna odsyła do standardów");
-  assert.match(homeMarkup, /Jakość i ISO/, "jakość jest w menu głównym");
+  assert.match(homeMarkup, /Standardy jakości/, "jakość jest w menu głównym");
 
   for (const file of ["zielona-marka-standard-dtp-prepress-qa.pdf", "zielona-marka-standard-jakosci-www-dtp-crm.pdf", "zielona-marka-standard-dtp-prepress-qa-v3-1.pdf", "zielona-marka-standard-jakosci-www-dtp-crm-v3-1.pdf"]) {
     const response = await fetch(new URL("/downloads/" + file, testBaseUrl));
@@ -452,10 +450,10 @@ test("warianty opieki czytelnie pokazują różnice pomiędzy pakietami", async 
   assert.match(html, /care-plans/);
   assert.match(html, /Co zyskujesz\?/);
   assert.match(html, /Za wyższą cenę:/);
-  for (const price of ["79 zł", "249 zł", "490 zł"]) {
+  for (const price of ["79 zł", "299 zł", "499 zł"]) {
     assert.ok(html.includes(price), price);
   }
-  assert.match(html, /dwukrotnie więcej czasu na zmiany/);
+  assert.match(html, /4 wpisy zamiast 2/);
 });
 
 test("spójny styl CTA, miast, numeracji i paneli wyceny jest ładowany jako ostatni", async () => {

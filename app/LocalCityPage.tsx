@@ -31,7 +31,7 @@ const industries = [
 export default function LocalCityPage({ city }: { city: LocalCity }) {
   const faqs = [
     ["Czy obsługujesz firmy z " + city.genitive + "?", `Tak. Zielona Marka projektuje strony i proste systemy dla firm działających w ${city.locative} oraz w okolicy: ${city.nearby}. Współpraca może odbywać się online.`],
-    ["Ile kosztuje strona dla lokalnej firmy?", "Kompletna strona startowa kosztuje od 1 449 zł netto. Rozbudowana strona z formularzem kwalifikującym zaczyna się od 4 490 zł netto. Dokładny zakres ustalamy po krótkiej rozmowie."],
+    ["Ile kosztuje strona dla lokalnej firmy?", "Wizytówka kosztuje od 899 zł netto, strona jednostronicowa od 1 449 zł netto, a strona firmowa do 6 podstron od 2 999 zł netto. Dokładny zakres ustalamy po krótkiej rozmowie."],
     ["Czy strona może pomóc w lokalnej widoczności?", "Tak. Przygotowuję strukturę, treści, dane firmy, mapę witryny oraz podstawy techniczne. Widoczność rozwija się z czasem i zależy również od konkurencji, opinii, Profilu Firmy Google i jakości oferty."],
     ["Czy można poprawić istniejącą stronę?", "Tak. Najpierw sprawdzam wersję mobilną, ofertę, kontakt, szybkość i podstawy widoczności. Dopiero wtedy rekomenduję modernizację albo budowę od nowa."],
   ];

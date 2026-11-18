@@ -125,7 +125,7 @@ export default function BeautyWebsiteGuidePage() {
     </article>
     <RelatedServices items={[
       { href: "/strony-dla-beauty", label: "Strona dla salonu beauty", text: "Zobacz zakres strony, rezerwacji i prezentacji usług dla salonu." },
-      { href: "/oferta#mini-sklep", label: "Vouchery i mini sklep", text: "Sprawdź wariant sprzedaży wybranych produktów, zestawów i voucherów." },
+      { href: "/oferta#wiecej", label: "Vouchery i mini sklep", text: "Sprawdź wariant sprzedaży wybranych produktów, zestawów i voucherów." },
       { href: "/strony-internetowe", label: "Widoczność lokalna", text: "Zobacz, jak strona i Profil Firmy Google mogą tworzyć spójną drogę lokalnego klienta." },
     ]} />
   </main><QuickWhatsApp /><SiteFooter /></>;

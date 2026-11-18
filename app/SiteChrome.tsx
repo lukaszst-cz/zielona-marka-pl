@@ -14,10 +14,11 @@ export const offerGroups = [
       ["Strony WWW i pakiety", "/oferta"],
       ["ZM Studio: stwórz przykład", "/projektuj-strone"],
       ["Kalkulator kosztów", "/oferta#kalkulator-pelnego-kosztu"],
+      ["Cennik dodatków", "/cennik-dodatkow"],
       ["Modernizacja strony", "/modernizacja-strony"],
       ["Bezpłatna koncepcja", "/bezplatna-koncepcja-strony"],
-      ["Opieka, domena i hosting", "/opieka-nad-strona"],
-      ["Standard jakości WWW i CRM", "/standard-jakosci"],
+      ["Opieka nad stroną", "/opieka-nad-strona"],
+      ["Standardy jakości", "/standard-jakosci"],
     ],
   },
   {
@@ -72,20 +73,20 @@ export function SiteHeader({ english = false }: { english?: boolean }) {
               </section>)}</div>
             </div>
           </details>}
-      <Link href={english ? "/en#projects" : "/portfolio"}>{english ? "Projects" : "Portfolio"}</Link>{!english && <><Link className="zm-nav-studio" href="/projektuj-strone">ZM Studio</Link><Link href="/poradnik">Blog</Link></>}<Link href={english ? "/en#process" : "/jak-pracuje"}>{english ? "Working together" : "Współpraca"}</Link>{!english && <Link href="/standardy-jakosci">Jakość i ISO</Link>}<Link href={english ? "/en#contact" : "/kontakt"}>{english ? "Contact" : "Kontakt"}</Link><Link className="zm-client-link" href="/status" rel="nofollow">{english ? "Client area (PL)" : "Strefa klienta"}</Link>
+      <Link href={english ? "/en#projects" : "/portfolio"}>{english ? "Projects" : "Portfolio"}</Link>{!english && <><Link className="zm-nav-studio" href="/projektuj-strone">ZM Studio</Link><Link href="/poradnik">Blog</Link></>}<Link href={english ? "/en#process" : "/jak-pracuje"}>{english ? "Working together" : "Współpraca"}</Link>{!english && <Link href="/standardy-jakosci">Standardy jakości</Link>}<Link href={english ? "/en#contact" : "/kontakt"}>{english ? "Contact" : "Kontakt"}</Link><Link className="zm-client-link" href="/status" rel="nofollow">{english ? "Client area (PL)" : "Strefa klienta"}</Link>
       <LanguageSwitch english={english} />
     </div>
     <details className="zm-mobile-menu"><summary>Menu <span aria-hidden="true">+</span></summary>
       <div className="zm-mobile-menu-panel">
         {english ? <><a href="/en#services">Services</a><a href="/en#projects">Projects</a><a href="/en#process">Working together</a><a href="/en#contact">Contact</a></>
           : <>
-            <div className="zm-mobile-menu-shortcuts"><Link href="/oferta">Oferta</Link><Link href="/portfolio">Portfolio</Link><Link href="/poradnik">Blog</Link><Link href="/standardy-jakosci">Jakość i normy</Link><Link href="/kontakt">Kontakt</Link></div>
+            <div className="zm-mobile-menu-shortcuts"><Link href="/oferta">Oferta</Link><Link href="/portfolio">Portfolio</Link><Link href="/poradnik">Blog</Link><Link href="/standardy-jakosci">Standardy jakości</Link><Link href="/kontakt">Kontakt</Link></div>
             {offerGroups.map((group) => <section className="zm-mobile-menu-group" key={group.title} aria-label={group.title}>
               <h2>{group.title}</h2>
               {group.links.map(([label, href]) => <Link href={href} key={href}>{label}</Link>)}
             </section>)}
             <section className="zm-mobile-menu-group" aria-label="O Zielonej Marce"><h2>Więcej informacji</h2>
-              <Link href="/praktyczne-narzedzia">Narzędzia</Link><Link href="/projektuj-strone">ZM Studio: kreator strony</Link><Link href="/jak-pracuje">Współpraca</Link><Link href="/standardy-jakosci">Jakość i ISO</Link><Link href="/standard-dtp">Standard DTP</Link>
+              <Link href="/praktyczne-narzedzia">Narzędzia</Link><Link href="/projektuj-strone">ZM Studio: kreator strony</Link><Link href="/jak-pracuje">Współpraca</Link><Link href="/warunki-wspolpracy">Warunki współpracy</Link><Link href="/standardy-jakosci">Standardy jakości</Link><Link href="/standard-dtp">Standard DTP</Link>
             </section>
           </>}
         <Link href="/status" rel="nofollow">{english ? "Client area (PL)" : "Strefa klienta"}</Link>
@@ -97,20 +98,26 @@ export function SiteHeader({ english = false }: { english?: boolean }) {
 }
 
 export function SiteFooter({ english = false }: { english?: boolean }) {
-  return <footer className="zm-footer"><div className="zm-footer-inner">
-    <div className="zm-footer-brand"><Link href={english ? "/en" : "/"} aria-label="Zielona Marka"><BrandSignature /></Link><div className="zm-footer-identity"><span className="zm-footer-identity-label">{english ? "PROJECT AND CONTACT" : "PROJEKT I KONTAKT"}</span><h2>Zielona Marka</h2><p>{english ? "Website design and modernisation" : "Projektowanie i modernizacja stron internetowych"}</p><span>{english ? "Marki, Masovian Voivodeship, Poland" : "Marki, woj. mazowieckie"}</span><div className="zm-footer-identity-links"><Link href="/">zielona-marka.pl</Link><a href="mailto:kontakt@zielona-marka.pl">kontakt@zielona-marka.pl</a></div></div></div>
-    <div><h2>{english ? "Explore" : "Poznaj ofertę"}</h2><Link href={english ? "/en#services" : "/oferta"}>{english ? "Services" : "Oferta"}</Link><Link href={english ? "/en#projects" : "/portfolio"}>{english ? "Projects" : "Portfolio"}</Link><Link href={english ? "/en#process" : "/jak-pracuje"}>{english ? "Working together" : "Współpraca"}</Link>{!english && <><Link href="/strony-internetowe">Strony internetowe</Link><Link href="/modernizacja-strony">Modernizacja strony</Link><Link href="/opieka-nad-strona">Opieka nad stroną</Link><Link href="/maly-crm-dla-firm">Mały CRM dla firm</Link><Link href="/asystent-zapytan">Asystent zapytań</Link><Link href="/usprawnienia-firmy">Usprawnienia firmy</Link><Link href="/bezplatna-koncepcja-strony">Bezpłatna koncepcja</Link><Link href="/dtp">DTP i materiały do druku</Link><Link href="/standardy-jakosci">Standardy jakości i ISO</Link></>}<Link href="/status" rel="nofollow">{english ? "Client area (PL)" : "Strefa klienta"}</Link></div>
-    <div><h2>{english ? "Resources" : "Centrum zasobów"}</h2>{english ? <><Link href="/poradnik">Blog (PL)</Link><Link href="/praktyczne-narzedzia">Free zone and tools (PL)</Link></> : <><Link href="/poradnik">Blog</Link><Link href="/praktyczne-narzedzia">Narzędzia i Strefa Free</Link><Link href="/projektuj-strone">ZM Studio: projekt i wycena</Link><Link href="/projekty-flow">Projekty Flow</Link><Link href="/przyklady-zaplecza">Przykłady zaplecza</Link><Link href="/raport-qa">Przykładowy raport QA</Link></>}</div>
-    <div><h2>{english ? "Contact" : "Porozmawiajmy"}</h2><a href="tel:+48450458466">+48 450 458 466</a><a href="mailto:kontakt@zielona-marka.pl">kontakt@zielona-marka.pl</a><div className="zm-footer-social-links">
-      <a href={socialLinks.facebook} target="_blank" rel="noopener noreferrer"><Image src="/podpis-email/icon-facebook.png" width={22} height={22} alt="" unoptimized />Facebook <span aria-hidden="true">↗</span></a>
-      <a href={socialLinks.instagram} target="_blank" rel="noopener noreferrer"><Image src="/podpis-email/icon-instagram.png" width={22} height={22} alt="" unoptimized />Instagram <span aria-hidden="true">↗</span></a>
-      <Link href="/" aria-label="Zielona Marka: strona internetowa"><Image src="/podpis-email/icon-www.png" width={22} height={22} alt="" unoptimized />WWW</Link>
-      <a href="https://www.google.com/maps/search/?api=1&amp;query=Zielona%20Marka%20strony%20WWW%20Warszawa" target="_blank" rel="noopener noreferrer" aria-label="Wyszukaj markę Zielona Marka w Mapach Google"><Image src="/podpis-email/icon-google.png" width={22} height={22} alt="" unoptimized />Mapy Google <span aria-hidden="true">↗</span></a>
-      <a href={socialLinks.github} target="_blank" rel="noopener noreferrer"><Image src="/icon-github-zielona-marka.svg" width={22} height={22} alt="" unoptimized />GitHub <span aria-hidden="true">↗</span></a>
-    </div></div>
-    <div className="zm-footer-billing" id="fakturowanie"><h2>{english ? "Current invoicing provider: Bizky Freelance" : "Obecne rozliczenia i dane do faktury: Bizky Freelance"}</h2><p><strong>Bizky sp. z o.o.</strong> <span>(wcześniej beChange sp. z o.o.)</span><br />Al. Księcia Józefa Poniatowskiego 1, klatka K4, poziom 1, 03-901 Warszawa, Polska<br /><span>NIP: 7010150265</span><span className="zm-footer-billing-separator" aria-hidden="true"> · </span><span>KRS: 0000312229</span><br /><a href="https://bizky.ai/" target="_blank" rel="noopener noreferrer">bizky.ai</a></p></div>
-    <div className="zm-footer-billing" id="rozliczenia-zagraniczne" lang="en"><h2>International clients: invoicing through Juuli</h2><p>For clients outside Poland, invoicing and payment can be arranged through Juuli by individual agreement. The invoicing entity is:<br /><strong>JUULI OÜ</strong><br />Veskiposti 2, Avala, Electra Building, 9th Floor, 10138 Tallinn, Estonia<br />Registry code: 16579396 · VAT: EE102608520<br /><a href="https://www.juuli.com/" target="_blank" rel="noopener noreferrer">www.juuli.com</a></p><p>The invoicing provider and payment instructions are confirmed before the invoice is issued.</p></div>
-    {!english && <div className="zm-footer-locations"><h2>Warszawa · Targówek i okolice</h2><div><Link href="/strony-internetowe">Wszystkie lokalizacje</Link>{[["Targówek", "targowek"], ["Warszawa", "warszawa"], ["Ząbki", "zabki"], ["Zielonka", "zielonka"], ["Kobyłka", "kobylka"], ["Wołomin", "wolomin"], ["Radzymin", "radzymin"], ["Białołęka", "bialoleka"]].map(([name, slug]) => <Link key={slug} href={`/strony-internetowe/${slug}`}>{name}</Link>)}<Link href="/strony-internetowe-marki">Marki</Link></div></div>}<div className="zm-footer-bottom"><small>© {new Date().getFullYear()} Zielona Marka · Łukasz Staniewicz</small><Link href="/polityka-prywatnosci">{english ? "Privacy policy (PL)" : "Polityka prywatności"}</Link><CookieSettingsLink english={english} /><Link href={english ? "/" : "/en"}>{english ? "Polski" : "English"}</Link></div>
+  return <footer className="zm-footer"><div className="zm-footer2">
+    <div className="zm-footer2-grid">
+      <div className="zm-footer2-col zm-footer2-brand"><Link href={english ? "/en" : "/"} aria-label="Zielona Marka"><BrandSignature /></Link><p>{english ? "Website design and modernisation for small businesses." : "Projektowanie i modernizacja stron internetowych dla małych firm."}</p><a href="tel:+48450458466">+48 450 458 466</a><a href="mailto:kontakt@zielona-marka.pl">kontakt@zielona-marka.pl</a><span>{english ? "Marki, Masovian Voivodeship, Poland" : "Marki, woj. mazowieckie"}</span><div className="zm-footer-social-links">
+        <a href={socialLinks.facebook} target="_blank" rel="noopener noreferrer"><Image src="/podpis-email/icon-facebook.png" width={22} height={22} alt="" unoptimized />Facebook <span aria-hidden="true">↗</span></a>
+        <a href={socialLinks.instagram} target="_blank" rel="noopener noreferrer"><Image src="/podpis-email/icon-instagram.png" width={22} height={22} alt="" unoptimized />Instagram <span aria-hidden="true">↗</span></a>
+        <a href={socialLinks.github} target="_blank" rel="noopener noreferrer"><Image src="/icon-github-zielona-marka.svg" width={22} height={22} alt="" unoptimized />GitHub <span aria-hidden="true">↗</span></a>
+      </div></div>
+      <div className="zm-footer2-col"><h2>{english ? "Explore" : "Oferta"}</h2>{english ? <><Link href="/en#services">Services</Link><Link href="/en#projects">Projects</Link><Link href="/en#process">Working together</Link></> : <><Link href="/oferta">Strony internetowe i cennik</Link><Link href="/cennik-dodatkow">Cennik dodatków</Link><Link href="/modernizacja-strony">Modernizacja strony</Link><Link href="/opieka-nad-strona">Opieka nad stroną</Link><Link href="/dtp">DTP i materiały do druku</Link><Link href="/projektuj-strone">ZM Studio: kreator strony</Link></>}</div>
+      <div className="zm-footer2-col"><h2>{english ? "Company" : "Firma"}</h2>{english ? <><Link href="/poradnik">Blog (PL)</Link><Link href="/status" rel="nofollow">Client area (PL)</Link></> : <><Link href="/portfolio">Portfolio</Link><Link href="/jak-pracuje">Współpraca</Link><Link href="/warunki-wspolpracy">Warunki współpracy</Link><Link href="/standardy-jakosci">Standardy jakości</Link><Link href="/poradnik">Blog</Link><Link href="/status" rel="nofollow">Strefa klienta</Link></>}</div>
+      <div className="zm-footer2-col"><h2>{english ? "Area" : "Obszar działania"}</h2>{english ? <p>Warsaw and surrounding towns, remote work across Poland.</p> : <p>Marki, Targówek, Warszawa, Ząbki, Zielonka, Kobyłka, Wołomin, Radzymin i Białołęka, a także zdalnie w całej Polsce. <Link href="/strony-internetowe">Zobacz lokalizacje</Link></p>}</div>
+    </div>
+    <div className="zm-footer2-bottom">
+      <small>© {new Date().getFullYear()} Zielona Marka · Łukasz Staniewicz</small>
+      <details className="zm-footer2-billing" id="fakturowanie"><summary>{english ? "Invoices are issued by Bizky sp. z o.o." : "Faktury wystawia Bizky sp. z o.o."}</summary>
+        <p><strong>Bizky sp. z o.o.</strong><br />Al. Księcia Józefa Poniatowskiego 1, klatka K4, poziom 1, 03-901 Warszawa, Polska<br />NIP: 7010150265 · KRS: 0000312229 · <a href="https://bizky.ai/" target="_blank" rel="noopener noreferrer">bizky.ai</a></p>
+        <p id="rozliczenia-zagraniczne" lang="en"><strong>International clients:</strong> invoices can be issued by JUULI OÜ, Veskiposti 2, Avala, Electra Building, 9th Floor, 10138 Tallinn, Estonia. Registry code: 16579396 · VAT: EE102608520 · <a href="https://www.juuli.com/" target="_blank" rel="noopener noreferrer">www.juuli.com</a>. The invoicing entity is confirmed before the invoice is issued.</p>
+        {!english && <p><Link href="/warunki-wspolpracy#p2">Zasady rozliczeń i faktur</Link></p>}
+      </details>
+      <Link href="/polityka-prywatnosci">{english ? "Privacy policy (PL)" : "Polityka prywatności"}</Link><CookieSettingsLink english={english} /><Link href={english ? "/" : "/en"}>{english ? "Polski" : "EN"}</Link>
+    </div>
   </div></footer>;
 }
 

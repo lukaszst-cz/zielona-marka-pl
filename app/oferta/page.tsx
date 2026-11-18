@@ -2,74 +2,120 @@ import type { Metadata } from "next";
 import Link from "../SafeLink";
 import TotalCostCalculator from "../TotalCostCalculator";
 import { QuickWhatsApp, SiteFooter, SiteHeader } from "../SiteChrome";
-import { corePackages } from "../site-data";
+import { addOns, corePackages, monthlyServices, moreCapabilities, packageStandards } from "../site-data";
 import ProcessStandard from "../ProcessStandard";
 
-export const metadata: Metadata = { title: "Strony internetowe: cennik i koszt utrzymania", description: "Wizytówka od 899 zł netto (3 sekcje), pełna strona od 1 449 zł. Sprawdź koszt hostingu, domeny, opieki i łączne wydatki na 3 lata.", alternates: { canonical: "/oferta" },
-  openGraph: { type: "website", url: "/oferta", title: "Strony internetowe: cennik i koszt utrzymania | Zielona Marka", description: "Wizytówka od 899 zł netto (3 sekcje), pełna strona od 1 449 zł. Sprawdź koszt hostingu, domeny, opieki i łączne wydatki na 3 lata.", images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Zielona Marka: strony internetowe, DTP i rozwiązania dla firm" }] },
-  twitter: { card: "summary_large_image", title: "Strony internetowe: cennik i koszt utrzymania | Zielona Marka", description: "Wizytówka od 899 zł netto (3 sekcje), pełna strona od 1 449 zł. Sprawdź koszt hostingu, domeny, opieki i łączne wydatki na 3 lata.", images: ["/og.jpg"] }, };
+const description = "Cztery poziomy stron: Wizytówka od 899 zł, Strona jednostronicowa od 1 449 zł, Strona firmowa od 2 999 zł i rozbudowana od 4 499 zł netto. Hosting bez opłat miesięcznych, jasny zakres i dodatki.";
 
-const extras = [
-  ["Wizytówka Google i widoczność w okolicy", "od 390 zł", "Porządek w danych firmy, usługach, opisie i kontakcie między Mapami Google a stroną. To podstawy lokalnego SEO, czyli widoczności w wyszukiwarce."],
-  ["Teksty na stronę", "od 350 zł", "Pomoc w zamianie wiedzy o firmie w prostą ofertę, którą klient rozumie."],
-  ["DTP: wizytówki, ulotki i pliki do druku", "od 79 zł", "Projektowanie prostych materiałów oraz techniczna kontrola i przygotowanie plików dla drukarni. Druk jest rozliczany osobno."],
-  ["Opieka nad stroną", "79–490 zł / mies.", "Kontrola działania, formularzy, aktualizacji i drobne zmiany po publikacji."],
-  ["Asystent zapytań FAQ i zbieranie kontaktów", "od 2 500 zł + od 199 zł / mies.", "Odpowiedzi z zatwierdzonej bazy wiedzy, kwalifikacja potrzeby oraz przekazanie kontaktu człowiekowi."],
-  ["Przypomnienia SMS", "od 690 zł + koszt SMS", "Konfiguracja przypomnień o terminie, szablonu wiadomości i zgody klienta. Koszt SMS rozlicza wybrana bramka."],
-  ["Backup na dysku klienta", "od 990 zł + 49 zł / mies.", "Automatyczna kopia danych na dysku Google klienta lub w innym uzgodnionym magazynie, wraz z kontrolą działania."],
-  ["Mały CRM z wersją na telefon", "od 4 900 zł", "Klienci, zapytania, statusy, terminy, eksport danych i panel, który można dodać do ekranu telefonu jak aplikację."],
-];
+export const metadata: Metadata = { title: "Strony internetowe: cennik i zakres pakietów", description, alternates: { canonical: "/oferta" },
+  openGraph: { type: "website", url: "/oferta", title: "Strony internetowe: cennik i zakres pakietów | Zielona Marka", description, images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Zielona Marka: strony internetowe, DTP i rozwiązania dla firm" }] },
+  twitter: { card: "summary_large_image", title: "Strony internetowe: cennik i zakres pakietów | Zielona Marka", description, images: ["/og.jpg"] }, };
+
+const featuredAddOns = addOns.filter((item) => item.featured);
+
+const faq = [
+  ["Czy muszę mieć gotowe teksty?", "Nie. W Wizytówce teksty dostarczasz Ty, a my je poprawiamy. Od Strony jednostronicowej piszemy je za Ciebie, na podstawie ankiety albo rozmowy, a Ty zatwierdzasz ich prawdziwość. Teksty do Wizytówki możemy też napisać jako dodatek."],
+  ["Ile kosztuje domena i czy będzie moja?", "Domena jest zawsze rejestrowana na Ciebie, więc jesteś jej właścicielem. Jej koszt płacisz rejestratorowi według jego cennika, zwykle kilkanaście do kilkudziesięciu złotych rocznie."],
+  ["Czy za hosting trzeba płacić co miesiąc?", "Nie. Strony stoją na naszej infrastrukturze i w pakiecie nie ma opłat miesięcznych za hosting ani certyfikat SSL. Szczegóły są w warunkach współpracy."],
+  ["Czy strona będzie moja?", "Tak. Po zapłacie całości przenosimy na Ciebie autorskie prawa majątkowe do projektu, kodu i tekstów. Na życzenie przekazujemy pliki strony i przenosimy ją na Twoje konto u dostawcy hostingu."],
+  ["Kto wystawia fakturę?", "Faktury VAT wystawia Bizky sp. z o.o., czyli platforma, przez którą rozliczamy usługi marki Zielona Marka. To zwykła faktura VAT, którą możesz zaliczyć do kosztów firmy. Dane są w stopce i w warunkach współpracy."],
+  ["Co dzieje się po publikacji?", "Przez 30 dni wprowadzamy drobne poprawki, a przez 3 miesiące bezpłatnie usuwamy błędy w naszym wykonaniu. Potem możesz zamówić opiekę od 79 zł miesięcznie albo pojedyncze zmiany."],
+  ["Czy mogę później przejść na wyższy pakiet?", "Tak, w każdej chwili. Dopłacasz różnicę w cenach pakietów, a to, co już powstało, wykorzystujemy w nowej wersji strony."],
+] as const;
 
 const offerStructuredData = {
   "@context": "https://schema.org",
   "@type": "Service",
-  name: "Strony internetowe i obsługa zapytań dla małych firm",
-  serviceType: ["Projektowanie stron internetowych", "Modernizacja stron", "Formularze wyceny", "Mały CRM", "Asystent zapytań"],
-  provider: {
-    "@type": "ProfessionalService",
-    name: "Zielona Marka",
-    url: "https://zielona-marka.pl",
-    telephone: "+48 450 458 466",
-  },
+  name: "Strony internetowe dla małych firm",
+  serviceType: ["Projektowanie stron internetowych", "Modernizacja stron", "Lokalna widoczność w Google", "Opieka nad stroną"],
+  provider: { "@type": "ProfessionalService", name: "Zielona Marka", url: "https://zielona-marka.pl", telephone: "+48 450 458 466" },
   areaServed: { "@type": "Country", name: "Polska" },
   url: "https://zielona-marka.pl/oferta",
   hasOfferCatalog: {
     "@type": "OfferCatalog",
-    name: "Pakiety marki Zielona Marka",
-    itemListElement: [
-      { "@type": "Offer", name: "ZM Mini, prosta wizytówka internetowa", description: "Jednostronicowa wizytówka z 3 sekcjami na sprawdzonym układzie, z materiałami klienta, bez formularza.", url: "https://zielona-marka.pl/oferta#zm-mini" },
-      ...corePackages.map((item) => ({
-        "@type": "Offer", name: item.title, description: item.lead,
-        url: "https://zielona-marka.pl/oferta",
-      })),
-    ],
+    name: "Pakiety stron internetowych Zielona Marka",
+    itemListElement: corePackages.map((item) => ({
+      "@type": "Offer", name: item.title, description: item.lead,
+      price: item.priceNet, priceCurrency: "PLN", url: "https://zielona-marka.pl/oferta#" + item.slug,
+    })),
   },
 };
 
+const spaced = (n: number) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, "\u00a0");
+
 export default function OfferPage() {
   return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(offerStructuredData) }} /><SiteHeader /><main className="zm-public">
-    <section className="page-hero shell"><span className="eyebrow"><i />OD DOBREJ FIRMY DO DOBRZE PROWADZONEGO KLIENTA</span><h1>Wybierz efekt dla firmy, <em>nie technologię.</em></h1><p>Najpierw pokażmy klientom, dlaczego warto wybrać właśnie Twoją firmę. Potem ułatwmy im kontakt i zadbajmy, żeby żadne zapytanie nie umknęło. Wszystkie podane ceny są netto i dotyczą jasno określonego zakresu.</p><div className="hero-actions"><Link className="button" href="/kontakt">Poproś o dokładną wycenę <span>↗</span></Link><Link className="text-link" href="/poradnik/ile-kosztuje-strona-dla-malej-firmy">Jak powstaje cena strony? <span>↗</span></Link><Link className="text-link" href="/projektuj-strone">Zaprojektuj przykład strony <span>↗</span></Link><Link className="text-link" href="/portfolio?kategoria=www">Zobacz portfolio stron ↗</Link></div></section>
+    <section className="page-hero shell"><span className="eyebrow"><i />STRONY DLA FIRM Z MAREK I OKOLIC</span><h1>Wybierz poziom strony, <em>którego potrzebujesz teraz.</em></h1><p>Cztery pakiety, jasne ceny i dokładny opis tego, co dostajesz. Wszystkie kwoty są netto, a przy każdej podajemy też cenę brutto. Hosting jest w cenie, bez opłat miesięcznych.</p><div className="hero-actions"><Link className="button" href="/kontakt">Poproś o dokładną wycenę <span>↗</span></Link><Link className="text-link" href="/cennik-dodatkow">Cennik dodatków ↗</Link><Link className="text-link" href="/portfolio?kategoria=www">Zobacz portfolio stron ↗</Link></div></section>
 
-    <section className="section shell client-start-paths" aria-labelledby="client-start-title"><header><span className="section-no">DWA PUNKTY STARTU</span><h2 id="client-start-title">Zacznij od sytuacji, w której jest dziś Twoja firma.</h2><p>Nie musisz wybierać systemu ani technologii. Powiedz, co chcesz poprawić w swojej firmie, dobierzemy rozsądny początek.</p></header><div><article><span>01 / FIRMA MA JUŻ STRONĘ</span><h3>Sprawdzamy, co konkretnie warto poprawić.</h3><p>Przejrzę obecną stronę i wskażę miejsce, w którym klient może się zatrzymać, na telefonie, w ofercie albo przed wysłaniem wiadomości.</p><ul><li>ocena obecnej strony</li><li>priorytet poprawek</li><li>decyzja: modernizacja czy nowa wersja</li></ul><Link href="/modernizacja-strony#miniaudyt">Poproś o bezpłatną mini ocenę <i>↗</i></Link></article><article className="recommended"><span>02 / FIRMA POTRZEBUJE KIERUNKU</span><h3>Łączymy stronę z obsługą zapytań.</h3><p>Na prostej mapie pokażę, co klient widzi najpierw, o co warto go zapytać i jak zadbać o odpowiedź po wysłaniu formularza.</p><ul><li>cel i układ strony</li><li>formularz zbierający konkrety</li><li>prosty proces obsługi po wysłaniu zapytania</li></ul><Link href="/kontakt">Ustalmy kierunek i proces <i>↗</i></Link><Link className="path-example" href="/demo/mapa-szans-zielona-marka">Zobacz przykład Mapy Szans</Link></article></div></section>
+    <section className="section shell" id="pakiety" aria-labelledby="levels-title"><div className="zm-levels-intro"><span className="section-no">CZTERY POZIOMY</span><h2 id="levels-title">Strona rośnie razem z firmą.</h2><p>Wybierasz poziom, którego potrzebujesz teraz, a na wyższy przechodzisz w każdej chwili, dopłacając różnicę. Każdy kolejny pakiet zawiera wszystko z poprzedniego.</p></div>
+      <div className="zm-levels">{corePackages.map((item, index) => <article id={item.slug} key={item.slug} className={"zm-level" + (index === 2 ? " is-featured" : "")}>
+        <span className="zm-level-tag">{item.level}</span>
+        <h3 className="zm-level-title">{item.title}</h3>
+        <p className="zm-level-kind">{item.kind}</p>
+        <b className="zm-level-price">od {spaced(item.priceNet)} zł <span>netto</span><small>{item.priceGross}</small></b>
+        <p className="zm-level-lead">{item.lead}</p>
+        <h4>W cenie</h4>
+        <ul>{item.includes.map((line) => <li key={line}>{line}</li>)}</ul>
+        <details className="zm-level-more"><summary>Teksty i czego pakiet nie obejmuje</summary>
+          <h4>Teksty</h4>
+          <p className="zm-level-note">{item.texts}</p>
+          <h4>Czego pakiet nie obejmuje</h4>
+          <p className="zm-level-note">{item.limits}</p>
+        </details>
+        <p className="zm-level-time">Termin: {item.time}</p>
+        <Link className="button" href={"/kontakt?pakiet=" + encodeURIComponent(item.title)}>Zapytaj o ten pakiet <span>↗</span></Link>
+      </article>)}</div>
+      <p className="legal-note">Ceny są cenami wyjściowymi i dotyczą zakresu opisanego powyżej. Liczbę podstron liczymy łącznie ze stroną główną i kontaktem, jeśli mają osobne adresy. Limity słów, zasady poprawek i wyłączenia opisują <Link href="/warunki-wspolpracy">warunki współpracy</Link>.</p>
+    </section>
 
-    <section className="section mini-shop-section" id="zm-mini"><div className="shell mini-shop-grid"><div><span className="section-no">PROSTA WIZYTÓWKA WWW</span><h2>Krótka strona internetowa od 899 zł netto.</h2><p className="spaced-copy">Na początek często wystarcza jedna dobrze przemyślana strona. ZM Mini pokazuje główną usługę, miejsce działania i kontakt, bez rozbudowy, za którą dziś nie ma sensu płacić. Formularz i kolejne podstrony możesz dodać później.</p><b className="shop-price">od 899 zł netto</b><p className="muted">Zwykle 2–4 dni robocze od przekazania kompletu materiałów i ustalenia zakresu.</p><Link className="button" href="/kontakt?pakiet=ZM%20Mini">Zapytaj o ZM Mini <span>↗</span></Link><Link className="text-link" href="/projektuj-strone">Zobacz stronę w ZM Studio ↗</Link></div><div><h3>Co otrzymujesz?</h3><ul className="check-list"><li>jednostronicowy układ z 3 sekcjami: oferta, o firmie i kontakt</li><li>dopasowanie logo, kolorów i materiałów dostarczonych przez klienta</li><li>czytelna oferta, telefon, e-mail oraz odnośnik do lokalizacji</li><li>wersja mobilna i podstawowe SEO techniczne</li><li>jedna runda poprawek i publikacja</li></ul><p className="legal-note">Cena od 899 zł netto dotyczy dokładnie 3 sekcji, materiałów klienta i jednej rundy poprawek. Nie zawiera projektowania logo, pisania tekstów od zera, formularza, autorskiego układu, druku ani opłat za domenę i hosting. Ostateczny zakres potwierdzamy przed zleceniem.</p></div></div></section>
-    <section className="section shell"><div className="core-package-grid offer-page-packages">{corePackages.map((item, index) => <article key={item.title} className={index === 1 ? "featured" : ""}><span>{item.label}</span><div className="package-number">0{index + 1}</div><h2>{item.title}</h2><b>{item.price}</b><p>{item.lead}</p><h3 className="zm-package-list-label">W cenie pakietu</h3><ul>{item.includes.map((line) => <li key={line}>{line}</li>)}</ul><small>{item.time}</small><Link href="/kontakt">Zapytaj o pakiet <i>↗</i></Link></article>)}</div></section>
+    <section className="section shell" aria-labelledby="standards-title"><div className="section-head"><div><span className="section-no">W KAŻDYM PAKIECIE</span><h2 id="standards-title">Te rzeczy mają wszyscy klienci.</h2></div><p>Nie musisz się zastanawiać, czy wersja na telefon, certyfikat SSL albo uruchomienie strony są płatne osobno.</p></div>
+      <ul className="zm-standards">{packageStandards.map(([name, text]) => <li key={name}><b>{name.toUpperCase()}</b>{text}</li>)}</ul>
+      <details className="zm-compare"><summary>Porównaj pakiety w tabeli</summary><div className="zm-compare-scroll"><table>
+        <thead><tr><th scope="col">Co dostajesz</th>{corePackages.map((item) => <th scope="col" key={item.slug}>{item.title}</th>)}</tr></thead>
+        <tbody>
+          <tr><th scope="row">Cena netto</th>{corePackages.map((item) => <td key={item.slug}>{item.price}</td>)}</tr>
+          <tr><th scope="row">Zakres</th><td>1 strona, 3 sekcje</td><td>1 strona, 6–7 sekcji</td><td>do 6 podstron</td><td>do 12 podstron</td></tr>
+          <tr><th scope="row">Formularz kontaktowy</th><td>dodatek</td><td>tak</td><td>tak, dopasowany do branży</td><td>tak, osobne dla usług</td></tr>
+          <tr><th scope="row">Teksty</th><td>od Ciebie</td><td>piszemy z ankiety</td><td>piszemy po rozmowie</td><td>piszemy według planu</td></tr>
+          <tr><th scope="row">Rundy poprawek</th><td>1</td><td>2</td><td>2</td><td>2</td></tr>
+          <tr><th scope="row">Powiązanie z Profilem Firmy Google</th><td>dodatek</td><td>dodatek</td><td>tak</td><td>tak</td></tr>
+          <tr><th scope="row">Teksty pod Google i asystentów AI</th><td>dodatek</td><td>dodatek</td><td>tak</td><td>tak</td></tr>
+          <tr><th scope="row">Podstrony miast i dzielnic</th><td>nie</td><td>nie</td><td>nie</td><td>tak</td></tr>
+          <tr><th scope="row">Porady lub aktualności</th><td>nie</td><td>nie</td><td>nie</td><td>tak</td></tr>
+          <tr><th scope="row">Termin</th>{corePackages.map((item) => <td key={item.slug}>{item.time}</td>)}</tr>
+        </tbody></table></div></details>
+    </section>
 
-    <section className="section start-package-section"><div className="shell start-package-grid"><div><span className="section-no">ZM START / OD 1 449 ZŁ NETTO</span><h2>Pełna strona dla firmy, która chce być dobrze znaleziona i łatwa do kontaktu.</h2><p>To świadomy wybór prostoty, zamiast wielu pustych zakładek otrzymujesz trzy sekcje, które od razu pokazują najważniejsze informacje o firmie.</p><Link className="button" href="/kontakt">Zapytaj o ZM Start <span>↗</span></Link></div><div><h3>Co dokładnie otrzymujesz</h3><ul className="check-list"><li>indywidualny układ do około 6–7 sekcji</li><li>oferta, najważniejsze korzyści, proces i kontakt</li><li>menu, klikalny telefon, e-mail, WhatsApp oraz mapa lub obszar działania</li><li>formularz kontaktowy zabezpieczony przed prostym spamem</li><li>wersja na telefon, tablet i komputer</li><li>podstawy widoczności w Google: tytuł, opis, logiczne nagłówki, mapa strony i dane firmy</li><li>grafika do udostępniania, favicon oraz podłączenie domeny i HTTPS</li><li>dwie rundy poprawek, sprawdzenie działania strony przed publikacją, instrukcja i 14 dni wsparcia</li></ul><p className="legal-note">Cena startowa dotyczy strony z materiałami dostarczonymi przez klienta. Dodatkowe podstrony, sklep, rezerwacje, panel klienta, mały CRM, pełne teksty od zera oraz płatne usługi zewnętrzne ustalamy przed rozpoczęciem.</p></div></div></section>
+    <section id="modernizacja" className="section shell" aria-labelledby="modernizacja-title"><div className="section-head"><div><span className="section-no">MASZ JUŻ STRONĘ?</span><h2 id="modernizacja-title">Nie zawsze trzeba robić ją od początku.</h2></div><p>Jeśli Twoja strona wygląda przestarzale, źle działa na telefonie albo utrudnia klientom znalezienie informacji, najpierw sprawdzimy, co można poprawić, co warto zachować i czy modernizacja będzie bardziej opłacalna niż nowa strona.</p></div>
+      <div className="zm-modern"><article><span className="section-no">MODERNIZACJA STRONY</span><h3>Wycena indywidualna po bezpłatnej ocenie.</h3><p>Koszt zależy od stanu obecnej strony, dostępu do panelu i zakresu zmian, dlatego nie podajemy sztywnej ceny z góry. Bezpłatna miniocena obejmuje najważniejsze problemy i proponowany kierunek.</p><ul><li>ocena wyglądu, wersji na telefon i ścieżki kontaktu</li><li>decyzja: poprawki, większa przebudowa albo nowa strona</li><li>konkretna cena i termin przed rozpoczęciem prac</li></ul><Link className="button" href="/modernizacja-strony#miniaudyt">Poproś o bezpłatną miniocenę <span>↗</span></Link></article></div>
+    </section>
 
-    <section id="branze" className="section mini-shop-section"><div className="shell mini-shop-grid"><div><span className="section-no">TRZY SPRAWDZONE ŚCIEŻKI</span><h2>Inne dane zbiera warsztat, inne wykonawca, a inne salon beauty.</h2><p className="spaced-copy">W każdym wdrożeniu formularz i asystent zapytań wynikają z prawdziwego sposobu obsługi klienta.</p></div><div><h3>Wybierz przykład</h3><ul className="check-list"><li><Link href="/strony-dla-warsztatow">warsztat i detailing ↗</Link></li><li><Link href="/strony-dla-firm-uslugowych">remonty, instalacje i serwis ↗</Link></li><li><Link href="/strony-dla-beauty">beauty i usługi na termin ↗</Link></li><li><Link href="/asystent-zapytan">asystent i kwalifikacja zapytania ↗</Link></li></ul><p className="legal-note">Pokrewne branże dobieramy według procesu: wycena zdalna, przyjęcie zlecenia albo rezerwacja wizyty.</p></div></div></section>
+    <section id="opieka-i-seo" className="section shell" aria-labelledby="monthly-title"><div className="section-head"><div><span className="section-no">PO PUBLIKACJI</span><h2 id="monthly-title">Opieka i widoczność w Google. Opcjonalnie.</h2></div><p>Obie usługi są dobrowolne i można je zamówić niezależnie od nowej strony, także dla stron wykonanych przez kogoś innego.</p></div>
+      <div className="zm-monthly">{monthlyServices.map((item) => <article key={item.title}><h3>{item.title}</h3><b>{item.price}<small>{item.unit}</small></b><p>{item.lead}</p><p className="zm-monthly-note">{item.note}</p><Link className="text-link" href={item.href}>Zapytaj o zakres ↗</Link></article>)}</div>
+      <details className="zm-compare"><summary>Co dokładnie jest w lokalnej widoczności</summary><div className="zm-compare-scroll"><ul className="check-list"><li>4 krótkie wpisy w Profilu Firmy Google, przygotowane z Twoich informacji i zdjęć</li><li>jeden tekst na stronę, około 400–600 słów, związany z Twoimi usługami i obszarem działania</li><li>publikacja tekstu, jeśli system strony pozwala na to bez dodatkowych prac programistycznych</li><li>kontrola aktualności danych firmy w profilu: godziny, telefon, adres, kategorie i zdjęcia</li><li>miesięczny raport: wyświetlenia, telefony i kliknięcia oraz propozycja działań na kolejny miesiąc</li></ul><p className="legal-note">Zakładamy, że dostarczasz informacje, zdjęcia i podstawowe materiały. Założenie lub większe uporządkowanie zaniedbanego profilu wyceniamy osobno, od 390 zł. Nie gwarantujemy pozycji w wynikach wyszukiwania, bo o nich decyduje Google. Sprzedajemy regularną obsługę treści i profilu oraz monitorowanie wyników.</p></div></details>
+    </section>
 
-    <section className="section crm-offer"><div className="shell crm-offer-grid"><div><span className="section-no">MAŁY CRM, WAŻNY FILAR OFERTY</span><h2>Strona zdobywa kontakt. Mały CRM pilnuje, żeby firma go nie zgubiła.</h2><p>Porządkuje klientów, zapytania, wyceny, statusy zleceń, terminy i następne działania. Może działać samodzielnie albo razem ze stroną i formularzami.</p></div><div><b>od 4 900 zł netto</b><span>zwykle 3–4 tygodnie</span><Link className="button" href="/maly-crm-dla-firm">Zobacz Mały CRM <i>↗</i></Link></div></div></section>
+    <section id="dodatki" className="section shell" aria-labelledby="addons-title"><div className="section-head"><div><span className="section-no">DOBIERZ DO PAKIETU</span><h2 id="addons-title">Najczęściej wybierane dodatki.</h2></div><p>Dzięki nim od razu widzisz, ile może kosztować rozbudowa pakietu. Ceny są wyjściowe, netto.</p></div>
+      <div className="zm-addon-list">{featuredAddOns.map((item) => <article key={item.title}><h3>{item.title}</h3><b>{item.price}</b><small>Dotyczy: {item.scope}</small><p>{item.text}</p></article>)}</div>
+      <p style={{ marginTop: 18 }}><Link className="button" href="/cennik-dodatkow">Zobacz pełny cennik dodatków <span>↗</span></Link></p>
+    </section>
 
-    <section id="mini-sklep" className="section mini-shop-section beauty-shop-section"><div className="shell mini-shop-grid"><div><span className="section-no">MINI SKLEP / 3–10 PRODUKTÓW</span><h2>Usługa może prowadzić do rezerwacji w Booksy, a produkt do bezpiecznego zakupu.</h2><p className="spaced-copy">Dla salonu beauty, fryzjera, gabinetu, twórcy lub lokalnej marki. Strona może sprzedawać kosmetyki, vouchery, zestawy pielęgnacyjne i inne wybrane produkty bez budowania wielkiego sklepu.</p><b className="shop-price">3 499–5 499 zł netto</b><p className="muted">Zwykle 3–5 tygodni, zależnie od materiałów i operatora płatności.</p></div><div><h3>Co obejmuje</h3><ul className="check-list"><li>około 3–10 produktów i warianty</li><li>koszyk oraz jeden operator płatności</li><li>odbiór osobisty lub proste formy dostawy</li><li>vouchery albo zestawy, jeśli zakres to przewiduje</li><li>osobna ścieżka „Umów usługę w Booksy”</li><li>wersja mobilna i test całego zakupu</li></ul><p className="legal-note">Sprzedawcą, właścicielem regulaminu, płatności i danych klientów pozostaje firma klienta. Nietypowe magazyny, subskrypcje i rozbudowane integracje wyceniamy osobno.</p></div></div></section>
+    <section id="wiecej" className="section shell" aria-labelledby="more-title"><div className="section-head"><div><span className="section-no">POTRZEBUJESZ CZEGOŚ WIĘCEJ?</span><h2 id="more-title">Sklepy, systemy i automatyzacje wyceniamy indywidualnie.</h2></div><p>Zakres i cenę ustalamy po rozmowie o potrzebach Twojej firmy. Orientacyjne kwoty „od” są w cenniku dodatków.</p></div>
+      <ul className="zm-capabilities">{moreCapabilities.map(([name, text]) => <li key={name}><b>{name}</b>{text}</li>)}</ul>
+      <Link className="button" href="/kontakt">Opisz, czego potrzebujesz, a przygotujemy wycenę <span>↗</span></Link>
+    </section>
 
-    <section className="section shell"><div className="section-head"><div><span className="section-no">DODATKI, KTÓRE MAJĄ SENS</span><h2>Dobierane do realnej potrzeby.</h2></div><p>Nie sprzedaję dodatkowych funkcji dla samej listy funkcji. Każdy element powinien mieć sens dla Twojego klienta i codziennej pracy firmy.</p></div><div className="extra-grid">{extras.map(([title, price, text]) => <article key={title}><span>{price}</span><h3>{title}</h3><p>{text}</p><Link href={title.includes("CRM") ? "/maly-crm-dla-firm" : title === "Opieka nad stroną" ? "/opieka-nad-strona" : title.startsWith("DTP:") ? "/dtp" : "/kontakt"}>{title.includes("CRM") ? "Zobacz rozwiązanie" : "Zapytaj o zakres"} ↗</Link></article>)}</div></section>
+    <section id="branze" className="section mini-shop-section"><div className="shell mini-shop-grid"><div><span className="section-no">TRZY SPRAWDZONE ŚCIEŻKI</span><h2>Inne dane zbiera warsztat, inne wykonawca, a inne salon beauty.</h2><p className="spaced-copy">W każdym wdrożeniu formularz wynika z prawdziwego sposobu obsługi klienta.</p></div><div><h3>Wybierz przykład</h3><ul className="check-list"><li><Link href="/strony-dla-warsztatow">warsztat i detailing ↗</Link></li><li><Link href="/strony-dla-firm-uslugowych">remonty, instalacje i serwis ↗</Link></li><li><Link href="/strony-dla-beauty">beauty i usługi na termin ↗</Link></li></ul><p className="legal-note">Pokrewne branże dobieramy według procesu: wycena zdalna, przyjęcie zlecenia albo rezerwacja wizyty.</p></div></div></section>
 
-    <section id="koszty-zewnetrzne" className="section external-costs"><div className="shell"><div className="section-head"><div><span className="section-no">JASNE KOSZTY ZEWNĘTRZNE</span><h2>Wiesz, kto za co płaci, przed uruchomieniem.</h2></div><p>W cenie wdrożenia jest uzgodniona praca projektowa i techniczna. Usługi dostawców zewnętrznych klient opłaca bezpośrednio, po akceptacji aktualnych stawek.</p></div><div className="external-cost-grid"><article><span>01</span><h3>Płatności w sklepie</h3><p>Integrujemy sklepy z Przelewy24, Tpay i Stripe. Umowę oraz konto u operatora zawiera klient; prowizja trafia bezpośrednio do operatora.</p><small>Przykładowo: Przelewy24 1,29% + 0,30 zł; Tpay Starter 1,59% + 0,39 zł; Stripe BLIK 1,6% + 1 zł za transakcję.</small></article><article><span>02</span><h3>SMS i rezerwacje</h3><p>Przypomnienia SMS są opcjonalne. Konfigurujemy je, a koszt wiadomości rozlicza bramka SMS wybrana przez klienta.</p><small>Koszt pojedynczej wiadomości zależy od operatora i wolumenu. Przed uruchomieniem potwierdzamy aktualny cennik bramki SMS oraz systemu rezerwacji.</small></article><article><span>03</span><h3>Automatyzacja zapytań</h3><p>Asystent może działać według prostego scenariusza. Wariant rozszerzony wymaga własnego konta technicznego, miesięcznego limitu i zatwierdzonej bazy odpowiedzi.</p><small>Firma może korzystać z własnego konta technicznego albo wybrać obsługę od 199 zł netto miesięcznie. Prywatna subskrypcja rozmów nie jest wymagana.</small></article><article><span>04</span><h3>Backup i utrzymanie</h3><p>Eksport danych jest częścią CRM. Automatyczny backup na dysku Google klienta lub innym magazynie podłączamy opcjonalnie.</p><small>Backup od 990 zł netto za konfigurację + 49 zł netto miesięcznie za kontrolę. Domena, hosting i dodatkowa przestrzeń są uzgadniane osobno.</small></article></div><p className="legal-note external-note">Podane prowizje operatorów i koszty usług zewnętrznych są przykładami; mogą się zmienić. Przed uruchomieniem potwierdzamy aktualną stawkę i właściciela każdego konta.</p></div></section>
-
-    <section className="section shell" aria-labelledby="pelny-koszt-title"><div className="section-head"><div><span className="section-no">WYCENA BEZ NIESPODZIANEK</span><h2 id="pelny-koszt-title">Ile naprawdę kosztuje strona: projekt, hosting i jej utrzymanie?</h2></div><p>Wybierz wariant strony, domenę, hosting, opiekę i dodatki. Poznasz osobno opłatę za wykonanie, koszt pierwszego roku, kolejnego roku i trzech lat. Całość możesz wysłać w jednym zapytaniu.</p></div><TotalCostCalculator /></section>
+    <section className="section shell" aria-labelledby="pelny-koszt-title"><div className="section-head"><div><span className="section-no">ORIENTACYJNA WYCENA</span><h2 id="pelny-koszt-title">Złóż swój pakiet w trzech krokach.</h2></div><p>Wybierz pakiet, opcje i zobacz kwotę jednorazową oraz miesięczną. Całość możesz wysłać w jednym zapytaniu.</p></div><TotalCostCalculator /></section>
 
     <ProcessStandard variant="offer" />
-    <section className="section shell price-rules"><div><span className="section-no">JASNE ZASADY 30/70</span><h2>Najpierw odbierasz gotową stronę, potem publikujemy ją u Ciebie.</h2></div><ol><li><b>30% zaliczki</b> po akceptacji zakresu i umowy rezerwuje termin i rozpoczyna pracę.</li><li><b>Wersja robocza</b> jest przedstawiana pod bezpiecznym adresem do akceptacji i dwóch rund poprawek.</li><li><b>70% po odbiorze i sprawdzeniu działania strony</b> jest płatne przed publikacją na domenie lub serwerze klienta.</li><li><b>Publikacja i przekazanie</b> następują po pełnym rozliczeniu; koszty zewnętrzne są zatwierdzane osobno.</li></ol></section>
+
+    <section className="section shell price-rules"><div><span className="section-no">JASNE ZASADY PŁATNOŚCI 30/70</span><h2>Najpierw odbierasz gotową stronę, potem ją publikujemy.</h2></div><ol><li><b>30% zaliczki</b> po akceptacji zakresu rezerwuje termin i rozpoczyna pracę.</li><li><b>Wersja robocza</b> jest przedstawiana pod bezpiecznym adresem do akceptacji i uzgodnionych rund poprawek.</li><li><b>70% po odbiorze</b> i sprawdzeniu działania strony jest płatne przed publikacją na Twojej domenie.</li><li><b>Publikacja i przekazanie</b> następują po pełnym rozliczeniu. Koszty zewnętrzne, takie jak domena, zatwierdzasz osobno.</li></ol></section>
+
+    <section id="faq" className="section shell zm-faq" aria-labelledby="faq-title"><div className="section-head"><div><span className="section-no">NAJCZĘSTSZE PYTANIA</span><h2 id="faq-title">Zanim zapytasz.</h2></div></div>
+      {faq.map(([question, answer]) => <details key={question}><summary>{question}</summary><p>{answer}</p></details>)}
+      <p className="zm-billing-note">Usługi marki Zielona Marka rozliczamy przez platformę Bizky sp. z o.o., która wystawia faktury VAT. Pełne zasady współpracy: <Link href="/warunki-wspolpracy">warunki współpracy</Link>.</p>
+    </section>
   </main><QuickWhatsApp /><SiteFooter /></>;
 }

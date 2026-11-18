@@ -2,13 +2,13 @@
 
 import { useMemo, useState } from "react";
 
-const base: Record<string, number> = { "ZM Start, kompletna strona One Page": 1449, "ZM LeadFlow, strona i formularz": 4490, "ZM Flow, strona, formularz i asystent": 6900, "ZM Bot FAQ, asystent do istniejącej strony": 2500, "Prosty panel zleceń (mały CRM)": 4900 };
+const base: Record<string, number> = { "Wizytówka, 1 strona z 3 sekcjami": 899, "Strona jednostronicowa, 6–7 sekcji": 1449, "Strona firmowa, do 6 podstron": 2999, "Strona rozbudowana, do 12 podstron": 4499 };
 
 export default function EstimateCalculator() {
-  const [type, setType] = useState("ZM LeadFlow, strona i formularz");
+  const [type, setType] = useState("Strona firmowa, do 6 podstron");
   const [copy, setCopy] = useState(false);
   const [google, setGoogle] = useState(false);
-  const estimate = useMemo(() => base[type] + (copy ? 650 : 0) + (google ? 490 : 0), [type, copy, google]);
+  const estimate = useMemo(() => base[type] + (copy ? 249 : 0) + (google ? 149 : 0), [type, copy, google]);
   return <div className="estimate-calculator">
     <span>ORIENTACYJNY BUDŻET</span><h3>Sprawdź punkt startu projektu.</h3>
     <label>Rodzaj projektu<select value={type} onChange={(event) => setType(event.target.value)}>{Object.keys(base).map((entry) => <option key={entry}>{entry}</option>)}</select></label>

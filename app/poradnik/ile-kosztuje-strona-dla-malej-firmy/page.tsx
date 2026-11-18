@@ -22,19 +22,19 @@ const factors = [
 ] as const;
 
 const faq = [
-  ["Czy domena i hosting są w cenie strony?", "Podłączenie domeny i HTTPS może być częścią wdrożenia. Samą domenę, hosting oraz płatne usługi dostawców klient opłaca zgodnie z ustalonym zakresem i aktualnym cennikiem dostawcy."],
-  ["Czy można zacząć od jednej strony?", "Tak. ZM Mini to prosta wizytówka z ofertą i kontaktem. Pełniejszy ZM Start obejmuje więcej sekcji i formularz."],
-  ["Ile kosztuje domena i hosting po pierwszym roku?", "Cena odnowienia domeny może być znacznie wyższa niż promocja na start. Hosting zależy od technologii i usługodawcy. Najlepiej porównać koszty w perspektywie kilku lat w naszym kalkulatorze."],
+  ["Czy domena i hosting są w cenie strony?", "Hosting i certyfikat SSL są w cenie pakietu, bez opłat miesięcznych. Domenę rejestrujemy na Ciebie, a jej koszt płacisz rejestratorowi według jego cennika."],
+  ["Czy można zacząć od jednej strony?", "Tak. Wizytówka to jedna strona z trzema sekcjami. Strona jednostronicowa ma sześć lub siedem sekcji i formularz. Na wyższy poziom możesz przejść w każdej chwili, dopłacając różnicę."],
+  ["Ile kosztuje domena i hosting po pierwszym roku?", "Cena odnowienia domeny może być znacznie wyższa niż promocja na start, dlatego warto sprawdzić cennik rejestratora. Hosting u nas nie ma opłat miesięcznych."],
   ["Czy cena obejmuje telefon, tablet i komputer?", "Tak. Każdy wskazany wariant strony jest przygotowywany oraz sprawdzany na podstawowych szerokościach telefonu, tabletu i komputera."],
   ["Ile kosztuje późniejsza rozbudowa?", "Koszt zależy od nowego zakresu. Dodatkowa usługa, sklep, formularz, CRM albo integracja są wyceniane przed rozpoczęciem kolejnego etapu."],
   ["Czy mogę wykorzystać posiadaną domenę?", "Tak. Jeżeli firma jest właścicielem domeny i ma dostęp do jej ustawień, można ją podłączyć do nowej lub zmodernizowanej strony."],
 ] as const;
 
 const packages = [
-  ["00", "ZM Mini", "od 899 zł netto", "Prosta wizytówka jednostronicowa ze sprawdzonego układu.", ["3 sekcje", "telefon i e-mail, bez formularza", "materiały dostarczone przez klienta", "jedna runda poprawek"]],
-  ["01", "ZM Start", "od 1 449 zł netto", "Jedna kompletna, przewijana strona dla lokalnej firmy usługowej.", ["około 6–7 sekcji", "telefon, e-mail, WhatsApp i formularz", "wersja mobilna i podstawy Google", "publikacja, testy i 14 dni wsparcia"]],
-  ["02", "ZM LeadFlow", "od 4 490 zł netto", "Strona do 6 podstron i formularz, który zbiera konkrety potrzebne do rozmowy lub wyceny.", ["indywidualny układ i treści", "termin, opis i możliwość dodania zdjęć", "lokalne SEO i mierzenie zapytań", "zwykle 10–14 dni roboczych"]],
-  ["03", "ZM Flow", "od 6 900 zł netto", "Strona, formularz i asystent zapytań połączone z prostym obiegiem kontaktów.", ["kwalifikacja powtarzalnych pytań", "zatwierdzona baza odpowiedzi", "przekazanie sprawy człowiekowi", "możliwość dalszej automatyzacji"]],
+  ["01", "Wizytówka", "od 899 zł netto", "Jedna strona z trzema sekcjami, na materiałach klienta.", ["3 sekcje", "telefon i e-mail, formularz jako dodatek", "teksty dostarcza klient", "jedna runda poprawek"]],
+  ["02", "Strona jednostronicowa", "od 1 449 zł netto", "Jedna kompletna, przewijana strona dla lokalnej firmy.", ["6–7 sekcji", "formularz kontaktowy w cenie", "teksty z krótkiej ankiety", "dwie rundy poprawek"]],
+  ["03", "Strona firmowa", "od 2 999 zł netto", "Do 6 podstron z tekstami przygotowanymi po rozmowie.", ["do 6 podstron", "formularz dopasowany do branży", "powiązanie z Profilem Firmy Google", "teksty pod Google i asystentów AI"]],
+  ["04", "Strona rozbudowana", "od 4 499 zł netto", "Do 12 podstron według zatwierdzonego planu strony.", ["do 12 podstron", "podstrony miast i dzielnic", "porady lub aktualności", "dwie rundy poprawek"]],
 ] as const;
 
 export default function WebsiteCostGuidePage() {
@@ -46,11 +46,11 @@ export default function WebsiteCostGuidePage() {
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqData) }} />
     <article>
-      <header className="page-hero shell"><GuideBreadcrumbs current="Ile kosztuje strona dla małej firmy?" /><span className="eyebrow"><i />PORADNIK DLA MAŁEJ FIRMY</span><h1>Ile kosztuje strona internetowa <em>dla małej firmy?</em></h1><p>Nie każda firma potrzebuje od razu dużej strony. Prosta wizytówka ZM Mini z trzema sekcjami kosztuje od 899 zł netto, a pełniejsza strona ZM Start od 1 449 zł netto. Cena rośnie, jeśli potrzebujesz dodatkowych podstron, tekstów, formularzy lub sklepu.</p><div className="hero-actions"><a className="button" href="#warianty">Porównaj warianty <span>↓</span></a><Link className="text-link" href="/kontakt">Poproś o dokładną wycenę <span>↗</span></Link></div></header>
+      <header className="page-hero shell"><GuideBreadcrumbs current="Ile kosztuje strona dla małej firmy?" /><span className="eyebrow"><i />PORADNIK DLA MAŁEJ FIRMY</span><h1>Ile kosztuje strona internetowa <em>dla małej firmy?</em></h1><p>Nie każda firma potrzebuje od razu dużej strony. Wizytówka z trzema sekcjami kosztuje od 899 zł netto, strona jednostronicowa od 1 449 zł netto, strona firmowa od 2 999 zł netto, a rozbudowana od 4 499 zł netto. Cena rośnie, jeśli potrzebujesz dodatkowych podstron, tekstów, formularzy lub sklepu.</p><div className="hero-actions"><a className="button" href="#warianty">Porównaj warianty <span>↓</span></a><Link className="text-link" href="/kontakt">Poproś o dokładną wycenę <span>↗</span></Link></div></header>
       <aside className="shell zm-guide-highlights" aria-label="Najważniejsze informacje z artykułu">
-        <div><span>01 / W PIGUŁCE</span><h2>ZM Mini</h2><p>Od 899 zł netto: 3 sekcje, materiały klienta, bez formularza.</p></div>
-        <div><span>02 / W PIGUŁCE</span><h2>ZM Start</h2><p>Od 1 449 zł netto: pełniejszy układ i formularz w uzgodnionym zakresie.</p></div>
-        <div><span>03 / W PIGUŁCE</span><h2>Koszty dodatkowe</h2><p>Domena, hosting, opieka i indywidualne funkcje są rozliczane osobno.</p></div>
+        <div><span>01 / W PIGUŁCE</span><h2>Wizytówka</h2><p>Od 899 zł netto: 3 sekcje, materiały klienta, bez formularza.</p></div>
+        <div><span>02 / W PIGUŁCE</span><h2>Strona jednostronicowa</h2><p>Od 1 449 zł netto: 6–7 sekcji, formularz i teksty po ankiecie.</p></div>
+        <div><span>03 / W PIGUŁCE</span><h2>Koszty dodatkowe</h2><p>Domena (płacona rejestratorowi), opieka i indywidualne funkcje są rozliczane osobno. Hosting jest w cenie.</p></div>
       </aside>
       <section className="section shell guide-intro"><div><span className="section-no">CENA BEZ NIEDOMÓWIEŃ</span><h2>Nie płacisz za liczbę pikseli. Płacisz za zakres pracy i odpowiedzialność.</h2></div><p>Dobra wycena obejmuje nie tylko wygląd. Trzeba ułożyć ofertę, zaprojektować drogę klienta, przygotować telefon, tablet i komputer, sprawdzić formularze, zadbać o podstawy Google, opublikować stronę i skontrolować ją przed odbiorem.</p></section>
       <section className="section guide-reasons"><div className="shell"><div className="section-head"><div><span className="section-no">CO ZMIENIA CENĘ</span><h2>Sześć elementów, które naprawdę wpływają na koszt.</h2></div><p>Dwie wyceny mogą wyglądać podobnie, dopóki nie sprawdzisz szczegółów. Zapytaj o poprawki, formularze, testy i pomoc przy publikacji; nie tylko o cenę pierwszego projektu.</p></div><ol>{factors.map(([title, text], index) => <li key={title}><b>{String(index + 1).padStart(2, "0")}</b><div><h3>{title}</h3><p>{text}</p></div></li>)}</ol></div></section>

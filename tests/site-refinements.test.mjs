@@ -229,7 +229,7 @@ test("business identity, authors and client-safe quote tracking stay consistent"
   assert.match(tracker,/link_url: analyticsHref/);
   const cost=await readFile(new URL("../app/TotalCostCalculator.tsx",import.meta.url),"utf8");
   assert.match(cost,/website_quote_to_contact/);
-  assert.match(cost,/package_id: site, care_plan: care, hosting_type: hosting/);
+  assert.match(cost,/package_id: pack, care_plan: care \? "yes" : "no", seo_plan: seo/);
 });
 
 test("new guides expose navigable and structured breadcrumbs",async()=>{
