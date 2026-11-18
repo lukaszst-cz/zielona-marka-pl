@@ -76,9 +76,9 @@
 .zm-footer2-brand .brand-wordmark small span{display:block;white-space:normal;overflow-wrap:anywhere}
 
 /* Ujednolicenie wyglądu oferty ze stroną główną: pełne tło kart, mniejsze ceny, spójne pola formularza */
-html body .zm-public :is(.zm-level,.zm-monthly article,.zm-addon-list article,.zm-standards li,.zm-capabilities li,.zm-compare,.zm-total-fields,.zm-total-results){background:#08281b!important;border:1px solid #b0f36c45!important;border-radius:8px!important;box-shadow:none!important;transform:none!important;color:#f5f8f1!important;backdrop-filter:none!important}
-html body .zm-public .zm-level.is-featured{background:#0b3222!important;border-color:#b0f36c99!important}
-html body .zm-public :is(.zm-level,.zm-monthly article,.zm-addon-list article):is(:hover,:focus-within){background:#0b3222!important;border-color:#b0f36c99!important;transform:none!important}
+html body .zm-public :is(.zm-level,.zm-monthly article,.zm-addon-list article,.zm-standards li,.zm-capabilities li,.zm-compare,.zm-total-fields,.zm-total-results){background:rgba(5,32,21,.3)!important;border:1px solid rgba(197,222,186,.32)!important;border-radius:12px!important;box-shadow:0 14px 38px rgba(0,16,9,.2)!important;backdrop-filter:blur(5px)!important;transform:none!important;color:#f5f8f1!important}
+html body .zm-public .zm-level.is-featured{background:rgba(10,45,29,.42)!important;border-color:rgba(176,243,108,.5)!important}
+html body .zm-public :is(.zm-level,.zm-monthly article,.zm-addon-list article):is(:hover,:focus-within){background:rgba(10,45,29,.42)!important;border-color:rgba(197,222,186,.5)!important;transform:none!important}
 html body .zm-public .zm-level{padding:24px 22px!important;gap:10px}
 html body .zm-public .zm-level h3.zm-level-title{font-size:24px!important;font-weight:400;line-height:1.2}
 html body .zm-public .zm-level-kind{font-size:14px!important;color:#cfe0c8!important}
@@ -93,8 +93,8 @@ html body .zm-public .zm-monthly b{font-size:22px!important;color:#f5f8f1!import
 html body .zm-public .zm-monthly h3{font-size:20px!important;font-weight:400}
 html body .zm-public .zm-addon-list h3{font-size:17px!important;font-weight:400}
 html body .zm-public .zm-addon-list b{font-size:15px!important}
-html body .zm-public .zm-total-fields :is(input:not([type=checkbox]):not([type=radio]),select,textarea){background:#04170f!important;color:#f5f8f1!important;border:1px solid #b0f36c45!important;border-radius:6px}
-html body .zm-public .zm-cost-extras{border:1px solid #b0f36c33!important;border-radius:8px}
+html body .zm-public .zm-total-fields :is(input:not([type=checkbox]):not([type=radio]),select,textarea){background:#08281b!important;color:#f5f8f1!important;border:1px solid #789981!important;border-radius:4px;padding:12px 14px}
+html body .zm-public .zm-cost-extras{border:1px solid rgba(197,222,186,.26)!important;border-radius:10px}
 html body .zm-public .zm-cost-extras input[type=checkbox],html body .zm-public .zm-cost-extras input[type=radio]{accent-color:#b0f36c;width:18px;height:18px;margin:2px 0 0;flex:none}
 html body .zm-public .zm-cost-extras label{align-items:flex-start;gap:10px;min-height:0;font-size:15px!important}
 html body .zm-public .zm-total-results :is(.zm-cost-total,.zm-cost-next strong){font-size:clamp(20px,2vw,26px)!important}
@@ -105,4 +105,14 @@ html body .zm-public .zm-cost-extras input[type=checkbox],html body .zm-public .
 html body .zm-public .zm-level-more{border-top:1px solid #b0f36c33;padding-top:10px}
 html body .zm-public .zm-level-more summary{cursor:pointer;font:700 14px/1.5 Arial,sans-serif;color:#b0f36c}
 html body .zm-public .zm-level-more h4{margin:12px 0 4px}
-html body .zm-public .legal-note{background:#08281b!important;border:1px solid #b0f36c33!important;border-left:3px solid #b0f36c!important;border-radius:8px;box-shadow:none!important;color:#dcebd4!important;max-width:none}
+html body .zm-public .legal-note{background:rgba(5,32,21,.3)!important;border:1px solid rgba(197,222,186,.32)!important;border-left:3px solid rgba(176,243,108,.75)!important;border-radius:12px;box-shadow:0 14px 38px rgba(0,16,9,.2)!important;color:#dcebd4!important;max-width:none}
+html body .zm-public .zm-levels{align-items:start}
+html body .zm-public .zm-level-time{margin-top:14px}
+.zm-modern{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+html body .zm-public .zm-modern article{display:flex;flex-direction:column;align-items:flex-start;gap:12px;padding:26px!important;background:rgba(5,32,21,.3)!important;border:1px solid rgba(197,222,186,.32)!important;border-radius:12px!important;box-shadow:0 14px 38px rgba(0,16,9,.2)!important;backdrop-filter:blur(5px)!important;min-height:0!important}
+html body .zm-public .zm-modern h3{margin:0;font-size:22px!important;font-weight:400;color:#f3f8ee!important}
+html body .zm-public .zm-modern p{margin:0;font-size:15px!important;line-height:1.6}
+html body .zm-public .zm-modern ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+html body .zm-public .zm-modern li{position:relative;padding-left:20px;font-size:14px!important;line-height:1.5}
+html body .zm-public .zm-modern li:before{content:"✓";position:absolute;left:0;color:#b0f36c}
+@media(max-width:720px){.zm-modern{grid-template-columns:1fr}}
