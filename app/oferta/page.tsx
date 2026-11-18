@@ -56,10 +56,12 @@ export default function OfferPage() {
         <p className="zm-level-lead">{item.lead}</p>
         <h4>W cenie</h4>
         <ul>{item.includes.map((line) => <li key={line}>{line}</li>)}</ul>
-        <h4>Teksty</h4>
-        <p className="zm-level-note">{item.texts}</p>
-        <h4>Czego pakiet nie obejmuje</h4>
-        <p className="zm-level-note">{item.limits}</p>
+        <details className="zm-level-more"><summary>Teksty i czego pakiet nie obejmuje</summary>
+          <h4>Teksty</h4>
+          <p className="zm-level-note">{item.texts}</p>
+          <h4>Czego pakiet nie obejmuje</h4>
+          <p className="zm-level-note">{item.limits}</p>
+        </details>
         <p className="zm-level-time">Termin: {item.time}</p>
         <Link className="button" href={"/kontakt?pakiet=" + encodeURIComponent(item.title)}>Zapytaj o ten pakiet <span>↗</span></Link>
       </article>)}</div>

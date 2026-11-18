@@ -102,3 +102,7 @@ html body .zm-public .zm-total-results .zm-cost-total strong{font-size:clamp(24p
 html body .zm-public .zm-total-results h3{font-size:22px!important;font-weight:400}
 html body .zm-public .zm-cost-extras label{display:flex!important;align-items:center!important;padding:6px 0!important;line-height:1.4!important}
 html body .zm-public .zm-cost-extras input[type=checkbox],html body .zm-public .zm-cost-extras input[type=radio]{margin:0!important}
+html body .zm-public .zm-level-more{border-top:1px solid #b0f36c33;padding-top:10px}
+html body .zm-public .zm-level-more summary{cursor:pointer;font:700 14px/1.5 Arial,sans-serif;color:#b0f36c}
+html body .zm-public .zm-level-more h4{margin:12px 0 4px}
+html body .zm-public .legal-note{background:#08281b!important;border:1px solid #b0f36c33!important;border-left:3px solid #b0f36c!important;border-radius:8px;box-shadow:none!important;color:#dcebd4!important;max-width:none}
