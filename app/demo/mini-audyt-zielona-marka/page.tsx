@@ -12,7 +12,7 @@ const findings = [
     label: "PIERWSZY EKRAN",
     title: "Pokaż konkretny punkt startu wcześniej.",
     observation: "Hasło buduje klimat i jasno mówi o stronach oraz systemach, ale cena startowa i czas realizacji pojawiają się dopiero w ofercie.",
-    action: "Dodać pod opisem krótką linię: „ZM Start od 1 449 zł netto · od 72 godzin do 14 dni”.",
+    action: "Dodać pod opisem krótką linię: „Strona jednostronicowa od 1 449 zł netto”.",
     effect: "Klient szybciej ocenia, czy oferta jest dla niego i chętniej przechodzi do rozmowy.",
   },
   {
@@ -64,7 +64,7 @@ export default function MiniAuditExample() {
         <header><span className="mini-audit-kicker">PRZYKŁAD ZMIANY · NIE GOTOWA PUBLIKACJA</span><h2>Jedna rekomendacja pokazana od razu.</h2></header>
         <div className="mini-audit-compare">
           <article className="mini-audit-before"><span>OBECNIE</span><h3>Masz dobrą firmę.<br/><em>Pokażmy ją z dobrej strony.</em></h3><p>Projektuję strony WWW dla firm usługowych. Pomagam też uporządkować zapytania, sprzedaż i obsługę klientów.</p><div><b>Zobacz możliwości ↓</b><u>Porozmawiajmy ↗</u></div></article>
-          <article className="mini-audit-after"><span>PROPONOWANY KIERUNEK</span><h3>Masz dobrą firmę.<br/><em>Pokażmy ją z dobrej strony.</em></h3><p>Strony WWW i proste systemy dla lokalnych firm usługowych. Jasny zakres, wersja mobilna i publikacja dopiero po akceptacji.</p><strong>ZM Start od 1 449 zł netto · od 72 godzin do 14 dni*</strong><div><b>Poproś o bezpłatny mini audyt →</b><u>Zobacz ofertę</u></div><small>*Po otrzymaniu materiałów i ustaleniu zakresu.</small></article>
+          <article className="mini-audit-after"><span>PROPONOWANY KIERUNEK</span><h3>Masz dobrą firmę.<br/><em>Pokażmy ją z dobrej strony.</em></h3><p>Strony WWW i proste systemy dla lokalnych firm usługowych. Jasny zakres, wersja mobilna i publikacja dopiero po akceptacji.</p><strong>Strona jednostronicowa od 1 449 zł netto*</strong><div><b>Poproś o bezpłatny mini audyt →</b><u>Zobacz ofertę</u></div><small>*Po otrzymaniu materiałów i ustaleniu zakresu.</small></article>
         </div>
       </div>
     </section>
