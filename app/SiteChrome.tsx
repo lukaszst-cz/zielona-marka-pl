@@ -111,11 +111,14 @@ export function SiteFooter({ english = false }: { english?: boolean }) {
     </div>
     <div className="zm-footer2-bottom">
       <small>© {new Date().getFullYear()} Zielona Marka · Łukasz Staniewicz</small>
-      <details className="zm-footer2-billing" id="fakturowanie"><summary>{english ? "Invoices are issued by Bizky sp. z o.o." : "Faktury wystawia Bizky sp. z o.o."}</summary>
-        <p><strong>Bizky sp. z o.o.</strong><br />Al. Księcia Józefa Poniatowskiego 1, klatka K4, poziom 1, 03-901 Warszawa, Polska<br />NIP: 7010150265 · KRS: 0000312229 · <a href="https://bizky.ai/" target="_blank" rel="noopener noreferrer">bizky.ai</a></p>
-        <p id="rozliczenia-zagraniczne" lang="en"><strong>International clients:</strong> invoices can be issued by JUULI OÜ, Veskiposti 2, Avala, Electra Building, 9th Floor, 10138 Tallinn, Estonia. Registry code: 16579396 · VAT: EE102608520 · <a href="https://www.juuli.com/" target="_blank" rel="noopener noreferrer">www.juuli.com</a>. The invoicing entity is confirmed before the invoice is issued.</p>
+      <div className="zm-footer2-billing" id="fakturowanie">
+        <h2>{english ? "Invoices" : "Faktury"}</h2>
+        <div className="zm-footer2-billing-grid">
+          <p><strong>{english ? "Polish clients: " : "Klienci z Polski: "}</strong>{english ? "invoices are issued by " : "faktury wystawia "}<strong>Bizky sp. z o.o.</strong>, Al. Księcia Józefa Poniatowskiego 1, klatka K4, poziom 1, 03-901 Warszawa, Polska. NIP: 7010150265 · KRS: 0000312229 · <a href="https://bizky.ai/" target="_blank" rel="noopener noreferrer">bizky.ai</a></p>
+          <p id="rozliczenia-zagraniczne" lang="en"><strong>International clients:</strong> invoices are issued by <strong>JUULI OÜ</strong>, Veskiposti 2, Avala, Electra Building, 9th Floor, 10138 Tallinn, Estonia. Registry code: 16579396 · VAT: EE102608520 · <a href="https://www.juuli.com/" target="_blank" rel="noopener noreferrer">www.juuli.com</a>. The invoicing entity is confirmed before the invoice is issued.</p>
+        </div>
         {!english && <p><Link href="/warunki-wspolpracy#p2">Zasady rozliczeń i faktur</Link></p>}
-      </details>
+      </div>
       <Link href="/polityka-prywatnosci">{english ? "Privacy policy (PL)" : "Polityka prywatności"}</Link><CookieSettingsLink english={english} /><Link href={english ? "/" : "/en"}>{english ? "Polski" : "EN"}</Link>
     </div>
   </div></footer>;

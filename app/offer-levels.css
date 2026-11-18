@@ -138,3 +138,12 @@ html body .zm-contact-dock .demo-assistant-trigger:hover{background:rgba(10,45,2
 html body .zm-contact-dock .demo-assistant-trigger>span{color:#b0f36c!important;background:transparent!important}
 html body .zm-contact-dock .whatsapp-float{background:rgba(5,32,21,.5)!important;color:#f5f8f1!important;border:1px solid rgba(197,222,186,.4)!important;box-shadow:none!important}
 html body .zm-contact-dock .whatsapp-float:hover{background:rgba(10,45,29,.7)!important}
+
+/* Faktury: widoczny blok, bez rozwijania */
+html body .zm-footer .zm-footer2-billing{order:-1;flex:1 0 100%;max-width:none;padding-bottom:18px;border-bottom:1px solid #d4e7c62e}
+html body .zm-footer .zm-footer2-billing h2{margin:0 0 10px;font:700 14px/1.4 Arial,sans-serif!important;letter-spacing:.08em;text-transform:uppercase;color:#b0f36c}
+html body .zm-footer .zm-footer2-billing-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px 40px}
+html body .zm-footer .zm-footer2-billing p{margin:0;font:14px/1.6 Arial,sans-serif!important;color:#e6efdf;max-width:none}
+html body .zm-footer .zm-footer2-billing>p{margin-top:12px}
+html body .zm-footer .zm-footer2-billing a{color:#d9efbd;text-decoration:underline;text-underline-offset:3px}
+@media(max-width:800px){html body .zm-footer .zm-footer2-billing-grid{grid-template-columns:1fr}}
