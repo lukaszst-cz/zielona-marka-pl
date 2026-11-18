@@ -131,9 +131,11 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
     return () => window.cancelAnimationFrame(frame);
   }, []);
 
+  const excelCount = useMemo(() => items.filter(item => item.category === "excel").length, [items]);
   const filtered = useMemo(() => {
     const query = search.trim().toLocaleLowerCase("pl-PL");
-    return items.filter(item => matchesIndustry(item, industry) && (format === "all" || item.category === format) &&
+    return items.filter(item => (item.category !== "excel" || format === "excel" || Boolean(query)) &&
+      matchesIndustry(item, industry) && (format === "all" || item.category === format) &&
       (!onlyOpen || Boolean(item.openAccess)) &&
       (!query || [item.title, item.industry, item.summary, item.explanation, ...item.features]
         .join(" ").toLocaleLowerCase("pl-PL").includes(query)));
@@ -144,6 +146,14 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
   function chooseIndustry(id: string) {
     setIndustry(id);
     setFormat("all");
+  }
+
+  function showExcelCatalog() {
+    setIndustry("all");
+    setFormat("excel");
+    setSearch("");
+    setOnlyOpen(false);
+    document.getElementById("zmp-katalog")?.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
   }
 
   function onStageKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {
@@ -293,13 +303,13 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
         <div className="zmp-projects-title">
           <span className="zmp-overline">PROJEKTY I DEMONSTRACJE</span>
           <h2>Wszystkie prace <em>w jednym miejscu.</em></h2>
-          <p>W katalogu są koncepcje, projekty demonstracyjne i narzędzia z przykładowymi danymi. Status znajdziesz przy każdej pracy. Filtruj po branży albo wpisz, czego szukasz.</p>
+          <p>Przeglądaj strony, aplikacje i koncepcje. Arkusze Excel znajdziesz w osobnej kategorii oraz przy projektach, których dotyczą. Filtruj po branży albo wpisz, czego szukasz.</p>
         </div>
         <div className="zmp-projects-tools">
           <label className="zmp-format-field">
             <span>Rodzaj projektu</span>
             <select value={format} onChange={event => setFormat(event.target.value as PortfolioCategory | "all")}>
-              <option value="all">Wszystkie formaty</option>
+              <option value="all">Galeria projektów</option>
               {portfolioCategories.map(item => <option key={item.id} value={item.id}>{item.label}</option>)}
             </select>
           </label>
@@ -309,7 +319,7 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
             aria-pressed={onlyOpen} onClick={() => setOnlyOpen(value => !value)}>
             <span aria-hidden="true">↓</span> Tylko do pobrania i użycia
           </button>
-          <span className="zmp-result-count">{filtered.length} z {items.length} projektów</span>
+          <span className="zmp-result-count" aria-live="polite">{filtered.length} {format === "excel" ? "arkuszy Excel" : "projektów"}</span>
         </div>
         <div className="zmp-grid zmx-grid">
           {filtered.map(item => <article className="zmp-project-card zmx-project-card" key={`${filterKey}|${item.slug}`}
@@ -356,8 +366,22 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
         </div>
         {filtered.length===0 && <div className="zmp-no-results">
           <p>Nie znaleziono projektów w tej kategorii.</p>
-          <button type="button" onClick={()=>{setIndustry("all");setFormat("all");setSearch("")}}>Pokaż wszystkie projekty</button>
+          <button type="button" onClick={()=>{setIndustry("all");setFormat("all");setSearch("");setOnlyOpen(false)}}>Pokaż wszystkie projekty</button>
         </div>}
+
+        {format === "all" && industry === "all" && !search.trim() && !onlyOpen && excelCount > 0 && (
+          <aside className="zmp-excel-spotlight" aria-labelledby="zmp-excel-spotlight-title">
+            <div className="zmp-excel-spotlight-mark" aria-hidden="true">XLSX</div>
+            <div className="zmp-excel-spotlight-copy">
+              <span className="zmp-overline">DODATKOWE NARZĘDZIA DLA FIRM</span>
+              <h3 id="zmp-excel-spotlight-title">Arkusze Excel i kalkulatory</h3>
+              <p>{excelCount} gotowych plików z przykładowymi danymi. Możesz je znaleźć w osobnej kategorii albo pobrać przy projektach pokazujących ich zastosowanie.</p>
+            </div>
+            <button type="button" className="zmp-btn zmp-btn-outline" onClick={showExcelCatalog}>
+              Zobacz {excelCount} arkuszy Excel ↗
+            </button>
+          </aside>
+        )}
 
         <div className="zmp-pdf-footer">
           <div><span className="zmp-overline">DO OBEJRZENIA I ZAPISANIA</span><h2>Portfolio także w PDF</h2>
