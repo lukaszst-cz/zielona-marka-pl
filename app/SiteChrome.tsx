@@ -64,23 +64,23 @@ export function SiteHeader({ english = false }: { english?: boolean }) {
     <div className="zm-nav-desktop">
       {english
         ? <Link href="/en#services">Services</Link>
-        : <details className="zm-offer-menu"><summary>Oferta <span aria-hidden="true">⌄</span></summary>
+        : <details className="zm-offer-menu"><summary>Oferta i ceny <span aria-hidden="true">⌄</span></summary>
             <div className="zm-mega-menu">
-              <div className="zm-mega-intro"><strong>W czym mogę Ci pomóc?</strong><p>Zajrzyj do usług i przykładów, łatwiej będzie wybrać, od czego zacząć.</p><div className="zm-mega-quick-actions"><Link href="/projektuj-strone">Zaprojektuj własną stronę ↗</Link><Link href="/oferta">Porównaj pakiety i ceny ↗</Link><Link href="/dtp">Projekt do druku ↗</Link></div></div>
+              <div className="zm-mega-intro"><strong>W czym mogę Ci pomóc?</strong><p>Zajrzyj do usług i przykładów, łatwiej będzie wybrać, od czego zacząć.</p><div className="zm-mega-quick-actions"><Link className="zm-mega-price" href="/oferta"><span>Porównaj pakiety i ceny ↗</span><small>strony od 899 zł netto</small></Link><Link href="/projektuj-strone">Zaprojektuj własną stronę ↗</Link><Link href="/dtp">Projekt do druku ↗</Link></div></div>
               <div className="zm-mega-groups">{offerGroups.map((group) => <section key={group.title} className="zm-mega-group" aria-label={group.title}>
                 <h2>{group.title}</h2><p>{group.description}</p>
                 {group.links.map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}
               </section>)}</div>
             </div>
           </details>}
-      <Link href={english ? "/en#projects" : "/portfolio"}>{english ? "Projects" : "Portfolio"}</Link>{!english && <><Link className="zm-nav-studio" href="/projektuj-strone">ZM Studio</Link><Link href="/poradnik">Blog</Link></>}<Link href={english ? "/en#process" : "/jak-pracuje"}>{english ? "Working together" : "Współpraca"}</Link>{!english && <Link href="/standardy-jakosci">Standardy jakości</Link>}<Link href={english ? "/en#contact" : "/kontakt"}>{english ? "Contact" : "Kontakt"}</Link><Link className="zm-client-link" href="/status" rel="nofollow">{english ? "Client area (PL)" : "Strefa klienta"}</Link>
+      <Link href={english ? "/en#projects" : "/portfolio"}>{english ? "Projects" : "Portfolio"}</Link>{!english && <><Link className="zm-nav-studio" href="/projektuj-strone">ZM Studio</Link><Link href="/poradnik">Blog</Link></>}<Link href={english ? "/en#process" : "/jak-pracuje"}>{english ? "Working together" : "Współpraca"}</Link>{!english && <Link href="/cennik-dodatkow">Cennik dodatków</Link>}<Link href={english ? "/en#contact" : "/kontakt"}>{english ? "Contact" : "Kontakt"}</Link><Link className="zm-client-link" href="/status" rel="nofollow">{english ? "Client area (PL)" : "Strefa klienta"}</Link>
       <LanguageSwitch english={english} />
     </div>
     <details className="zm-mobile-menu"><summary>Menu <span aria-hidden="true">+</span></summary>
       <div className="zm-mobile-menu-panel">
         {english ? <><a href="/en#services">Services</a><a href="/en#projects">Projects</a><a href="/en#process">Working together</a><a href="/en#contact">Contact</a></>
           : <>
-            <div className="zm-mobile-menu-shortcuts"><Link href="/oferta">Oferta</Link><Link href="/portfolio">Portfolio</Link><Link href="/poradnik">Blog</Link><Link href="/standardy-jakosci">Standardy jakości</Link><Link href="/kontakt">Kontakt</Link></div>
+            <div className="zm-mobile-menu-shortcuts"><Link className="zm-mega-price" href="/oferta">Oferta i ceny</Link><Link href="/portfolio">Portfolio</Link><Link href="/poradnik">Blog</Link><Link href="/cennik-dodatkow">Cennik dodatków</Link><Link href="/kontakt">Kontakt</Link></div>
             {offerGroups.map((group) => <section className="zm-mobile-menu-group" key={group.title} aria-label={group.title}>
               <h2>{group.title}</h2>
               {group.links.map(([label, href]) => <Link href={href} key={href}>{label}</Link>)}
@@ -111,11 +111,14 @@ export function SiteFooter({ english = false }: { english?: boolean }) {
     </div>
     <div className="zm-footer2-bottom">
       <small>© {new Date().getFullYear()} Zielona Marka · Łukasz Staniewicz</small>
-      <details className="zm-footer2-billing" id="fakturowanie"><summary>{english ? "Invoices are issued by Bizky sp. z o.o." : "Faktury wystawia Bizky sp. z o.o."}</summary>
-        <p><strong>Bizky sp. z o.o.</strong><br />Al. Księcia Józefa Poniatowskiego 1, klatka K4, poziom 1, 03-901 Warszawa, Polska<br />NIP: 7010150265 · KRS: 0000312229 · <a href="https://bizky.ai/" target="_blank" rel="noopener noreferrer">bizky.ai</a></p>
-        <p id="rozliczenia-zagraniczne" lang="en"><strong>International clients:</strong> invoices can be issued by JUULI OÜ, Veskiposti 2, Avala, Electra Building, 9th Floor, 10138 Tallinn, Estonia. Registry code: 16579396 · VAT: EE102608520 · <a href="https://www.juuli.com/" target="_blank" rel="noopener noreferrer">www.juuli.com</a>. The invoicing entity is confirmed before the invoice is issued.</p>
+      <div className="zm-footer2-billing" id="fakturowanie">
+        <h2>{english ? "Invoices" : "Faktury"}</h2>
+        <div className="zm-footer2-billing-grid">
+          <p><strong>{english ? "Polish clients: " : "Klienci z Polski: "}</strong>{english ? "invoices are issued by " : "faktury wystawia "}<strong>Bizky sp. z o.o.</strong>, Al. Księcia Józefa Poniatowskiego 1, klatka K4, poziom 1, 03-901 Warszawa, Polska. NIP: 7010150265 · KRS: 0000312229 · <a href="https://bizky.ai/" target="_blank" rel="noopener noreferrer">bizky.ai</a></p>
+          <p id="rozliczenia-zagraniczne" lang="en"><strong>International clients:</strong> invoices are issued by <strong>JUULI OÜ</strong>, Veskiposti 2, Avala, Electra Building, 9th Floor, 10138 Tallinn, Estonia. Registry code: 16579396 · VAT: EE102608520 · <a href="https://www.juuli.com/" target="_blank" rel="noopener noreferrer">www.juuli.com</a>. The invoicing entity is confirmed before the invoice is issued.</p>
+        </div>
         {!english && <p><Link href="/warunki-wspolpracy#p2">Zasady rozliczeń i faktur</Link></p>}
-      </details>
+      </div>
       <Link href="/polityka-prywatnosci">{english ? "Privacy policy (PL)" : "Polityka prywatności"}</Link><CookieSettingsLink english={english} /><Link href={english ? "/" : "/en"}>{english ? "Polski" : "EN"}</Link>
     </div>
   </div></footer>;
