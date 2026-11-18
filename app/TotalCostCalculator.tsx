@@ -31,8 +31,9 @@ const extras: Extra[] = [
   { id: "gbp-setup", name: "Założenie lub uporządkowanie Profilu Firmy Google: od 390 zł", price: 390 },
 ];
 
-const pln = (value: number) => new Intl.NumberFormat("pl-PL", { maximumFractionDigits: 0 }).format(value) + " zł";
-const plnGross = (value: number) => new Intl.NumberFormat("pl-PL", { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value * 1.23) + " zł";
+const group = (text: string) => text.replace(/\B(?=(\d{3})+(?!\d))/g, "\u00a0");
+const pln = (value: number) => group(String(Math.round(value))) + " zł";
+const plnGross = (value: number) => { const [whole, cents] = (value * 1.23).toFixed(2).split("."); return group(whole) + "," + cents + " zł"; };
 
 export default function TotalCostCalculator() {
   const [pack, setPack] = useState<PackageId>("firmowa");

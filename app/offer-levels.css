@@ -74,3 +74,31 @@
 .zm-footer2-brand .brand-wordmark small{white-space:normal;overflow-wrap:anywhere}
 .zm-footer2-brand>a{display:block;max-width:100%;overflow:hidden}
 .zm-footer2-brand .brand-wordmark small span{display:block;white-space:normal;overflow-wrap:anywhere}
+
+/* Ujednolicenie wyglądu oferty ze stroną główną: pełne tło kart, mniejsze ceny, spójne pola formularza */
+html body .zm-public :is(.zm-level,.zm-monthly article,.zm-addon-list article,.zm-standards li,.zm-capabilities li,.zm-compare,.zm-total-fields,.zm-total-results){background:#08281b!important;border:1px solid #b0f36c45!important;border-radius:8px!important;box-shadow:none!important;transform:none!important;color:#f5f8f1!important;backdrop-filter:none!important}
+html body .zm-public .zm-level.is-featured{background:#0b3222!important;border-color:#b0f36c99!important}
+html body .zm-public :is(.zm-level,.zm-monthly article,.zm-addon-list article):is(:hover,:focus-within){background:#0b3222!important;border-color:#b0f36c99!important;transform:none!important}
+html body .zm-public .zm-level{padding:24px 22px!important;gap:10px}
+html body .zm-public .zm-level h3.zm-level-title{font-size:24px!important;font-weight:400;line-height:1.2}
+html body .zm-public .zm-level-kind{font-size:14px!important;color:#cfe0c8!important}
+html body .zm-public .zm-level-price{font-size:22px!important;line-height:1.25;font-weight:700;color:#f5f8f1!important;white-space:normal}
+html body .zm-public .zm-level-price span{font-size:14px;font-weight:400;color:#cfe0c8}
+html body .zm-public .zm-level-price small{font-size:13px!important;font-weight:400;color:#cfe0c8!important}
+html body .zm-public .zm-level-lead{font-size:15px!important;line-height:1.55}
+html body .zm-public .zm-level li{font-size:14px!important;line-height:1.5}
+html body .zm-public .zm-level-note{font-size:14px!important;line-height:1.55;color:#dcebd4!important}
+html body .zm-public .zm-level .button{width:100%;justify-content:center}
+html body .zm-public .zm-monthly b{font-size:22px!important;color:#f5f8f1!important}
+html body .zm-public .zm-monthly h3{font-size:20px!important;font-weight:400}
+html body .zm-public .zm-addon-list h3{font-size:17px!important;font-weight:400}
+html body .zm-public .zm-addon-list b{font-size:15px!important}
+html body .zm-public .zm-total-fields :is(input:not([type=checkbox]):not([type=radio]),select,textarea){background:#04170f!important;color:#f5f8f1!important;border:1px solid #b0f36c45!important;border-radius:6px}
+html body .zm-public .zm-cost-extras{border:1px solid #b0f36c33!important;border-radius:8px}
+html body .zm-public .zm-cost-extras input[type=checkbox],html body .zm-public .zm-cost-extras input[type=radio]{accent-color:#b0f36c;width:18px;height:18px;margin:2px 0 0;flex:none}
+html body .zm-public .zm-cost-extras label{align-items:flex-start;gap:10px;min-height:0;font-size:15px!important}
+html body .zm-public .zm-total-results :is(.zm-cost-total,.zm-cost-next strong){font-size:clamp(20px,2vw,26px)!important}
+html body .zm-public .zm-total-results .zm-cost-total strong{font-size:clamp(24px,2.4vw,30px)!important;color:#b0f36c!important}
+html body .zm-public .zm-total-results h3{font-size:22px!important;font-weight:400}
+html body .zm-public .zm-cost-extras label{display:flex!important;align-items:center!important;padding:6px 0!important;line-height:1.4!important}
+html body .zm-public .zm-cost-extras input[type=checkbox],html body .zm-public .zm-cost-extras input[type=radio]{margin:0!important}

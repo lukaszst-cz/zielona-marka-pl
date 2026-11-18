@@ -41,6 +41,8 @@ const offerStructuredData = {
   },
 };
 
+const spaced = (n: number) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, "\u00a0");
+
 export default function OfferPage() {
   return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(offerStructuredData) }} /><SiteHeader /><main className="zm-public">
     <section className="page-hero shell"><span className="eyebrow"><i />STRONY DLA FIRM Z MAREK I OKOLIC</span><h1>Wybierz poziom strony, <em>którego potrzebujesz teraz.</em></h1><p>Cztery pakiety, jasne ceny i dokładny opis tego, co dostajesz. Wszystkie kwoty są netto, a przy każdej podajemy też cenę brutto. Hosting jest w cenie, bez opłat miesięcznych.</p><div className="hero-actions"><Link className="button" href="/kontakt">Poproś o dokładną wycenę <span>↗</span></Link><Link className="text-link" href="/cennik-dodatkow">Cennik dodatków ↗</Link><Link className="text-link" href="/portfolio?kategoria=www">Zobacz portfolio stron ↗</Link></div></section>
@@ -50,7 +52,7 @@ export default function OfferPage() {
         <span className="zm-level-tag">{item.level}</span>
         <h3 className="zm-level-title">{item.title}</h3>
         <p className="zm-level-kind">{item.kind}</p>
-        <b className="zm-level-price">{item.price}<small>{item.priceGross}</small></b>
+        <b className="zm-level-price">od {spaced(item.priceNet)} zł <span>netto</span><small>{item.priceGross}</small></b>
         <p className="zm-level-lead">{item.lead}</p>
         <h4>W cenie</h4>
         <ul>{item.includes.map((line) => <li key={line}>{line}</li>)}</ul>
@@ -83,7 +85,7 @@ export default function OfferPage() {
     </section>
 
     <section id="modernizacja" className="section shell" aria-labelledby="modernizacja-title"><div className="section-head"><div><span className="section-no">MASZ JUŻ STRONĘ?</span><h2 id="modernizacja-title">Nie zawsze trzeba robić ją od początku.</h2></div><p>Jeśli Twoja strona wygląda przestarzale, źle działa na telefonie albo utrudnia klientom znalezienie informacji, najpierw sprawdzimy, co można poprawić, co warto zachować i czy modernizacja będzie bardziej opłacalna niż nowa strona.</p></div>
-      <div className="client-start-paths"><div><article className="recommended"><span>MODERNIZACJA STRONY</span><h3>Wycena indywidualna po bezpłatnej ocenie.</h3><p>Koszt zależy od technologii, stanu kodu, dostępu do panelu i zakresu zmian, dlatego nie podajemy sztywnej ceny z góry. Bezpłatna miniocena obejmuje najważniejsze problemy i proponowany kierunek.</p><ul><li>ocena wyglądu, wersji na telefon i ścieżki kontaktu</li><li>decyzja: poprawki, większa przebudowa albo nowa strona</li><li>konkretna cena i termin przed rozpoczęciem prac</li></ul><Link href="/modernizacja-strony#miniaudyt">Poproś o bezpłatną miniocenę <i>↗</i></Link></article></div></div>
+      <div className="client-start-paths"><div><article className="recommended"><span>MODERNIZACJA STRONY</span><h3>Wycena indywidualna po bezpłatnej ocenie.</h3><p>Koszt zależy od stanu obecnej strony, dostępu do panelu i zakresu zmian, dlatego nie podajemy sztywnej ceny z góry. Bezpłatna miniocena obejmuje najważniejsze problemy i proponowany kierunek.</p><ul><li>ocena wyglądu, wersji na telefon i ścieżki kontaktu</li><li>decyzja: poprawki, większa przebudowa albo nowa strona</li><li>konkretna cena i termin przed rozpoczęciem prac</li></ul><Link href="/modernizacja-strony#miniaudyt">Poproś o bezpłatną miniocenę <i>↗</i></Link></article></div></div>
     </section>
 
     <section id="opieka-i-seo" className="section shell" aria-labelledby="monthly-title"><div className="section-head"><div><span className="section-no">PO PUBLIKACJI</span><h2 id="monthly-title">Opieka i widoczność w Google. Opcjonalnie.</h2></div><p>Obie usługi są dobrowolne i można je zamówić niezależnie od nowej strony, także dla stron wykonanych przez kogoś innego.</p></div>
