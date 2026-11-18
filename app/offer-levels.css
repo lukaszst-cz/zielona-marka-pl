@@ -67,3 +67,10 @@
 .zm-footer2-billing p{margin:10px 0 0;font:13px/1.6 Arial,sans-serif;color:#d5e1cc}
 @media(max-width:900px){.zm-footer2-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.zm-footer2-grid{grid-template-columns:1fr}}
+
+.zm-footer2-brand{min-width:0;max-width:100%}
+.zm-footer2-brand .brand-signature{width:100%;max-width:100%;min-width:0}
+.zm-footer2-brand .brand-wordmark{min-width:0;max-width:100%}
+.zm-footer2-brand .brand-wordmark small{white-space:normal;overflow-wrap:anywhere}
+.zm-footer2-brand>a{display:block;max-width:100%;overflow:hidden}
+.zm-footer2-brand .brand-wordmark small span{display:block;white-space:normal;overflow-wrap:anywhere}

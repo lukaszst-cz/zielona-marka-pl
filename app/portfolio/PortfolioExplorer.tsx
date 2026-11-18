@@ -375,7 +375,7 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
             <div className="zmp-excel-spotlight-copy">
               <span className="zmp-overline">DODATKOWE NARZĘDZIA DLA FIRM</span>
               <h3 id="zmp-excel-spotlight-title">Arkusze Excel i kalkulatory</h3>
-              <p>{excelCount} gotowych plików z przykładowymi danymi. Możesz je znaleźć w osobnej kategorii albo pobrać przy projektach pokazujących ich zastosowanie.</p>
+              <p>{excelCount} gotowych plików z przykładowymi danymi w osobnej kategorii. Kolejne arkusze są dołączone do wybranych projektów, przy których można je pobrać.</p>
             </div>
             <button type="button" className="zmp-btn zmp-btn-outline" onClick={showExcelCatalog}>
               Zobacz {excelCount} arkuszy Excel ↗
