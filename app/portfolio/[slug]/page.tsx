@@ -92,9 +92,11 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
           <h1>{item.title}</h1>
           <p className="zmp-detail-lead">{item.summary}</p>
           {item.openAccess && <p className="zmx-open-note">
-            {item.openAccess === "github"
-              ? "Kod tego narzędzia jest na GitHubie na licencji MIT: można go pobrać, uruchomić u siebie, zmieniać i używać także komercyjnie."
-              : "Narzędzie działa w przeglądarce za darmo, bez zakładania konta."}
+            {item.category === "excel"
+              ? "Przykładowy arkusz XLSX do pobrania i samodzielnego sprawdzenia. Dane i procesy są demonstracyjne."
+              : item.openAccess === "github"
+                ? "Kod tego narzędzia jest na GitHubie na licencji MIT: można go pobrać, uruchomić u siebie, zmieniać i używać także komercyjnie."
+                : "Narzędzie działa w przeglądarce za darmo, bez zakładania konta."}
           </p>}
           {item.status.includes("beta") && <div className="zmp-detail-status">W budowie: {item.status}</div>}
           {item.image?.startsWith("/concept-") && <div className="zmp-detail-status">Materiał koncepcyjny. Grafika pokazuje kierunek projektu, a nie wdrożenie u klienta.</div>}
