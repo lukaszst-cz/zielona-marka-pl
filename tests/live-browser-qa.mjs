@@ -720,7 +720,7 @@ try {
         const filteredVisible = await cards.evaluateAll(elements =>
           elements.every(element => getComputedStyle(element).opacity === "1"));
         assert.ok(filteredVisible, "Filtered cards must appear immediately, without scroll reveal");
-        assert.equal(await cards.locator('a[href^="/portfolio/excel-"]').count(), 24,
+        assert.equal(await cards.locator('.zmp-project-photo[href^="/portfolio/excel-"]').count(), 12,
           "All twelve Excel entries should link to their preserved detail pages");
         return { mainGalleryCount, filteredExcelCount: 12, immediateVisibility: true };
       });
