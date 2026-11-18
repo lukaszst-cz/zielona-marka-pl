@@ -1622,3 +1622,102 @@ html body .zmp-page .zmp-project-demo.zmx-download:hover{background:#b6eb8a;colo
 @media(prefers-reduced-motion:reduce){
   .zmp-workflow-links nav a{transition:none}
 }
+
+
+/* Pobieranie arkuszy: powiązane materiały zamiast osobnych kafelków w głównej galerii. */
+.zmp-excel-spotlight{
+  display:flex;
+  align-items:center;
+  gap:24px;
+  padding:26px 30px;
+  margin-top:42px;
+  border:1px solid rgba(184,235,162,.35);
+  border-radius:17px;
+  background:#10362b;
+}
+.zmp-excel-spotlight-mark{
+  flex:none;
+  display:grid;
+  place-items:center;
+  width:77px;
+  height:89px;
+  border-radius:10px;
+  background:#1c7148;
+  color:#edffe9;
+  font-size:1rem;
+  font-weight:850;
+  letter-spacing:.05em;
+}
+.zmp-excel-spotlight-copy{min-width:0;flex:1}
+.zmp-excel-spotlight-copy h3{
+  margin:7px 0 6px;
+  font-size:clamp(1.4rem,2.2vw,2rem);
+  letter-spacing:-.025em;
+  color:#f0ffee;
+}
+.zmp-excel-spotlight-copy p{
+  max-width:650px;
+  margin:0;
+  line-height:1.55;
+  font-size:.93rem;
+  color:#c8e1ce;
+}
+.zmp-excel-spotlight>.zmp-btn{
+  flex:none;
+  white-space:normal;
+  text-align:center;
+  cursor:pointer;
+}
+.zmp-related-workbooks{
+  margin-top:12px;
+  margin-bottom:64px;
+  border:1px solid rgba(181,225,157,.31);
+  background:#0e3024;
+  padding:clamp(24px,3.5vw,38px);
+  border-radius:19px;
+}
+.zmp-related-workbooks h2{
+  margin:8px 0;
+  font-size:clamp(1.6rem,2.7vw,2.3rem);
+  letter-spacing:-.025em;
+}
+.zmp-related-workbooks>p{color:#c6dbce;max-width:780px;line-height:1.55}
+.zmp-workbooks-list{display:grid;gap:12px;margin-top:22px}
+.zmp-workbook-row{
+  display:flex;
+  gap:18px;
+  align-items:center;
+  padding:19px;
+  border:1px solid rgba(187,231,176,.27);
+  border-radius:12px;
+  background:#143a2c;
+}
+.zmp-workbook-row>span{
+  flex:none;
+  display:grid;
+  place-items:center;
+  min-width:63px;
+  height:63px;
+  border-radius:9px;
+  color:#eaffdf;
+  font-size:.85rem;
+  font-weight:850;
+  background:#216b44;
+}
+.zmp-workbook-description{flex:1;min-width:0}
+.zmp-workbook-description strong{display:block;color:#f2fff0;font-size:1.03rem}
+.zmp-workbook-description p{margin:6px 0;color:#c8dccb;line-height:1.5;font-size:.89rem}
+.zmp-workbook-description a{color:#bcf1a7;text-decoration:underline;text-underline-offset:3px;font-size:.88rem}
+.zmp-workbook-row .zmp-btn{flex:none;white-space:nowrap}
+.zmp-workbook-note{font-size:.77rem!important;color:#acc5b1!important;margin:19px 0 0}
+@media(max-width:850px){
+  .zmp-excel-spotlight{flex-wrap:wrap;padding:22px;gap:16px}
+  .zmp-excel-spotlight>.zmp-btn{width:100%}
+  .zmp-workbook-row{flex-wrap:wrap}
+  .zmp-workbook-row .zmp-btn{width:100%;justify-content:center}
+}
+@media(max-width:480px){
+  .zmp-excel-spotlight-mark{width:56px;height:66px;font-size:.75rem}
+  .zmp-excel-spotlight-copy{flex-basis:calc(100% - 72px)}
+  .zmp-workbook-row>span{min-width:53px;height:53px}
+}
