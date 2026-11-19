@@ -7,6 +7,7 @@ type DownloadableWorkbook = {
   title: string;
   description: string;
   slug?: string;
+  format?: "XLSX" | "PDF";
 };
 
 export default function WorkbookDownloads({ item }: { item: PortfolioItem }) {
@@ -28,6 +29,15 @@ export default function WorkbookDownloads({ item }: { item: PortfolioItem }) {
     });
   }
 
+  if (item.workflowUrl) {
+    files.push({
+      url: item.workflowUrl,
+      title: item.workflowLabel ?? "Kompletny Workflow 360",
+      description: "Dokumentacja pełnego przebiegu pracy, zakresu modułów, finansów, kontroli i etapów przyszłego wdrożenia.",
+      format: "PDF",
+    });
+  }
+
   for (const workbook of linked) {
     if (!workbook.downloadUrl || files.some(file => file.url === workbook.downloadUrl)) continue;
     files.push({
@@ -42,17 +52,17 @@ export default function WorkbookDownloads({ item }: { item: PortfolioItem }) {
 
   return <section id="zmp-arkusze" className="shell zmp-related-workbooks zmx-reveal" aria-labelledby="zmp-arkusze-title">
     <span className="zmp-overline">MATERIAŁY DO POBRANIA</span>
-    <h2 id="zmp-arkusze-title">Arkusze Excel do tego projektu</h2>
+    <h2 id="zmp-arkusze-title">{item.workflowUrl ? "Workflow 360 i Excel do pobrania" : "Arkusze Excel do tego projektu"}</h2>
     <p>Pobierz przykładowe pliki i sprawdź, jak można uporządkować związane z projektem zadania, kalkulacje lub rozliczenia.</p>
     <div className="zmp-workbooks-list">
       {files.map(file => <article key={file.url} className="zmp-workbook-row">
-        <span aria-hidden="true">XLSX</span>
+        <span aria-hidden="true">{file.format ?? "XLSX"}</span>
         <div className="zmp-workbook-description">
           <strong>{file.title}</strong>
           <p>{file.description}</p>
           {file.slug && <Link href={`/portfolio/${file.slug}`}>Zobacz opis arkusza ↗</Link>}
         </div>
-        <a className="zmp-btn zmp-btn-outline" href={file.url} download>Pobierz XLSX ↓</a>
+        <a className="zmp-btn zmp-btn-outline" href={file.url} download>Pobierz {file.format ?? "XLSX"} ↓</a>
       </article>)}
     </div>
     <p className="zmp-workbook-note">Pliki zawierają dane przykładowe. Pokazane arkusze nie są automatycznie połączone z witrynami ani wdrożone u firm przedstawionych w portfolio.</p>

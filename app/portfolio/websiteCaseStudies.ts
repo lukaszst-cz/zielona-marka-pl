@@ -95,18 +95,18 @@ export const websiteCaseStudies: Record<string, WebsiteCaseStudy> = {
     "honest": "Druga koncepcja dla stomatologii, pokazująca inny, spokojniejszy kierunek niż AUREA. Ta sama uwaga: brak rezerwacji online i połączenia z systemem gabinetu."
   },
   "black-harbor": {
-    "visual": "Ciemna, fotograficzna oprawa detailingu. Zdjęcia efektów lakieru, oszczędna typografia i kontrastujące przyciski.",
-    "flow": "Klient wybiera usługę, poznaje efekt, przegląda zakres i przechodzi do wyceny lub planowania terminu.",
-    "technical": "W działającej witrynie potwierdzono sekcje usług, efektów, wyceny i kontaktu. Nie potwierdzono rzeczywistej rezerwacji terminów.",
-    "scope": "Opublikowana strona koncepcyjna studia detailingu.",
-    "honest": "Fikcyjny salon i detailing. Pokazuje, jak sprzedawać efektem: zdjęciami przed i po oraz szybką wyceną. Nie obsługuje umawiania wizyt ani płatności."
+    "visual": "Fotograficzna strona studia auto detailingu utrzymana w ciemnej oprawie i złotych akcentach. Oddzielny panel CRM ma spójny, bardziej operacyjny układ.",
+    "flow": "Na stronie klient poznaje pakiety i możliwość wyceny. W PWA pracownik tworzy lead, przypisuje pojazd, prowadzi kontakt i może zarejestrować wizytę w programie BLACK HARBOR CLUB.",
+    "technical": "Strona WWW i osobna instalowalna PWA działają pod różnymi adresami. W PWA działa lokalny zapis, eksport/import i tryb offline po pierwszym uruchomieniu. Kalkulator Excel i dokument Workflow 360 są osobnymi plikami, bez automatycznej synchronizacji.",
+    "scope": "Dwie opublikowane demonstracje: strona WWW oraz CRM PWA z programem lojalnościowym, do tego szczegółowy workflow PDF i Excel.",
+    "honest": "Koncepcyjny projekt Zielonej Marki, nie system przyjęty przez rzeczywiste studio. CRM nie ma centralnej bazy, prawdziwych kont, systemu rezerwacji ani fakturowania. Role służą do prezentacji planowanych uprawnień. Dane powinny być wyłącznie testowe."
   },
   "eltravia": {
-    "visual": "Kontrastowa identyfikacja elektrotechniczna: fotografie osprzętu, wyraźne nagłówki i podział usług.",
-    "flow": "Wykonawca sprawdza ofertę, strefę dla instalatorów oraz kalkulator planowania przewodu.",
-    "technical": "Zweryfikowano opublikowaną ofertę elektryczną i sekcję kalkulacji. To demonstracja, bez potwierdzonej integracji magazynowej.",
-    "scope": "Opublikowana koncepcja premium branży elektrycznej.",
-    "honest": "Koncepcja marki premium. Służy do pokazania języka wizualnego i tempa strony, nie zawiera funkcji sprzedażowych."
+    "visual": "Wyrazista identyfikacja elektrotechniczna, katalog i gazetka. PWA korzysta z technicznego, kontrastowego układu dostosowanego do komputera i telefonu.",
+    "flow": "Klient przegląda katalog i narzędzia B2B na stronie WWW. W osobnej PWA handlowiec prowadzi zapytanie i ofertę, magazyn obsługuje PZ/WZ, a instalator przygotowuje listy materiałowe i zamówienia.",
+    "technical": "Opublikowano dwie niezależne aplikacje frontendowe: witrynę i instalowalną PWA. Działają lokalny zapis, eksport/import, wyceny, rezerwacje i operacje magazynowe na danych przykładowych. Workflow PDF i Excel pozostają osobnymi plikami.",
+    "scope": "Koncepcja hurtowni elektrotechnicznej: strona WWW, instalowalna PWA, Workflow 360 i finansowy arkusz Excel.",
+    "honest": "Nieoficjalna koncepcja Zielonej Marki. PWA nie ma rzeczywistego logowania, wspólnego magazynu między pracownikami, KSeF ani integracji z ERP. Role są demonstracyjne, stany i ceny przykładowe, a arkusz nie jest połączony z bazą danych."
   },
   "natura-studio": {
     "visual": "Spokojna typografia, jasne tło i fotografia usług wellness. Układ ułatwia zapoznanie się z zabiegami.",
