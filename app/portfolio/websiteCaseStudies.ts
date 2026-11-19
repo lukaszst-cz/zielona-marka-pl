@@ -15,6 +15,30 @@ export type WebsiteCaseStudy = {
   variant?: string;
 };
 export const websiteCaseStudies: Record<string, WebsiteCaseStudy> = {
+  "fornir-forma": {
+    "visual": "Antracytowe tło, mosiężne akcenty i zdjęcia wnętrz z naturalnym fornirem. Duże kadry prezentują kuchnie, garderoby, salony, łazienki i gabinety w spójnej estetyce premium.",
+    "flow": "Od pierwszej inspiracji użytkownik przechodzi do galerii z filtrami, powiększania fotografii i próbnika materiałów. Kalkulator pozwala oszacować budżet, a formularz przygotować zapytanie.",
+    "technical": "Samodzielny HTML z osadzonymi zdjęciami, CSS i JavaScript. Galeria zawiera 32 kadry opracowane z ośmiu głównych ujęć. Działają filtry, podgląd pełnoekranowy, próbnik, kalkulator, FAQ, menu mobilne i pasek kontaktowy Zielonej Marki.",
+    "scope": "Autorski projekt poglądowy strony dla pracowni mebli na wymiar. Udostępniono pełną demonstrację oraz archiwum HTML i ZIP; brak wdrożenia dla klienta.",
+    "version": "Wersja premium, 19.11.2026",
+    "sources": [
+      { "label": "Pobierz kompletny projekt", "url": "https://drive.google.com/file/d/1CIW1yaU4HOm8advMOQpn5Fj9xmovmMb4/view?usp=drivesdk" },
+      { "label": "Dokumentacja i podglądy", "url": "https://drive.google.com/drive/folders/1Iw639Bl207RBRrsHmvYRZxsOdukZA7tt" }
+    ],
+    "honest": "Projekt poglądowy Zielonej Marki, nie strona wykonana na zamówienie pracowni. Kalkulator podaje wartości orientacyjne, a formularze przygotowują wiadomość w programie pocztowym."
+  },
+  "uvset-360": {
+    "visual": "Industrialna oprawa w ciemnym granacie z akcentami CMYK. Fotografie urządzeń, uszlachetnień, opraw i materiałów tworzą spójny obraz współczesnej drukarni.",
+    "flow": "Użytkownik poznaje technologie LED UV i offsetowe, przechodzi przez sześć kroków procesu produkcji, przegląda galerię, korzysta z kalkulatora B2B i sprawdza przygotowanie plików DTP.",
+    "technical": "Samodzielny HTML z osadzonymi obrazami, stylami i skryptami. Działają filtry galerii, powiększanie zdjęć, porównanie technologii, workflow, kalkulator, checklista DTP, nawigacja mobilna i pasek kontaktowy Zielonej Marki.",
+    "scope": "Koncepcja interaktywnej strony drukarni przemysłowej, udostępniona jako działające demo wraz z archiwum źródłowym. Brak komercyjnego wdrożenia dla firmy.",
+    "version": "Wersja demonstracyjna, 19.11.2026",
+    "sources": [
+      { "label": "Pobierz kompletny projekt", "url": "https://drive.google.com/file/d/1-olD4DifOW5clb7R9WFcFad9gymxmm_7/view?usp=drivesdk" },
+      { "label": "Dokumentacja i podglądy", "url": "https://drive.google.com/drive/folders/11iM-QEi0RprvFQc0HCSYGTa1FOaBXsSn" }
+    ],
+    "honest": "Niezależna koncepcja Zielonej Marki, nie wdrożenie dla rzeczywistej drukarni. Kalkulacje i parametry technologiczne są poglądowe; formularze otwierają pocztę, bez automatycznego przyjmowania zleceń."
+  },
   "budrivo": {
     "visual": "Fotografie materiałów, elewacji i mieszalni kolorów. Kategorie odpowiadają rzeczywistym pytaniom osoby remontującej dom.",
     "flow": "Od poznania materiałów przez kalkulator powierzchni elewacji do listy i zapytania. Gazetka uzupełnia ofertę.",

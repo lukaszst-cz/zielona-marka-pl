@@ -42,6 +42,8 @@ Poniższe strony to **autorskie koncepcje i demonstracje**, a nie potwierdzone r
 | [NAVORO HURT](https://zielona-marka.pl/portfolio/navoro-hurt) | Hurtowy katalog i gazetka B2B | [Otwórz](https://navoro-hurt-koncepcja.vercel.app) |
 | [SOLIDOM](https://zielona-marka.pl/portfolio/solidom) | Strona firmy budowlanej z galerią | [Otwórz](https://solidom.vercel.app) |
 | [AUREA SMILE](https://zielona-marka.pl/portfolio/aurea-smile) | Stomatologia premium | [Otwórz](https://aurea-smile.vercel.app) |
+| [FORNIR & FORMA](https://zielona-marka.pl/portfolio/fornir-forma) | Meble na wymiar, galeria i kalkulator | [Otwórz demo](https://zielona-marka.pl/demo/fornir-forma/index.html) |
+| [UVSET 360°](https://zielona-marka.pl/portfolio/uvset-360) | Druk przemysłowy, workflow i DTP | [Otwórz demo](https://zielona-marka.pl/demo/uvset-360/index.html) |
 | [SOLIDENT](https://zielona-marka.pl/portfolio/solident) | Gabinet stomatologiczny | [Otwórz](https://solident-mu.vercel.app) |
 | [BEATA Beauty Atelier](https://zielona-marka.pl/portfolio/beata-beauty-atelier) | Strona beauty i przykładowa rezerwacja | [Otwórz](https://beata-beauty-atelier.vercel.app/) |
 | [KORDON Barber Studio](https://zielona-marka.pl/portfolio/kordon-barber-studio) | Strona salonu i demonstracyjne zamówienia | [Otwórz](https://kordon-barber-studio-zielona-marka.vercel.app/) |
