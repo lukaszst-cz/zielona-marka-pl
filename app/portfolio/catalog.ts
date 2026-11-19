@@ -43,6 +43,44 @@ export type PortfolioItem = {
 };
 const katalog: PortfolioItem[] = [
   {
+    "slug": "fornir-forma",
+    "title": "FORNIR & FORMA",
+    "category": "www",
+    "industry": "Meble na wymiar i wnętrza",
+    "summary": "Strona pracowni mebli na wymiar z rozbudowaną galerią wnętrz, próbnikiem materiałów i kalkulatorem orientacyjnej wyceny.",
+    "explanation": "Fotografie kuchni, garderób i zabudów prowadzą od inspiracji do wyboru materiałów. Użytkownik może porównać realizacje, sprawdzić orientacyjny budżet i przygotować zapytanie.",
+    "features": [
+      "Galeria 32 kadrów z filtrowaniem i powiększaniem",
+      "Interaktywny próbnik materiałów",
+      "Kalkulator wyceny poglądowej",
+      "Opis etapów współpracy i FAQ",
+      "Responsywna strona i kontakt marki Zielona Marka"
+    ],
+    "demoUrl": "/demo/fornir-forma/index.html",
+    "image": "/portfolio/kadry/fornir-forma-ekran.webp",
+    "alt": "Podgląd strony FORNIR & FORMA: luksusowa kuchnia, ciemna nawigacja, typografia i sekcja wyceny",
+    "status": "projekt demonstracyjny"
+  },
+  {
+    "slug": "uvset-360",
+    "title": "UVSET 360°",
+    "category": "www",
+    "industry": "Poligrafia i produkcja B2B",
+    "summary": "Interaktywna strona drukarni przemysłowej: porównanie technologii, proces produkcyjny, galeria druku i kalkulator B2B.",
+    "explanation": "Projekt przedstawia technologie LED UV oraz offset, uszlachetnienia, introligatornię i przygotowanie plików. Moduły prowadzą odbiorcę od technologii do parametrów zlecenia i kontaktu.",
+    "features": [
+      "Galeria 20 kadrów z filtrami i powiększaniem",
+      "Porównanie technologii LED UV i offset",
+      "Sześć interaktywnych etapów workflow",
+      "Orientacyjny kalkulator B2B",
+      "Checklista przygotowania plików DTP"
+    ],
+    "demoUrl": "/demo/uvset-360/index.html",
+    "image": "/portfolio/kadry/uvset-360-ekran.webp",
+    "alt": "Podgląd strony UVSET 360°: industrialna drukarnia, kolorystyka CMYK i techniczna nawigacja",
+    "status": "projekt demonstracyjny"
+  },
+  {
     "slug": "centrum-budowlane-pwa",
     "title": "Centrum Budowlane, system PWA",
     "category": "aplikacje",
@@ -1185,7 +1223,7 @@ const kolejnosc = [
   // Wdrożone i działające demonstracje: WWW, workflow, aplikacje oraz materiały do pobrania
   "black-harbor", "phu-marecki", "eltravia", "aurea-smile",
   "kordon-barber-studio", "beata-beauty-atelier",
-  "solidom", "navoro-hurt", "gazetka-navoro", "centrum-budowlane-pwa",
+  "solidom", "fornir-forma", "uvset-360", "navoro-hurt", "gazetka-navoro", "centrum-budowlane-pwa",
   "solident", "nexio-elektro", "gazetka-nexio", "budrivo",
   "gazetka-budrivo", "phu-marecki-aplikacja", "materivo-eko", "auto-naprawa",
   "printflow", "transportflow", "workshopflow", "lead-offer-copilot",

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>UVSET 360° | Zielona Marka</title>
+<style>*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;background:#101913;color:#f1f6ee;font-family:system-ui,-apple-system,Segoe UI,sans-serif}main{max-width:440px;padding:32px;text-align:center}h1{font-size:1.25rem;margin:0 0 10px}p{line-height:1.6;color:#bacabc}a{color:#bced89}</style>
+</head><body>
+<main id="loading" role="status" aria-live="polite"><h1>UVSET 360°</h1><p>Otwieranie strony projektu…</p></main>
+<script>
+(async function(){
+  try{
+    const urls=Array.from({length:8},(_,i)=>"part-"+String(i+1).padStart(2,"0")+".txt");
+    const parts=await Promise.all(urls.map(async url=>{
+      const response=await fetch(url);
+      if(!response.ok)throw new Error("Brak pliku "+url);
+      return response.text();
+    }));
+    const binary=atob(parts.join(""));
+    const bytes=new Uint8Array(binary.length);
+    for(let i=0;i<binary.length;i++)bytes[i]=binary.charCodeAt(i);
+    const html=new TextDecoder("utf-8").decode(bytes);
+    document.open();document.write(html);document.close();
+  }catch(error){
+    const root=document.getElementById("loading");
+    if(root)root.innerHTML='<h1>Nie udało się otworzyć demonstracji</h1><p>Spróbuj odświeżyć stronę lub <a href="https://drive.google.com/file/d/17n0AcU_QT-Sb1GtOU-hZVOCEOF2_9lrf/view?usp=drivesdk">otwórz plik projektu na Dysku Google</a>.</p>';
+    console.error("Nie udało się wczytać projektu",error);
+  }
+})();
+</script>
+</body></html>
