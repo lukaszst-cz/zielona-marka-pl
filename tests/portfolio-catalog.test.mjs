@@ -131,3 +131,31 @@ test("Excel workbooks are hidden from the default gallery but stay accessible", 
   assert.ok(urls.length >= 13);
   for (const url of new Set(urls)) await access(new URL("../public" + url, here));
 });
+
+test("BLACK HARBOR i ELTRAVIA pokazują najpierw WWW, a aplikację tylko jako dodatek", async () => {
+  const [catalog, explorer, detail, suite] = await Promise.all([
+    read("../app/portfolio/catalog.ts"),
+    read("../app/portfolio/PortfolioExplorer.tsx"),
+    read("../app/portfolio/[slug]/page.tsx"),
+    read("../app/portfolio/ProjectSuite.tsx"),
+  ]);
+  for (const slug of ["black-harbor", "eltravia"]) {
+    const fragment = catalog.split('"slug": "' + slug + '"')[1]?.split("\n  },")[0];
+    assert.ok(fragment, "Missing project: " + slug);
+    assert.match(fragment, /"category": "www"/);
+    assert.match(fragment, /"pwaUrl": "https:\/\//);
+    assert.match(fragment, /"workflowUrl": "\/pliki\//);
+    assert.match(fragment, /"downloadUrl": "\/pliki\/[^"]+\.xlsx"/);
+    assert.ok(fragment.indexOf("Strona WWW") < fragment.indexOf("Dodatek:"),
+      "WWW should precede the application: " + slug);
+  }
+  assert.match(explorer, /"Strona WWW" : portfolioCategories/);
+  assert.match(explorer, /zmp-project-category-pwa/);
+  assert.match(explorer, /Przebieg pracy do pobrania/);
+  assert.doesNotMatch(explorer, /zmp-suite-quick|Pobierz aplikację PWA/);
+  assert.match(suite, /Przetestuj aplikację/);
+  assert.equal((suite.match(/<Image\b/g) ?? []).length, 1, "One PWA preview is sufficient");
+  assert.doesNotMatch(suite, /pwaPreviewMobile|pwaArchiveUrl|Pobierz pliki PWA/);
+  assert.ok(detail.indexOf("<ProjectSuite item={item} />") > detail.indexOf("<WorkflowConnections item={item} />"),
+    "The website explanation should appear before the application add-on");
+});
