@@ -322,7 +322,7 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
           <span className="zmp-result-count" aria-live="polite">{filtered.length} {format === "excel" ? "arkuszy Excel" : "projektów"}</span>
         </div>
         <div className="zmp-grid zmx-grid">
-          {filtered.map(item => <article className="zmp-project-card zmx-project-card" key={`${filterKey}|${item.slug}`}
+          {filtered.map(item => <article className={`zmp-project-card zmx-project-card${item.pwaUrl && item.category === "www" ? " zmp-project-card-has-pwa" : ""}`} key={`${filterKey}|${item.slug}`}
 
             onMouseMove={event => {
               if (reducedMotion) return;
@@ -344,22 +344,18 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
             }}>
             <Link href={`/portfolio/${item.slug}`} className="zmp-project-photo" data-media={mediaPresentation(item)} data-project={item.slug} aria-label={`Poznaj projekt ${item.title}`}>
               <ProjectCover slug={item.slug} title={item.title} image={item.cardImage ?? item.image} alt={item.alt} />
-              <span className="zmp-project-category">{portfolioCategories.find(x=>x.id===item.category)?.label}</span>
+              <span className="zmp-project-category">{item.pwaUrl && item.category === "www" ? "Strona WWW" : portfolioCategories.find(x=>x.id===item.category)?.label}</span>
+              {item.pwaUrl && item.category === "www" && <span className="zmp-project-category-pwa">Aplikacja PWA</span>}
               <span className="zmp-project-expand" aria-hidden="true">↗</span>
             </Link>
             <div className="zmp-project-info">
-              <div className="zmp-project-meta"><span>{item.industry}</span>{item.downloadUrl && item.category !== "excel" && <span className="zmx-flow-chip">Przebieg pracy do pobrania</span>}<span>{portfolioStatusLabel(item)}</span>{item.openAccess && <span className="zmx-open-chip">{item.openAccess === "github" ? "Darmowe do pobrania" : "Darmowe online"}</span>}</div>
+              <div className="zmp-project-meta"><span>{item.industry}</span>{item.downloadUrl && item.category !== "excel" && <span className="zmx-flow-chip">Przebieg pracy do pobrania</span>}{!item.pwaUrl && <span>{portfolioStatusLabel(item)}</span>}{!item.pwaUrl && item.openAccess && <span className="zmx-open-chip">{item.openAccess === "github" ? "Darmowe do pobrania" : "Darmowe online"}</span>}</div>
               <h3><Link href={`/portfolio/${item.slug}`}>{item.title}</Link></h3>
               <p className="zmp-project-intro">{item.summary}</p>
               <ul className="zmx-card-points" aria-label="Co zastosowano w tej pracy">
                 {item.features.slice(0,5).map(feature=><li key={feature}>{feature}</li>)}
               </ul>
-              {item.pwaUrl && item.demoUrl && <div className="zmp-suite-quick" aria-label={`Dwie części projektu ${item.title}`}>
-                <a href={item.demoUrl} target="_blank" rel="noopener noreferrer"><small>01 / STRONA WWW</small><strong>Otwórz witrynę ↗</strong></a>
-                <a href={item.pwaUrl} target="_blank" rel="noopener noreferrer"><small>02 / APLIKACJA PWA</small><strong>Przetestuj aplikację ↗</strong></a>
-                {item.pwaArchiveUrl && <a className="zmp-suite-quick-download" href={item.pwaArchiveUrl} download>Pobierz aplikację PWA (ZIP) ↓</a>}
-              </div>}
-              <div className={`zmp-project-actions${item.pwaUrl ? " zmp-project-actions-suite" : ""}`}>
+              <div className="zmp-project-actions">
                 <Link className="zmp-project-open" href={`/portfolio/${item.slug}`}>Zobacz projekt <span aria-hidden="true">↗</span></Link>
                 {item.demoUrl && !item.pwaUrl && <a className="zmp-project-demo" href={item.demoUrl}
                   target={item.demoUrl.startsWith("http")?"_blank":undefined}

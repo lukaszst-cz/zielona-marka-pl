@@ -93,7 +93,7 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
           <span className="zmp-overline">{category?.label} / {item.industry}</span>
           <h1>{item.title}</h1>
           <p className="zmp-detail-lead">{item.summary}</p>
-          {item.openAccess && <p className="zmx-open-note">
+          {item.openAccess && !item.pwaUrl && <p className="zmx-open-note">
             {item.category === "excel"
               ? "Przykładowy arkusz XLSX do pobrania i samodzielnego sprawdzenia. Dane i procesy są demonstracyjne."
               : item.openAccess === "github"
@@ -123,8 +123,7 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
           <figcaption>{item.image ? `Kadr z projektu ${item.title}. Kliknij obraz, aby go powiększyć.` : "Tej pracy nie pokazujemy na zrzucie"}</figcaption>
         </figure>
       </section>
-      <ProjectSuite item={item} />
-      <WorkbookDownloads item={item} />
+      {!item.pwaUrl && <WorkbookDownloads item={item} />}
       {materivoAlternative && <section className="shell zmp-materivo-variants zmx-reveal" aria-label="Warianty projektu MATERIVO">
         <div>
           <span className="zmp-overline">DWA WARIANTY JEDNEJ KONCEPCJI</span>
@@ -152,6 +151,7 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
           </article>
         </div>
       </section>}
+      {item.pwaUrl && <><ProjectSuite item={item} /><WorkbookDownloads item={item} /></>}
       <section className="shell zmp-disclaimer zmx-reveal"><strong>Szczerze o tej pracy</strong><p>{caseStudy?.honest ?? "To nasz własny projekt, a nie wdrożenie zamówione przez firmę o tej nazwie. Nazwy, ceny, produkty i dostępność są wymyślone na potrzeby pokazu."}</p>{caseStudy?.variant && <p className="zmp-story-variant">{caseStudy.variant}</p>}</section>
       {other.length > 0 && <section className="shell zmp-related zmx-reveal"><span className="zmp-overline">PODOBNE PRACE</span><h2>W tej samej kategorii</h2><div>{other.map(project=><Link key={project.slug} href={`/portfolio/${project.slug}`}><strong>{project.title}</strong><span>{project.industry} ↗</span></Link>)}</div></section>}
       <section className="shell zmp-bottom-cta zmx-reveal"><div><span className="zmp-overline">KOLEJNY PROJEKT</span><h2>Zróbmy to dla Twojej firmy.</h2><p>Twoja strona dostanie własne treści, zdjęcia i zakres. To, co widzisz obok, pokazuje kierunek i poziom wykonania.</p></div><Link href="/kontakt" className="zmp-btn zmp-btn-strong">Napisz do nas ↗</Link></section>

@@ -1,53 +1,70 @@
 .zmp-project-suite{
-  margin-top:20px;
-  margin-bottom:24px;
-  padding:clamp(24px,3.3vw,40px);
+  margin-top:24px;
+  margin-bottom:26px;
+  padding:clamp(22px,3vw,38px);
   border:1px solid rgba(180,227,180,.28);
-  border-radius:20px;
+  border-radius:18px;
   background:#102d26;
 }
-.zmp-project-suite-heading h2{
-  margin:8px 0 12px;
-  font-size:clamp(1.8rem,3vw,2.5rem);
-  letter-spacing:-.03em;
+.zmp-project-suite h2{
+  margin:9px 0 10px;
+  font-size:clamp(1.55rem,2.65vw,2.1rem);
+  letter-spacing:-.025em;
 }
-.zmp-project-suite-heading p{color:#c8ddce;max-width:740px;line-height:1.65}
-.zmp-project-suite-options{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin:26px 0}
-.zmp-project-suite-options article{
-  border:1px solid #3c6256;
-  border-radius:14px;
-  background:#15392f;
-  padding:clamp(20px,2.8vw,30px);
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;
+.zmp-project-suite>p{
+  margin:0 0 22px;
+  max-width:760px;
+  color:#c9ddcd;
+  line-height:1.65;
 }
-.zmp-project-suite-options article:last-child{border-color:#a5da78;background:#1a3b30}
-.zmp-project-suite-number{color:#bbec9c;font-size:.72rem;font-weight:800;letter-spacing:.09em}
-.zmp-project-suite-options h3{font-size:clamp(1.3rem,2vw,1.65rem);margin:16px 0 10px}
-.zmp-project-suite-options p{color:#cadfd0;line-height:1.6;margin:0 0 22px}
-.zmp-project-suite-actions{display:flex;flex-wrap:wrap;gap:10px}
-.zmp-project-suite-install{font-size:.78rem;margin:14px 0 0!important;color:#b5cbb7!important}
-.zmp-project-suite-previews{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);gap:16px;align-items:start}
-.zmp-project-suite-previews figure{margin:0;min-width:0}
-.zmp-project-suite-previews img{display:block;width:100%;height:auto;object-fit:contain;border:1px solid #416957;border-radius:11px;background:#0a221d}
-.zmp-project-suite-previews figcaption{margin-top:9px;font-size:.8rem;color:#aec6b4}
-.zmp-project-suite-note{font-size:.88rem;line-height:1.6;color:#b9d0be;border-top:1px solid #356251;padding-top:20px;margin-top:22px}
-.zmp-suite-quick{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:15px 0 2px}
-.zmp-suite-quick a{display:flex;flex-direction:column;gap:5px;padding:12px 13px;border-radius:10px;border:1px solid #528a77;background:#163c31;text-decoration:none;color:#f4fff0}
-.zmp-suite-quick a:hover,.zmp-suite-quick a:focus-visible{border-color:#c2f29a;background:#1f5140}
-.zmp-suite-quick small{color:#b9ef91;letter-spacing:.055em;font-size:.66rem;font-weight:800}
-.zmp-suite-quick strong{font-size:.86rem;line-height:1.25}
-.zmp-suite-quick-download{grid-column:1/-1!important;display:inline-flex!important;flex-direction:row!important;align-items:center;justify-content:center;background:transparent!important;color:#d1eccb!important;font-size:.78rem}
-.zmp-project-actions-suite{border-top:1px solid #6ca69a55}
-.zmp-project-actions-suite .zmx-download{font-size:.73rem}
-@media(max-width:860px){
-  .zmp-project-suite-options,.zmp-project-suite-previews{grid-template-columns:1fr}
-  .zmp-project-suite-previews figure:last-child{max-width:420px;margin:0 auto}
+.zmp-project-suite-preview{
+  max-width:940px;
+  margin:0 0 22px;
 }
-@media(max-width:420px){
-  .zmp-suite-quick{grid-template-columns:1fr}
-  .zmp-suite-quick-download{grid-column:1!important}
-  .zmp-project-suite-actions{flex-direction:column;width:100%}
-  .zmp-project-suite-actions a{width:100%;text-align:center}
+.zmp-project-suite-preview img{
+  display:block;
+  width:100%;
+  height:auto;
+  border:1px solid #426c58;
+  border-radius:12px;
+  background:#0b201d;
+}
+.zmp-project-suite .zmp-btn{
+  display:inline-flex;
+  justify-content:center;
+}
+.zmp-project-suite .zmp-project-suite-note{
+  margin:14px 0 0;
+  color:#a9c3b2;
+  font-size:.8rem;
+  line-height:1.5;
+}
+.zmp-project-category-pwa{
+  position:absolute;
+  z-index:2;
+  top:14px;
+  left:120px;
+  max-width:calc(100% - 185px);
+  color:#173625;
+  background:#c6f47e;
+  border:1px solid #c6f47e;
+  border-radius:999px;
+  padding:8px 11px;
+  font-size:.68rem;
+  font-weight:850;
+  line-height:1;
+  white-space:nowrap;
+}
+.zmp-project-card-has-pwa .zmp-project-meta{
+  flex-wrap:wrap;
+  justify-content:flex-start;
+  gap:7px;
+}
+.zmp-project-card-has-pwa .zmp-project-meta>span:first-child{
+  flex-basis:100%;
+  font-size:.72rem;
+}
+@media(max-width:450px){
+  .zmp-project-category-pwa{left:116px;font-size:.61rem;padding:8px 9px}
+  .zmp-project-suite .zmp-btn{width:100%}
 }

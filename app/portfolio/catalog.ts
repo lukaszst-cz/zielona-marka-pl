@@ -312,14 +312,14 @@ const katalog: PortfolioItem[] = [
     "title": "BLACK HARBOR",
     "category": "www",
     "industry": "Auto detailing i obsługa klienta",
-    "summary": "Jeden projekt z dwiema częściami: fotograficzna strona studia detailingu oraz instalowalna aplikacja BLACK HARBOR 360 do obsługi klientów.",
-    "explanation": "Witryna przedstawia usługi i prowadzi do kontaktu. Osobna aplikacja PWA obsługuje zapytania, klientów i pojazdy, historię działań oraz program lojalnościowy BLACK HARBOR CLUB. Workflow 360 opisuje szerszy proces od pozyskania klienta po ponowną wizytę; model Excel pozwala sprawdzić koszty i rentowność. CRM zapisuje dane lokalnie w przeglądarce, nie jest podłączony do bazy, rozliczeń ani rzeczywistego terminarza.",
+    "summary": "Fotograficzna strona WWW studia auto detailingu z ofertą usług, prezentacją efektów, pakietami i ścieżką wyceny.",
+    "explanation": "Najpierw powstała strona WWW studia detailingu, z fotograficzną prezentacją usług, pakietów i efektów pracy. Układ prowadzi od poznania oferty do wyceny i kontaktu, także na telefonie. Jako uzupełnienie przygotowano osobną aplikację CRM PWA, w której można przetestować obsługę zapytań, klientów i pojazdów oraz program BLACK HARBOR CLUB. Workflow 360 i Excel opisują zaplecze organizacyjne i koszty firmy. Aplikacja przechowuje dane lokalnie i nie jest połączona z rzeczywistymi płatnościami ani kalendarzem.",
     "features": [
-      "Strona WWW: pakiety usług, efekty, wycena i kontakt",
-      "PWA: leady, klienci, pojazdy i etapy sprzedaży",
-      "BLACK HARBOR CLUB: naliczanie i wykorzystywanie punktów",
-      "Widok ról i procesu 360, bez serwerowych uprawnień",
-      "Workflow PDF i szczegółowy model finansowy Excel"
+      "Strona WWW: czytelne pakiety usług i zakres prac",
+      "Fotograficzna prezentacja efektów detailingu",
+      "Ścieżka do wyceny, kontaktu i obsługa urządzeń mobilnych",
+      "Workflow 360 i model kosztów do pobrania",
+      "Responsywny układ i dopracowana nawigacja między usługami"
     ],
     "demoUrl": "https://blackharbor.vercel.app/",
     "pwaUrl": "https://black-harbor-360-crm.vercel.app/",
@@ -340,14 +340,14 @@ const katalog: PortfolioItem[] = [
     "title": "ELTRAVIA | Wersja rozbudowana",
     "category": "www",
     "industry": "Hurtownia elektrotechniczna B2B",
-    "summary": "Wspólny projekt: rozbudowana strona hurtowni elektrotechnicznej oraz instalowalna aplikacja ELTRAVIA 360 dla handlowca, magazynu i instalatora.",
-    "explanation": "Strona przedstawia katalog, gazetkę i narzędzia B2B. Osobna PWA pokazuje obieg pracy hurtowni: kontrahenci, zapytania, wielopozycyjne oferty, zamówienia, rezerwacje, PZ/WZ i program partnerski. Dokument Workflow 360 uwzględnia polski rynek, kontrolę marż, zakupy, należności, ryzyka i obowiązki formalne. Model Excel zawiera kalkulacje i założenia, nie jest automatycznie zsynchronizowany z aplikacją.",
+    "summary": "Rozbudowana strona WWW hurtowni elektrotechnicznej z katalogiem produktów, gazetką i narzędziami dla instalatorów B2B.",
+    "explanation": "Głównym elementem projektu jest strona WWW dla hurtowni elektrotechnicznej, z rozbudowanym katalogiem, gazetką produktową, kalkulatorem kabli i narzędziami B2B. Układ porządkuje asortyment i ułatwia instalatorom przygotowanie zapytania. Oddzielna aplikacja ELTRAVIA 360 PWA stanowi dodatek do strony i pozwala przetestować obsługę kontrahentów, ofert, zamówień oraz magazynu. Workflow 360 opisuje procesy hurtowni w polskich realiach, a Excel służy do modelowania kosztów, marż i przepływów. Pliki nie synchronizują się automatycznie z aplikacją.",
     "features": [
-      "Strona WWW: katalog, gazetka, kalkulator kabli, oferta B2B",
-      "PWA: kontrahenci, CRM, wyceny, zamówienia i magazyn PZ/WZ",
-      "Portal instalatora, listy materiałów i program partnerski",
-      "Role demonstracyjne; lokalny zapis danych i eksport/import",
-      "Workflow PDF i wieloarkuszowy kalkulator Excel"
+      "Strona WWW: sześć grup asortymentu elektrotechnicznego",
+      "Katalog, gazetka i kalkulator doboru przewodów",
+      "Narzędzia i ścieżka zapytania dla instalatorów B2B",
+      "Workflow 360 i kalkulator finansowy Excel",
+      "Responsywny układ kategorii i przejrzysta nawigacja po ofercie"
     ],
     "demoUrl": "https://eltravia-rozbudowana.vercel.app/",
     "pwaUrl": "https://eltravia-360-pwa.vercel.app/",
