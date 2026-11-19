@@ -54,7 +54,7 @@ const katalog: PortfolioItem[] = [
       "Interaktywny próbnik materiałów",
       "Kalkulator wyceny poglądowej",
       "Opis etapów współpracy i FAQ",
-      "Responsywna strona i kontakt Zielonej Marki"
+      "Responsywna strona i kontakt marki Zielona Marka"
     ],
     "demoUrl": "/demo/fornir-forma/index.html",
     "image": "/portfolio/kadry/fornir-forma-ekran.webp",
