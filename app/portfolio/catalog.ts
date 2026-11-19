@@ -312,14 +312,14 @@ const katalog: PortfolioItem[] = [
     "title": "BLACK HARBOR",
     "category": "www",
     "industry": "Auto detailing i obsługa klienta",
-    "summary": "Fotograficzna strona WWW studia auto detailingu z ofertą usług, prezentacją efektów i ścieżką wyceny. Dodatkowo aplikacja CRM do przetestowania.",
+    "summary": "Fotograficzna strona WWW studia auto detailingu z ofertą usług, prezentacją efektów, pakietami i ścieżką wyceny.",
     "explanation": "Najpierw powstała strona WWW studia detailingu, z fotograficzną prezentacją usług, pakietów i efektów pracy. Układ prowadzi od poznania oferty do wyceny i kontaktu, także na telefonie. Jako uzupełnienie przygotowano osobną aplikację CRM PWA, w której można przetestować obsługę zapytań, klientów i pojazdów oraz program BLACK HARBOR CLUB. Workflow 360 i Excel opisują zaplecze organizacyjne i koszty firmy. Aplikacja przechowuje dane lokalnie i nie jest połączona z rzeczywistymi płatnościami ani kalendarzem.",
     "features": [
       "Strona WWW: czytelne pakiety usług i zakres prac",
       "Fotograficzna prezentacja efektów detailingu",
       "Ścieżka do wyceny, kontaktu i obsługa urządzeń mobilnych",
       "Workflow 360 i model kosztów do pobrania",
-      "Dodatek: CRM PWA z klientami, pojazdami i programem CLUB"
+      "Responsywny układ i dopracowana nawigacja między usługami"
     ],
     "demoUrl": "https://blackharbor.vercel.app/",
     "pwaUrl": "https://black-harbor-360-crm.vercel.app/",
@@ -340,14 +340,14 @@ const katalog: PortfolioItem[] = [
     "title": "ELTRAVIA | Wersja rozbudowana",
     "category": "www",
     "industry": "Hurtownia elektrotechniczna B2B",
-    "summary": "Rozbudowana strona WWW hurtowni elektrotechnicznej z katalogiem, gazetką produktową i narzędziami dla instalatorów. Dodatkowo aplikacja PWA do przetestowania.",
+    "summary": "Rozbudowana strona WWW hurtowni elektrotechnicznej z katalogiem produktów, gazetką i narzędziami dla instalatorów B2B.",
     "explanation": "Głównym elementem projektu jest strona WWW dla hurtowni elektrotechnicznej, z rozbudowanym katalogiem, gazetką produktową, kalkulatorem kabli i narzędziami B2B. Układ porządkuje asortyment i ułatwia instalatorom przygotowanie zapytania. Oddzielna aplikacja ELTRAVIA 360 PWA stanowi dodatek do strony i pozwala przetestować obsługę kontrahentów, ofert, zamówień oraz magazynu. Workflow 360 opisuje procesy hurtowni w polskich realiach, a Excel służy do modelowania kosztów, marż i przepływów. Pliki nie synchronizują się automatycznie z aplikacją.",
     "features": [
       "Strona WWW: sześć grup asortymentu elektrotechnicznego",
       "Katalog, gazetka i kalkulator doboru przewodów",
       "Narzędzia i ścieżka zapytania dla instalatorów B2B",
       "Workflow 360 i kalkulator finansowy Excel",
-      "Dodatek: PWA z CRM, ofertami, zamówieniami i magazynem"
+      "Responsywny układ kategorii i przejrzysta nawigacja po ofercie"
     ],
     "demoUrl": "https://eltravia-rozbudowana.vercel.app/",
     "pwaUrl": "https://eltravia-360-pwa.vercel.app/",

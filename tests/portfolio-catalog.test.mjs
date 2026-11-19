@@ -146,8 +146,10 @@ test("BLACK HARBOR i ELTRAVIA pokazują najpierw WWW, a aplikację tylko jako do
     assert.match(fragment, /"pwaUrl": "https:\/\//);
     assert.match(fragment, /"workflowUrl": "\/pliki\//);
     assert.match(fragment, /"downloadUrl": "\/pliki\/[^"]+\.xlsx"/);
-    assert.ok(fragment.indexOf("Strona WWW") < fragment.indexOf("Dodatek:"),
-      "WWW should precede the application: " + slug);
+    const summary = fragment.match(/"summary": "([^"]+)"/)?.[1] ?? "";
+    const features = fragment.split('"features": [')[1]?.split("]")[0] ?? "";
+    assert.match(summary, /strona WWW/i, "The summary should start with the website: " + slug);
+    assert.doesNotMatch(summary + features, /aplikacj|PWA/i, "Gallery copy should describe the website, not the app: " + slug);
   }
   assert.match(explorer, /"Strona WWW" : portfolioCategories/);
   assert.match(explorer, /zmp-project-category-pwa/);
