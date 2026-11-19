@@ -354,12 +354,18 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
               <ul className="zmx-card-points" aria-label="Co zastosowano w tej pracy">
                 {item.features.slice(0,5).map(feature=><li key={feature}>{feature}</li>)}
               </ul>
-              <div className="zmp-project-actions">
+              {item.pwaUrl && item.demoUrl && <div className="zmp-suite-quick" aria-label={`Dwie części projektu ${item.title}`}>
+                <a href={item.demoUrl} target="_blank" rel="noopener noreferrer"><small>01 / STRONA WWW</small><strong>Otwórz witrynę ↗</strong></a>
+                <a href={item.pwaUrl} target="_blank" rel="noopener noreferrer"><small>02 / APLIKACJA PWA</small><strong>Przetestuj aplikację ↗</strong></a>
+                {item.pwaArchiveUrl && <a className="zmp-suite-quick-download" href={item.pwaArchiveUrl} download>Pobierz aplikację PWA (ZIP) ↓</a>}
+              </div>}
+              <div className={`zmp-project-actions${item.pwaUrl ? " zmp-project-actions-suite" : ""}`}>
                 <Link className="zmp-project-open" href={`/portfolio/${item.slug}`}>Zobacz projekt <span aria-hidden="true">↗</span></Link>
-                {item.demoUrl && <a className="zmp-project-demo" href={item.demoUrl}
+                {item.demoUrl && !item.pwaUrl && <a className="zmp-project-demo" href={item.demoUrl}
                   target={item.demoUrl.startsWith("http")?"_blank":undefined}
                   rel={item.demoUrl.startsWith("http")?"noopener noreferrer":undefined}>Otwórz demo ↗</a>}
                 {item.downloadUrl && <a className="zmp-project-demo zmx-download" href={item.downloadUrl} download>{item.downloadLabel ?? "Pobierz plik"} ↓</a>}
+                {item.workflowUrl && <a className="zmp-project-demo zmx-download" href={item.workflowUrl} download>Pobierz Workflow 360 (PDF) ↓</a>}
               </div>
             </div>
           </article>)}

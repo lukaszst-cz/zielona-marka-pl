@@ -3,6 +3,7 @@ import { SiteFooter, SiteHeader, QuickWhatsApp } from "../SiteChrome";
 import PortfolioExplorer from "./PortfolioExplorer";
 import { portfolioItems } from "./catalog";
 import "./portfolio.css";
+import "./project-suite.css";
 import "./zoom.css";
 
 export const metadata: Metadata = {

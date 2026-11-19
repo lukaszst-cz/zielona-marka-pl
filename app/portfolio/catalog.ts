@@ -22,6 +22,12 @@ export type PortfolioItem = {
   explanation: string;
   features: string[];
   demoUrl?: string;
+  pwaUrl?: string;
+  pwaArchiveUrl?: string;
+  pwaPreviewDesktop?: string;
+  pwaPreviewMobile?: string;
+  workflowUrl?: string;
+  workflowLabel?: string;
   image?: string;
   /** Grafika na kafelek w galerii, gdy w środku ma być prawdziwy zrzut. */
   cardImage?: string;
@@ -305,35 +311,57 @@ const katalog: PortfolioItem[] = [
     "slug": "black-harbor",
     "title": "BLACK HARBOR",
     "category": "www",
-    "industry": "Auto detailing",
-    "summary": "Detailing pokazany efektami: pakiety, zdjęcia przed i po, szybka wycena.",
-    "explanation": "Ciemna oprawa zdjęć robi tu robotę, której w tej branży nie zastąpi żaden opis.",
+    "industry": "Auto detailing i obsługa klienta",
+    "summary": "Jeden projekt z dwiema częściami: fotograficzna strona studia detailingu oraz instalowalna aplikacja BLACK HARBOR 360 do obsługi klientów.",
+    "explanation": "Witryna przedstawia usługi i prowadzi do kontaktu. Osobna aplikacja PWA obsługuje zapytania, klientów i pojazdy, historię działań oraz program lojalnościowy BLACK HARBOR CLUB. Workflow 360 opisuje szerszy proces od pozyskania klienta po ponowną wizytę; model Excel pozwala sprawdzić koszty i rentowność. CRM zapisuje dane lokalnie w przeglądarce, nie jest podłączony do bazy, rozliczeń ani rzeczywistego terminarza.",
     "features": [
-      "Pakiety usług",
-      "Galeria efektów",
-      "Ścieżka wyceny"
+      "Strona WWW: pakiety usług, efekty, wycena i kontakt",
+      "PWA: leady, klienci, pojazdy i etapy sprzedaży",
+      "BLACK HARBOR CLUB: naliczanie i wykorzystywanie punktów",
+      "Widok ról i procesu 360, bez serwerowych uprawnień",
+      "Workflow PDF i szczegółowy model finansowy Excel"
     ],
-    "demoUrl": "https://blackharbor.vercel.app",
+    "demoUrl": "https://blackharbor.vercel.app/",
+    "pwaUrl": "https://black-harbor-360-crm.vercel.app/",
+    "pwaArchiveUrl": "/pliki/black-harbor-360-pwa.zip",
+    "pwaPreviewDesktop": "/portfolio/black-harbor-360-desktop.webp",
+    "pwaPreviewMobile": "/portfolio/black-harbor-360-mobile.webp",
+    "workflowUrl": "/pliki/black-harbor-360-workflow.pdf",
+    "workflowLabel": "Workflow 360 studia detailingu",
+    "downloadUrl": "/pliki/black-harbor-360-kalkulator.xlsx",
+    "downloadLabel": "Pobierz kalkulator finansowy XLSX",
     "image": "/portfolio/kadry/black-harbor-ekran.webp",
-    "alt": "Pierwszy ekran strony BLACK HARBOR",
-    "status": "projekt demonstracyjny"
+    "alt": "Pierwszy ekran koncepcyjnej strony BLACK HARBOR",
+    "status": "strona WWW i PWA do testów, dane lokalne i przykładowe",
+    "openAccess": "online"
   },
   {
     "slug": "eltravia",
-    "title": "ELTRAVIA Premium",
+    "title": "ELTRAVIA | Wersja rozbudowana",
     "category": "www",
-    "industry": "Usługi elektroinstalacyjne",
-    "summary": "Druga, ostrzejsza droga dla firmy elektrycznej: marka techniczna w wersji premium.",
-    "explanation": "Przykład na to, że ta sama usługa może wyglądać na podstawową albo na ekskluzywną.",
+    "industry": "Hurtownia elektrotechniczna B2B",
+    "summary": "Wspólny projekt: rozbudowana strona hurtowni elektrotechnicznej oraz instalowalna aplikacja ELTRAVIA 360 dla handlowca, magazynu i instalatora.",
+    "explanation": "Strona przedstawia katalog, gazetkę i narzędzia B2B. Osobna PWA pokazuje obieg pracy hurtowni: kontrahenci, zapytania, wielopozycyjne oferty, zamówienia, rezerwacje, PZ/WZ i program partnerski. Dokument Workflow 360 uwzględnia polski rynek, kontrolę marż, zakupy, należności, ryzyka i obowiązki formalne. Model Excel zawiera kalkulacje i założenia, nie jest automatycznie zsynchronizowany z aplikacją.",
     "features": [
-      "Prezentacja usług",
-      "Wyrazisty kierunek graficzny",
-      "Kontakt"
+      "Strona WWW: katalog, gazetka, kalkulator kabli, oferta B2B",
+      "PWA: kontrahenci, CRM, wyceny, zamówienia i magazyn PZ/WZ",
+      "Portal instalatora, listy materiałów i program partnerski",
+      "Role demonstracyjne; lokalny zapis danych i eksport/import",
+      "Workflow PDF i wieloarkuszowy kalkulator Excel"
     ],
-    "demoUrl": "https://eltravia-premium.vercel.app",
+    "demoUrl": "https://eltravia-rozbudowana.vercel.app/",
+    "pwaUrl": "https://eltravia-360-pwa.vercel.app/",
+    "pwaArchiveUrl": "/pliki/eltravia-360-pwa.zip",
+    "pwaPreviewDesktop": "/portfolio/eltravia-360-desktop.webp",
+    "pwaPreviewMobile": "/portfolio/eltravia-360-mobile.webp",
+    "workflowUrl": "/pliki/eltravia-360-workflow.pdf",
+    "workflowLabel": "Workflow 360 hurtowni elektrotechnicznej",
+    "downloadUrl": "/pliki/eltravia-360-kalkulator.xlsx",
+    "downloadLabel": "Pobierz kalkulator Excel XLSX",
     "image": "/portfolio/kadry/eltravia.webp",
-    "alt": "Strona główna ELTRAVIA w wersji premium",
-    "status": "projekt demonstracyjny"
+    "alt": "Strona ELTRAVIA z ofertą elektrotechniczną i katalogiem",
+    "status": "strona WWW i PWA do testów, dane lokalne i przykładowe",
+    "openAccess": "online"
   },
   {
     "slug": "natura-studio",
