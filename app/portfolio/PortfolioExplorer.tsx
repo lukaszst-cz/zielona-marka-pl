@@ -47,7 +47,7 @@ const featuredOrder = [
 
   "solident",
   "materivo",
-  "materivo-eko",
+
   "auto-naprawa",
 ];
 
