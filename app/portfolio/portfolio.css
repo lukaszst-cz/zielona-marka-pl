@@ -1721,3 +1721,36 @@ html body .zmp-page .zmp-project-demo.zmx-download:hover{background:#b6eb8a;colo
   .zmp-excel-spotlight-copy{flex-basis:calc(100% - 72px)}
   .zmp-workbook-row>span{min-width:53px;height:53px}
 }
+
+
+/* Spójne, półprzezroczyste powierzchnie informacyjne. */
+.zmp-page .zmp-excel-spotlight,
+.zmp-page .zmp-explorer .zmp-pdf-footer,
+.zmp-page .zmp-beforeafter{
+  border:1px solid rgba(204,245,215,.34);
+  border-radius:22px;
+  background:rgba(14,49,35,.6);
+  -webkit-backdrop-filter:blur(18px) saturate(1.15);
+  backdrop-filter:blur(18px) saturate(1.15);
+  box-shadow:0 18px 44px rgba(0,17,12,.24),inset 0 1px rgba(255,255,255,.13);
+}
+.zmp-page .zmp-excel-spotlight{position:relative;isolation:isolate;overflow:visible}
+.zmp-page .zmp-excel-spotlight-mark{
+  width:130px;
+  height:122px;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  transform:translateY(-14px);
+  filter:drop-shadow(0 12px 20px rgba(0,11,7,.38));
+}
+.zmp-page .zmp-excel-spotlight-mark img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+@media(max-width:480px){
+  .zmp-page .zmp-excel-spotlight-mark{width:80px;height:78px;transform:translateY(-7px)}
+  .zmp-page .zmp-excel-spotlight-copy{flex-basis:calc(100% - 96px)}
+}
