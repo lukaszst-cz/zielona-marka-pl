@@ -30,11 +30,25 @@ function matchesIndustry(item: PortfolioItem, filter: string) {
 /* Wybrane prace w karuzeli: przejrzysty przekrój przez witryny, aplikacje i gazetki. */
 /* Na scenie są wybrane realizacje WWW, ich dodatki i aplikacje. Pozostałe materiały są niżej w katalogu. */
 const featuredOrder = [
-  "black-harbor", "phu-marecki", "eltravia", "aurea-smile",
-  "kordon-barber-studio", "beata-beauty-atelier",
-  "solidom", "navoro-hurt", "gazetka-navoro", "centrum-budowlane-pwa",
-  "solident", "nexio-elektro", "gazetka-nexio", "budrivo",
-  "phu-marecki-aplikacja", "materivo-eko", "auto-naprawa", "gazetka-budrivo",
+  "black-harbor",
+  "phu-marecki",
+  "kordon-barber-studio",
+  "eltravia",
+  "aurea-smile",
+
+  "beata-beauty-atelier",
+  "fornir-forma",
+  "uvset-360",
+  "solidom",
+
+  "centrum-budowlane-pwa",
+  "navoro-hurt",
+  "gazetka-navoro",
+
+  "solident",
+  "materivo",
+  "materivo-eko",
+  "auto-naprawa",
 ];
 
 const AUTOPLAY_MS = 6500;
@@ -373,7 +387,7 @@ export default function PortfolioExplorer({ items }: { items: PortfolioItem[] })
 
         {format === "all" && industry === "all" && !search.trim() && !onlyOpen && excelCount > 0 && (
           <aside className="zmp-excel-spotlight" aria-labelledby="zmp-excel-spotlight-title">
-            <div className="zmp-excel-spotlight-mark" aria-hidden="true">XLSX</div>
+            <div className="zmp-excel-spotlight-mark" aria-hidden="true"><img src="/portfolio/excel-3d-icon.webp" width="160" height="145" alt="" loading="lazy" decoding="async" /></div>
             <div className="zmp-excel-spotlight-copy">
               <span className="zmp-overline">DODATKOWE NARZĘDZIA DLA FIRM</span>
               <h3 id="zmp-excel-spotlight-title">Arkusze Excel i kalkulatory</h3>
